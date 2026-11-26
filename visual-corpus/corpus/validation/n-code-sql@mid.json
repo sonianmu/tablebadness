@@ -1,0 +1,2405 @@
+{
+ "id": "n-code-sql@mid",
+ "family": "n-code-sql",
+ "split": "validation",
+ "status": "confirmed",
+ "table": {
+  "title": "Database column specification for orders table",
+  "lang": "en",
+  "structure": "plain",
+  "html": "<table><thead><tr><th>Column</th><th>Type</th><th>Nullable</th><th>Default</th><th>Comment</th></tr></thead><tbody><tr><td>order_id</td><td>BIGINT UNSIGNED</td><td>NO</td><td>—</td><td>Primary key; auto-increment sequence shared across all sales channels</td></tr><tr><td>customer_id</td><td>BIGINT UNSIGNED</td><td>NO</td><td>—</td><td>References customers.id; indexed for order history lookups</td></tr><tr><td>order_reference</td><td>VARCHAR(32)</td><td>NO</td><td>—</td><td>Human-readable code shown to customers and on invoices, e.g. ORD-2024-008731</td></tr><tr><td>status</td><td>VARCHAR(24)</td><td>NO</td><td>'pending'</td><td>One of pending, paid, fulfilled, cancelled, refunded; enforced by CHECK constraint</td></tr><tr><td>total_amount_cents</td><td>INTEGER</td><td>NO</td><td>0</td><td>Order total in minor currency units; never store floating-point money here</td></tr><tr><td>currency_code</td><td>CHAR(3)</td><td>NO</td><td>'USD'</td><td>ISO 4217 alphabetic code; must match the currency of all line items</td></tr><tr><td>placed_at</td><td>TIMESTAMP WITH TIME ZONE</td><td>NO</td><td>CURRENT_TIMESTAMP</td><td>Moment the order was submitted; stored in UTC regardless of storefront locale</td></tr><tr><td>cancelled_at</td><td>TIMESTAMP WITH TIME ZONE</td><td>YES</td><td>NULL</td><td>Set when status transitions to cancelled or refunded; NULL for active orders</td></tr></tbody></table>",
+  "md": null,
+  "rowHeader": false,
+  "source": "generated",
+  "brief": "Database column spec: Column (snake_case) / Type (like VARCHAR(255), TIMESTAMP WITH TIME ZONE) / Nullable / Default / Comment"
+ },
+ "conditions": {
+  "availableWidth": 792,
+  "fontSize": 15,
+  "policy": "fit",
+  "css": "src/table.css (padding 6px 10px, 1px borders, line-height 1.55)",
+  "browser": "Chromium (Playwright build), macOS system fonts",
+  "contentFacts": {
+   "WminNoSplit": 655,
+   "WallOneLine": 1250
+  }
+ },
+ "understanding": {
+  "purpose": "A database schema reference for the orders table, used by developers/DBAs to verify column names, types, nullability, defaults, and meaning before querying or migrating.",
+  "reading": "Readers scan down the Column list to locate a field, then move horizontally across Type, Nullable, and Default to confirm its contract; the Comment is read last as explanation. Comparison happens primarily within columns, so identifiers and technical tokens should remain stable and easy to align.",
+  "groups": [
+   "Column, Type, Nullable, Default — the machine-readable schema contract, read together row by row",
+   "Comment — free-text human annotation, secondary to the schema facts and naturally wrappable"
+  ],
+  "keep_intact": [
+   "order_id",
+   "customer_id",
+   "order_reference",
+   "status",
+   "total_amount_cents",
+   "currency_code",
+   "placed_at",
+   "cancelled_at",
+   "BIGINT UNSIGNED",
+   "VARCHAR(32)",
+   "VARCHAR(24)",
+   "INTEGER",
+   "CHAR(3)",
+   "TIMESTAMP",
+   "CURRENT_TIMESTAMP",
+   "NULL",
+   "'pending'",
+   "'USD'",
+   "YES/NO values"
+  ],
+  "may_wrap": [
+   "Comment prose",
+   "Type phrases between words, such as TIMESTAMP WITH TIME ZONE",
+   "Longer comments can increase row height without harming the row’s meaning"
+  ]
+ },
+ "preferred": [
+  {
+   "name": "r2B",
+   "colWidths": [
+    158,
+    140,
+    80,
+    182,
+    231
+   ],
+   "requestedWidths": [
+    158,
+    140,
+    80,
+    182,
+    231
+   ],
+   "tableWidth": 792,
+   "tableHeight": 699.3,
+   "rowHeights": [
+    36.3,
+    82.8,
+    82.8,
+    82.8,
+    82.8,
+    82.8,
+    82.8,
+    82.8,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     2
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     3
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     2
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     1
+    ],
+    [
+     2,
+     4,
+     3
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     1
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     4,
+     3
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     1
+    ],
+    [
+     4,
+     4,
+     3
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     1
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     1
+    ],
+    [
+     5,
+     4,
+     3
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     1
+    ],
+    [
+     6,
+     2,
+     1
+    ],
+    [
+     6,
+     3,
+     1
+    ],
+    [
+     6,
+     4,
+     3
+    ],
+    [
+     7,
+     0,
+     1
+    ],
+    [
+     7,
+     1,
+     3
+    ],
+    [
+     7,
+     2,
+     1
+    ],
+    [
+     7,
+     3,
+     1
+    ],
+    [
+     7,
+     4,
+     3
+    ],
+    [
+     8,
+     0,
+     1
+    ],
+    [
+     8,
+     1,
+     3
+    ],
+    [
+     8,
+     2,
+     1
+    ],
+    [
+     8,
+     3,
+     1
+    ],
+    [
+     8,
+     4,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/n-code-sql@mid__r2B.png",
+   "note": "Give comments more room by narrowing Type. This tests whether better prose rhythm is worth potentially wrapping BIGINT UNSIGNED between its two words."
+  }
+ ],
+ "acceptable": [
+  {
+   "name": "r1B",
+   "colWidths": [
+    158,
+    150,
+    80,
+    182,
+    221
+   ],
+   "requestedWidths": [
+    158,
+    150,
+    80,
+    182,
+    221
+   ],
+   "tableWidth": 792,
+   "tableHeight": 769,
+   "rowHeights": [
+    36.3,
+    82.8,
+    82.8,
+    106,
+    106,
+    82.8,
+    82.8,
+    106,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     3
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     1
+    ],
+    [
+     2,
+     4,
+     3
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     1
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     4,
+     4
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     1
+    ],
+    [
+     4,
+     4,
+     4
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     1
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     1
+    ],
+    [
+     5,
+     4,
+     3
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     1
+    ],
+    [
+     6,
+     2,
+     1
+    ],
+    [
+     6,
+     3,
+     1
+    ],
+    [
+     6,
+     4,
+     3
+    ],
+    [
+     7,
+     0,
+     1
+    ],
+    [
+     7,
+     1,
+     2
+    ],
+    [
+     7,
+     2,
+     1
+    ],
+    [
+     7,
+     3,
+     1
+    ],
+    [
+     7,
+     4,
+     4
+    ],
+    [
+     8,
+     0,
+     1
+    ],
+    [
+     8,
+     1,
+     2
+    ],
+    [
+     8,
+     2,
+     1
+    ],
+    [
+     8,
+     3,
+     1
+    ],
+    [
+     8,
+     4,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/n-code-sql@mid__r1B.png",
+   "note": "Try a smaller Type increase to preserve more room for comments. This tests whether the two-word BIGINT type can remain intact without materially changing r0B's comment rhythm."
+  },
+  {
+   "name": "r1C",
+   "colWidths": [
+    158,
+    165,
+    80,
+    182,
+    206
+   ],
+   "requestedWidths": [
+    158,
+    165,
+    80,
+    182,
+    206
+   ],
+   "tableWidth": 792,
+   "tableHeight": 815.5,
+   "rowHeights": [
+    36.3,
+    106,
+    82.8,
+    106,
+    106,
+    82.8,
+    82.8,
+    106,
+    106
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     4
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     1
+    ],
+    [
+     2,
+     4,
+     3
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     1
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     4,
+     4
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     1
+    ],
+    [
+     4,
+     4,
+     4
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     1
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     1
+    ],
+    [
+     5,
+     4,
+     3
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     1
+    ],
+    [
+     6,
+     2,
+     1
+    ],
+    [
+     6,
+     3,
+     1
+    ],
+    [
+     6,
+     4,
+     3
+    ],
+    [
+     7,
+     0,
+     1
+    ],
+    [
+     7,
+     1,
+     2
+    ],
+    [
+     7,
+     2,
+     1
+    ],
+    [
+     7,
+     3,
+     1
+    ],
+    [
+     7,
+     4,
+     4
+    ],
+    [
+     8,
+     0,
+     1
+    ],
+    [
+     8,
+     1,
+     2
+    ],
+    [
+     8,
+     2,
+     1
+    ],
+    [
+     8,
+     3,
+     1
+    ],
+    [
+     8,
+     4,
+     4
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/n-code-sql@mid__r1C.png",
+   "note": "Give Type a little more room to improve timestamp wrapping while keeping Comment wider than in r0A. This explores the tradeoff between a clearer schema contract and longer comment lines."
+  },
+  {
+   "name": "r2A",
+   "colWidths": [
+    158,
+    148,
+    80,
+    182,
+    223
+   ],
+   "requestedWidths": [
+    158,
+    148,
+    80,
+    182,
+    223
+   ],
+   "tableWidth": 792,
+   "tableHeight": 769,
+   "rowHeights": [
+    36.3,
+    82.8,
+    82.8,
+    106,
+    106,
+    82.8,
+    82.8,
+    106,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     2
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     3
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     2
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     1
+    ],
+    [
+     2,
+     4,
+     3
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     1
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     4,
+     4
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     1
+    ],
+    [
+     4,
+     4,
+     4
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     1
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     1
+    ],
+    [
+     5,
+     4,
+     3
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     1
+    ],
+    [
+     6,
+     2,
+     1
+    ],
+    [
+     6,
+     3,
+     1
+    ],
+    [
+     6,
+     4,
+     3
+    ],
+    [
+     7,
+     0,
+     1
+    ],
+    [
+     7,
+     1,
+     2
+    ],
+    [
+     7,
+     2,
+     1
+    ],
+    [
+     7,
+     3,
+     1
+    ],
+    [
+     7,
+     4,
+     4
+    ],
+    [
+     8,
+     0,
+     1
+    ],
+    [
+     8,
+     1,
+     2
+    ],
+    [
+     8,
+     2,
+     1
+    ],
+    [
+     8,
+     3,
+     1
+    ],
+    [
+     8,
+     4,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/n-code-sql@mid__r2A.png",
+   "note": "Move 2px from Type to Comment to test whether BIGINT UNSIGNED remains intact while improving comment breaks."
+  },
+  {
+   "name": "r3A",
+   "colWidths": [
+    158,
+    146,
+    80,
+    182,
+    225
+   ],
+   "requestedWidths": [
+    158,
+    146,
+    80,
+    182,
+    225
+   ],
+   "tableWidth": 792,
+   "tableHeight": 769,
+   "rowHeights": [
+    36.3,
+    82.8,
+    82.8,
+    106,
+    106,
+    82.8,
+    82.8,
+    106,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     2
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     3
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     2
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     1
+    ],
+    [
+     2,
+     4,
+     3
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     1
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     4,
+     4
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     1
+    ],
+    [
+     4,
+     4,
+     4
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     1
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     1
+    ],
+    [
+     5,
+     4,
+     3
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     1
+    ],
+    [
+     6,
+     2,
+     1
+    ],
+    [
+     6,
+     3,
+     1
+    ],
+    [
+     6,
+     4,
+     3
+    ],
+    [
+     7,
+     0,
+     1
+    ],
+    [
+     7,
+     1,
+     2
+    ],
+    [
+     7,
+     2,
+     1
+    ],
+    [
+     7,
+     3,
+     1
+    ],
+    [
+     7,
+     4,
+     4
+    ],
+    [
+     8,
+     0,
+     1
+    ],
+    [
+     8,
+     1,
+     2
+    ],
+    [
+     8,
+     2,
+     1
+    ],
+    [
+     8,
+     3,
+     1
+    ],
+    [
+     8,
+     4,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/n-code-sql@mid__r3A.png",
+   "note": "Move 6px from Comment to Type relative to r2B. Test whether the timestamp types regain a more coherent two-line break while comments remain reasonably compact."
+  },
+  {
+   "name": "r3B",
+   "colWidths": [
+    158,
+    120,
+    80,
+    182,
+    251
+   ],
+   "requestedWidths": [
+    158,
+    120,
+    80,
+    182,
+    251
+   ],
+   "tableWidth": 792,
+   "tableHeight": 676,
+   "rowHeights": [
+    36.3,
+    82.8,
+    59.5,
+    82.8,
+    82.8,
+    82.8,
+    82.8,
+    82.8,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     2
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     3
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     2
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     1
+    ],
+    [
+     2,
+     4,
+     2
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     1
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     4,
+     3
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     1
+    ],
+    [
+     4,
+     4,
+     3
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     1
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     1
+    ],
+    [
+     5,
+     4,
+     3
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     1
+    ],
+    [
+     6,
+     2,
+     1
+    ],
+    [
+     6,
+     3,
+     1
+    ],
+    [
+     6,
+     4,
+     3
+    ],
+    [
+     7,
+     0,
+     1
+    ],
+    [
+     7,
+     1,
+     3
+    ],
+    [
+     7,
+     2,
+     1
+    ],
+    [
+     7,
+     3,
+     1
+    ],
+    [
+     7,
+     4,
+     3
+    ],
+    [
+     8,
+     0,
+     1
+    ],
+    [
+     8,
+     1,
+     3
+    ],
+    [
+     8,
+     2,
+     1
+    ],
+    [
+     8,
+     3,
+     1
+    ],
+    [
+     8,
+     4,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/n-code-sql@mid__r3B.png",
+   "note": "Give Comment another 20px by reducing Type to its longest unbreakable token. This tests whether clearer prose and more intact examples offset additional wrapping of multiword types."
+  },
+  {
+   "name": "r3C",
+   "colWidths": [
+    158,
+    158,
+    80,
+    182,
+    213
+   ],
+   "requestedWidths": [
+    158,
+    158,
+    80,
+    182,
+    213
+   ],
+   "tableWidth": 792,
+   "tableHeight": 769,
+   "rowHeights": [
+    36.3,
+    82.8,
+    82.8,
+    106,
+    106,
+    82.8,
+    82.8,
+    106,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     3
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     1
+    ],
+    [
+     2,
+     4,
+     3
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     1
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     4,
+     4
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     1
+    ],
+    [
+     4,
+     4,
+     4
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     1
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     1
+    ],
+    [
+     5,
+     4,
+     3
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     1
+    ],
+    [
+     6,
+     2,
+     1
+    ],
+    [
+     6,
+     3,
+     1
+    ],
+    [
+     6,
+     4,
+     3
+    ],
+    [
+     7,
+     0,
+     1
+    ],
+    [
+     7,
+     1,
+     2
+    ],
+    [
+     7,
+     2,
+     1
+    ],
+    [
+     7,
+     3,
+     1
+    ],
+    [
+     7,
+     4,
+     4
+    ],
+    [
+     8,
+     0,
+     1
+    ],
+    [
+     8,
+     1,
+     2
+    ],
+    [
+     8,
+     2,
+     1
+    ],
+    [
+     8,
+     3,
+     1
+    ],
+    [
+     8,
+     4,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/n-code-sql@mid__r3C.png",
+   "note": "Give Type enough room for BIGINT UNSIGNED to potentially stay on one line while retaining two-line timestamp types. Test whether the narrower Comment column remains acceptable."
+  }
+ ],
+ "bad": [
+  {
+   "name": "r2C",
+   "colWidths": [
+    158,
+    231,
+    80,
+    182,
+    140
+   ],
+   "requestedWidths": [
+    158,
+    231,
+    80,
+    182,
+    140
+   ],
+   "tableWidth": 792,
+   "tableHeight": 1141,
+   "rowHeights": [
+    36.3,
+    129.3,
+    106,
+    152.5,
+    175.8,
+    129.3,
+    129.3,
+    152.5,
+    129.3
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     5
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     1
+    ],
+    [
+     2,
+     4,
+     4
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     1
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     4,
+     6
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     1
+    ],
+    [
+     4,
+     4,
+     7
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     1
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     1
+    ],
+    [
+     5,
+     4,
+     5
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     1
+    ],
+    [
+     6,
+     2,
+     1
+    ],
+    [
+     6,
+     3,
+     1
+    ],
+    [
+     6,
+     4,
+     5
+    ],
+    [
+     7,
+     0,
+     1
+    ],
+    [
+     7,
+     1,
+     1
+    ],
+    [
+     7,
+     2,
+     1
+    ],
+    [
+     7,
+     3,
+     1
+    ],
+    [
+     7,
+     4,
+     6
+    ],
+    [
+     8,
+     0,
+     1
+    ],
+    [
+     8,
+     1,
+     1
+    ],
+    [
+     8,
+     2,
+     1
+    ],
+    [
+     8,
+     3,
+     1
+    ],
+    [
+     8,
+     4,
+     5
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/n-code-sql@mid__r2C.png",
+   "note": "Keep the complete timestamp type on one line and test the opposite priority: compact, consistently aligned schema facts with substantially narrower, more heavily wrapped comments.",
+   "why": "The narrow Comment column breaks prose into as many as seven lines, making rows tall and leaving large empty areas across the specification columns."
+  }
+ ],
+ "ranges": [
+  [
+   158,
+   158
+  ],
+  [
+   138,
+   142
+  ],
+  [
+   80,
+   80
+  ],
+  [
+   182,
+   182
+  ],
+  [
+   229,
+   233
+  ]
+ ],
+ "rationale": "r2B gives comments enough space to keep the example order identifier together and limits them to three lines, while preserving unbroken column names, defaults and headers. Its uniform row heights make the specification easy to scan across, although the timestamp types wrap to three lines. The wider Type column in r1B keeps BIGINT UNSIGNED on one line, but its narrower comments split the example identifier and produce several taller rows.",
+ "principles": {
+  "general": [
+   "Allocate width according to content and reading role; prose often benefits more from additional space than short categorical fields.",
+   "Protect identifiers and other values that readers need to recognize or copy, and judge wrapping in the context of the whole row."
+  ],
+  "specific": [
+   "Column, Nullable and Default are already at the widths needed for their longest unbreakable entries or headers.",
+   "A small shift from Type to Comment in r2B keeps the example order identifier together and gives the body a consistent row rhythm."
+  ]
+ },
+ "tradeoffs": "r2B wraps BIGINT UNSIGNED and spreads each timestamp type across three lines. A designer prioritizing quick comparison of complete type expressions could reasonably prefer r1B or r3C despite their more fragmented comments.",
+ "uncertain": "The ranges are conservative visual estimates, not tested browser breakpoints. They describe small one-column adjustments with the remaining widths redistributed proportionally under the 791px limit; simultaneous changes can cross wrapping thresholds.",
+ "designHistory": {
+  "r0": {
+   "critique": null,
+   "designs": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "Column names and defaults remain intact, and BIGINT UNSIGNED stays on one line. Headers are clear, and the timestamp types wrap at word boundaries.",
+     "problems": "The narrow comment measure produces four or five lines in most rows, stretching the rows and leaving large empty areas under the schema values. The example order reference also breaks across lines.",
+     "cause": "Type receives 195px, although only two entries benefit from much of that space; Comment receives just 169px, or 148px for text."
+    },
+    {
+     "design": "r0B",
+     "good": "This is the strongest overall balance: comments are readable in three lines, rows have a steady rhythm, and identifiers and defaults remain intact. The wider comments make it easier to associate each explanation with its schema row.",
+     "problems": "BIGINT UNSIGNED breaks across two lines, and each timestamp type occupies three lines. Those breaks make the Type column harder to scan, even though the rows are already tall enough to contain them.",
+     "cause": "The 140px Type column leaves 119px for text, while the 231px Comment column takes the space needed to keep BIGINT UNSIGNED together."
+    },
+    {
+     "design": "r0C",
+     "good": "All types, column names, and defaults fit on one line, making the schema contract easy to scan vertically.",
+     "problems": "Comments become narrow stacks of five to seven lines, including a broken example order reference. The resulting tall rows create extensive empty space across the other columns and weaken the connection between each field and its explanation.",
+     "cause": "The 231px Type column accommodates the longest timestamp phrase in full, leaving only 138px for Comment."
+    }
+   ],
+   "designs": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "Column names, defaults and the BIGINT types stay intact. The two timestamp types wrap consistently, and the headers remain clear.",
+     "problems": "Several comments occupy four lines, leaving large areas of white space across the schema columns. The example order reference breaks at a hyphen.",
+     "cause": "The 213px Comment column has 192px of text space. The 158px Type column is wider than needed for BIGINT UNSIGNED but still too narrow to keep the timestamp phrase on one line."
+    },
+    {
+     "design": "r1B",
+     "good": "This has the strongest balance: the schema facts remain easy to scan, BIGINT UNSIGNED stays on one line, and the wider Comment column improves several prose breaks without increasing table height.",
+     "problems": "The order-reference example still breaks across lines, and the status and placed-at comments each occupy four lines. The schema columns consequently have substantial empty space in those rows.",
+     "cause": "At 221px, Comment has 200px of text space, still too little for some longer phrases. Type at 150px is close to the width needed to preserve BIGINT UNSIGNED."
+    },
+    {
+     "design": "r1C",
+     "good": "The wider Type column gives the schema values breathing room, while identifiers, defaults and headers remain intact.",
+     "problems": "The narrower comments produce more four-line rows and a taller, less even table. The order-reference example breaks earlier, and the extra Type width does not reduce the timestamp types to one line.",
+     "cause": "Increasing Type to 165px reduces Comment to 206px. That trade gives Type no visible line-count benefit while forcing additional prose wraps."
+    }
+   ],
+   "designs": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "Column names, headers and defaults remain intact. The timestamp types read in two lines, and the contract columns are easy to scan.",
+     "problems": "Several comments run to four lines, making the row rhythm uneven. The example order reference breaks across lines, making the identifier harder to read.",
+     "cause": "The 223px Comment column is just too narrow for several useful phrases and the complete example reference."
+    },
+    {
+     "design": "r2B",
+     "good": "All rows have the same height, the comments fit within three lines, and the example order reference stays together. Column names and defaults remain intact.",
+     "problems": "The timestamp types break into three lines, leaving ZONE isolated. BIGINT UNSIGNED also breaks across lines, making the type column less immediately scannable.",
+     "cause": "The 140px Type column gives only 119px to text; the extra 8px allocated to Comment improves its wrapping at the expense of the type phrases."
+    },
+    {
+     "design": "r2C",
+     "good": "Every type stays on one line, making comparisons down the Type column straightforward. Column names and defaults also remain intact.",
+     "problems": "The narrow comments fragment into up to seven lines, split the example order reference, and create excessive height and empty space across the contract columns. Rows are harder to scan as units.",
+     "cause": "The 231px Type column consumes space needed by Comment, leaving the latter only 140px wide."
+    }
+   ],
+   "designs": [
+    "r3A",
+    "r3B",
+    "r3C"
+   ]
+  }
+ },
+ "review": {
+  "method": "two fresh-context blind reviews; letters shuffled; includes browser auto layout and equal widths as neutral references",
+  "verdict": {
+   "status": "confirmed",
+   "per": [
+    {
+     "prefGrade": 4,
+     "prefIsBest": false,
+     "bestNames": [
+      "ref_auto"
+     ],
+     "badGrades": [
+      2
+     ],
+     "autoGrade": 5,
+     "equalGrade": 1
+    },
+    {
+     "prefGrade": 4,
+     "prefIsBest": false,
+     "bestNames": [
+      "ref_auto"
+     ],
+     "badGrades": [
+      2
+     ],
+     "autoGrade": 5,
+     "equalGrade": 1
+    }
+   ]
+  },
+  "raw": [
+   {
+    "order": [
+     "r2C",
+     "r2B",
+     "ref_auto",
+     "ref_equal",
+     "r1B",
+     "r1C"
+    ],
+    "best": [
+     "ref_auto"
+    ],
+    "ratings": {
+     "r2C": {
+      "grade": "poor",
+      "why": "Identifiers and types stay intact, but the very narrow Comment column creates many short lines and tall rows, leaving large empty areas across the rest of the table."
+     },
+     "r2B": {
+      "grade": "good",
+      "why": "The comments have room to read and the example order code stays together. BIGINT UNSIGNED wraps, and the timestamp type breaks across three lines, making type values harder to scan."
+     },
+     "ref_auto": {
+      "grade": "excellent",
+      "why": "The comments read comfortably, the example order code and default value stay intact, and the timestamp types wrap cleanly to two lines. The compact Nullable column leaves space where it is needed."
+     },
+     "ref_equal": {
+      "grade": "bad",
+      "why": "Equal column widths give excessive space to Nullable while constraining comments. CURRENT_TIMESTAMP breaks inside the identifier, and the narrow comments create tall rows."
+     },
+     "r1B": {
+      "grade": "good",
+      "why": "Column names, BIGINT UNSIGNED, and CURRENT_TIMESTAMP stay intact, with readable comments and two-line timestamp types. The example order code breaks across lines."
+     },
+     "r1C": {
+      "grade": "good",
+      "why": "Technical values are mostly easy to scan and timestamp types wrap cleanly, but the narrower Comment column produces more short lines and splits the example order code."
+     }
+    },
+    "confidence": "high",
+    "unsure": "C trades a two-line BIGINT UNSIGNED for a wider Comment column; E keeps that type on one line but breaks the example order code."
+   },
+   {
+    "order": [
+     "r1B",
+     "r2B",
+     "r2C",
+     "ref_auto",
+     "r1C",
+     "ref_equal"
+    ],
+    "best": [
+     "ref_auto"
+    ],
+    "ratings": {
+     "r1B": {
+      "grade": "good",
+      "why": "Column names and defaults stay intact, and types wrap reasonably. Comments have a workable measure, though the sample order reference breaks across lines."
+     },
+     "r2B": {
+      "grade": "good",
+      "why": "The wider comment column keeps the sample order reference together and gives rows a consistent rhythm. The narrow type column breaks both BIGINT UNSIGNED and timestamp types over multiple lines."
+     },
+     "r2C": {
+      "grade": "poor",
+      "why": "Types and defaults stay on one line, but the very narrow comment column produces long, fragmented paragraphs and tall rows with large empty areas."
+     },
+     "ref_auto": {
+      "grade": "excellent",
+      "why": "The comment column has a comfortable measure and keeps the sample order reference intact. Column names and defaults also stay intact, while timestamp types wrap neatly into two lines."
+     },
+     "r1C": {
+      "grade": "good",
+      "why": "Names and defaults remain intact, and types are easy to scan. The narrower comment column makes several rows taller and splits the sample order reference."
+     },
+     "ref_equal": {
+      "grade": "bad",
+      "why": "The oversized Nullable column takes space from comments and defaults. Comments become narrow and tall, and CURRENT_TIMESTAMP breaks inside the identifier."
+     }
+    },
+    "confidence": "high",
+    "unsure": "A and B offer reasonable alternatives; their relative merit depends on how much weight readers give to keeping type declarations together versus keeping the example order reference intact."
+   }
+  ]
+ },
+ "provenance": {
+  "models": {
+   "final": "codex/gpt-6.1-terra",
+   "r0": "workbuddy-ai/deepseek-v4.1-flash-sg",
+   "r1": "codex/gpt-6.1-terra",
+   "r2": "codex/gpt-6.1-terra",
+   "r3": "codex/gpt-6.1-terra",
+   "review0": "codex/gpt-6.1-terra",
+   "review1": "codex/gpt-6.1-terra"
+  },
+  "modelChain": "codex/gpt-6.1-terra → opencode-zen-free/deepseek-v4.1-flash-free",
+  "pi": "1.3.0",
+  "created": "2026-11-26T16:40:07.972Z",
+  "note": "AI visual design judgement; not a human reading study"
+ }
+}

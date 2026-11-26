@@ -86,6 +86,25 @@ node tools/index.mjs                                       # index + coverage + 
 
 All dependencies are project-local (`../node_modules/playwright-core`, Playwright's cached Chromium). Pi is used as installed; no Pi configuration is changed.
 
+## Status of this build
+
+Models used: `workbuddy-ai/deepseek-v4.1-flash-sg` for the first 50 scenarios. After its credits ran out, the chain `codex/gpt-6.1-terra` → `opencode-zen-free/deepseek-v4.1-flash-free`, which falls back automatically on exhausted quota. Every record lists the model that answered each step (`provenance.models`).
+
+The build stopped when **all three** model quotas were exhausted. At that point **157 of 348** scenarios were built across 64 families:
+
+| Split | Built |
+|---|--:|
+| holdout | 68 / 80 |
+| validation | 71 / 86 |
+| research | 18 / 182 |
+
+- **Status:** 128 confirmed, 17 contested, 12 rejected.
+- **Mean blind grade:** designed layouts 4.11, browser auto 2.72, equal widths 1.56.
+
+The holdout was frozen at 68 scenarios (`corpus/holdout/FROZEN.json`). The 12 unfinished holdout scenarios can be added later with `node tools/freeze.mjs --append`; this refuses to run if any already-frozen file changed. No layout algorithm has been run on any split.
+
+To resume, run `sh tools/run-all.sh`. It skips everything already built, re-reviews scroll scenarios judged under the first prompt, redesigns rejected scenarios once, and appends to the holdout freeze.
+
 ## Limits
 
 - These are one model's visual design judgements, checked by two more contexts of the same model. Same-model review gives only limited independence. They are reference judgements, not objective aesthetic truth and not human preference or reading-speed data.

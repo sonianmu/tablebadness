@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 500Lクラス冷蔵庫6機種の比較 (language ja).\nGrid: 6 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"機種\" spans 1 col × 2 row; \"性能\" spans 3 col × 1 row; \"価格（税込）\" spans 1 col × 2 row; \"特徴（長い説明）\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"機種\" · longest unbreakable word 68px · one-line width 188px\n  col 2: header \"性能 › 消費電力\" · longest unbreakable word 35px · one-line width 82px\n  col 3: header \"性能 › 容量\" · longest unbreakable word 29px · one-line width 41px\n  col 4: header \"性能 › 騒音\" · longest unbreakable word 19px · one-line width 56px\n  col 5: header \"価格（税込）\" · longest unbreakable word 59px · one-line width 92px\n  col 6: header \"特徴（長い説明）\" · longest unbreakable word 56px · one-line width 1295px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 13704,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"bad\",\"why\":\"Equal-width columns leave excessive space around the short specifications while squeezing descriptions into very narrow, tall blocks. Model identifiers also wrap.\"},\"B\":{\"grade\":\"poor\",\"why\":\"The descriptions have room, but the specification columns are so narrow that values and units split across multiple lines, making comparison difficult.\"},\"C\":{\"grade\":\"good\",\"why\":\"Specifications and prices stay on one line, descriptions have a readable measure, and the wider model column keeps most identifiers together. Some models still wrap at hyphens.\"},\"D\":{\"grade\":\"good\",\"why\":\"Specifications and prices scan cleanly, and descriptions have slightly more room than in C. Several model identifiers wrap at hyphens, though the row labels remain legible.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"Specifications and prices remain easy to compare, and descriptions have ample width. The narrow model column breaks the Panasonic name and identifier over three lines.\"},\"F\":{\"grade\":\"good\",\"why\":\"The wider model column keeps more row labels together, while specifications and prices stay on one line. The narrower descriptions make rows taller, and several identifiers still wrap at hyphens.\"}},\"best\":[\"C\"],\"confidence\":\"medium\",\"unsure\":\"C and D are close: D gives descriptions slightly more room, while C gives the identifying column a little more space. F preserves more complete row labels but narrows the descriptions.\"}\n"
+  }
+ ]
+}

@@ -55,6 +55,27 @@
     "r2A",
     "r2B"
    ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "Field identifiers and headers remain intact. Examples and error messages are legible, and the row boundaries make each field’s rule and feedback easy to follow.",
+     "problems": "The email regex forms an eight-line block and breaks within character classes, making it difficult to parse. Several shorter regexes also wrap awkwardly. The narrow error column produces five-line messages for currency and slug, leaving substantial empty space in the other cells.",
+     "cause": "Pattern has 164px of text width, while Error message has 178px. Field is already at its stated minimum for intact identifiers, and Example valid is at the minimum for its longest unbreakable value."
+    },
+    {
+     "design": "r2B",
+     "good": "The same clear row keys, intact headers and readable examples make the table usable for row-by-row lookup.",
+     "problems": "The render is effectively indistinguishable from r2A: the email regex remains fragmented, and long error messages still dominate several rows.",
+     "cause": "Moving 1px from Error message to Pattern does not cross a useful wrapping threshold; their text widths are 177px and 165px respectively."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A",
+    "r3B"
+   ]
   }
  },
  "designs": {
@@ -2518,6 +2539,1409 @@
    "idea": "Aggressive variant: one more pixel to Pattern and one less to Error. Pattern 186px (165px text) gives the email regex a safer margin for the eight-line wrap; Error 198px (177px text) is at the edge of the slug wrap, so this wins if the pattern threshold is 165px and the slug still fits at 177px. If slug breaks, total height returns near r1A rather than r1B.",
    "notes": [],
    "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    147,
+    205,
+    188,
+    179
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 8,
+    "tableWidth": 720,
+    "tableHeight": 942,
+    "overflow": 0,
+    "colWidths": [
+     147,
+     205,
+     188,
+     179
+    ],
+    "rowHeights": [
+     36.3,
+     199,
+     152.5,
+     106,
+     82.8,
+     129.3,
+     129.3,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Field",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Pattern",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Example valid",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Error message",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "account_email",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]",
+      "lines": 8
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "mira.okafor@northwind-logistics.co.uk",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a complete email address, including the domain (for ex",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "phone_e164",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^\\+[1-9]\\d{7,14}$",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+442079460958",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Use international format: a plus sign followed by 8–15 digit",
+      "lines": 6
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "postal_code_us",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^\\d{5}(?:-\\d{4})?$",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "94107-2231",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a 5-digit ZIP code or ZIP+4 (for example, 94107 or 941",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "effective_date",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-02-29",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Use YYYY-MM-DD; the month must be 01–12 and the day 01–31.",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "currency_amount",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^(?:0|[1-9]\\d{0,8})(?:\\.\\d{2})?$",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12500.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a non-negative amount up to 999,999,999.99 with two de",
+      "lines": 5
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "slug",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "quarterly-compliance-review",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Use lowercase letters, numbers, and single hyphens only; do ",
+      "lines": 5
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "eu_vat_id",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^[A-Z]{2}[0-9A-Z]{8,12}$",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "DE811234567",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter the country code followed by 8–12 letters or digits, w",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 15,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 126,
+      "natural": 126,
+      "padding": 21
+     },
+     {
+      "minContent": 114,
+      "natural": 1074,
+      "padding": 21
+     },
+     {
+      "minContent": 167,
+      "natural": 264,
+      "padding": 21
+     },
+     {
+      "minContent": 157,
+      "natural": 700,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r3A.png",
+   "idea": "Give Pattern 20px more by reducing Error message to its stated minimum for intact words. This tests whether technical rules gain more useful breaks while keeping examples and field identifiers intact.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3B": {
+   "widths": [
+    147,
+    165,
+    188,
+    219
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 8,
+    "tableWidth": 720,
+    "tableHeight": 849,
+    "overflow": 0,
+    "colWidths": [
+     147,
+     165,
+     188,
+     219
+    ],
+    "rowHeights": [
+     36.3,
+     222.3,
+     106,
+     82.8,
+     82.8,
+     129.3,
+     106,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Field",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Pattern",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Example valid",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Error message",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "account_email",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]",
+      "lines": 9
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "mira.okafor@northwind-logistics.co.uk",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a complete email address, including the domain (for ex",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "phone_e164",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^\\+[1-9]\\d{7,14}$",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+442079460958",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Use international format: a plus sign followed by 8–15 digit",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "postal_code_us",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^\\d{5}(?:-\\d{4})?$",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "94107-2231",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a 5-digit ZIP code or ZIP+4 (for example, 94107 or 941",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "effective_date",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-02-29",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Use YYYY-MM-DD; the month must be 01–12 and the day 01–31.",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "currency_amount",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^(?:0|[1-9]\\d{0,8})(?:\\.\\d{2})?$",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12500.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a non-negative amount up to 999,999,999.99 with two de",
+      "lines": 5
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "slug",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "quarterly-compliance-review",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Use lowercase letters, numbers, and single hyphens only; do ",
+      "lines": 4
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "eu_vat_id",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^[A-Z]{2}[0-9A-Z]{8,12}$",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "DE811234567",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter the country code followed by 8–12 letters or digits, w",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 17,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 126,
+      "natural": 126,
+      "padding": 21
+     },
+     {
+      "minContent": 114,
+      "natural": 1074,
+      "padding": 21
+     },
+     {
+      "minContent": 167,
+      "natural": 264,
+      "padding": 21
+     },
+     {
+      "minContent": 157,
+      "natural": 700,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r3B.png",
+   "idea": "Give Error message 20px more at Pattern’s expense to test whether prose becomes easier to scan and reduces the height of the currency and slug rows. Pattern retains 144px of text width, above its stated longest unbreakable word.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "ref_auto": {
+   "widths": [
+    146.8,
+    178.7,
+    191.5,
+    202
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 8,
+    "tableWidth": 720,
+    "tableHeight": 849,
+    "overflow": 0,
+    "colWidths": [
+     146.8,
+     178.7,
+     191.5,
+     202
+    ],
+    "rowHeights": [
+     36.3,
+     222.3,
+     106,
+     82.8,
+     82.8,
+     129.3,
+     106,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Field",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Pattern",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Example valid",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Error message",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "account_email",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]",
+      "lines": 9
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "mira.okafor@northwind-logistics.co.uk",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a complete email address, including the domain (for ex",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "phone_e164",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^\\+[1-9]\\d{7,14}$",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+442079460958",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Use international format: a plus sign followed by 8–15 digit",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "postal_code_us",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^\\d{5}(?:-\\d{4})?$",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "94107-2231",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a 5-digit ZIP code or ZIP+4 (for example, 94107 or 941",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "effective_date",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-02-29",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Use YYYY-MM-DD; the month must be 01–12 and the day 01–31.",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "currency_amount",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^(?:0|[1-9]\\d{0,8})(?:\\.\\d{2})?$",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12500.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a non-negative amount up to 999,999,999.99 with two de",
+      "lines": 5
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "slug",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "quarterly-compliance-review",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Use lowercase letters, numbers, and single hyphens only; do ",
+      "lines": 4
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "eu_vat_id",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^[A-Z]{2}[0-9A-Z]{8,12}$",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "DE811234567",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter the country code followed by 8–12 letters or digits, w",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 16,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 126,
+      "natural": 126,
+      "padding": 21
+     },
+     {
+      "minContent": 114,
+      "natural": 1074,
+      "padding": 21
+     },
+     {
+      "minContent": 167,
+      "natural": 264,
+      "padding": 21
+     },
+     {
+      "minContent": 157,
+      "natural": 700,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    179,
+    179,
+    179,
+    179
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 8,
+    "tableWidth": 717,
+    "tableHeight": 965.3,
+    "overflow": 0,
+    "colWidths": [
+     179,
+     179,
+     179,
+     179
+    ],
+    "rowHeights": [
+     36.3,
+     222.3,
+     152.5,
+     106,
+     82.8,
+     129.3,
+     129.3,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Field",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Pattern",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Example valid",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Error message",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "account_email",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]",
+      "lines": 9
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "mira.okafor@northwind-logistics.co.uk",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a complete email address, including the domain (for ex",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "phone_e164",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^\\+[1-9]\\d{7,14}$",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+442079460958",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Use international format: a plus sign followed by 8–15 digit",
+      "lines": 6
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "postal_code_us",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^\\d{5}(?:-\\d{4})?$",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "94107-2231",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a 5-digit ZIP code or ZIP+4 (for example, 94107 or 941",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "effective_date",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-02-29",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Use YYYY-MM-DD; the month must be 01–12 and the day 01–31.",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "currency_amount",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^(?:0|[1-9]\\d{0,8})(?:\\.\\d{2})?$",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12500.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a non-negative amount up to 999,999,999.99 with two de",
+      "lines": 5
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "slug",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "quarterly-compliance-review",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Use lowercase letters, numbers, and single hyphens only; do ",
+      "lines": 5
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "eu_vat_id",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "^[A-Z]{2}[0-9A-Z]{8,12}$",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "DE811234567",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter the country code followed by 8–12 letters or digits, w",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 1,
+    "tokenBreaks": 15,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 126,
+      "natural": 126,
+      "padding": 21
+     },
+     {
+      "minContent": 114,
+      "natural": 1074,
+      "padding": 21
+     },
+     {
+      "minContent": 167,
+      "natural": 264,
+      "padding": 21
+     },
+     {
+      "minContent": 157,
+      "natural": 700,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-ref_equal.png"
   }
  },
  "understanding": {
@@ -2541,5 +3965,164 @@
    "Example valid only at safe separators if necessary",
    "multi-word headers at their space"
   ]
- }
+ },
+ "modelsUsed": [
+  "codex/gpt-6.1-terra"
+ ],
+ "final": {
+  "preferred": [
+   "r2A",
+   "r2B"
+  ],
+  "acceptable": [
+   "r0B",
+   "r1A",
+   "r1B",
+   "r3B"
+  ],
+  "bad": [
+   {
+    "design": "r0C",
+    "why": "The narrow pattern column fragments the email expression into 11 lines and wraps even the short phone expression, making the rules harder to scan."
+   },
+   {
+    "design": "r3A",
+    "why": "The narrow error-message column forces prose into short lines across several rows, creating excessive row height and uneven whitespace for little visible gain in the pattern column."
+   }
+  ],
+  "contrast": null,
+  "ranges": [
+   [
+    147,
+    147
+   ],
+   [
+    185,
+    186
+   ],
+   [
+    188,
+    188
+   ],
+   [
+    198,
+    199
+   ]
+  ],
+  "rationale": "The preferred designs give the field names and examples enough room to remain identifiable while reserving useful space for both patterns and explanatory messages. The long email pattern occupies eight lines, while the shorter phone and postal patterns stay on one line. The error messages still wrap, but their line lengths remain readable and the rows hold together well.",
+  "principles": {
+   "general": [
+    "Allocate width according to how readers use each column and where wrapping begins to impair comprehension.",
+    "Judge row rhythm and the distribution of whitespace across the whole table, not just total height.",
+    "Preserve identifiers and short code expressions where possible; longer expressions may need to wrap."
+   ],
+   "specific": [
+    "The field column needs 147px to fit the longest row identifier with the stated padding.",
+    "Around 185–186px for patterns keeps the email rule to eight lines while allowing more room for error messages than r3A."
+   ]
+  },
+  "tradeoffs": "A wider error-message column, as in r3B, improves prose flow but fragments the email and postal patterns more. A wider pattern column can make code easier to inspect, but it constrains the messages and may make multiple rows taller.",
+  "uncertain": "A designer prioritizing customer-facing message copy over implementation rules could reasonably prefer r3B. The ranges are conservative, based on the rendered candidates; other nearby widths may be equally good but have not been shown."
+ },
+ "reviews": [
+  {
+   "order": [
+    "ref_equal",
+    "ref_auto",
+    "r0B",
+    "r2A",
+    "r1A",
+    "r0C"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "acceptable",
+     "why": "Field names stay intact, but equal column widths leave extra space in the first column while breaking the email example inside a word and making error messages wrap heavily."
+    },
+    "B": {
+     "grade": "good",
+     "why": "The field column fits its identifiers, examples have room, and messages scan comfortably. Several patterns still wrap across multiple lines."
+    },
+    "C": {
+     "grade": "acceptable",
+     "why": "Examples and messages have comfortable space, but the narrower pattern column splits more expressions, leaving the postal code pattern's final dollar sign alone on a line."
+    },
+    "D": {
+     "grade": "good",
+     "why": "The balanced widths keep field names intact and give patterns slightly more room, reducing the email pattern to eight lines while keeping examples and messages readable."
+    },
+    "E": {
+     "grade": "good",
+     "why": "Field names fit and examples and messages scan well. The pattern column is slightly narrower than in D, so the long email expression takes an extra line."
+    },
+    "F": {
+     "grade": "poor",
+     "why": "The wide message column reads well, but the narrow pattern column fragments even short expressions and makes the long email pattern especially difficult to follow."
+    }
+   },
+   "best": [
+    "D"
+   ],
+   "confidence": "medium",
+   "unsure": "D and E are close; the relative importance of keeping regular expressions together versus giving messages a little more room could change the preference."
+  },
+  {
+   "order": [
+    "r2A",
+    "r0C",
+    "r1A",
+    "r0B",
+    "ref_auto",
+    "ref_equal"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "good",
+     "why": "Field names remain intact, several short patterns fit on one line, and the columns have a useful balance. The email and slug examples wrap, while some error messages are rather narrow."
+    },
+    "B": {
+     "grade": "poor",
+     "why": "The narrow pattern column breaks even short expressions across lines and makes the email pattern particularly difficult to follow. The wider error column reads comfortably, but comes at too high a cost to the central validation rules."
+    },
+    "C": {
+     "grade": "good",
+     "why": "Field names and short patterns remain intact, examples have enough room for most values, and error messages scan reasonably well. The long email pattern and some identifiers still wrap."
+    },
+    "D": {
+     "grade": "acceptable",
+     "why": "The wider example column helps, but the pattern column breaks the postal code expression just before its final dollar sign and fragments other expressions. The extra example width does not prevent the email or slug from wrapping."
+    },
+    "E": {
+     "grade": "good",
+     "why": "The field, pattern, example, and error columns are well balanced. Short patterns stay intact and the error messages read in manageable lines, though the long email pattern and two examples wrap."
+    },
+    "F": {
+     "grade": "poor",
+     "why": "The field column has surplus space while the narrow error column produces many short lines. The email example also breaks within a word, making the identifier harder to read."
+    }
+   },
+   "best": [
+    "A"
+   ],
+   "confidence": "medium",
+   "unsure": "A, C, and E are close. Their different line breaks trade a little pattern readability against error-message flow; the long email pattern necessarily wraps heavily in each."
+  }
+ ],
+ "reviewPrompt": "v2"
 }

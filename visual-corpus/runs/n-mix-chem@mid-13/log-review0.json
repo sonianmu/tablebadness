@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 常用化学试剂清单 (language zh-CN).\nGrid: 5 columns × 8 rows. Row headers: none declared.\nPer-column content facts (content px at 13px font, excluding padding):\n  col 1: header \"名称\" · longest unbreakable word 14px · one-line width 107px\n  col 2: header \"分子式\" · longest unbreakable word 120px · one-line width 120px\n  col 3: header \"CAS 号\" · longest unbreakable word 38px · one-line width 69px\n  col 4: header \"纯度\" · longest unbreakable word 48px · one-line width 118px\n  col 5: header \"储存条件（长）\" · longest unbreakable word 40px · one-line width 993px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 604px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 603px.\nFixed: content, font, 13px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10294,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"储存条件栏宽敞，分子式和 CAS 号完整；但两个纯度范围被拆行，较长名称也换行。\"},\"B\":{\"grade\":\"bad\",\"why\":\"各栏近乎等宽，储存条件栏过窄，文字被挤成细长段落，行高很大；长分子式也被拆开。\"},\"C\":{\"grade\":\"poor\",\"why\":\"储存条件易读，但名称和 CAS 号栏过窄，多处名称及几乎所有 CAS 号被拆行，妨碍识别和比较。\"},\"D\":{\"grade\":\"good\",\"why\":\"名称、分子式、CAS 号和纯度范围均保持完整，便于查找；储存条件栏较窄，长段落使各行偏高。\"},\"E\":{\"grade\":\"good\",\"why\":\"名称、分子式和 CAS 号完整，储存条件比 D 更舒展；但纯度范围被拆成两行，影响数值比较。\"},\"F\":{\"grade\":\"excellent\",\"why\":\"CAS 号、分子式和纯度范围保持完整，储存条件也有较宽的阅读空间；仅最长名称换行，整体分配均衡。\"}},\"best\":[\"F\"],\"confidence\":\"high\",\"unsure\":\"F 的最长名称换行；若优先要求所有名称单行，D 是更合适的取舍，但储存条件栏更窄。\"}\n"
+  }
+ ]
+}

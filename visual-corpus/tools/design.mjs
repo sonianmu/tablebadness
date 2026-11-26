@@ -74,7 +74,7 @@ async function runScenario(s, R) {
   mkdirSync(img, { recursive: true });
   let state = readJ(join(dir, 'state.json')) || { id: s.id, steps: {}, designs: {} };
   const save = () => writeJ(join(dir, 'state.json'), state);
-  if (REREVIEW && s.policy === REREVIEW && state.reviews && !state.rereviewed) {
+  if (REREVIEW && s.policy === REREVIEW && state.reviews && state.reviews.length && !state.rereviewed && state.reviewPrompt !== 'v2') {
     state.reviewsOld = state.reviews; state.reviews = []; state.rereviewed = true; save();
   }
   if (REDO && state.final && state.reviews && state.reviews.length >= 2 && verdict(state).status === 'rejected' && !state.redone) {
@@ -99,7 +99,7 @@ async function runScenario(s, R) {
 
   // ---- round 0: understand + propose ----
   if (!state.steps.r0) {
-    const j = await ask({
+    const j = await ask({ onModel: m => { (state.modelsUsed = state.modelsUsed || []).includes(m) || state.modelsUsed.push(m); },
       images: [ov], logPath: join(dir, 'log-r0.json'),
       prompt: `${PERSONA}\n\n${desc}\n\nThe image shows the table's content with every cell on one line, so you can read everything. Study it first.\n1) Understand it: what is the table for, how will people read, scan and compare it, which columns play the same or similar role, which values must stay intact, which text may wrap naturally, and where existing row height could absorb wrapping.\n2) Propose 3 genuinely different column-width designs for ${s.W}px (different strategies, not small variations).${state.reviewerFeedback ? '\nAn earlier design attempt for this table was rejected by independent reviewers. Their comments: ' + state.reviewerFeedback.slice(0, 2500) : ''}\nReply ONLY JSON: {"understanding":{"purpose":"","reading":"","groups":["columns that belong together and why"],"keep_intact":[""],"may_wrap":[""]},"designs":[{"name":"A","widths":[int px per column, column 1 first],"idea":"one sentence"}]}`,
       validate: x => (Array.isArray(x.designs) && x.designs.length >= 2 ? null : 'need designs[]'),
@@ -122,7 +122,7 @@ async function runScenario(s, R) {
     if (state.steps[key]) { current = state.steps[key].names; if (state.steps[key].done) break; continue; }
     const imgs = current.map(n => join(img, state.designs[n].png));
     const notes = current.map(n => (state.designs[n].notes || []).length ? `${n}: ${state.designs[n].notes.join('; ')}` : '').filter(Boolean).join('\n');
-    const j = await ask({
+    const j = await ask({ onModel: m => { (state.modelsUsed = state.modelsUsed || []).includes(m) || state.modelsUsed.push(m); },
       images: [ov, ...imgs], logPath: join(dir, `log-${key}.json`),
       prompt: `${PERSONA}\n\n${desc}\n\nYour understanding so far: ${JSON.stringify(state.understanding)}\n\nThe first image is the one-line content overview. The other images are real browser renders of your current designs:\n${designList(current)}${notes ? '\nConstraint adjustments applied: ' + notes : ''}\n\nLook carefully at each render as a whole and in detail. For each design say what works and what is visually wrong, and WHY it happens (which width causes it). Then propose up to 3 improved designs: refine the most promising, fix the problems you saw, and try a new idea if an important alternative is unexplored. If no design can be meaningfully improved, set "done": true and return no new designs.\nReply ONLY JSON: {"critique":[{"design":"name","good":"","problems":"","cause":""}],"done":false,"designs":[{"name":"short-name","widths":[int px],"change":"what you changed and why"}]}`,
       validate: x => (Array.isArray(x.critique) ? null : 'need critique[]'),
@@ -145,7 +145,7 @@ async function runScenario(s, R) {
     const all = Object.keys(state.designs);
     // keep the image count manageable: the latest round plus every design never criticised as a problem
     const pick = all.slice(-8);
-    const j = await ask({
+    const j = await ask({ onModel: m => { (state.modelsUsed = state.modelsUsed || []).includes(m) || state.modelsUsed.push(m); },
       images: [ov, ...pick.map(n => join(img, state.designs[n].png))], logPath: join(dir, 'log-final.json'),
       prompt: `${PERSONA}\n\n${desc}\n\nThese are all candidate designs you produced, rendered in a real browser:\n${designList(pick)}\n\nDecide as a designer:\n- "preferred": the best design(s). Name more than one only if they are genuinely equally good.\n- "acceptable": other designs a careful designer would still publish.\n- "bad": designs with clear visual faults, each with the fault. If none of these is clearly bad, also return ONE deliberately bad but plausible alternative as "contrast" widths and say what is wrong with it.\n- "ranges": for each column, the px range within which the preferred design stays equally good (keep other columns' proportions).\n- "rationale": 2–4 concrete sentences about this table.\n- "principles": observations that seem GENERAL (likely to hold for other tables) vs SPECIFIC to this case.\n- "tradeoffs" and "uncertain": what reasonable designers could disagree on.\nReply ONLY JSON: {"preferred":["name"],"acceptable":["name"],"bad":[{"design":"name","why":""}],"contrast":{"widths":[int px],"why":""} or null,"ranges":[[min,max]],"rationale":"","principles":{"general":[""],"specific":[""]},"tradeoffs":"","uncertain":""}`,
       validate: x => (Array.isArray(x.preferred) && x.preferred.length && x.preferred.every(n => pick.includes(n)) ? null : 'preferred must name rendered designs: ' + pick.join(',')),
@@ -178,12 +178,12 @@ async function runScenario(s, R) {
       await R.render({ src, W: s.W, fs: s.fs, widths: state.designs[n].auto ? null : state.designs[n].widths, label: `Layout ${letters[i]}` }, p);
       imgs.push(p);
     }
-    const j = await ask({
+    const j = await ask({ onModel: m => { (state.modelsUsed = state.modelsUsed || []).includes(m) || state.modelsUsed.push(m); },
       images: [ov, ...imgs], logPath: join(dir, `log-review${k}.json`),
       prompt: `${PERSONA}\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\n${describe(s, t, gNat)}\n\nRate EACH layout independently: "excellent" | "good" | "acceptable" | "poor" | "bad", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {"ratings":{${letters.map(l => `"${l}":{"grade":"","why":""}`).join(',')}},"best":["letter"],"confidence":"","unsure":""}`,
       validate: x => (x.ratings && Array.isArray(x.best) && letters.every(l => x.ratings[l]) ? null : 'need ratings for ' + letters.join(',')),
     });
-    state.reviews.push({ order: uniq, letters, ...j }); save();
+    state.reviews.push({ order: uniq, letters, ...j }); state.reviewPrompt = 'v2'; save();
   }
   async function renderAuto() {
     const p = join(img, 'd-ref_auto.png');
@@ -210,6 +210,15 @@ function verdict(state) {
   return { status, per };
 }
 
+// which model answered each step, read back from the saved call logs
+function modelsFromLogs(dir) {
+  const out = {};
+  for (const f of readdirSync(dir).filter(f => /^log-.*\.json$/.test(f))) {
+    const l = readJ(join(dir, f)); out[f.replace(/^log-|\.json$/g, '')] = l.failed ? 'failed' : l.model;
+  }
+  return out;
+}
+
 function finalize(s, state) {
   const dir = join(root, 'runs', safe(s.id)), out = join(root, 'corpus', s.split), imgOut = join(out, 'img');
   mkdirSync(imgOut, { recursive: true });
@@ -228,7 +237,7 @@ function finalize(s, state) {
     ranges: state.final.ranges, rationale: state.final.rationale, principles: state.final.principles, tradeoffs: state.final.tradeoffs, uncertain: state.final.uncertain,
     designHistory: Object.fromEntries(Object.entries(state.steps).map(([k, x]) => [k, { critique: x.critique || null, designs: x.names }])),
     review: { method: 'two fresh-context blind reviews; letters shuffled; includes browser auto layout and equal widths as neutral references', verdict: v, raw: state.reviews.map(r => ({ order: r.order, best: r.best.map(l => r.order[r.letters.indexOf(l)]), ratings: Object.fromEntries(Object.entries(r.ratings).map(([l, x]) => [r.order[r.letters.indexOf(l)], x])), confidence: r.confidence, unsure: r.unsure })) },
-    provenance: { model: MODEL, pi: PI_VERSION, created: new Date().toISOString(), note: 'AI visual design judgement; not a human reading study' },
+    provenance: { models: modelsFromLogs(dir), modelChain: MODEL, pi: PI_VERSION, created: new Date().toISOString(), note: 'AI visual design judgement; not a human reading study' },
   };
   writeJ(join(out, safe(s.id) + '.json'), rec);
   return rec;

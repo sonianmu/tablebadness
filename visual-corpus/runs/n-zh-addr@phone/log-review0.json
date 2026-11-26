@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 上海部分门店地址与营业时间 (language zh-CN).\nGrid: 4 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"门店\" · longest unbreakable word 16px · one-line width 123px\n  col 2: header \"地址\" · longest unbreakable word 36px · one-line width 412px\n  col 3: header \"电话\" · longest unbreakable word 44px · one-line width 112px\n  col 4: header \"营业时间\" · longest unbreakable word 50px · one-line width 88px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11257,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"地址有较充裕的空间，但营业时间列过窄，部分时间范围的连接号单独占一行，影响比较。\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"营业时间排列一致，门店名称也尚可辨认；但地址频繁折行，部分地址末尾只剩一个字。\"},\"C\":{\"grade\":\"good\",\"why\":\"地址与门店名称的宽度较均衡，营业时间稳定地分成两行，整表行组清晰；电话仍需分三行，时间表头也换行。\"},\"D\":{\"grade\":\"poor\",\"why\":\"门店名和表头较完整，但地址列过窄，地址被切成许多短行，行高和大块空白都明显增加。\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"营业时间整齐，但电话列相对宽裕，地址却被挤得频繁换行，一些楼层和铺位信息被拆开。\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"地址有较多空间，营业时间排列一致；但门店列过窄，名称被拆成多段，削弱了作为行标识的可读性。\"}},\"best\":[\"C\"],\"confidence\":\"high\",\"unsure\":\"电话和营业时间在所有方案中均需换行；评价取决于在有限宽度下对地址可读性和门店名称辨识度的权衡。\"}\n"
+  }
+ ]
+}

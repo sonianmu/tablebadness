@@ -1,0 +1,23 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Mathematical Notation Reference (language en).\nGrid: 4 columns × 6 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"Symbol\" · longest unbreakable word 61px · one-line width 61px\n  col 2: header \"Name\" · longest unbreakable word 87px · one-line width 116px\n  col 3: header \"LaTeX\" · longest unbreakable word 66px · one-line width 66px\n  col 4: header \"Meaning\" · longest unbreakable word 111px · one-line width 1320px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 584px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 583px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 8148,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"excellent\",\"why\":\"The compact identifier columns leave a generous measure for meanings, while symbols and LaTeX remain intact. The two-line Tensor product name is easy to read.\"},\"B\":{\"grade\":\"good\",\"why\":\"Every name stays on one line and the columns scan clearly, though the narrower Meaning column creates more wrapping and taller rows.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"The identifiers are legible, but the wide Symbol and LaTeX columns leave less space for meanings; descriptions wrap heavily and Tensor product still occupies two lines.\"},\"D\":{\"grade\":\"excellent\",\"why\":\"The compact identifier columns give the descriptions a comfortable measure, with intact symbols and LaTeX. Tensor product wraps cleanly across two lines.\"},\"E\":{\"grade\":\"bad\",\"why\":\"The nearly equal columns give short identifiers excessive space and squeeze meanings into very narrow, heavily wrapped passages. Tall rows make the entries harder to scan.\"}},\"best\":[\"A\",\"D\"],\"confidence\":\"high\",\"unsure\":\"A and D are visually almost identical; their small width differences do not produce a meaningful advantage in the rendered table.\"}\n"
+  }
+ ]
+}

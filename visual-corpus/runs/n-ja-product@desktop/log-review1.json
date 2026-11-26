@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 500Lクラス冷蔵庫6機種の比較 (language ja).\nGrid: 6 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"機種\" spans 1 col × 2 row; \"性能\" spans 3 col × 1 row; \"価格（税込）\" spans 1 col × 2 row; \"特徴（長い説明）\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"機種\" · longest unbreakable word 68px · one-line width 188px\n  col 2: header \"性能 › 消費電力\" · longest unbreakable word 35px · one-line width 82px\n  col 3: header \"性能 › 容量\" · longest unbreakable word 29px · one-line width 41px\n  col 4: header \"性能 › 騒音\" · longest unbreakable word 19px · one-line width 56px\n  col 5: header \"価格（税込）\" · longest unbreakable word 59px · one-line width 92px\n  col 6: header \"特徴（長い説明）\" · longest unbreakable word 56px · one-line width 1295px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10558,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Performance values and prices stay on one line, and the description has useful room. Most model names take two lines, with several identifiers broken at hyphens.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"The wider model column keeps a few names together, but several identifiers still break and the narrower description column makes rows noticeably taller.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"The description is relatively comfortable and numeric values stay intact, but the narrow model column splits the Panasonic brand across lines and breaks several identifiers.\"},\"D\":{\"grade\":\"good\",\"why\":\"A balanced allocation keeps measurements and prices intact while giving descriptions reasonable space. Model identifiers still break across lines, but the row labels remain recognizable.\"},\"E\":{\"grade\":\"poor\",\"why\":\"The wide description column reads comfortably, but measurements, units, prices and several headers are split across lines, making product comparisons harder.\"},\"F\":{\"grade\":\"bad\",\"why\":\"The very narrow description column creates short, fragmented lines and exceptionally tall rows, while the numeric columns contain excessive empty space.\"}},\"best\":[\"A\",\"D\"],\"confidence\":\"medium\",\"unsure\":\"A and D make similar tradeoffs: A gives descriptions slightly more room, while D gives model names slightly more room. Neither consistently keeps model identifiers intact.\"}\n"
+  }
+ ]
+}

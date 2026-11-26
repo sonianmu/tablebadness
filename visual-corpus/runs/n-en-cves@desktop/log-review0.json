@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Security advisories for affected dependencies (language en).\nGrid: 5 columns × 7 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"CVE ID\" · longest unbreakable word 46px · one-line width 125px\n  col 2: header \"Package\" · longest unbreakable word 162px · one-line width 162px\n  col 3: header \"Affected versions\" · longest unbreakable word 63px · one-line width 335px\n  col 4: header \"Severity\" · longest unbreakable word 59px · one-line width 59px\n  col 5: header \"Summary\" · longest unbreakable word 220px · one-line width 3094px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11215,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"CVE IDs and severity values remain intact, and the summary has reasonable reading width. The long package path breaks inside a word, while version ranges stack into many short lines.\"},\"B\":{\"grade\":\"bad\",\"why\":\"Equal-width columns leave the summary extremely narrow, producing very tall rows and breaking identifiers and words. The large empty areas make each row difficult to scan across.\"},\"C\":{\"grade\":\"poor\",\"why\":\"The summary reads comfortably and package names fit, but every CVE ID is split across three lines, making the primary identifiers difficult to scan and compare.\"},\"D\":{\"grade\":\"poor\",\"why\":\"CVE IDs and package names fit, but the severity header and values such as Critical and Medium break inside words, impairing a key comparison column.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"CVE IDs, packages and severity values fit, but the narrow summary breaks ServerConfig.PublicKeyCallback inside the identifier and makes the prose comparatively cramped.\"},\"F\":{\"grade\":\"good\",\"why\":\"CVE IDs and severity values stay intact, and the summary has relatively comfortable line lengths. The long package path wraps at a slash, and complex version ranges still require several lines.\"}},\"best\":[\"F\"],\"confidence\":\"medium\",\"unsure\":\"A and F are close: both require substantial wrapping of version ranges, but F gives the summary more room and breaks the package path at a more natural point.\"}\n"
+  }
+ ]
+}

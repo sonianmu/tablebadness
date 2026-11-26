@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Document ingestion environment variables (language en).\nGrid: 4 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Name\" · longest unbreakable word 377px · one-line width 377px\n  col 2: header \"Required\" · longest unbreakable word 78px · one-line width 78px\n  col 3: header \"Default\" · longest unbreakable word 169px · one-line width 169px\n  col 4: header \"Description\" · longest unbreakable word 172px · one-line width 1212px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nRendering convention: the screenshot always shows the WHOLE table. Anything beyond the dashed box is not clipped; it is the part a reader reaches by scrolling sideways, so judge both what fits in the box at first sight and the cost of scrolling to the rest.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9587,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"Names appear intact, but the initial viewport shows only the name column, and the longest names extend beyond it. The other columns are not visible in the supplied image.\"},\"B\":{\"grade\":\"good\",\"why\":\"Name and Required fit together in the viewport, making the first scan useful. Several identifiers split within words, and the remaining columns are outside the supplied image.\"},\"C\":{\"grade\":\"bad\",\"why\":\"All four columns fit, but identifiers, ordinary words, the URL, and even the Description header fragment into very narrow columns. The resulting tall rows are difficult to read across.\"},\"D\":{\"grade\":\"poor\",\"why\":\"The viewport shows only names, with substantial empty space in each row and the longest names extending beyond the viewport. The other columns are not visible in the supplied image.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"Name and Required fit together, but identifiers split within words and the rows have considerable empty space in the visible columns. The remaining columns are outside the supplied image.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"Names appear intact, but the viewport shows only the name column and the longest names extend beyond it. The other columns are not visible in the supplied image.\"}},\"best\":[\"B\"],\"confidence\":\"low\",\"unsure\":\"The supplied images for A, B, D, E, and F end near the viewport edge, so I cannot assess the full widths or readability of their Default and Description columns, or the full cost of horizontal scrolling. B is the strongest of the visible portions.\"}\n"
+  }
+ ]
+}

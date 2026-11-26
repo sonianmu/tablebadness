@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Customer Onboarding Field Validation Rules (language en).\nGrid: 4 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Field\" · longest unbreakable word 126px · one-line width 126px\n  col 2: header \"Pattern\" · longest unbreakable word 114px · one-line width 1074px\n  col 3: header \"Example valid\" · longest unbreakable word 167px · one-line width 264px\n  col 4: header \"Error message\" · longest unbreakable word 157px · one-line width 700px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nRendering convention: the screenshot always shows the WHOLE table. Anything beyond the dashed box is not clipped; it is the part a reader reaches by scrolling sideways, so judge both what fits in the box at first sight and the cost of scrolling to the rest.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10560,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"Field names stay intact and several patterns are easy to scan, but only the field and part of the pattern are visible initially. Tall rows also leave substantial empty space in the visible columns.\"},\"B\":{\"grade\":\"poor\",\"why\":\"All four columns fit in the viewport, but field names, patterns, examples and ordinary words split repeatedly. The narrow columns make the rows difficult to read and compare.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"Field names remain intact and most visible patterns have few line breaks. The initial view shows only part of the pattern column, so the examples and messages require scrolling.\"},\"D\":{\"grade\":\"good\",\"why\":\"Field names remain intact, and the example column begins within the viewport, giving a better immediate sense of how the columns relate. The narrow pattern column, however, breaks expressions across many lines.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"The visible field names and shorter patterns read clearly, with less empty row space than in A. Examples and messages still lie beyond the initial view.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"Field names stay intact and shorter patterns read well, but the longer expressions wrap and the visible rows have considerable empty space. The example and message columns require scrolling.\"}},\"best\":[\"D\"],\"confidence\":\"low\",\"unsure\":\"The supplied images appear cropped at the right edge, so I cannot assess the full widths, wrapping or scrolling cost of the off-screen example and error-message columns. That limits comparisons among the horizontally scrolling layouts.\"}\n"
+  }
+ ]
+}

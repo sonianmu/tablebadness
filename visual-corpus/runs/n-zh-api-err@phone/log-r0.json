@@ -1,29 +1,18 @@
 {
- "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "model": "codex/gpt-6.1-terra",
  "thinking": "medium",
- "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nTable: API 错误码排查对照表 (language zh-CN).\nGrid: 4 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"错误码\" · longest unbreakable word 49px · one-line width 49px\n  col 2: header \"错误信息\" · longest unbreakable word 154px · one-line width 154px\n  col 3: header \"含义\" · longest unbreakable word 95px · one-line width 740px\n  col 4: header \"解决办法\" · longest unbreakable word 110px · one-line width 1964px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nThe image shows the table's content with every cell on one line, so you can read everything. Study it first.\n1) Understand it: what is the table for, how will people read, scan and compare it, which columns play the same or similar role, which values must stay intact, which text may wrap naturally, and where existing row height could absorb wrapping.\n2) Propose 3 genuinely different column-width designs for 360px (different strategies, not small variations).\nReply ONLY JSON: {\"understanding\":{\"purpose\":\"\",\"reading\":\"\",\"groups\":[\"columns that belong together and why\"],\"keep_intact\":[\"\"],\"may_wrap\":[\"\"]},\"designs\":[{\"name\":\"A\",\"widths\":[int px per column, column 1 first],\"idea\":\"one sentence\"}]}",
+ "images": [
+  "overview.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nTable: API 错误码排查对照表 (language zh-CN).\nGrid: 4 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"错误码\" · longest unbreakable word 49px · one-line width 49px\n  col 2: header \"错误信息\" · longest unbreakable word 154px · one-line width 154px\n  col 3: header \"含义\" · longest unbreakable word 95px · one-line width 740px\n  col 4: header \"解决办法\" · longest unbreakable word 110px · one-line width 1964px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nRendering convention: the screenshot always shows the WHOLE table. Anything beyond the dashed box is not clipped; it is the part a reader reaches by scrolling sideways, so judge both what fits in the box at first sight and the cost of scrolling to the rest.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nThe image shows the table's content with every cell on one line, so you can read everything. Study it first.\n1) Understand it: what is the table for, how will people read, scan and compare it, which columns play the same or similar role, which values must stay intact, which text may wrap naturally, and where existing row height could absorb wrapping.\n2) Propose 3 genuinely different column-width designs for 360px (different strategies, not small variations).\nReply ONLY JSON: {\"understanding\":{\"purpose\":\"\",\"reading\":\"\",\"groups\":[\"columns that belong together and why\"],\"keep_intact\":[\"\"],\"may_wrap\":[\"\"]},\"designs\":[{\"name\":\"A\",\"widths\":[int px per column, column 1 first],\"idea\":\"one sentence\"}]}",
  "log": [
   {
    "attempt": 1,
-   "ms": 1173,
-   "code": 1,
-   "problem": "exit 1 429: {\"message\":\"WorkBuddy AI: Credits exhausted. Please visit the link below to purchase add-on packs and get more credits: https://www.codebuddy.ai/profile/usage  — WorkBuddy requires an active credit package even for 0-rate free models; check your account package balance\",\"type\":\"insufficient_quo",
-   "raw": ""
-  },
-  {
-   "attempt": 2,
-   "ms": 983,
-   "code": 1,
-   "problem": "exit 1 429: {\"message\":\"WorkBuddy AI: Credits exhausted. Please visit the link below to purchase add-on packs and get more credits: https://www.codebuddy.ai/profile/usage  — WorkBuddy requires an active credit package even for 0-rate free models; check your account package balance\",\"type\":\"insufficient_quo",
-   "raw": ""
-  },
-  {
-   "attempt": 3,
-   "ms": 1249,
-   "code": 1,
-   "problem": "exit 1 429: {\"message\":\"WorkBuddy AI: Credits exhausted. Please visit the link below to purchase add-on packs and get more credits: https://www.codebuddy.ai/profile/usage  — WorkBuddy requires an active credit package even for 0-rate free models; check your account package balance\",\"type\":\"insufficient_quo",
-   "raw": ""
+   "model": "codex/gpt-6.1-terra",
+   "ms": 14938,
+   "code": 0,
+   "problem": null,
+   "raw": "{\n  \"understanding\": {\n    \"purpose\": \"帮助开发者根据 API 错误码定位问题，并查阅原因和解决办法。\",\n    \"reading\": \"读者通常先扫描错误码或错误信息定位一行，再横向阅读含义和解决办法；各行需要保持清晰，方便比较相近错误。\",\n    \"groups\": [\n      \"错误码和错误信息共同标识问题，宜靠近并保持标识符完整。\",\n      \"含义和解决办法共同构成排查说明；两列都是自然语言，但解决办法更长，应获得更多宽度。\"\n    ],\n    \"keep_intact\": [\n      \"错误码及英文错误信息标识符，如 INVALID_CREDENTIAL。\",\n      \"说明中的 AppID、access_token、AppSecret、OpenID 和 OAuth2 等技术词汇宜尽量保持完整。\"\n    ],\n    \"may_wrap\": [\n      \"含义和解决办法中的中文说明可按语义自然换行。\",\n      \"较短单元格可利用同一行由长解决办法形成的高度容纳换行。\"\n    ]\n  },\n  \"designs\": [\n    {\n      \"name\": \"A\",\n      \"widths\": [70, 175, 114, 210],\n      \"idea\": \"保持错误码、英文标识符和含义中的最长词完整，首屏显示前三列，向右滚动查看较宽的解决办法。\"\n    },\n    {\n      \"name\": \"B\",\n      \"widths\": [70, 175, 160, 260],\n      \"idea\": \"为两列说明提供更充裕的空间，减少长文本换行和行高，但需要更多横向滚动才能查看完整解决办法。\"\n    },\n    {\n      \"name\": \"C\",\n      \"widths\": [70, 100, 75, 114],\n      \"idea\": \"将全表压入视口以便同时看到四列，代价是英文标识符及部分技术词汇会被拆开，说明列也会显著增高。\"\n    }\n  ]\n}\n"
   }
- ],
- "failed": true
+ ]
 }

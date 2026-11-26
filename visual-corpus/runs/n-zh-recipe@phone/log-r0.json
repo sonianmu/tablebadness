@@ -1,29 +1,24 @@
 {
- "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "model": "opencode-zen-free/deepseek-v4.1-flash-free",
  "thinking": "medium",
- "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nTable: 家常红烧肉配料表 (language zh-CN).\nGrid: 4 columns × 9 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"食材\" · longest unbreakable word 16px · one-line width 46px\n  col 2: header \"用量（克）\" · longest unbreakable word 46px · one-line width 77px\n  col 3: header \"处理方式\" · longest unbreakable word 31px · one-line width 239px\n  col 4: header \"备注\" · longest unbreakable word 31px · one-line width 184px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nThe image shows the table's content with every cell on one line, so you can read everything. Study it first.\n1) Understand it: what is the table for, how will people read, scan and compare it, which columns play the same or similar role, which values must stay intact, which text may wrap naturally, and where existing row height could absorb wrapping.\n2) Propose 3 genuinely different column-width designs for 360px (different strategies, not small variations).\nReply ONLY JSON: {\"understanding\":{\"purpose\":\"\",\"reading\":\"\",\"groups\":[\"columns that belong together and why\"],\"keep_intact\":[\"\"],\"may_wrap\":[\"\"]},\"designs\":[{\"name\":\"A\",\"widths\":[int px per column, column 1 first],\"idea\":\"one sentence\"}]}",
+ "images": [
+  "overview.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nTable: 家常红烧肉配料表 (language zh-CN).\nGrid: 4 columns × 9 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"食材\" · longest unbreakable word 16px · one-line width 46px\n  col 2: header \"用量（克）\" · longest unbreakable word 46px · one-line width 77px\n  col 3: header \"处理方式\" · longest unbreakable word 31px · one-line width 239px\n  col 4: header \"备注\" · longest unbreakable word 31px · one-line width 184px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nThe image shows the table's content with every cell on one line, so you can read everything. Study it first.\n1) Understand it: what is the table for, how will people read, scan and compare it, which columns play the same or similar role, which values must stay intact, which text may wrap naturally, and where existing row height could absorb wrapping.\n2) Propose 3 genuinely different column-width designs for 360px (different strategies, not small variations).\nReply ONLY JSON: {\"understanding\":{\"purpose\":\"\",\"reading\":\"\",\"groups\":[\"columns that belong together and why\"],\"keep_intact\":[\"\"],\"may_wrap\":[\"\"]},\"designs\":[{\"name\":\"A\",\"widths\":[int px per column, column 1 first],\"idea\":\"one sentence\"}]}",
  "log": [
   {
    "attempt": 1,
-   "ms": 1109,
-   "code": 1,
-   "problem": "exit 1 429: {\"message\":\"WorkBuddy AI: Credits exhausted. Please visit the link below to purchase add-on packs and get more credits: https://www.codebuddy.ai/profile/usage  — WorkBuddy requires an active credit package even for 0-rate free models; check your account package balance\",\"type\":\"insufficient_quo",
-   "raw": ""
+   "model": "codex/gpt-6.1-terra",
+   "ms": 14185,
+   "problem": "exhausted"
   },
   {
-   "attempt": 2,
-   "ms": 1980,
-   "code": 1,
-   "problem": "exit 1 429: {\"message\":\"WorkBuddy AI: Credits exhausted. Please visit the link below to purchase add-on packs and get more credits: https://www.codebuddy.ai/profile/usage  — WorkBuddy requires an active credit package even for 0-rate free models; check your account package balance\",\"type\":\"insufficient_quo",
-   "raw": ""
-  },
-  {
-   "attempt": 3,
-   "ms": 1330,
-   "code": 1,
-   "problem": "exit 1 429: {\"message\":\"WorkBuddy AI: Credits exhausted. Please visit the link below to purchase add-on packs and get more credits: https://www.codebuddy.ai/profile/usage  — WorkBuddy requires an active credit package even for 0-rate free models; check your account package balance\",\"type\":\"insufficient_quo",
-   "raw": ""
+   "attempt": 1,
+   "model": "opencode-zen-free/deepseek-v4.1-flash-free",
+   "ms": 140374,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"understanding\":{\"purpose\":\"一份家常红烧肉配料表：读者把它当作采购清单兼操作提示，逐行查看每样食材的用量和处理方式，遇到不确定时再看备注。\",\"reading\":\"先沿第一列从上往下找到食材（行标题），再横向读该行的用量和处理方式，把两者结合起来动手；备注只在需要补充说明时才看。因此第一列和第二列必须能快速扫读，第三列是每行最长的文字，也是操作的核心，第四列是次要注释，可以承受较多换行。\",\"groups\":[\"第1列和第2列（食材＋用量）：两者构成可采购、可称量的“配料记录”，应尽量保持单行且相邻。\",\"第3列（处理方式）是每行的操作主体，独立成组，宽度需求最大。\",\"第4列（备注）与前三列是“补充说明”关系，可以最窄、换行最多，牺牲它的行高最不影响任务。\"],\"keep_intact\":[\"食材名（五花肉、姜、大葱、冰糖、生抽、老抽、料酒、盐）不得断行\",\"用量数值与量词（500、15、20、25、30、5、适量、少许）保持完整、单行\",\"处理方式中的数量短语（如“切3厘米见方块”）不要被拆散到两行之外\",\"“冷水下锅焯净血沫”这类动作短语尽量在语义边界处换行\"],\"may_wrap\":[\"表头“用量（克）”可在括号前断成两行\",\"处理方式整句（最长约 239px，必然换 2–3 行）\",\"备注整句（最长约 184px，可换 2–5 行）\",\"“焯水和炖煮时分两次加入”等长句\"]},\"designs\":[{\"name\":\"A\",\"widths\":[66,84,148,61],\"idea\":\"处理方式优先：把接近一半的宽度给操作说明，让核心步骤少换行；备注压成窄条，只在需要时阅读，食材和用量保持单行。\"},{\"name\":\"B\",\"widths\":[68,80,110,101],\"idea\":\"两个文字列均衡：剩余宽度在“处理方式”和“备注”之间大致平分，各换 2–3 行，行高整齐一致，便于整表纵向通读。\"},{\"name\":\"C\",\"widths\":[70,96,96,97],\"idea\":\"采购清单视角：让“用量（克）”表头完整单行、食材列宽松，把第三、四列压缩成等宽的文字块，形成“短列＋双文字列”的节奏。\"}]}\n"
   }
- ],
- "failed": true
+ ]
 }

@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Weekly On-Call Rotation Schedule (language en).\nGrid: 5 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"Week 14(Mar 30 – Apr 5)\" spans 1 col × 2 row; \"Week 15(Apr 6 – 12)\" spans 1 col × 2 row; \"Week 16(Apr 13 – 19)\" spans 1 col × 2 row.\nPer-column content facts (content px at 13px font, excluding padding):\n  col 1: header \"Week\" · longest unbreakable word 35px · one-line width 105px\n  col 2: header \"Role\" · longest unbreakable word 68px · one-line width 68px\n  col 3: header \"Engineer\" · longest unbreakable word 80px · one-line width 114px\n  col 4: header \"Phone\" · longest unbreakable word 40px · one-line width 116px\n  col 5: header \"Escalation notes\" · longest unbreakable word 79px · one-line width 579px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 645px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 644px.\nFixed: content, font, 13px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 8390,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"Equal widths leave the notes cramped and tall, while role and week have spare space. Phone numbers and one engineer name wrap.\"},\"B\":{\"grade\":\"good\",\"why\":\"Phone numbers stay intact and notes have useful width, but every engineer name wraps and the first date breaks awkwardly before its final day.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"The wide notes column reads comfortably, but all phone numbers wrap and the narrow week column fragments date ranges.\"},\"D\":{\"grade\":\"good\",\"why\":\"Phone numbers stay intact and notes read well, but every engineer name wraps and the week dates need three lines.\"},\"E\":{\"grade\":\"good\",\"why\":\"Weeks and engineer names are easy to scan, and notes have reasonable space. Every phone number wraps, which matters in an on-call schedule.\"},\"F\":{\"grade\":\"good\",\"why\":\"Engineer names and phone numbers stay intact, and the notes remain readable. The narrow week column breaks each date range across two lines.\"}},\"best\":[\"F\"],\"confidence\":\"high\",\"unsure\":\"The trade-off between F and E depends on whether intact phone numbers or more compact week labels matter more to readers; for an on-call schedule, I favor intact phone numbers.\"}\n"
+  }
+ ]
+}

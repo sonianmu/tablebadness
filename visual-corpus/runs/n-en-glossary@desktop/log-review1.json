@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Distributed Systems Glossary (language en).\nGrid: 3 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Term\" · longest unbreakable word 99px · one-line width 152px\n  col 2: header \"Definition\" · longest unbreakable word 108px · one-line width 1472px\n  col 3: header \"Example\" · longest unbreakable word 83px · one-line width 814px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9162,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Definitions have comfortable line lengths and rows scan clearly, but the narrow term column wraps two labels and the examples are comparatively cramped.\"},\"B\":{\"grade\":\"good\",\"why\":\"Definition and example columns are well balanced, though two row labels wrap and the example for eventual consistency ends with a lone word.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"All terms stay on one line, but the wide term column leaves substantial unused space while definitions wrap into tall blocks.\"},\"D\":{\"grade\":\"excellent\",\"why\":\"Every term stays on one line, while definitions and examples have useful, proportionate widths. Rows remain easy to scan across despite some longer definition blocks.\"},\"E\":{\"grade\":\"poor\",\"why\":\"Nearly equal columns give the short terms excessive space and squeeze the longer definitions into narrow, tall blocks, leaving large empty areas in the other columns.\"},\"F\":{\"grade\":\"good\",\"why\":\"The definition and example columns read comfortably and most terms remain intact, but eventual consistency wraps and some rows have uneven text depths.\"}},\"best\":[\"D\"],\"confidence\":\"high\",\"unsure\":\"F is a close alternative if keeping definitions wider is more important than keeping every term on one line.\"}\n"
+  }
+ ]
+}

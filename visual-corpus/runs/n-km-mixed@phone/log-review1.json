@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: តារាងថ្លៃទំនិញទីផ្សារ (language km).\nGrid: 4 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"ទំនិញ\" · longest unbreakable word 56px · one-line width 115px\n  col 2: header \"តម្លៃ (រៀល)\" · longest unbreakable word 52px · one-line width 71px\n  col 3: header \"ឯកតា\" · longest unbreakable word 54px · one-line width 54px\n  col 4: header \"កំណត់សម្គាល់\" · longest unbreakable word 83px · one-line width 607px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11438,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"Prices and units stay on one line, but the narrow item and notes columns wrap heavily, leaving tall rows and large empty areas.\"},\"B\":{\"grade\":\"good\",\"why\":\"The wider notes column gives the text a more readable rhythm, while prices and units remain intact. Several item names and the price header wrap.\"},\"C\":{\"grade\":\"good\",\"why\":\"Notes have useful width and prices and units remain intact. The narrow item column makes some row labels wrap over three lines.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"Item names have a little more room, but the narrower notes column creates long blocks and tall rows; the price column also has unused space.\"},\"E\":{\"grade\":\"poor\",\"why\":\"The very narrow notes column produces fragmented lines and exceptionally tall rows, and even its header wraps. The other columns have comparatively generous empty space.\"},\"F\":{\"grade\":\"good\",\"why\":\"The item column accommodates the first label in two lines, while the notes retain enough width for a reasonable reading rhythm. Prices and units remain intact, though the price header wraps.\"}},\"best\":[\"F\"],\"confidence\":\"medium\",\"unsure\":\"B and C are close alternatives: they give notes slightly more room, but their narrower item columns wrap the first row label more heavily. I am less certain about the quality of individual Khmer line breaks.\"}\n"
+  }
+ ]
+}

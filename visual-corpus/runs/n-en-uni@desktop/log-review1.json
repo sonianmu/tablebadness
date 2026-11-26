@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: World University Rankings 2024: Top Seven (language en).\nGrid: 7 columns × 9 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"University\" spans 1 col × 2 row; \"Country\" spans 1 col × 2 row; \"Score\" spans 4 col × 1 row; \"Overall rank\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"University\" · longest unbreakable word 109px · one-line width 277px\n  col 2: header \"Country\" · longest unbreakable word 61px · one-line width 111px\n  col 3: header \"Score › Teaching\" · longest unbreakable word 65px · one-line width 65px\n  col 4: header \"Score › Research\" · longest unbreakable word 67px · one-line width 67px\n  col 5: header \"Score › Citations\" · longest unbreakable word 65px · one-line width 65px\n  col 6: header \"Score › Industry\" · longest unbreakable word 60px · one-line width 60px\n  col 7: header \"Overall rank\" · longest unbreakable word 51px · one-line width 86px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9255,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"The score columns are easy to compare and all words remain intact. Every country wraps, though, and Cambridge takes two lines despite unused space in the score columns.\"},\"B\":{\"grade\":\"good\",\"why\":\"The four score columns have a consistent rhythm and the university names are readable. Every country wraps, leaving many tall rows with empty space across the scores.\"},\"C\":{\"grade\":\"excellent\",\"why\":\"The score columns are balanced and their headers stay intact. Most countries and university names fit on one line, while longer names wrap cleanly, making the rows easy to scan.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"Scores and headers are clear, but the narrow university column wraps every name, with the longest taking three lines. The wider score columns leave substantial empty space.\"},\"E\":{\"grade\":\"bad\",\"why\":\"The university column breaks Massachusetts and Technology inside words, making key row identifiers difficult to read. Wide score columns leave considerable empty space beside those fragmented names.\"},\"F\":{\"grade\":\"good\",\"why\":\"The wider university column keeps five names on one line and wraps the longer two cleanly. Every country wraps, creating tall rows and a less compact comparison area.\"}},\"best\":[\"C\"],\"confidence\":\"high\",\"unsure\":\"F gives more room to university names, but C's mostly single-line countries and balanced score columns make its rows easier to scan overall.\"}\n"
+  }
+ ]
+}

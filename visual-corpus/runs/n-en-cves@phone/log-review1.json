@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Security advisories for affected dependencies (language en).\nGrid: 5 columns × 7 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"CVE ID\" · longest unbreakable word 46px · one-line width 125px\n  col 2: header \"Package\" · longest unbreakable word 162px · one-line width 162px\n  col 3: header \"Affected versions\" · longest unbreakable word 63px · one-line width 335px\n  col 4: header \"Severity\" · longest unbreakable word 59px · one-line width 59px\n  col 5: header \"Summary\" · longest unbreakable word 220px · one-line width 3094px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nRendering convention: the screenshot always shows the WHOLE table. Anything beyond the dashed box is not clipped; it is the part a reader reaches by scrolling sideways, so judge both what fits in the box at first sight and the cost of scrolling to the rest.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9874,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"bad\",\"why\":\"All five columns fit in the viewport, but the narrow columns fragment identifiers and prose, making the rows extremely tall and difficult to scan.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"Packages are mostly readable and some version information appears initially, but every CVE ID wraps and the long package path splits. The tall rows leave substantial empty space in the visible columns.\"},\"C\":{\"grade\":\"good\",\"why\":\"CVE IDs and package names stay intact, making the first two columns easy to scan together. Only a sliver of affected versions appears in the viewport, and the rows are very tall.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"Package names stay intact, but CVE IDs wrap and little of the affected-version column is visible initially. The tall rows create large gaps between entries.\"},\"E\":{\"grade\":\"poor\",\"why\":\"More of the affected-version column is visible, but the narrow CVE column breaks each identifier across three lines, making advisories harder to recognize and compare.\"},\"F\":{\"grade\":\"good\",\"why\":\"CVE IDs and package names remain intact, and the visible rows are more compact than in C. Affected versions and the remaining columns require horizontal scrolling.\"}},\"best\":[\"F\"],\"confidence\":\"low\",\"unsure\":\"The supplied views of B–F show only the left portion of each table, so I cannot assess the widths or readability of the off-screen columns or the full horizontal scrolling cost.\"}\n"
+  }
+ ]
+}

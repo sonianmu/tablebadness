@@ -1,0 +1,6441 @@
+{
+ "id": "n-th-hotel@phone",
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "All five columns fit at the initial viewport, so the hotel names, prices and distances are visible together without horizontal scrolling. The two price columns have equal width.",
+     "problems": "The table is extremely tall, and each row is dominated by a narrow stack of feature text. Names and the distance header also wrap heavily, making it difficult to scan between hotels or keep a row together.",
+     "cause": "The 90px features column leaves only 69px for text, producing up to 25 lines per cell. The 90px hotel column and 55px distance column also force frequent wrapping."
+    },
+    {
+     "design": "r0B",
+     "good": "The wider features column greatly reduces row height compared with r0A. Equal 75px price columns make the price pair easy to compare, and hotel names are more readable.",
+     "problems": "The features are entirely beyond the initial viewport, while the distance column is cut by its right edge. Tall feature cells still leave large blank areas under the prices and distances, and some hotel names wrap awkwardly.",
+     "cause": "The first four columns total 375px, so the 180px features column begins beyond the 360px viewport. Its 159px text area still requires many lines; the 150px hotel column wraps longer names."
+    },
+    {
+     "design": "r0C",
+     "good": "Hotel names generally fit on one line, and the 260px features column reduces the height of the rows substantially. The two-level price header is compact.",
+     "problems": "The initial viewport cuts through the holiday price column; distance and features require substantial horizontal scrolling. The wide name column consumes space that could show both prices, and the unequal price widths weaken the pairing. Blank space remains beneath short numeric cells.",
+     "cause": "The 225px hotel column and 88px weekday column place the holiday column at 313px, leaving only 47px visible. The 739px total width extends 379px beyond the viewport."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "ชื่อโรงแรมอ่านได้ค่อนข้างสบาย ราคาสองคอลัมน์มีจังหวะเท่ากัน และชื่อ ราคา รวมถึงระยะทางเกือบทั้งหมดอยู่ในมุมมองแรก ตัวเลขยังคงครบถ้วน",
+     "problems": "หัววันธรรมดาและระยะทางแตกเป็นหลายบรรทัด แถวสูงมากเมื่อเทียบกับข้อมูลตัวเลข และจุดเด่นแทบไม่ปรากฏในมุมมองแรก",
+     "cause": "คอลัมน์ราคาและระยะทางกว้างเพียง 70px ส่วนจุดเด่นกว้าง 210px ทำให้ข้อความยาวกำหนดความสูงของแถวและต้องเลื่อนแนวนอน 201px"
+    },
+    {
+     "design": "r1B",
+     "good": "ใช้การเลื่อนแนวนอนน้อยที่สุดในสามแบบ และเผยให้เห็นต้นคอลัมน์จุดเด่นในมุมมองแรก ราคายังคงอยู่คู่กันและตัวเลขครบถ้วน",
+     "problems": "ชื่อบางแห่งและหัวระยะทางห่อหลายบรรทัด แถวสูงมากจนยากต่อการเปรียบเทียบโรงแรมต่อเนื่องกัน พื้นที่ว่างใต้ราคาและระยะทางจึงมากเป็นพิเศษ",
+     "cause": "ชื่อกว้าง 115px และระยะทาง 65px ขณะที่จุดเด่นกว้างเพียง 175px ทำให้ข้อความจุดเด่นยาวถึง 10 บรรทัดและดันทั้งแถวให้สูง"
+    },
+    {
+     "design": "r1C",
+     "good": "ชื่อโรงแรมมีพื้นที่อ่านสบาย ราคาจับคู่ชัดเจน และจุดเด่นที่กว้างขึ้นทำให้แถวเตี้ยลงมาก จึงเปรียบเทียบหลายโรงแรมในแนวตั้งได้ง่ายกว่า",
+     "problems": "มุมมองแรกแทบไม่เห็นจุดเด่น ต้องเลื่อนแนวนอนมากที่สุด และหัววันธรรมดากับระยะทางยังห่อถี่ แม้ข้อมูลตัวเลขจะสั้น",
+     "cause": "ความกว้างชื่อ 145px รวมกับราคาและระยะทางอย่างละ 70px ใช้พื้นที่เกือบครบ viewport ก่อนถึงจุดเด่น ส่วนจุดเด่น 260px เพิ่มระยะเลื่อนเป็น 256px"
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "ชื่อโรงแรม ราคา และตัวเลขระยะทางอยู่ในมุมมองแรก ราคาสองประเภทมีความกว้างเท่ากันและตัวเลขอ่านครบ โดยไม่มีการตัดกลางคำตามผลวัด",
+     "problems": "คอลัมน์จุดเด่นแทบไม่ปรากฏในมุมมองแรก และแถวสูงมากเมื่อเทียบกับข้อมูลตัวเลขที่มีเพียงบรรทัดเดียว หัวระยะทางแบ่งเป็นหลายบรรทัด",
+     "cause": "สี่คอลัมน์แรกกว้างรวม 355px จึงเหลือพื้นที่ในกรอบเพียงเล็กน้อยสำหรับจุดเด่น ความกว้างจุดเด่น 260px ทำให้ข้อความยาวกำหนดความสูงแถว ส่วนระยะทาง 80px ทำให้หัวคอลัมน์ต้องห่อหลายบรรทัด"
+    },
+    {
+     "design": "r2B",
+     "good": "ตารางเลื่อนแนวนอนน้อยที่สุดในสามแบบ และยังเห็นชื่อ ราคา ระยะทาง กับส่วนต้นของจุดเด่นได้ในมุมมองแรก ราคาสองคอลัมน์สมดุลและตัวเลขอ่านครบ",
+     "problems": "จุดเด่นที่เห็นเพียงขอบแคบ ๆ ยังอ่านไม่ได้จริง แถวสูงที่สุดในสามแบบ ทำให้การกวาดสายตาเปรียบเทียบโรงแรมช้าลง และหัวระยะทางแตกเป็นหลายบรรทัด",
+     "cause": "จุดเด่นกว้าง 230px จึงห่อข้อความได้ถึง 7 บรรทัด ขณะที่ระยะทางกว้าง 70px ทำให้หัวคอลัมน์แคบ แม้สี่คอลัมน์แรกจะรวมกันเพียง 329px"
+    },
+    {
+     "design": "r2C",
+     "good": "จุดเด่นกว้าง 310px ช่วยลดการห่อเหลือสูงสุด 5 บรรทัดและทำให้ตารางเตี้ยที่สุด ชื่อโรงแรมมีพื้นที่มากขึ้น ราคาสองประเภทสมดุลและตัวเลขอ่านครบ",
+     "problems": "ระยะทางถูกตัดที่ขอบมุมมองแรกและจุดเด่นอยู่พ้นกรอบทั้งหมด ต้องเลื่อนแนวนอนมากที่สุด พื้นที่ว่างในช่องตัวเลขยังสูงตามข้อความจุดเด่น",
+     "cause": "สี่คอลัมน์แรกกว้างรวม 380px เกินกรอบ 360px อยู่แล้ว และความกว้างรวม 691px ทำให้ส่วนที่ต้องเลื่อนเพิ่มขึ้น แม้คอลัมน์จุดเด่นที่กว้างจะช่วยลดความสูงแถว"
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A",
+    "r3B",
+    "r3C"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    90,
+    62,
+    62,
+    55,
+    90
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 9,
+    "tableWidth": 360,
+    "tableHeight": 3825,
+    "overflow": 0,
+    "colWidths": [
+     90,
+     62,
+     62,
+     55,
+     90
+    ],
+    "rowHeights": [
+     53.5,
+     122.2,
+     501.3,
+     501.3,
+     454.8,
+     547.8,
+     501.3,
+     547.8,
+     594.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ชื่อโรงแรม",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "ราคา (บาท/คืน)",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ระยะทางจากสนามบิน (กม.)",
+      "lines": 7
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "จุดเด่น",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันธรรมดา",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันหยุด",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมริเวอร์ไซด์ เฮอริเทจ",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,450",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,200",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ห้องดีลักซ์วิวแม่น้ำ อาหารเช้าบุฟเฟต์ไทย-นานาชาติ รถรับส่งสน",
+      "lines": 21
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "เดอะ การ์เดน สุวรรณภูมิ",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,890",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,650",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "อยู่ห่างจากอาคารผู้โดยสารเพียง 10 นาที มีรถรับส่งตลอด 24 ชั่",
+      "lines": 21
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมอโศก เซ็นทรัล เรสซิเดนซ์",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,100",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,850",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ติดสถานีรถไฟฟ้า เดิน 5 นาทีถึงห้างสรรพสินค้าและซูเปอร์มาร์เก",
+      "lines": 19
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "บ้านสวนบางกอก บูทีค",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,450",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,950",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "35",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "โรงแรมขนาดเล็กบรรยากาศสวนไทย ห้องพัก 12 ห้อง ตกแต่งด้วยงานหั",
+      "lines": 23
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมมิดทาวน์ สาทร",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,750",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,400",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ทำเลใจกลางย่านธุรกิจ ห้องสวีทพร้อมเลานจ์ส่วนตัว อาหารเช้าเสิ",
+      "lines": 21
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ซีวิว พัทยา รีสอร์ท",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,200",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,050",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "125",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "รีสอร์ทติดทะเล ห้องพักกว้าง 40 ตร.ม. มีระเบียงส่วนตัวและอ่าง",
+      "lines": 23
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมบางนา แอร์พอร์ต อินน์",
+      "lines": 4
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,650",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,300",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ที่พักราคาประหยัดใกล้ทางด่วนและสถานีรถไฟฟ้า ห้องมาตรฐานสะอาด",
+      "lines": 25
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 64,
+      "natural": 204,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 173,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1319,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r0A.png",
+   "idea": "ใช้ความกว้างรวม 359px เพื่อเห็นทุกเกณฑ์พร้อมกัน โดยยอมให้ชื่อและข้อความบางส่วนถูกตัดกลางคำและแถวสูงขึ้น",
+   "notes": []
+  },
+  "r0B": {
+   "widths": [
+    150,
+    75,
+    75,
+    75,
+    180
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 9,
+    "tableWidth": 556,
+    "tableHeight": 1616.3,
+    "overflow": 196,
+    "colWidths": [
+     150,
+     75,
+     75,
+     75,
+     180
+    ],
+    "rowHeights": [
+     48.9,
+     80.3,
+     199,
+     222.3,
+     175.8,
+     222.3,
+     199,
+     222.3,
+     245.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ชื่อโรงแรม",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "ราคา (บาท/คืน)",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ระยะทางจากสนามบิน (กม.)",
+      "lines": 5
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "จุดเด่น",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันธรรมดา",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันหยุด",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมริเวอร์ไซด์ เฮอริเทจ",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,450",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,200",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ห้องดีลักซ์วิวแม่น้ำ อาหารเช้าบุฟเฟต์ไทย-นานาชาติ รถรับส่งสน",
+      "lines": 8
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "เดอะ การ์เดน สุวรรณภูมิ",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,890",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,650",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "อยู่ห่างจากอาคารผู้โดยสารเพียง 10 นาที มีรถรับส่งตลอด 24 ชั่",
+      "lines": 9
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมอโศก เซ็นทรัล เรสซิเดนซ์",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,100",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,850",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ติดสถานีรถไฟฟ้า เดิน 5 นาทีถึงห้างสรรพสินค้าและซูเปอร์มาร์เก",
+      "lines": 7
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "บ้านสวนบางกอก บูทีค",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,450",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,950",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "35",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "โรงแรมขนาดเล็กบรรยากาศสวนไทย ห้องพัก 12 ห้อง ตกแต่งด้วยงานหั",
+      "lines": 9
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมมิดทาวน์ สาทร",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,750",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,400",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ทำเลใจกลางย่านธุรกิจ ห้องสวีทพร้อมเลานจ์ส่วนตัว อาหารเช้าเสิ",
+      "lines": 8
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ซีวิว พัทยา รีสอร์ท",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,200",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,050",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "125",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "รีสอร์ทติดทะเล ห้องพักกว้าง 40 ตร.ม. มีระเบียงส่วนตัวและอ่าง",
+      "lines": 9
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมบางนา แอร์พอร์ต อินน์",
+      "lines": 2
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,650",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,300",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ที่พักราคาประหยัดใกล้ทางด่วนและสถานีรถไฟฟ้า ห้องมาตรฐานสะอาด",
+      "lines": 10
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 64,
+      "natural": 204,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 173,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1319,
+      "padding": 21
+     }
+    ],
+    "frameW": 590
+   },
+   "png": "d-r0B.png",
+   "idea": "ใช้ความกว้างรวม 555px ให้ชื่อและราคาคู่กันอ่านได้สบายขึ้น โดยเห็นชื่อและราคาทั้งสองตั้งแต่แรกและเลื่อนเพื่อดูระยะทางกับจุดเด่น",
+   "notes": []
+  },
+  "r0C": {
+   "widths": [
+    225,
+    88,
+    70,
+    95,
+    260
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 9,
+    "tableWidth": 739,
+    "tableHeight": 1058.3,
+    "overflow": 379,
+    "colWidths": [
+     225,
+     88,
+     70,
+     95,
+     260
+    ],
+    "rowHeights": [
+     41.4,
+     41.4,
+     129.3,
+     129.3,
+     129.3,
+     152.5,
+     129.3,
+     152.5,
+     152.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ชื่อโรงแรม",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "ราคา (บาท/คืน)",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ระยะทางจากสนามบิน (กม.)",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "จุดเด่น",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันธรรมดา",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันหยุด",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมริเวอร์ไซด์ เฮอริเทจ",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,450",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,200",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ห้องดีลักซ์วิวแม่น้ำ อาหารเช้าบุฟเฟต์ไทย-นานาชาติ รถรับส่งสน",
+      "lines": 5
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "เดอะ การ์เดน สุวรรณภูมิ",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,890",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,650",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "อยู่ห่างจากอาคารผู้โดยสารเพียง 10 นาที มีรถรับส่งตลอด 24 ชั่",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมอโศก เซ็นทรัล เรสซิเดนซ์",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,100",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,850",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ติดสถานีรถไฟฟ้า เดิน 5 นาทีถึงห้างสรรพสินค้าและซูเปอร์มาร์เก",
+      "lines": 5
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "บ้านสวนบางกอก บูทีค",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,450",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,950",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "35",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "โรงแรมขนาดเล็กบรรยากาศสวนไทย ห้องพัก 12 ห้อง ตกแต่งด้วยงานหั",
+      "lines": 6
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมมิดทาวน์ สาทร",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,750",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,400",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ทำเลใจกลางย่านธุรกิจ ห้องสวีทพร้อมเลานจ์ส่วนตัว อาหารเช้าเสิ",
+      "lines": 5
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ซีวิว พัทยา รีสอร์ท",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,200",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,050",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "125",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "รีสอร์ทติดทะเล ห้องพักกว้าง 40 ตร.ม. มีระเบียงส่วนตัวและอ่าง",
+      "lines": 6
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมบางนา แอร์พอร์ต อินน์",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,650",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,300",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ที่พักราคาประหยัดใกล้ทางด่วนและสถานีรถไฟฟ้า ห้องมาตรฐานสะอาด",
+      "lines": 6
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 64,
+      "natural": 204,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 173,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1319,
+      "padding": 21
+     }
+    ],
+    "frameW": 773
+   },
+   "png": "d-r0C.png",
+   "idea": "ใช้ความกว้างรวม 738px เพื่อรักษาชื่อโรงแรมในบรรทัดเดียวและให้จุดเด่นมีพื้นที่อ่านมากขึ้น โดยแลกกับการเลื่อนแนวนอนมากขึ้น",
+   "notes": []
+  },
+  "r1A": {
+   "widths": [
+    140,
+    70,
+    70,
+    70,
+    210
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 9,
+    "tableWidth": 561,
+    "tableHeight": 1407,
+    "overflow": 201,
+    "colWidths": [
+     140,
+     70,
+     70,
+     70,
+     210
+    ],
+    "rowHeights": [
+     39.4,
+     89.9,
+     175.8,
+     175.8,
+     152.5,
+     199,
+     175.8,
+     199,
+     199
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ชื่อโรงแรม",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "ราคา (บาท/คืน)",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ระยะทางจากสนามบิน (กม.)",
+      "lines": 5
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "จุดเด่น",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันธรรมดา",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันหยุด",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมริเวอร์ไซด์ เฮอริเทจ",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,450",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,200",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ห้องดีลักซ์วิวแม่น้ำ อาหารเช้าบุฟเฟต์ไทย-นานาชาติ รถรับส่งสน",
+      "lines": 7
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "เดอะ การ์เดน สุวรรณภูมิ",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,890",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,650",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "อยู่ห่างจากอาคารผู้โดยสารเพียง 10 นาที มีรถรับส่งตลอด 24 ชั่",
+      "lines": 7
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมอโศก เซ็นทรัล เรสซิเดนซ์",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,100",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,850",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ติดสถานีรถไฟฟ้า เดิน 5 นาทีถึงห้างสรรพสินค้าและซูเปอร์มาร์เก",
+      "lines": 6
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "บ้านสวนบางกอก บูทีค",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,450",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,950",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "35",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "โรงแรมขนาดเล็กบรรยากาศสวนไทย ห้องพัก 12 ห้อง ตกแต่งด้วยงานหั",
+      "lines": 8
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมมิดทาวน์ สาทร",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,750",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,400",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ทำเลใจกลางย่านธุรกิจ ห้องสวีทพร้อมเลานจ์ส่วนตัว อาหารเช้าเสิ",
+      "lines": 7
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ซีวิว พัทยา รีสอร์ท",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,200",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,050",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "125",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "รีสอร์ทติดทะเล ห้องพักกว้าง 40 ตร.ม. มีระเบียงส่วนตัวและอ่าง",
+      "lines": 8
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมบางนา แอร์พอร์ต อินน์",
+      "lines": 2
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,650",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,300",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ที่พักราคาประหยัดใกล้ทางด่วนและสถานีรถไฟฟ้า ห้องมาตรฐานสะอาด",
+      "lines": 8
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 64,
+      "natural": 204,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 173,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1319,
+      "padding": 21
+     }
+    ],
+    "frameW": 595
+   },
+   "png": "d-r1A.png",
+   "idea": "Keep the hotel, both prices and distance within the initial viewport, while widening features beyond r0B to reduce row height. Equal price widths preserve their visual pairing; features remain available by scrolling.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    115,
+    67,
+    67,
+    65,
+    175
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 9,
+    "tableWidth": 490,
+    "tableHeight": 1709.3,
+    "overflow": 130,
+    "colWidths": [
+     115,
+     67,
+     67,
+     65,
+     175
+    ],
+    "rowHeights": [
+     46.5,
+     106,
+     222.3,
+     222.3,
+     199,
+     245.5,
+     199,
+     222.3,
+     245.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ชื่อโรงแรม",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "ราคา (บาท/คืน)",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ระยะทางจากสนามบิน (กม.)",
+      "lines": 6
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "จุดเด่น",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันธรรมดา",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันหยุด",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมริเวอร์ไซด์ เฮอริเทจ",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,450",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,200",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ห้องดีลักซ์วิวแม่น้ำ อาหารเช้าบุฟเฟต์ไทย-นานาชาติ รถรับส่งสน",
+      "lines": 9
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "เดอะ การ์เดน สุวรรณภูมิ",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,890",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,650",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "อยู่ห่างจากอาคารผู้โดยสารเพียง 10 นาที มีรถรับส่งตลอด 24 ชั่",
+      "lines": 9
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมอโศก เซ็นทรัล เรสซิเดนซ์",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,100",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,850",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ติดสถานีรถไฟฟ้า เดิน 5 นาทีถึงห้างสรรพสินค้าและซูเปอร์มาร์เก",
+      "lines": 8
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "บ้านสวนบางกอก บูทีค",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,450",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,950",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "35",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "โรงแรมขนาดเล็กบรรยากาศสวนไทย ห้องพัก 12 ห้อง ตกแต่งด้วยงานหั",
+      "lines": 10
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมมิดทาวน์ สาทร",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,750",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,400",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ทำเลใจกลางย่านธุรกิจ ห้องสวีทพร้อมเลานจ์ส่วนตัว อาหารเช้าเสิ",
+      "lines": 8
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ซีวิว พัทยา รีสอร์ท",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,200",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,050",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "125",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "รีสอร์ทติดทะเล ห้องพักกว้าง 40 ตร.ม. มีระเบียงส่วนตัวและอ่าง",
+      "lines": 9
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมบางนา แอร์พอร์ต อินน์",
+      "lines": 2
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,650",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,300",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ที่พักราคาประหยัดใกล้ทางด่วนและสถานีรถไฟฟ้า ห้องมาตรฐานสะอาด",
+      "lines": 10
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 64,
+      "natural": 204,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 173,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1319,
+      "padding": 21
+     }
+    ],
+    "frameW": 524
+   },
+   "png": "d-r1B.png",
+   "idea": "Use a narrower overall table to reduce horizontal scrolling while giving features substantially more room than r0A. The initial viewport includes all of the comparison columns and the start of features, at the cost of more wrapping in names and the distance header.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1C": {
+   "widths": [
+    145,
+    70,
+    70,
+    70,
+    260
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 9,
+    "tableWidth": 616,
+    "tableHeight": 1104.8,
+    "overflow": 256,
+    "colWidths": [
+     145,
+     70,
+     70,
+     70,
+     260
+    ],
+    "rowHeights": [
+     39.4,
+     89.9,
+     129.3,
+     129.3,
+     129.3,
+     152.5,
+     129.3,
+     152.5,
+     152.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ชื่อโรงแรม",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "ราคา (บาท/คืน)",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ระยะทางจากสนามบิน (กม.)",
+      "lines": 5
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "จุดเด่น",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันธรรมดา",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันหยุด",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมริเวอร์ไซด์ เฮอริเทจ",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,450",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,200",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ห้องดีลักซ์วิวแม่น้ำ อาหารเช้าบุฟเฟต์ไทย-นานาชาติ รถรับส่งสน",
+      "lines": 5
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "เดอะ การ์เดน สุวรรณภูมิ",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,890",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,650",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "อยู่ห่างจากอาคารผู้โดยสารเพียง 10 นาที มีรถรับส่งตลอด 24 ชั่",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมอโศก เซ็นทรัล เรสซิเดนซ์",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,100",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,850",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ติดสถานีรถไฟฟ้า เดิน 5 นาทีถึงห้างสรรพสินค้าและซูเปอร์มาร์เก",
+      "lines": 5
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "บ้านสวนบางกอก บูทีค",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,450",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,950",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "35",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "โรงแรมขนาดเล็กบรรยากาศสวนไทย ห้องพัก 12 ห้อง ตกแต่งด้วยงานหั",
+      "lines": 6
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมมิดทาวน์ สาทร",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,750",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,400",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ทำเลใจกลางย่านธุรกิจ ห้องสวีทพร้อมเลานจ์ส่วนตัว อาหารเช้าเสิ",
+      "lines": 5
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ซีวิว พัทยา รีสอร์ท",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,200",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,050",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "125",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "รีสอร์ทติดทะเล ห้องพักกว้าง 40 ตร.ม. มีระเบียงส่วนตัวและอ่าง",
+      "lines": 6
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมบางนา แอร์พอร์ต อินน์",
+      "lines": 2
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,650",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,300",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ที่พักราคาประหยัดใกล้ทางด่วนและสถานีรถไฟฟ้า ห้องมาตรฐานสะอาด",
+      "lines": 6
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 64,
+      "natural": 204,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 173,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1319,
+      "padding": 21
+     }
+    ],
+    "frameW": 650
+   },
+   "png": "d-r1C.png",
+   "idea": "Retain the full set of numeric comparisons at the initial viewport and give features the same generous width as r0C. This trades more horizontal scrolling for shorter, easier-to-read feature cells.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    125,
+    75,
+    75,
+    80,
+    260
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 9,
+    "tableWidth": 616,
+    "tableHeight": 1081.5,
+    "overflow": 256,
+    "colWidths": [
+     125,
+     75,
+     75,
+     80,
+     260
+    ],
+    "rowHeights": [
+     40.1,
+     65.9,
+     129.3,
+     129.3,
+     129.3,
+     152.5,
+     129.3,
+     152.5,
+     152.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ชื่อโรงแรม",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "ราคา (บาท/คืน)",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ระยะทางจากสนามบิน (กม.)",
+      "lines": 4
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "จุดเด่น",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันธรรมดา",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันหยุด",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมริเวอร์ไซด์ เฮอริเทจ",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,450",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,200",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ห้องดีลักซ์วิวแม่น้ำ อาหารเช้าบุฟเฟต์ไทย-นานาชาติ รถรับส่งสน",
+      "lines": 5
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "เดอะ การ์เดน สุวรรณภูมิ",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,890",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,650",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "อยู่ห่างจากอาคารผู้โดยสารเพียง 10 นาที มีรถรับส่งตลอด 24 ชั่",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมอโศก เซ็นทรัล เรสซิเดนซ์",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,100",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,850",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ติดสถานีรถไฟฟ้า เดิน 5 นาทีถึงห้างสรรพสินค้าและซูเปอร์มาร์เก",
+      "lines": 5
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "บ้านสวนบางกอก บูทีค",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,450",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,950",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "35",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "โรงแรมขนาดเล็กบรรยากาศสวนไทย ห้องพัก 12 ห้อง ตกแต่งด้วยงานหั",
+      "lines": 6
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมมิดทาวน์ สาทร",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,750",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,400",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ทำเลใจกลางย่านธุรกิจ ห้องสวีทพร้อมเลานจ์ส่วนตัว อาหารเช้าเสิ",
+      "lines": 5
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ซีวิว พัทยา รีสอร์ท",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,200",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,050",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "125",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "รีสอร์ทติดทะเล ห้องพักกว้าง 40 ตร.ม. มีระเบียงส่วนตัวและอ่าง",
+      "lines": 6
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมบางนา แอร์พอร์ต อินน์",
+      "lines": 2
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,650",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,300",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ที่พักราคาประหยัดใกล้ทางด่วนและสถานีรถไฟฟ้า ห้องมาตรฐานสะอาด",
+      "lines": 6
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 64,
+      "natural": 204,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 173,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1319,
+      "padding": 21
+     }
+    ],
+    "frameW": 650
+   },
+   "png": "d-r2A.png",
+   "idea": "พัฒนาจาก r1C โดยลดชื่อเล็กน้อย เพิ่มพื้นที่ให้หัวราคาและระยะทาง และคงจุดเด่นกว้างเพื่อรักษาความสูงแถวให้พอเหมาะ คอลัมน์สี่แรกกว้างรวม 355px จึงเห็นตัวเลขหลักในมุมมองแรก",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    115,
+    72,
+    72,
+    70,
+    230
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 9,
+    "tableWidth": 560,
+    "tableHeight": 1267.5,
+    "overflow": 200,
+    "colWidths": [
+     115,
+     72,
+     72,
+     70,
+     230
+    ],
+    "rowHeights": [
+     48.9,
+     80.3,
+     152.5,
+     152.5,
+     152.5,
+     175.8,
+     152.5,
+     175.8,
+     175.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ชื่อโรงแรม",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "ราคา (บาท/คืน)",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ระยะทางจากสนามบิน (กม.)",
+      "lines": 5
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "จุดเด่น",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันธรรมดา",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันหยุด",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมริเวอร์ไซด์ เฮอริเทจ",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,450",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,200",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ห้องดีลักซ์วิวแม่น้ำ อาหารเช้าบุฟเฟต์ไทย-นานาชาติ รถรับส่งสน",
+      "lines": 6
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "เดอะ การ์เดน สุวรรณภูมิ",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,890",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,650",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "อยู่ห่างจากอาคารผู้โดยสารเพียง 10 นาที มีรถรับส่งตลอด 24 ชั่",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมอโศก เซ็นทรัล เรสซิเดนซ์",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,100",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,850",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ติดสถานีรถไฟฟ้า เดิน 5 นาทีถึงห้างสรรพสินค้าและซูเปอร์มาร์เก",
+      "lines": 6
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "บ้านสวนบางกอก บูทีค",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,450",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,950",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "35",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "โรงแรมขนาดเล็กบรรยากาศสวนไทย ห้องพัก 12 ห้อง ตกแต่งด้วยงานหั",
+      "lines": 7
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมมิดทาวน์ สาทร",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,750",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,400",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ทำเลใจกลางย่านธุรกิจ ห้องสวีทพร้อมเลานจ์ส่วนตัว อาหารเช้าเสิ",
+      "lines": 6
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ซีวิว พัทยา รีสอร์ท",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,200",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,050",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "125",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "รีสอร์ทติดทะเล ห้องพักกว้าง 40 ตร.ม. มีระเบียงส่วนตัวและอ่าง",
+      "lines": 7
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมบางนา แอร์พอร์ต อินน์",
+      "lines": 2
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,650",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,300",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ที่พักราคาประหยัดใกล้ทางด่วนและสถานีรถไฟฟ้า ห้องมาตรฐานสะอาด",
+      "lines": 7
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 64,
+      "natural": 204,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 173,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1319,
+      "padding": 21
+     }
+    ],
+    "frameW": 594
+   },
+   "png": "d-r2B.png",
+   "idea": "ทดลองจุดกึ่งกลางระหว่าง r1B กับ r1A เพิ่มพื้นที่จุดเด่นจาก r1B เพื่อลดความสูงแถว โดยยังเผยต้นคอลัมน์จุดเด่นในมุมมองแรกและลดระยะเลื่อนเมื่อเทียบกับ r1C",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2C": {
+   "widths": [
+    135,
+    80,
+    80,
+    85,
+    310
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 9,
+    "tableWidth": 691,
+    "tableHeight": 978.3,
+    "overflow": 331,
+    "colWidths": [
+     135,
+     80,
+     80,
+     85,
+     310
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     129.3,
+     129.3,
+     106,
+     129.3,
+     129.3,
+     129.3,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ชื่อโรงแรม",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "ราคา (บาท/คืน)",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ระยะทางจากสนามบิน (กม.)",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "จุดเด่น",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันธรรมดา",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันหยุด",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมริเวอร์ไซด์ เฮอริเทจ",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,450",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,200",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ห้องดีลักซ์วิวแม่น้ำ อาหารเช้าบุฟเฟต์ไทย-นานาชาติ รถรับส่งสน",
+      "lines": 5
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "เดอะ การ์เดน สุวรรณภูมิ",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,890",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,650",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "อยู่ห่างจากอาคารผู้โดยสารเพียง 10 นาที มีรถรับส่งตลอด 24 ชั่",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมอโศก เซ็นทรัล เรสซิเดนซ์",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,100",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,850",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ติดสถานีรถไฟฟ้า เดิน 5 นาทีถึงห้างสรรพสินค้าและซูเปอร์มาร์เก",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "บ้านสวนบางกอก บูทีค",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,450",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,950",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "35",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "โรงแรมขนาดเล็กบรรยากาศสวนไทย ห้องพัก 12 ห้อง ตกแต่งด้วยงานหั",
+      "lines": 5
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมมิดทาวน์ สาทร",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,750",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,400",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ทำเลใจกลางย่านธุรกิจ ห้องสวีทพร้อมเลานจ์ส่วนตัว อาหารเช้าเสิ",
+      "lines": 5
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ซีวิว พัทยา รีสอร์ท",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,200",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,050",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "125",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "รีสอร์ทติดทะเล ห้องพักกว้าง 40 ตร.ม. มีระเบียงส่วนตัวและอ่าง",
+      "lines": 5
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมบางนา แอร์พอร์ต อินน์",
+      "lines": 2
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,650",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,300",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ที่พักราคาประหยัดใกล้ทางด่วนและสถานีรถไฟฟ้า ห้องมาตรฐานสะอาด",
+      "lines": 5
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 64,
+      "natural": 204,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 173,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1319,
+      "padding": 21
+     }
+    ],
+    "frameW": 725
+   },
+   "png": "d-r2C.png",
+   "idea": "ให้พื้นที่หัวราคา ระยะทาง และข้อความจุดเด่นมากขึ้น เพื่อทดลองว่าการลดการห่อและความสูงแถวคุ้มกับการเลื่อนแนวนอนเพิ่มหรือไม่ โดยยอมให้ระยะทางบางส่วนอยู่พ้นมุมมองแรก",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    125,
+    72,
+    72,
+    80,
+    300
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 9,
+    "tableWidth": 650,
+    "tableHeight": 988.5,
+    "overflow": 290,
+    "colWidths": [
+     125,
+     72,
+     72,
+     80,
+     300
+    ],
+    "rowHeights": [
+     40.1,
+     65.9,
+     129.3,
+     129.3,
+     106,
+     129.3,
+     129.3,
+     129.3,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ชื่อโรงแรม",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "ราคา (บาท/คืน)",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ระยะทางจากสนามบิน (กม.)",
+      "lines": 4
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "จุดเด่น",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันธรรมดา",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันหยุด",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมริเวอร์ไซด์ เฮอริเทจ",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,450",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,200",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ห้องดีลักซ์วิวแม่น้ำ อาหารเช้าบุฟเฟต์ไทย-นานาชาติ รถรับส่งสน",
+      "lines": 5
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "เดอะ การ์เดน สุวรรณภูมิ",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,890",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,650",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "อยู่ห่างจากอาคารผู้โดยสารเพียง 10 นาที มีรถรับส่งตลอด 24 ชั่",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมอโศก เซ็นทรัล เรสซิเดนซ์",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,100",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,850",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ติดสถานีรถไฟฟ้า เดิน 5 นาทีถึงห้างสรรพสินค้าและซูเปอร์มาร์เก",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "บ้านสวนบางกอก บูทีค",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,450",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,950",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "35",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "โรงแรมขนาดเล็กบรรยากาศสวนไทย ห้องพัก 12 ห้อง ตกแต่งด้วยงานหั",
+      "lines": 5
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมมิดทาวน์ สาทร",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,750",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,400",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ทำเลใจกลางย่านธุรกิจ ห้องสวีทพร้อมเลานจ์ส่วนตัว อาหารเช้าเสิ",
+      "lines": 5
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ซีวิว พัทยา รีสอร์ท",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,200",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,050",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "125",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "รีสอร์ทติดทะเล ห้องพักกว้าง 40 ตร.ม. มีระเบียงส่วนตัวและอ่าง",
+      "lines": 5
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมบางนา แอร์พอร์ต อินน์",
+      "lines": 2
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,650",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,300",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ที่พักราคาประหยัดใกล้ทางด่วนและสถานีรถไฟฟ้า ห้องมาตรฐานสะอาด",
+      "lines": 5
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 64,
+      "natural": 204,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 173,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1319,
+      "padding": 21
+     }
+    ],
+    "frameW": 684
+   },
+   "png": "d-r3A.png",
+   "idea": "ต่อยอด r2A โดยลดราคาคู่ละ 3px และเพิ่มจุดเด่นเป็น 300px เพื่อช่วยลดการห่อข้อความ ให้ชื่อ ราคา และระยะทางอยู่ในมุมมองแรก ขณะที่ราคาแต่ละช่องยังมีพื้นที่ข้อความ 51px",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3B": {
+   "widths": [
+    115,
+    71,
+    71,
+    75,
+    260
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 9,
+    "tableWidth": 593,
+    "tableHeight": 1104.8,
+    "overflow": 233,
+    "colWidths": [
+     115,
+     71,
+     71,
+     75,
+     260
+    ],
+    "rowHeights": [
+     48.9,
+     80.3,
+     129.3,
+     129.3,
+     129.3,
+     152.5,
+     129.3,
+     152.5,
+     152.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ชื่อโรงแรม",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "ราคา (บาท/คืน)",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ระยะทางจากสนามบิน (กม.)",
+      "lines": 5
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "จุดเด่น",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันธรรมดา",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันหยุด",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมริเวอร์ไซด์ เฮอริเทจ",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,450",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,200",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ห้องดีลักซ์วิวแม่น้ำ อาหารเช้าบุฟเฟต์ไทย-นานาชาติ รถรับส่งสน",
+      "lines": 5
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "เดอะ การ์เดน สุวรรณภูมิ",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,890",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,650",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "อยู่ห่างจากอาคารผู้โดยสารเพียง 10 นาที มีรถรับส่งตลอด 24 ชั่",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมอโศก เซ็นทรัล เรสซิเดนซ์",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,100",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,850",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ติดสถานีรถไฟฟ้า เดิน 5 นาทีถึงห้างสรรพสินค้าและซูเปอร์มาร์เก",
+      "lines": 5
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "บ้านสวนบางกอก บูทีค",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,450",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,950",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "35",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "โรงแรมขนาดเล็กบรรยากาศสวนไทย ห้องพัก 12 ห้อง ตกแต่งด้วยงานหั",
+      "lines": 6
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมมิดทาวน์ สาทร",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,750",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,400",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ทำเลใจกลางย่านธุรกิจ ห้องสวีทพร้อมเลานจ์ส่วนตัว อาหารเช้าเสิ",
+      "lines": 5
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ซีวิว พัทยา รีสอร์ท",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,200",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,050",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "125",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "รีสอร์ทติดทะเล ห้องพักกว้าง 40 ตร.ม. มีระเบียงส่วนตัวและอ่าง",
+      "lines": 6
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมบางนา แอร์พอร์ต อินน์",
+      "lines": 2
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,650",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,300",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ที่พักราคาประหยัดใกล้ทางด่วนและสถานีรถไฟฟ้า ห้องมาตรฐานสะอาด",
+      "lines": 6
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 64,
+      "natural": 204,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 173,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1319,
+      "padding": 21
+     }
+    ],
+    "frameW": 627
+   },
+   "png": "d-r3B.png",
+   "idea": "ทดลองให้สี่คอลัมน์แรกอยู่ใน 332px เพื่อเผยหัวและส่วนต้นของจุดเด่นมากขึ้นในมุมมองแรก พร้อมเพิ่มพื้นที่จุดเด่นจาก r2B เพื่อลดความสูงแถว ราคาคู่เท่ากันและแต่ละช่องมีพื้นที่ข้อความ 50px",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3C": {
+   "widths": [
+    125,
+    71,
+    71,
+    85,
+    340
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 9,
+    "tableWidth": 693,
+    "tableHeight": 908.5,
+    "overflow": 333,
+    "colWidths": [
+     125,
+     71,
+     71,
+     85,
+     340
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     106,
+     106,
+     106,
+     129.3,
+     106,
+     129.3,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ชื่อโรงแรม",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "ราคา (บาท/คืน)",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ระยะทางจากสนามบิน (กม.)",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "จุดเด่น",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันธรรมดา",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันหยุด",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมริเวอร์ไซด์ เฮอริเทจ",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,450",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,200",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ห้องดีลักซ์วิวแม่น้ำ อาหารเช้าบุฟเฟต์ไทย-นานาชาติ รถรับส่งสน",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "เดอะ การ์เดน สุวรรณภูมิ",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,890",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,650",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "อยู่ห่างจากอาคารผู้โดยสารเพียง 10 นาที มีรถรับส่งตลอด 24 ชั่",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมอโศก เซ็นทรัล เรสซิเดนซ์",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,100",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,850",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ติดสถานีรถไฟฟ้า เดิน 5 นาทีถึงห้างสรรพสินค้าและซูเปอร์มาร์เก",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "บ้านสวนบางกอก บูทีค",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,450",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,950",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "35",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "โรงแรมขนาดเล็กบรรยากาศสวนไทย ห้องพัก 12 ห้อง ตกแต่งด้วยงานหั",
+      "lines": 5
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมมิดทาวน์ สาทร",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,750",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,400",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ทำเลใจกลางย่านธุรกิจ ห้องสวีทพร้อมเลานจ์ส่วนตัว อาหารเช้าเสิ",
+      "lines": 4
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ซีวิว พัทยา รีสอร์ท",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,200",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,050",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "125",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "รีสอร์ทติดทะเล ห้องพักกว้าง 40 ตร.ม. มีระเบียงส่วนตัวและอ่าง",
+      "lines": 5
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมบางนา แอร์พอร์ต อินน์",
+      "lines": 2
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,650",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,300",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ที่พักราคาประหยัดใกล้ทางด่วนและสถานีรถไฟฟ้า ห้องมาตรฐานสะอาด",
+      "lines": 5
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 64,
+      "natural": 204,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 173,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1319,
+      "padding": 21
+     }
+    ],
+    "frameW": 727
+   },
+   "png": "d-r3C.png",
+   "idea": "ทดลองให้น้ำหนักกับการอ่านจุดเด่น โดยขยายเป็น 340px และคงสี่คอลัมน์แรกไว้ใน 352px เพื่อให้เห็นค่าหลักก่อนเลื่อน แลกกับการเลื่อนแนวนอนมากขึ้น",
+   "notes": [],
+   "parentRound": 2
+  },
+  "ref_auto": {
+   "widths": [
+    84.2,
+    70.7,
+    61.3,
+    56.1,
+    88.9
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 9,
+    "tableWidth": 362.2,
+    "tableHeight": 3801.8,
+    "overflow": 2.2,
+    "colWidths": [
+     84.2,
+     70.7,
+     61.3,
+     56.1,
+     88.9
+    ],
+    "rowHeights": [
+     57.7,
+     94.8,
+     501.3,
+     501.3,
+     454.8,
+     547.8,
+     501.3,
+     547.8,
+     594.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ชื่อโรงแรม",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "ราคา (บาท/คืน)",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ระยะทางจากสนามบิน (กม.)",
+      "lines": 6
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "จุดเด่น",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันธรรมดา",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันหยุด",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมริเวอร์ไซด์ เฮอริเทจ",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,450",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,200",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ห้องดีลักซ์วิวแม่น้ำ อาหารเช้าบุฟเฟต์ไทย-นานาชาติ รถรับส่งสน",
+      "lines": 21
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "เดอะ การ์เดน สุวรรณภูมิ",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,890",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,650",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "อยู่ห่างจากอาคารผู้โดยสารเพียง 10 นาที มีรถรับส่งตลอด 24 ชั่",
+      "lines": 21
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมอโศก เซ็นทรัล เรสซิเดนซ์",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,100",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,850",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ติดสถานีรถไฟฟ้า เดิน 5 นาทีถึงห้างสรรพสินค้าและซูเปอร์มาร์เก",
+      "lines": 19
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "บ้านสวนบางกอก บูทีค",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,450",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,950",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "35",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "โรงแรมขนาดเล็กบรรยากาศสวนไทย ห้องพัก 12 ห้อง ตกแต่งด้วยงานหั",
+      "lines": 23
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมมิดทาวน์ สาทร",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,750",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,400",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ทำเลใจกลางย่านธุรกิจ ห้องสวีทพร้อมเลานจ์ส่วนตัว อาหารเช้าเสิ",
+      "lines": 21
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ซีวิว พัทยา รีสอร์ท",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,200",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,050",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "125",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "รีสอร์ทติดทะเล ห้องพักกว้าง 40 ตร.ม. มีระเบียงส่วนตัวและอ่าง",
+      "lines": 23
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมบางนา แอร์พอร์ต อินน์",
+      "lines": 4
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,650",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,300",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ที่พักราคาประหยัดใกล้ทางด่วนและสถานีรถไฟฟ้า ห้องมาตรฐานสะอาด",
+      "lines": 25
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 64,
+      "natural": 204,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 173,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1319,
+      "padding": 21
+     }
+    ],
+    "frameW": 397
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    71,
+    71,
+    71,
+    71,
+    71
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 9,
+    "tableWidth": 356,
+    "tableHeight": 5475.8,
+    "overflow": 0,
+    "colWidths": [
+     71,
+     71,
+     71,
+     71,
+     71
+    ],
+    "rowHeights": [
+     48.9,
+     80.3,
+     733.8,
+     780.3,
+     617.5,
+     826.8,
+     733.8,
+     757,
+     896.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ชื่อโรงแรม",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "ราคา (บาท/คืน)",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "ระยะทางจากสนามบิน (กม.)",
+      "lines": 5
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "จุดเด่น",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันธรรมดา",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "วันหยุด",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมริเวอร์ไซด์ เฮอริเทจ",
+      "lines": 5
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,450",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,200",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ห้องดีลักซ์วิวแม่น้ำ อาหารเช้าบุฟเฟต์ไทย-นานาชาติ รถรับส่งสน",
+      "lines": 31
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "เดอะ การ์เดน สุวรรณภูมิ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,890",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,650",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "อยู่ห่างจากอาคารผู้โดยสารเพียง 10 นาที มีรถรับส่งตลอด 24 ชั่",
+      "lines": 33
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมอโศก เซ็นทรัล เรสซิเดนซ์",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,100",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,850",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ติดสถานีรถไฟฟ้า เดิน 5 นาทีถึงห้างสรรพสินค้าและซูเปอร์มาร์เก",
+      "lines": 26
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "บ้านสวนบางกอก บูทีค",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,450",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,950",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "35",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "โรงแรมขนาดเล็กบรรยากาศสวนไทย ห้องพัก 12 ห้อง ตกแต่งด้วยงานหั",
+      "lines": 35
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมมิดทาวน์ สาทร",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,750",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,400",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ทำเลใจกลางย่านธุรกิจ ห้องสวีทพร้อมเลานจ์ส่วนตัว อาหารเช้าเสิ",
+      "lines": 31
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ซีวิว พัทยา รีสอร์ท",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,200",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,050",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "125",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "รีสอร์ทติดทะเล ห้องพักกว้าง 40 ตร.ม. มีระเบียงส่วนตัวและอ่าง",
+      "lines": 32
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "โรงแรมบางนา แอร์พอร์ต อินน์",
+      "lines": 5
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,650",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,300",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ที่พักราคาประหยัดใกล้ทางด่วนและสถานีรถไฟฟ้า ห้องมาตรฐานสะอาด",
+      "lines": 38
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 13,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 64,
+      "natural": 204,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 173,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1319,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-ref_equal.png"
+  }
+ },
+ "modelsUsed": [
+  "codex/gpt-6.1-terra"
+ ],
+ "understanding": {
+  "purpose": "เปรียบเทียบโรงแรมใกล้สนามบินตามราคา ระยะทาง และจุดเด่น เพื่อเลือกที่พัก",
+  "reading": "ผู้อ่านเริ่มจากชื่อโรงแรม แล้วอ่านค่าตามแถวเดียวกันและเปรียบเทียบราคาหรือระยะทางระหว่างโรงแรม",
+  "groups": [
+   "ราคาวันธรรมดาและวันหยุดเป็นคู่ข้อมูลที่ควรมีความกว้างใกล้เคียงกันเพื่อให้เปรียบเทียบได้ง่าย",
+   "ชื่อโรงแรมระบุแถว ส่วนระยะทางและจุดเด่นช่วยประเมินความสะดวกและความเหมาะสม"
+  ],
+  "keep_intact": [
+   "ตัวเลขราคาและระยะทาง รวมถึงเครื่องหมายคั่นหลักพัน",
+   "ชื่อโรงแรมและคำสำคัญควรหลีกเลี่ยงการตัดกลางคำเท่าที่พื้นที่เอื้อ"
+  ],
+  "may_wrap": [
+   "ชื่อโรงแรมและจุดเด่นสามารถขึ้นบรรทัดระหว่างคำหรือวลีได้",
+   "หัวคอลัมน์ระยะทางสามารถขึ้นบรรทัดได้ โดยใช้ความสูงที่เกิดจากหัวราคาสองชั้น"
+  ]
+ },
+ "final": {
+  "preferred": [
+   "r3A"
+  ],
+  "acceptable": [
+   "r1C",
+   "r2A",
+   "r2B",
+   "r2C",
+   "r3B",
+   "r3C"
+  ],
+  "bad": [
+   {
+    "design": "r1B",
+    "why": "The narrow features column produces rows up to ten lines tall, leaving large stretches of empty space under the prices and distances. The weekday and distance headers are also broken into awkward stacks."
+   }
+  ],
+  "contrast": null,
+  "ranges": [
+   [
+    120,
+    130
+   ],
+   [
+    71,
+    75
+   ],
+   [
+    71,
+    75
+   ],
+   [
+    78,
+    85
+   ],
+   [
+    290,
+    310
+   ]
+  ],
+  "rationale": "r3A keeps hotel names, both prices and distances visible together at the initial viewport, while giving the long features text enough width to keep rows to five lines or fewer. Its paired price columns have equal widths, and the distance header remains legible without taking excessive space from the hotel names. Reading the features requires horizontal scrolling, but the resulting rows are substantially easier to scan than in r1B.",
+  "principles": {
+   "general": [
+    "Give related comparison columns consistent treatment and enough room for their labels and values.",
+    "Judge row height alongside horizontal scrolling: a narrow prose column can make numeric comparisons harder by spreading rows too far apart.",
+    "Preserve readable row identifiers so readers can connect values across a table."
+   ],
+   "specific": [
+    "The features column contains much longer prose than the other columns and benefits disproportionately from additional width.",
+    "At phone width, keeping hotel names, both prices and distance together leaves the features column mostly beyond the initial viewport."
+   ]
+  },
+  "tradeoffs": "r3B reduces horizontal scrolling but makes the table taller; r3C makes the rows shorter but requires more scrolling. r2C gives names and headers more room, though its distance column extends beyond the initial viewport.",
+  "uncertain": "A designer who prioritizes reading the features over minimizing horizontal scrolling might prefer r3C. The ranges are approximate design tolerances, not independently rendered breakpoints; changes near their limits may alter wrapping."
+ },
+ "reviews": [
+  {
+   "order": [
+    "r3A",
+    "r1C",
+    "r2A",
+    "r1B",
+    "ref_auto",
+    "ref_equal"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "good",
+     "why": "Hotel names, both prices and distances are visible together, and the price columns have a useful balance. The highlights require horizontal scrolling, and some names wrap across several lines."
+    },
+    "B": {
+     "grade": "acceptable",
+     "why": "The wider name column keeps more hotel names together, but the weekday and distance headers break awkwardly into small fragments. Highlights remain off-screen."
+    },
+    "C": {
+     "grade": "good",
+     "why": "The two price columns and distance values are easy to compare at first sight. Names wrap, and the highlights require scrolling; rows are also somewhat taller than in A."
+    },
+    "D": {
+     "grade": "acceptable",
+     "why": "The comparison values fit, and the start of the highlights is visible, but the narrow weekday and distance headers fragment badly. The highlights still require scrolling, with tall rows."
+    },
+    "E": {
+     "grade": "poor",
+     "why": "All columns fit in the viewport, but names and especially highlights are squeezed into narrow, heavily wrapped lines. The resulting tall rows make comparisons laborious."
+    },
+    "F": {
+     "grade": "bad",
+     "why": "The very narrow name and highlights columns split text extensively and create extremely tall rows. Although the table fits horizontally, it is difficult to scan as a set of hotels."
+    }
+   },
+   "best": [
+    "A"
+   ],
+   "confidence": "medium",
+   "unsure": "The supplied views of A–D show only a small part of the highlights column, so its full line wrapping and the precise horizontal scrolling cost are difficult to judge."
+  },
+  {
+   "order": [
+    "r2A",
+    "ref_auto",
+    "r3A",
+    "r1B",
+    "ref_equal",
+    "r1C"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "good",
+     "why": "Hotel names, both prices and distances are readable together in the viewport. The weekday header wraps, and the highlights require horizontal scrolling."
+    },
+    "B": {
+     "grade": "poor",
+     "why": "All columns fit, but the narrow hotel and highlights columns break Thai text into short fragments. Very tall rows make comparisons difficult."
+    },
+    "C": {
+     "grade": "good",
+     "why": "The initial view keeps hotel names, both prices and distances together, with reasonably compact name wrapping. Highlights still require horizontal scrolling."
+    },
+    "D": {
+     "grade": "acceptable",
+     "why": "The prices and distances remain visible, and a little of the highlights column appears initially. Narrower headers and names wrap awkwardly, while tall rows weaken comparison."
+    },
+    "E": {
+     "grade": "bad",
+     "why": "The table fits the viewport, but the hotel names and especially the highlights are squeezed into extremely narrow columns, producing fragmented text and exceptionally tall rows."
+    },
+    "F": {
+     "grade": "acceptable",
+     "why": "The wider hotel column keeps several names more intact and the numeric values remain visible. The weekday and distance headers break awkwardly, and highlights require scrolling."
+    }
+   },
+   "best": [
+    "A",
+    "C"
+   ],
+   "confidence": "medium",
+   "unsure": "The supplied views of A, C, D and F show only a sliver of the highlights column, so I cannot fully judge its width, wrapping or the horizontal scrolling distance. A and C are very close in the visible area."
+  }
+ ],
+ "reviewPrompt": "v2"
+}

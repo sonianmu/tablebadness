@@ -1,0 +1,30 @@
+{
+ "model": "opencode-zen-free/deepseek-v4.1-flash-free",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 合规审查法律条文引用表 (language zh-CN).\nGrid: 3 columns × 7 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"法律名称\" · longest unbreakable word 31px · one-line width 261px\n  col 2: header \"条款\" · longest unbreakable word 16px · one-line width 123px\n  col 3: header \"条文内容\" · longest unbreakable word 46px · one-line width 4732px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 15123,
+   "problem": "exhausted"
+  },
+  {
+   "attempt": 1,
+   "model": "opencode-zen-free/deepseek-v4.1-flash-free",
+   "ms": 218204,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"Col 1 and col 2 are given almost the same width (~136 / ~160px), so the short article-number column hogs space the prose column needs; col 3 is squeezed to ~325px, giving the tallest table of the set with huge empty gaps beside every row's two-line law name. Identifiers survive, but the proportion is backwards for a citation table.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"Col 1 is wider than its role warrants (~171px) and col 2 still gets ~123px, so col 3 stays under 400px and rows run very tall with dead white space in the identifier columns. Names and article numbers stay intact, but the reading column is starved.\"},\"C\":{\"grade\":\"excellent\",\"why\":\"Clear hierarchy: col 3 takes roughly two-thirds (~453px, ~28–30 CJK characters per line, a comfortable measure) while the two identifier columns are compact. Article numbers hold one line, and law names break at a natural boundary (《中华人民共和国 / 个人信息保护法》), not mid-token. Rows read as units with little wasted width.\"},\"D\":{\"grade\":\"bad\",\"why\":\"Col 1 and col 2 are crushed to ~60px and ~55px, so law names and article numbers collapse into one-character-per-line vertical stacks (第/一/千/零/三/十/四/条) and the headers themselves wrap to three lines. Widest prose column in the set, but citations are unusable and rows are enormous.\"},\"E\":{\"grade\":\"good\",\"why\":\"Reasonable balance with col 3 at ~412px and one-line article numbers, but col 1 at ~169px is more than needed and still yields only two-line names, some breaking awkwardly (…网络安全 / 法》), so width is spent without buying anything back for the prose column.\"},\"F\":{\"grade\":\"good\",\"why\":\"Efficient: compact identifier columns keep 第一千零三十四条 on one line and give col 3 ~430px, producing shorter rows than A/B/E. Slight blemish — law names break inside the token 个人 (《中华人民共和国个 / 人信息保护法》), so the col-1 measure is just a few pixels too tight.\"}},\"best\":[\"C\"],\"confidence\":\"medium\",\"unsure\":\"Pixel widths are estimated from the rendered images (no measurements given), so C vs F is close: C wins mainly on the cleaner line break in col 1 and slightly wider prose column; at other zoom levels or with a slightly different font, F could match it. I also cannot verify exactly how many px col 2 needs before 第一千零三十四条 wraps in each layout.\"}\n"
+  }
+ ]
+}

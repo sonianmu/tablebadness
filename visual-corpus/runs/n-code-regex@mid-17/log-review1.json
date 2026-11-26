@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Customer Onboarding Field Validation Rules (language en).\nGrid: 4 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"Field\" · longest unbreakable word 141px · one-line width 141px\n  col 2: header \"Pattern\" · longest unbreakable word 129px · one-line width 1217px\n  col 3: header \"Example valid\" · longest unbreakable word 185px · one-line width 293px\n  col 4: header \"Error message\" · longest unbreakable word 174px · one-line width 777px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 788px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 787px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11644,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"The equal columns leave excess space beside short field names while splitting the email example within a word and wrapping several patterns and messages heavily.\"},\"B\":{\"grade\":\"good\",\"why\":\"Field names stay intact, and the pattern, example and message columns have a useful balance. The long email pattern still breaks across many lines.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"The wider pattern column helps the long regex, but the narrow message column produces cramped prose and leaves the email message’s final period on a line by itself.\"},\"D\":{\"grade\":\"good\",\"why\":\"The columns are well balanced: field names stay intact, patterns have useful space, and messages remain readable. Long examples and regexes still wrap.\"},\"E\":{\"grade\":\"good\",\"why\":\"Field names and headers fit, and the pattern column accommodates several expressions well. The narrower message column creates more wrapping, especially in the phone rule.\"},\"F\":{\"grade\":\"good\",\"why\":\"The generous message column makes most instructions easy to scan, while field names and examples fit reasonably well. The narrower pattern column fragments several regexes.\"}},\"best\":[\"D\"],\"confidence\":\"medium\",\"unsure\":\"D and B are close: D gives patterns slightly more room, while B gives messages a little more room. The preferred balance depends on how often readers inspect the regexes versus the error text.\"}\n"
+  }
+ ]
+}

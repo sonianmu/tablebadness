@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: マンション管理規約の主な定めと違反時の対応 (language ja).\nGrid: 3 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"項目\" · longest unbreakable word 31px · one-line width 364px\n  col 2: header \"内容\" · longest unbreakable word 44px · one-line width 2376px\n  col 3: header \"違反時の対応\" · longest unbreakable word 31px · one-line width 1884px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 35731,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"The row labels have enough width to remain identifiable, and the larger 内容 column suits its longer text. The response column is somewhat narrow, producing dense wrapping.\"},\"B\":{\"grade\":\"poor\",\"why\":\"The very narrow row-header column breaks labels into short fragments, making it hard to find and scan topics, even though the two text columns have more room.\"},\"C\":{\"grade\":\"good\",\"why\":\"The columns give the longer 内容 text more space while retaining a recognizable row-header column. The response text is fairly cramped and the labels wrap often.\"},\"D\":{\"grade\":\"bad\",\"why\":\"Row labels are reduced almost to a character per line, and the narrow response column also wraps heavily. Large blank areas in 内容 weaken the row rhythm.\"},\"E\":{\"grade\":\"poor\",\"why\":\"The wide row-header column keeps labels clearer, but leaves both long text columns too narrow. Frequent wrapping makes the table very tall and wastes space below the labels.\"},\"F\":{\"grade\":\"good\",\"why\":\"The two prose columns have a useful balance, so both rules and responses are reasonably readable. Row labels wrap frequently but remain distinguishable, and rows hold together well.\"}},\"best\":[\"F\"],\"confidence\":\"medium\",\"unsure\":\"A and C are close alternatives; the choice depends on whether the extra space for row labels and 内容 outweighs F's more comfortable response column.\"}\n"
+  }
+ ]
+}

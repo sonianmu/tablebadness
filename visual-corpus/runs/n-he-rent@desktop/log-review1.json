@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: השוואת דירות להשכרה בתל אביב (language he, right-to-left: column 1 is on the RIGHT).\nGrid: 5 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"שכונה\" · longest unbreakable word 65px · one-line width 86px\n  col 2: header \"מחיר\" · longest unbreakable word 42px · one-line width 102px\n  col 3: header \"חדרים\" · longest unbreakable word 42px · one-line width 42px\n  col 4: header \"קומה\" · longest unbreakable word 42px · one-line width 138px\n  col 5: header \"הערות\" · longest unbreakable word 79px · one-line width 1064px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11728,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Neighborhood names stay intact and the notes have comfortable line lengths. Prices and floor details wrap consistently, though both require extra lines.\"},\"B\":{\"grade\":\"good\",\"why\":\"A generous notes column supports easy reading, while neighborhood names remain intact. Prices and floor details wrap onto two lines, but the rows still scan well.\"},\"C\":{\"grade\":\"bad\",\"why\":\"The narrow notes column produces tall blocks of short lines, while the much wider rooms and neighborhood columns contain large stretches of empty space. Rows are difficult to scan across.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"Notes read comfortably, but two neighborhood names wrap and some floor details spread over three lines. That weakens scanning of the row identifiers and key comparisons.\"},\"E\":{\"grade\":\"poor\",\"why\":\"Prices and floor details fit on one line, but the oversized floor column leaves substantial empty space while notes wrap into tall, narrow blocks.\"},\"F\":{\"grade\":\"excellent\",\"why\":\"Neighborhoods and prices stay on one line, floor details wrap predictably, and notes have enough width for readable lines. The columns balance comparison with room for descriptive text.\"}},\"best\":[\"F\"],\"confidence\":\"high\",\"unsure\":\"B gives the notes more room, so a reader prioritizing the descriptions might prefer it; F keeps the full price on one line and balances the columns more evenly.\"}\n"
+  }
+ ]
+}

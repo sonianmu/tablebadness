@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 常用化学试剂清单 (language zh-CN).\nGrid: 5 columns × 8 rows. Row headers: none declared.\nPer-column content facts (content px at 13px font, excluding padding):\n  col 1: header \"名称\" · longest unbreakable word 14px · one-line width 107px\n  col 2: header \"分子式\" · longest unbreakable word 120px · one-line width 120px\n  col 3: header \"CAS 号\" · longest unbreakable word 38px · one-line width 69px\n  col 4: header \"纯度\" · longest unbreakable word 48px · one-line width 118px\n  col 5: header \"储存条件（长）\" · longest unbreakable word 40px · one-line width 993px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 604px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 603px.\nFixed: content, font, 13px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 12428,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"Names, formulas and CAS numbers remain intact, but the narrow purity column splits percentage ranges and storage text wraps heavily.\"},\"B\":{\"grade\":\"good\",\"why\":\"A useful balance gives storage text room while keeping formulas, CAS numbers and purity ranges intact. The longest name wraps onto two lines.\"},\"C\":{\"grade\":\"bad\",\"why\":\"Nearly equal columns leave storage text extremely narrow and rows very tall, while the long formula and name also break across lines.\"},\"D\":{\"grade\":\"poor\",\"why\":\"Storage instructions have comfortable width, but names and every CAS number break across lines, making identification and comparison difficult.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"Names, formulas, CAS numbers and purity ranges stay intact, but the narrow storage column produces dense wrapping and tall rows.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"Storage text has the most room among the layouts that preserve CAS numbers and formulas, but the longest name wraps and percentage ranges split across lines.\"}},\"best\":[\"B\"],\"confidence\":\"high\",\"unsure\":\"The relative importance of keeping the longest name on one line versus giving storage instructions more room could change the preference between B and E.\"}\n"
+  }
+ ]
+}

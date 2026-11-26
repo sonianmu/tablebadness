@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Prototype Controller Board BOM (language en).\nGrid: 5 columns × 8 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Part number\" · longest unbreakable word 165px · one-line width 165px\n  col 2: header \"Description\" · longest unbreakable word 107px · one-line width 526px\n  col 3: header \"Qty\" · longest unbreakable word 26px · one-line width 26px\n  col 4: header \"Unit price\" · longest unbreakable word 59px · one-line width 70px\n  col 5: header \"Supplier\" · longest unbreakable word 133px · one-line width 133px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nRendering convention: the screenshot always shows the WHOLE table. Anything beyond the dashed box is not clipped; it is the part a reader reaches by scrolling sideways, so judge both what fits in the box at first sight and the cost of scrolling to the rest.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11226,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"Part numbers stay intact and descriptions are readable, but the quantity column is cut by the viewport edge and the tall header suggests wrapping in columns farther right.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"The wider description column gives the rows a more comfortable rhythm and keeps part numbers intact, but quantity falls beyond the initial viewport along with price and supplier.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"Part numbers and quantities are visible together, but the narrow description column strands the comma after “Microcontroller” and makes several rows tall.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"Part numbers and quantities fit in the viewport, and descriptions generally wrap at sensible points. The tall header and partially visible price column weaken the hierarchy.\"},\"E\":{\"grade\":\"good\",\"why\":\"Part numbers and quantities are visible together, with descriptions wrapping mostly at sensible points and a compact, clear header. Price and supplier require horizontal scrolling.\"},\"F\":{\"grade\":\"bad\",\"why\":\"Although all columns fit, headers, part numbers, descriptions, prices and supplier names split across lines, making rows difficult to scan and values difficult to read.\"}},\"best\":[\"E\"],\"confidence\":\"medium\",\"unsure\":\"The supplied images cut off the right side of layouts A–E, so I cannot assess the full widths or wrapping of their price and supplier columns or compare their total scrolling distances.\"}\n"
+  }
+ ]
+}

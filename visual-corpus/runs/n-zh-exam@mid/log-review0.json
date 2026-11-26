@@ -1,0 +1,22 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 高一学生期中期末成绩汇总 (language zh-CN).\nGrid: 8 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"姓名\" spans 1 col × 2 row; \"语文\" spans 2 col × 1 row; \"数学\" spans 2 col × 1 row; \"英语\" spans 2 col × 1 row; \"总分\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"姓名\" · longest unbreakable word 16px · one-line width 46px\n  col 2: header \"语文 › 期中\" · longest unbreakable word 19px · one-line width 31px\n  col 3: header \"语文 › 期末\" · longest unbreakable word 19px · one-line width 31px\n  col 4: header \"数学 › 期中\" · longest unbreakable word 19px · one-line width 31px\n  col 5: header \"数学 › 期末\" · longest unbreakable word 19px · one-line width 31px\n  col 6: header \"英语 › 期中\" · longest unbreakable word 19px · one-line width 31px\n  col 7: header \"英语 › 期末\" · longest unbreakable word 19px · one-line width 31px\n  col 8: header \"总分\" · longest unbreakable word 28px · one-line width 31px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 432px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 431px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 7832,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"姓名列过窄，所有姓名都被拆成两行，拉高了每一行，也削弱了姓名与成绩的横向关联。\"},\"B\":{\"grade\":\"excellent\",\"why\":\"姓名、表头和分数均保持完整，各学科的期中与期末列宽一致，行列紧凑且便于横向比较。\"},\"C\":{\"grade\":\"excellent\",\"why\":\"姓名和所有成绩均完整显示，三组学科列比例协调，行列关系清晰，表格适合在视口内阅读。\"},\"D\":{\"grade\":\"poor\",\"why\":\"姓名列过窄，所有姓名都换成两行，使行高增加；成绩列的额外空间对阅读帮助有限。\"}},\"best\":[\"B\",\"C\"],\"confidence\":\"high\",\"unsure\":\"B 和 C 的列宽差异很小，从渲染图中看不出足以影响阅读体验的明显优劣。\"}\n"
+  }
+ ]
+}

@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Checkout A/B Test Results (language en).\nGrid: 7 columns × 9 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"Metric\" spans 1 col × 2 row; \"Control\" spans 2 col × 1 row; \"Variant\" spans 2 col × 1 row; \"Lift\" spans 1 col × 2 row; \"p-value\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Metric\" · longest unbreakable word 100px · one-line width 263px\n  col 2: header \"Control › Mean\" · longest unbreakable word 50px · one-line width 52px\n  col 3: header \"Control › 95% CI\" · longest unbreakable word 58px · one-line width 113px\n  col 4: header \"Variant › Mean\" · longest unbreakable word 49px · one-line width 50px\n  col 5: header \"Variant › 95% CI\" · longest unbreakable word 58px · one-line width 110px\n  col 6: header \"Lift\" · longest unbreakable word 52px · one-line width 52px\n  col 7: header \"p-value\" · longest unbreakable word 47px · one-line width 55px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 7546,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"The confidence intervals have ample room, but the narrow metric column breaks words and stretches labels across three or four lines, making rows difficult to scan.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"Metric labels remain readable and the two test groups are balanced, but the currency and time confidence intervals split across lines, making comparisons harder.\"},\"C\":{\"grade\":\"excellent\",\"why\":\"Both groups have balanced proportions, all numeric values and intervals stay on one line, and metric labels wrap naturally without breaking words.\"},\"D\":{\"grade\":\"bad\",\"why\":\"Nearly equal column widths waste space on short values while breaking a metric word and splitting several confidence intervals; the tall rows are hard to scan.\"},\"E\":{\"grade\":\"good\",\"why\":\"The wider metric column keeps most labels compact and the groups balanced, though currency and time confidence intervals wrap across lines.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"Metric labels are compact, but the p-value header, time means, and several confidence intervals wrap, disrupting the comparison of results.\"}},\"best\":[\"C\"],\"confidence\":\"high\",\"unsure\":\"B and E make a reasonable tradeoff for wider metric labels, but the split confidence intervals make them less effective for comparing results.\"}\n"
+  }
+ ]
+}

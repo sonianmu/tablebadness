@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 2025학년도 1학기 강의 시간표 (language ko).\nGrid: 5 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"월\" spans 1 col × 2 row; \"수\" spans 1 col × 2 row; \"금\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"요일\" · longest unbreakable word 13px · one-line width 26px\n  col 2: header \"시간\" · longest unbreakable word 50px · one-line width 86px\n  col 3: header \"과목명\" · longest unbreakable word 13px · one-line width 78px\n  col 4: header \"교수\" · longest unbreakable word 13px · one-line width 39px\n  col 5: header \"강의실\" · longest unbreakable word 33px · one-line width 109px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 13650,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"과목명과 교수명이 모두 한 줄로 유지되고 요일별 묶음도 잘 읽힌다. 시간은 모두 두 줄이며, 일부 강의실명은 중간에서 끊긴다.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"요일과 교수명은 읽기 쉽지만, 마지막 과목명의 끝 글자가 다음 줄로 넘어가고 일부 강의실명도 끊긴다. 시간도 모두 두 줄이다.\"},\"C\":{\"grade\":\"good\",\"why\":\"교수명과 대부분의 과목명이 온전하고, 자연과학관과 B101도 각각 한 줄에 들어간다. 다만 마지막 과목명의 끝 글자가 혼자 넘어가고 시간은 모두 두 줄이다.\"},\"D\":{\"grade\":\"poor\",\"why\":\"마지막 과목명의 끝 글자가 분리되고 여러 강의실에서 호수가 숫자와 ‘호’로 갈라져 위치를 빠르게 확인하기 어렵다.\"},\"E\":{\"grade\":\"bad\",\"why\":\"요일 머리글과 모든 교수명이 갈라지고 여러 과목명과 호수도 끊긴다. 넓어진 시간 열에서도 시간은 여전히 두 줄이다.\"},\"F\":{\"grade\":\"bad\",\"why\":\"요일 열에 여백이 많은 반면 모든 과목명이 끊기고 긴 강의실명은 세 줄로 늘어나, 행을 훑고 비교하기 어렵다.\"}},\"best\":[\"A\"],\"confidence\":\"medium\",\"unsure\":\"C는 긴 강의실 건물명을 온전히 유지하지만 마지막 과목명의 끝 글자가 분리된다. A의 강의실명 분리와 비교하면 어느 쪽을 더 중시할지는 사용자가 과목과 장소 중 무엇을 주로 확인하는지에 따라 달라질 수 있다.\"}\n"
+  }
+ ]
+}

@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: भारतीय रेल समय सारणी — प्रमुख ट्रेनें (language hi).\nGrid: 6 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"ट्रेन संख्या\" · longest unbreakable word 51px · one-line width 60px\n  col 2: header \"ट्रेन का नाम\" · longest unbreakable word 61px · one-line width 151px\n  col 3: header \"प्रस्थान\" · longest unbreakable word 46px · one-line width 46px\n  col 4: header \"आगमन\" · longest unbreakable word 47px · one-line width 123px\n  col 5: header \"दिन\" · longest unbreakable word 52px · one-line width 166px\n  col 6: header \"टिप्पणी\" · longest unbreakable word 77px · one-line width 348px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 602px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 601px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11338,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Train names and arrival qualifiers are easy to scan, and times stay intact. The narrow days column creates several short lines in two rows.\"},\"B\":{\"grade\":\"good\",\"why\":\"The columns balance the timetable and notes well; times and arrival qualifiers stay intact. Some train names need three lines.\"},\"C\":{\"grade\":\"poor\",\"why\":\"Equal-looking widths leave excess space around departure times while squeezing notes into many short lines, making rows tall and harder to scan.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"Notes have useful space, but the train-number header wraps and several arrival qualifiers break across two lines beneath the time.\"},\"E\":{\"grade\":\"poor\",\"why\":\"The departure time 06:00 breaks across lines, disrupting a key timetable value. The train-number header also wraps.\"},\"F\":{\"grade\":\"good\",\"why\":\"Times and arrival qualifiers remain intact, and the wider days column helps the exception read smoothly. The narrower notes column produces several long, fragmented cells.\"}},\"best\":[\"B\"],\"confidence\":\"medium\",\"unsure\":\"A is a close alternative: it gives train names more room, while B handles days and notes more comfortably.\"}\n"
+  }
+ ]
+}

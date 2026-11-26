@@ -1,0 +1,1832 @@
+{
+ "id": "n-code-regex@desktop",
+ "family": "n-code-regex",
+ "split": "holdout",
+ "status": "confirmed",
+ "table": {
+  "title": "Customer Onboarding Field Validation Rules",
+  "lang": "en",
+  "structure": "plain",
+  "html": "<table><thead><tr><th>Field</th><th>Pattern</th><th>Example valid</th><th>Error message</th></tr></thead><tbody><tr><th scope=\"row\">account_email</th><td><code>^[A-Za-z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)+$</code></td><td>mira.okafor@northwind-logistics.co.uk</td><td>Enter a complete email address, including the domain (for example, name@company.com).</td></tr><tr><th scope=\"row\">phone_e164</th><td><code>^\\+[1-9]\\d{7,14}$</code></td><td>+442079460958</td><td>Use international format: a plus sign followed by 8–15 digits, with no spaces, hyphens, or parentheses.</td></tr><tr><th scope=\"row\">postal_code_us</th><td><code>^\\d{5}(?:-\\d{4})?$</code></td><td>94107-2231</td><td>Enter a 5-digit ZIP code or ZIP+4 (for example, 94107 or 94107-2231).</td></tr><tr><th scope=\"row\">effective_date</th><td><code>^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$</code></td><td>2024-02-29</td><td>Use YYYY-MM-DD; the month must be 01–12 and the day 01–31.</td></tr><tr><th scope=\"row\">currency_amount</th><td><code>^(?:0|[1-9]\\d{0,8})(?:\\.\\d{2})?$</code></td><td>12500.00</td><td>Enter a non-negative amount up to 999,999,999.99 with two decimal places; omit commas.</td></tr><tr><th scope=\"row\">slug</th><td><code>^[a-z0-9]+(?:-[a-z0-9]+)*$</code></td><td>quarterly-compliance-review</td><td>Use lowercase letters, numbers, and single hyphens only; do not start or end with a hyphen.</td></tr><tr><th scope=\"row\">eu_vat_id</th><td><code>^[A-Z]{2}[0-9A-Z]{8,12}$</code></td><td>DE811234567</td><td>Enter the country code followed by 8–12 letters or digits, without spaces.</td></tr></tbody></table>",
+  "md": null,
+  "rowHeader": false,
+  "source": "generated",
+  "brief": "Validation rules: Field / Pattern (long regex in code) / Example valid / Error message"
+ },
+ "conditions": {
+  "availableWidth": 720,
+  "fontSize": 15,
+  "policy": "fit",
+  "css": "src/table.css (padding 6px 10px, 1px borders, line-height 1.55)",
+  "browser": "Chromium (Playwright build), macOS system fonts",
+  "contentFacts": {
+   "WminNoSplit": 649,
+   "WallOneLine": 2249
+  }
+ },
+ "understanding": {
+  "purpose": "A reference table for developers, QA and support to validate customer-onboarding fields: each row maps a field to its regex rule, a valid example, and the error copy shown on failure.",
+  "reading": "Readers look up rows by Field, then scan Pattern for implementation/testing and glance across to Example valid and Error message for concrete values and user-facing wording. Comparison is mainly within each row, not down numeric columns.",
+  "groups": [
+   "Field is the row key and identifier",
+   "Pattern and Example valid belong together as rule plus concrete instance",
+   "Example valid and Error message belong together as reader-facing validation feedback",
+   "Pattern is the technical column; Example valid and Error message are the human-facing columns"
+  ],
+  "keep_intact": [
+   "snake_case field identifiers",
+   "regex atoms, character classes, quantifiers and anchors without mid-token breaks",
+   "example values such as emails, dates, currency amounts, slugs and VAT IDs",
+   "header words and error-message words"
+  ],
+  "may_wrap": [
+   "long Pattern values at regex punctuation, alternation or quantifier boundaries",
+   "Error message prose at spaces",
+   "Example valid only at safe separators if necessary",
+   "multi-word headers at their space"
+  ]
+ },
+ "preferred": [
+  {
+   "name": "r2A",
+   "colWidths": [
+    147,
+    185,
+    188,
+    199
+   ],
+   "requestedWidths": [
+    147,
+    185,
+    188,
+    199
+   ],
+   "tableWidth": 720,
+   "tableHeight": 849,
+   "rowHeights": [
+    36.3,
+    199,
+    106,
+    82.8,
+    82.8,
+    129.3,
+    129.3,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     8
+    ],
+    [
+     1,
+     2,
+     2
+    ],
+    [
+     1,
+     3,
+     4
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     1
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     3
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     3
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     3
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     2
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     5
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     2
+    ],
+    [
+     6,
+     2,
+     2
+    ],
+    [
+     6,
+     3,
+     5
+    ],
+    [
+     7,
+     0,
+     1
+    ],
+    [
+     7,
+     1,
+     2
+    ],
+    [
+     7,
+     2,
+     1
+    ],
+    [
+     7,
+     3,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/n-code-regex@desktop__r2A.png",
+   "note": "Shift 3px from Error to Pattern versus r1A: Pattern 185px (164px text) is the narrowest width likely to pull the account_email regex from nine to eight lines, while Error 199px (178px text) stays above the phone and slug four-line wrap thresholds. This should remove the 222px first row without adding error lines, for about 825px total; Field and Example keep their proven minimum widths."
+  },
+  {
+   "name": "r2B",
+   "colWidths": [
+    147,
+    186,
+    188,
+    198
+   ],
+   "requestedWidths": [
+    147,
+    186,
+    188,
+    198
+   ],
+   "tableWidth": 720,
+   "tableHeight": 849,
+   "rowHeights": [
+    36.3,
+    199,
+    106,
+    82.8,
+    82.8,
+    129.3,
+    129.3,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     8
+    ],
+    [
+     1,
+     2,
+     2
+    ],
+    [
+     1,
+     3,
+     4
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     1
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     3
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     3
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     3
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     2
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     5
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     2
+    ],
+    [
+     6,
+     2,
+     2
+    ],
+    [
+     6,
+     3,
+     5
+    ],
+    [
+     7,
+     0,
+     1
+    ],
+    [
+     7,
+     1,
+     2
+    ],
+    [
+     7,
+     2,
+     1
+    ],
+    [
+     7,
+     3,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/n-code-regex@desktop__r2B.png",
+   "note": "Aggressive variant: one more pixel to Pattern and one less to Error. Pattern 186px (165px text) gives the email regex a safer margin for the eight-line wrap; Error 198px (177px text) is at the edge of the slug wrap, so this wins if the pattern threshold is 165px and the slug still fits at 177px. If slug breaks, total height returns near r1A rather than r1B."
+  }
+ ],
+ "acceptable": [
+  {
+   "name": "r0B",
+   "colWidths": [
+    147,
+    160,
+    210,
+    202
+   ],
+   "requestedWidths": [
+    147,
+    160,
+    210,
+    202
+   ],
+   "tableWidth": 720,
+   "tableHeight": 849,
+   "rowHeights": [
+    36.3,
+    222.3,
+    106,
+    82.8,
+    82.8,
+    129.3,
+    106,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     9
+    ],
+    [
+     1,
+     2,
+     2
+    ],
+    [
+     1,
+     3,
+     4
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     2
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     3
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     3
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     3
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     3
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     5
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     2
+    ],
+    [
+     6,
+     2,
+     2
+    ],
+    [
+     6,
+     3,
+     4
+    ],
+    [
+     7,
+     0,
+     1
+    ],
+    [
+     7,
+     1,
+     2
+    ],
+    [
+     7,
+     2,
+     1
+    ],
+    [
+     7,
+     3,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/n-code-regex@desktop__r0B.png",
+   "note": "Keep the row key and regex legible, then split spare width between Example valid and Error message so both human-facing columns read comfortably."
+  },
+  {
+   "name": "r1A",
+   "colWidths": [
+    147,
+    182,
+    188,
+    202
+   ],
+   "requestedWidths": [
+    147,
+    182,
+    188,
+    202
+   ],
+   "tableWidth": 720,
+   "tableHeight": 849,
+   "rowHeights": [
+    36.3,
+    222.3,
+    106,
+    82.8,
+    82.8,
+    129.3,
+    106,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     9
+    ],
+    [
+     1,
+     2,
+     2
+    ],
+    [
+     1,
+     3,
+     4
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     1
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     3
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     3
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     3
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     2
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     5
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     2
+    ],
+    [
+     6,
+     2,
+     2
+    ],
+    [
+     6,
+     3,
+     4
+    ],
+    [
+     7,
+     0,
+     1
+    ],
+    [
+     7,
+     1,
+     2
+    ],
+    [
+     7,
+     2,
+     1
+    ],
+    [
+     7,
+     3,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/n-code-regex@desktop__r1A.png",
+   "note": "From r0B, move 22px from Example (210→188, still exactly the 167px unbreakable-word floor) to Pattern (160→182), keeping Error at 202. This preserves r0B's compact 4-line error messages, should reduce the email regex from 9 to 8 lines, and should restore short regexes such as postal and VAT to one line. The examples already wrap at 210px, so no example line count is lost."
+  },
+  {
+   "name": "r1B",
+   "colWidths": [
+    147,
+    190,
+    188,
+    194
+   ],
+   "requestedWidths": [
+    147,
+    190,
+    188,
+    194
+   ],
+   "tableWidth": 720,
+   "tableHeight": 872.3,
+   "rowHeights": [
+    36.3,
+    199,
+    129.3,
+    82.8,
+    82.8,
+    129.3,
+    129.3,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     8
+    ],
+    [
+     1,
+     2,
+     2
+    ],
+    [
+     1,
+     3,
+     4
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     5
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     1
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     3
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     3
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     3
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     2
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     5
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     2
+    ],
+    [
+     6,
+     2,
+     2
+    ],
+    [
+     6,
+     3,
+     5
+    ],
+    [
+     7,
+     0,
+     1
+    ],
+    [
+     7,
+     1,
+     2
+    ],
+    [
+     7,
+     2,
+     1
+    ],
+    [
+     7,
+     3,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/n-code-regex@desktop__r1B.png",
+   "note": "From r1A, move another 8px from Error to Pattern. Pattern 190 gives regex atoms more room, while Error 194 is still 16px above its 178px floor and may keep most messages at four lines. This is the more pattern-friendly variant; if the render shows phone, postal or currency messages gaining a line, r1A is the safer optimum."
+  },
+  {
+   "name": "r3B",
+   "colWidths": [
+    147,
+    165,
+    188,
+    219
+   ],
+   "requestedWidths": [
+    147,
+    165,
+    188,
+    219
+   ],
+   "tableWidth": 720,
+   "tableHeight": 849,
+   "rowHeights": [
+    36.3,
+    222.3,
+    106,
+    82.8,
+    82.8,
+    129.3,
+    106,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     9
+    ],
+    [
+     1,
+     2,
+     2
+    ],
+    [
+     1,
+     3,
+     4
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     2
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     3
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     3
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     3
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     3
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     5
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     2
+    ],
+    [
+     6,
+     2,
+     2
+    ],
+    [
+     6,
+     3,
+     4
+    ],
+    [
+     7,
+     0,
+     1
+    ],
+    [
+     7,
+     1,
+     2
+    ],
+    [
+     7,
+     2,
+     1
+    ],
+    [
+     7,
+     3,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/n-code-regex@desktop__r3B.png",
+   "note": "Give Error message 20px more at Pattern’s expense to test whether prose becomes easier to scan and reduces the height of the currency and slug rows. Pattern retains 144px of text width, above its stated longest unbreakable word."
+  }
+ ],
+ "bad": [
+  {
+   "name": "r0C",
+   "colWidths": [
+    147,
+    135,
+    188,
+    249
+   ],
+   "requestedWidths": [
+    147,
+    135,
+    188,
+    249
+   ],
+   "tableWidth": 720,
+   "tableHeight": 849,
+   "rowHeights": [
+    36.3,
+    268.8,
+    106,
+    82.8,
+    106,
+    82.8,
+    82.8,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     11
+    ],
+    [
+     1,
+     2,
+     2
+    ],
+    [
+     1,
+     3,
+     3
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     2
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     2
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     3
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     4
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     3
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     3
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     3
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     2
+    ],
+    [
+     6,
+     2,
+     2
+    ],
+    [
+     6,
+     3,
+     3
+    ],
+    [
+     7,
+     0,
+     1
+    ],
+    [
+     7,
+     1,
+     2
+    ],
+    [
+     7,
+     2,
+     1
+    ],
+    [
+     7,
+     3,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/n-code-regex@desktop__r0C.png",
+   "note": "Hold Pattern at its minimum intact width and spend the width on Error message, since support-oriented prose benefits most from fewer wraps.",
+   "why": "The narrow pattern column fragments the email expression into 11 lines and wraps even the short phone expression, making the rules harder to scan."
+  },
+  {
+   "name": "r3A",
+   "colWidths": [
+    147,
+    205,
+    188,
+    179
+   ],
+   "requestedWidths": [
+    147,
+    205,
+    188,
+    179
+   ],
+   "tableWidth": 720,
+   "tableHeight": 942,
+   "rowHeights": [
+    36.3,
+    199,
+    152.5,
+    106,
+    82.8,
+    129.3,
+    129.3,
+    106
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     8
+    ],
+    [
+     1,
+     2,
+     2
+    ],
+    [
+     1,
+     3,
+     4
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     6
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     1
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     4
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     3
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     3
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     2
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     5
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     2
+    ],
+    [
+     6,
+     2,
+     2
+    ],
+    [
+     6,
+     3,
+     5
+    ],
+    [
+     7,
+     0,
+     1
+    ],
+    [
+     7,
+     1,
+     2
+    ],
+    [
+     7,
+     2,
+     1
+    ],
+    [
+     7,
+     3,
+     4
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/n-code-regex@desktop__r3A.png",
+   "note": "Give Pattern 20px more by reducing Error message to its stated minimum for intact words. This tests whether technical rules gain more useful breaks while keeping examples and field identifiers intact.",
+   "why": "The narrow error-message column forces prose into short lines across several rows, creating excessive row height and uneven whitespace for little visible gain in the pattern column."
+  }
+ ],
+ "ranges": [
+  [
+   147,
+   147
+  ],
+  [
+   185,
+   186
+  ],
+  [
+   188,
+   188
+  ],
+  [
+   198,
+   199
+  ]
+ ],
+ "rationale": "The preferred designs give the field names and examples enough room to remain identifiable while reserving useful space for both patterns and explanatory messages. The long email pattern occupies eight lines, while the shorter phone and postal patterns stay on one line. The error messages still wrap, but their line lengths remain readable and the rows hold together well.",
+ "principles": {
+  "general": [
+   "Allocate width according to how readers use each column and where wrapping begins to impair comprehension.",
+   "Judge row rhythm and the distribution of whitespace across the whole table, not just total height.",
+   "Preserve identifiers and short code expressions where possible; longer expressions may need to wrap."
+  ],
+  "specific": [
+   "The field column needs 147px to fit the longest row identifier with the stated padding.",
+   "Around 185–186px for patterns keeps the email rule to eight lines while allowing more room for error messages than r3A."
+  ]
+ },
+ "tradeoffs": "A wider error-message column, as in r3B, improves prose flow but fragments the email and postal patterns more. A wider pattern column can make code easier to inspect, but it constrains the messages and may make multiple rows taller.",
+ "uncertain": "A designer prioritizing customer-facing message copy over implementation rules could reasonably prefer r3B. The ranges are conservative, based on the rendered candidates; other nearby widths may be equally good but have not been shown.",
+ "designHistory": {
+  "r0": {
+   "critique": null,
+   "designs": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "Field at 147px keeps every snake_case identifier on one line; Example at 188px exactly meets the 167px unbreakable-word floor; Pattern at 206px is the widest of the three, so the email regex is 8 lines rather than 9 or 11; all headers stay on one line.",
+     "problems": "The Error column at 178px is at its absolute minimum and looks cramped: phone, slug and VAT messages break into many short lines with orphaned words. The table reaches 965px, and the 199px account row plus 153px phone row make the layout feel vertically unstable. Example values still wrap to two lines, so rows do not read as evenly as they could.",
+     "cause": "Widths [147,206,188,178] put Example and Error exactly at their minimums while giving Pattern 71px above its floor. But Pattern still needs 8 lines for the email regex even at 206px, so the extra Pattern width buys no further line reduction, whereas the missing Error width costs several lines."
+    },
+    {
+     "design": "r0B",
+     "good": "Error at 202px is comfortable and keeps most prose to 3–4 lines; phone, postal, effective-date and VAT rows are compact. Field and Example remain intact, and the overall table is the shortest at 849px. This is the most promising starting point.",
+     "problems": "Pattern at 160px is too narrow: the email regex becomes a 9-line strip, the postal regex orphans its final '$', and several regexes fragment at awkward points. The account row grows to 222px. Example at 210px is over-wide for its actual benefit: the long email and slug examples still wrap to two lines.",
+     "cause": "Widths [147,160,210,202] distribute the 50px above minimums almost evenly (Pattern +25, Example +22, Error +24), but Pattern has by far the largest content demand. Example's extra 22px cannot reach the roughly 285px needed to put the email example on one line, so that width is slack while Pattern sets the tallest row."
+    },
+    {
+     "design": "r0C",
+     "good": "Error at 249px is very readable, with prose held to 3–4 lines; Example at 188px preserves its longest unbreakable word; Field is intact and headers are clean.",
+     "problems": "Pattern at 135px is at its minimum and collapses: the email regex runs to 11 lines and the account row becomes 269px. The phone regex splits '1-9' across lines, the postal regex leaves '$' alone, and the fragments are hard to parse. The wide Error column creates visible dead space beside the tall Pattern cell.",
+     "cause": "Widths [147,135,188,249] send all 71px of discretionary width to Error while Pattern sits at its 135px floor. Error prose gains little beyond about 200px, but Pattern loses enough width to add three lines to the email regex, so Pattern alone drives the row height."
+    }
+   ],
+   "designs": [
+    "r1A",
+    "r1B"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "Strongest current layout: Field at 147px exactly preserves account_email; headers stay on one line; Example valid at 188px holds the longest token and wraps only at safe hyphens; Error at 202px keeps phone and slug messages to four lines; no mid-word splits. Row heights are mostly compact and error copy is comfortable.",
+     "problems": "Pattern is the cramped column: the account_email regex breaks into nine short fragments, making the first data row 222px tall while the Error cell beside it has spare vertical space. Error is also wider than Pattern, so prose gets more room than the regex readers must parse.",
+     "cause": "Pattern 182px gives only 161px of text, below the wrap threshold for the long email regex; Error 202px gives 181px, safely above the four-line thresholds for phone and slug, so its extra width does not reduce row height."
+    },
+    {
+     "design": "r1B",
+     "good": "Pattern at 190px gives 169px and cuts the email regex to eight lines, reducing the first data row from 222px to 199px; Field and Example remain intact and headers stay on one line.",
+     "problems": "The gain is cancelled: phone and slug error messages each gain a fifth line, and the table grows to 872px. Error copy looks cramped while Pattern still needs eight lines, so the extra 8px there buys only one saved line.",
+     "cause": "Moving 8px from Error to Pattern drops Error from 202px to 194px (181px to 173px text), crossing the four-line wrap thresholds for phone and slug; each extra line adds about 23px, while Pattern saves only one 23px line."
+    }
+   ],
+   "designs": [
+    "r2A",
+    "r2B"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "Field identifiers and headers remain intact. Examples and error messages are legible, and the row boundaries make each field’s rule and feedback easy to follow.",
+     "problems": "The email regex forms an eight-line block and breaks within character classes, making it difficult to parse. Several shorter regexes also wrap awkwardly. The narrow error column produces five-line messages for currency and slug, leaving substantial empty space in the other cells.",
+     "cause": "Pattern has 164px of text width, while Error message has 178px. Field is already at its stated minimum for intact identifiers, and Example valid is at the minimum for its longest unbreakable value."
+    },
+    {
+     "design": "r2B",
+     "good": "The same clear row keys, intact headers and readable examples make the table usable for row-by-row lookup.",
+     "problems": "The render is effectively indistinguishable from r2A: the email regex remains fragmented, and long error messages still dominate several rows.",
+     "cause": "Moving 1px from Error message to Pattern does not cross a useful wrapping threshold; their text widths are 177px and 165px respectively."
+    }
+   ],
+   "designs": [
+    "r3A",
+    "r3B"
+   ]
+  }
+ },
+ "review": {
+  "method": "two fresh-context blind reviews; letters shuffled; includes browser auto layout and equal widths as neutral references",
+  "verdict": {
+   "status": "confirmed",
+   "per": [
+    {
+     "prefGrade": 4,
+     "prefIsBest": true,
+     "bestNames": [
+      "r2A"
+     ],
+     "badGrades": [
+      2
+     ],
+     "autoGrade": 4,
+     "equalGrade": 3
+    },
+    {
+     "prefGrade": 4,
+     "prefIsBest": true,
+     "bestNames": [
+      "r2A"
+     ],
+     "badGrades": [
+      2
+     ],
+     "autoGrade": 4,
+     "equalGrade": 2
+    }
+   ]
+  },
+  "raw": [
+   {
+    "order": [
+     "ref_equal",
+     "ref_auto",
+     "r0B",
+     "r2A",
+     "r1A",
+     "r0C"
+    ],
+    "best": [
+     "r2A"
+    ],
+    "ratings": {
+     "ref_equal": {
+      "grade": "acceptable",
+      "why": "Field names stay intact, but equal column widths leave extra space in the first column while breaking the email example inside a word and making error messages wrap heavily."
+     },
+     "ref_auto": {
+      "grade": "good",
+      "why": "The field column fits its identifiers, examples have room, and messages scan comfortably. Several patterns still wrap across multiple lines."
+     },
+     "r0B": {
+      "grade": "acceptable",
+      "why": "Examples and messages have comfortable space, but the narrower pattern column splits more expressions, leaving the postal code pattern's final dollar sign alone on a line."
+     },
+     "r2A": {
+      "grade": "good",
+      "why": "The balanced widths keep field names intact and give patterns slightly more room, reducing the email pattern to eight lines while keeping examples and messages readable."
+     },
+     "r1A": {
+      "grade": "good",
+      "why": "Field names fit and examples and messages scan well. The pattern column is slightly narrower than in D, so the long email expression takes an extra line."
+     },
+     "r0C": {
+      "grade": "poor",
+      "why": "The wide message column reads well, but the narrow pattern column fragments even short expressions and makes the long email pattern especially difficult to follow."
+     }
+    },
+    "confidence": "medium",
+    "unsure": "D and E are close; the relative importance of keeping regular expressions together versus giving messages a little more room could change the preference."
+   },
+   {
+    "order": [
+     "r2A",
+     "r0C",
+     "r1A",
+     "r0B",
+     "ref_auto",
+     "ref_equal"
+    ],
+    "best": [
+     "r2A"
+    ],
+    "ratings": {
+     "r2A": {
+      "grade": "good",
+      "why": "Field names remain intact, several short patterns fit on one line, and the columns have a useful balance. The email and slug examples wrap, while some error messages are rather narrow."
+     },
+     "r0C": {
+      "grade": "poor",
+      "why": "The narrow pattern column breaks even short expressions across lines and makes the email pattern particularly difficult to follow. The wider error column reads comfortably, but comes at too high a cost to the central validation rules."
+     },
+     "r1A": {
+      "grade": "good",
+      "why": "Field names and short patterns remain intact, examples have enough room for most values, and error messages scan reasonably well. The long email pattern and some identifiers still wrap."
+     },
+     "r0B": {
+      "grade": "acceptable",
+      "why": "The wider example column helps, but the pattern column breaks the postal code expression just before its final dollar sign and fragments other expressions. The extra example width does not prevent the email or slug from wrapping."
+     },
+     "ref_auto": {
+      "grade": "good",
+      "why": "The field, pattern, example, and error columns are well balanced. Short patterns stay intact and the error messages read in manageable lines, though the long email pattern and two examples wrap."
+     },
+     "ref_equal": {
+      "grade": "poor",
+      "why": "The field column has surplus space while the narrow error column produces many short lines. The email example also breaks within a word, making the identifier harder to read."
+     }
+    },
+    "confidence": "medium",
+    "unsure": "A, C, and E are close. Their different line breaks trade a little pattern readability against error-message flow; the long email pattern necessarily wraps heavily in each."
+   }
+  ]
+ },
+ "provenance": {
+  "models": {
+   "final": "codex/gpt-6.1-terra",
+   "r0": "workbuddy-ai/deepseek-v4.1-flash-sg",
+   "r1": "workbuddy-ai/deepseek-v4.1-flash-sg",
+   "r2": "workbuddy-ai/deepseek-v4.1-flash-sg",
+   "r3": "codex/gpt-6.1-terra",
+   "review0": "codex/gpt-6.1-terra",
+   "review1": "codex/gpt-6.1-terra"
+  },
+  "modelChain": "codex/gpt-6.1-terra → opencode-zen-free/deepseek-v4.1-flash-free",
+  "pi": "1.3.0",
+  "created": "2026-11-26T16:40:07.965Z",
+  "note": "AI visual design judgement; not a human reading study"
+ }
+}

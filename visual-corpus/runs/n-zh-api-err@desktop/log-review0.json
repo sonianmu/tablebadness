@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: API 错误码排查对照表 (language zh-CN).\nGrid: 4 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"错误码\" · longest unbreakable word 49px · one-line width 49px\n  col 2: header \"错误信息\" · longest unbreakable word 154px · one-line width 154px\n  col 3: header \"含义\" · longest unbreakable word 95px · one-line width 740px\n  col 4: header \"解决办法\" · longest unbreakable word 110px · one-line width 1964px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 26875,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"Equal widths leave excessive space around the short error codes while squeezing the long solutions into narrow, tall blocks. The resulting row heights and empty areas make scanning difficult.\"},\"B\":{\"grade\":\"good\",\"why\":\"Codes and error identifiers stay intact, and the meaning and solution columns both have usable reading widths. The long solutions still create fairly tall rows.\"},\"C\":{\"grade\":\"good\",\"why\":\"The identifiers fit cleanly, and the wider solution column gives the longest text more room while retaining a readable meaning column. Some meaning cells wrap into short lines.\"},\"D\":{\"grade\":\"excellent\",\"why\":\"Compact code columns leave ample room for solutions, while meanings remain readable. The two prose columns produce a balanced row rhythm, and identifiers stay intact.\"},\"E\":{\"grade\":\"good\",\"why\":\"The solution column has generous space and identifiers remain intact. The slightly narrower meaning column wraps frequently, though the rows remain reasonably easy to scan.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"Solutions read comfortably, but the narrow meaning column breaks phrases into many short lines and creates tall, uneven rows with unused space in adjacent cells.\"}},\"best\":[\"D\"],\"confidence\":\"medium\",\"unsure\":\"D and E are close; the preferred balance depends partly on how much weight readers place on scanning meanings versus reading solutions.\"}\n"
+  }
+ ]
+}

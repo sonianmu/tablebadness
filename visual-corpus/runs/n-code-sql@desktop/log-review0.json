@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Database column specification for orders table (language en).\nGrid: 5 columns × 9 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Column\" · longest unbreakable word 137px · one-line width 137px\n  col 2: header \"Type\" · longest unbreakable word 99px · one-line width 210px\n  col 3: header \"Nullable\" · longest unbreakable word 59px · one-line width 59px\n  col 4: header \"Default\" · longest unbreakable word 161px · one-line width 161px\n  col 5: header \"Comment\" · longest unbreakable word 93px · one-line width 577px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 8187,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"Equal widths give Nullable excessive space and leave Comment narrow. The column name total_amount_cents and default CURRENT_TIMESTAMP break within identifiers, making them harder to scan.\"},\"B\":{\"grade\":\"good\",\"why\":\"Column names and defaults stay intact, and Nullable is compact. Comments remain readable, though the timestamp types wrap across three lines and the example order reference breaks across lines.\"},\"C\":{\"grade\":\"good\",\"why\":\"The compact Nullable column leaves room for intact column names and defaults. Comments are readable, although timestamp types need three lines and the example order reference wraps.\"},\"D\":{\"grade\":\"excellent\",\"why\":\"The wider Comment column gives prose a comfortable measure and keeps the example order reference together. Column names and defaults remain intact, while the narrow Type column wraps timestamp types at word boundaries.\"},\"E\":{\"grade\":\"poor\",\"why\":\"Type has enough space for shorter types on one line, but Comment is squeezed into a very narrow measure. Its many short lines make rows tall and leave large empty areas across the other columns.\"},\"F\":{\"grade\":\"good\",\"why\":\"Column names and defaults stay intact, and timestamp types fit on two lines. The narrower Comment column produces more short lines and breaks the example order reference across lines.\"}},\"best\":[\"D\"],\"confidence\":\"high\",\"unsure\":\"B and C appear almost identical; their tiny width differences have little visible effect.\"}\n"
+  }
+ ]
+}

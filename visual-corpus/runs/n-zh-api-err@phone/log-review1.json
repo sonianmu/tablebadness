@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: API 错误码排查对照表 (language zh-CN).\nGrid: 4 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"错误码\" · longest unbreakable word 49px · one-line width 49px\n  col 2: header \"错误信息\" · longest unbreakable word 154px · one-line width 154px\n  col 3: header \"含义\" · longest unbreakable word 95px · one-line width 740px\n  col 4: header \"解决办法\" · longest unbreakable word 110px · one-line width 1964px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nRendering convention: the screenshot always shows the WHOLE table. Anything beyond the dashed box is not clipped; it is the part a reader reaches by scrolling sideways, so judge both what fits in the box at first sight and the cost of scrolling to the rest.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 19111,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"错误码和错误信息完整易扫读，但视口边缘切过含义列，解决办法需要横向滚动。\"},\"B\":{\"grade\":\"bad\",\"why\":\"四列虽都放进视口，错误信息中的标识符却被拆成多行，解决办法也挤成很窄的文字条，行高过大。\"},\"C\":{\"grade\":\"good\",\"why\":\"错误码和错误信息保持完整，含义列也基本完整地出现在首屏；解决办法需要横向滚动，部分行因此较高。\"},\"D\":{\"grade\":\"poor\",\"why\":\"前三列易于识别，但行内留白很大，解决办法在视口外，读者需要横向滚动才能查看主要排查步骤。\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"标识符完整，含义列较宽、换行较自然，但视口边缘切入含义文字，查看完整内容和解决办法都需要滚动。\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"错误码和错误信息完整，但含义中的 access_token 被拆开，解决办法也位于视口外。\"}},\"best\":[\"C\"],\"confidence\":\"low\",\"unsure\":\"所提供的部分截图未显示视口右侧的完整表格，无法充分比较解决办法列的宽度、换行和实际滚动距离；C 与其他横向滚动布局的整体优劣因此不确定。\"}\n"
+  }
+ ]
+}

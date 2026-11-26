@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: השוואת דירות להשכרה בתל אביב (language he, right-to-left: column 1 is on the RIGHT).\nGrid: 5 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"שכונה\" · longest unbreakable word 65px · one-line width 86px\n  col 2: header \"מחיר\" · longest unbreakable word 42px · one-line width 102px\n  col 3: header \"חדרים\" · longest unbreakable word 42px · one-line width 42px\n  col 4: header \"קומה\" · longest unbreakable word 42px · one-line width 138px\n  col 5: header \"הערות\" · longest unbreakable word 79px · one-line width 1064px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nRendering convention: the screenshot always shows the WHOLE table. Anything beyond the dashed box is not clipped; it is the part a reader reaches by scrolling sideways, so judge both what fits in the box at first sight and the cost of scrolling to the rest.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 12598,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"bad\",\"why\":\"All columns fit, but the notes and several neighborhood names break within words. The narrow notes column makes the rows extremely tall and difficult to scan.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"Neighborhoods, prices and room counts are easy to compare, but floor details wrap into many short lines and the notes require horizontal scrolling.\"},\"C\":{\"grade\":\"good\",\"why\":\"The first four columns read clearly, with floor details grouped into two lines. Notes lie almost entirely beyond the viewport, so reading them requires scrolling.\"},\"D\":{\"grade\":\"good\",\"why\":\"The main comparison columns are clear and the rows are shorter than in C. Some floor details take three lines, and the notes require horizontal scrolling.\"},\"E\":{\"grade\":\"poor\",\"why\":\"Nearly the whole table is visible, but notes are set in a very narrow measure, prices separate from their currency symbols, and floor details fragment into short lines.\"},\"F\":{\"grade\":\"good\",\"why\":\"Neighborhoods, prices, rooms and floor details are clear and compact, with floor descriptions generally held to two lines. The notes require horizontal scrolling.\"}},\"best\":[\"F\"],\"confidence\":\"medium\",\"unsure\":\"The supplied views do not show the full notes columns in the scrolling layouts, so their line breaks and the total scrolling distance are difficult to assess.\"}\n"
+  }
+ ]
+}

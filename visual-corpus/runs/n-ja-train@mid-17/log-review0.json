@@ -1,0 +1,23 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 東海道・山陽新幹線の所要時間と料金 (language ja).\nGrid: 4 columns × 6 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"区間\" · longest unbreakable word 18px · one-line width 120px\n  col 2: header \"のぞみ\" · longest unbreakable word 52px · one-line width 98px\n  col 3: header \"ひかり\" · longest unbreakable word 53px · one-line width 100px\n  col 4: header \"こだま\" · longest unbreakable word 53px · one-line width 100px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 456px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 455px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10011,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"Several route names split across lines, sometimes within a place name, and many journey times leave 分 stranded on its own line. This makes both row identification and comparison harder.\"},\"B\":{\"grade\":\"poor\",\"why\":\"The route names still break within place names, and most longer journey times leave 分 alone on a line. One more complete time in the のぞみ column does little to improve the overall rhythm.\"},\"C\":{\"grade\":\"good\",\"why\":\"All route names stay intact, and the narrower ひかり and こだま columns usually keep the minute value together with 分. Several のぞみ times still strand 分 on a separate line.\"},\"D\":{\"grade\":\"good\",\"why\":\"Route names stay intact and the three service columns have a consistent width. Most wrapped times keep minutes with 分, though 約2時間8分 still leaves 分 alone, and the route column has some spare space.\"},\"E\":{\"grade\":\"excellent\",\"why\":\"All route names and のぞみ times stay intact. The other service columns wrap longer times between hours and minutes, preserving the minute values and making the rows easy to scan.\"}},\"best\":[\"E\"],\"confidence\":\"high\",\"unsure\":\"E gives のぞみ more width than the other services, so the three comparison columns are less even; the benefit is that every のぞみ time stays on one line.\"}\n"
+  }
+ ]
+}

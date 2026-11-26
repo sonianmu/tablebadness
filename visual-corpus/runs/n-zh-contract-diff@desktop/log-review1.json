@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: SaaS服务合同新旧条款对照表 (language zh-CN).\nGrid: 4 columns × 6 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"条款号\" · longest unbreakable word 31px · one-line width 62px\n  col 2: header \"原文\" · longest unbreakable word 31px · one-line width 1563px\n  col 3: header \"修订后\" · longest unbreakable word 31px · one-line width 3232px\n  col 4: header \"修订说明\" · longest unbreakable word 35px · one-line width 1425px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 12286,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"All clause identifiers remain intact, and the original, revised and explanatory text have readable widths. The revised text is somewhat narrow for its greater volume, making several rows tall.\"},\"B\":{\"grade\":\"poor\",\"why\":\"The wide revised-text column reads well, but the clause-number header and every row identifier break across multiple lines, making the rows harder to locate and scan.\"},\"C\":{\"grade\":\"good\",\"why\":\"Clause identifiers stay intact and the revised text has room to breathe. The explanation column is somewhat narrow, producing frequent wraps and tall blocks.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"The text columns are proportioned reasonably for their content, but the last clause identifier wraps onto two lines, disrupting the otherwise consistent row labels.\"},\"E\":{\"grade\":\"good\",\"why\":\"All identifiers remain on one line, and the wide revised-text column suits its longer content. The original and explanation columns are narrower but still readable, with a balanced distribution across rows.\"},\"F\":{\"grade\":\"poor\",\"why\":\"The clause-number column consumes far more width than its short labels need. The revised text is consequently cramped into a narrow column, producing very tall rows and large empty areas beside it.\"}},\"best\":[\"E\"],\"confidence\":\"medium\",\"unsure\":\"A and C are close alternatives; the preference for E depends on how much weight to give the slightly narrower original-text column versus the extra space for the longer revised text.\"}\n"
+  }
+ ]
+}

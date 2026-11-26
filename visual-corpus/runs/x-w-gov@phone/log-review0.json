@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val2] 政务服务 · 办理时限 (language zh-CN).\nGrid: 4 columns × 5 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"事项名称\" spans 1 col × 2 row; \"办理时限（工作日）\" spans 2 col × 1 row; \"所需材料\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"事项名称\" · longest unbreakable word 16px · one-line width 92px\n  col 2: header \"办理时限（工作日） › 法定\" · longest unbreakable word 19px · one-line width 31px\n  col 3: header \"办理时限（工作日） › 承诺\" · longest unbreakable word 16px · one-line width 31px\n  col 4: header \"所需材料\" · longest unbreakable word 31px · one-line width 414px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9284,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"事项名称列较宽，但前两项仍在词中换行；材料列较窄，使两条长材料各占四行。时限子列紧凑且易于比较。\"},\"B\":{\"grade\":\"good\",\"why\":\"两列时限宽度相近，材料列容纳较多文字，长材料各占三行；事项名称虽换成两行，仍较容易辨认。\"},\"C\":{\"grade\":\"good\",\"why\":\"名称和材料分配较均衡，时限列紧凑，行与行之间清楚；长事项名称和部分材料词语仍被拆行。\"},\"D\":{\"grade\":\"bad\",\"why\":\"时限数字占用过宽的两列，材料列被挤得很窄，大量词语拆行，行高过大，阅读和比较都不方便。\"},\"E\":{\"grade\":\"poor\",\"why\":\"材料列宽裕，但事项名称列过窄，标题及所有事项名称都被拆成多行，削弱了作为行标识的可读性。\"},\"F\":{\"grade\":\"good\",\"why\":\"时限列紧凑且近乎等宽，材料各占三行，行的结构清晰；前两项名称需要换行，材料中也有词语被拆开。\"}},\"best\":[\"C\"],\"confidence\":\"medium\",\"unsure\":\"B、C、F的宽度和换行非常接近；C的名称列略宽，而材料行数与另外两者相同，因此略占优势。\"}\n"
+  }
+ ]
+}

@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: API 错误码排查对照表 (language zh-CN).\nGrid: 4 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"错误码\" · longest unbreakable word 49px · one-line width 49px\n  col 2: header \"错误信息\" · longest unbreakable word 154px · one-line width 154px\n  col 3: header \"含义\" · longest unbreakable word 95px · one-line width 740px\n  col 4: header \"解决办法\" · longest unbreakable word 110px · one-line width 1964px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 678px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 677px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10969,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Error codes and identifiers remain intact, and the solution column has ample room. The meaning column is rather narrow, producing choppy lines and an isolated final character in the first row.\"},\"B\":{\"grade\":\"good\",\"why\":\"The identifiers stay intact and the meaning column reads comfortably. The narrower solution column makes the longest instructions more fragmented and increases row height.\"},\"C\":{\"grade\":\"excellent\",\"why\":\"Identifiers remain intact, while meaning and solution columns both have workable line lengths. The widths reflect their different content loads and keep rows easy to scan.\"},\"D\":{\"grade\":\"poor\",\"why\":\"The meaning and solution columns read well, but every error-message identifier is split across lines, making these important lookup strings harder to scan.\"},\"E\":{\"grade\":\"bad\",\"why\":\"Equal widths give the short error codes excessive space and squeeze the long solutions into very narrow columns. Some identifiers split, and the resulting tall rows have large empty areas.\"},\"F\":{\"grade\":\"good\",\"why\":\"Identifiers stay intact and solutions have generous space. The meaning column is somewhat cramped, with short lines and an isolated ending in the first row.\"}},\"best\":[\"C\"],\"confidence\":\"high\",\"unsure\":\"C and F are close; the preference depends partly on how much weight readers give to scanning meanings versus reading the longer solutions.\"}\n"
+  }
+ ]
+}

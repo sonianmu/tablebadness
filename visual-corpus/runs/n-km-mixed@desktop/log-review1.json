@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: តារាងថ្លៃទំនិញទីផ្សារ (language km).\nGrid: 4 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"ទំនិញ\" · longest unbreakable word 56px · one-line width 115px\n  col 2: header \"តម្លៃ (រៀល)\" · longest unbreakable word 52px · one-line width 71px\n  col 3: header \"ឯកតា\" · longest unbreakable word 54px · one-line width 54px\n  col 4: header \"កំណត់សម្គាល់\" · longest unbreakable word 83px · one-line width 607px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 12652,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"excellent\",\"why\":\"Row labels, prices and units stay on one line, while the notes have ample room and wrap consistently into two lines. The compact factual columns support easy comparison.\"},\"B\":{\"grade\":\"poor\",\"why\":\"Equal-width columns leave large empty areas around short values while squeezing notes into four or five lines. The resulting tall rows make the table harder to scan.\"},\"C\":{\"grade\":\"good\",\"why\":\"All labels and values fit on one line and the notes remain readable in two lines. The extra space in the first three columns leaves the notes narrower than necessary.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"The wide notes column reads comfortably, but the price header and two row labels wrap. That weakens the scan down the identifying column.\"},\"E\":{\"grade\":\"excellent\",\"why\":\"Labels, prices and units fit on one line, and the remaining width gives notes a comfortable two-line rhythm. The columns are well proportioned to their contents.\"},\"F\":{\"grade\":\"good\",\"why\":\"Prices and units fit and notes have generous space, but the narrow first column wraps two row labels, making the identifiers less immediately scannable.\"}},\"best\":[\"A\",\"E\"],\"confidence\":\"high\",\"unsure\":\"A and E are very close in proportion and wrapping; their small difference in unit and notes widths does not clearly favor either.\"}\n"
+  }
+ ]
+}

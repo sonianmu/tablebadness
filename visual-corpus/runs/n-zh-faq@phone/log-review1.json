@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 电子发票常见问题 (language zh-CN).\nGrid: 3 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"问题\" · longest unbreakable word 31px · one-line width 291px\n  col 2: header \"回答\" · longest unbreakable word 31px · one-line width 1440px\n  col 3: header \"相关链接\" · longest unbreakable word 198px · one-line width 214px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9842,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"The answer column has useful space, but the narrow question column breaks row labels into many short lines. Links also split within domains.\"},\"B\":{\"grade\":\"good\",\"why\":\"The questions remain scannable and the long answers get the most space. URLs break awkwardly across lines, but the overall proportions support the FAQ.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"Questions are easier to scan, but the narrower link column fragments URLs heavily, sometimes leaving a slash on its own line.\"},\"D\":{\"grade\":\"bad\",\"why\":\"Giving links most of the width leaves questions and answers in extremely narrow columns, producing long, difficult-to-read rows and large areas of empty space.\"},\"E\":{\"grade\":\"good\",\"why\":\"The question and answer columns are reasonably balanced, with enough width to scan both. URLs still break inside domains, and answers wrap more than in B.\"},\"F\":{\"grade\":\"poor\",\"why\":\"The question and link columns are relatively wide, but the long answers are squeezed into a narrow strip, making each row tall and difficult to read.\"}},\"best\":[\"B\"],\"confidence\":\"medium\",\"unsure\":\"B and E are close: E gives questions slightly more room, while B gives the much longer answers more space. All layouts split at least some URLs.\"}\n"
+  }
+ ]
+}

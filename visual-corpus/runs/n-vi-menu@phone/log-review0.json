@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Thực đơn quán phở (language vi).\nGrid: 4 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Món\" · longest unbreakable word 35px · one-line width 106px\n  col 2: header \"Giá\" · longest unbreakable word 59px · one-line width 59px\n  col 3: header \"Thành phần\" · longest unbreakable word 48px · one-line width 1507px\n  col 4: header \"Ghi chú\" · longest unbreakable word 61px · one-line width 419px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 17319,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"Prices stay on one line and ingredients have useful space, but dish names wrap heavily and the periods after 10.000đ fall onto separate lines.\"},\"B\":{\"grade\":\"good\",\"why\":\"Prices and note amounts remain intact, and the ingredients column has room for short phrases. Several dish names still need three lines, and notes are narrow.\"},\"C\":{\"grade\":\"good\",\"why\":\"Keeps prices and note amounts intact while giving the long ingredients text the most room among the balanced layouts. Dish names and notes still wrap frequently.\"},\"D\":{\"grade\":\"poor\",\"why\":\"Nearly equal columns leave the long ingredients text in a very narrow measure, producing a tall table and even wrapping its header. Dish names and prices scan more easily.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"Dish names and notes have useful room and prices stay intact, but the ingredients column is narrow for the volume of text, making rows tall and fragmented.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"Ingredients and notes have workable proportions and prices stay intact, but the very narrow dish column breaks names into as many as four lines, weakening the main scanning anchor.\"}},\"best\":[\"C\"],\"confidence\":\"medium\",\"unsure\":\"B and C are very close; the small difference in column widths makes the preference sensitive to how much weight is given to ingredient wrapping.\"}\n"
+  }
+ ]
+}

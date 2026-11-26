@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Distributed Systems Glossary (language en).\nGrid: 3 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Term\" · longest unbreakable word 99px · one-line width 152px\n  col 2: header \"Definition\" · longest unbreakable word 108px · one-line width 1472px\n  col 3: header \"Example\" · longest unbreakable word 83px · one-line width 814px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 12540,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"Terms stay on one line, but the wide term column leaves considerable empty space while definitions wrap into five to seven lines.\"},\"B\":{\"grade\":\"good\",\"why\":\"The generous definition column makes the main explanations easy to read, though two terms wrap and the narrower examples sometimes run to five lines.\"},\"C\":{\"grade\":\"good\",\"why\":\"Definitions and examples have balanced, readable widths, and only one term wraps. The quorum definition breaks the hyphenated phrase odd-sized across lines.\"},\"D\":{\"grade\":\"excellent\",\"why\":\"All terms remain on one line, supporting quick lookup, while definitions and examples have enough room to read comfortably. The rows feel coherent despite some longer definitions.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"All terms fit on one line, but the equal columns give the short labels excessive space and squeeze definitions into many short lines.\"},\"F\":{\"grade\":\"good\",\"why\":\"Definitions and examples are well proportioned and rows scan easily, though two term labels wrap, including Write-ahead log.\"}},\"best\":[\"D\"],\"confidence\":\"medium\",\"unsure\":\"C and F use the width efficiently; the preference for D depends on how much value the reader places on keeping every term on one line.\"}\n"
+  }
+ ]
+}

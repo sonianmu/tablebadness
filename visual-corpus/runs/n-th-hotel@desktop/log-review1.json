@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: เปรียบเทียบโรงแรมใกล้สนามบิน (language th).\nGrid: 5 columns × 9 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"ชื่อโรงแรม\" spans 1 col × 2 row; \"ราคา (บาท/คืน)\" spans 2 col × 1 row; \"ระยะทางจากสนามบิน (กม.)\" spans 1 col × 2 row; \"จุดเด่น\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"ชื่อโรงแรม\" · longest unbreakable word 64px · one-line width 204px\n  col 2: header \"ราคา (บาท/คืน) › วันธรรมดา\" · longest unbreakable word 50px · one-line width 67px\n  col 3: header \"ราคา (บาท/คืน) › วันหยุด\" · longest unbreakable word 41px · one-line width 46px\n  col 4: header \"ระยะทางจากสนามบิน (กม.)\" · longest unbreakable word 36px · one-line width 173px\n  col 5: header \"จุดเด่น\" · longest unbreakable word 68px · one-line width 1319px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 23795,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"The price columns are compact and readable, and the descriptions have useful width. Several hotel names wrap awkwardly, and the distance header breaks across three lines.\"},\"B\":{\"grade\":\"bad\",\"why\":\"The numeric columns consume much of the width while descriptions are squeezed into a narrow strip. The resulting tall rows and large empty areas make comparison difficult.\"},\"C\":{\"grade\":\"good\",\"why\":\"Hotel names have more room and prices remain easy to compare. Descriptions are somewhat narrow, and the distance header wraps across three lines.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"The wide description column makes the prose easy to read, but the narrow hotel column breaks names across two or three lines and both price subheaders wrap.\"},\"E\":{\"grade\":\"good\",\"why\":\"The layout balances hotel names and descriptions well, with compact, readable price columns. Some names still wrap awkwardly, and the distance header takes three lines.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"The price headings and values are clear, but the hotel names wrap heavily and the generous numeric columns leave less room for descriptions.\"}},\"best\":[\"E\"],\"confidence\":\"medium\",\"unsure\":\"C gives hotel names more room, while E gives descriptions more room; their relative merit depends on whether identifying hotels or reading their features is the greater priority.\"}\n"
+  }
+ ]
+}

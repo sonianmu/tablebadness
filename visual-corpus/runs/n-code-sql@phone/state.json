@@ -7,6 +7,90 @@
     "r0B",
     "r0C"
    ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "The full table fits within the viewport, and the column-name field receives the most space.",
+     "problems": "The table is extremely tall and difficult to scan. Identifiers, types, headers, defaults and comments break inside words, so rows lose their identity and related information is separated by large vertical distances.",
+     "cause": "At 140px, Column has only 119px for text, less than the longest identifier needs. Type has 59px, Nullable 23px, Default 25px and Comment 28px of text space; all are below their longest unbreakable content."
+    },
+    {
+     "design": "r0B",
+     "good": "Identifiers and type values are intact, headers stay on one line, and comments wrap without splitting words. The moderate row heights preserve a usable connection across each row.",
+     "problems": "The initial viewport shows the identity pair but cuts through the longest type values; Nullable, Default and Comment require horizontal scrolling. The relatively tall rows also leave considerable white space beneath the short values.",
+     "cause": "Column and Type consume 389px together, exceeding the viewport before the constraint columns begin. The 200px Comment column wraps prose over several lines, setting the height of most rows."
+    },
+    {
+     "design": "r0C",
+     "good": "Every value stays on one line, creating compact, regular rows and making vertical scanning easy.",
+     "problems": "The table requires extensive horizontal scrolling to read the complete specification, and the wide Comment column spreads each row far beyond the initial view.",
+     "cause": "The 598px Comment column accommodates the longest comment on one line, increasing the total width to 1250px. The 231px Type column also keeps every type on one line but pushes the constraint columns out of the initial viewport."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "Column identifiers, type words and default literals stay intact. Column, Type and Nullable fit together in the initial viewport, giving the reader a useful first view of each field.",
+     "problems": "BIGINT UNSIGNED takes two lines and the timestamp type takes three, making repeated types harder to scan. Default and Comment require substantial horizontal scrolling.",
+     "cause": "The 120px Type column has 99px of text space, so multiword types wrap. The 182px Default and 250px Comment columns preserve readable content but extend the table to 791px."
+    },
+    {
+     "design": "r1B",
+     "good": "The initial viewport preserves the same useful Column, Type and Nullable grouping as r1A, and the narrower table reduces horizontal travel by 50px.",
+     "problems": "The table is considerably taller, with large areas of empty space in the identifier and constraint cells. Four-line comments make rows harder to scan as compact units.",
+     "cause": "Reducing Comment from 250px to 200px forces more prose wrapping and increases most row heights; it does not improve the initial viewport."
+    },
+    {
+     "design": "r1C",
+     "good": "BIGINT UNSIGNED fits on one line and timestamp types use two lines, making Type easier to scan. Identifiers and literals remain intact.",
+     "problems": "Nullable is cut by the viewport edge, so even its header and values require horizontal movement. The wider Type column adds scrolling without reducing the overall table height.",
+     "cause": "The 180px Type column pushes the start of Nullable to 338px, while the 250px Comment column still determines the tallest rows."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "Column, Type, and Nullable fit together in the initial viewport. Identifiers and type words remain intact, and the 275px Comment column limits cells to three lines. Rows remain easy to follow across the table.",
+     "problems": "BIGINT UNSIGNED takes two lines and the timestamp types take three. Several rows have substantial blank space beneath short values, while Default and Comment require horizontal scrolling.",
+     "cause": "The 120px Type width leaves 99px for text, so multiword types wrap. Row height is also driven by wrapping in the 275px Comment column. The 182px Default and 275px Comment columns extend beyond the viewport."
+    },
+    {
+     "design": "r2B",
+     "good": "The wider Type column keeps BIGINT UNSIGNED on one line and reduces the timestamp types to two lines. Tokens remain intact.",
+     "problems": "Nullable is cut by the viewport edge, weakening the initial scan of constraints. The table is wider and slightly taller than r2A despite the improvement to Type; many rows still have large areas of blank space.",
+     "cause": "Increasing Type to 160px moves Nullable 40px to the right. Reducing Comment to 250px creates more prose wrapping, which can determine row heights even when Type uses fewer lines."
+    },
+    {
+     "design": "r2C",
+     "good": "Column, Type, and Nullable fit in the initial viewport, and the narrower table reduces horizontal scrolling. Identifiers, type words, and default tokens remain intact.",
+     "problems": "The table is noticeably taller, with several four-line rows and large blank areas in the short-value columns. This makes it harder to keep adjacent records in view and follow the row rhythm.",
+     "cause": "The 225px Comment width forces more prose wrapping, increasing several row heights. The 120px Type width also leaves the timestamp types on three lines."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A",
+    "r3B",
+    "r3C"
+   ]
   }
  },
  "designs": {
@@ -1437,6 +1521,5248 @@
    "png": "d-r0C.png",
    "idea": "Zero compromise on fidelity: every cell on one line including the full comments, so the table behaves like a single wide reference sheet the reader scrolls across deliberately.",
    "notes": []
+  },
+  "r1A": {
+   "widths": [
+    158,
+    120,
+    80,
+    182,
+    250
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 9,
+    "tableWidth": 791,
+    "tableHeight": 676,
+    "overflow": 431,
+    "colWidths": [
+     158,
+     120,
+     80,
+     182,
+     250
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     59.5,
+     82.8,
+     82.8,
+     82.8,
+     82.8,
+     82.8,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Column",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Type",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Nullable",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Default",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Comment",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "order_id",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BIGINT UNSIGNED",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Primary key; auto-increment sequence shared across all sales",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "customer_id",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BIGINT UNSIGNED",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "References customers.id; indexed for order history lookups",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "order_reference",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "VARCHAR(32)",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Human-readable code shown to customers and on invoices, e.g.",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "status",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "VARCHAR(24)",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "'pending'",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "One of pending, paid, fulfilled, cancelled, refunded; enforc",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "total_amount_cents",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INTEGER",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Order total in minor currency units; never store floating-po",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "currency_code",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CHAR(3)",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "'USD'",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ISO 4217 alphabetic code; must match the currency of all lin",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "placed_at",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "TIMESTAMP WITH TIME ZONE",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CURRENT_TIMESTAMP",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Moment the order was submitted; stored in UTC regardless of ",
+      "lines": 3
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "cancelled_at",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "TIMESTAMP WITH TIME ZONE",
+      "lines": 3
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "YES",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NULL",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Set when status transitions to cancelled or refunded; NULL f",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 137,
+      "natural": 137,
+      "padding": 21
+     },
+     {
+      "minContent": 99,
+      "natural": 210,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 161,
+      "natural": 161,
+      "padding": 21
+     },
+     {
+      "minContent": 93,
+      "natural": 577,
+      "padding": 21
+     }
+    ],
+    "frameW": 825
+   },
+   "png": "d-r1A.png",
+   "idea": "Keep identifiers and individual type words intact while allowing types to wrap at spaces. Column, Type and Nullable fit within 358px, bringing the first constraint into the initial view. Give Comment more room than in r0B to reduce row heights.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    158,
+    120,
+    80,
+    182,
+    200
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 9,
+    "tableWidth": 741,
+    "tableHeight": 838.8,
+    "overflow": 381,
+    "colWidths": [
+     158,
+     120,
+     80,
+     182,
+     200
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     82.8,
+     106,
+     106,
+     106,
+     82.8,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Column",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Type",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Nullable",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Default",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Comment",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "order_id",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BIGINT UNSIGNED",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Primary key; auto-increment sequence shared across all sales",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "customer_id",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BIGINT UNSIGNED",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "References customers.id; indexed for order history lookups",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "order_reference",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "VARCHAR(32)",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Human-readable code shown to customers and on invoices, e.g.",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "status",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "VARCHAR(24)",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "'pending'",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "One of pending, paid, fulfilled, cancelled, refunded; enforc",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "total_amount_cents",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INTEGER",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Order total in minor currency units; never store floating-po",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "currency_code",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CHAR(3)",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "'USD'",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ISO 4217 alphabetic code; must match the currency of all lin",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "placed_at",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "TIMESTAMP WITH TIME ZONE",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CURRENT_TIMESTAMP",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Moment the order was submitted; stored in UTC regardless of ",
+      "lines": 4
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "cancelled_at",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "TIMESTAMP WITH TIME ZONE",
+      "lines": 3
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "YES",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NULL",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Set when status transitions to cancelled or refunded; NULL f",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 2,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 137,
+      "natural": 137,
+      "padding": 21
+     },
+     {
+      "minContent": 99,
+      "natural": 210,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 161,
+      "natural": 161,
+      "padding": 21
+     },
+     {
+      "minContent": 93,
+      "natural": 577,
+      "padding": 21
+     }
+    ],
+    "frameW": 775
+   },
+   "png": "d-r1B.png",
+   "idea": "Use the same initial-view arrangement with r0B's narrower Comment width. This reduces horizontal travel while retaining word-boundary wrapping and intact defaults.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1C": {
+   "widths": [
+    158,
+    180,
+    80,
+    182,
+    250
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 9,
+    "tableWidth": 851,
+    "tableHeight": 676,
+    "overflow": 491,
+    "colWidths": [
+     158,
+     180,
+     80,
+     182,
+     250
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     59.5,
+     82.8,
+     82.8,
+     82.8,
+     82.8,
+     82.8,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Column",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Type",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Nullable",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Default",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Comment",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "order_id",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BIGINT UNSIGNED",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Primary key; auto-increment sequence shared across all sales",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "customer_id",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BIGINT UNSIGNED",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "References customers.id; indexed for order history lookups",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "order_reference",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "VARCHAR(32)",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Human-readable code shown to customers and on invoices, e.g.",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "status",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "VARCHAR(24)",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "'pending'",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "One of pending, paid, fulfilled, cancelled, refunded; enforc",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "total_amount_cents",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INTEGER",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Order total in minor currency units; never store floating-po",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "currency_code",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CHAR(3)",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "'USD'",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ISO 4217 alphabetic code; must match the currency of all lin",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "placed_at",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "TIMESTAMP WITH TIME ZONE",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CURRENT_TIMESTAMP",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Moment the order was submitted; stored in UTC regardless of ",
+      "lines": 3
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "cancelled_at",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "TIMESTAMP WITH TIME ZONE",
+      "lines": 2
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "YES",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NULL",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Set when status transitions to cancelled or refunded; NULL f",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 137,
+      "natural": 137,
+      "padding": 21
+     },
+     {
+      "minContent": 99,
+      "natural": 210,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 161,
+      "natural": 161,
+      "padding": 21
+     },
+     {
+      "minContent": 93,
+      "natural": 577,
+      "padding": 21
+     }
+    ],
+    "frameW": 885
+   },
+   "png": "d-r1C.png",
+   "idea": "Give Type more space so shorter multiword types can remain on one line, while allowing the longest types to wrap between words. This trades initial visibility of Nullable for a calmer identity pair.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    158,
+    120,
+    80,
+    182,
+    275
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 9,
+    "tableWidth": 816,
+    "tableHeight": 652.8,
+    "overflow": 456,
+    "colWidths": [
+     158,
+     120,
+     80,
+     182,
+     275
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     59.5,
+     82.8,
+     82.8,
+     82.8,
+     59.5,
+     82.8,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Column",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Type",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Nullable",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Default",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Comment",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "order_id",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BIGINT UNSIGNED",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Primary key; auto-increment sequence shared across all sales",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "customer_id",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BIGINT UNSIGNED",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "References customers.id; indexed for order history lookups",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "order_reference",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "VARCHAR(32)",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Human-readable code shown to customers and on invoices, e.g.",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "status",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "VARCHAR(24)",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "'pending'",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "One of pending, paid, fulfilled, cancelled, refunded; enforc",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "total_amount_cents",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INTEGER",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Order total in minor currency units; never store floating-po",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "currency_code",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CHAR(3)",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "'USD'",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ISO 4217 alphabetic code; must match the currency of all lin",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "placed_at",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "TIMESTAMP WITH TIME ZONE",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CURRENT_TIMESTAMP",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Moment the order was submitted; stored in UTC regardless of ",
+      "lines": 3
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "cancelled_at",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "TIMESTAMP WITH TIME ZONE",
+      "lines": 3
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "YES",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NULL",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Set when status transitions to cancelled or refunded; NULL f",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 137,
+      "natural": 137,
+      "padding": 21
+     },
+     {
+      "minContent": 99,
+      "natural": 210,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 161,
+      "natural": 161,
+      "padding": 21
+     },
+     {
+      "minContent": 93,
+      "natural": 577,
+      "padding": 21
+     }
+    ],
+    "frameW": 850
+   },
+   "png": "d-r2A.png",
+   "idea": "Keep the complete identity and nullable fields in the first viewport, and give Comment 25px more to test whether fewer prose lines improve row rhythm enough to justify the extra scrolling.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    158,
+    160,
+    80,
+    182,
+    250
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 9,
+    "tableWidth": 831,
+    "tableHeight": 676,
+    "overflow": 471,
+    "colWidths": [
+     158,
+     160,
+     80,
+     182,
+     250
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     59.5,
+     82.8,
+     82.8,
+     82.8,
+     82.8,
+     82.8,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Column",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Type",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Nullable",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Default",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Comment",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "order_id",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BIGINT UNSIGNED",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Primary key; auto-increment sequence shared across all sales",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "customer_id",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BIGINT UNSIGNED",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "References customers.id; indexed for order history lookups",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "order_reference",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "VARCHAR(32)",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Human-readable code shown to customers and on invoices, e.g.",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "status",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "VARCHAR(24)",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "'pending'",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "One of pending, paid, fulfilled, cancelled, refunded; enforc",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "total_amount_cents",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INTEGER",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Order total in minor currency units; never store floating-po",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "currency_code",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CHAR(3)",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "'USD'",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ISO 4217 alphabetic code; must match the currency of all lin",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "placed_at",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "TIMESTAMP WITH TIME ZONE",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CURRENT_TIMESTAMP",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Moment the order was submitted; stored in UTC regardless of ",
+      "lines": 3
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "cancelled_at",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "TIMESTAMP WITH TIME ZONE",
+      "lines": 2
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "YES",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NULL",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Set when status transitions to cancelled or refunded; NULL f",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 137,
+      "natural": 137,
+      "padding": 21
+     },
+     {
+      "minContent": 99,
+      "natural": 210,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 161,
+      "natural": 161,
+      "padding": 21
+     },
+     {
+      "minContent": 93,
+      "natural": 577,
+      "padding": 21
+     }
+    ],
+    "frameW": 865
+   },
+   "png": "d-r2B.png",
+   "idea": "Test an intermediate Type width to improve multiword type wrapping while keeping the start of Nullable visible; compare its scanning benefit and scroll cost with r1A and r1C.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2C": {
+   "widths": [
+    158,
+    120,
+    80,
+    182,
+    225
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 9,
+    "tableWidth": 766,
+    "tableHeight": 769,
+    "overflow": 406,
+    "colWidths": [
+     158,
+     120,
+     80,
+     182,
+     225
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     82.8,
+     106,
+     106,
+     82.8,
+     82.8,
+     106,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Column",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Type",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Nullable",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Default",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Comment",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "order_id",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BIGINT UNSIGNED",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Primary key; auto-increment sequence shared across all sales",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "customer_id",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BIGINT UNSIGNED",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "References customers.id; indexed for order history lookups",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "order_reference",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "VARCHAR(32)",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Human-readable code shown to customers and on invoices, e.g.",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "status",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "VARCHAR(24)",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "'pending'",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "One of pending, paid, fulfilled, cancelled, refunded; enforc",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "total_amount_cents",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INTEGER",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Order total in minor currency units; never store floating-po",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "currency_code",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CHAR(3)",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "'USD'",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ISO 4217 alphabetic code; must match the currency of all lin",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "placed_at",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "TIMESTAMP WITH TIME ZONE",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CURRENT_TIMESTAMP",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Moment the order was submitted; stored in UTC regardless of ",
+      "lines": 4
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "cancelled_at",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "TIMESTAMP WITH TIME ZONE",
+      "lines": 3
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "YES",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NULL",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Set when status transitions to cancelled or refunded; NULL f",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 2,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 137,
+      "natural": 137,
+      "padding": 21
+     },
+     {
+      "minContent": 99,
+      "natural": 210,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 161,
+      "natural": 161,
+      "padding": 21
+     },
+     {
+      "minContent": 93,
+      "natural": 577,
+      "padding": 21
+     }
+    ],
+    "frameW": 800
+   },
+   "png": "d-r2C.png",
+   "idea": "Try a middle Comment width between r1A and r1B to see whether it saves horizontal travel without producing as many four-line rows.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    158,
+    120,
+    80,
+    182,
+    300
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 9,
+    "tableWidth": 841,
+    "tableHeight": 606.3,
+    "overflow": 481,
+    "colWidths": [
+     158,
+     120,
+     80,
+     182,
+     300
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     82.8,
+     82.8,
+     59.5,
+     59.5,
+     82.8,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Column",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Type",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Nullable",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Default",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Comment",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "order_id",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BIGINT UNSIGNED",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Primary key; auto-increment sequence shared across all sales",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "customer_id",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BIGINT UNSIGNED",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "References customers.id; indexed for order history lookups",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "order_reference",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "VARCHAR(32)",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Human-readable code shown to customers and on invoices, e.g.",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "status",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "VARCHAR(24)",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "'pending'",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "One of pending, paid, fulfilled, cancelled, refunded; enforc",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "total_amount_cents",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INTEGER",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Order total in minor currency units; never store floating-po",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "currency_code",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CHAR(3)",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "'USD'",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ISO 4217 alphabetic code; must match the currency of all lin",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "placed_at",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "TIMESTAMP WITH TIME ZONE",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CURRENT_TIMESTAMP",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Moment the order was submitted; stored in UTC regardless of ",
+      "lines": 3
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "cancelled_at",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "TIMESTAMP WITH TIME ZONE",
+      "lines": 3
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "YES",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NULL",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Set when status transitions to cancelled or refunded; NULL f",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 1,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 137,
+      "natural": 137,
+      "padding": 21
+     },
+     {
+      "minContent": 99,
+      "natural": 210,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 161,
+      "natural": 161,
+      "padding": 21
+     },
+     {
+      "minContent": 93,
+      "natural": 577,
+      "padding": 21
+     }
+    ],
+    "frameW": 875
+   },
+   "png": "d-r3A.png",
+   "idea": "Refine r2A by giving Comment 25px more. This tests whether a modest increase reduces prose wrapping and row height while preserving the complete initial view of Column, Type, and Nullable.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3B": {
+   "widths": [
+    158,
+    120,
+    80,
+    182,
+    260
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 9,
+    "tableWidth": 801,
+    "tableHeight": 676,
+    "overflow": 441,
+    "colWidths": [
+     158,
+     120,
+     80,
+     182,
+     260
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     59.5,
+     82.8,
+     82.8,
+     82.8,
+     82.8,
+     82.8,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Column",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Type",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Nullable",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Default",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Comment",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "order_id",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BIGINT UNSIGNED",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Primary key; auto-increment sequence shared across all sales",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "customer_id",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BIGINT UNSIGNED",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "References customers.id; indexed for order history lookups",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "order_reference",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "VARCHAR(32)",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Human-readable code shown to customers and on invoices, e.g.",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "status",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "VARCHAR(24)",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "'pending'",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "One of pending, paid, fulfilled, cancelled, refunded; enforc",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "total_amount_cents",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INTEGER",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Order total in minor currency units; never store floating-po",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "currency_code",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CHAR(3)",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "'USD'",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ISO 4217 alphabetic code; must match the currency of all lin",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "placed_at",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "TIMESTAMP WITH TIME ZONE",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CURRENT_TIMESTAMP",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Moment the order was submitted; stored in UTC regardless of ",
+      "lines": 3
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "cancelled_at",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "TIMESTAMP WITH TIME ZONE",
+      "lines": 3
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "YES",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NULL",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Set when status transitions to cancelled or refunded; NULL f",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 137,
+      "natural": 137,
+      "padding": 21
+     },
+     {
+      "minContent": 99,
+      "natural": 210,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 161,
+      "natural": 161,
+      "padding": 21
+     },
+     {
+      "minContent": 93,
+      "natural": 577,
+      "padding": 21
+     }
+    ],
+    "frameW": 835
+   },
+   "png": "d-r3B.png",
+   "idea": "Test a middle ground between r2A and r2C. The 260px Comment width may save some horizontal scrolling without causing as much row expansion as the 225px version.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3C": {
+   "widths": [
+    158,
+    140,
+    80,
+    182,
+    275
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 9,
+    "tableWidth": 836,
+    "tableHeight": 652.8,
+    "overflow": 476,
+    "colWidths": [
+     158,
+     140,
+     80,
+     182,
+     275
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     59.5,
+     82.8,
+     82.8,
+     82.8,
+     59.5,
+     82.8,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Column",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Type",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Nullable",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Default",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Comment",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "order_id",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BIGINT UNSIGNED",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Primary key; auto-increment sequence shared across all sales",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "customer_id",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BIGINT UNSIGNED",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "References customers.id; indexed for order history lookups",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "order_reference",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "VARCHAR(32)",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Human-readable code shown to customers and on invoices, e.g.",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "status",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "VARCHAR(24)",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "'pending'",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "One of pending, paid, fulfilled, cancelled, refunded; enforc",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "total_amount_cents",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INTEGER",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Order total in minor currency units; never store floating-po",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "currency_code",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CHAR(3)",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "'USD'",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ISO 4217 alphabetic code; must match the currency of all lin",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "placed_at",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "TIMESTAMP WITH TIME ZONE",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CURRENT_TIMESTAMP",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Moment the order was submitted; stored in UTC regardless of ",
+      "lines": 3
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "cancelled_at",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "TIMESTAMP WITH TIME ZONE",
+      "lines": 3
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "YES",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NULL",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Set when status transitions to cancelled or refunded; NULL f",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 137,
+      "natural": 137,
+      "padding": 21
+     },
+     {
+      "minContent": 99,
+      "natural": 210,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 161,
+      "natural": 161,
+      "padding": 21
+     },
+     {
+      "minContent": 93,
+      "natural": 577,
+      "padding": 21
+     }
+    ],
+    "frameW": 870
+   },
+   "png": "d-r3C.png",
+   "idea": "Test a compromise Type width with r2A's Comment width. It may improve multiword type wrapping while shifting Nullable less far beyond the viewport edge than r2B.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "ref_auto": {
+   "widths": [
+    157.4,
+    119.2,
+    79.5,
+    181.1,
+    113.9
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 9,
+    "tableWidth": 652.2,
+    "tableHeight": 1489.8,
+    "overflow": 292.2,
+    "colWidths": [
+     157.4,
+     119.2,
+     79.5,
+     181.1,
+     113.9
+    ],
+    "rowHeights": [
+     36.3,
+     199,
+     129.3,
+     199,
+     199,
+     199,
+     152.5,
+     199,
+     175.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Column",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Type",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Nullable",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Default",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Comment",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "order_id",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BIGINT UNSIGNED",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Primary key; auto-increment sequence shared across all sales",
+      "lines": 8
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "customer_id",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BIGINT UNSIGNED",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "References customers.id; indexed for order history lookups",
+      "lines": 5
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "order_reference",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "VARCHAR(32)",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Human-readable code shown to customers and on invoices, e.g.",
+      "lines": 8
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "status",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "VARCHAR(24)",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "'pending'",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "One of pending, paid, fulfilled, cancelled, refunded; enforc",
+      "lines": 8
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "total_amount_cents",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INTEGER",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Order total in minor currency units; never store floating-po",
+      "lines": 8
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "currency_code",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CHAR(3)",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "'USD'",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ISO 4217 alphabetic code; must match the currency of all lin",
+      "lines": 6
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "placed_at",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "TIMESTAMP WITH TIME ZONE",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CURRENT_TIMESTAMP",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Moment the order was submitted; stored in UTC regardless of ",
+      "lines": 8
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "cancelled_at",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "TIMESTAMP WITH TIME ZONE",
+      "lines": 3
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "YES",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NULL",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Set when status transitions to cancelled or refunded; NULL f",
+      "lines": 7
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 4,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 137,
+      "natural": 137,
+      "padding": 21
+     },
+     {
+      "minContent": 99,
+      "natural": 210,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 161,
+      "natural": 161,
+      "padding": 21
+     },
+     {
+      "minContent": 93,
+      "natural": 577,
+      "padding": 21
+     }
+    ],
+    "frameW": 687
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    71,
+    71,
+    71,
+    71,
+    71
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 9,
+    "tableWidth": 356,
+    "tableHeight": 2629,
+    "overflow": 0,
+    "colWidths": [
+     71,
+     71,
+     71,
+     71,
+     71
+    ],
+    "rowHeights": [
+     59.5,
+     315.3,
+     268.8,
+     361.8,
+     385,
+     315.3,
+     292,
+     315.3,
+     315.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Column",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Type",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Nullable",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Default",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Comment",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "order_id",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BIGINT UNSIGNED",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Primary key; auto-increment sequence shared across all sales",
+      "lines": 13
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "customer_id",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BIGINT UNSIGNED",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "References customers.id; indexed for order history lookups",
+      "lines": 11
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "order_reference",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "VARCHAR(32)",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Human-readable code shown to customers and on invoices, e.g.",
+      "lines": 15
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "status",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "VARCHAR(24)",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "'pending'",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "One of pending, paid, fulfilled, cancelled, refunded; enforc",
+      "lines": 16
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "total_amount_cents",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INTEGER",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Order total in minor currency units; never store floating-po",
+      "lines": 13
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "currency_code",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CHAR(3)",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "'USD'",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ISO 4217 alphabetic code; must match the currency of all lin",
+      "lines": 12
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "placed_at",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "TIMESTAMP WITH TIME ZONE",
+      "lines": 5
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NO",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CURRENT_TIMESTAMP",
+      "lines": 4
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Moment the order was submitted; stored in UTC regardless of ",
+      "lines": 13
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "cancelled_at",
+      "lines": 2
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "TIMESTAMP WITH TIME ZONE",
+      "lines": 5
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "YES",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "NULL",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Set when status transitions to cancelled or refunded; NULL f",
+      "lines": 13
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 54,
+    "tokenBreaks": 5,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 137,
+      "natural": 137,
+      "padding": 21
+     },
+     {
+      "minContent": 99,
+      "natural": 210,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 161,
+      "natural": 161,
+      "padding": 21
+     },
+     {
+      "minContent": 93,
+      "natural": 577,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-ref_equal.png"
   }
  },
  "understanding": {
@@ -1458,5 +6784,165 @@
    "Type — may wrap between its words (TIMESTAMP / WITH TIME ZONE) if words stay whole",
    "Default — may wrap to two lines if the token itself stays intact"
   ]
- }
+ },
+ "modelsUsed": [
+  "codex/gpt-6.1-terra"
+ ],
+ "final": {
+  "preferred": [
+   "r3A"
+  ],
+  "acceptable": [
+   "r1C",
+   "r2A",
+   "r2B",
+   "r2C",
+   "r3B",
+   "r3C"
+  ],
+  "bad": [
+   {
+    "design": "r1B",
+    "why": "The narrow Comment column creates several four-line rows, making the table unusually tall and leaving large empty areas beside short identifiers and types."
+   }
+  ],
+  "contrast": null,
+  "ranges": [
+   [
+    158,
+    160
+   ],
+   [
+    120,
+    122
+   ],
+   [
+    80,
+    81
+   ],
+   [
+    182,
+    185
+   ],
+   [
+    300,
+    305
+   ]
+  ],
+  "rationale": "r3A keeps identifiers and SQL tokens intact while showing Column, Type and Nullable within the initial viewport. Its wider Comment column reduces several rows to two lines, making the relationship between each field and its description easier to follow. Default and Comment still require substantial horizontal scrolling, but that preserves readable values and prose.",
+  "principles": {
+   "general": [
+    "Keep identifiers and other meaningful tokens intact when readers need to copy or compare them.",
+    "Allocate width according to content and reading role; prose often benefits from more width than short categorical values.",
+    "Assess horizontal scrolling alongside row height and the columns visible on first load."
+   ],
+   "specific": [
+    "A 120px Type column allows the first three columns to fit in the viewport, though longer SQL types wrap.",
+    "Increasing Comment to 300px reduces several row heights compared with the narrower candidates."
+   ]
+  },
+  "tradeoffs": "r2A and r3B require less horizontal scrolling, while r3A uses the extra width to shorten several rows. r1C and r2B give SQL types more room but leave the Nullable header partly outside the initial viewport.",
+  "uncertain": "The suggested ranges are conservative estimates around r3A, not independently rendered breakpoints. A designer might prefer a narrower Comment column if reducing sideways scrolling matters more than compact rows."
+ },
+ "reviews": [
+  {
+   "order": [
+    "r3A",
+    "r1C",
+    "r2A",
+    "r1B",
+    "ref_auto",
+    "ref_equal"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "good",
+     "why": "The initial viewport keeps column names, types, and nullability together. Identifiers stay intact, and the type wrapping is manageable; defaults and comments require scrolling."
+    },
+    "B": {
+     "grade": "acceptable",
+     "why": "The wider Type column keeps more type names together, but pushes Nullable across the viewport edge, making that column harder to scan at first sight."
+    },
+    "C": {
+     "grade": "acceptable",
+     "why": "The first three columns read clearly, but taller rows create more vertical separation between entries than in A."
+    },
+    "D": {
+     "grade": "poor",
+     "why": "The first three columns are readable, but the tall rows leave substantial empty space in the visible fields and make comparisons slower."
+    },
+    "E": {
+     "grade": "bad",
+     "why": "Very tall rows produce large empty areas in the visible columns, separating entries and making the table difficult to scan."
+    },
+    "F": {
+     "grade": "bad",
+     "why": "All columns fit in the viewport, but headers, identifiers, SQL types, defaults, and comment words split repeatedly, making the table very difficult to read."
+    }
+   },
+   "best": [
+    "A"
+   ],
+   "confidence": "low",
+   "unsure": "The supplied view cuts off the right side of layouts A–E, so I cannot judge their full Default and Comment columns or the total scrolling distance. The row heights suggest those columns wrap differently, which could affect the ranking."
+  },
+  {
+   "order": [
+    "r2A",
+    "ref_auto",
+    "r3A",
+    "r1B",
+    "ref_equal",
+    "r1C"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "good",
+     "why": "Column names stay intact and the first three fields fit within the viewport. Types wrap at word boundaries, though taller rows add some empty space."
+    },
+    "B": {
+     "grade": "poor",
+     "why": "The first three fields remain readable, but the very tall rows create large gaps that make scanning and comparing records cumbersome."
+    },
+    "C": {
+     "grade": "good",
+     "why": "Names stay intact, types wrap sensibly, and the relatively compact rows make the first three fields easy to compare. Default and Comment require horizontal scrolling."
+    },
+    "D": {
+     "grade": "acceptable",
+     "why": "The visible fields are readable, but the extra row height leaves substantial white space and slows vertical scanning."
+    },
+    "E": {
+     "grade": "bad",
+     "why": "All five columns fit, but headers, identifiers, types, defaults and comment words split repeatedly. The resulting tall rows are difficult to read as units."
+    },
+    "F": {
+     "grade": "acceptable",
+     "why": "The wider Type column keeps more types together, but pushes Nullable partly outside the initial viewport, so even the first three fields cannot be read together without scrolling."
+    }
+   },
+   "best": [
+    "C"
+   ],
+   "confidence": "low",
+   "unsure": "The supplied view shows only a narrow portion beyond the viewport for A–D and F, so I cannot assess the complete Default and Comment columns or the full horizontal scrolling cost. Differences in their unseen widths may affect the ranking."
+  }
+ ],
+ "reviewPrompt": "v2"
 }

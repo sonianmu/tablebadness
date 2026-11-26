@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Customer Onboarding Field Validation Rules (language en).\nGrid: 4 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Field\" · longest unbreakable word 126px · one-line width 126px\n  col 2: header \"Pattern\" · longest unbreakable word 114px · one-line width 1074px\n  col 3: header \"Example valid\" · longest unbreakable word 167px · one-line width 264px\n  col 4: header \"Error message\" · longest unbreakable word 157px · one-line width 700px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9719,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Field names remain intact, several short patterns fit on one line, and the columns have a useful balance. The email and slug examples wrap, while some error messages are rather narrow.\"},\"B\":{\"grade\":\"poor\",\"why\":\"The narrow pattern column breaks even short expressions across lines and makes the email pattern particularly difficult to follow. The wider error column reads comfortably, but comes at too high a cost to the central validation rules.\"},\"C\":{\"grade\":\"good\",\"why\":\"Field names and short patterns remain intact, examples have enough room for most values, and error messages scan reasonably well. The long email pattern and some identifiers still wrap.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"The wider example column helps, but the pattern column breaks the postal code expression just before its final dollar sign and fragments other expressions. The extra example width does not prevent the email or slug from wrapping.\"},\"E\":{\"grade\":\"good\",\"why\":\"The field, pattern, example, and error columns are well balanced. Short patterns stay intact and the error messages read in manageable lines, though the long email pattern and two examples wrap.\"},\"F\":{\"grade\":\"poor\",\"why\":\"The field column has surplus space while the narrow error column produces many short lines. The email example also breaks within a word, making the identifier harder to read.\"}},\"best\":[\"A\"],\"confidence\":\"medium\",\"unsure\":\"A, C, and E are close. Their different line breaks trade a little pattern readability against error-message flow; the long email pattern necessarily wraps heavily in each.\"}\n"
+  }
+ ]
+}

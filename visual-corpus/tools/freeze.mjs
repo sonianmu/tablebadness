@@ -14,7 +14,19 @@ if (process.argv.includes('--verify')) {
   console.log(diff.length ? `CHANGED since freeze (${diff.length}): ${diff.slice(0, 10).join(', ')}` : `holdout unchanged since ${frozen.frozenAt} (${files.length} files)`);
   process.exitCode = diff.length ? 1 : 0;
 } else {
-  if (existsSync(out)) { console.log('already frozen at', JSON.parse(readFileSync(out, 'utf8')).frozenAt, '— use --verify'); process.exit(0); }
+  if (existsSync(out)) {
+    const frozen = JSON.parse(readFileSync(out, 'utf8'));
+    if (!process.argv.includes('--append')) { console.log('already frozen at', frozen.frozenAt, '— use --verify, or --append to freeze newly finished holdout scenarios'); process.exit(0); }
+    // --append: add files that did not exist at the last freeze; files already frozen must be unchanged
+    const changed = Object.keys(frozen.files).filter(f => hashes[f] !== frozen.files[f]);
+    if (changed.length) { console.log('refusing: frozen files changed:', changed.slice(0, 5)); process.exit(1); }
+    const added = Object.keys(hashes).filter(f => !(f in frozen.files));
+    for (const f of added) frozen.files[f] = hashes[f];
+    (frozen.appended = frozen.appended || []).push({ at: new Date().toISOString(), files: added.length, note: 'scenarios finished after the first freeze; still no layout algorithm had been run on the holdout' });
+    frozen.records = Object.keys(frozen.files).filter(f => f.endsWith('.json')).length;
+    writeFileSync(out, JSON.stringify(frozen, null, 1));
+    console.log('appended', added.length, 'files'); process.exit(0);
+  }
   writeFileSync(out, JSON.stringify({ frozenAt: new Date().toISOString(), note: 'Frozen before any layout algorithm of this project was run on these tables.', records: files.filter(f => f.endsWith('.json')).length, files: hashes }, null, 1));
   console.log('frozen', files.length, 'files');
 }

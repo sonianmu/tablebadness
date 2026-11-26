@@ -1,29 +1,18 @@
 {
- "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "model": "codex/gpt-6.1-terra",
  "thinking": "medium",
- "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nTable: 2025학년도 1학기 강의 시간표 (language ko).\nGrid: 5 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"월\" spans 1 col × 2 row; \"수\" spans 1 col × 2 row; \"금\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"요일\" · longest unbreakable word 13px · one-line width 26px\n  col 2: header \"시간\" · longest unbreakable word 50px · one-line width 86px\n  col 3: header \"과목명\" · longest unbreakable word 13px · one-line width 78px\n  col 4: header \"교수\" · longest unbreakable word 13px · one-line width 39px\n  col 5: header \"강의실\" · longest unbreakable word 33px · one-line width 109px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nThe image shows the table's content with every cell on one line, so you can read everything. Study it first.\n1) Understand it: what is the table for, how will people read, scan and compare it, which columns play the same or similar role, which values must stay intact, which text may wrap naturally, and where existing row height could absorb wrapping.\n2) Propose 3 genuinely different column-width designs for 360px (different strategies, not small variations).\nReply ONLY JSON: {\"understanding\":{\"purpose\":\"\",\"reading\":\"\",\"groups\":[\"columns that belong together and why\"],\"keep_intact\":[\"\"],\"may_wrap\":[\"\"]},\"designs\":[{\"name\":\"A\",\"widths\":[int px per column, column 1 first],\"idea\":\"one sentence\"}]}",
+ "images": [
+  "overview.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nTable: 2025학년도 1학기 강의 시간표 (language ko).\nGrid: 5 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"월\" spans 1 col × 2 row; \"수\" spans 1 col × 2 row; \"금\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"요일\" · longest unbreakable word 13px · one-line width 26px\n  col 2: header \"시간\" · longest unbreakable word 50px · one-line width 86px\n  col 3: header \"과목명\" · longest unbreakable word 13px · one-line width 78px\n  col 4: header \"교수\" · longest unbreakable word 13px · one-line width 39px\n  col 5: header \"강의실\" · longest unbreakable word 33px · one-line width 109px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nThe image shows the table's content with every cell on one line, so you can read everything. Study it first.\n1) Understand it: what is the table for, how will people read, scan and compare it, which columns play the same or similar role, which values must stay intact, which text may wrap naturally, and where existing row height could absorb wrapping.\n2) Propose 3 genuinely different column-width designs for 360px (different strategies, not small variations).\nReply ONLY JSON: {\"understanding\":{\"purpose\":\"\",\"reading\":\"\",\"groups\":[\"columns that belong together and why\"],\"keep_intact\":[\"\"],\"may_wrap\":[\"\"]},\"designs\":[{\"name\":\"A\",\"widths\":[int px per column, column 1 first],\"idea\":\"one sentence\"}]}",
  "log": [
   {
    "attempt": 1,
-   "ms": 1251,
-   "code": 1,
-   "problem": "exit 1 429: {\"message\":\"WorkBuddy AI: Credits exhausted. Please visit the link below to purchase add-on packs and get more credits: https://www.codebuddy.ai/profile/usage  — WorkBuddy requires an active credit package even for 0-rate free models; check your account package balance\",\"type\":\"insufficient_quo",
-   "raw": ""
-  },
-  {
-   "attempt": 2,
-   "ms": 1448,
-   "code": 1,
-   "problem": "exit 1 429: {\"message\":\"WorkBuddy AI: Credits exhausted. Please visit the link below to purchase add-on packs and get more credits: https://www.codebuddy.ai/profile/usage  — WorkBuddy requires an active credit package even for 0-rate free models; check your account package balance\",\"type\":\"insufficient_quo",
-   "raw": ""
-  },
-  {
-   "attempt": 3,
-   "ms": 2318,
-   "code": 1,
-   "problem": "exit 1 429: {\"message\":\"WorkBuddy AI: Credits exhausted. Please visit the link below to purchase add-on packs and get more credits: https://www.codebuddy.ai/profile/usage  — WorkBuddy requires an active credit package even for 0-rate free models; check your account package balance\",\"type\":\"insufficient_quo",
-   "raw": ""
+   "model": "codex/gpt-6.1-terra",
+   "ms": 17007,
+   "code": 0,
+   "problem": null,
+   "raw": "{\n  \"understanding\": {\n    \"purpose\": \"2025학년도 1학기 강의의 요일, 시간, 과목, 교수와 강의실을 확인하는 시간표이다.\",\n    \"reading\": \"요일별로 시간을 훑어 원하는 강의를 찾은 뒤 같은 행에서 과목명, 교수와 강의실을 읽는다. 월·수·금의 요일 셀은 각각 두 강의에 걸쳐 있어 두 행을 한 묶음으로 보여 준다.\",\n    \"groups\": [\n      \"요일과 시간은 강의가 열리는 시점을 함께 나타낸다.\",\n      \"과목명과 교수는 강의를 식별하는 데 함께 쓰인다.\",\n      \"강의실은 선택한 강의의 위치를 확인하는 정보다.\"\n    ],\n    \"keep_intact\": [\n      \"요일과 교수 이름\",\n      \"시간의 각 시각과 강의실 번호·식별자\",\n      \"과목명과 건물명의 개별 단어\"\n    ],\n    \"may_wrap\": [\n      \"시간 범위는 구분 기호에서 줄바꿈할 수 있다.\",\n      \"강의실은 건물명과 호수 사이에서 줄바꿈할 수 있다.\",\n      \"긴 과목명은 필요한 경우 줄바꿈할 수 있다.\",\n      \"같은 요일에 속한 두 행 중 이미 높아진 행에서는 다른 셀의 줄바꿈을 추가 높이 부담 없이 수용할 수 있다.\"\n    ]\n  },\n  \"designs\": [\n    {\n      \"name\": \"A\",\n      \"widths\": [40, 107, 68, 54, 90],\n      \"idea\": \"시간 범위를 한 줄로 유지해 시간대 비교를 돕고, 과목명과 강의실에 나머지 공간을 배분한다.\"\n    },\n    {\n      \"name\": \"B\",\n      \"widths\": [40, 76, 84, 54, 105],\n      \"idea\": \"시간 범위의 줄바꿈을 허용하는 대신 과목명과 강의실에 공간을 더 주어 강의와 위치를 읽기 쉽게 한다.\"\n    },\n    {\n      \"name\": \"C\",\n      \"widths\": [40, 88, 100, 60, 71],\n      \"idea\": \"과목명과 교수 이름을 한 줄로 유지하는 데 우선순위를 두고 시간과 강의실의 줄바꿈을 받아들인다.\"\n    }\n  ]\n}\n"
   }
- ],
- "failed": true
+ ]
 }

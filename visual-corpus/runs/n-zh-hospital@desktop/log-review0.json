@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 医院门诊医生排班表 (language zh-CN).\nGrid: 5 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"心血管内科\" spans 1 col × 3 row; \"内分泌科\" spans 1 col × 2 row; \"骨科\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"科室\" · longest unbreakable word 16px · one-line width 77px\n  col 2: header \"医生\" · longest unbreakable word 16px · one-line width 46px\n  col 3: header \"职称\" · longest unbreakable word 16px · one-line width 77px\n  col 4: header \"出诊时间\" · longest unbreakable word 31px · one-line width 138px\n  col 5: header \"擅长领域\" · longest unbreakable word 31px · one-line width 1042px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10888,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"科室、医生和职称保持完整，擅长领域也有充足空间；但出诊时间多次在上午、下午中间断行，妨碍扫描排班。\"},\"B\":{\"grade\":\"excellent\",\"why\":\"科室、姓名和职称完整，出诊时间按两次出诊自然分行；擅长领域的行宽也足够舒适，行组清晰。\"},\"C\":{\"grade\":\"good\",\"why\":\"出诊时间按两次出诊清楚分行，身份信息完整；相比 B，擅长领域稍窄，部分词组被拆到下一行。\"},\"D\":{\"grade\":\"excellent\",\"why\":\"每位医生的出诊时间保持一行，便于快速比较；擅长领域虽较窄，仍有可读的行宽，各科室分组清晰。\"},\"E\":{\"grade\":\"bad\",\"why\":\"前几列留白过多，擅长领域被挤成很窄的长段落，导致行高过大，医生与其信息难以横向对应。\"},\"F\":{\"grade\":\"bad\",\"why\":\"科室、医生姓名和职称都被拆成多行，医生表头也断行；出诊时间断在词语中间，严重影响识别和排班扫描。\"}},\"best\":[\"B\",\"D\"],\"confidence\":\"medium\",\"unsure\":\"B 给擅长领域更多空间，D 则让出诊时间保持一行；两者的取舍取决于读者更常比较排班还是细读专业介绍。\"}\n"
+  }
+ ]
+}

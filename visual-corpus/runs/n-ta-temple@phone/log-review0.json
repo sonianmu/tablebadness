@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: தமிழ்நாட்டுக் கோயில்கள்: நேரம் மற்றும் சிறப்புகள் (language ta).\nGrid: 4 columns × 8 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"கோயில்\" · longest unbreakable word 98px · one-line width 165px\n  col 2: header \"நகரம்\" · longest unbreakable word 97px · one-line width 97px\n  col 3: header \"திறக்கும் நேரம்\" · longest unbreakable word 59px · one-line width 175px\n  col 4: header \"சிறப்பு\" · longest unbreakable word 123px · one-line width 1148px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nRendering convention: the screenshot always shows the WHOLE table. Anything beyond the dashed box is not clipped; it is the part a reader reaches by scrolling sideways, so judge both what fits in the box at first sight and the cost of scrolling to the rest.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 14758,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Temple names and cities are readable, and each opening-time range stays together. The specialties require horizontal scrolling, and their wrapping makes rows fairly tall.\"},\"B\":{\"grade\":\"bad\",\"why\":\"All four columns fit in the viewport, but severe word and time-range splitting makes the table extremely tall and difficult to scan.\"},\"C\":{\"grade\":\"poor\",\"why\":\"Temple names and cities are mostly readable, but each time range breaks across lines. Very little of the specialty column appears initially, while its wrapping makes the rows tall.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"Cities and complete time ranges are easy to compare, but the specialty column begins at the viewport edge and requires scrolling. The first temple name takes three lines.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"Temple names and cities read clearly, and the times remain on one line, but the viewport cuts through the times and leaves specialties entirely offscreen.\"},\"F\":{\"grade\":\"good\",\"why\":\"Temple names, cities, and complete time ranges are easy to scan together. The wider specialty column gives the rows a more compact rhythm, though it requires horizontal scrolling.\"}},\"best\":[\"F\"],\"confidence\":\"medium\",\"unsure\":\"The supplied image previews show only a narrow portion of the offscreen specialty columns, so their full widths, word wrapping, and scrolling distances are difficult to judge.\"}\n"
+  }
+ ]
+}

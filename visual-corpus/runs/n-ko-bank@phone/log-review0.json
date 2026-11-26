@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 예금 상품 비교 (language ko).\nGrid: 5 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"상품명\" · longest unbreakable word 13px · one-line width 112px\n  col 2: header \"금리(연)\" · longest unbreakable word 99px · one-line width 194px\n  col 3: header \"가입 기간\" · longest unbreakable word 28px · one-line width 139px\n  col 4: header \"최소 금액\" · longest unbreakable word 28px · one-line width 82px\n  col 5: header \"특징\" · longest unbreakable word 51px · one-line width 1495px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 13059,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"The interest rates mostly stay intact, but the term and minimum-amount columns are so narrow that headers and values break into fragments. Product names also wrap heavily.\"},\"B\":{\"grade\":\"poor\",\"why\":\"Rates are readable, but product names, terms and amounts break across many lines. The narrow features column produces very tall rows and makes comparisons difficult.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"Interest rates remain intact and the features column has more room than in B. Product names and several term and amount values still break awkwardly, making the rows hard to scan.\"},\"D\":{\"grade\":\"bad\",\"why\":\"The very narrow features column forces nearly every sentence into tiny fragments, creating extremely tall rows. Interest-rate ranges also split, weakening the main comparison.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"The product-name column is slightly more usable than in B, and rates stay together. Terms, amounts and feature text still wrap heavily, so scanning across rows takes effort.\"},\"F\":{\"grade\":\"poor\",\"why\":\"Features have more room and rates stay intact, but product names are reduced almost to one character per line. That makes the row identifiers especially difficult to read.\"}},\"best\":[\"C\",\"E\"],\"confidence\":\"medium\",\"unsure\":\"C gives more space to the long feature text, while E gives slightly more room to product names; both still have substantial wrapping. The small rendered previews make that tradeoff difficult to judge precisely.\"}\n"
+  }
+ ]
+}

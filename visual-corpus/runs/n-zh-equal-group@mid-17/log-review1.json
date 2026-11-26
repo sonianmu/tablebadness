@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 重点城市季度GDP增速对比表 (language zh-CN).\nGrid: 6 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"城市\" spans 1 col × 2 row; \"季度增速（%）\" spans 4 col × 1 row; \"说明\" spans 1 col × 2 row.\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"城市\" · longest unbreakable word 18px · one-line width 35px\n  col 2: header \"季度增速（%） › 一季度\" · longest unbreakable word 25px · one-line width 53px\n  col 3: header \"季度增速（%） › 二季度\" · longest unbreakable word 25px · one-line width 53px\n  col 4: header \"季度增速（%） › 三季度\" · longest unbreakable word 25px · one-line width 53px\n  col 5: header \"季度增速（%） › 四季度\" · longest unbreakable word 25px · one-line width 53px\n  col 6: header \"说明\" · longest unbreakable word 35px · one-line width 867px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 480px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 479px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10417,
+   "code": 0,
+   "problem": null,
+   "raw": "{\n  \"ratings\": {\n    \"A\": {\n      \"grade\": \"good\",\n      \"why\": \"City names and figures stay intact, the four quarters have a consistent rhythm, and the notes have enough width to read comfortably. Each quarter header breaks across two lines.\"\n    },\n    \"B\": {\n      \"grade\": \"good\",\n      \"why\": \"The quarter columns are evenly sized and the city names and figures remain intact. The notes are slightly narrower than in A, creating more wrapping, while the quarter headers still break across two lines.\"\n    },\n    \"C\": {\n      \"grade\": \"acceptable\",\n      \"why\": \"All quarter headers fit on one line, making the numerical group easy to scan. The narrow notes column creates many short lines and tall rows, leaving substantial empty space below the figures.\"\n    },\n    \"D\": {\n      \"grade\": \"bad\",\n      \"why\": \"The notes are squeezed into extremely short lines, making them difficult to read and stretching each row far beyond its numerical content. The quarter columns are much wider than their figures need.\"\n    },\n    \"E\": {\n      \"grade\": \"poor\",\n      \"why\": \"The notes have useful width, but every city name is split vertically and each quarter header runs over three lines. This weakens identification of rows and slows scanning of the quarter group.\"\n    },\n    \"F\": {\n      \"grade\": \"acceptable\",\n      \"why\": \"City names and figures remain intact and the notes are relatively comfortable to read. However, each quarter header breaks into three single-character lines, making the comparison headings harder to scan.\"\n    }\n  },\n  \"best\": [\"A\"],\n  \"confidence\": \"high\",\n  \"unsure\": \"The trade-off between A's two-line quarter headings and F's wider notes is somewhat subjective; A preserves a clearer quarter hierarchy while keeping the notes readable.\"\n}\n"
+  }
+ ]
+}

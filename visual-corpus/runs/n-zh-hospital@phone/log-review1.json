@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 医院门诊医生排班表 (language zh-CN).\nGrid: 5 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"心血管内科\" spans 1 col × 3 row; \"内分泌科\" spans 1 col × 2 row; \"骨科\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"科室\" · longest unbreakable word 16px · one-line width 77px\n  col 2: header \"医生\" · longest unbreakable word 16px · one-line width 46px\n  col 3: header \"职称\" · longest unbreakable word 16px · one-line width 77px\n  col 4: header \"出诊时间\" · longest unbreakable word 31px · one-line width 138px\n  col 5: header \"擅长领域\" · longest unbreakable word 31px · one-line width 1042px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10794,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"bad\",\"why\":\"The equal-width columns leave the specialty descriptions extremely narrow, creating very tall rows and excessive wrapping. The schedule header and department names also break across lines.\"},\"B\":{\"grade\":\"good\",\"why\":\"Doctor names stay intact and each consultation period generally fits on a line, making the schedule easy to scan. The specialty text is still narrow, and department names and titles wrap.\"},\"C\":{\"grade\":\"poor\",\"why\":\"The wider title column keeps several titles intact, but it takes space from the specialty descriptions, which become very narrow and make the rows exceptionally tall. Schedules and department names also break awkwardly.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"The specialty descriptions have more room than in B and remain reasonably readable, while doctor names stay intact. Consultation periods and titles frequently split across lines, making the schedule harder to scan.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"Doctor names stay intact and titles have a little more room than in B, but consultation periods break across lines. The narrow specialty column still produces very tall rows.\"},\"F\":{\"grade\":\"poor\",\"why\":\"The specialty descriptions read much more comfortably, but the other columns are squeezed so tightly that headers, names, titles, departments and consultation times stack character by character. This makes the schedule difficult to scan.\"}},\"best\":[\"B\"],\"confidence\":\"medium\",\"unsure\":\"B and D make a close trade-off: B gives consultation times more usable space, while D makes the long specialty descriptions easier to read. The better choice depends on whether readers primarily scan appointment times or read the descriptions.\"}\n"
+  }
+ ]
+}

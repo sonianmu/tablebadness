@@ -1,0 +1,22 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 주요 아파트 실거래가 추이(2023–2024) (language ko).\nGrid: 6 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"단지명\" spans 1 col × 2 row; \"전용면적\" spans 1 col × 2 row; \"2023년\" spans 2 col × 1 row; \"2024년\" spans 2 col × 1 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"단지명\" · longest unbreakable word 13px · one-line width 105px\n  col 2: header \"전용면적\" · longest unbreakable word 45px · one-line width 60px\n  col 3: header \"2023년 › 최저\" · longest unbreakable word 41px · one-line width 75px\n  col 4: header \"2023년 › 최고\" · longest unbreakable word 41px · one-line width 76px\n  col 5: header \"2024년 › 최저\" · longest unbreakable word 41px · one-line width 75px\n  col 6: header \"2024년 › 최고\" · longest unbreakable word 41px · one-line width 76px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 7778,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"가격의 숫자 묶음은 유지되지만 단지명이 거의 한 글자씩 세로로 쪼개져 행이 지나치게 길고 단지별 비교가 어렵다.\"},\"B\":{\"grade\":\"poor\",\"why\":\"단지명이 여러 줄로 나뉘고 일부 가격의 천 단위 숫자까지 갈라져 같은 역할의 열을 비교하기 어렵다.\"},\"C\":{\"grade\":\"bad\",\"why\":\"면적의 소수와 여러 가격의 숫자가 중간에서 끊겨 값의 식별과 비교가 가장 어렵다.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"가격의 숫자 묶음이 유지되고 연도별 열의 리듬도 고르다. 다만 단지명이 많이 줄바꿈되고 마지막 면적의 소수가 끊긴다.\"}},\"best\":[\"D\"],\"confidence\":\"high\",\"unsure\":\"단지명과 마지막 면적의 줄바꿈을 어느 정도까지 허용할지는 독자의 우선순위에 따라 달라질 수 있다.\"}\n"
+  }
+ ]
+}

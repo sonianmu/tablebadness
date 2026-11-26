@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Weekly On-Call Rotation Schedule (language en).\nGrid: 5 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"Week 14(Mar 30 – Apr 5)\" spans 1 col × 2 row; \"Week 15(Apr 6 – 12)\" spans 1 col × 2 row; \"Week 16(Apr 13 – 19)\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Week\" · longest unbreakable word 40px · one-line width 119px\n  col 2: header \"Role\" · longest unbreakable word 78px · one-line width 78px\n  col 3: header \"Engineer\" · longest unbreakable word 91px · one-line width 129px\n  col 4: header \"Phone\" · longest unbreakable word 46px · one-line width 132px\n  col 5: header \"Escalation notes\" · longest unbreakable word 89px · one-line width 655px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nRendering convention: the screenshot always shows the WHOLE table. Anything beyond the dashed box is not clipped; it is the part a reader reaches by scrolling sideways, so judge both what fits in the box at first sight and the cost of scrolling to the rest.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10710,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"Weeks, roles and full engineer names scan clearly, but the phone column starts at the viewport edge, so contact details and notes require scrolling.\"},\"B\":{\"grade\":\"bad\",\"why\":\"Everything fits the viewport, but roles, names, headings and notes break within words. The resulting tall rows are difficult to scan.\"},\"C\":{\"grade\":\"poor\",\"why\":\"Roles and names remain readable and phone numbers fit within the initial view, but the narrow week and phone columns create many short lines, while notes still require scrolling.\"},\"D\":{\"grade\":\"good\",\"why\":\"Roles and names read cleanly, and the rows are reasonably compact. Week labels wrap heavily, and phone numbers and notes extend beyond the viewport.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"Roles and names are clear, but the week labels wrap over several lines and the tall rows leave substantial empty space. Phone numbers and notes require scrolling.\"},\"F\":{\"grade\":\"good\",\"why\":\"Week labels, roles and names form clear groups, with names wrapping naturally and rows staying reasonably compact. Phone numbers and notes require scrolling.\"}},\"best\":[\"F\"],\"confidence\":\"medium\",\"unsure\":\"The supplied view cuts off the right side of the wider layouts, so I cannot fully assess their phone and escalation-note columns or the total scrolling distance.\"}\n"
+  }
+ ]
+}

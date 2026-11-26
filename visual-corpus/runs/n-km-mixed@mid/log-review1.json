@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: តារាងថ្លៃទំនិញទីផ្សារ (language km).\nGrid: 4 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"ទំនិញ\" · longest unbreakable word 56px · one-line width 115px\n  col 2: header \"តម្លៃ (រៀល)\" · longest unbreakable word 52px · one-line width 71px\n  col 3: header \"ឯកតា\" · longest unbreakable word 54px · one-line width 54px\n  col 4: header \"កំណត់សម្គាល់\" · longest unbreakable word 83px · one-line width 607px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 527px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 526px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11649,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Price and unit stay compact, and the notes have useful space. The first two item names wrap, while the notes still take several lines.\"},\"B\":{\"grade\":\"excellent\",\"why\":\"A generous notes column keeps the longer text readable, while prices, units and headers stay on one line. The few wrapped item names remain easy to scan.\"},\"C\":{\"grade\":\"bad\",\"why\":\"The narrow notes column breaks text into many short lines and makes rows exceptionally tall, despite substantial unused viewport space.\"},\"D\":{\"grade\":\"good\",\"why\":\"The wide notes column produces readable lines and compact rows, but the price header wraps and the first two item names also span two lines.\"},\"E\":{\"grade\":\"good\",\"why\":\"Item names, prices, units and headers stay on one line, supporting scanning. The narrower notes column creates more wrapping and taller rows than B.\"},\"F\":{\"grade\":\"poor\",\"why\":\"Near-equal columns leave excessive space around prices and units while squeezing notes into short lines, creating tall rows and large empty areas.\"}},\"best\":[\"B\"],\"confidence\":\"high\",\"unsure\":\"I cannot reliably assess the linguistic quality of individual Khmer line breaks from the images alone.\"}\n"
+  }
+ ]
+}

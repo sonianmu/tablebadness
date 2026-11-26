@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: SaaS服务合同新旧条款对照表 (language zh-CN).\nGrid: 4 columns × 6 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"条款号\" · longest unbreakable word 31px · one-line width 62px\n  col 2: header \"原文\" · longest unbreakable word 31px · one-line width 1563px\n  col 3: header \"修订后\" · longest unbreakable word 31px · one-line width 3232px\n  col 4: header \"修订说明\" · longest unbreakable word 35px · one-line width 1425px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10186,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Clause numbers stay intact, and the wider revised-text column reflects its heavier content. The explanation column is somewhat narrow, producing many short lines.\"},\"B\":{\"grade\":\"good\",\"why\":\"Clause numbers stay on one line, while the revised text has ample width and the explanations remain readable. The original-text column is slightly narrow for side-by-side comparison.\"},\"C\":{\"grade\":\"good\",\"why\":\"All clause numbers stay intact, and the original and revised text have usable widths. The narrower revised-text column makes the longest rows somewhat tall.\"},\"D\":{\"grade\":\"poor\",\"why\":\"The clause-number header and every row identifier wrap over multiple lines, making the primary row labels harder to scan despite comfortable text columns.\"},\"E\":{\"grade\":\"poor\",\"why\":\"The oversized clause-number column consumes space needed by the much longer revised text. Its narrow lines make rows very tall and leave large empty areas in neighboring cells.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"The text columns have a useful balance, but the final clause number wraps onto two lines, weakening the consistency of the row labels.\"}},\"best\":[\"B\"],\"confidence\":\"medium\",\"unsure\":\"A and C are close alternatives; the preferred balance depends on how much priority readers give to comparing the original text against reading the longer revisions and explanations.\"}\n"
+  }
+ ]
+}

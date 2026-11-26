@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Departures Board (language en).\nGrid: 6 columns × 7 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Flight\" · longest unbreakable word 41px · one-line width 57px\n  col 2: header \"Destination\" · longest unbreakable word 82px · one-line width 159px\n  col 3: header \"Scheduled\" · longest unbreakable word 77px · one-line width 77px\n  col 4: header \"Estimated\" · longest unbreakable word 73px · one-line width 73px\n  col 5: header \"Gate\" · longest unbreakable word 34px · one-line width 34px\n  col 6: header \"Status\" · longest unbreakable word 68px · one-line width 107px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 558px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 557px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 7950,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"Every flight identifier breaks across two lines, making the primary lookup column difficult to scan. The time columns and most destinations remain clear.\"},\"B\":{\"grade\":\"good\",\"why\":\"Flight identifiers and headers stay intact, and the time columns compare easily. Three destinations wrap, and the delay splits its number from its unit.\"},\"C\":{\"grade\":\"excellent\",\"why\":\"Flight identifiers, headers and nearly all destinations stay on one line. The longer destination and delay wrap at sensible word boundaries, while the paired time columns remain easy to compare.\"},\"D\":{\"grade\":\"bad\",\"why\":\"Destination, Scheduled and Estimated break inside their header words, while destinations wrap heavily. Gate and Flight have surplus space that would be more useful elsewhere.\"},\"E\":{\"grade\":\"good\",\"why\":\"Identifiers and headers stay intact, and the delay wraps with '45 min' together. Three destinations wrap, giving the table a less even rhythm than C.\"},\"F\":{\"grade\":\"poor\",\"why\":\"Every flight identifier breaks across lines, several destinations wrap, and the delay separates '45' from 'min'. The resulting tall rows make the board harder to scan.\"}},\"best\":[\"C\"],\"confidence\":\"high\",\"unsure\":\"None material.\"}\n"
+  }
+ ]
+}

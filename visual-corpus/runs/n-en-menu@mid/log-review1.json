@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Restaurant Dinner Menu (language en).\nGrid: 4 columns × 9 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"Starters\" spans 4 col × 1 row; \"Mains\" spans 4 col × 1 row; \"Desserts\" spans 4 col × 1 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Dish\" · longest unbreakable word 77px · one-line width 164px\n  col 2: header \"Description\" · longest unbreakable word 83px · one-line width 558px\n  col 3: header \"Price\" · longest unbreakable word 37px · one-line width 37px\n  col 4: header \"Allergens\" · longest unbreakable word 70px · one-line width 298px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 563px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 562px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 8384,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Dish names stay intact and descriptions read comfortably in three lines. The narrow price column and generous allergen column make good use of the width.\"},\"B\":{\"grade\":\"poor\",\"why\":\"The dish column breaks “Croquettes” across lines and forces several names into three lines, while the allergen column has substantial unused space.\"},\"C\":{\"grade\":\"poor\",\"why\":\"The equal-width columns give prices excessive space and squeeze descriptions into five or six lines, making rows tall and harder to scan.\"},\"D\":{\"grade\":\"good\",\"why\":\"The wide description column reads comfortably and dish names remain intact, but the dessert allergens wrap to four lines, separating “Tree nuts” across lines.\"},\"E\":{\"grade\":\"excellent\",\"why\":\"Dish names stay within two lines, descriptions have a consistent three-line rhythm, and allergens remain readable without taking space away from the prices.\"},\"F\":{\"grade\":\"good\",\"why\":\"Descriptions and allergens fit well, but the narrower dish column pushes two dish names onto three lines, weakening their role as row identifiers.\"}},\"best\":[\"E\"],\"confidence\":\"high\",\"unsure\":\"A is a close alternative; the preference for E rests on its slightly more balanced allocation to descriptions and allergens.\"}\n"
+  }
+ ]
+}

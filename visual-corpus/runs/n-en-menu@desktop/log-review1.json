@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Restaurant Dinner Menu (language en).\nGrid: 4 columns × 9 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"Starters\" spans 4 col × 1 row; \"Mains\" spans 4 col × 1 row; \"Desserts\" spans 4 col × 1 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Dish\" · longest unbreakable word 77px · one-line width 164px\n  col 2: header \"Description\" · longest unbreakable word 83px · one-line width 558px\n  col 3: header \"Price\" · longest unbreakable word 37px · one-line width 37px\n  col 4: header \"Allergens\" · longest unbreakable word 70px · one-line width 298px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9144,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Descriptions mostly fit in two lines, and the narrow price column leaves useful room elsewhere. Two dish names wrap, and the dessert allergens extend to three lines.\"},\"B\":{\"grade\":\"excellent\",\"why\":\"Every dish name stays on one line, descriptions fit comfortably in two, and prices remain easy to scan. The dessert allergen list takes three lines, but the overall proportions are strong.\"},\"C\":{\"grade\":\"poor\",\"why\":\"Equal column widths give prices far more room than they need while squeezing descriptions into four-line blocks. The resulting tall rows contain large empty areas and make comparisons slower.\"},\"D\":{\"grade\":\"good\",\"why\":\"Descriptions and allergen lists fit neatly in two lines, with little wasted space around prices. Every dish name wraps, making the row identifiers less immediate to scan.\"},\"E\":{\"grade\":\"poor\",\"why\":\"The wide description column keeps prose open, but the dish column breaks several names across three lines. The narrow allergen column also produces a fragmented dessert list.\"},\"F\":{\"grade\":\"good\",\"why\":\"The price column is compact and the allergen lists are reasonably open. Some dish names wrap, and two descriptions end with a short third line, creating uneven row rhythm.\"}},\"best\":[\"B\"],\"confidence\":\"high\",\"unsure\":\"The choice between B and D depends partly on whether keeping dish names on one line matters more than reducing wrapping in the allergen lists.\"}\n"
+  }
+ ]
+}

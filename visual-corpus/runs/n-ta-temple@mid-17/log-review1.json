@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: தமிழ்நாட்டுக் கோயில்கள்: நேரம் மற்றும் சிறப்புகள் (language ta).\nGrid: 4 columns × 8 rows. Row headers: none declared.\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"கோயில்\" · longest unbreakable word 112px · one-line width 187px\n  col 2: header \"நகரம்\" · longest unbreakable word 110px · one-line width 110px\n  col 3: header \"திறக்கும் நேரம்\" · longest unbreakable word 67px · one-line width 194px\n  col 4: header \"சிறப்பு\" · longest unbreakable word 139px · one-line width 1298px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 654px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 653px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10717,
+   "code": 0,
+   "problem": null,
+   "raw": "{\n  \"ratings\": {\n    \"A\": {\n      \"grade\": \"good\",\n      \"why\": \"The time ranges stay intact, and the description has enough width to read comfortably. Most temple names wrap to two lines, with the first taking three; the time header also wraps.\"\n    },\n    \"B\": {\n      \"grade\": \"poor\",\n      \"why\": \"The equal columns leave the long descriptions in a narrow strip with many short lines. Tall rows and large empty areas make it harder to connect each description with its temple.\"\n    },\n    \"C\": {\n      \"grade\": \"good\",\n      \"why\": \"Temple names and the time header have more room, and each time range stays intact. The narrower description column produces more wrapping and taller rows.\"\n    },\n    \"D\": {\n      \"grade\": \"poor\",\n      \"why\": \"The wide description column reads well, but every time range breaks across lines at the dash. That makes the opening hours difficult to scan and compare.\"\n    },\n    \"E\": {\n      \"grade\": \"good\",\n      \"why\": \"The time ranges remain intact and the description has generous space. City names fit, though temple names and the time header wrap.\"\n    },\n    \"F\": {\n      \"grade\": \"poor\",\n      \"why\": \"The description column is comfortable, but the second time range repeatedly breaks across lines, disrupting comparison of opening hours.\"\n    }\n  },\n  \"best\": [\"E\"],\n  \"confidence\": \"medium\",\n  \"unsure\": \"A is close: it gives temple names slightly more room, while E gives the descriptions slightly more room. The preferred balance depends on whether readers chiefly scan names or read the descriptions.\"\n}\n"
+  }
+ ]
+}

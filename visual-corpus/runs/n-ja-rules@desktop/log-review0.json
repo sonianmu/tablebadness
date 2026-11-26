@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: マンション管理規約の主な定めと違反時の対応 (language ja).\nGrid: 3 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"項目\" · longest unbreakable word 31px · one-line width 364px\n  col 2: header \"内容\" · longest unbreakable word 44px · one-line width 2376px\n  col 3: header \"違反時の対応\" · longest unbreakable word 31px · one-line width 1884px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 13801,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"項目名は読み取りやすいが、行見出しに幅を取りすぎ、長い本文が両列で細かく折り返されて表が縦に伸びている。\"},\"B\":{\"grade\":\"good\",\"why\":\"長い内容列に十分な幅を与え、対応列とのバランスもよい。項目名の一部は不自然な位置で折り返される。\"},\"C\":{\"grade\":\"poor\",\"why\":\"本文の２列は読みやすい一方、項目列が狭すぎ、長い見出しが細切れになって行の識別を妨げている。\"},\"D\":{\"grade\":\"good\",\"why\":\"内容と対応の幅が文章量に見合い、各行を横に追いやすい。項目名には細かな折り返しが残る。\"},\"E\":{\"grade\":\"bad\",\"why\":\"対応列が極端に狭く、文章が数文字ずつ折り返される。行が非常に高くなり、他の列に大きな空白が生じている。\"},\"F\":{\"grade\":\"good\",\"why\":\"項目列に見出しを読む余地があり、２つの本文列も比較的均衡している。内容列には短い行末や単語途中の折り返しが見られる。\"}},\"best\":[\"B\"],\"confidence\":\"medium\",\"unsure\":\"BとD、Fはいずれも実用的で、項目名の折り返しと本文列の幅のどちらを重視するかによって評価が接近する。\"}\n"
+  }
+ ]
+}

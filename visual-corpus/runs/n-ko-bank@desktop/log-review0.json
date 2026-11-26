@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 예금 상품 비교 (language ko).\nGrid: 5 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"상품명\" · longest unbreakable word 13px · one-line width 112px\n  col 2: header \"금리(연)\" · longest unbreakable word 99px · one-line width 194px\n  col 3: header \"가입 기간\" · longest unbreakable word 28px · one-line width 139px\n  col 4: header \"최소 금액\" · longest unbreakable word 28px · one-line width 82px\n  col 5: header \"특징\" · longest unbreakable word 51px · one-line width 1495px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11958,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Product names and minimum amounts stay intact, and the features column has a workable measure. The retirement term wraps onto a second line, and the long descriptions make rows tall.\"},\"B\":{\"grade\":\"poor\",\"why\":\"Equal-width columns leave the features column very narrow, producing heavily fragmented prose and very tall rows with large empty areas in the comparison columns.\"},\"C\":{\"grade\":\"bad\",\"why\":\"The wide features column comes at the expense of product names, terms and amounts: headers and values break across several lines, making the key comparison fields difficult to scan.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"Product names remain clear and the features column has room to breathe, but the retirement term and the foreign-currency minimum split within their values.\"},\"E\":{\"grade\":\"good\",\"why\":\"Names and amounts remain intact, and the comparison columns are easy to scan. The retirement term wraps, while the narrower features column creates more fragmented prose and taller rows.\"},\"F\":{\"grade\":\"good\",\"why\":\"Product names and minimum amounts stay intact, while the features column has a reasonable width. The retirement term wraps, and the prose still has some awkward breaks.\"}},\"best\":[\"F\"],\"confidence\":\"medium\",\"unsure\":\"A and F are close: both preserve the main comparison values, and their feature-column line breaks differ slightly in readability.\"}\n"
+  }
+ ]
+}

@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Customer Onboarding Field Validation Rules (language en).\nGrid: 4 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Field\" · longest unbreakable word 126px · one-line width 126px\n  col 2: header \"Pattern\" · longest unbreakable word 114px · one-line width 1074px\n  col 3: header \"Example valid\" · longest unbreakable word 167px · one-line width 264px\n  col 4: header \"Error message\" · longest unbreakable word 157px · one-line width 700px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 7388,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"Field names stay intact, but equal column widths leave extra space in the first column while breaking the email example inside a word and making error messages wrap heavily.\"},\"B\":{\"grade\":\"good\",\"why\":\"The field column fits its identifiers, examples have room, and messages scan comfortably. Several patterns still wrap across multiple lines.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"Examples and messages have comfortable space, but the narrower pattern column splits more expressions, leaving the postal code pattern's final dollar sign alone on a line.\"},\"D\":{\"grade\":\"good\",\"why\":\"The balanced widths keep field names intact and give patterns slightly more room, reducing the email pattern to eight lines while keeping examples and messages readable.\"},\"E\":{\"grade\":\"good\",\"why\":\"Field names fit and examples and messages scan well. The pattern column is slightly narrower than in D, so the long email expression takes an extra line.\"},\"F\":{\"grade\":\"poor\",\"why\":\"The wide message column reads well, but the narrow pattern column fragments even short expressions and makes the long email pattern especially difficult to follow.\"}},\"best\":[\"D\"],\"confidence\":\"medium\",\"unsure\":\"D and E are close; the relative importance of keeping regular expressions together versus giving messages a little more room could change the preference.\"}\n"
+  }
+ ]
+}

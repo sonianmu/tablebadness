@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 电子发票常见问题 (language zh-CN).\nGrid: 3 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"问题\" · longest unbreakable word 31px · one-line width 291px\n  col 2: header \"回答\" · longest unbreakable word 31px · one-line width 1440px\n  col 3: header \"相关链接\" · longest unbreakable word 198px · one-line width 214px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 22313,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"问题列便于扫描，回答列也有足够宽度；两条链接在连字符处换行，回答仍略显密集。\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"回答列宽敞，但问题列过窄，多条问题断成三四行，影响查找和行的辨识。\"},\"C\":{\"grade\":\"good\",\"why\":\"回答列宽敞，问题列比B更易扫描，行高均衡；部分问题仍有较碎的换行，两条链接也分为两行。\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"问题清晰，但回答列偏窄，长回答形成高而密的文字块，问题和链接下方留下大量空白；两条链接换行。\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"问题和链接都易于扫描，所有链接保持单行；但回答列偏窄，长段落换行频繁，行内空白分布不均。\"},\"F\":{\"grade\":\"good\",\"why\":\"问题与回答的宽度较平衡，回答易读；部分问题换成三行，两条链接在连字符处换行。\"}},\"best\":[\"A\"],\"confidence\":\"medium\",\"unsure\":\"A的问题更容易扫描，C和F则为长回答提供更多宽度；三者取舍接近。链接换行虽发生在连字符处，但仍稍影响完整地址的辨读。\"}\n"
+  }
+ ]
+}

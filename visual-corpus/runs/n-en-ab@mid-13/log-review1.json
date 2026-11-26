@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Checkout A/B Test Results (language en).\nGrid: 7 columns × 9 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"Metric\" spans 1 col × 2 row; \"Control\" spans 2 col × 1 row; \"Variant\" spans 2 col × 1 row; \"Lift\" spans 1 col × 2 row; \"p-value\" spans 1 col × 2 row.\nPer-column content facts (content px at 13px font, excluding padding):\n  col 1: header \"Metric\" · longest unbreakable word 88px · one-line width 232px\n  col 2: header \"Control › Mean\" · longest unbreakable word 44px · one-line width 46px\n  col 3: header \"Control › 95% CI\" · longest unbreakable word 52px · one-line width 100px\n  col 4: header \"Variant › Mean\" · longest unbreakable word 43px · one-line width 44px\n  col 5: header \"Variant › 95% CI\" · longest unbreakable word 52px · one-line width 97px\n  col 6: header \"Lift\" · longest unbreakable word 46px · one-line width 46px\n  col 7: header \"p-value\" · longest unbreakable word 42px · one-line width 48px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 674px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 673px.\nFixed: content, font, 13px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10267,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"The grouped columns are balanced and most values stay intact, but the narrow metric column wraps many labels and the control time interval splits across lines.\"},\"B\":{\"grade\":\"excellent\",\"why\":\"Metric labels wrap at sensible word boundaries while means, confidence intervals, lifts and p-values stay intact. The matching control and variant groups are easy to compare.\"},\"C\":{\"grade\":\"poor\",\"why\":\"The wider metric column keeps most labels on one line, but time values and currency intervals break across lines, several lifts separate from their percent signs, and the p-value header wraps.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"Most metric labels and all lifts stay intact, but currency intervals and time values split across lines, and the p-value header wraps.\"},\"E\":{\"grade\":\"good\",\"why\":\"Labels wrap naturally and all data values remain intact, with balanced control and variant groups. The p-value header wraps unnecessarily.\"},\"F\":{\"grade\":\"bad\",\"why\":\"The metric column is so narrow that labels occupy several lines and 'abandonment' breaks within the word. Currency and time intervals also wrap, while short numeric columns have surplus space.\"}},\"best\":[\"B\"],\"confidence\":\"high\",\"unsure\":\"B and E are close; B has the advantage of keeping the p-value header on one line.\"}\n"
+  }
+ ]
+}

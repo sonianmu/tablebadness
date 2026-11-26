@@ -1,29 +1,18 @@
 {
- "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "model": "codex/gpt-6.1-terra",
  "thinking": "medium",
- "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nTable: 예금 상품 비교 (language ko).\nGrid: 5 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"상품명\" · longest unbreakable word 13px · one-line width 112px\n  col 2: header \"금리(연)\" · longest unbreakable word 99px · one-line width 194px\n  col 3: header \"가입 기간\" · longest unbreakable word 28px · one-line width 139px\n  col 4: header \"최소 금액\" · longest unbreakable word 28px · one-line width 82px\n  col 5: header \"특징\" · longest unbreakable word 51px · one-line width 1495px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nThe image shows the table's content with every cell on one line, so you can read everything. Study it first.\n1) Understand it: what is the table for, how will people read, scan and compare it, which columns play the same or similar role, which values must stay intact, which text may wrap naturally, and where existing row height could absorb wrapping.\n2) Propose 3 genuinely different column-width designs for 360px (different strategies, not small variations).\nReply ONLY JSON: {\"understanding\":{\"purpose\":\"\",\"reading\":\"\",\"groups\":[\"columns that belong together and why\"],\"keep_intact\":[\"\"],\"may_wrap\":[\"\"]},\"designs\":[{\"name\":\"A\",\"widths\":[int px per column, column 1 first],\"idea\":\"one sentence\"}]}",
+ "images": [
+  "overview.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nTable: 예금 상품 비교 (language ko).\nGrid: 5 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"상품명\" · longest unbreakable word 13px · one-line width 112px\n  col 2: header \"금리(연)\" · longest unbreakable word 99px · one-line width 194px\n  col 3: header \"가입 기간\" · longest unbreakable word 28px · one-line width 139px\n  col 4: header \"최소 금액\" · longest unbreakable word 28px · one-line width 82px\n  col 5: header \"특징\" · longest unbreakable word 51px · one-line width 1495px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nThe image shows the table's content with every cell on one line, so you can read everything. Study it first.\n1) Understand it: what is the table for, how will people read, scan and compare it, which columns play the same or similar role, which values must stay intact, which text may wrap naturally, and where existing row height could absorb wrapping.\n2) Propose 3 genuinely different column-width designs for 360px (different strategies, not small variations).\nReply ONLY JSON: {\"understanding\":{\"purpose\":\"\",\"reading\":\"\",\"groups\":[\"columns that belong together and why\"],\"keep_intact\":[\"\"],\"may_wrap\":[\"\"]},\"designs\":[{\"name\":\"A\",\"widths\":[int px per column, column 1 first],\"idea\":\"one sentence\"}]}",
  "log": [
   {
    "attempt": 1,
-   "ms": 1205,
-   "code": 1,
-   "problem": "exit 1 429: {\"message\":\"WorkBuddy AI: Credits exhausted. Please visit the link below to purchase add-on packs and get more credits: https://www.codebuddy.ai/profile/usage  — WorkBuddy requires an active credit package even for 0-rate free models; check your account package balance\",\"type\":\"insufficient_quo",
-   "raw": ""
-  },
-  {
-   "attempt": 2,
-   "ms": 1257,
-   "code": 1,
-   "problem": "exit 1 429: {\"message\":\"WorkBuddy AI: Credits exhausted. Please visit the link below to purchase add-on packs and get more credits: https://www.codebuddy.ai/profile/usage  — WorkBuddy requires an active credit package even for 0-rate free models; check your account package balance\",\"type\":\"insufficient_quo",
-   "raw": ""
-  },
-  {
-   "attempt": 3,
-   "ms": 1310,
-   "code": 1,
-   "problem": "exit 1 429: {\"message\":\"WorkBuddy AI: Credits exhausted. Please visit the link below to purchase add-on packs and get more credits: https://www.codebuddy.ai/profile/usage  — WorkBuddy requires an active credit package even for 0-rate free models; check your account package balance\",\"type\":\"insufficient_quo",
-   "raw": ""
+   "model": "codex/gpt-6.1-terra",
+   "ms": 12935,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"understanding\":{\"purpose\":\"예금 상품의 금리, 가입 기간, 최소 금액과 특징을 비교해 적합한 상품을 고르는 표다.\",\"reading\":\"상품명을 기준으로 각 행을 읽고, 금리와 가입 조건을 세로로 훑어 비교한다. 긴 특징 때문에 생기는 행 높이를 다른 열의 자연스러운 줄바꿈에도 활용할 수 있다.\",\"groups\":[\"금리(연), 가입 기간, 최소 금액은 상품을 비교하는 핵심 조건이다.\",\"상품명과 특징은 각각 상품을 식별하고 조건의 맥락을 설명한다.\"],\"keep_intact\":[\"금리의 숫자와 범위, 퍼센트 기호\",\"가입 기간과 최소 금액의 숫자와 단위\",\"상품명에서 의미가 연결된 단어\"],\"may_wrap\":[\"특징의 설명 문장\",\"기본 금리와 우대 금리 사이의 설명\",\"상품명의 단어 사이와 여러 가입 기간의 구분 지점\"]},\"designs\":[{\"name\":\"A\",\"widths\":[72,120,48,47,72],\"idea\":\"금리의 긴 단위를 보존하면서 나머지 폭을 상품명, 가입 조건과 특징에 배분하는 균형안이다.\"},{\"name\":\"B\",\"widths\":[64,120,65,38,72],\"idea\":\"금리와 가입 기간의 세로 비교에 폭을 우선 배정하고 최소 금액과 상품명은 더 자주 줄바꿈한다.\"},{\"name\":\"C\",\"widths\":[65,100,48,42,104],\"idea\":\"긴 특징을 읽기 쉽게 넓히는 대신 금리의 가장 긴 단위가 줄바꿈되거나 넘칠 가능성을 감수한다.\"}]}\n"
   }
- ],
- "failed": true
+ ]
 }

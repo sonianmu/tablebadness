@@ -1,0 +1,6035 @@
+{
+ "id": "n-zh-logistics@mid-13",
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "五个表头均为单行，地区与省份关系清楚，两列运费便于比较；时效较长的内容有足够空间分行。",
+     "problems": "浙江时效占三行，广西和四川时效也被拆成两行；偏远地区说明中的“22元”跨行，影响金额的完整阅读。",
+     "cause": "首重列88px、续重列107px刚好容纳单行表头，但共同占用较多宽度，时效列只剩148px；首列88px也使跨列说明的可用宽度受限。"
+    },
+    {
+     "design": "r0B",
+     "good": "时效列200px，使浙江说明缩为两行，广西和四川时效保持单行；费用数字集中，纵向比较容易，整表行距也较紧凑。",
+     "problems": "三个表头换行，其中“目的地区域”末字单独落到第二行，破坏表头节奏和目的地层级；两个费用表头也比数据显得拥挤。偏远地区说明中的“22元”仍跨行。",
+     "cause": "首列75px不足以容纳完整表头；首重列75px和续重列81px也不足以容纳各自的单行表头。较窄的首列虽增加了跨列说明的宽度，仍未使金额落在同一行。"
+    },
+    {
+     "design": "r0C",
+     "good": "所有表头保持单行，地区、省份和费用列宽松，识别与比较都很直接。",
+     "problems": "时效说明被挤得过窄：浙江占三行，广西和四川也被拆行，右侧文字密集而费用列留白较多；偏远地区说明中的“22元”跨行。",
+     "cause": "省份列55px、首重列100px和续重列116px超过其单行内容所需宽度，留给时效列的120px不足以舒展说明文字。"
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "地区与省份关系清楚，费用列相邻，时效列较宽，除浙江外的普通目的地均保持单行，行间节奏紧凑。偏远地区说明也能自然分成三行。",
+     "problems": "两个费用表头都换成两行，表头高度增加；首重表头在括号前断开，两个费用指标的标题显得零散。浙江时效在“当日”中间换行，阅读略受打断。",
+     "cause": "首重列75px和续重列81px都不足以容纳各自的完整表头；时效列187px仍不足以让浙江说明在更理想的位置断行。"
+    },
+    {
+     "design": "r1B",
+     "good": "续重表头完整单行，费用列的标题和单位清楚；地区分组及偏远地区说明仍易于定位。",
+     "problems": "时效列过窄，广西和四川的时效各多出一行，末尾的“天”落到下一行，削弱数字与单位的连续性，也使行高不均、表格明显变长。首重表头仍然换行。",
+     "cause": "续重列扩大到107px后，时效列只剩160px；首重列仍为75px。"
+    },
+    {
+     "design": "r1C",
+     "good": "首重表头完整单行，两个费用列宽度接近，比较时容易扫视；时效列保留了足够空间，让广西和四川维持单行。整体行高与r1A相同，地区分组清晰。",
+     "problems": "续重表头仍分成两行，两个费用表头的排版不一致；浙江时效换行，长说明的横向空间仍较紧。",
+     "cause": "首重列88px刚好容纳其完整表头，续重列81px则不足；时效列173px需要容纳较长的浙江说明。"
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "Column 1 at 88px keeps 目的地区域 on one line, so the group headers align cleanly with the region names below them and the merged 华东地区/华南地区 cells read as true row-group labels. 省份 48px is exactly enough for the header and two-character province names. Row rhythm is even and the 偏远地区 note wraps into three tidy semantic lines.",
+     "problems": "时效 is the narrowest of the three at 180px (159px of text), so the 浙江 cell already uses three lines and the note is the tightest. The two money headers wrap in a slightly inconsistent way because 首重（元）needs 67px but gets only 54px, while 续重（元/kg）gets 67px — the unit column is wider than the value column for no numeric reason.",
+     "cause": "col 3 = 75px (54px text) is below the 67px header width, so 首重（元）must wrap; col 4 = 88px (67px text) is 7px more than the 60px widest unit token needs, i.e. slack spent on a column that holds two-digit numbers."
+    },
+    {
+     "design": "r2B",
+     "good": "Best 时效 column of the three (194px → 173px text): the long 次日达（杭州、宁波市区当日揽收次日到）line breaks at a natural boundary, and the 偏远 note stays legible. Column 1 keeps its one-line header and grouping clarity; row heights stay compact at 347px.",
+     "problems": "col 4 at 81px leaves exactly 60px of text — precisely the width of the unbreakable （元/kg） token. There is zero slack, so the unit sits flush against the cell edge and any sub-pixel rounding can break the token or make it collide with the border. col 3 at 68px is squeezed to 47px, so 首重（元）wraps although the numbers below it are only 26px wide.",
+     "cause": "col 4 = 81px spends the entire 60px budget on the longest unbreakable unit with no safety margin; col 3 = 68px pays for a wrap that the two-digit values never needed, and that width was transferred to col 5."
+    },
+    {
+     "design": "r2C",
+     "good": "The only design that gets 首重（元）onto a single line (88px), so the money headers start on a common baseline and the fee block reads as one unit; body region names (52px) still fit inside column 1's 54px of text.",
+     "problems": "Column 1's header breaks mid-phrase into 目的地区 / 域, orphaning a single character on the second line and destroying the header-to-group hierarchy — the worst flaw in any of the three renders. It also makes column 1 look narrower than the merged 华东地区/华南地区 labels it is supposed to introduce. Meanwhile 首重 sits at 88px for two-digit numbers, i.e. width spent on air, while 时效 drops to 187px.",
+     "cause": "col 1 = 75px (54px text) is 13px below the 67px header requirement, forcing the break inside 区域; the 13px was handed to col 3, which only needed ~48px for its data."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A",
+    "r3B",
+    "r3C"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    88,
+    48,
+    88,
+    107,
+    148
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 480,
+    "tableHeight": 387,
+    "overflow": 0,
+    "colWidths": [
+     88,
+     48,
+     88,
+     107,
+     148
+    ],
+    "rowHeights": [
+     33.1,
+     33.1,
+     73.4,
+     33.1,
+     53.3,
+     33.1,
+     53.3,
+     73.4
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "目的地区域",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "省份",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "首重（元）",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "续重（元/kg）",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "时效",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华东地区",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "江苏",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达（杭州、宁波市区当日揽收次日到）",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华南地区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1–2天",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广西",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天，部分县域延后1天",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "华北地区",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "河北",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "西南地区",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "四川",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–4天，成都市区2–3天",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "偏远地区",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 4,
+      "role": "data",
+      "text": "新疆、西藏全境及内蒙古阿拉善盟、青海玉树等区域，首重22元，续重12元/kg，时效5–7天；乡镇末端仅支持邮政EMS，下",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 14,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 14,
+      "natural": 27,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 86,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 253,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r0A.png",
+   "idea": "保持各列表头和目的地名称单行，将剩余宽度交给时效说明，兼顾费用比较与阅读。",
+   "notes": []
+  },
+  "r0B": {
+   "widths": [
+    75,
+    48,
+    75,
+    81,
+    200
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 480,
+    "tableHeight": 346.7,
+    "overflow": 0,
+    "colWidths": [
+     75,
+     48,
+     75,
+     81,
+     200
+    ],
+    "rowHeights": [
+     53.3,
+     33.1,
+     53.3,
+     33.1,
+     33.1,
+     33.1,
+     33.1,
+     73.4
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "目的地区域",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "省份",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "首重（元）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "续重（元/kg）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "时效",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华东地区",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "江苏",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达（杭州、宁波市区当日揽收次日到）",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华南地区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1–2天",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广西",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天，部分县域延后1天",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "华北地区",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "河北",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "西南地区",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "四川",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–4天，成都市区2–3天",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "偏远地区",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 4,
+      "role": "data",
+      "text": "新疆、西藏全境及内蒙古阿拉善盟、青海玉树等区域，首重22元，续重12元/kg，时效5–7天；乡镇末端仅支持邮政EMS，下",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 14,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 14,
+      "natural": 27,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 86,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 253,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r0B.png",
+   "idea": "收紧地区和费用列，并允许较长表头换行，为时效说明提供更宽的阅读空间。",
+   "notes": []
+  },
+  "r0C": {
+   "widths": [
+    88,
+    55,
+    100,
+    116,
+    120
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 480,
+    "tableHeight": 387,
+    "overflow": 0,
+    "colWidths": [
+     88,
+     55,
+     100,
+     116,
+     120
+    ],
+    "rowHeights": [
+     33.1,
+     33.1,
+     73.4,
+     33.1,
+     53.3,
+     33.1,
+     53.3,
+     73.4
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "目的地区域",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "省份",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "首重（元）",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "续重（元/kg）",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "时效",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华东地区",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "江苏",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达（杭州、宁波市区当日揽收次日到）",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华南地区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1–2天",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广西",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天，部分县域延后1天",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "华北地区",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "河北",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "西南地区",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "四川",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–4天，成都市区2–3天",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "偏远地区",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 4,
+      "role": "data",
+      "text": "新疆、西藏全境及内蒙古阿拉善盟、青海玉树等区域，首重22元，续重12元/kg，时效5–7天；乡镇末端仅支持邮政EMS，下",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 14,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 14,
+      "natural": 27,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 86,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 253,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r0C.png",
+   "idea": "突出目的地和两项运费的纵向比较，以较窄的时效列换取更从容的费用列节奏。",
+   "notes": []
+  },
+  "r1A": {
+   "widths": [
+    88,
+    48,
+    75,
+    81,
+    187
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 480,
+    "tableHeight": 346.7,
+    "overflow": 0,
+    "colWidths": [
+     88,
+     48,
+     75,
+     81,
+     187
+    ],
+    "rowHeights": [
+     53.3,
+     33.1,
+     53.3,
+     33.1,
+     33.1,
+     33.1,
+     33.1,
+     73.4
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "目的地区域",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "省份",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "首重（元）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "续重（元/kg）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "时效",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华东地区",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "江苏",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达（杭州、宁波市区当日揽收次日到）",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华南地区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1–2天",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广西",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天，部分县域延后1天",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "华北地区",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "河北",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "西南地区",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "四川",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–4天，成都市区2–3天",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "偏远地区",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 4,
+      "role": "data",
+      "text": "新疆、西藏全境及内蒙古阿拉善盟、青海玉树等区域，首重22元，续重12元/kg，时效5–7天；乡镇末端仅支持邮政EMS，下",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 14,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 14,
+      "natural": 27,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 86,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 253,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r1A.png",
+   "idea": "保留目的地区域表头单行，将两列费用表头改为两行，把节省的宽度分配给时效；检验能否兼顾清楚的目的地层级和较紧凑的时效说明。",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    88,
+    48,
+    75,
+    107,
+    160
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 479,
+    "tableHeight": 387,
+    "overflow": 0,
+    "colWidths": [
+     88,
+     48,
+     75,
+     107,
+     160
+    ],
+    "rowHeights": [
+     53.3,
+     33.1,
+     53.3,
+     33.1,
+     53.3,
+     33.1,
+     53.3,
+     73.4
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "目的地区域",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "省份",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "首重（元）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "续重（元/kg）",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "时效",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华东地区",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "江苏",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达（杭州、宁波市区当日揽收次日到）",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华南地区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1–2天",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广西",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天，部分县域延后1天",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "华北地区",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "河北",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "西南地区",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "四川",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–4天，成都市区2–3天",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "偏远地区",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 4,
+      "role": "data",
+      "text": "新疆、西藏全境及内蒙古阿拉善盟、青海玉树等区域，首重22元，续重12元/kg，时效5–7天；乡镇末端仅支持邮政EMS，下",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 14,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 14,
+      "natural": 27,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 86,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 253,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r1B.png",
+   "idea": "保持较长的续重表头单行，只让首重表头换行；比r0A多给时效12px，尝试减少时效说明的拥挤。",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1C": {
+   "widths": [
+    88,
+    48,
+    88,
+    81,
+    173
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 479,
+    "tableHeight": 346.7,
+    "overflow": 0,
+    "colWidths": [
+     88,
+     48,
+     88,
+     81,
+     173
+    ],
+    "rowHeights": [
+     53.3,
+     33.1,
+     53.3,
+     33.1,
+     33.1,
+     33.1,
+     33.1,
+     73.4
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "目的地区域",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "省份",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "首重（元）",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "续重（元/kg）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "时效",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华东地区",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "江苏",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达（杭州、宁波市区当日揽收次日到）",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华南地区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1–2天",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广西",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天，部分县域延后1天",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "华北地区",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "河北",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "西南地区",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "四川",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–4天，成都市区2–3天",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "偏远地区",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 4,
+      "role": "data",
+      "text": "新疆、西藏全境及内蒙古阿拉善盟、青海玉树等区域，首重22元，续重12元/kg，时效5–7天；乡镇末端仅支持邮政EMS，下",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 14,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 14,
+      "natural": 27,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 86,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 253,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r1C.png",
+   "idea": "保持首重表头单行，让续重表头分两行，为时效提供173px；与上一方案比较哪种费用表头断行及右侧留白更协调。",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    88,
+    48,
+    75,
+    88,
+    180
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 480,
+    "tableHeight": 346.7,
+    "overflow": 0,
+    "colWidths": [
+     88,
+     48,
+     75,
+     88,
+     180
+    ],
+    "rowHeights": [
+     53.3,
+     33.1,
+     53.3,
+     33.1,
+     33.1,
+     33.1,
+     33.1,
+     73.4
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "目的地区域",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "省份",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "首重（元）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "续重（元/kg）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "时效",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华东地区",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "江苏",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达（杭州、宁波市区当日揽收次日到）",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华南地区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1–2天",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广西",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天，部分县域延后1天",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "华北地区",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "河北",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "西南地区",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "四川",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–4天，成都市区2–3天",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "偏远地区",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 4,
+      "role": "data",
+      "text": "新疆、西藏全境及内蒙古阿拉善盟、青海玉树等区域，首重22元，续重12元/kg，时效5–7天；乡镇末端仅支持邮政EMS，下",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 14,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 14,
+      "natural": 27,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 86,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 253,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r2A.png",
+   "idea": "在r1C基础上将首重列缩至75px、续重列增至88px，并把其余空间给时效列。两个费用表头都换行，但列宽更接近，时效比r1C更宽，可检验表头对称性与正文行距的取舍。",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    88,
+    48,
+    68,
+    81,
+    194
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 480,
+    "tableHeight": 346.7,
+    "overflow": 0,
+    "colWidths": [
+     88,
+     48,
+     68,
+     81,
+     194
+    ],
+    "rowHeights": [
+     53.3,
+     33.1,
+     53.3,
+     33.1,
+     33.1,
+     33.1,
+     33.1,
+     73.4
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "目的地区域",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "省份",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "首重（元）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "续重（元/kg）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "时效",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华东地区",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "江苏",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达（杭州、宁波市区当日揽收次日到）",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华南地区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1–2天",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广西",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天，部分县域延后1天",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "华北地区",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "河北",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "西南地区",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "四川",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–4天，成都市区2–3天",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "偏远地区",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 4,
+      "role": "data",
+      "text": "新疆、西藏全境及内蒙古阿拉善盟、青海玉树等区域，首重22元，续重12元/kg，时效5–7天；乡镇末端仅支持邮政EMS，下",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 14,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 14,
+      "natural": 27,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 86,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 253,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r2B.png",
+   "idea": "进一步压缩首重列，把空间交给时效列。费用数值仍有充足空间，两个费用表头允许换行；重点检验浙江说明能否在更自然的位置断行。",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2C": {
+   "widths": [
+    75,
+    48,
+    88,
+    81,
+    187
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 480,
+    "tableHeight": 346.7,
+    "overflow": 0,
+    "colWidths": [
+     75,
+     48,
+     88,
+     81,
+     187
+    ],
+    "rowHeights": [
+     53.3,
+     33.1,
+     53.3,
+     33.1,
+     33.1,
+     33.1,
+     33.1,
+     73.4
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "目的地区域",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "省份",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "首重（元）",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "续重（元/kg）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "时效",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华东地区",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "江苏",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达（杭州、宁波市区当日揽收次日到）",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华南地区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1–2天",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广西",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天，部分县域延后1天",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "华北地区",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "河北",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "西南地区",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "四川",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–4天，成都市区2–3天",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "偏远地区",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 4,
+      "role": "data",
+      "text": "新疆、西藏全境及内蒙古阿拉善盟、青海玉树等区域，首重22元，续重12元/kg，时效5–7天；乡镇末端仅支持邮政EMS，下",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 14,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 14,
+      "natural": 27,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 86,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 253,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r2C.png",
+   "idea": "缩窄地区列，利用跨两行的地区单元格容纳可能的换行，同时保留首重表头单行并扩大时效列。检验地区名称与表头换行所带来的代价是否值得。",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    88,
+    48,
+    75,
+    83,
+    185
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 480,
+    "tableHeight": 346.7,
+    "overflow": 0,
+    "colWidths": [
+     88,
+     48,
+     75,
+     83,
+     185
+    ],
+    "rowHeights": [
+     53.3,
+     33.1,
+     53.3,
+     33.1,
+     33.1,
+     33.1,
+     33.1,
+     73.4
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "目的地区域",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "省份",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "首重（元）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "续重（元/kg）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "时效",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华东地区",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "江苏",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达（杭州、宁波市区当日揽收次日到）",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华南地区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1–2天",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广西",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天，部分县域延后1天",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "华北地区",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "河北",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "西南地区",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "四川",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–4天，成都市区2–3天",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "偏远地区",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 4,
+      "role": "data",
+      "text": "新疆、西藏全境及内蒙古阿拉善盟、青海玉树等区域，首重22元，续重12元/kg，时效5–7天；乡镇末端仅支持邮政EMS，下",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 14,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 14,
+      "natural": 27,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 86,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 253,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r3A.png",
+   "idea": "Keep r2A's correct column-1 width (88px, one-line 目的地区域) and r2A's clean two-line 首重（元）/续重（元/kg） headers, but take 5px out of col 4 (88→83) so （元/kg） keeps 62px of text instead of 67px of slack, and hand those 5px plus r2A's spare 7px to 时效 (180→185). Fixes the money-column imbalance without shrinking the time column.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3B": {
+   "widths": [
+    88,
+    48,
+    68,
+    83,
+    192
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 480,
+    "tableHeight": 346.7,
+    "overflow": 0,
+    "colWidths": [
+     88,
+     48,
+     68,
+     83,
+     192
+    ],
+    "rowHeights": [
+     53.3,
+     33.1,
+     53.3,
+     33.1,
+     33.1,
+     33.1,
+     33.1,
+     73.4
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "目的地区域",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "省份",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "首重（元）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "续重（元/kg）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "时效",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华东地区",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "江苏",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达（杭州、宁波市区当日揽收次日到）",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华南地区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1–2天",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广西",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天，部分县域延后1天",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "华北地区",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "河北",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "西南地区",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "四川",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–4天，成都市区2–3天",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "偏远地区",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 4,
+      "role": "data",
+      "text": "新疆、西藏全境及内蒙古阿拉善盟、青海玉树等区域，首重22元，续重12元/kg，时效5–7天；乡镇末端仅支持邮政EMS，下",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 14,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 14,
+      "natural": 27,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 86,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 253,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r3B.png",
+   "idea": "Refine r2B: same 194px-class 时效 budget (192px → 171px text) but move 3px from col 3 to col 4 so the unbreakable （元/kg） token has 62px against a 60px need instead of sitting at exactly 60px with no slack. Col 3 at 68px keeps the cheap two-line 首重 / （元） header, which costs no extra height because the header row is already two lines tall.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3C": {
+   "widths": [
+    88,
+    48,
+    88,
+    83,
+    172
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 480,
+    "tableHeight": 346.7,
+    "overflow": 0,
+    "colWidths": [
+     88,
+     48,
+     88,
+     83,
+     172
+    ],
+    "rowHeights": [
+     53.3,
+     33.1,
+     53.3,
+     33.1,
+     33.1,
+     33.1,
+     33.1,
+     73.4
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "目的地区域",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "省份",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "首重（元）",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "续重（元/kg）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "时效",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华东地区",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "江苏",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达（杭州、宁波市区当日揽收次日到）",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华南地区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1–2天",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广西",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天，部分县域延后1天",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "华北地区",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "河北",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "西南地区",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "四川",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–4天，成都市区2–3天",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "偏远地区",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 4,
+      "role": "data",
+      "text": "新疆、西藏全境及内蒙古阿拉善盟、青海玉树等区域，首重22元，续重12元/kg，时效5–7天；乡镇末端仅支持邮政EMS，下",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 14,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 14,
+      "natural": 27,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 86,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 253,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r3C.png",
+   "idea": "New idea: take r2C's one-line 首重（元）header (88px) — the property that made r2C look tidiest in the fee block — but restore column 1 to 88px so 目的地区域 stops breaking into 目的地区 / 域. Cost is 13px from 时效 (172px → 151px text), which still holds 次日达 on one line and only pushes the 浙江 and 偏远 cells one line further; a deliberate trade of some time-column comfort for a single-baseline fee header block.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "contrast": {
+   "widths": [
+    96,
+    96,
+    96,
+    96,
+    95
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 480,
+    "tableHeight": 467.5,
+    "overflow": 0,
+    "colWidths": [
+     96,
+     96,
+     96,
+     96,
+     95
+    ],
+    "rowHeights": [
+     53.3,
+     33.1,
+     93.6,
+     33.1,
+     73.4,
+     33.1,
+     73.4,
+     73.4
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "目的地区域",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "省份",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "首重（元）",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "续重（元/kg）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "时效",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华东地区",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "江苏",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达（杭州、宁波市区当日揽收次日到）",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华南地区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1–2天",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广西",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天，部分县域延后1天",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "华北地区",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "河北",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "西南地区",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "四川",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–4天，成都市区2–3天",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "偏远地区",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 4,
+      "role": "data",
+      "text": "新疆、西藏全境及内蒙古阿拉善盟、青海玉树等区域，首重22元，续重12元/kg，时效5–7天；乡镇末端仅支持邮政EMS，下",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 14,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 14,
+      "natural": 27,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 86,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 253,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-contrast.png",
+   "idea": "看似“整齐均分”，实则无视内容：省份只需 48px 却占 96px，时效 只剩 95px，几乎所有时效单元格折成三行，表高暴涨、扫读节奏全毁。"
+  },
+  "ref_auto": {
+   "widths": [
+    50.1,
+    49.2,
+    88.9,
+    112.8,
+    178
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 480,
+    "tableHeight": 407.1,
+    "overflow": 0,
+    "colWidths": [
+     50.1,
+     49.2,
+     88.9,
+     112.8,
+     178
+    ],
+    "rowHeights": [
+     73.4,
+     33.1,
+     53.3,
+     33.1,
+     33.1,
+     53.3,
+     53.3,
+     73.4
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "目的地区域",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "省份",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "首重（元）",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "续重（元/kg）",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "时效",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华东地区",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "江苏",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达（杭州、宁波市区当日揽收次日到）",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华南地区",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1–2天",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广西",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天，部分县域延后1天",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "华北地区",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "河北",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "西南地区",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "四川",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–4天，成都市区2–3天",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "偏远地区",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 4,
+      "role": "data",
+      "text": "新疆、西藏全境及内蒙古阿拉善盟、青海玉树等区域，首重22元，续重12元/kg，时效5–7天；乡镇末端仅支持邮政EMS，下",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 14,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 14,
+      "natural": 27,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 86,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 253,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    95,
+    95,
+    95,
+    95,
+    95
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 476,
+    "tableHeight": 467.5,
+    "overflow": 0,
+    "colWidths": [
+     95,
+     95,
+     95,
+     95,
+     95
+    ],
+    "rowHeights": [
+     53.3,
+     33.1,
+     93.6,
+     33.1,
+     73.4,
+     33.1,
+     73.4,
+     73.4
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "目的地区域",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "省份",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "首重（元）",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "续重（元/kg）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "时效",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华东地区",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "江苏",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "次日达（杭州、宁波市区当日揽收次日到）",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "华南地区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1–2天",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广西",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天，部分县域延后1天",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "华北地区",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "河北",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2–3天",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "西南地区",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "四川",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–4天，成都市区2–3天",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "偏远地区",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 4,
+      "role": "data",
+      "text": "新疆、西藏全境及内蒙古阿拉善盟、青海玉树等区域，首重22元，续重12元/kg，时效5–7天；乡镇末端仅支持邮政EMS，下",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 14,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 14,
+      "natural": 27,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 86,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 253,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-ref_equal.png"
+  }
+ },
+ "modelsUsed": [
+  "codex/gpt-6.1-terra",
+  "opencode-zen-free/deepseek-v4.1-flash-free"
+ ],
+ "understanding": {
+  "purpose": "按目的地区域和省份查询物流首重、续重费用与预计时效，并说明偏远地区的特殊运费。",
+  "reading": "读者先定位地区和省份，再横向读取费用与时效；也可能纵向比较不同目的地的价格和时效。合并的地区单元格将相邻省份组成一组，偏远地区说明则横跨后四列。",
+  "groups": [
+   "目的地区域与省份共同确定目的地，应保持清晰的层级和相邻关系。",
+   "首重与续重都是运费指标，应便于横向读取和纵向比较。",
+   "时效与费用共同构成物流服务信息，但较长的时效文字需要更多弹性空间。"
+  ],
+  "keep_intact": [
+   "地区和省份名称尽量保持完整。",
+   "首重、续重的数值及其单位应清晰可辨，避免拆开数字或单位。",
+   "时效中的数字、时间单位及不可分割的标识应保持完整。"
+  ],
+  "may_wrap": [
+   "较长的时效说明可在自然语义边界换行。",
+   "偏远地区的跨列说明可自然换行；它拥有后四列的合并宽度。",
+   "首重和续重表头可在适当位置换行，但保持表头单行更利于比较。",
+   "华东和华南的合并地区单元格各跨两行，其已有高度可以容纳必要的换行。"
+  ]
+ },
+ "final": {
+  "preferred": [
+   "r1C"
+  ],
+  "acceptable": [
+   "r3C",
+   "r2A",
+   "r3A"
+  ],
+  "bad": [
+   {
+    "design": "r2B",
+    "why": "省份 列 68px 装两字省名（实需 48px），留下约 20px 死白，同时把 首重/续重 两个表头都逼到折行；多出的宽度给了最不需要它的列。"
+   },
+   {
+    "design": "r3B",
+    "why": "同 r2B：省份列虚胖 20px，而 续重 列拿到 83px 仍低于 107px 的单行阈值，宽度白给、表头照旧折行，属双重浪费。"
+   },
+   {
+    "design": "r2C",
+    "why": "为把 时效 抬到 187px，把行锚点列压到 75px，导致表头 目的地区域 断成“目的地区/域”，语义断在词中间；正文 华东地区 也贴边，整表最关键的定位列失去分量。"
+   },
+   {
+    "design": "r1B",
+    "why": "把 续重 抬到 107px 换来单行表头，但代价是 时效 只剩 160px：4 行正文折成两行，表高 387px（比同表头折行数的 r1C 高 40px），行高 53/33 交替，纵向节奏破碎——用最长的阅读列去换一个本可干净折行的表头，优先级错置。"
+   },
+   {
+    "design": "contrast",
+    "why": "看似“整齐均分”，实则无视内容：省份只需 48px 却占 96px，时效 只剩 95px，几乎所有时效单元格折成三行，表高暴涨、扫读节奏全毁。"
+   }
+  ],
+  "contrast": {
+   "widths": [
+    96,
+    96,
+    96,
+    96,
+    95
+   ],
+   "why": "看似“整齐均分”，实则无视内容：省份只需 48px 却占 96px，时效 只剩 95px，几乎所有时效单元格折成三行，表高暴涨、扫读节奏全毁。"
+  },
+  "ranges": [
+   [
+    88,
+    96
+   ],
+   [
+    48,
+    54
+   ],
+   [
+    88,
+    94
+   ],
+   [
+    78,
+    96
+   ],
+   [
+    165,
+    180
+   ]
+  ],
+  "rationale": "时效列承载全表最长文本（偏远地区合并说明一行 253px，另有多个双行单元格），应吸收几乎全部余量；省份列只需 48px，多给就是死白。所有候选都落在同一条前沿上：要么花 107px 让 续重（元/kg） 单行，把 时效 压到 ≤172px 使正文多折行、表高增到 387px；要么让该表头干净地断成“续重 / （元/kg）”，把表高锁在 347px。r1C 选了后者，同时保住 目的地区域 与 首重（元） 不折行，全表只有 1 个表头折行、正文行高统一 33px。r2C 的折行落在“目的地区/域”这种词中断裂上，代价与收益完全不对等，因此最差。",
+  "principles": {
+   "general": [
+    "表头折行若断在语义边界（首重/（元）、续重/（元/kg））几乎无损；断在词中间（目的地区/域）则破坏行锚点的可识别性，代价远高。",
+    "宽度分配应看“文本量×换行代价”，而不是列数或对称：承载长句的列拿余量，短标识列压到阈值即可。",
+    "判断优劣要先看行高序列：行高忽高忽低说明某列宽度已越过折行阈值，是宽度错配的直接证据。",
+    "当某个折行阈值（此处 107px）会挤占更重要的列时，宁可让表头折行，也别为了‘表头全单行’牺牲正文。",
+    "省/地区这类 2–4 字的短列一旦明显宽于其最长词，会形成视觉空洞，破坏列间的节奏感。"
+   ],
+   "specific": [
+    "本表列宽下限由内容精确给出：目的地区域 88、省份 48、首重（元） 88、续重（元/kg） 107、时效 48；479px 总和装不下全部单行表头（需 379 + 时效），因此必须接受至少一个表头折行。",
+    "偏远地区说明跨 4 列合并，其折行由第 2–5 列总宽决定，所以压窄省份列反而改善长说明的排版。",
+    "时效列在 173px 左右已达最优（表高 347px）；降到 160px 立即多出两行 53px 的行高，160 是硬性下限。"
+   ]
+  },
+  "tradeoffs": "有人会坚持所有表头单行、把 时效 压到 148px 以内，认为表头整齐优先于正文高度；也有人（如 r2A）愿意让两个表头干净折行以换取 时效 180px 的宽松。r1C 与 r3C 只差 1–2px 的分配，可视为同一设计。",
+  "uncertain": "r3C 与 r1C 在实际渲染中几乎不可分辨，是否应并列为 preferred 存在分歧；此外偏远地区这条合并说明是否应改为独占整行的脚注式排版（从而不再受列宽约束），是超出“只调列宽”范围但值得讨论的方向。"
+ },
+ "reviews": [
+  {
+   "order": [
+    "r2B",
+    "r2A",
+    "r1C",
+    "r3C",
+    "ref_equal",
+    "ref_auto"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "excellent",
+     "why": "区域列足以让“目的地区域”表头和“华东地区/华南地区”等地名各自成行，时效列拿到最大宽度，长句如“次日达（杭州、宁波市区当日揽收次日到达）”只折两行，读起来是一个句子；首重/续重的量纲表头折成“首重 /（元）”“续重 /（元/kg）”两行，但两列数字都只有 1–2 位，窄列并不吃亏。层级、比例、行单位都成立。"
+    },
+    "B": {
+     "grade": "good",
+     "why": "结构与 A 同一思路，区域列与省份列都完整；但时效列比 A 收窄，长描述提前断行（“次日达（杭州、宁波市区”就换行），句意被切开一处；多出来的宽度给了只放 1–2 位数字的首重/续重列，属于把空间放在低信息量处。"
+    },
+    "C": {
+     "grade": "good",
+     "why": "量纲表头保持单行，“首重（元）”“续重（元/kg）”完整呈现，表头层级最清楚；代价是时效列被压窄，长句折行更多、行尾参差，读者比较时效时要跨行拼接。表头干净但正文让位，属可取的折中。"
+    },
+    "D": {
+     "grade": "acceptable",
+     "why": "与 C 几乎同构，但把更多宽度让给首重/续重两列（内容仅 1–2 位数字），时效列进一步收窄，末列文字成块、右侧留白不均，横向比较时效的扫读效率下降。"
+    },
+    "E": {
+     "grade": "poor",
+     "why": "时效列被压到一百多像素，“次日达（杭州、宁波市区当日揽收次日到达）”拆成三到四行并出现“天”单独成行的孤字，行高被撑大、行与行的节奏被打断；区域列反而过宽，空间分配与内容重要性倒挂。"
+    },
+    "F": {
+     "grade": "bad",
+     "why": "首列过窄，“目的地区域”表头与“华东地区”“华南地区”“西南地区”“偏远地区”全部被拆成两行，行标识断裂，纵向无法一眼扫出分组；多余宽度留在省份列和数字列，整表重心失衡。"
+    }
+   },
+   "best": [
+    "A"
+   ],
+   "confidence": "medium",
+   "unsure": "C 与 D 的渲染差异极小，仅凭目测难以确认两者具体是哪一列相差几像素；也无法精确测量各列像素宽度，只能按换行位置推断。A 与 B 的优劣主要取决于是否认为“时效长句少折一行”比“数字列稍宽”更重要。"
+  }
+ ],
+ "reviewPrompt": "v2"
+}

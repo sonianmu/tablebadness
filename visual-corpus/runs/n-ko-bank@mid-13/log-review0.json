@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 예금 상품 비교 (language ko).\nGrid: 5 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 13px font, excluding padding):\n  col 1: header \"상품명\" · longest unbreakable word 12px · one-line width 97px\n  col 2: header \"금리(연)\" · longest unbreakable word 87px · one-line width 170px\n  col 3: header \"가입 기간\" · longest unbreakable word 25px · one-line width 122px\n  col 4: header \"최소 금액\" · longest unbreakable word 25px · one-line width 71px\n  col 5: header \"특징\" · longest unbreakable word 45px · one-line width 1301px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 539px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 538px.\nFixed: content, font, 13px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9417,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Product names and most rates and terms stay intact, making the comparison columns easy to scan. The features column is narrow, so its paragraphs wrap frequently and create tall rows.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"Product names and rates remain clear, and the features column has more room. Several term ranges break between the number and 개월, making that comparison column harder to scan.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"Product names and rates are easy to scan, but several term ranges split 개월 across lines. The features column remains narrow enough to produce frequent word breaks.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"The wider features column improves the prose, but two product names break within 정기예금 and several term ranges split across lines. Those breaks weaken the row labels and comparison columns.\"},\"E\":{\"grade\":\"bad\",\"why\":\"The very narrow product-name column fragments every row label and even the header. Terms and minimum amounts also break heavily, making the table difficult to compare despite the roomy features column.\"},\"F\":{\"grade\":\"poor\",\"why\":\"The features column is extremely narrow, producing very tall rows and frequent breaks. Two product names split, and percent signs separate from rate ranges, undermining comparison.\"}},\"best\":[\"A\"],\"confidence\":\"medium\",\"unsure\":\"A keeps the main comparison fields most intact, but its narrow features column is a significant tradeoff. B and D give the prose more space at the cost of breaks in terms or product names.\"}\n"
+  }
+ ]
+}

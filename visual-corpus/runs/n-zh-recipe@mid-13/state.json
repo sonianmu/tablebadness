@@ -1,0 +1,2395 @@
+{
+ "id": "n-zh-recipe@mid-13",
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "The only design that produces any single-line rows (3 of 8), so it is the shortest table (400px) and the closest to a scannable card. Cols 1–2 are at their true minimum (61 = 40px text, 88 = 67px text), so nothing is wasted on the 'what + how much' pair, and the header 用量（克） sits unbroken right beside the numbers it qualifies. No mid-word splits.",
+     "problems": "The 备注 column is visibly squeezed: notes break into two stubby lines even when they are short (生抽有咸味，谨防过咸, 去腥用，不喜酒味可减), and the breaks land after the comma, leaving a lonely second line that makes the row look like it is still loading. Row rhythm is choppy (33/53/33/53/53/33/33/53/53) with no pattern, because row height is set by whichever prose cell happens to wrap. Col 4 carries almost the whole 80px deficit while col 3 is also still wrapping its longest instruction.",
+     "cause": "widths [61,88,179,151]: col4 gets only 130px of text against the 160px it needs, so every note above ~10 characters wraps; col3 gets 158px against 208px, so 切3厘米见方块，冷水下锅焯净血沫 also wraps. The deficit was split 29/9 in favour of col3, but 29px is not enough to save col3's long cell and 9px is not enough to save col4's short cells — the split falls between two useful thresholds."
+    },
+    {
+     "design": "r0B",
+     "good": "Col 3 is nearly satisfied (195px text vs 208 needed), so the operative instruction — the thing a cook actually acts on — reads almost in one line, and the 五花肉 row is only marginally wrapped. Cols 1–2 again at minimum, so no waste there.",
+     "problems": "备注 is a disaster: 114px total = 93px text, so all 8 rows wrap, and the breaks are ugly and semantically wrong (去腥用，不喜酒 / 味可减, 生抽有咸味，谨 / 防过咸). A secondary advisory column now dictates the height of every single row: table is 440px, 40px taller than r0A, with 8/8 rows at 53px. The table no longer reads as rows — it reads as two tall text columns fighting each other.",
+     "cause": "widths [61,88,216,114]: col4 was cut to 71% of its one-line need to buy col3 the last 21px it needed, but those 21px only un-wrap one cell (the longest instruction still does not fit), while the 67px taken from col4 un-wraps nothing and wraps everything. Worst possible trade: the sacrifice bought no row."
+    },
+    {
+     "design": "r0C",
+     "good": "Most relaxed-looking of the three: ingredient and amount columns have visible breathing room, headers sit comfortably, and the table feels calm and symmetric at first glance. Col 3 at 151px text keeps every instruction except the longest on one line.",
+     "problems": "The calm is bought by stealing from the columns that need it. 食材 gets 59px of text for a 40px need (+19 dead px) and 用量 gets 77 for 67 (+10 dead px) — about 29px of pure slack that the prose columns are starving for. Result: 备注 at 108px text wraps 5 rows, table is 420px, i.e. 20px taller than r0A while *looking* emptier. The ragged 33/53 alternation is still there, and the dead space in cols 1–2 reads as a layout mistake rather than generosity because the neighbouring column is visibly cramped.",
+     "cause": "widths [80,98,172,129]: +19px and +10px added to columns whose content cannot use them, taken directly out of col3 (−7px) and col4 (−22px). Since the one-line requirements are 40/67/208/160, every pixel above 40 and 67 is wasted, and every pixel below 208/160 costs a row."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    61,
+    88,
+    179,
+    151
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 9,
+    "tableWidth": 480,
+    "tableHeight": 400,
+    "overflow": 0,
+    "colWidths": [
+     61,
+     88,
+     179,
+     151
+    ],
+    "rowHeights": [
+     33.1,
+     53.3,
+     33.1,
+     53.3,
+     53.3,
+     33.1,
+     33.1,
+     53.3,
+     53.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "食材",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "用量（克）",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "处理方式",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "备注",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "五花肉",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "500",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "切3厘米见方块，冷水下锅焯净血沫",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "选肥瘦三层分明的带皮肉",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "姜",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "拍松后切片",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "老姜去腥效果更好",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "大葱",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "20",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "切段",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "可用小葱替代，但需减量",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "冰糖",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "25",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "敲成小碎块",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用于炒糖色，火候不宜过大",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "生抽",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "直接量取",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "咸度按品牌调整",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "老抽",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "直接量取",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "仅调色，多放易发黑",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "料酒",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "适量",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "焯水和炖煮时分两次加入",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "去腥用，不喜酒味可减",
+      "lines": 2
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "盐",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "少许",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "出锅前尝味后补加",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "生抽有咸味，谨防过咸",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 14,
+      "natural": 40,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 208,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 160,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r0A.png",
+   "idea": "Lock cols 1–2 at their exact one-line minimum so no ingredient or amount can ever wrap, then split the remaining 330px between the two prose columns in proportion to their natural one-line widths (208:160), giving both roughly two lines per row.",
+   "notes": []
+  },
+  "r0B": {
+   "widths": [
+    61,
+    88,
+    216,
+    114
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 9,
+    "tableWidth": 480,
+    "tableHeight": 440.3,
+    "overflow": 0,
+    "colWidths": [
+     61,
+     88,
+     216,
+     114
+    ],
+    "rowHeights": [
+     33.1,
+     53.3,
+     53.3,
+     53.3,
+     53.3,
+     33.1,
+     53.3,
+     53.3,
+     53.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "食材",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "用量（克）",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "处理方式",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "备注",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "五花肉",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "500",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "切3厘米见方块，冷水下锅焯净血沫",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "选肥瘦三层分明的带皮肉",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "姜",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "拍松后切片",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "老姜去腥效果更好",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "大葱",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "20",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "切段",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "可用小葱替代，但需减量",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "冰糖",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "25",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "敲成小碎块",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用于炒糖色，火候不宜过大",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "生抽",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "直接量取",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "咸度按品牌调整",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "老抽",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "直接量取",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "仅调色，多放易发黑",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "料酒",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "适量",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "焯水和炖煮时分两次加入",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "去腥用，不喜酒味可减",
+      "lines": 2
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "盐",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "少许",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "出锅前尝味后补加",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "生抽有咸味，谨防过咸",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 14,
+      "natural": 40,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 208,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 160,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r0B.png",
+   "idea": "Action-forward: spend almost all slack on 处理方式 so most prep instructions finish on a single line and the cook can act immediately, letting the purely advisory 备注 wrap to two or three lines.",
+   "notes": []
+  },
+  "r0C": {
+   "widths": [
+    80,
+    98,
+    172,
+    129
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 9,
+    "tableWidth": 480,
+    "tableHeight": 420.1,
+    "overflow": 0,
+    "colWidths": [
+     80,
+     98,
+     172,
+     129
+    ],
+    "rowHeights": [
+     33.1,
+     53.3,
+     33.1,
+     53.3,
+     53.3,
+     33.1,
+     53.3,
+     53.3,
+     53.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "食材",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "用量（克）",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "处理方式",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "备注",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "五花肉",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "500",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "切3厘米见方块，冷水下锅焯净血沫",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "选肥瘦三层分明的带皮肉",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "姜",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "拍松后切片",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "老姜去腥效果更好",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "大葱",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "20",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "切段",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "可用小葱替代，但需减量",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "冰糖",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "25",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "敲成小碎块",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用于炒糖色，火候不宜过大",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "生抽",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "直接量取",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "咸度按品牌调整",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "老抽",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "直接量取",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "仅调色，多放易发黑",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "料酒",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "适量",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "焯水和炖煮时分两次加入",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "去腥用，不喜酒味可减",
+      "lines": 2
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "盐",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "少许",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "出锅前尝味后补加",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "生抽有咸味，谨防过咸",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 14,
+      "natural": 40,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 208,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 160,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r0C.png",
+   "idea": "Scan-axis comfort: give the ingredient and amount columns extra breathing room (wider gutters around the numbers) to speed vertical lookup and comparison, accepting that both prose columns wrap a little more.",
+   "notes": []
+  },
+  "r1A": {
+   "widths": [
+    61,
+    88,
+    172,
+    158
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 9,
+    "tableWidth": 480,
+    "tableHeight": 359.7,
+    "overflow": 0,
+    "colWidths": [
+     61,
+     88,
+     172,
+     158
+    ],
+    "rowHeights": [
+     33.1,
+     53.3,
+     33.1,
+     53.3,
+     53.3,
+     33.1,
+     33.1,
+     33.1,
+     33.1
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "食材",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "用量（克）",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "处理方式",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "备注",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "五花肉",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "500",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "切3厘米见方块，冷水下锅焯净血沫",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "选肥瘦三层分明的带皮肉",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "姜",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "拍松后切片",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "老姜去腥效果更好",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "大葱",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "20",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "切段",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "可用小葱替代，但需减量",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "冰糖",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "25",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "敲成小碎块",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用于炒糖色，火候不宜过大",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "生抽",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "直接量取",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "咸度按品牌调整",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "老抽",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "直接量取",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "仅调色，多放易发黑",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "料酒",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "适量",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "焯水和炖煮时分两次加入",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "去腥用，不喜酒味可减",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "盐",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "少许",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "出锅前尝味后补加",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "生抽有咸味，谨防过咸",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 14,
+      "natural": 40,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 208,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 160,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r1A.png",
+   "idea": "Hold cols 1–2 at their exact minimum (61/88) and give the freed 29px to 备注 (151→158, i.e. 137px text) while trimming 处理方式 only slightly (179→172, 151px text). Rationale: the deficit is 80px, and the only useful way to spend it is to push 备注 past the ~125–137px threshold where four of its eight notes live, so rows 大葱/料酒/盐 collapse to one line, and to keep 处理方式 above ~150px so 焯水和炖煮时分两次加入 stays intact. Only the two genuinely long cells (五花肉's instruction and 冰糖's note) should wrap — 2 double rows instead of 5, table ≈337px.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    61,
+    88,
+    180,
+    150
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 9,
+    "tableWidth": 480,
+    "tableHeight": 400,
+    "overflow": 0,
+    "colWidths": [
+     61,
+     88,
+     180,
+     150
+    ],
+    "rowHeights": [
+     33.1,
+     53.3,
+     33.1,
+     53.3,
+     53.3,
+     33.1,
+     33.1,
+     53.3,
+     53.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "食材",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "用量（克）",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "处理方式",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "备注",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "五花肉",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "500",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "切3厘米见方块，冷水下锅焯净血沫",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "选肥瘦三层分明的带皮肉",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "姜",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "拍松后切片",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "老姜去腥效果更好",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "大葱",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "20",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "切段",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "可用小葱替代，但需减量",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "冰糖",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "25",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "敲成小碎块",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用于炒糖色，火候不宜过大",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "生抽",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "直接量取",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "咸度按品牌调整",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "老抽",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "直接量取",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "仅调色，多放易发黑",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "料酒",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "适量",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "焯水和炖煮时分两次加入",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "去腥用，不喜酒味可减",
+      "lines": 2
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "盐",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "少许",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "出锅前尝味后补加",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "生抽有咸味，谨防过咸",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 14,
+      "natural": 40,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 208,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 160,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r1B.png",
+   "idea": "A robustness variant of the above, deliberately giving up one row to gain margin: 处理方式 gets 159px text (9px of slack over its second-longest instruction, so 焯水和炖煮时分两次加入 and 出锅前尝味后补加 are safe) and 备注 gets 129px text (4px of slack over the 125px notes, so 去腥用，不喜酒味可减 and 生抽有咸味，谨防过咸 stay whole). Only 冰糖 and 五花肉 wrap. This trades one extra 53px row for the guarantee that no borderline cell flips, which matters because the widths are computed from estimated text metrics.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1C": {
+   "widths": [
+    61,
+    88,
+    166,
+    164
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 9,
+    "tableWidth": 480,
+    "tableHeight": 379.8,
+    "overflow": 0,
+    "colWidths": [
+     61,
+     88,
+     166,
+     164
+    ],
+    "rowHeights": [
+     33.1,
+     53.3,
+     33.1,
+     53.3,
+     53.3,
+     33.1,
+     33.1,
+     53.3,
+     33.1
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "食材",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "用量（克）",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "处理方式",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "备注",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "五花肉",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "500",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "切3厘米见方块，冷水下锅焯净血沫",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "选肥瘦三层分明的带皮肉",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "姜",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "拍松后切片",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "老姜去腥效果更好",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "大葱",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "20",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "切段",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "可用小葱替代，但需减量",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "冰糖",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "25",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "敲成小碎块",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用于炒糖色，火候不宜过大",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "生抽",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "直接量取",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "咸度按品牌调整",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "老抽",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "直接量取",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "仅调色，多放易发黑",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "料酒",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "适量",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "焯水和炖煮时分两次加入",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "去腥用，不喜酒味可减",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "盐",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "少许",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "出锅前尝味后补加",
+      "lines": 1
+     },
+     {
+      "r": 8,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "生抽有咸味，谨防过咸",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 14,
+      "natural": 40,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 67,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 208,
+      "padding": 21
+     },
+     {
+      "minContent": 27,
+      "natural": 160,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r1C.png",
+   "idea": "New idea: give the two prose columns near-equal width (145/143px text) on the theory that they play the same role — free text read one row at a time — and that a calm, almost symmetric prose block reads better than a hierarchy the content does not really support (备注 notes are often as long as 处理方式 instructions). Keeps cols 1–2 minimal. Expect 3 double rows (五花肉, 冰糖, 料酒), but the wraps distribute evenly across both prose columns instead of dumping every break on 备注, so no column looks broken; table ≈357px.",
+   "notes": [],
+   "parentRound": 0
+  }
+ },
+ "modelsUsed": [
+  "opencode-zen-free/deepseek-v4.1-flash-free"
+ ],
+ "understanding": {
+  "purpose": "A kitchen reference card: eight ingredients for 家常红烧肉, each with a quantity and a short prep instruction plus an advisory note. It is consulted mid-cooking, not read as prose, so lookup speed and unambiguous quantities matter more than compactness.",
+  "reading": "Vertical scan down col 1 to locate an ingredient, then a short rightward hop to its amount, then the prep instruction, then optionally the note. Comparison happens down the amount column (500 vs 15 vs 5) and across the two prose columns, which are read only one row at a time. Rows are the unit, so every row should keep its four cells visually on the same band and prose should wrap rather than push a row apart.",
+  "groups": [
+   "col 1 + col 2: ingredient and its quantity are one measure unit ('what' + 'how much') and must be read together, so they should stay narrow and adjacent with no wrapping between them",
+   "col 3 + col 4: both are free prose; 处理方式 is the operative instruction, 备注 is secondary/advisory, so they may be traded against each other but not against cols 1–2"
+  ],
+  "keep_intact": [
+   "ingredient names in col 1 (五花肉, 大葱, 冰糖 …) — never break a 2–3 character name",
+   "all amounts in col 2: 500, 15, 20, 25, 30, 5 and the words 适量 / 少许 must sit on one line",
+   "the header 用量（克） should stay unbroken so the unit is not orphaned from the number it qualifies",
+   "numeral+unit tokens inside prose such as 3厘米 and 两次 should not be split mid-token"
+  ],
+  "may_wrap": [
+   "处理方式 sentences (切3厘米见方块，冷水下锅焯净血沫 / 焯水和炖煮时分两次加入) — 2 lines is acceptable",
+   "备注 sentences (选肥瘦三层分明的五花肉 / 老姜去腥效果更好) — advisory, can absorb 2–3 lines without hurting the lookup",
+   "the header 处理方式 / 备注 may wrap only as a last resort; both fit at 27px unbreakable"
+  ]
+ }
+}

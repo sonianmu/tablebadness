@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 上海部分门店地址与营业时间 (language zh-CN).\nGrid: 4 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"门店\" · longest unbreakable word 16px · one-line width 123px\n  col 2: header \"地址\" · longest unbreakable word 36px · one-line width 412px\n  col 3: header \"电话\" · longest unbreakable word 44px · one-line width 112px\n  col 4: header \"营业时间\" · longest unbreakable word 50px · one-line width 88px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 13050,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Store names, phone numbers and hours stay on one line, making rows easy to scan. The narrower address column leaves a few isolated final characters on second lines.\"},\"B\":{\"grade\":\"poor\",\"why\":\"The address column is cramped into three or four lines while the phone and hours columns have substantial unused space. The tall rows slow comparison.\"},\"C\":{\"grade\":\"poor\",\"why\":\"The wider addresses come at the cost of wrapping every phone number and every hours range, as well as several store names. These repeated breaks make comparison harder.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"Phone numbers remain intact and addresses have room, but every hours range breaks across two lines and two store names wrap.\"},\"E\":{\"grade\":\"good\",\"why\":\"Phone numbers and hours remain intact, and the address column is reasonably generous. Three store names wrap, weakening the row labels slightly.\"},\"F\":{\"grade\":\"good\",\"why\":\"Phone numbers and hours remain intact, and most addresses use one or two lines. Two longer store names wrap, including a lone final character.\"}},\"best\":[\"A\"],\"confidence\":\"medium\",\"unsure\":\"A preserves every store name but produces less graceful address breaks than F; the choice depends on how much priority readers give to scanning store names versus reading addresses.\"}\n"
+  }
+ ]
+}

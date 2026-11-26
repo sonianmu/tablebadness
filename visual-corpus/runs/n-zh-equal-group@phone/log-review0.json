@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 重点城市季度GDP增速对比表 (language zh-CN).\nGrid: 6 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"城市\" spans 1 col × 2 row; \"季度增速（%）\" spans 4 col × 1 row; \"说明\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"城市\" · longest unbreakable word 16px · one-line width 31px\n  col 2: header \"季度增速（%） › 一季度\" · longest unbreakable word 22px · one-line width 46px\n  col 3: header \"季度增速（%） › 二季度\" · longest unbreakable word 22px · one-line width 46px\n  col 4: header \"季度增速（%） › 三季度\" · longest unbreakable word 23px · one-line width 46px\n  col 5: header \"季度增速（%） › 四季度\" · longest unbreakable word 22px · one-line width 46px\n  col 6: header \"说明\" · longest unbreakable word 31px · one-line width 766px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 17216,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"City names and numbers stay intact, and the quarter columns are balanced. The narrow notes column wraps heavily, making the rows tall and leaving much empty space under the numbers.\"},\"B\":{\"grade\":\"poor\",\"why\":\"The wider notes column helps, but every city name wraps vertically, weakening the row labels. Quarter headings also break into three lines.\"},\"C\":{\"grade\":\"good\",\"why\":\"City names and numbers remain intact, with equal quarter columns and a usable notes column. The three-line quarter headings and frequent wrapping in the notes slow scanning.\"},\"D\":{\"grade\":\"good\",\"why\":\"City names and figures stay intact, the quarter columns have a consistent rhythm, and the notes have more room than in C. The quarter headings still stack one character per line.\"},\"E\":{\"grade\":\"good\",\"why\":\"The city names and numbers remain intact, and the balanced quarter columns leave useful room for the notes. The quarter headings are crowded into three lines.\"},\"F\":{\"grade\":\"bad\",\"why\":\"The notes are squeezed into a very narrow strip, breaking phrases across many lines and producing extremely tall rows with large empty areas beneath the numbers.\"}},\"best\":[\"D\",\"E\"],\"confidence\":\"medium\",\"unsure\":\"D and E appear nearly identical at the displayed scale; any small difference in their widths is hard to judge visually.\"}\n"
+  }
+ ]
+}

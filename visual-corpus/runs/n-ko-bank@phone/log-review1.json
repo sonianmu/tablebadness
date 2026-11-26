@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 예금 상품 비교 (language ko).\nGrid: 5 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"상품명\" · longest unbreakable word 13px · one-line width 112px\n  col 2: header \"금리(연)\" · longest unbreakable word 99px · one-line width 194px\n  col 3: header \"가입 기간\" · longest unbreakable word 28px · one-line width 139px\n  col 4: header \"최소 금액\" · longest unbreakable word 28px · one-line width 82px\n  col 5: header \"특징\" · longest unbreakable word 51px · one-line width 1495px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11286,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"bad\",\"why\":\"All five columns are cramped: rates and amounts break across lines, while the features text forms an extremely narrow, long column. The resulting tall rows make comparisons difficult.\"},\"B\":{\"grade\":\"poor\",\"why\":\"Rates are mostly intact and the features column has some room, but product names, durations and amounts fragment severely; even the duration and amount headers stack character by character.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"Rates remain readable and the headers are mostly clear, but product names and durations wrap heavily, while the narrow features column produces very tall rows.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"The slightly wider product column improves row identification and rates remain intact, but durations and amounts still break awkwardly and the features text is compressed.\"},\"E\":{\"grade\":\"poor\",\"why\":\"The features text has useful width and rates are readable, but the product-name column is reduced to almost one character per line, making the row labels hard to scan.\"},\"F\":{\"grade\":\"good\",\"why\":\"It balances a readable rate column with more room for features, while preserving enough width to recognize product names. Durations and amounts still wrap, and the long descriptions make rows tall.\"}},\"best\":[\"F\"],\"confidence\":\"medium\",\"unsure\":\"C, D and F are close in their column proportions; the choice depends on how much weight is given to product-name readability versus space for the long features text.\"}\n"
+  }
+ ]
+}

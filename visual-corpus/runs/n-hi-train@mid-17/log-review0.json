@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: भारतीय रेल समय सारणी — प्रमुख ट्रेनें (language hi).\nGrid: 6 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"ट्रेन संख्या\" · longest unbreakable word 51px · one-line width 60px\n  col 2: header \"ट्रेन का नाम\" · longest unbreakable word 61px · one-line width 151px\n  col 3: header \"प्रस्थान\" · longest unbreakable word 46px · one-line width 46px\n  col 4: header \"आगमन\" · longest unbreakable word 47px · one-line width 123px\n  col 5: header \"दिन\" · longest unbreakable word 52px · one-line width 166px\n  col 6: header \"टिप्पणी\" · longest unbreakable word 77px · one-line width 348px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 602px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 601px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 16623,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Headers and times stay intact, and rows scan clearly. Train names and especially remarks wrap more than in the better-balanced alternatives.\"},\"B\":{\"grade\":\"poor\",\"why\":\"Equal column widths leave excessive space around train numbers and departure times while squeezing names and remarks into tall, heavily wrapped cells.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"Remarks have useful room, but the train-number header wraps and several arrival-day qualifiers break across two lines beneath the time, making those cells harder to scan.\"},\"D\":{\"grade\":\"poor\",\"why\":\"The departure time 06:00 breaks across lines, damaging a key timetable value. The train-number header also wraps, although remarks have reasonable room.\"},\"E\":{\"grade\":\"good\",\"why\":\"Train names, times and headers remain intact, with useful space for remarks. The narrow day column produces some awkward four-line entries.\"},\"F\":{\"grade\":\"excellent\",\"why\":\"A well-balanced distribution keeps headers and times intact, gives remarks room, and preserves a clear rhythm across rows. Names and day entries wrap without obscuring their meaning.\"}},\"best\":[\"F\"],\"confidence\":\"high\",\"unsure\":\"E is a close alternative: it gives train names more room, but its narrower day column creates taller, less balanced entries.\"}\n"
+  }
+ ]
+}

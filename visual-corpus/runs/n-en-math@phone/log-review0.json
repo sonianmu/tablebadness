@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Mathematical Notation Reference (language en).\nGrid: 4 columns × 6 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Symbol\" · longest unbreakable word 54px · one-line width 54px\n  col 2: header \"Name\" · longest unbreakable word 78px · one-line width 105px\n  col 3: header \"LaTeX\" · longest unbreakable word 59px · one-line width 59px\n  col 4: header \"Meaning\" · longest unbreakable word 100px · one-line width 1191px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nRendering convention: the screenshot always shows the WHOLE table. Anything beyond the dashed box is not clipped; it is the part a reader reaches by scrolling sideways, so judge both what fits in the box at first sight and the cost of scrolling to the rest.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11588,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"All columns fit in the viewport and the symbols, names and LaTeX are easy to scan. The narrow Meaning column creates very tall rows and splits words such as ‘antiderivatives’ and ‘construction’.\"},\"B\":{\"grade\":\"good\",\"why\":\"The identifying columns stay readable and the wider Meaning column keeps words intact with less wrapping. Reading the descriptions requires horizontal scrolling.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"The wider Meaning column gives the prose a more comfortable measure, but more of each description lies beyond the viewport, increasing the cost of comparing it with the symbol and name.\"},\"D\":{\"grade\":\"bad\",\"why\":\"Equal-looking narrow columns waste space on short symbols while splitting names and many words in the descriptions. The resulting tall rows are difficult to read.\"},\"E\":{\"grade\":\"good\",\"why\":\"The identifiers remain intact and the descriptions wrap without the conspicuous word splits seen in A. A small amount of horizontal scrolling is needed to see the ends of some lines.\"},\"F\":{\"grade\":\"good\",\"why\":\"The identifiers stay intact and the Meaning column keeps words together. Only a small part of the table extends beyond the viewport, although some line endings still require scrolling.\"}},\"best\":[\"E\",\"F\"],\"confidence\":\"medium\",\"unsure\":\"E and F appear nearly identical, so their small difference is hard to judge. The supplied images do not make the full horizontal extent of B and C clear, which limits comparison of their scrolling cost.\"}\n"
+  }
+ ]
+}

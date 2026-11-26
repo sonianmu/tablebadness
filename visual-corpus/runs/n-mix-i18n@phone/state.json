@@ -1,0 +1,5669 @@
+{
+ "id": "n-mix-i18n@phone",
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "The full key column anchors each row, and English fits entirely within the initial viewport. Natural wrapping keeps the table relatively compact without splitting words.",
+     "problems": "Only the key and English columns are visible initially, so comparing translations requires substantial sideways scrolling. The uneven row heights also make some short entries feel surrounded by excess space.",
+     "cause": "The 227px key and 132px English columns consume the full viewport. The 115px Chinese, 150px Japanese and 125px Arabic columns make the table 750px wide; wrapped translations determine the taller rows."
+    },
+    {
+     "design": "r0B",
+     "good": "Every entry stays on one line, giving the rows a consistent, compact rhythm and preserving identifiers and words.",
+     "problems": "The table is very wide, and even English is cut off at the initial viewport edge. Comparing a key with the later languages requires a long scroll, making it difficult to retain the row connection.",
+     "cause": "The columns are sized for their longest one-line contents: 227px for keys, 217px for English and up to 304px for Japanese. Their combined width is 1162px."
+    },
+    {
+     "design": "r0C",
+     "good": "All five languages and the key are visible together, so the parallel columns and row relationships can be seen without scrolling.",
+     "problems": "Identifiers and several English and Arabic words break across lines, making them hard to recognize. The English header splits, and the very tall rows interrupt scanning and create uneven blocks of white space.",
+     "cause": "The 94px key column leaves only 73px for identifiers, while the 70px English and Arabic columns leave 49px for text. The 54px Chinese and 71px Japanese columns also force frequent wrapping, producing rows up to 176px tall."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "Complete keys make rows easy to identify, and the translations wrap without splitting words. The English column fits fully in the initial viewport.",
+     "problems": "Several rows are tall, especially the invalid-email and shipping rows, while much of the key column remains empty vertically. The other language columns require substantial horizontal scrolling.",
+     "cause": "The 227px key column preserves every identifier but consumes most of the viewport; the 90px Chinese and 120px Japanese columns make longer translations wrap over several lines."
+    },
+    {
+     "design": "r1B",
+     "good": "Complete keys and wider language columns produce the clearest, most compact rows of the three designs. Translation words remain intact, and no cell exceeds three lines.",
+     "problems": "The initial viewport cuts through English text, so even the first translation cannot always be read without scrolling. Reaching Arabic takes the most horizontal travel.",
+     "cause": "The 227px key and 150px English columns together exceed the viewport, while the five generous widths produce a 738px table."
+    },
+    {
+     "design": "r1C",
+     "good": "The initial viewport shows complete English and Chinese columns and the start of Japanese, giving a better immediate sense of the multilingual structure. It also requires less horizontal travel.",
+     "problems": "Keys break across lines, sometimes leaving a single letter on its own. Narrow translation columns create dense vertical stacks and very tall rows, making comparison across the row harder.",
+     "cause": "The 160px key width cannot hold the longer identifiers; 65px for Chinese and 80px for Japanese leave only 44px and 59px of text space, respectively."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "The intact keys provide a strong row anchor, and the English phrases wrap into manageable units. The compact row heights support scanning.",
+     "problems": "The initial viewport shows the key and English columns but almost none of the other languages. Comparing all four translations requires substantial sideways scrolling and makes it harder to retain the row context.",
+     "cause": "The 227px key and 132px English columns occupy essentially the full 359px viewport; the 725px total extends 365px beyond it."
+    },
+    {
+     "design": "r2B",
+     "good": "More of the Chinese column appears initially, and the narrower table reduces the distance needed to reach Arabic. The language headers remain on one line.",
+     "problems": "Some keys visibly break within words, weakening the row anchor. The long validation row is noticeably taller, and most of the language comparison still requires scrolling.",
+     "cause": "The 190px key column leaves only 169px for text, less than the 206px longest identifier. The 90px Chinese and 120px Japanese columns also create more wrapping than in r2A."
+    },
+    {
+     "design": "r2C",
+     "good": "All languages are visible at once, so the reader can follow a row across without scrolling.",
+     "problems": "The table is very tall and dense. Keys, English and Arabic words split, two language headers wrap, and the long Japanese validation message dominates its row. The resulting fragments make both identification and comparison difficult.",
+     "cause": "The 359px width leaves only 79px for key text and 34–59px for each language’s text. Those widths are too narrow for several identifiers, words and headers."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A",
+    "r3B",
+    "r3C"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    227,
+    132,
+    115,
+    150,
+    125
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 750,
+    "tableHeight": 371,
+    "overflow": 390,
+    "colWidths": [
+     227,
+     132,
+     115,
+     150,
+     125
+    ],
+    "rowHeights": [
+     36.3,
+     36.3,
+     59.5,
+     82.8,
+     36.3,
+     59.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Key",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "English",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "中文",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "日本語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "العربية",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "checkout.button.confirm",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Confirm order",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "确认订单",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "注文を確定する",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "تأكيد الطلب",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "cart.empty.message",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Your cart is empty",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "购物车是空的",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "カートは空です",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "سلتك فارغة",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "auth.error.invalid_email",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a valid email address",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "请输入有效的电子邮箱地址",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "有効なメールアドレスを入力してください",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "أدخل عنوان بريد إلكتروني صالحًا",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "common.action.cancel",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Cancel",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "取消",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "キャンセル",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "إلغاء",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "search.placeholder.products",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Search products",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "搜索商品",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "商品を検索",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ابحث عن المنتجات",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "shipping.estimate.days",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Arrives in 3–5 business days",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–5 个工作日内送达",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3〜5営業日で到着",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "يصل خلال 3–5 أيام عمل",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 206,
+      "natural": 206,
+      "padding": 21
+     },
+     {
+      "minContent": 62,
+      "natural": 196,
+      "padding": 21
+     },
+     {
+      "minContent": 18,
+      "natural": 184,
+      "padding": 21
+     },
+     {
+      "minContent": 25,
+      "natural": 283,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 187,
+      "padding": 21
+     }
+    ],
+    "frameW": 784
+   },
+   "png": "d-r0A.png",
+   "idea": "Keep keys intact and show the complete English column at first sight, with naturally wrapping translations reached by horizontal scrolling.",
+   "notes": []
+  },
+  "r0B": {
+   "widths": [
+    227,
+    217,
+    205,
+    304,
+    208
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 1162,
+    "tableHeight": 254.8,
+    "overflow": 802,
+    "colWidths": [
+     227,
+     217,
+     205,
+     304,
+     208
+    ],
+    "rowHeights": [
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Key",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "English",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "中文",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "日本語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "العربية",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "checkout.button.confirm",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Confirm order",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "确认订单",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "注文を確定する",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "تأكيد الطلب",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "cart.empty.message",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Your cart is empty",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "购物车是空的",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "カートは空です",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "سلتك فارغة",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "auth.error.invalid_email",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a valid email address",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "请输入有效的电子邮箱地址",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "有効なメールアドレスを入力してください",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "أدخل عنوان بريد إلكتروني صالحًا",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "common.action.cancel",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Cancel",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "取消",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "キャンセル",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "إلغاء",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "search.placeholder.products",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Search products",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "搜索商品",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "商品を検索",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ابحث عن المنتجات",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "shipping.estimate.days",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Arrives in 3–5 business days",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–5 个工作日内送达",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3〜5営業日で到着",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "يصل خلال 3–5 أيام عمل",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 206,
+      "natural": 206,
+      "padding": 21
+     },
+     {
+      "minContent": 62,
+      "natural": 196,
+      "padding": 21
+     },
+     {
+      "minContent": 18,
+      "natural": 184,
+      "padding": 21
+     },
+     {
+      "minContent": 25,
+      "natural": 283,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 187,
+      "padding": 21
+     }
+    ],
+    "frameW": 1196
+   },
+   "png": "d-r0B.png",
+   "idea": "Keep every cell on one line for uninterrupted comparison, accepting substantial horizontal scrolling.",
+   "notes": []
+  },
+  "r0C": {
+   "widths": [
+    94,
+    70,
+    54,
+    71,
+    70
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 360,
+    "tableHeight": 719.8,
+    "overflow": 0,
+    "colWidths": [
+     94,
+     70,
+     54,
+     71,
+     70
+    ],
+    "rowHeights": [
+     59.5,
+     82.8,
+     82.8,
+     175.8,
+     82.8,
+     106,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Key",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "English",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "中文",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "日本語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "العربية",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "checkout.button.confirm",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Confirm order",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "确认订单",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "注文を確定する",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "تأكيد الطلب",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "cart.empty.message",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Your cart is empty",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "购物车是空的",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "カートは空です",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "سلتك فارغة",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "auth.error.invalid_email",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a valid email address",
+      "lines": 5
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "请输入有效的电子邮箱地址",
+      "lines": 6
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "有効なメールアドレスを入力してください",
+      "lines": 7
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "أدخل عنوان بريد إلكتروني صالحًا",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "common.action.cancel",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Cancel",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "取消",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "キャンセル",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "إلغاء",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "search.placeholder.products",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Search products",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "搜索商品",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "商品を検索",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ابحث عن المنتجات",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "shipping.estimate.days",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Arrives in 3–5 business days",
+      "lines": 5
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–5 个工作日内送达",
+      "lines": 5
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3〜5営業日で到着",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "يصل خلال 3–5 أيام عمل",
+      "lines": 5
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 5,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 206,
+      "natural": 206,
+      "padding": 21
+     },
+     {
+      "minContent": 62,
+      "natural": 196,
+      "padding": 21
+     },
+     {
+      "minContent": 18,
+      "natural": 184,
+      "padding": 21
+     },
+     {
+      "minContent": 25,
+      "natural": 283,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 187,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r0C.png",
+   "idea": "Show all five columns within 359px so every language is visible at once, accepting frequent splits and tall rows.",
+   "notes": []
+  },
+  "r1A": {
+   "widths": [
+    227,
+    132,
+    90,
+    120,
+    110
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 680,
+    "tableHeight": 440.8,
+    "overflow": 320,
+    "colWidths": [
+     227,
+     132,
+     90,
+     120,
+     110
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     106,
+     36.3,
+     59.5,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Key",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "English",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "中文",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "日本語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "العربية",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "checkout.button.confirm",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Confirm order",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "确认订单",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "注文を確定する",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "تأكيد الطلب",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "cart.empty.message",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Your cart is empty",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "购物车是空的",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "カートは空です",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "سلتك فارغة",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "auth.error.invalid_email",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a valid email address",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "请输入有效的电子邮箱地址",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "有効なメールアドレスを入力してください",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "أدخل عنوان بريد إلكتروني صالحًا",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "common.action.cancel",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Cancel",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "取消",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "キャンセル",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "إلغاء",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "search.placeholder.products",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Search products",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "搜索商品",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "商品を検索",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ابحث عن المنتجات",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "shipping.estimate.days",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Arrives in 3–5 business days",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–5 个工作日内送达",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3〜5営業日で到着",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "يصل خلال 3–5 أيام عمل",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 1,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 206,
+      "natural": 206,
+      "padding": 21
+     },
+     {
+      "minContent": 62,
+      "natural": 196,
+      "padding": 21
+     },
+     {
+      "minContent": 18,
+      "natural": 184,
+      "padding": 21
+     },
+     {
+      "minContent": 25,
+      "natural": 283,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 187,
+      "padding": 21
+     }
+    ],
+    "frameW": 714
+   },
+   "png": "d-r1A.png",
+   "idea": "Keep the intact key and fully visible English column from r0A, while narrowing the three later language columns to reduce the scrolling distance. Chinese and Japanese can wrap naturally; Arabic retains room for its longest word.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    227,
+    150,
+    105,
+    135,
+    120
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 738,
+    "tableHeight": 371,
+    "overflow": 378,
+    "colWidths": [
+     227,
+     150,
+     105,
+     135,
+     120
+    ],
+    "rowHeights": [
+     36.3,
+     36.3,
+     59.5,
+     82.8,
+     36.3,
+     59.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Key",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "English",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "中文",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "日本語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "العربية",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "checkout.button.confirm",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Confirm order",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "确认订单",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "注文を確定する",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "تأكيد الطلب",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "cart.empty.message",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Your cart is empty",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "购物车是空的",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "カートは空です",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "سلتك فارغة",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "auth.error.invalid_email",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a valid email address",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "请输入有效的电子邮箱地址",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "有効なメールアドレスを入力してください",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "أدخل عنوان بريد إلكتروني صالحًا",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "common.action.cancel",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Cancel",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "取消",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "キャンセル",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "إلغاء",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "search.placeholder.products",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Search products",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "搜索商品",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "商品を検索",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ابحث عن المنتجات",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "shipping.estimate.days",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Arrives in 3–5 business days",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–5 个工作日内送达",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3〜5営業日で到着",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "يصل خلال 3–5 أيام عمل",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 206,
+      "natural": 206,
+      "padding": 21
+     },
+     {
+      "minContent": 62,
+      "natural": 196,
+      "padding": 21
+     },
+     {
+      "minContent": 18,
+      "natural": 184,
+      "padding": 21
+     },
+     {
+      "minContent": 25,
+      "natural": 283,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 187,
+      "padding": 21
+     }
+    ],
+    "frameW": 772
+   },
+   "png": "d-r1B.png",
+   "idea": "Give English and the translation columns more breathing room than the compact option, seeking shorter rows while retaining intact keys. The initial viewport shows most of English, with a moderate scrolling cost.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1C": {
+   "widths": [
+    160,
+    100,
+    65,
+    80,
+    80
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 486,
+    "tableHeight": 603.5,
+    "overflow": 126,
+    "colWidths": [
+     160,
+     100,
+     65,
+     80,
+     80
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     82.8,
+     152.5,
+     59.5,
+     59.5,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Key",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "English",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "中文",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "日本語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "العربية",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "checkout.button.confirm",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Confirm order",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "确认订单",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "注文を確定する",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "تأكيد الطلب",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "cart.empty.message",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Your cart is empty",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "购物车是空的",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "カートは空です",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "سلتك فارغة",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "auth.error.invalid_email",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a valid email address",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "请输入有效的电子邮箱地址",
+      "lines": 6
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "有効なメールアドレスを入力してください",
+      "lines": 6
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "أدخل عنوان بريد إلكتروني صالحًا",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "common.action.cancel",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Cancel",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "取消",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "キャンセル",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "إلغاء",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "search.placeholder.products",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Search products",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "搜索商品",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "商品を検索",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ابحث عن المنتجات",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "shipping.estimate.days",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Arrives in 3–5 business days",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–5 个工作日内送达",
+      "lines": 5
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3〜5営業日で到着",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "يصل خلال 3–5 أيام عمل",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 206,
+      "natural": 206,
+      "padding": 21
+     },
+     {
+      "minContent": 62,
+      "natural": 196,
+      "padding": 21
+     },
+     {
+      "minContent": 18,
+      "natural": 184,
+      "padding": 21
+     },
+     {
+      "minContent": 25,
+      "natural": 283,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 187,
+      "padding": 21
+     }
+    ],
+    "frameW": 520
+   },
+   "png": "d-r1C.png",
+   "idea": "Test a narrower key and language columns so the initial viewport reaches into Chinese and the full table requires less scrolling. This accepts some identifier splitting to show more of the language comparison at once.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    227,
+    132,
+    105,
+    140,
+    120
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 725,
+    "tableHeight": 371,
+    "overflow": 365,
+    "colWidths": [
+     227,
+     132,
+     105,
+     140,
+     120
+    ],
+    "rowHeights": [
+     36.3,
+     36.3,
+     59.5,
+     82.8,
+     36.3,
+     59.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Key",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "English",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "中文",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "日本語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "العربية",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "checkout.button.confirm",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Confirm order",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "确认订单",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "注文を確定する",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "تأكيد الطلب",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "cart.empty.message",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Your cart is empty",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "购物车是空的",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "カートは空です",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "سلتك فارغة",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "auth.error.invalid_email",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a valid email address",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "请输入有效的电子邮箱地址",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "有効なメールアドレスを入力してください",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "أدخل عنوان بريد إلكتروني صالحًا",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "common.action.cancel",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Cancel",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "取消",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "キャンセル",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "إلغاء",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "search.placeholder.products",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Search products",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "搜索商品",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "商品を検索",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ابحث عن المنتجات",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "shipping.estimate.days",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Arrives in 3–5 business days",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–5 个工作日内送达",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3〜5営業日で到着",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "يصل خلال 3–5 أيام عمل",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 206,
+      "natural": 206,
+      "padding": 21
+     },
+     {
+      "minContent": 62,
+      "natural": 196,
+      "padding": 21
+     },
+     {
+      "minContent": 18,
+      "natural": 184,
+      "padding": 21
+     },
+     {
+      "minContent": 25,
+      "natural": 283,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 187,
+      "padding": 21
+     }
+    ],
+    "frameW": 759
+   },
+   "png": "d-r2A.png",
+   "idea": "Keep complete keys and the fully visible English column from r1A, while giving Chinese and Japanese more space to reduce tall rows. This tests a compromise between initial readability and scrolling.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    190,
+    120,
+    90,
+    120,
+    110
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 631,
+    "tableHeight": 440.8,
+    "overflow": 271,
+    "colWidths": [
+     190,
+     120,
+     90,
+     120,
+     110
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     106,
+     36.3,
+     59.5,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Key",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "English",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "中文",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "日本語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "العربية",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "checkout.button.confirm",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Confirm order",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "确认订单",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "注文を確定する",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "تأكيد الطلب",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "cart.empty.message",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Your cart is empty",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "购物车是空的",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "カートは空です",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "سلتك فارغة",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "auth.error.invalid_email",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a valid email address",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "请输入有效的电子邮箱地址",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "有効なメールアドレスを入力してください",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "أدخل عنوان بريد إلكتروني صالحًا",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "common.action.cancel",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Cancel",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "取消",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "キャンセル",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "إلغاء",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "search.placeholder.products",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Search products",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "搜索商品",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "商品を検索",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ابحث عن المنتجات",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "shipping.estimate.days",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Arrives in 3–5 business days",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–5 个工作日内送达",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3〜5営業日で到着",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "يصل خلال 3–5 أيام عمل",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 1,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 206,
+      "natural": 206,
+      "padding": 21
+     },
+     {
+      "minContent": 62,
+      "natural": 196,
+      "padding": 21
+     },
+     {
+      "minContent": 18,
+      "natural": 184,
+      "padding": 21
+     },
+     {
+      "minContent": 25,
+      "natural": 283,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 187,
+      "padding": 21
+     }
+    ],
+    "frameW": 665
+   },
+   "png": "d-r2B.png",
+   "idea": "Trade some key wrapping for a shorter scroll than the intact-key designs, while retaining substantially more translation space than r1C. The first viewport should show English and part of Chinese.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2C": {
+   "widths": [
+    100,
+    80,
+    55,
+    65,
+    59
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 360,
+    "tableHeight": 812.8,
+    "overflow": 0,
+    "colWidths": [
+     100,
+     80,
+     55,
+     65,
+     59
+    ],
+    "rowHeights": [
+     59.5,
+     106,
+     106,
+     222.3,
+     82.8,
+     106,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Key",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "English",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "中文",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "日本語",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "العربية",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "checkout.button.confirm",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Confirm order",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "确认订单",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "注文を確定する",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "تأكيد الطلب",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "cart.empty.message",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Your cart is empty",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "购物车是空的",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "カートは空です",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "سلتك فارغة",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "auth.error.invalid_email",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a valid email address",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "请输入有效的电子邮箱地址",
+      "lines": 6
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "有効なメールアドレスを入力してください",
+      "lines": 9
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "أدخل عنوان بريد إلكتروني صالحًا",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "common.action.cancel",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Cancel",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "取消",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "キャンセル",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "إلغاء",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "search.placeholder.products",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Search products",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "搜索商品",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "商品を検索",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ابحث عن المنتجات",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "shipping.estimate.days",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Arrives in 3–5 business days",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–5 个工作日内送达",
+      "lines": 5
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3〜5営業日で到着",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "يصل خلال 3–5 أيام عمل",
+      "lines": 5
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 4,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 206,
+      "natural": 206,
+      "padding": 21
+     },
+     {
+      "minContent": 62,
+      "natural": 196,
+      "padding": 21
+     },
+     {
+      "minContent": 18,
+      "natural": 184,
+      "padding": 21
+     },
+     {
+      "minContent": 25,
+      "natural": 283,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 187,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r2C.png",
+   "idea": "Test the unexplored no-scroll alternative at 359px. It exposes all languages together but accepts broken identifiers and heavy wrapping; the render will show whether maintaining the full row in view compensates for that cost.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    227,
+    120,
+    85,
+    125,
+    110
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 668,
+    "tableHeight": 417.5,
+    "overflow": 308,
+    "colWidths": [
+     227,
+     120,
+     85,
+     125,
+     110
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     82.8,
+     36.3,
+     59.5,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Key",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "English",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "中文",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "日本語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "العربية",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "checkout.button.confirm",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Confirm order",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "确认订单",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "注文を確定する",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "تأكيد الطلب",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "cart.empty.message",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Your cart is empty",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "购物车是空的",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "カートは空です",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "سلتك فارغة",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "auth.error.invalid_email",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a valid email address",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "请输入有效的电子邮箱地址",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "有効なメールアドレスを入力してください",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "أدخل عنوان بريد إلكتروني صالحًا",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "common.action.cancel",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Cancel",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "取消",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "キャンセル",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "إلغاء",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "search.placeholder.products",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Search products",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "搜索商品",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "商品を検索",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ابحث عن المنتجات",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "shipping.estimate.days",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Arrives in 3–5 business days",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–5 个工作日内送达",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3〜5営業日で到着",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "يصل خلال 3–5 أيام عمل",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 1,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 206,
+      "natural": 206,
+      "padding": 21
+     },
+     {
+      "minContent": 62,
+      "natural": 196,
+      "padding": 21
+     },
+     {
+      "minContent": 18,
+      "natural": 184,
+      "padding": 21
+     },
+     {
+      "minContent": 25,
+      "natural": 283,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 187,
+      "padding": 21
+     }
+    ],
+    "frameW": 702
+   },
+   "png": "d-r3A.png",
+   "idea": "Keep the full key width while trimming the translation columns, especially Chinese, to reduce scrolling. Give Japanese more space than Chinese because its longest phrase is substantially longer.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3B": {
+   "widths": [
+    205,
+    120,
+    85,
+    125,
+    110
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 646,
+    "tableHeight": 417.5,
+    "overflow": 286,
+    "colWidths": [
+     205,
+     120,
+     85,
+     125,
+     110
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     82.8,
+     36.3,
+     59.5,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Key",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "English",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "中文",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "日本語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "العربية",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "checkout.button.confirm",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Confirm order",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "确认订单",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "注文を確定する",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "تأكيد الطلب",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "cart.empty.message",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Your cart is empty",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "购物车是空的",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "カートは空です",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "سلتك فارغة",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "auth.error.invalid_email",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a valid email address",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "请输入有效的电子邮箱地址",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "有効なメールアドレスを入力してください",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "أدخل عنوان بريد إلكتروني صالحًا",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "common.action.cancel",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Cancel",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "取消",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "キャンセル",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "إلغاء",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "search.placeholder.products",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Search products",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "搜索商品",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "商品を検索",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ابحث عن المنتجات",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "shipping.estimate.days",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Arrives in 3–5 business days",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–5 个工作日内送达",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3〜5営業日で到着",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "يصل خلال 3–5 أيام عمل",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 1,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 206,
+      "natural": 206,
+      "padding": 21
+     },
+     {
+      "minContent": 62,
+      "natural": 196,
+      "padding": 21
+     },
+     {
+      "minContent": 18,
+      "natural": 184,
+      "padding": 21
+     },
+     {
+      "minContent": 25,
+      "natural": 283,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 187,
+      "padding": 21
+     }
+    ],
+    "frameW": 680
+   },
+   "png": "d-r3B.png",
+   "idea": "Test a modestly narrower key than the intact-anchor design to reveal more Chinese initially and shorten the scroll. Some long keys may wrap, but the extra width compared with r2B should reduce fragmentation.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3C": {
+   "widths": [
+    165,
+    105,
+    75,
+    105,
+    90
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 541,
+    "tableHeight": 487.3,
+    "overflow": 181,
+    "colWidths": [
+     165,
+     105,
+     75,
+     105,
+     90
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     106,
+     59.5,
+     59.5,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Key",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "English",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "中文",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "日本語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "العربية",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "checkout.button.confirm",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Confirm order",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "确认订单",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "注文を確定する",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "تأكيد الطلب",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "cart.empty.message",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Your cart is empty",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "购物车是空的",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "カートは空です",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "سلتك فارغة",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "auth.error.invalid_email",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a valid email address",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "请输入有效的电子邮箱地址",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "有効なメールアドレスを入力してください",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "أدخل عنوان بريد إلكتروني صالحًا",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "common.action.cancel",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Cancel",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "取消",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "キャンセル",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "إلغاء",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "search.placeholder.products",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Search products",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "搜索商品",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "商品を検索",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ابحث عن المنتجات",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "shipping.estimate.days",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Arrives in 3–5 business days",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–5 个工作日内送达",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3〜5営業日で到着",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "يصل خلال 3–5 أيام عمل",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 206,
+      "natural": 206,
+      "padding": 21
+     },
+     {
+      "minContent": 62,
+      "natural": 196,
+      "padding": 21
+     },
+     {
+      "minContent": 18,
+      "natural": 184,
+      "padding": 21
+     },
+     {
+      "minContent": 25,
+      "natural": 283,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 187,
+      "padding": 21
+     }
+    ],
+    "frameW": 575
+   },
+   "png": "d-r3C.png",
+   "idea": "Try a more compact scrolling layout that shows part of Chinese initially and brings the remaining languages closer. Accept some key wrapping in exchange for less travel, while keeping substantially more room for each language than in r2C.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "ref_auto": {
+   "widths": [
+    226.9,
+    82.3,
+    38.7,
+    45.5,
+    75.8
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 470.2,
+    "tableHeight": 1370.8,
+    "overflow": 110.2,
+    "colWidths": [
+     226.9,
+     82.3,
+     38.7,
+     45.5,
+     75.8
+    ],
+    "rowHeights": [
+     82.8,
+     175.8,
+     175.8,
+     454.8,
+     129.3,
+     129.3,
+     222.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Key",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "English",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "中文",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "日本語",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "العربية",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "checkout.button.confirm",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Confirm order",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "确认订单",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "注文を確定する",
+      "lines": 7
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "تأكيد الطلب",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "cart.empty.message",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Your cart is empty",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "购物车是空的",
+      "lines": 6
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "カートは空です",
+      "lines": 7
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "سلتك فارغة",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "auth.error.invalid_email",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a valid email address",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "请输入有效的电子邮箱地址",
+      "lines": 12
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "有効なメールアドレスを入力してください",
+      "lines": 19
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "أدخل عنوان بريد إلكتروني صالحًا",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "common.action.cancel",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Cancel",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "取消",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "キャンセル",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "إلغاء",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "search.placeholder.products",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Search products",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "搜索商品",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "商品を検索",
+      "lines": 5
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ابحث عن المنتجات",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "shipping.estimate.days",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Arrives in 3–5 business days",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–5 个工作日内送达",
+      "lines": 9
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3〜5営業日で到着",
+      "lines": 7
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "يصل خلال 3–5 أيام عمل",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 2,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 206,
+      "natural": 206,
+      "padding": 21
+     },
+     {
+      "minContent": 62,
+      "natural": 196,
+      "padding": 21
+     },
+     {
+      "minContent": 18,
+      "natural": 184,
+      "padding": 21
+     },
+     {
+      "minContent": 25,
+      "natural": 283,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 187,
+      "padding": 21
+     }
+    ],
+    "frameW": 505
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    71,
+    71,
+    71,
+    71,
+    71
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 356,
+    "tableHeight": 812.8,
+    "overflow": 0,
+    "colWidths": [
+     71,
+     71,
+     71,
+     71,
+     71
+    ],
+    "rowHeights": [
+     59.5,
+     106,
+     106,
+     175.8,
+     106,
+     129.3,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Key",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "English",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "中文",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "日本語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "العربية",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "checkout.button.confirm",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Confirm order",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "确认订单",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "注文を確定する",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "تأكيد الطلب",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "cart.empty.message",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Your cart is empty",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "购物车是空的",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "カートは空です",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "سلتك فارغة",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "auth.error.invalid_email",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Enter a valid email address",
+      "lines": 5
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "请输入有效的电子邮箱地址",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "有効なメールアドレスを入力してください",
+      "lines": 7
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "أدخل عنوان بريد إلكتروني صالحًا",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "common.action.cancel",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Cancel",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "取消",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "キャンセル",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "إلغاء",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "search.placeholder.products",
+      "lines": 5
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Search products",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "搜索商品",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "商品を検索",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ابحث عن المنتجات",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "shipping.estimate.days",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Arrives in 3–5 business days",
+      "lines": 5
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3–5 个工作日内送达",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3〜5営業日で到着",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "يصل خلال 3–5 أيام عمل",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 5,
+    "tokenBreaks": 1,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 206,
+      "natural": 206,
+      "padding": 21
+     },
+     {
+      "minContent": 62,
+      "natural": 196,
+      "padding": 21
+     },
+     {
+      "minContent": 18,
+      "natural": 184,
+      "padding": 21
+     },
+     {
+      "minContent": 25,
+      "natural": 283,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 187,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-ref_equal.png"
+  }
+ },
+ "modelsUsed": [
+  "codex/gpt-6.1-terra"
+ ],
+ "understanding": {
+  "purpose": "Map checkout interface keys to their English, Chinese, Japanese and Arabic translations for review and comparison.",
+  "reading": "Scan the key column to identify a string, then read across the row to compare its translations; horizontal scrolling makes it harder to maintain that connection.",
+  "groups": [
+   "English, 中文, 日本語 and العربية are parallel language columns; their widths should reflect their different text lengths and wrapping behavior.",
+   "Key identifies each row and anchors the translations."
+  ],
+  "keep_intact": [
+   "Dotted key identifiers are easiest to recognize and compare when kept whole.",
+   "Individual English and Arabic words, numerals and punctuation should remain intact where space permits."
+  ],
+  "may_wrap": [
+   "Translation phrases can wrap at natural language boundaries, including within Chinese and Japanese text.",
+   "Shorter translations can use row height already created by longer translations in the same row.",
+   "In a viewport-only design, long identifiers and some words must split."
+  ]
+ },
+ "final": {
+  "preferred": [
+   "r2A"
+  ],
+  "acceptable": [
+   "r1B",
+   "r3A"
+  ],
+  "bad": [
+   {
+    "design": "r1C",
+    "why": "The narrow key column breaks identifiers across lines, while the translation columns produce tall, fragmented rows."
+   },
+   {
+    "design": "r2B",
+    "why": "Key identifiers break at arbitrary positions, including a single trailing letter, making rows harder to identify."
+   },
+   {
+    "design": "r2C",
+    "why": "The viewport-width table breaks identifiers, words and two headers, and its very tall rows make comparison difficult."
+   },
+   {
+    "design": "r3B",
+    "why": "The longest key breaks across lines for a small reduction in horizontal scrolling, weakening the row identifier."
+   },
+   {
+    "design": "r3C",
+    "why": "Most keys break at arbitrary positions, and narrow translations create tall rows despite substantial horizontal overflow."
+   }
+  ],
+  "contrast": null,
+  "ranges": [
+   [
+    227,
+    232
+   ],
+   [
+    130,
+    135
+   ],
+   [
+    100,
+    110
+   ],
+   [
+    135,
+    145
+   ],
+   [
+    115,
+    125
+   ]
+  ],
+  "rationale": "r2A keeps the identifiers intact and places the key and English columns within the initial viewport, giving readers a useful starting point for locating each string. Its translation columns provide enough room for compact rows, with no cell exceeding three lines. The remaining languages require substantial horizontal scrolling, but the row rhythm and intact keys make that cost worthwhile.",
+  "principles": {
+   "general": [
+    "Preserve identifiers when readers use them to locate and compare rows.",
+    "Judge horizontal scrolling against the fragmentation and row height caused by narrower columns.",
+    "Give related content enough width to maintain a readable rhythm rather than forcing equal column widths."
+   ],
+   "specific": [
+    "The long key column and English reference together nearly fill the phone viewport.",
+    "Japanese needs relatively generous width for the longer strings, while Chinese can use a narrower column."
+   ]
+  },
+  "tradeoffs": "r3A reduces scrolling while retaining intact keys, but its narrower translation columns increase the table height. r1B offers similarly compact rows to r2A, though more of the English column falls beyond the initial viewport.",
+  "uncertain": "The ranges are approximate design tolerances, not verified browser-rendering thresholds; wrapping can change abruptly with small width changes. A designer who prioritizes less scrolling over compact rows could reasonably prefer r3A."
+ },
+ "reviews": [
+  {
+   "order": [
+    "r2A",
+    "r1B",
+    "r3A",
+    "r1C",
+    "ref_auto",
+    "ref_equal"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "acceptable",
+     "why": "Keys remain intact and English is readable, though several phrases wrap and the other languages require horizontal scrolling."
+    },
+    "B": {
+     "grade": "good",
+     "why": "Keys stay intact and English phrases generally have more room, making the visible rows easy to scan; most translations are beyond the initial viewport."
+    },
+    "C": {
+     "grade": "acceptable",
+     "why": "Intact keys and readable English support row identification, but English wraps frequently and the translations extend beyond the viewport."
+    },
+    "D": {
+     "grade": "poor",
+     "why": "More languages appear at first sight, but keys split in the middle and the narrow translation columns make rows tall and harder to scan."
+    },
+    "E": {
+     "grade": "bad",
+     "why": "Keys stay intact, but the visible Chinese and Japanese text is reduced to almost one character per line, producing extremely tall rows."
+    },
+    "F": {
+     "grade": "bad",
+     "why": "All languages fit in the viewport, but keys, English words, and even the English header break across lines, making both identification and comparison difficult."
+    }
+   },
+   "best": [
+    "B"
+   ],
+   "confidence": "low",
+   "unsure": "The supplied views of A–E do not show their full widths, so the readability and scrolling cost of the translations beyond the visible image cannot be assessed. B is the best of the visible portions."
+  },
+  {
+   "order": [
+    "r3A",
+    "ref_auto",
+    "r2A",
+    "r1C",
+    "ref_equal",
+    "r1B"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "good",
+     "why": "The keys remain intact and English wraps at word boundaries. A sliver of Chinese appears at the viewport edge, indicating more content to scroll to."
+    },
+    "B": {
+     "grade": "bad",
+     "why": "The narrow Chinese and Japanese columns force near-vertical text, producing extremely tall rows and making translations difficult to scan."
+    },
+    "C": {
+     "grade": "good",
+     "why": "Keys remain intact, English is readable within the viewport, and the rows have a compact, consistent rhythm. The other languages require horizontal scrolling."
+    },
+    "D": {
+     "grade": "poor",
+     "why": "The key column splits identifiers midword, while the narrow translation columns create tall, uneven rows. More language columns begin within the viewport, but they are difficult to scan."
+    },
+    "E": {
+     "grade": "bad",
+     "why": "All five columns fit in the viewport, but keys and English words break repeatedly within words. The narrow columns make comparison and identification laborious."
+    },
+    "F": {
+     "grade": "acceptable",
+     "why": "Keys stay intact and English wraps relatively little, but the viewport cuts through English text, so even that column requires scrolling to read completely."
+    }
+   },
+   "best": [
+    "C"
+   ],
+   "confidence": "medium",
+   "unsure": "The supplied image views do not show the full width of the scrolling layouts, so I cannot reliably assess the off-screen translation columns or the total scrolling distance."
+  }
+ ],
+ "reviewPrompt": "v2"
+}

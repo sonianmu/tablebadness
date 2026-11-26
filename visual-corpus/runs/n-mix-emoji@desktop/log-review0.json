@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 团队周报看板（第 34 周） (language zh-CN).\nGrid: 4 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"成员\" · longest unbreakable word 16px · one-line width 46px\n  col 2: header \"状态\" · longest unbreakable word 19px · one-line width 54px\n  col 3: header \"本周完成\" · longest unbreakable word 58px · one-line width 679px\n  col 4: header \"下周计划\" · longest unbreakable word 44px · one-line width 934px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10085,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"bad\",\"why\":\"本周完成列过窄，文字被切成许多短行；下周计划列则过宽，行内留下大片空白，难以横向对照。\"},\"B\":{\"grade\":\"good\",\"why\":\"姓名和状态完整，两列叙述宽度与内容量大致匹配，行内对照清楚；个别计划末尾出现很短的行。\"},\"C\":{\"grade\":\"poor\",\"why\":\"姓名和状态列占去一半宽度，留下大量空白；两列长文本因此过窄，尤其下周计划换行频繁。\"},\"D\":{\"grade\":\"poor\",\"why\":\"姓名、状态和对应表头都被拆成竖向短行，影响快速识别成员和状态，尽管叙述列较易阅读。\"},\"E\":{\"grade\":\"excellent\",\"why\":\"姓名和状态保持完整，两列叙述宽度均衡且计划列略宽，换行适度，各行作为一个工作单元易于扫描。\"},\"F\":{\"grade\":\"good\",\"why\":\"标识列清楚，叙述列也有足够宽度；但计划列比 E 更窄，较长的计划多次换行，部分行的两列高度不够协调。\"}},\"best\":[\"E\"],\"confidence\":\"medium\",\"unsure\":\"B 与 E 的差距较小；对计划列多留一些宽度的偏好取决于读者更重视逐行对照还是减少个别短行。\"}\n"
+  }
+ ]
+}

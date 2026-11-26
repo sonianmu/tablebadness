@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: តារាងថ្លៃទំនិញទីផ្សារ (language km).\nGrid: 4 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"ទំនិញ\" · longest unbreakable word 56px · one-line width 115px\n  col 2: header \"តម្លៃ (រៀល)\" · longest unbreakable word 52px · one-line width 71px\n  col 3: header \"ឯកតា\" · longest unbreakable word 54px · one-line width 54px\n  col 4: header \"កំណត់សម្គាល់\" · longest unbreakable word 83px · one-line width 607px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11056,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"The notes have useful width and prices and units stay on one line. Several row labels wrap over three lines, making item names harder to scan.\"},\"B\":{\"grade\":\"good\",\"why\":\"The wider item column improves some row labels while prices and units remain intact. The notes still have a reasonable measure, though their frequent wrapping makes rows tall.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"All headers fit on one line, but the extra width for the price header leaves the notes narrow and heavily wrapped. Several item names also break across multiple lines.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"Item labels have slightly more room, but the notes are narrow and produce tall rows with considerable empty space in the price and unit columns.\"},\"E\":{\"grade\":\"good\",\"why\":\"The notes have generous space for this viewport, prices and units stay intact, and the columns have a balanced rhythm. Some item labels still wrap to three lines.\"},\"F\":{\"grade\":\"poor\",\"why\":\"The notes column is so narrow that its header and body text break into short fragments, producing very tall rows and large empty areas in the other columns.\"}},\"best\":[\"B\",\"E\"],\"confidence\":\"medium\",\"unsure\":\"The relative value of slightly wider item labels in B versus slightly wider notes in E depends on whether readers primarily scan items and prices or read the notes closely. I cannot reliably judge every Khmer line break from the images.\"}\n"
+  }
+ ]
+}

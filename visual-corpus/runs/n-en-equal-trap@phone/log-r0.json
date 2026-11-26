@@ -1,29 +1,18 @@
 {
- "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "model": "codex/gpt-6.1-terra",
  "thinking": "medium",
- "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nTable: Courier Delivery Commitments by Destination (language en).\nGrid: 3 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"Destination\" spans 1 col × 2 row; \"Delivery\" spans 2 col × 1 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Destination\" · longest unbreakable word 82px · one-line width 145px\n  col 2: header \"Delivery › Window\" · longest unbreakable word 58px · one-line width 64px\n  col 3: header \"Delivery › Conditions\" · longest unbreakable word 94px · one-line width 1546px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nThe image shows the table's content with every cell on one line, so you can read everything. Study it first.\n1) Understand it: what is the table for, how will people read, scan and compare it, which columns play the same or similar role, which values must stay intact, which text may wrap naturally, and where existing row height could absorb wrapping.\n2) Propose 3 genuinely different column-width designs for 360px (different strategies, not small variations).\nReply ONLY JSON: {\"understanding\":{\"purpose\":\"\",\"reading\":\"\",\"groups\":[\"columns that belong together and why\"],\"keep_intact\":[\"\"],\"may_wrap\":[\"\"]},\"designs\":[{\"name\":\"A\",\"widths\":[int px per column, column 1 first],\"idea\":\"one sentence\"}]}",
+ "images": [
+  "overview.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nTable: Courier Delivery Commitments by Destination (language en).\nGrid: 3 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"Destination\" spans 1 col × 2 row; \"Delivery\" spans 2 col × 1 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Destination\" · longest unbreakable word 82px · one-line width 145px\n  col 2: header \"Delivery › Window\" · longest unbreakable word 58px · one-line width 64px\n  col 3: header \"Delivery › Conditions\" · longest unbreakable word 94px · one-line width 1546px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nThe image shows the table's content with every cell on one line, so you can read everything. Study it first.\n1) Understand it: what is the table for, how will people read, scan and compare it, which columns play the same or similar role, which values must stay intact, which text may wrap naturally, and where existing row height could absorb wrapping.\n2) Propose 3 genuinely different column-width designs for 360px (different strategies, not small variations).\nReply ONLY JSON: {\"understanding\":{\"purpose\":\"\",\"reading\":\"\",\"groups\":[\"columns that belong together and why\"],\"keep_intact\":[\"\"],\"may_wrap\":[\"\"]},\"designs\":[{\"name\":\"A\",\"widths\":[int px per column, column 1 first],\"idea\":\"one sentence\"}]}",
  "log": [
   {
    "attempt": 1,
-   "ms": 1420,
-   "code": 1,
-   "problem": "exit 1 429: {\"message\":\"WorkBuddy AI: Credits exhausted. Please visit the link below to purchase add-on packs and get more credits: https://www.codebuddy.ai/profile/usage  — WorkBuddy requires an active credit package even for 0-rate free models; check your account package balance\",\"type\":\"insufficient_quo",
-   "raw": ""
-  },
-  {
-   "attempt": 2,
-   "ms": 1288,
-   "code": 1,
-   "problem": "exit 1 429: {\"message\":\"WorkBuddy AI: Credits exhausted. Please visit the link below to purchase add-on packs and get more credits: https://www.codebuddy.ai/profile/usage  — WorkBuddy requires an active credit package even for 0-rate free models; check your account package balance\",\"type\":\"insufficient_quo",
-   "raw": ""
-  },
-  {
-   "attempt": 3,
-   "ms": 1696,
-   "code": 1,
-   "problem": "exit 1 429: {\"message\":\"WorkBuddy AI: Credits exhausted. Please visit the link below to purchase add-on packs and get more credits: https://www.codebuddy.ai/profile/usage  — WorkBuddy requires an active credit package even for 0-rate free models; check your account package balance\",\"type\":\"insufficient_quo",
-   "raw": ""
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11158,
+   "code": 0,
+   "problem": null,
+   "raw": "{\n  \"understanding\": {\n    \"purpose\": \"Help readers find the delivery window and any qualifying conditions for a destination.\",\n    \"reading\": \"Readers scan destination names down the first column, then read across the row to compare delivery windows and check the conditions. Longer conditions will set much of the row height, leaving room for some destination names to wrap.\",\n    \"groups\": [\n      \"Window and Conditions belong under Delivery: the window gives the commitment, while the conditions qualify it.\"\n    ],\n    \"keep_intact\": [\n      \"Delivery ranges and their unit, such as 2–3 days\",\n      \"Unbreakable words in destination names and conditions\",\n      \"Times and other identifiers within conditions\"\n    ],\n    \"may_wrap\": [\n      \"Multiword destination names at word boundaries\",\n      \"Conditions as prose at natural word boundaries\",\n      \"The Conditions header if necessary\"\n    ]\n  },\n  \"designs\": [\n    {\n      \"name\": \"A\",\n      \"widths\": [159, 85, 115],\n      \"idea\": \"Favor destination names for fast scanning, using the narrowest conditions column that still accommodates its longest unbreakable word.\"\n    },\n    {\n      \"name\": \"B\",\n      \"widths\": [103, 85, 171],\n      \"idea\": \"Give conditions the most space to ease reading of the long prose, allowing multiword destinations to wrap into the resulting row height.\"\n    },\n    {\n      \"name\": \"C\",\n      \"widths\": [130, 85, 144],\n      \"idea\": \"Balance destination scanning against conditions readability, with room for natural wrapping in both columns.\"\n    }\n  ]\n}\n"
   }
- ],
- "failed": true
+ ]
 }

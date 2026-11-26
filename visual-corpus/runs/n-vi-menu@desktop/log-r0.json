@@ -1,29 +1,18 @@
 {
- "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "model": "codex/gpt-6.1-terra",
  "thinking": "medium",
- "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nTable: Thực đơn quán phở (language vi).\nGrid: 4 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Món\" · longest unbreakable word 35px · one-line width 106px\n  col 2: header \"Giá\" · longest unbreakable word 59px · one-line width 59px\n  col 3: header \"Thành phần\" · longest unbreakable word 48px · one-line width 1507px\n  col 4: header \"Ghi chú\" · longest unbreakable word 61px · one-line width 419px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nThe image shows the table's content with every cell on one line, so you can read everything. Study it first.\n1) Understand it: what is the table for, how will people read, scan and compare it, which columns play the same or similar role, which values must stay intact, which text may wrap naturally, and where existing row height could absorb wrapping.\n2) Propose 3 genuinely different column-width designs for 720px (different strategies, not small variations).\nReply ONLY JSON: {\"understanding\":{\"purpose\":\"\",\"reading\":\"\",\"groups\":[\"columns that belong together and why\"],\"keep_intact\":[\"\"],\"may_wrap\":[\"\"]},\"designs\":[{\"name\":\"A\",\"widths\":[int px per column, column 1 first],\"idea\":\"one sentence\"}]}",
+ "images": [
+  "overview.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nTable: Thực đơn quán phở (language vi).\nGrid: 4 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Món\" · longest unbreakable word 35px · one-line width 106px\n  col 2: header \"Giá\" · longest unbreakable word 59px · one-line width 59px\n  col 3: header \"Thành phần\" · longest unbreakable word 48px · one-line width 1507px\n  col 4: header \"Ghi chú\" · longest unbreakable word 61px · one-line width 419px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nThe image shows the table's content with every cell on one line, so you can read everything. Study it first.\n1) Understand it: what is the table for, how will people read, scan and compare it, which columns play the same or similar role, which values must stay intact, which text may wrap naturally, and where existing row height could absorb wrapping.\n2) Propose 3 genuinely different column-width designs for 720px (different strategies, not small variations).\nReply ONLY JSON: {\"understanding\":{\"purpose\":\"\",\"reading\":\"\",\"groups\":[\"columns that belong together and why\"],\"keep_intact\":[\"\"],\"may_wrap\":[\"\"]},\"designs\":[{\"name\":\"A\",\"widths\":[int px per column, column 1 first],\"idea\":\"one sentence\"}]}",
  "log": [
   {
    "attempt": 1,
-   "ms": 1879,
-   "code": 1,
-   "problem": "exit 1 429: {\"message\":\"WorkBuddy AI: Credits exhausted. Please visit the link below to purchase add-on packs and get more credits: https://www.codebuddy.ai/profile/usage  — WorkBuddy requires an active credit package even for 0-rate free models; check your account package balance\",\"type\":\"insufficient_quo",
-   "raw": ""
-  },
-  {
-   "attempt": 2,
-   "ms": 1548,
-   "code": 1,
-   "problem": "exit 1 429: {\"message\":\"WorkBuddy AI: Credits exhausted. Please visit the link below to purchase add-on packs and get more credits: https://www.codebuddy.ai/profile/usage  — WorkBuddy requires an active credit package even for 0-rate free models; check your account package balance\",\"type\":\"insufficient_quo",
-   "raw": ""
-  },
-  {
-   "attempt": 3,
-   "ms": 1447,
-   "code": 1,
-   "problem": "exit 1 429: {\"message\":\"WorkBuddy AI: Credits exhausted. Please visit the link below to purchase add-on packs and get more credits: https://www.codebuddy.ai/profile/usage  — WorkBuddy requires an active credit package even for 0-rate free models; check your account package balance\",\"type\":\"insufficient_quo",
-   "raw": ""
+   "model": "codex/gpt-6.1-terra",
+   "ms": 20820,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"understanding\":{\"purpose\":\"Help diners choose a phở dish by comparing its price, ingredients and any accompanying notes.\",\"reading\":\"Readers scan dish names down the first column, compare prices, then read ingredients and notes across the chosen row. The long ingredient descriptions will largely determine row height, leaving room for notes to wrap alongside them.\",\"groups\":[\"Món and Giá form the compact identification and price pair used for quick comparison.\",\"Thành phần and Ghi chú are descriptive columns read alongside each dish; both can use multiple lines, but ingredients need more space.\"],\"keep_intact\":[\"Dish names and prices should fit on one line for easy scanning.\",\"Individual words, currency amounts and identifiers should not be broken.\"] ,\"may_wrap\":[\"Ingredient descriptions can wrap naturally at spaces and punctuation.\",\"Notes can wrap naturally, often within height already needed by the ingredients.\"]},\"designs\":[{\"name\":\"A\",\"widths\":[127,80,360,152],\"idea\":\"Give ingredients the largest share while reserving a readable notes column and keeping names and prices on one line.\"},{\"name\":\"B\",\"widths\":[127,80,300,212],\"idea\":\"Give notes more room for easier reading, accepting more lines in the ingredient descriptions.\"},{\"name\":\"C\",\"widths\":[127,80,420,92],\"idea\":\"Prioritize the exceptionally long ingredient descriptions, allowing notes to wrap into a narrow column.\"}]}\n"
   }
- ],
- "failed": true
+ ]
 }

@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 合规审查法律条文引用表 (language zh-CN).\nGrid: 3 columns × 7 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"法律名称\" · longest unbreakable word 31px · one-line width 261px\n  col 2: header \"条款\" · longest unbreakable word 16px · one-line width 123px\n  col 3: header \"条文内容\" · longest unbreakable word 46px · one-line width 4732px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11278,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"法律名称一列过窄，名称被切成许多短行，表头也换行；条文内容仍较密，行很高。\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"表头完整，三列分工清楚；但法律名称断成较短的行，多数条款编号也被拆开，条文列仍偏窄。\"},\"C\":{\"grade\":\"good\",\"why\":\"条文列比 B 更宽，正文阅读较顺畅，表头完整；法律名称和条款编号仍需多行阅读。\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"表头完整，法律名称与正文的比例尚可；条款编号常换行，正文列较窄，形成很高的行。\"},\"E\":{\"grade\":\"bad\",\"why\":\"前两列占宽过多，长条文被挤成极窄的短行；行高巨大，正文难以连续阅读和比较。\"},\"F\":{\"grade\":\"poor\",\"why\":\"正文列宽且易读，但法律名称和条款编号被挤成近乎竖排，两个表头也被拆开，引用信息难以扫描。\"}},\"best\":[\"C\"],\"confidence\":\"medium\",\"unsure\":\"B 和 D 看起来几乎相同；C 的条款编号仍有明显换行，最佳选择是在引用信息与长条文可读性之间的折中。\"}\n"
+  }
+ ]
+}

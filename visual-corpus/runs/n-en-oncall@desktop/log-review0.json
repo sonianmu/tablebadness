@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Weekly On-Call Rotation Schedule (language en).\nGrid: 5 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"Week 14(Mar 30 – Apr 5)\" spans 1 col × 2 row; \"Week 15(Apr 6 – 12)\" spans 1 col × 2 row; \"Week 16(Apr 13 – 19)\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Week\" · longest unbreakable word 40px · one-line width 119px\n  col 2: header \"Role\" · longest unbreakable word 78px · one-line width 78px\n  col 3: header \"Engineer\" · longest unbreakable word 91px · one-line width 129px\n  col 4: header \"Phone\" · longest unbreakable word 46px · one-line width 132px\n  col 5: header \"Escalation notes\" · longest unbreakable word 89px · one-line width 655px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 7728,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"Week labels and phone numbers stay intact, but the narrow notes column creates long blocks and several engineer names wrap. The wide week column leaves substantial unused space.\"},\"B\":{\"grade\":\"good\",\"why\":\"All engineer names and phone numbers remain on one line, making the contact details easy to scan. Dates wrap awkwardly and notes are somewhat narrow, but the rows remain clear.\"},\"C\":{\"grade\":\"bad\",\"why\":\"Nearly equal column widths give excessive space to short roles while squeezing notes into very narrow blocks. Every phone number breaks across lines, and rows become unusually tall.\"},\"D\":{\"grade\":\"poor\",\"why\":\"The generous notes column reads well, but every phone number wraps and several names and date ranges break across lines. That weakens scanning for contact information.\"},\"E\":{\"grade\":\"good\",\"why\":\"Phone numbers stay intact and the notes have useful space. Two engineer names wrap and the date ranges split, but the rows and week groups remain clear.\"},\"F\":{\"grade\":\"good\",\"why\":\"Phone numbers remain intact and the notes are reasonably readable. Three engineer names wrap, and date ranges split across lines, making the contact columns less easy to scan than in B.\"}},\"best\":[\"B\"],\"confidence\":\"high\",\"unsure\":\"B's split date ranges are a noticeable compromise; E gives the notes slightly more room but wraps two engineer names.\"}\n"
+  }
+ ]
+}

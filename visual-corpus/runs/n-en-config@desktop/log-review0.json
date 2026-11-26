@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Document ingestion environment variables (language en).\nGrid: 4 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Name\" · longest unbreakable word 377px · one-line width 377px\n  col 2: header \"Required\" · longest unbreakable word 78px · one-line width 78px\n  col 3: header \"Default\" · longest unbreakable word 169px · one-line width 169px\n  col 4: header \"Description\" · longest unbreakable word 172px · one-line width 1212px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nThis table cannot fit without splitting words at 720px. You MAY choose a total wider than 719px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nRendering convention: the screenshot always shows the WHOLE table. Anything beyond the dashed box is not clipped; it is the part a reader reaches by scrolling sideways, so judge both what fits in the box at first sight and the cost of scrolling to the rest.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 17575,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"All columns fit in the viewport, and the required and default values remain intact. Several names split midword, though, and the narrow description column makes rows tall and breaks an identifier.\"},\"B\":{\"grade\":\"good\",\"why\":\"Names and defaults stay intact, and the descriptions appear to have a more comfortable measure. Almost the entire description column requires horizontal scrolling.\"},\"C\":{\"grade\":\"poor\",\"why\":\"The equal column widths leave excessive space in Required while splitting nearly every name, the URL, and a description identifier. The narrow descriptions also make rows tall.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"Names and defaults remain intact, but descriptions are mostly beyond the viewport and appear narrow enough to create tall rows. Reading each row requires scrolling.\"},\"E\":{\"grade\":\"good\",\"why\":\"Names and defaults stay intact, and the wider descriptions produce a more compact row rhythm. The description column lies mostly beyond the initial viewport, so reading it requires scrolling.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"More of the description is visible initially and the prose has room to breathe, but several names split awkwardly, including a single final letter, while descriptions still require scrolling.\"}},\"best\":[\"E\"],\"confidence\":\"medium\",\"unsure\":\"The supplied images cut off the right side of the scrolling layouts, so the full description widths and exact scrolling distances cannot be judged directly.\"}\n"
+  }
+ ]
+}

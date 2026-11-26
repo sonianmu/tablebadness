@@ -1,0 +1,30 @@
+{
+ "model": "opencode-zen-free/deepseek-v4.1-flash-free",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 医院门诊医生排班表 (language zh-CN).\nGrid: 5 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"心血管内科\" spans 1 col × 3 row; \"内分泌科\" spans 1 col × 2 row; \"骨科\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"科室\" · longest unbreakable word 16px · one-line width 77px\n  col 2: header \"医生\" · longest unbreakable word 16px · one-line width 46px\n  col 3: header \"职称\" · longest unbreakable word 16px · one-line width 77px\n  col 4: header \"出诊时间\" · longest unbreakable word 31px · one-line width 138px\n  col 5: header \"擅长领域\" · longest unbreakable word 31px · one-line width 1042px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 14440,
+   "problem": "exhausted"
+  },
+  {
+   "attempt": 1,
+   "model": "opencode-zen-free/deepseek-v4.1-flash-free",
+   "ms": 93166,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Sensible proportions: 科室/医生/职称 are snug but whole (心血管内科 and 主任医师 never break), 出诊时间 wraps into two tidy lines that break at the 、 (周一上午、/周四下午), and 擅长领域 still gets ~350px so each cell is only about 4 lines. The cost is a slightly ragged double-line rhythm in the time column that weakens vertical scanning of the schedule.\"},\"B\":{\"grade\":\"bad\",\"why\":\"The narrow columns collapse: 医生 is ~35px, so the header and every name stack one character per line vertically; 职称 splits 主任/医师; 出诊时间 breaks into three or four fragments. Only 擅长领域 is comfortable, so the table's identifiers become unreadable while the prose column hogs half the width.\"},\"C\":{\"grade\":\"poor\",\"why\":\"出诊时间 is squeezed to ~80px, so every slot breaks inside a word — 周一上/午、周四/下午 — destroying the unit a reader compares down the column, while 科室/职称 keep comfortable width. The prose column is fine, but the schedule column is the table's functional core and it is the one sacrificed.\"},\"D\":{\"grade\":\"excellent\",\"why\":\"Short columns are sized to their content: 科室, 医生, 职称 all on one line, and 出诊时间 (~160px) holds 周一上午、周四下午 unbroken, so the key operational data scans cleanly down the column. The remainder goes to 擅长领域 (~305px, ~18 characters per line, 4 lines per cell), giving the longest content the most space without any wasted slack elsewhere. Clean hierarchy, even rhythm.\"},\"E\":{\"grade\":\"poor\",\"why\":\"Half the width is spent on 5-character labels: 科室, 医生, 职称 and 出诊时间 each get ~110px of mostly empty space, while 擅长领域 is choked to ~215px, breaking the prose into 10-character ribbons and roughly doubling table height. Rows stop reading as units and the eye has to travel far between doctor and expertise.\"},\"F\":{\"grade\":\"good\",\"why\":\"Very close to A: identifiers intact, 出诊时间 broken into two lines at the 、, 擅长领域 generous at ~350-380px with four lines per cell. Balanced and readable, though the time column's wrapping costs a little scanning efficiency versus a layout that keeps slots on one line.\"}},\"best\":[\"D\"],\"confidence\":\"medium\",\"unsure\":\"I am inferring exact widths from the rendered images; A and F look nearly identical in proportion, and I could not reliably measure whether F's 出诊时间 column is slightly narrower than A's. If F does in fact keep times on one line, A and F would tie just below D.\"}\n"
+  }
+ ]
+}

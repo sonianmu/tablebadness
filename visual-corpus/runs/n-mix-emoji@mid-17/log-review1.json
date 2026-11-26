@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 团队周报看板（第 34 周） (language zh-CN).\nGrid: 4 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"成员\" · longest unbreakable word 18px · one-line width 53px\n  col 2: header \"状态\" · longest unbreakable word 21px · one-line width 61px\n  col 3: header \"本周完成\" · longest unbreakable word 64px · one-line width 768px\n  col 4: header \"下周计划\" · longest unbreakable word 49px · one-line width 1057px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 437px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 436px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 12990,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Names and statuses stay intact, and the two narrative columns are reasonably balanced. The longer plans wrap heavily, leaving some rows taller than necessary.\"},\"B\":{\"grade\":\"poor\",\"why\":\"The name and status columns have conspicuous unused space, while both narrative columns are cramped. Frequent short lines make the rows long and harder to compare.\"},\"C\":{\"grade\":\"good\",\"why\":\"Names and statuses stay intact, and the longer plans have room to read. The completion column is noticeably narrow, though, producing frequent short lines and some uneven row endings.\"},\"D\":{\"grade\":\"bad\",\"why\":\"Names, status labels and their headers break into vertical stacks. This undermines the first two columns’ role in quickly identifying each row, despite the more spacious narrative columns.\"},\"E\":{\"grade\":\"good\",\"why\":\"Names and statuses remain intact, and the narrative columns have a useful balance: plans get slightly more room while completions remain readable. Most rows have a compact, consistent rhythm.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"Names and statuses scan well, but the longer plan column is relatively narrow. Its many short lines create tall rows and substantial empty space beside several completion entries.\"}},\"best\":[\"E\"],\"confidence\":\"medium\",\"unsure\":\"A and E are close; their small width difference changes individual line breaks, so the preference depends partly on the overall row rhythm.\"}\n"
+  }
+ ]
+}

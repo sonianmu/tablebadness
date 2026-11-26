@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Mathematical Notation Reference (language en).\nGrid: 4 columns × 6 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Symbol\" · longest unbreakable word 54px · one-line width 54px\n  col 2: header \"Name\" · longest unbreakable word 78px · one-line width 105px\n  col 3: header \"LaTeX\" · longest unbreakable word 59px · one-line width 59px\n  col 4: header \"Meaning\" · longest unbreakable word 100px · one-line width 1191px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nRendering convention: the screenshot always shows the WHOLE table. Anything beyond the dashed box is not clipped; it is the part a reader reaches by scrolling sideways, so judge both what fits in the box at first sight and the cost of scrolling to the rest.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 12591,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"bad\",\"why\":\"Equal-width columns leave Meaning extremely narrow, splitting many words and making the rows very tall; even Summation breaks.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"The table fits the viewport and keeps the names and LaTeX commands readable, but Meaning is still narrow enough to split words such as antiderivatives and construction.\"},\"C\":{\"grade\":\"good\",\"why\":\"The wider Meaning column preserves words and gives the descriptions a more natural rhythm, while names and commands remain intact. Reading the ends of lines requires horizontal scrolling.\"},\"D\":{\"grade\":\"good\",\"why\":\"Names and commands stay intact, and the descriptions wrap without the conspicuous word splits seen in B. A small amount of Meaning extends beyond the viewport.\"},\"E\":{\"grade\":\"good\",\"why\":\"The first three columns remain clear, and Meaning has enough width to preserve words with only a small horizontal overflow. Its narrow prose measure still makes rows fairly tall.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"The wider prose column improves line length and reduces row height, but a substantial part of each description lies beyond the initial viewport, increasing the need to scroll.\"}},\"best\":[\"D\",\"E\"],\"confidence\":\"medium\",\"unsure\":\"D and E appear almost identical; any small difference in overflow is difficult to judge from the images. The full right edges of C and F are not visible in the supplied display, so their exact scrolling cost is uncertain.\"}\n"
+  }
+ ]
+}

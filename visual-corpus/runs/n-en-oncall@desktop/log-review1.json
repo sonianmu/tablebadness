@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Weekly On-Call Rotation Schedule (language en).\nGrid: 5 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"Week 14(Mar 30 – Apr 5)\" spans 1 col × 2 row; \"Week 15(Apr 6 – 12)\" spans 1 col × 2 row; \"Week 16(Apr 13 – 19)\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Week\" · longest unbreakable word 40px · one-line width 119px\n  col 2: header \"Role\" · longest unbreakable word 78px · one-line width 78px\n  col 3: header \"Engineer\" · longest unbreakable word 91px · one-line width 129px\n  col 4: header \"Phone\" · longest unbreakable word 46px · one-line width 132px\n  col 5: header \"Escalation notes\" · longest unbreakable word 89px · one-line width 655px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 6959,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"Equal column widths leave the notes cramped and split every phone number; the resulting tall rows make the schedule harder to scan.\"},\"B\":{\"grade\":\"good\",\"why\":\"Names and phone numbers stay on one line, and notes have useful space. The narrow week column splits each date range across lines.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"Week labels and phone numbers read clearly, but several names wrap and the narrower notes column makes rows taller.\"},\"D\":{\"grade\":\"good\",\"why\":\"Phone numbers stay intact and notes read comfortably. Two names and the week date ranges wrap, slightly weakening quick scanning.\"},\"E\":{\"grade\":\"good\",\"why\":\"Phone numbers stay intact and notes have ample space, though three names and the week date ranges wrap.\"},\"F\":{\"grade\":\"poor\",\"why\":\"The generous notes column improves prose, but every phone number wraps and several names and date ranges split, making contact details harder to scan.\"}},\"best\":[\"B\"],\"confidence\":\"medium\",\"unsure\":\"B splits the week date ranges, while D gives notes slightly more space; the preference depends on how much weight readers place on scanning names intact.\"}\n"
+  }
+ ]
+}

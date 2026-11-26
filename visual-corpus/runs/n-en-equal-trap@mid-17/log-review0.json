@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Courier Delivery Commitments by Destination (language en).\nGrid: 3 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"Destination\" spans 1 col × 2 row; \"Delivery\" spans 2 col × 1 row.\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"Destination\" · longest unbreakable word 92px · one-line width 161px\n  col 2: header \"Delivery › Window\" · longest unbreakable word 65px · one-line width 71px\n  col 3: header \"Delivery › Conditions\" · longest unbreakable word 104px · one-line width 1714px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 514px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 513px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 12348,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"Equal-width columns leave excessive space around the short delivery windows and squeeze the conditions into narrow, heavily wrapped passages. The resulting tall rows make comparisons harder.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"Conditions have a comfortable measure, but every delivery window splits the number from ‘days’, and several destination names wrap. This weakens scanning of the two identifying columns.\"},\"C\":{\"grade\":\"good\",\"why\":\"Delivery windows stay on one line and most destinations do too. Conditions are readable, though the wider destination column leaves the prose somewhat more constrained than in D or E.\"},\"D\":{\"grade\":\"good\",\"why\":\"The conditions column is spacious and all delivery windows stay intact. Greater Luzon and Remote island areas wrap, slightly slowing the scan of destinations.\"},\"E\":{\"grade\":\"excellent\",\"why\":\"All delivery windows and all but the longest destination stay on one line, while conditions have ample space. The column proportions support both quick comparison and reading the qualifications.\"},\"F\":{\"grade\":\"poor\",\"why\":\"As in A, the broad window column wastes space while the conditions wrap into narrow, lengthy blocks. Large empty areas beside the prose make the rows harder to scan as units.\"}},\"best\":[\"E\"],\"confidence\":\"high\",\"unsure\":\"D is a close alternative: it gives conditions slightly more room, while E keeps Greater Luzon on one line.\"}\n"
+  }
+ ]
+}

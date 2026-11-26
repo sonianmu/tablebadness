@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: ফসল মৌসুমভিত্তিক বপন, কর্তন ও ফলন সূচি (language bn).\nGrid: 5 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 13px font, excluding padding):\n  col 1: header \"ফসল\" · longest unbreakable word 61px · one-line width 131px\n  col 2: header \"বপন\" · longest unbreakable word 58px · one-line width 231px\n  col 3: header \"কাটা\" · longest unbreakable word 59px · one-line width 209px\n  col 4: header \"ফলন (টন/হেক্টর)\" · longest unbreakable word 37px · one-line width 95px\n  col 5: header \"মন্তব্য\" · longest unbreakable word 59px · one-line width 908px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 620px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 619px.\nFixed: content, font, 13px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 8391,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"The remarks have comfortable line lengths, yield ranges stay intact, and the two date columns have similar weight. Crop names and several dates wrap over multiple lines, but rows remain easy to follow.\"},\"B\":{\"grade\":\"good\",\"why\":\"The wider remarks column reads well, yield ranges remain intact, and the date columns are balanced. The narrow crop and date columns create frequent wrapping.\"},\"C\":{\"grade\":\"poor\",\"why\":\"Equal column widths leave the long remarks in a very narrow measure, making rows exceptionally tall and leaving large empty areas under the other cells.\"},\"D\":{\"grade\":\"poor\",\"why\":\"Remarks and dates have useful space, but the narrow yield column splits several numeric ranges across lines and forces its header into three lines, impairing comparison.\"},\"E\":{\"grade\":\"poor\",\"why\":\"Dates and crop names have room, but every yield range breaks across lines and the yield header is cramped. The narrower remarks column also makes rows taller.\"},\"F\":{\"grade\":\"good\",\"why\":\"Remarks are readable and yield ranges stay on one line. The crop and paired date columns remain comparable, though dates wrap frequently and the narrower harvest column produces some extra breaks.\"}},\"best\":[\"A\",\"B\"],\"confidence\":\"medium\",\"unsure\":\"A and B are very close: A gives crop names slightly more room, while B gives remarks more room. Their relative benefit depends on whether readers prioritize scanning crop labels or reading notes.\"}\n"
+  }
+ ]
+}

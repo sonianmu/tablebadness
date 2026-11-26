@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Thực đơn quán phở (language vi).\nGrid: 4 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 13px font, excluding padding):\n  col 1: header \"Món\" · longest unbreakable word 31px · one-line width 94px\n  col 2: header \"Giá\" · longest unbreakable word 52px · one-line width 52px\n  col 3: header \"Thành phần\" · longest unbreakable word 42px · one-line width 1335px\n  col 4: header \"Ghi chú\" · longest unbreakable word 54px · one-line width 370px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 504px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 503px.\nFixed: content, font, 13px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 15463,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Dish names and prices stay on one line, while ingredients have enough width to read comfortably. Notes wrap more tightly, but remain legible.\"},\"B\":{\"grade\":\"good\",\"why\":\"Names and prices scan well, and the ingredient column is generous. The narrower notes column creates several short lines and adds height to some rows.\"},\"C\":{\"grade\":\"good\",\"why\":\"Names and prices remain intact, and notes have a comfortable measure. Ingredients wrap more than in A, making the longer rows taller.\"},\"D\":{\"grade\":\"bad\",\"why\":\"Every price breaks across lines, making comparison difficult. The narrow ingredient column also produces tall rows, while the dish-name column has excess space.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"Ingredients and notes read comfortably and prices stay intact, but the very narrow first column breaks dish names over two or three lines, slowing menu scanning.\"},\"F\":{\"grade\":\"poor\",\"why\":\"Names and prices stay intact, but the ingredient column is so narrow that descriptions become long stacks of short lines. The oversized price column leaves substantial unused space.\"}},\"best\":[\"A\"],\"confidence\":\"high\",\"unsure\":\"A and B are close: B gives ingredients slightly more room, while A gives notes a more useful width and produces a slightly shorter table.\"}\n"
+  }
+ ]
+}

@@ -1,0 +1,32 @@
+{
+ "model": "opencode-zen-free/deepseek-v4.1-flash-free",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 合规审查法律条文引用表 (language zh-CN).\nGrid: 3 columns × 7 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"法律名称\" · longest unbreakable word 31px · one-line width 261px\n  col 2: header \"条款\" · longest unbreakable word 16px · one-line width 123px\n  col 3: header \"条文内容\" · longest unbreakable word 46px · one-line width 4732px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "opencode-zen-free/deepseek-v4.1-flash-free",
+   "ms": 300021,
+   "code": null,
+   "problem": "exit null ",
+   "raw": ""
+  },
+  {
+   "attempt": 2,
+   "model": "opencode-zen-free/deepseek-v4.1-flash-free",
+   "ms": 254056,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"excellent\",\"why\":\"Prose column takes about two thirds of the width (~31 chars/line), so the 条文内容 cells wrap in a comfortable measure and rows stay compact; 条款 is just wide enough to keep 第一千零三十四条 on one line, and the law names settle into two tidy lines. Only blemish: row 1 breaks 个人 across lines in col 1.\"},\"B\":{\"grade\":\"excellent\",\"why\":\"Very close to A: col 1 is a touch wider, giving cleaner name breaks (《中华人民共和国 / 个人信息保护法》), and 条款 fits comfortably; the cost is a slightly narrower prose column, so rows run one to three lines taller overall. Sound, readable, just marginally less efficient than A.\"},\"C\":{\"grade\":\"poor\",\"why\":\"Col 1 is sized for one-line law names (~35% of the table) while the actual payload column is squeezed to ~23 chars/line. Result: very tall rows with large empty white space beside every name, and the eye has to travel a narrow, ragged text ribbon — the hierarchy is inverted.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"Same imbalance as C but milder: col 1 still wider than the names need, col 3 at ~25 chars/line makes tall, deep rows with dead space in the left columns. Readable, but proportion and rhythm are off for a reference table.\"},\"E\":{\"grade\":\"bad\",\"why\":\"Col 1 collapsed to a few characters and 条款 to a single-character stack, so article numbers like 第一千零三十四条 read vertically one glyph per line and law names become five-line columns of fragments. Identifiers are destroyed and nothing can be scanned or compared.\"},\"F\":{\"grade\":\"good\",\"why\":\"Col 3 gets a workable ~28 chars/line and names wrap to two lines, so rows read as units. It spends a bit more width than necessary on col 1 (breaking 《…个人信息 / 保护法》), which shortens the prose measure and adds height versus A/B.\"}},\"best\":[\"A\",\"B\"],\"confidence\":\"medium-high\",\"unsure\":\"A and B are nearly interchangeable — A is more compact because it gives the prose column more room, B has slightly nicer law-name line breaks; my pixel estimates of the exact column splits are approximate, so the ranking between them could flip. C and D are close enough that D could also be read as poor.\"}\n"
+  }
+ ]
+}

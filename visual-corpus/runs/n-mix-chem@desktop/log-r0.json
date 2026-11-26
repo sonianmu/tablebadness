@@ -1,29 +1,18 @@
 {
- "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "model": "codex/gpt-6.1-terra",
  "thinking": "medium",
- "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nTable: 常用化学试剂清单 (language zh-CN).\nGrid: 5 columns × 8 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"名称\" · longest unbreakable word 16px · one-line width 123px\n  col 2: header \"分子式\" · longest unbreakable word 135px · one-line width 135px\n  col 3: header \"CAS 号\" · longest unbreakable word 43px · one-line width 78px\n  col 4: header \"纯度\" · longest unbreakable word 54px · one-line width 135px\n  col 5: header \"储存条件（长）\" · longest unbreakable word 46px · one-line width 1145px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nThe image shows the table's content with every cell on one line, so you can read everything. Study it first.\n1) Understand it: what is the table for, how will people read, scan and compare it, which columns play the same or similar role, which values must stay intact, which text may wrap naturally, and where existing row height could absorb wrapping.\n2) Propose 3 genuinely different column-width designs for 720px (different strategies, not small variations).\nReply ONLY JSON: {\"understanding\":{\"purpose\":\"\",\"reading\":\"\",\"groups\":[\"columns that belong together and why\"],\"keep_intact\":[\"\"],\"may_wrap\":[\"\"]},\"designs\":[{\"name\":\"A\",\"widths\":[int px per column, column 1 first],\"idea\":\"one sentence\"}]}",
+ "images": [
+  "overview.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nTable: 常用化学试剂清单 (language zh-CN).\nGrid: 5 columns × 8 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"名称\" · longest unbreakable word 16px · one-line width 123px\n  col 2: header \"分子式\" · longest unbreakable word 135px · one-line width 135px\n  col 3: header \"CAS 号\" · longest unbreakable word 43px · one-line width 78px\n  col 4: header \"纯度\" · longest unbreakable word 54px · one-line width 135px\n  col 5: header \"储存条件（长）\" · longest unbreakable word 46px · one-line width 1145px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nThe image shows the table's content with every cell on one line, so you can read everything. Study it first.\n1) Understand it: what is the table for, how will people read, scan and compare it, which columns play the same or similar role, which values must stay intact, which text may wrap naturally, and where existing row height could absorb wrapping.\n2) Propose 3 genuinely different column-width designs for 720px (different strategies, not small variations).\nReply ONLY JSON: {\"understanding\":{\"purpose\":\"\",\"reading\":\"\",\"groups\":[\"columns that belong together and why\"],\"keep_intact\":[\"\"],\"may_wrap\":[\"\"]},\"designs\":[{\"name\":\"A\",\"widths\":[int px per column, column 1 first],\"idea\":\"one sentence\"}]}",
  "log": [
   {
    "attempt": 1,
-   "ms": 1296,
-   "code": 1,
-   "problem": "exit 1 429: {\"message\":\"WorkBuddy AI: Credits exhausted. Please visit the link below to purchase add-on packs and get more credits: https://www.codebuddy.ai/profile/usage  — WorkBuddy requires an active credit package even for 0-rate free models; check your account package balance\",\"type\":\"insufficient_quo",
-   "raw": ""
-  },
-  {
-   "attempt": 2,
-   "ms": 945,
-   "code": 1,
-   "problem": "exit 1 429: {\"message\":\"WorkBuddy AI: Credits exhausted. Please visit the link below to purchase add-on packs and get more credits: https://www.codebuddy.ai/profile/usage  — WorkBuddy requires an active credit package even for 0-rate free models; check your account package balance\",\"type\":\"insufficient_quo",
-   "raw": ""
-  },
-  {
-   "attempt": 3,
-   "ms": 1189,
-   "code": 1,
-   "problem": "exit 1 429: {\"message\":\"WorkBuddy AI: Credits exhausted. Please visit the link below to purchase add-on packs and get more credits: https://www.codebuddy.ai/profile/usage  — WorkBuddy requires an active credit package even for 0-rate free models; check your account package balance\",\"type\":\"insufficient_quo",
-   "raw": ""
+   "model": "codex/gpt-6.1-terra",
+   "ms": 14196,
+   "code": 0,
+   "problem": null,
+   "raw": "{\n  \"understanding\": {\n    \"purpose\": \"供读者识别常用化学试剂，并查阅其纯度和储存要求。\",\n    \"reading\": \"读者先按名称定位试剂，再横向核对分子式、CAS 号和纯度，最后阅读储存条件；储存说明较长，通常决定行高。\",\n    \"groups\": [\n      \"名称、分子式和 CAS 号共同用于识别试剂，其中后两列是需要准确核对的标识。\",\n      \"纯度和储存条件描述试剂规格与保管要求，需与同一行的试剂保持清晰对应。\"\n    ],\n    \"keep_intact\": [\n      \"分子式及其下标、结晶水记法\",\n      \"CAS 号\",\n      \"纯度百分比和范围\",\n      \"名称尽量完整，尤其是较长的乙二胺四乙酸二钠\"\n    ],\n    \"may_wrap\": [\n      \"储存条件可在自然语义位置换行，其产生的行高也可容纳同一行其他单元格的换行。\",\n      \"纯度等级与百分比之间可以换行。\",\n      \"空间紧张时，较长的中文试剂名称可以换行。\"\n    ]\n  },\n  \"designs\": [\n    {\n      \"name\": \"A\",\n      \"widths\": [144, 156, 99, 115, 205],\n      \"idea\": \"完整保留名称和标识，将纯度的等级与数值分行，把较多空间留给储存说明。\"\n    },\n    {\n      \"name\": \"B\",\n      \"widths\": [120, 156, 99, 156, 188],\n      \"idea\": \"完整展示纯度以便纵向比较，接受个别长名称换行，储存说明采用较窄的段落。\"\n    },\n    {\n      \"name\": \"C\",\n      \"widths\": [100, 156, 99, 100, 264],\n      \"idea\": \"优先加宽储存说明以改善长文本阅读，让名称和纯度更多地利用说明所形成的行高。\"\n    }\n  ]\n}\n"
   }
- ],
- "failed": true
+ ]
 }

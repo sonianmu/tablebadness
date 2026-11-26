@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: השוואת דירות להשכרה בתל אביב (language he, right-to-left: column 1 is on the RIGHT).\nGrid: 5 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 13px font, excluding padding):\n  col 1: header \"שכונה\" · longest unbreakable word 58px · one-line width 76px\n  col 2: header \"מחיר\" · longest unbreakable word 37px · one-line width 90px\n  col 3: header \"חדרים\" · longest unbreakable word 37px · one-line width 37px\n  col 4: header \"קומה\" · longest unbreakable word 37px · one-line width 122px\n  col 5: header \"הערות\" · longest unbreakable word 70px · one-line width 941px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 584px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 583px.\nFixed: content, font, 13px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 8088,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"excellent\",\"why\":\"Neighborhoods and prices stay on one line, room counts scan easily, and floor details wrap into coherent phrases. Notes have enough width for readable lines.\"},\"B\":{\"grade\":\"good\",\"why\":\"Neighborhoods remain intact and the notes read comfortably, but every price separates its monthly unit onto a second line.\"},\"C\":{\"grade\":\"good\",\"why\":\"The notes have reasonable line lengths and neighborhoods remain intact, but prices wrap throughout and one floor entry splits the elevator phrase.\"},\"D\":{\"grade\":\"poor\",\"why\":\"Wide notes are easy to read, but narrow neighborhood and floor columns fragment identifiers and floor details; one neighborhood even breaks within a word.\"},\"E\":{\"grade\":\"poor\",\"why\":\"Notes have useful space, but neighborhood names wrap and some prices separate the currency symbol from the amount. Floor details also break into short fragments.\"},\"F\":{\"grade\":\"bad\",\"why\":\"The notes are squeezed into a narrow strip, producing very tall rows and making each apartment difficult to scan as a unit. The room-count column has excessive empty space.\"}},\"best\":[\"A\"],\"confidence\":\"high\",\"unsure\":\"B and C are close: their notes have slightly different line breaks, but both make the same recurring compromise in the price column.\"}\n"
+  }
+ ]
+}

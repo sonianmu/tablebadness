@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 2025학년도 1학기 강의 시간표 (language ko).\nGrid: 5 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"월\" spans 1 col × 2 row; \"수\" spans 1 col × 2 row; \"금\" spans 1 col × 2 row.\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"요일\" · longest unbreakable word 15px · one-line width 30px\n  col 2: header \"시간\" · longest unbreakable word 56px · one-line width 96px\n  col 3: header \"과목명\" · longest unbreakable word 15px · one-line width 89px\n  col 4: header \"교수\" · longest unbreakable word 15px · one-line width 45px\n  col 5: header \"강의실\" · longest unbreakable word 36px · one-line width 122px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 444px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 443px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10770,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Course names and instructor names stay intact, but every time range breaks across lines and the final room number is stranded.\"},\"B\":{\"grade\":\"bad\",\"why\":\"The oversized day column takes space from the content: time ranges, course names and room names all wrap, often splitting words.\"},\"C\":{\"grade\":\"bad\",\"why\":\"The day header and every instructor name break across lines, as do all time ranges; this makes the table difficult to scan.\"},\"D\":{\"grade\":\"good\",\"why\":\"Time ranges and instructor names stay intact, making the schedule easy to scan, though several course names and two room entries wrap.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"Most names remain intact, but every time range wraps and the final course and room names split awkwardly.\"},\"F\":{\"grade\":\"good\",\"why\":\"Course and instructor names stay intact, but every time range wraps and the final room name breaks across lines.\"}},\"best\":[\"D\"],\"confidence\":\"medium\",\"unsure\":\"D preserves complete time ranges at the cost of splitting several course names; A and F make the opposite trade-off. The preferred balance depends on whether scanning times or course titles is the reader’s main task.\"}\n"
+  }
+ ]
+}

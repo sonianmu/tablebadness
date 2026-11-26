@@ -1,0 +1,2392 @@
+{
+ "id": "n-code-sql@phone",
+ "family": "n-code-sql",
+ "split": "validation",
+ "status": "confirmed",
+ "table": {
+  "title": "Database column specification for orders table",
+  "lang": "en",
+  "structure": "plain",
+  "html": "<table><thead><tr><th>Column</th><th>Type</th><th>Nullable</th><th>Default</th><th>Comment</th></tr></thead><tbody><tr><td>order_id</td><td>BIGINT UNSIGNED</td><td>NO</td><td>—</td><td>Primary key; auto-increment sequence shared across all sales channels</td></tr><tr><td>customer_id</td><td>BIGINT UNSIGNED</td><td>NO</td><td>—</td><td>References customers.id; indexed for order history lookups</td></tr><tr><td>order_reference</td><td>VARCHAR(32)</td><td>NO</td><td>—</td><td>Human-readable code shown to customers and on invoices, e.g. ORD-2024-008731</td></tr><tr><td>status</td><td>VARCHAR(24)</td><td>NO</td><td>'pending'</td><td>One of pending, paid, fulfilled, cancelled, refunded; enforced by CHECK constraint</td></tr><tr><td>total_amount_cents</td><td>INTEGER</td><td>NO</td><td>0</td><td>Order total in minor currency units; never store floating-point money here</td></tr><tr><td>currency_code</td><td>CHAR(3)</td><td>NO</td><td>'USD'</td><td>ISO 4217 alphabetic code; must match the currency of all line items</td></tr><tr><td>placed_at</td><td>TIMESTAMP WITH TIME ZONE</td><td>NO</td><td>CURRENT_TIMESTAMP</td><td>Moment the order was submitted; stored in UTC regardless of storefront locale</td></tr><tr><td>cancelled_at</td><td>TIMESTAMP WITH TIME ZONE</td><td>YES</td><td>NULL</td><td>Set when status transitions to cancelled or refunded; NULL for active orders</td></tr></tbody></table>",
+  "md": null,
+  "rowHeader": false,
+  "source": "generated",
+  "brief": "Database column spec: Column (snake_case) / Type (like VARCHAR(255), TIMESTAMP WITH TIME ZONE) / Nullable / Default / Comment"
+ },
+ "conditions": {
+  "availableWidth": 360,
+  "fontSize": 15,
+  "policy": "scroll-allowed",
+  "css": "src/table.css (padding 6px 10px, 1px borders, line-height 1.55)",
+  "browser": "Chromium (Playwright build), macOS system fonts",
+  "contentFacts": {
+   "WminNoSplit": 655,
+   "WallOneLine": 1250
+  }
+ },
+ "understanding": {
+  "purpose": "A reference spec of the orders table's columns — an engineering artifact read to answer 'what columns exist, what type, can it be null, what's the default, what does it mean'. It is consulted, not compared numerically; the reader jumps to a column name and then reads across that row.",
+  "reading": "Top-to-bottom scan of the Column column (identifiers are the index), then a rightward read of that row's Type / Nullable / Default, with Comment read only when needed. Cross-row comparison of Type values is secondary but real (repeated BIGINT UNSIGNED, TIMESTAMP WITH TIME ZONE).",
+  "groups": [
+   "Column + Type form the identity pair — always read together and must never be broken mid-token",
+   "Nullable + Default form the constraint pair — both are short flag-like values, low information density, safe to keep narrow",
+   "Comment is prose, a separate register, and can absorb wrapping at line breaks"
+  ],
+  "keep_intact": [
+   "column identifiers (order_reference, total_amount_cents, cancelled_at) — snake_case split across lines is misread as two columns",
+   "type tokens (BIGINT UNSIGNED, VARCHAR(32), TIMESTAMP WITH TIME ZONE) — breaking at spaces is tolerable, breaking inside a word is not",
+   "default literals (CURRENT_TIMESTAMP) — a single token, must not split",
+   "Nullable YES/NO — 3 characters, never wrap"
+  ],
+  "may_wrap": [
+   "Comment — free prose, wraps at word boundaries with no loss",
+   "Type — may wrap between its words (TIMESTAMP / WITH TIME ZONE) if words stay whole",
+   "Default — may wrap to two lines if the token itself stays intact"
+  ]
+ },
+ "preferred": [
+  {
+   "name": "r3A",
+   "colWidths": [
+    158,
+    120,
+    80,
+    182,
+    300
+   ],
+   "requestedWidths": [
+    158,
+    120,
+    80,
+    182,
+    300
+   ],
+   "tableWidth": 841,
+   "tableHeight": 606.3,
+   "rowHeights": [
+    36.3,
+    59.5,
+    59.5,
+    82.8,
+    82.8,
+    59.5,
+    59.5,
+    82.8,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     2
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     2
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     2
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     1
+    ],
+    [
+     2,
+     4,
+     2
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     1
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     4,
+     3
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     1
+    ],
+    [
+     4,
+     4,
+     3
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     1
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     1
+    ],
+    [
+     5,
+     4,
+     2
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     1
+    ],
+    [
+     6,
+     2,
+     1
+    ],
+    [
+     6,
+     3,
+     1
+    ],
+    [
+     6,
+     4,
+     2
+    ],
+    [
+     7,
+     0,
+     1
+    ],
+    [
+     7,
+     1,
+     3
+    ],
+    [
+     7,
+     2,
+     1
+    ],
+    [
+     7,
+     3,
+     1
+    ],
+    [
+     7,
+     4,
+     3
+    ],
+    [
+     8,
+     0,
+     1
+    ],
+    [
+     8,
+     1,
+     3
+    ],
+    [
+     8,
+     2,
+     1
+    ],
+    [
+     8,
+     3,
+     1
+    ],
+    [
+     8,
+     4,
+     2
+    ]
+   ],
+   "overflow": 481,
+   "screenshot": "img/n-code-sql@phone__r3A.png",
+   "note": "Refine r2A by giving Comment 25px more. This tests whether a modest increase reduces prose wrapping and row height while preserving the complete initial view of Column, Type, and Nullable."
+  }
+ ],
+ "acceptable": [
+  {
+   "name": "r1C",
+   "colWidths": [
+    158,
+    180,
+    80,
+    182,
+    250
+   ],
+   "requestedWidths": [
+    158,
+    180,
+    80,
+    182,
+    250
+   ],
+   "tableWidth": 851,
+   "tableHeight": 676,
+   "rowHeights": [
+    36.3,
+    82.8,
+    59.5,
+    82.8,
+    82.8,
+    82.8,
+    82.8,
+    82.8,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     3
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     1
+    ],
+    [
+     2,
+     4,
+     2
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     1
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     4,
+     3
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     1
+    ],
+    [
+     4,
+     4,
+     3
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     1
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     1
+    ],
+    [
+     5,
+     4,
+     3
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     1
+    ],
+    [
+     6,
+     2,
+     1
+    ],
+    [
+     6,
+     3,
+     1
+    ],
+    [
+     6,
+     4,
+     3
+    ],
+    [
+     7,
+     0,
+     1
+    ],
+    [
+     7,
+     1,
+     2
+    ],
+    [
+     7,
+     2,
+     1
+    ],
+    [
+     7,
+     3,
+     1
+    ],
+    [
+     7,
+     4,
+     3
+    ],
+    [
+     8,
+     0,
+     1
+    ],
+    [
+     8,
+     1,
+     2
+    ],
+    [
+     8,
+     2,
+     1
+    ],
+    [
+     8,
+     3,
+     1
+    ],
+    [
+     8,
+     4,
+     3
+    ]
+   ],
+   "overflow": 491,
+   "screenshot": "img/n-code-sql@phone__r1C.png",
+   "note": "Give Type more space so shorter multiword types can remain on one line, while allowing the longest types to wrap between words. This trades initial visibility of Nullable for a calmer identity pair."
+  },
+  {
+   "name": "r2A",
+   "colWidths": [
+    158,
+    120,
+    80,
+    182,
+    275
+   ],
+   "requestedWidths": [
+    158,
+    120,
+    80,
+    182,
+    275
+   ],
+   "tableWidth": 816,
+   "tableHeight": 652.8,
+   "rowHeights": [
+    36.3,
+    82.8,
+    59.5,
+    82.8,
+    82.8,
+    82.8,
+    59.5,
+    82.8,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     2
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     3
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     2
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     1
+    ],
+    [
+     2,
+     4,
+     2
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     1
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     4,
+     3
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     1
+    ],
+    [
+     4,
+     4,
+     3
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     1
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     1
+    ],
+    [
+     5,
+     4,
+     3
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     1
+    ],
+    [
+     6,
+     2,
+     1
+    ],
+    [
+     6,
+     3,
+     1
+    ],
+    [
+     6,
+     4,
+     2
+    ],
+    [
+     7,
+     0,
+     1
+    ],
+    [
+     7,
+     1,
+     3
+    ],
+    [
+     7,
+     2,
+     1
+    ],
+    [
+     7,
+     3,
+     1
+    ],
+    [
+     7,
+     4,
+     3
+    ],
+    [
+     8,
+     0,
+     1
+    ],
+    [
+     8,
+     1,
+     3
+    ],
+    [
+     8,
+     2,
+     1
+    ],
+    [
+     8,
+     3,
+     1
+    ],
+    [
+     8,
+     4,
+     3
+    ]
+   ],
+   "overflow": 456,
+   "screenshot": "img/n-code-sql@phone__r2A.png",
+   "note": "Keep the complete identity and nullable fields in the first viewport, and give Comment 25px more to test whether fewer prose lines improve row rhythm enough to justify the extra scrolling."
+  },
+  {
+   "name": "r2B",
+   "colWidths": [
+    158,
+    160,
+    80,
+    182,
+    250
+   ],
+   "requestedWidths": [
+    158,
+    160,
+    80,
+    182,
+    250
+   ],
+   "tableWidth": 831,
+   "tableHeight": 676,
+   "rowHeights": [
+    36.3,
+    82.8,
+    59.5,
+    82.8,
+    82.8,
+    82.8,
+    82.8,
+    82.8,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     3
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     1
+    ],
+    [
+     2,
+     4,
+     2
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     1
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     4,
+     3
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     1
+    ],
+    [
+     4,
+     4,
+     3
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     1
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     1
+    ],
+    [
+     5,
+     4,
+     3
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     1
+    ],
+    [
+     6,
+     2,
+     1
+    ],
+    [
+     6,
+     3,
+     1
+    ],
+    [
+     6,
+     4,
+     3
+    ],
+    [
+     7,
+     0,
+     1
+    ],
+    [
+     7,
+     1,
+     2
+    ],
+    [
+     7,
+     2,
+     1
+    ],
+    [
+     7,
+     3,
+     1
+    ],
+    [
+     7,
+     4,
+     3
+    ],
+    [
+     8,
+     0,
+     1
+    ],
+    [
+     8,
+     1,
+     2
+    ],
+    [
+     8,
+     2,
+     1
+    ],
+    [
+     8,
+     3,
+     1
+    ],
+    [
+     8,
+     4,
+     3
+    ]
+   ],
+   "overflow": 471,
+   "screenshot": "img/n-code-sql@phone__r2B.png",
+   "note": "Test an intermediate Type width to improve multiword type wrapping while keeping the start of Nullable visible; compare its scanning benefit and scroll cost with r1A and r1C."
+  },
+  {
+   "name": "r2C",
+   "colWidths": [
+    158,
+    120,
+    80,
+    182,
+    225
+   ],
+   "requestedWidths": [
+    158,
+    120,
+    80,
+    182,
+    225
+   ],
+   "tableWidth": 766,
+   "tableHeight": 769,
+   "rowHeights": [
+    36.3,
+    82.8,
+    82.8,
+    106,
+    106,
+    82.8,
+    82.8,
+    106,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     2
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     3
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     2
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     1
+    ],
+    [
+     2,
+     4,
+     3
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     1
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     4,
+     4
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     1
+    ],
+    [
+     4,
+     4,
+     4
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     1
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     1
+    ],
+    [
+     5,
+     4,
+     3
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     1
+    ],
+    [
+     6,
+     2,
+     1
+    ],
+    [
+     6,
+     3,
+     1
+    ],
+    [
+     6,
+     4,
+     3
+    ],
+    [
+     7,
+     0,
+     1
+    ],
+    [
+     7,
+     1,
+     3
+    ],
+    [
+     7,
+     2,
+     1
+    ],
+    [
+     7,
+     3,
+     1
+    ],
+    [
+     7,
+     4,
+     4
+    ],
+    [
+     8,
+     0,
+     1
+    ],
+    [
+     8,
+     1,
+     3
+    ],
+    [
+     8,
+     2,
+     1
+    ],
+    [
+     8,
+     3,
+     1
+    ],
+    [
+     8,
+     4,
+     3
+    ]
+   ],
+   "overflow": 406,
+   "screenshot": "img/n-code-sql@phone__r2C.png",
+   "note": "Try a middle Comment width between r1A and r1B to see whether it saves horizontal travel without producing as many four-line rows."
+  },
+  {
+   "name": "r3B",
+   "colWidths": [
+    158,
+    120,
+    80,
+    182,
+    260
+   ],
+   "requestedWidths": [
+    158,
+    120,
+    80,
+    182,
+    260
+   ],
+   "tableWidth": 801,
+   "tableHeight": 676,
+   "rowHeights": [
+    36.3,
+    82.8,
+    59.5,
+    82.8,
+    82.8,
+    82.8,
+    82.8,
+    82.8,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     2
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     3
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     2
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     1
+    ],
+    [
+     2,
+     4,
+     2
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     1
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     4,
+     3
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     1
+    ],
+    [
+     4,
+     4,
+     3
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     1
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     1
+    ],
+    [
+     5,
+     4,
+     3
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     1
+    ],
+    [
+     6,
+     2,
+     1
+    ],
+    [
+     6,
+     3,
+     1
+    ],
+    [
+     6,
+     4,
+     3
+    ],
+    [
+     7,
+     0,
+     1
+    ],
+    [
+     7,
+     1,
+     3
+    ],
+    [
+     7,
+     2,
+     1
+    ],
+    [
+     7,
+     3,
+     1
+    ],
+    [
+     7,
+     4,
+     3
+    ],
+    [
+     8,
+     0,
+     1
+    ],
+    [
+     8,
+     1,
+     3
+    ],
+    [
+     8,
+     2,
+     1
+    ],
+    [
+     8,
+     3,
+     1
+    ],
+    [
+     8,
+     4,
+     3
+    ]
+   ],
+   "overflow": 441,
+   "screenshot": "img/n-code-sql@phone__r3B.png",
+   "note": "Test a middle ground between r2A and r2C. The 260px Comment width may save some horizontal scrolling without causing as much row expansion as the 225px version."
+  },
+  {
+   "name": "r3C",
+   "colWidths": [
+    158,
+    140,
+    80,
+    182,
+    275
+   ],
+   "requestedWidths": [
+    158,
+    140,
+    80,
+    182,
+    275
+   ],
+   "tableWidth": 836,
+   "tableHeight": 652.8,
+   "rowHeights": [
+    36.3,
+    82.8,
+    59.5,
+    82.8,
+    82.8,
+    82.8,
+    59.5,
+    82.8,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     2
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     3
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     2
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     1
+    ],
+    [
+     2,
+     4,
+     2
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     1
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     4,
+     3
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     1
+    ],
+    [
+     4,
+     4,
+     3
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     1
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     1
+    ],
+    [
+     5,
+     4,
+     3
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     1
+    ],
+    [
+     6,
+     2,
+     1
+    ],
+    [
+     6,
+     3,
+     1
+    ],
+    [
+     6,
+     4,
+     2
+    ],
+    [
+     7,
+     0,
+     1
+    ],
+    [
+     7,
+     1,
+     3
+    ],
+    [
+     7,
+     2,
+     1
+    ],
+    [
+     7,
+     3,
+     1
+    ],
+    [
+     7,
+     4,
+     3
+    ],
+    [
+     8,
+     0,
+     1
+    ],
+    [
+     8,
+     1,
+     3
+    ],
+    [
+     8,
+     2,
+     1
+    ],
+    [
+     8,
+     3,
+     1
+    ],
+    [
+     8,
+     4,
+     3
+    ]
+   ],
+   "overflow": 476,
+   "screenshot": "img/n-code-sql@phone__r3C.png",
+   "note": "Test a compromise Type width with r2A's Comment width. It may improve multiword type wrapping while shifting Nullable less far beyond the viewport edge than r2B."
+  }
+ ],
+ "bad": [
+  {
+   "name": "r1B",
+   "colWidths": [
+    158,
+    120,
+    80,
+    182,
+    200
+   ],
+   "requestedWidths": [
+    158,
+    120,
+    80,
+    182,
+    200
+   ],
+   "tableWidth": 741,
+   "tableHeight": 838.8,
+   "rowHeights": [
+    36.3,
+    106,
+    82.8,
+    106,
+    106,
+    106,
+    82.8,
+    106,
+    106
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     2
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     4
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     2
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     1
+    ],
+    [
+     2,
+     4,
+     3
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     1
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     4,
+     4
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     1
+    ],
+    [
+     4,
+     4,
+     4
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     1
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     1
+    ],
+    [
+     5,
+     4,
+     4
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     1
+    ],
+    [
+     6,
+     2,
+     1
+    ],
+    [
+     6,
+     3,
+     1
+    ],
+    [
+     6,
+     4,
+     3
+    ],
+    [
+     7,
+     0,
+     1
+    ],
+    [
+     7,
+     1,
+     3
+    ],
+    [
+     7,
+     2,
+     1
+    ],
+    [
+     7,
+     3,
+     1
+    ],
+    [
+     7,
+     4,
+     4
+    ],
+    [
+     8,
+     0,
+     1
+    ],
+    [
+     8,
+     1,
+     3
+    ],
+    [
+     8,
+     2,
+     1
+    ],
+    [
+     8,
+     3,
+     1
+    ],
+    [
+     8,
+     4,
+     4
+    ]
+   ],
+   "overflow": 381,
+   "screenshot": "img/n-code-sql@phone__r1B.png",
+   "note": "Use the same initial-view arrangement with r0B's narrower Comment width. This reduces horizontal travel while retaining word-boundary wrapping and intact defaults.",
+   "why": "The narrow Comment column creates several four-line rows, making the table unusually tall and leaving large empty areas beside short identifiers and types."
+  }
+ ],
+ "ranges": [
+  [
+   158,
+   160
+  ],
+  [
+   120,
+   122
+  ],
+  [
+   80,
+   81
+  ],
+  [
+   182,
+   185
+  ],
+  [
+   300,
+   305
+  ]
+ ],
+ "rationale": "r3A keeps identifiers and SQL tokens intact while showing Column, Type and Nullable within the initial viewport. Its wider Comment column reduces several rows to two lines, making the relationship between each field and its description easier to follow. Default and Comment still require substantial horizontal scrolling, but that preserves readable values and prose.",
+ "principles": {
+  "general": [
+   "Keep identifiers and other meaningful tokens intact when readers need to copy or compare them.",
+   "Allocate width according to content and reading role; prose often benefits from more width than short categorical values.",
+   "Assess horizontal scrolling alongside row height and the columns visible on first load."
+  ],
+  "specific": [
+   "A 120px Type column allows the first three columns to fit in the viewport, though longer SQL types wrap.",
+   "Increasing Comment to 300px reduces several row heights compared with the narrower candidates."
+  ]
+ },
+ "tradeoffs": "r2A and r3B require less horizontal scrolling, while r3A uses the extra width to shorten several rows. r1C and r2B give SQL types more room but leave the Nullable header partly outside the initial viewport.",
+ "uncertain": "The suggested ranges are conservative estimates around r3A, not independently rendered breakpoints. A designer might prefer a narrower Comment column if reducing sideways scrolling matters more than compact rows.",
+ "designHistory": {
+  "r0": {
+   "critique": null,
+   "designs": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "The full table fits within the viewport, and the column-name field receives the most space.",
+     "problems": "The table is extremely tall and difficult to scan. Identifiers, types, headers, defaults and comments break inside words, so rows lose their identity and related information is separated by large vertical distances.",
+     "cause": "At 140px, Column has only 119px for text, less than the longest identifier needs. Type has 59px, Nullable 23px, Default 25px and Comment 28px of text space; all are below their longest unbreakable content."
+    },
+    {
+     "design": "r0B",
+     "good": "Identifiers and type values are intact, headers stay on one line, and comments wrap without splitting words. The moderate row heights preserve a usable connection across each row.",
+     "problems": "The initial viewport shows the identity pair but cuts through the longest type values; Nullable, Default and Comment require horizontal scrolling. The relatively tall rows also leave considerable white space beneath the short values.",
+     "cause": "Column and Type consume 389px together, exceeding the viewport before the constraint columns begin. The 200px Comment column wraps prose over several lines, setting the height of most rows."
+    },
+    {
+     "design": "r0C",
+     "good": "Every value stays on one line, creating compact, regular rows and making vertical scanning easy.",
+     "problems": "The table requires extensive horizontal scrolling to read the complete specification, and the wide Comment column spreads each row far beyond the initial view.",
+     "cause": "The 598px Comment column accommodates the longest comment on one line, increasing the total width to 1250px. The 231px Type column also keeps every type on one line but pushes the constraint columns out of the initial viewport."
+    }
+   ],
+   "designs": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "Column identifiers, type words and default literals stay intact. Column, Type and Nullable fit together in the initial viewport, giving the reader a useful first view of each field.",
+     "problems": "BIGINT UNSIGNED takes two lines and the timestamp type takes three, making repeated types harder to scan. Default and Comment require substantial horizontal scrolling.",
+     "cause": "The 120px Type column has 99px of text space, so multiword types wrap. The 182px Default and 250px Comment columns preserve readable content but extend the table to 791px."
+    },
+    {
+     "design": "r1B",
+     "good": "The initial viewport preserves the same useful Column, Type and Nullable grouping as r1A, and the narrower table reduces horizontal travel by 50px.",
+     "problems": "The table is considerably taller, with large areas of empty space in the identifier and constraint cells. Four-line comments make rows harder to scan as compact units.",
+     "cause": "Reducing Comment from 250px to 200px forces more prose wrapping and increases most row heights; it does not improve the initial viewport."
+    },
+    {
+     "design": "r1C",
+     "good": "BIGINT UNSIGNED fits on one line and timestamp types use two lines, making Type easier to scan. Identifiers and literals remain intact.",
+     "problems": "Nullable is cut by the viewport edge, so even its header and values require horizontal movement. The wider Type column adds scrolling without reducing the overall table height.",
+     "cause": "The 180px Type column pushes the start of Nullable to 338px, while the 250px Comment column still determines the tallest rows."
+    }
+   ],
+   "designs": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "Column, Type, and Nullable fit together in the initial viewport. Identifiers and type words remain intact, and the 275px Comment column limits cells to three lines. Rows remain easy to follow across the table.",
+     "problems": "BIGINT UNSIGNED takes two lines and the timestamp types take three. Several rows have substantial blank space beneath short values, while Default and Comment require horizontal scrolling.",
+     "cause": "The 120px Type width leaves 99px for text, so multiword types wrap. Row height is also driven by wrapping in the 275px Comment column. The 182px Default and 275px Comment columns extend beyond the viewport."
+    },
+    {
+     "design": "r2B",
+     "good": "The wider Type column keeps BIGINT UNSIGNED on one line and reduces the timestamp types to two lines. Tokens remain intact.",
+     "problems": "Nullable is cut by the viewport edge, weakening the initial scan of constraints. The table is wider and slightly taller than r2A despite the improvement to Type; many rows still have large areas of blank space.",
+     "cause": "Increasing Type to 160px moves Nullable 40px to the right. Reducing Comment to 250px creates more prose wrapping, which can determine row heights even when Type uses fewer lines."
+    },
+    {
+     "design": "r2C",
+     "good": "Column, Type, and Nullable fit in the initial viewport, and the narrower table reduces horizontal scrolling. Identifiers, type words, and default tokens remain intact.",
+     "problems": "The table is noticeably taller, with several four-line rows and large blank areas in the short-value columns. This makes it harder to keep adjacent records in view and follow the row rhythm.",
+     "cause": "The 225px Comment width forces more prose wrapping, increasing several row heights. The 120px Type width also leaves the timestamp types on three lines."
+    }
+   ],
+   "designs": [
+    "r3A",
+    "r3B",
+    "r3C"
+   ]
+  }
+ },
+ "review": {
+  "method": "two fresh-context blind reviews; letters shuffled; includes browser auto layout and equal widths as neutral references",
+  "verdict": {
+   "status": "confirmed",
+   "per": [
+    {
+     "prefGrade": 4,
+     "prefIsBest": true,
+     "bestNames": [
+      "r3A"
+     ],
+     "badGrades": [
+      2
+     ],
+     "autoGrade": 1,
+     "equalGrade": 1
+    },
+    {
+     "prefGrade": 4,
+     "prefIsBest": true,
+     "bestNames": [
+      "r3A"
+     ],
+     "badGrades": [
+      3
+     ],
+     "autoGrade": 2,
+     "equalGrade": 1
+    }
+   ]
+  },
+  "raw": [
+   {
+    "order": [
+     "r3A",
+     "r1C",
+     "r2A",
+     "r1B",
+     "ref_auto",
+     "ref_equal"
+    ],
+    "best": [
+     "r3A"
+    ],
+    "ratings": {
+     "r3A": {
+      "grade": "good",
+      "why": "The initial viewport keeps column names, types, and nullability together. Identifiers stay intact, and the type wrapping is manageable; defaults and comments require scrolling."
+     },
+     "r1C": {
+      "grade": "acceptable",
+      "why": "The wider Type column keeps more type names together, but pushes Nullable across the viewport edge, making that column harder to scan at first sight."
+     },
+     "r2A": {
+      "grade": "acceptable",
+      "why": "The first three columns read clearly, but taller rows create more vertical separation between entries than in A."
+     },
+     "r1B": {
+      "grade": "poor",
+      "why": "The first three columns are readable, but the tall rows leave substantial empty space in the visible fields and make comparisons slower."
+     },
+     "ref_auto": {
+      "grade": "bad",
+      "why": "Very tall rows produce large empty areas in the visible columns, separating entries and making the table difficult to scan."
+     },
+     "ref_equal": {
+      "grade": "bad",
+      "why": "All columns fit in the viewport, but headers, identifiers, SQL types, defaults, and comment words split repeatedly, making the table very difficult to read."
+     }
+    },
+    "confidence": "low",
+    "unsure": "The supplied view cuts off the right side of layouts A–E, so I cannot judge their full Default and Comment columns or the total scrolling distance. The row heights suggest those columns wrap differently, which could affect the ranking."
+   },
+   {
+    "order": [
+     "r2A",
+     "ref_auto",
+     "r3A",
+     "r1B",
+     "ref_equal",
+     "r1C"
+    ],
+    "best": [
+     "r3A"
+    ],
+    "ratings": {
+     "r2A": {
+      "grade": "good",
+      "why": "Column names stay intact and the first three fields fit within the viewport. Types wrap at word boundaries, though taller rows add some empty space."
+     },
+     "ref_auto": {
+      "grade": "poor",
+      "why": "The first three fields remain readable, but the very tall rows create large gaps that make scanning and comparing records cumbersome."
+     },
+     "r3A": {
+      "grade": "good",
+      "why": "Names stay intact, types wrap sensibly, and the relatively compact rows make the first three fields easy to compare. Default and Comment require horizontal scrolling."
+     },
+     "r1B": {
+      "grade": "acceptable",
+      "why": "The visible fields are readable, but the extra row height leaves substantial white space and slows vertical scanning."
+     },
+     "ref_equal": {
+      "grade": "bad",
+      "why": "All five columns fit, but headers, identifiers, types, defaults and comment words split repeatedly. The resulting tall rows are difficult to read as units."
+     },
+     "r1C": {
+      "grade": "acceptable",
+      "why": "The wider Type column keeps more types together, but pushes Nullable partly outside the initial viewport, so even the first three fields cannot be read together without scrolling."
+     }
+    },
+    "confidence": "low",
+    "unsure": "The supplied view shows only a narrow portion beyond the viewport for A–D and F, so I cannot assess the complete Default and Comment columns or the full horizontal scrolling cost. Differences in their unseen widths may affect the ranking."
+   }
+  ]
+ },
+ "provenance": {
+  "models": {
+   "final": "codex/gpt-6.1-terra",
+   "r0": "workbuddy-ai/deepseek-v4.1-flash-sg",
+   "r1": "codex/gpt-6.1-terra",
+   "r2": "codex/gpt-6.1-terra",
+   "r3": "codex/gpt-6.1-terra",
+   "review0": "codex/gpt-6.1-terra",
+   "review1": "codex/gpt-6.1-terra"
+  },
+  "modelChain": "codex/gpt-6.1-terra → opencode-zen-free/deepseek-v4.1-flash-free",
+  "pi": "1.3.0",
+  "created": "2026-11-26T16:40:07.967Z",
+  "note": "AI visual design judgement; not a human reading study"
+ }
+}

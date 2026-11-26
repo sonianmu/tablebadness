@@ -1,0 +1,5660 @@
+{
+ "id": "n-en-cves@desktop",
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "CVE IDs, package names and severity labels stay on one line, making advisory identification easy to scan. Version operators and numbers remain intact.",
+     "problems": "The summary is a narrow, tall strip, leaving large areas of empty space in the other columns. Version bounds often occupy separate lines, and the long callback identifier breaks mid-word.",
+     "cause": "The 146px ID and 183px package columns preserve their longest entries but leave only 200px for the summary. The 110px versions column also forces frequent wrapping."
+    },
+    {
+     "design": "r0B",
+     "good": "The wider summary improves prose rhythm and reduces row height. Most package names remain intact, and several version ranges read as complete clauses.",
+     "problems": "Every CVE ID wraps, weakening quick identification. The longest package path wraps, and the callback identifier splits at its final character. The versions header wraps.",
+     "cause": "The 120px ID column is narrower than the longest full ID; the 155px package column is narrower than the longest path. The 239px summary has 218px of text space, just short of the 220px longest unbreakable term; 125px is insufficient for the versions header on one line."
+    },
+    {
+     "design": "r0C",
+     "good": "All headers fit on one line, and the wider versions column keeps bounds together and makes the multi-clause range easier to compare.",
+     "problems": "CVE IDs wrap, the longest package path breaks within a word, and the callback identifier splits. The narrower summary creates taller rows and more empty space under the short identifying fields.",
+     "cause": "The 130px ID and package columns are too narrow for their longest entries. Allocating 165px to versions leaves 214px for the summary, below the width needed for its longest unbreakable term."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "CVE IDs and severity labels stay on one line. The summary has enough width to keep its long callback identifier intact, and the horizontal rules preserve the association between each advisory and its explanation.",
+     "problems": "Version bounds appear on separate lines, making ranges slower to compare. The final package path wraps before /ssh, and the tall prose-driven rows leave large empty areas under the identifying fields.",
+     "cause": "The 97px version column provides only 76px for text, while the 155px package column is narrower than the full path. The 241px summary column accommodates the longest unbreakable term but still produces many lines of prose."
+    },
+    {
+     "design": "r1B",
+     "good": "All package names, CVE IDs, and severity labels remain on one line, making the identifying fields easy to scan.",
+     "problems": "The summary is visibly more cramped and makes the rows taller; the callback identifier breaks mid-word. Version bounds remain separated, so the extra package width comes at a substantial cost to the fields readers need to assess exposure.",
+     "cause": "The 183px package column fits the longest path, but the 226px summary column provides only 205px of text width, less than the 220px longest unbreakable term. The 84px version column is also too narrow to keep bounds together."
+    },
+    {
+     "design": "r1C",
+     "good": "The summary retains the more comfortable measure of r1A, while CVE IDs and severity labels remain intact. The slightly wider version column gives the ranges more space.",
+     "problems": "The final package path breaks inside 'crypto', making the dependency harder to recognize. Version bounds still occupy separate lines, so the extra version width brings little visible benefit in this render.",
+     "cause": "The 145px package column provides only 124px for text; shifting 10px to the 107px version column is insufficient to bring the displayed bounds together."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "CVE IDs and severity labels remain intact and easy to scan. The long package path wraps at a slash, and the version comparisons remain intact. The summary has enough width for its longest term.",
+     "problems": "Version bounds fall on separate lines, making ranges slower to compare. The summaries create tall rows with large areas of empty space in the identification columns.",
+     "cause": "The 90px versions column cannot hold most paired bounds. The 241px summary column determines the row heights, while the shorter fields occupy only the tops of those rows."
+    },
+    {
+     "design": "r2B",
+     "good": "The 183px package column keeps the long package path on one line. CVE IDs remain intact, and summary wrapping is unchanged.",
+     "problems": "The Severity header, Critical and Medium split within words, weakening a key scan column. Version ranges remain fragmented across lines, despite the extra space given to packages.",
+     "cause": "The 65px severity column leaves only 44px for text. The 84px versions column is too narrow to keep paired bounds together."
+    },
+    {
+     "design": "r2C",
+     "good": "CVE IDs and severity labels remain intact. The wider versions column gives comparisons more breathing room, while the summary retains the same readable measure as in the other designs.",
+     "problems": "The long package path breaks inside 'crypto', making it harder to recognize. Most version bounds still occupy separate lines, so the added width brings little visible benefit.",
+     "cause": "The 140px package column leaves 119px for text, forcing a break within the path. At 112px, the versions column still cannot hold most paired bounds."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A",
+    "r3B",
+    "r3C"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    146,
+    183,
+    110,
+    80,
+    200
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 2649.5,
+    "overflow": 0,
+    "colWidths": [
+     146,
+     183,
+     110,
+     80,
+     200
+    ],
+    "rowHeights": [
+     59.5,
+     478,
+     408.3,
+     408.3,
+     408.3,
+     454.8,
+     431.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "CVE ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Affected versions",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-6387",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "OpenSSH (sshd)",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=8.5p1 <9.8p1",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Critical",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "A signal handler race condition in sshd can be triggered by ",
+      "lines": 20
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2023-44487",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "nghttp2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=1.0.0 <1.57.0",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The HTTP/2 protocol implementation permits a client to open ",
+      "lines": 17
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-21538",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "cross-spawn",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=6.0.0 <6.0.6, >=7.0.0 <7.0.5",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Inefficient regular expression handling in the command parsi",
+      "lines": 17
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-38816",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "spring-webmvc",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=5.3.0 <5.3.40, >=6.0.0 <6.0.24, >=6.1.0 <6.1.13",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications serving static resources through RouterFunction",
+      "lines": 17
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-47554",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "commons-io",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=2.0 <2.18.0",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Medium",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The XmlStreamReader implementation does not adequately limit",
+      "lines": 19
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-45337",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "golang.org/x/crypto/ssh",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=0.0.0 <0.31.0",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications that use ServerConfig.PublicKeyCallback to make",
+      "lines": 18
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 1,
+    "tokenBreaks": 1,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 46,
+      "natural": 125,
+      "padding": 21
+     },
+     {
+      "minContent": 162,
+      "natural": 162,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 335,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 220,
+      "natural": 3094,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r0A.png",
+   "idea": "Protect complete CVE IDs, package names and severity labels, accepting narrow version ranges and possible breaks in long summary terms.",
+   "notes": []
+  },
+  "r0B": {
+   "widths": [
+    120,
+    155,
+    125,
+    80,
+    239
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 2114.8,
+    "overflow": 0,
+    "colWidths": [
+     120,
+     155,
+     125,
+     80,
+     239
+    ],
+    "rowHeights": [
+     59.5,
+     385,
+     338.5,
+     315.3,
+     315.3,
+     361.8,
+     338.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "CVE ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Affected versions",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-6387",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "OpenSSH (sshd)",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=8.5p1 <9.8p1",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Critical",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "A signal handler race condition in sshd can be triggered by ",
+      "lines": 16
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2023-44487",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "nghttp2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=1.0.0 <1.57.0",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The HTTP/2 protocol implementation permits a client to open ",
+      "lines": 14
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-21538",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "cross-spawn",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=6.0.0 <6.0.6, >=7.0.0 <7.0.5",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Inefficient regular expression handling in the command parsi",
+      "lines": 13
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-38816",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "spring-webmvc",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=5.3.0 <5.3.40, >=6.0.0 <6.0.24, >=6.1.0 <6.1.13",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications serving static resources through RouterFunction",
+      "lines": 13
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-47554",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "commons-io",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=2.0 <2.18.0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Medium",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The XmlStreamReader implementation does not adequately limit",
+      "lines": 15
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-45337",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "golang.org/x/crypto/ssh",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=0.0.0 <0.31.0",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications that use ServerConfig.PublicKeyCallback to make",
+      "lines": 14
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 2,
+    "tokenBreaks": 8,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 46,
+      "natural": 125,
+      "padding": 21
+     },
+     {
+      "minContent": 162,
+      "natural": 162,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 335,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 220,
+      "natural": 3094,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r0B.png",
+   "idea": "Give the summary nearly enough space for its longest unbreakable term while sharing the remaining width across identifiers and version ranges.",
+   "notes": []
+  },
+  "r0C": {
+   "widths": [
+    130,
+    130,
+    165,
+    80,
+    214
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 2417,
+    "overflow": 0,
+    "colWidths": [
+     130,
+     130,
+     165,
+     80,
+     214
+    ],
+    "rowHeights": [
+     36.3,
+     454.8,
+     385,
+     361.8,
+     385,
+     408.3,
+     385
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "CVE ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Affected versions",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-6387",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "OpenSSH (sshd)",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=8.5p1 <9.8p1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Critical",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "A signal handler race condition in sshd can be triggered by ",
+      "lines": 19
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2023-44487",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "nghttp2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=1.0.0 <1.57.0",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The HTTP/2 protocol implementation permits a client to open ",
+      "lines": 16
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-21538",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "cross-spawn",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=6.0.0 <6.0.6, >=7.0.0 <7.0.5",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Inefficient regular expression handling in the command parsi",
+      "lines": 15
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-38816",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "spring-webmvc",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=5.3.0 <5.3.40, >=6.0.0 <6.0.24, >=6.1.0 <6.1.13",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications serving static resources through RouterFunction",
+      "lines": 16
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-47554",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "commons-io",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=2.0 <2.18.0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Medium",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The XmlStreamReader implementation does not adequately limit",
+      "lines": 17
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-45337",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "golang.org/x/crypto/ssh",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=0.0.0 <0.31.0",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications that use ServerConfig.PublicKeyCallback to make",
+      "lines": 16
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 2,
+    "tokenBreaks": 7,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 46,
+      "natural": 125,
+      "padding": 21
+     },
+     {
+      "minContent": 162,
+      "natural": 162,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 335,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 220,
+      "natural": 3094,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r0C.png",
+   "idea": "Favor comparison of affected version ranges while allowing package names and summary text to wrap more aggressively.",
+   "notes": []
+  },
+  "r1A": {
+   "widths": [
+    146,
+    155,
+    97,
+    80,
+    241
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 2114.8,
+    "overflow": 0,
+    "colWidths": [
+     146,
+     155,
+     97,
+     80,
+     241
+    ],
+    "rowHeights": [
+     59.5,
+     385,
+     338.5,
+     315.3,
+     315.3,
+     361.8,
+     338.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "CVE ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Affected versions",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-6387",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "OpenSSH (sshd)",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=8.5p1 <9.8p1",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Critical",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "A signal handler race condition in sshd can be triggered by ",
+      "lines": 16
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2023-44487",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "nghttp2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=1.0.0 <1.57.0",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The HTTP/2 protocol implementation permits a client to open ",
+      "lines": 14
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-21538",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "cross-spawn",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=6.0.0 <6.0.6, >=7.0.0 <7.0.5",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Inefficient regular expression handling in the command parsi",
+      "lines": 13
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-38816",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "spring-webmvc",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=5.3.0 <5.3.40, >=6.0.0 <6.0.24, >=6.1.0 <6.1.13",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications serving static resources through RouterFunction",
+      "lines": 13
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-47554",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "commons-io",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=2.0 <2.18.0",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Medium",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The XmlStreamReader implementation does not adequately limit",
+      "lines": 15
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-45337",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "golang.org/x/crypto/ssh",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=0.0.0 <0.31.0",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications that use ServerConfig.PublicKeyCallback to make",
+      "lines": 14
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 1,
+    "tokenBreaks": 2,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 46,
+      "natural": 125,
+      "padding": 21
+     },
+     {
+      "minContent": 162,
+      "natural": 162,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 335,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 220,
+      "natural": 3094,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r1A.png",
+   "idea": "Restore one-line CVE IDs and give the summary enough room for its longest unbreakable term. Allow the longest package path and version ranges to wrap within the height already needed by the summaries.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    146,
+    183,
+    84,
+    80,
+    226
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 2254.3,
+    "overflow": 0,
+    "colWidths": [
+     146,
+     183,
+     84,
+     80,
+     226
+    ],
+    "rowHeights": [
+     59.5,
+     431.5,
+     338.5,
+     338.5,
+     338.5,
+     385,
+     361.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "CVE ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Affected versions",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-6387",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "OpenSSH (sshd)",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=8.5p1 <9.8p1",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Critical",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "A signal handler race condition in sshd can be triggered by ",
+      "lines": 18
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2023-44487",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "nghttp2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=1.0.0 <1.57.0",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The HTTP/2 protocol implementation permits a client to open ",
+      "lines": 14
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-21538",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "cross-spawn",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=6.0.0 <6.0.6, >=7.0.0 <7.0.5",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Inefficient regular expression handling in the command parsi",
+      "lines": 14
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-38816",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "spring-webmvc",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=5.3.0 <5.3.40, >=6.0.0 <6.0.24, >=6.1.0 <6.1.13",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications serving static resources through RouterFunction",
+      "lines": 14
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-47554",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "commons-io",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=2.0 <2.18.0",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Medium",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The XmlStreamReader implementation does not adequately limit",
+      "lines": 16
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-45337",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "golang.org/x/crypto/ssh",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=0.0.0 <0.31.0",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications that use ServerConfig.PublicKeyCallback to make",
+      "lines": 15
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 1,
+    "tokenBreaks": 2,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 46,
+      "natural": 125,
+      "padding": 21
+     },
+     {
+      "minContent": 162,
+      "natural": 162,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 335,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 220,
+      "natural": 3094,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r1B.png",
+   "idea": "Keep both CVE IDs and package names intact, while giving the summary more room than in r0A. The narrow versions column tests whether clause wrapping remains acceptable when identification is prioritized.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1C": {
+   "widths": [
+    146,
+    145,
+    107,
+    80,
+    241
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 2114.8,
+    "overflow": 0,
+    "colWidths": [
+     146,
+     145,
+     107,
+     80,
+     241
+    ],
+    "rowHeights": [
+     59.5,
+     385,
+     338.5,
+     315.3,
+     315.3,
+     361.8,
+     338.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "CVE ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Affected versions",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-6387",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "OpenSSH (sshd)",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=8.5p1 <9.8p1",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Critical",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "A signal handler race condition in sshd can be triggered by ",
+      "lines": 16
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2023-44487",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "nghttp2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=1.0.0 <1.57.0",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The HTTP/2 protocol implementation permits a client to open ",
+      "lines": 14
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-21538",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "cross-spawn",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=6.0.0 <6.0.6, >=7.0.0 <7.0.5",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Inefficient regular expression handling in the command parsi",
+      "lines": 13
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-38816",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "spring-webmvc",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=5.3.0 <5.3.40, >=6.0.0 <6.0.24, >=6.1.0 <6.1.13",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications serving static resources through RouterFunction",
+      "lines": 13
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-47554",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "commons-io",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=2.0 <2.18.0",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Medium",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The XmlStreamReader implementation does not adequately limit",
+      "lines": 15
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-45337",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "golang.org/x/crypto/ssh",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=0.0.0 <0.31.0",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications that use ServerConfig.PublicKeyCallback to make",
+      "lines": 14
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 1,
+    "tokenBreaks": 2,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 46,
+      "natural": 125,
+      "padding": 21
+     },
+     {
+      "minContent": 162,
+      "natural": 162,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 335,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 220,
+      "natural": 3094,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r1C.png",
+   "idea": "Keep IDs and the long summary term intact while giving versions more room than in the first alternative. The package path may wrap, but the added range width may make exposure comparisons easier.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    146,
+    162,
+    90,
+    80,
+    241
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 2114.8,
+    "overflow": 0,
+    "colWidths": [
+     146,
+     162,
+     90,
+     80,
+     241
+    ],
+    "rowHeights": [
+     59.5,
+     385,
+     338.5,
+     315.3,
+     315.3,
+     361.8,
+     338.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "CVE ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Affected versions",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-6387",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "OpenSSH (sshd)",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=8.5p1 <9.8p1",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Critical",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "A signal handler race condition in sshd can be triggered by ",
+      "lines": 16
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2023-44487",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "nghttp2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=1.0.0 <1.57.0",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The HTTP/2 protocol implementation permits a client to open ",
+      "lines": 14
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-21538",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "cross-spawn",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=6.0.0 <6.0.6, >=7.0.0 <7.0.5",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Inefficient regular expression handling in the command parsi",
+      "lines": 13
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-38816",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "spring-webmvc",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=5.3.0 <5.3.40, >=6.0.0 <6.0.24, >=6.1.0 <6.1.13",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications serving static resources through RouterFunction",
+      "lines": 13
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-47554",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "commons-io",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=2.0 <2.18.0",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Medium",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The XmlStreamReader implementation does not adequately limit",
+      "lines": 15
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-45337",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "golang.org/x/crypto/ssh",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=0.0.0 <0.31.0",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications that use ServerConfig.PublicKeyCallback to make",
+      "lines": 14
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 1,
+    "tokenBreaks": 2,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 46,
+      "natural": 125,
+      "padding": 21
+     },
+     {
+      "minContent": 162,
+      "natural": 162,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 335,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 220,
+      "natural": 3094,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r2A.png",
+   "idea": "Refine r1A by giving the package path seven more pixels and taking them from versions. Keep the summary at the 241px threshold for its long identifier; test whether the path wraps at a cleaner boundary while version tokens remain intact.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    146,
+    183,
+    84,
+    65,
+    241
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 2114.8,
+    "overflow": 0,
+    "colWidths": [
+     146,
+     183,
+     84,
+     65,
+     241
+    ],
+    "rowHeights": [
+     59.5,
+     385,
+     338.5,
+     315.3,
+     315.3,
+     361.8,
+     338.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "CVE ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Affected versions",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-6387",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "OpenSSH (sshd)",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=8.5p1 <9.8p1",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Critical",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "A signal handler race condition in sshd can be triggered by ",
+      "lines": 16
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2023-44487",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "nghttp2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=1.0.0 <1.57.0",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The HTTP/2 protocol implementation permits a client to open ",
+      "lines": 14
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-21538",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "cross-spawn",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=6.0.0 <6.0.6, >=7.0.0 <7.0.5",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Inefficient regular expression handling in the command parsi",
+      "lines": 13
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-38816",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "spring-webmvc",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=5.3.0 <5.3.40, >=6.0.0 <6.0.24, >=6.1.0 <6.1.13",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications serving static resources through RouterFunction",
+      "lines": 13
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-47554",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "commons-io",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=2.0 <2.18.0",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Medium",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The XmlStreamReader implementation does not adequately limit",
+      "lines": 15
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-45337",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "golang.org/x/crypto/ssh",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=0.0.0 <0.31.0",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications that use ServerConfig.PublicKeyCallback to make",
+      "lines": 14
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 2,
+    "tokenBreaks": 2,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 46,
+      "natural": 125,
+      "padding": 21
+     },
+     {
+      "minContent": 162,
+      "natural": 162,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 335,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 220,
+      "natural": 3094,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r2B.png",
+   "idea": "Test whether a narrower severity column can retain readable labels while preserving the full package path and the summary identifier. Its 44px text area is below the reported 59px severity requirement, so this deliberately tests a likely wrapping tradeoff.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2C": {
+   "widths": [
+    146,
+    140,
+    112,
+    80,
+    241
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 2114.8,
+    "overflow": 0,
+    "colWidths": [
+     146,
+     140,
+     112,
+     80,
+     241
+    ],
+    "rowHeights": [
+     59.5,
+     385,
+     338.5,
+     315.3,
+     315.3,
+     361.8,
+     338.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "CVE ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Affected versions",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-6387",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "OpenSSH (sshd)",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=8.5p1 <9.8p1",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Critical",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "A signal handler race condition in sshd can be triggered by ",
+      "lines": 16
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2023-44487",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "nghttp2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=1.0.0 <1.57.0",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The HTTP/2 protocol implementation permits a client to open ",
+      "lines": 14
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-21538",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "cross-spawn",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=6.0.0 <6.0.6, >=7.0.0 <7.0.5",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Inefficient regular expression handling in the command parsi",
+      "lines": 13
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-38816",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "spring-webmvc",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=5.3.0 <5.3.40, >=6.0.0 <6.0.24, >=6.1.0 <6.1.13",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications serving static resources through RouterFunction",
+      "lines": 13
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-47554",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "commons-io",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=2.0 <2.18.0",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Medium",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The XmlStreamReader implementation does not adequately limit",
+      "lines": 15
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-45337",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "golang.org/x/crypto/ssh",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=0.0.0 <0.31.0",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications that use ServerConfig.PublicKeyCallback to make",
+      "lines": 14
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 1,
+    "tokenBreaks": 2,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 46,
+      "natural": 125,
+      "padding": 21
+     },
+     {
+      "minContent": 162,
+      "natural": 162,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 335,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 220,
+      "natural": 3094,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r2C.png",
+   "idea": "Give version ranges more room while retaining the summary's long identifier. This explores whether bounds can group more clearly, accepting a greater risk of awkward wrapping in the final package path.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    146,
+    183,
+    84,
+    80,
+    226
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 2254.3,
+    "overflow": 0,
+    "colWidths": [
+     146,
+     183,
+     84,
+     80,
+     226
+    ],
+    "rowHeights": [
+     59.5,
+     431.5,
+     338.5,
+     338.5,
+     338.5,
+     385,
+     361.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "CVE ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Affected versions",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-6387",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "OpenSSH (sshd)",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=8.5p1 <9.8p1",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Critical",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "A signal handler race condition in sshd can be triggered by ",
+      "lines": 18
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2023-44487",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "nghttp2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=1.0.0 <1.57.0",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The HTTP/2 protocol implementation permits a client to open ",
+      "lines": 14
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-21538",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "cross-spawn",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=6.0.0 <6.0.6, >=7.0.0 <7.0.5",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Inefficient regular expression handling in the command parsi",
+      "lines": 14
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-38816",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "spring-webmvc",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=5.3.0 <5.3.40, >=6.0.0 <6.0.24, >=6.1.0 <6.1.13",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications serving static resources through RouterFunction",
+      "lines": 14
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-47554",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "commons-io",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=2.0 <2.18.0",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Medium",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The XmlStreamReader implementation does not adequately limit",
+      "lines": 16
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-45337",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "golang.org/x/crypto/ssh",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=0.0.0 <0.31.0",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications that use ServerConfig.PublicKeyCallback to make",
+      "lines": 15
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 1,
+    "tokenBreaks": 2,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 46,
+      "natural": 125,
+      "padding": 21
+     },
+     {
+      "minContent": 162,
+      "natural": 162,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 335,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 220,
+      "natural": 3094,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r3A.png",
+   "idea": "Keep the full package path and severity labels intact by taking 15px from the summary. The 205px summary text area is narrower than its longest term, so inspect whether that term breaks awkwardly.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3B": {
+   "widths": [
+    146,
+    140,
+    130,
+    80,
+    223
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 2300.8,
+    "overflow": 0,
+    "colWidths": [
+     146,
+     140,
+     130,
+     80,
+     223
+    ],
+    "rowHeights": [
+     59.5,
+     431.5,
+     361.8,
+     338.5,
+     361.8,
+     385,
+     361.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "CVE ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Affected versions",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-6387",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "OpenSSH (sshd)",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=8.5p1 <9.8p1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Critical",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "A signal handler race condition in sshd can be triggered by ",
+      "lines": 18
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2023-44487",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "nghttp2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=1.0.0 <1.57.0",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The HTTP/2 protocol implementation permits a client to open ",
+      "lines": 15
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-21538",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "cross-spawn",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=6.0.0 <6.0.6, >=7.0.0 <7.0.5",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Inefficient regular expression handling in the command parsi",
+      "lines": 14
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-38816",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "spring-webmvc",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=5.3.0 <5.3.40, >=6.0.0 <6.0.24, >=6.1.0 <6.1.13",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications serving static resources through RouterFunction",
+      "lines": 15
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-47554",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "commons-io",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=2.0 <2.18.0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Medium",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The XmlStreamReader implementation does not adequately limit",
+      "lines": 16
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-45337",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "golang.org/x/crypto/ssh",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=0.0.0 <0.31.0",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications that use ServerConfig.PublicKeyCallback to make",
+      "lines": 15
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 2,
+    "tokenBreaks": 1,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 46,
+      "natural": 125,
+      "padding": 21
+     },
+     {
+      "minContent": 162,
+      "natural": 162,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 335,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 220,
+      "natural": 3094,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r3B.png",
+   "idea": "Give versions more room to test whether bounds can sit together; accept a wrapped package path and a narrower summary. Check especially for mid-word breaks in both columns.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3C": {
+   "widths": [
+    146,
+    155,
+    84,
+    80,
+    254
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 2045,
+    "overflow": 0,
+    "colWidths": [
+     146,
+     155,
+     84,
+     80,
+     254
+    ],
+    "rowHeights": [
+     59.5,
+     361.8,
+     315.3,
+     315.3,
+     315.3,
+     361.8,
+     315.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "CVE ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Affected versions",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-6387",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "OpenSSH (sshd)",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=8.5p1 <9.8p1",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Critical",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "A signal handler race condition in sshd can be triggered by ",
+      "lines": 15
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2023-44487",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "nghttp2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=1.0.0 <1.57.0",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The HTTP/2 protocol implementation permits a client to open ",
+      "lines": 13
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-21538",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "cross-spawn",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=6.0.0 <6.0.6, >=7.0.0 <7.0.5",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Inefficient regular expression handling in the command parsi",
+      "lines": 13
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-38816",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "spring-webmvc",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=5.3.0 <5.3.40, >=6.0.0 <6.0.24, >=6.1.0 <6.1.13",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications serving static resources through RouterFunction",
+      "lines": 13
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-47554",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "commons-io",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=2.0 <2.18.0",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Medium",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The XmlStreamReader implementation does not adequately limit",
+      "lines": 15
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-45337",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "golang.org/x/crypto/ssh",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=0.0.0 <0.31.0",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications that use ServerConfig.PublicKeyCallback to make",
+      "lines": 13
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 1,
+    "tokenBreaks": 1,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 46,
+      "natural": 125,
+      "padding": 21
+     },
+     {
+      "minContent": 162,
+      "natural": 162,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 335,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 220,
+      "natural": 3094,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r3C.png",
+   "idea": "Keep severity and version tokens intact, allow the package path to wrap, and give the summary more room. This tests whether improved prose rhythm and shorter rows justify the narrower package column.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "ref_auto": {
+   "widths": [
+    68.5,
+    182.9,
+    88.6,
+    79.8,
+    299.3
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 1673,
+    "overflow": 0,
+    "colWidths": [
+     68.5,
+     182.9,
+     88.6,
+     79.8,
+     299.3
+    ],
+    "rowHeights": [
+     59.5,
+     315.3,
+     245.5,
+     245.5,
+     268.8,
+     268.8,
+     268.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "CVE ID",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Affected versions",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-6387",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "OpenSSH (sshd)",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=8.5p1 <9.8p1",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Critical",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "A signal handler race condition in sshd can be triggered by ",
+      "lines": 13
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2023-44487",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "nghttp2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=1.0.0 <1.57.0",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The HTTP/2 protocol implementation permits a client to open ",
+      "lines": 10
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-21538",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "cross-spawn",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=6.0.0 <6.0.6, >=7.0.0 <7.0.5",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Inefficient regular expression handling in the command parsi",
+      "lines": 10
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-38816",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "spring-webmvc",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=5.3.0 <5.3.40, >=6.0.0 <6.0.24, >=6.1.0 <6.1.13",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications serving static resources through RouterFunction",
+      "lines": 11
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-47554",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "commons-io",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=2.0 <2.18.0",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Medium",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The XmlStreamReader implementation does not adequately limit",
+      "lines": 11
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-45337",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "golang.org/x/crypto/ssh",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=0.0.0 <0.31.0",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications that use ServerConfig.PublicKeyCallback to make",
+      "lines": 11
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 14,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 46,
+      "natural": 125,
+      "padding": 21
+     },
+     {
+      "minContent": 162,
+      "natural": 162,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 335,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 220,
+      "natural": 3094,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    143,
+    143,
+    143,
+    143,
+    143
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 716,
+    "tableHeight": 4044.5,
+    "overflow": 0,
+    "colWidths": [
+     143,
+     143,
+     143,
+     143,
+     143
+    ],
+    "rowHeights": [
+     59.5,
+     757,
+     664,
+     617.5,
+     617.5,
+     687.3,
+     640.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "CVE ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Affected versions",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-6387",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "OpenSSH (sshd)",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=8.5p1 <9.8p1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Critical",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "A signal handler race condition in sshd can be triggered by ",
+      "lines": 32
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2023-44487",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "nghttp2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=1.0.0 <1.57.0",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The HTTP/2 protocol implementation permits a client to open ",
+      "lines": 28
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-21538",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "cross-spawn",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=6.0.0 <6.0.6, >=7.0.0 <7.0.5",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Inefficient regular expression handling in the command parsi",
+      "lines": 26
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-38816",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "spring-webmvc",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=5.3.0 <5.3.40, >=6.0.0 <6.0.24, >=6.1.0 <6.1.13",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications serving static resources through RouterFunction",
+      "lines": 26
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-47554",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "commons-io",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=2.0 <2.18.0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Medium",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "The XmlStreamReader implementation does not adequately limit",
+      "lines": 29
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CVE-2024-45337",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "golang.org/x/crypto/ssh",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": ">=0.0.0 <0.31.0",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Applications that use ServerConfig.PublicKeyCallback to make",
+      "lines": 27
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 3,
+    "tokenBreaks": 5,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 46,
+      "natural": 125,
+      "padding": 21
+     },
+     {
+      "minContent": 162,
+      "natural": 162,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 335,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 220,
+      "natural": 3094,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-ref_equal.png"
+  }
+ },
+ "modelsUsed": [
+  "codex/gpt-6.1-terra"
+ ],
+ "understanding": {
+  "purpose": "Help readers identify security advisories affecting dependencies, assess their severity, and understand the affected version ranges and issues.",
+  "reading": "Readers will scan CVE IDs and packages to find relevant advisories, then compare version ranges and severity before reading summaries; wrapped summaries can provide height for other cells to wrap within the same row.",
+  "groups": [
+   "CVE ID and Package identify the advisory and affected dependency.",
+   "Affected versions and Severity describe exposure and urgency; Summary explains the issue. Deeper summary wrapping can absorb wrapping elsewhere in the same row."
+  ],
+  "keep_intact": [
+   "CVE IDs and package names should remain recognizable, especially long package paths.",
+   "Version numbers and comparison operators should stay together where possible.",
+   "Severity labels should remain on one line.",
+   "Long unbreakable terms in summaries need sufficient width or may be forced to break."
+  ],
+  "may_wrap": [
+   "Affected version ranges can wrap between range clauses.",
+   "Summary prose can wrap naturally.",
+   "Headers can wrap where needed."
+  ]
+ },
+ "final": {
+  "preferred": [
+   "r3C"
+  ],
+  "acceptable": [
+   "r1B",
+   "r1C",
+   "r2A",
+   "r2C",
+   "r3A",
+   "r3B"
+  ],
+  "bad": [
+   {
+    "design": "r2B",
+    "why": "The severity column splits its header and values such as Critical and Medium inside words, making an important scanning column difficult to read."
+   }
+  ],
+  "contrast": null,
+  "ranges": [
+   [
+    146,
+    148
+   ],
+   [
+    153,
+    158
+   ],
+   [
+    84,
+    86
+   ],
+   [
+    80,
+    81
+   ],
+   [
+    250,
+    255
+   ]
+  ],
+  "rationale": "r3C gives the dense summaries enough width to read in relatively coherent phrases while keeping CVE IDs and severity values on one line. Its version constraints wrap into short but intact pieces, and the long package path wraps at a slash. The tall rows still leave substantial white space beneath the shorter fields, but the summaries determine their height in every candidate.",
+  "principles": {
+   "general": [
+    "Protect short, frequently scanned labels and identifiers from disruptive word breaks.",
+    "Allocate width according to reading function and content density; wrapped prose can justify more space than sparse categorical fields.",
+    "Judge row rhythm and the relationship between fields together, not by table height alone."
+   ],
+   "specific": [
+    "The long summaries dominate row height, so additional summary width improves reading across all six advisories.",
+    "A 155px package column wraps the longest path at a slash; keeping the entire path on one line requires substantially more width.",
+    "The affected-version header wraps in the preferred design, but its individual constraints remain intact."
+   ]
+  },
+  "tradeoffs": "r1B and r3A keep the package path on one line, while r3B gives version ranges more room; each spends width that would otherwise make the summaries easier to read. r2A offers a natural package-path break with a somewhat narrower summary.",
+  "uncertain": "The ranges are approximate, untested one-column-at-a-time adjustments with the remaining columns rescaled proportionally to preserve the 719px budget; they are not independent ranges that can all be combined. Browser line breaks near these boundaries could change the judgment, and a reader prioritizing version comparison may reasonably prefer r3B."
+ },
+ "reviews": [
+  {
+   "order": [
+    "r1C",
+    "ref_equal",
+    "ref_auto",
+    "r2B",
+    "r1B",
+    "r3C"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "good",
+     "why": "CVE IDs and severity values remain intact, and the summary has reasonable reading width. The long package path breaks inside a word, while version ranges stack into many short lines."
+    },
+    "B": {
+     "grade": "bad",
+     "why": "Equal-width columns leave the summary extremely narrow, producing very tall rows and breaking identifiers and words. The large empty areas make each row difficult to scan across."
+    },
+    "C": {
+     "grade": "poor",
+     "why": "The summary reads comfortably and package names fit, but every CVE ID is split across three lines, making the primary identifiers difficult to scan and compare."
+    },
+    "D": {
+     "grade": "poor",
+     "why": "CVE IDs and package names fit, but the severity header and values such as Critical and Medium break inside words, impairing a key comparison column."
+    },
+    "E": {
+     "grade": "acceptable",
+     "why": "CVE IDs, packages and severity values fit, but the narrow summary breaks ServerConfig.PublicKeyCallback inside the identifier and makes the prose comparatively cramped."
+    },
+    "F": {
+     "grade": "good",
+     "why": "CVE IDs and severity values stay intact, and the summary has relatively comfortable line lengths. The long package path wraps at a slash, and complex version ranges still require several lines."
+    }
+   },
+   "best": [
+    "F"
+   ],
+   "confidence": "medium",
+   "unsure": "A and F are close: both require substantial wrapping of version ranges, but F gives the summary more room and breaks the package path at a more natural point."
+  },
+  {
+   "order": [
+    "r1B",
+    "r3C",
+    "ref_equal",
+    "ref_auto",
+    "r2B",
+    "r1C"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "acceptable",
+     "why": "CVE IDs, packages and severity labels stay intact, but the narrow summary makes rows very tall and breaks a long technical identifier. Version bounds also stack one per line."
+    },
+    "B": {
+     "grade": "good",
+     "why": "CVE IDs and severity labels scan cleanly, and the summary has a useful measure. The long package path wraps and version bounds stack, but the rows remain clear."
+    },
+    "C": {
+     "grade": "bad",
+     "why": "Nearly equal columns leave the summary extremely narrow, producing very tall rows and broken words. Several CVE IDs and the long package path also wrap."
+    },
+    "D": {
+     "grade": "poor",
+     "why": "The summary and package columns read well, but every CVE ID breaks across three lines, making this important lookup key difficult to scan and compare."
+    },
+    "E": {
+     "grade": "poor",
+     "why": "CVE IDs and packages fit, but the severity header and labels such as Critical and Medium break inside words, impairing a key scanning column."
+    },
+    "F": {
+     "grade": "good",
+     "why": "CVE IDs and severity labels remain intact, and the summary has a readable measure. The long package path breaks within a word, and version ranges stack across several lines."
+    }
+   },
+   "best": [
+    "B"
+   ],
+   "confidence": "medium",
+   "unsure": "B and F are close: B wraps the long package path at a slash, while F breaks within a word; both make the version ranges somewhat difficult to compare."
+  }
+ ],
+ "reviewPrompt": "v2"
+}

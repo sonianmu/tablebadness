@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Link Inventory Audit — Q1 2025 (language en).\nGrid: 4 columns × 7 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Page title\" · longest unbreakable word 100px · one-line width 319px\n  col 2: header \"URL\" · longest unbreakable word 324px · one-line width 841px\n  col 3: header \"Last checked\" · longest unbreakable word 61px · one-line width 96px\n  col 4: header \"Status code\" · longest unbreakable word 47px · one-line width 86px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nRendering convention: the screenshot always shows the WHOLE table. Anything beyond the dashed box is not clipped; it is the part a reader reaches by scrolling sideways, so judge both what fits in the box at first sight and the cost of scrolling to the rest.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11935,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Titles remain readable and URLs wrap into manageable blocks, giving rows a useful rhythm. The date and status columns require horizontal scrolling, and much of each URL lies beyond the initial viewport.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"Titles scan well, but URLs wrap across several lines and extend beyond the viewport. Dates and status codes are also off-screen, so auditing a row requires scrolling.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"The visible layout resembles B: titles are readable, but long URL blocks extend beyond the viewport and the audit fields require scrolling.\"},\"D\":{\"grade\":\"poor\",\"why\":\"More of the date column is initially visible, but URLs break repeatedly inside words and become difficult to follow. Some dates and title words also split, while status remains off-screen.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"The wider URL column reduces URL wrapping, but the narrow title column creates tall, uneven title blocks and splits some words. The wider table also puts the audit fields farther off-screen.\"},\"F\":{\"grade\":\"bad\",\"why\":\"All four columns fit in the viewport, but titles, URLs and dates break into fragments. Very tall rows make it difficult to scan and compare the audit results.\"}},\"best\":[\"A\"],\"confidence\":\"medium\",\"unsure\":\"The supplied images show only the left portion of the wider layouts, so the full widths of their URL, date and status columns and the total scrolling distance cannot be judged directly. B and C appear identical in the visible area.\"}\n"
+  }
+ ]
+}
