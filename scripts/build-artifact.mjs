@@ -1,8 +1,11 @@
-// Builds dist/artifact.html: index.html without the document skeleton (for hosts that add their own).
+// Builds dist/*.html: pages without the document skeleton (for hosts that add their own).
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
-const src = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
-const head = src.match(/<head>([\s\S]*?)<\/head>/)[1].replace(/<meta charset[^>]*>\s*/, '').replace(/<meta name="viewport"[^>]*>\s*/, '');
-const body = src.match(/<body>([\s\S]*?)<\/body>/)[1];
+const pages = [['index.html', 'artifact.html'], ['eval.html', 'eval-artifact.html']];
 mkdirSync(new URL('../dist/', import.meta.url), { recursive: true });
-writeFileSync(new URL('../dist/artifact.html', import.meta.url), head.trim() + '\n' + body.trim() + '\n');
-console.log('dist/artifact.html written');
+for (const [src, out] of pages) {
+  const html = readFileSync(new URL('../' + src, import.meta.url), 'utf8');
+  const head = html.match(/<head>([\s\S]*?)<\/head>/)[1].replace(/<meta charset[^>]*>\s*/, '').replace(/<meta name="viewport"[^>]*>\s*/, '');
+  const body = html.match(/<body>([\s\S]*?)<\/body>/)[1];
+  writeFileSync(new URL('../dist/' + out, import.meta.url), head.trim() + '\n' + body.trim() + '\n');
+  console.log('dist/' + out + ' written');
+}

@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Table Badness 人工评测</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap">
+<link rel="stylesheet" href="src/table.css">
+<style>
+/* Layout: progress strip, then one trial at a time (blind adjust -> reveal & compare -> preference), and a summary view. */
+:root {
+  --bg: #f6f7f9; --panel: #ffffff; --fg: #17202b; --muted: #5b6676; --line: #d9dee5;
+  --accent: #0f6e6a; --accent-soft: #dbefed; --human: #b4530f; --human-soft: #f7e6d7;
+  --good: #1d7a3a; --bad: #b4372a;
+  --tb-border: #cfd5dd; --tb-head: #eef1f4; --tb-code: #e9edf1; --tb-link: #1d5fd6; --ruler: #e0465f;
+  --f-display: "Space Grotesk", "IBM Plex Sans", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "PingFang SC", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #11161c; --panel: #171e26; --fg: #e4e9ef; --muted: #98a3b1; --line: #2a333e;
+  --accent: #5cc4bc; --accent-soft: #173a38; --human: #f0a060; --human-soft: #3a2a1c; --good: #5fc27a; --bad: #f07a6a;
+  --tb-border: #35404d; --tb-head: #1f2832; --tb-code: #24303b; --tb-link: #7db0ff; --ruler: #ff6f86; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #11161c; --panel: #171e26; --fg: #e4e9ef; --muted: #98a3b1; --line: #2a333e;
+  --accent: #5cc4bc; --accent-soft: #173a38; --human: #f0a060; --human-soft: #3a2a1c; --good: #5fc27a; --bad: #f07a6a;
+  --tb-border: #35404d; --tb-head: #1f2832; --tb-code: #24303b; --tb-link: #7db0ff; --ruler: #ff6f86; color-scheme: dark; }
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--fg); font: 14px/1.5 var(--f-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 20px 48px; }
+.page { max-width: 1240px; margin: 0 auto; display: grid; gap: 16px; }
+h1 { font: 600 24px/1.15 var(--f-display); margin: 0; }
+h2 { font: 600 16px/1.2 var(--f-display); margin: 0; }
+.sub { color: var(--muted); margin: 6px 0 0; max-width: 75ch; text-wrap: pretty; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.tabs { display: flex; gap: 6px; }
+.btn { font: 500 13px/1 var(--f-body); color: var(--accent); background: transparent; border: 1px solid var(--accent); border-radius: 5px; padding: 8px 12px; cursor: pointer; }
+.btn.primary { background: var(--accent); color: var(--panel); }
+.btn.human { border-color: var(--human); color: var(--human); }
+.btn[aria-pressed="true"] { background: var(--accent-soft); }
+.btn:disabled { opacity: .45; cursor: default; }
+.btn:focus-visible, .rz:focus-visible, textarea:focus-visible, .dot:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.dots { display: flex; flex-wrap: wrap; gap: 4px; }
+.dot { width: 26px; height: 22px; border-radius: 4px; border: 1px solid var(--line); background: var(--panel); font: 500 10.5px/20px var(--f-mono); text-align: center; color: var(--muted); cursor: pointer; padding: 0; }
+.dot.done { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+.dot.cur { outline: 2px solid var(--human); outline-offset: 1px; }
+.status { font: 12px var(--f-mono); color: var(--muted); }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px; display: grid; gap: 12px; min-width: 0; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 14px; font: 12px var(--f-mono); color: var(--muted); }
+.meta b { color: var(--fg); font-weight: 500; }
+.viewport { overflow-x: auto; padding-bottom: 4px; min-width: 0; }
+.tb-wrap { outline: 1px dashed var(--ruler); background: var(--panel); position: relative; }
+.rz { position: absolute; top: 0; width: 10px; margin-left: -10px; cursor: col-resize; touch-action: none; z-index: 2; }
+.rz::after { content: ""; position: absolute; right: 0; top: 0; bottom: 0; width: 3px; background: color-mix(in srgb, var(--human) 35%, transparent); }
+.rz:hover::after, .rz.on::after, .rz:focus-visible::after { background: var(--human); }
+.panels { display: grid; gap: 12px; }
+.panel { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px 12px; display: grid; gap: 8px; min-width: 0; }
+.panel.you { border-color: var(--human); }
+.panel.tb { border-color: var(--accent); }
+.phead { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline; justify-content: space-between; }
+.pname { font: 600 14px var(--f-display); }
+.chips { display: flex; flex-wrap: wrap; gap: 5px; font: 11.5px/1 var(--f-mono); font-variant-numeric: tabular-nums; }
+.chip { padding: 5px 6px; border-radius: 4px; background: var(--bg); border: 1px solid var(--line); white-space: nowrap; }
+.chip i { font-style: normal; color: var(--muted); margin-right: 4px; }
+.chip.best { border-color: var(--good); color: var(--good); }
+.chip.worst { border-color: var(--bad); color: var(--bad); }
+.diff { display: grid; gap: 4px; font: 12px var(--f-mono); font-variant-numeric: tabular-nums; }
+.drow { display: grid; grid-template-columns: minmax(0, 9em) 1fr 6.5em; gap: 8px; align-items: center; }
+.drow .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.drow .nm small { color: var(--muted); margin-left: 4px; }
+.bars { display: grid; gap: 2px; }
+.bars span { display: block; height: 7px; border-radius: 2px; }
+.bars .h { background: var(--human); }
+.bars .a { background: var(--accent); }
+.dv { text-align: right; }
+.legend { display: flex; gap: 14px; font: 11.5px var(--f-mono); color: var(--muted); }
+.legend span::before { content: ""; display: inline-block; width: 10px; height: 7px; border-radius: 2px; margin-right: 5px; background: currentColor; vertical-align: middle; }
+fieldset { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+legend { font-weight: 600; margin-bottom: 6px; padding: 0; }
+.opt { display: inline-flex; gap: 6px; align-items: center; border: 1px solid var(--line); border-radius: 999px; padding: 6px 11px; cursor: pointer; }
+.opt:has(input:checked) { border-color: var(--human); background: var(--human-soft); }
+.opt input { accent-color: var(--human); margin: 0; }
+textarea { width: 100%; min-height: 56px; font: 13px/1.45 var(--f-body); color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; resize: vertical; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
+.kpi { border: 1px solid var(--line); border-radius: 6px; padding: 10px; display: grid; gap: 4px; }
+.kpi .v { font: 600 20px/1.1 var(--f-display); font-variant-numeric: tabular-nums; }
+.kpi .l { font-size: 12px; color: var(--muted); }
+.tablewrap { overflow-x: auto; }
+table.sum { border-collapse: collapse; font: 12px/1.4 var(--f-mono); font-variant-numeric: tabular-nums; width: 100%; min-width: 760px; }
+table.sum th, table.sum td { border-bottom: 1px solid var(--line); padding: 6px 8px; text-align: right; white-space: nowrap; }
+table.sum th:first-child, table.sum td:first-child, table.sum td.l { text-align: left; }
+table.sum th { color: var(--muted); font-weight: 500; }
+.pos { color: var(--good); } .neg { color: var(--bad); }
+.hint { font-size: 12.5px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="bar">
+    <div>
+      <h1>Table Badness 人工评测</h1>
+      <p class="sub">每道题给定一张表和可用宽度。先在“盲调”阶段从等宽起步，拖动列边线分配列宽，调到你觉得最好读为止（这一步看不到算法结果）。完成后揭晓你的布局与算法布局的对比，再选择更喜欢哪一个。</p>
+    </div>
+    <div class="tabs" role="tablist">
+      <button class="btn" id="tab-trial" type="button" aria-pressed="true">评测</button>
+      <button class="btn" id="tab-sum" type="button" aria-pressed="false">汇总</button>
+    </div>
+  </header>
+
+  <div class="bar">
+    <div class="dots" id="dots" aria-label="题目进度"></div>
+    <div class="status" id="status">正在连接存储…</div>
+  </div>
+
+  <main id="view-trial" class="card"></main>
+  <main id="view-sum" class="card" hidden></main>
+</div>
+
+<script src="src/markdown.js"></script>
+<script src="src/tablebadness.js"></script>
+<script src="src/baselines.js"></script>
+<script src="src/metrics.js"></script>
+<script src="data/cases.js"></script>
+<script src="data/eval-set.js"></script>
+<script>
+(function () {
+  'use strict';
+  const TB = TableBadness, BL = TBBaselines, MD = TBMarkdown, MT = TBMetrics;
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  const VERSION = 1;
+  const records = {};           // trialId -> saved record
+  let backend = { kind: 'local' };
+  let cur = 0;
+  let trial = null;             // live state of the open trial
+
+  // ---------- storage ----------
+  const LS = 'tb-eval-records';
+  try { Object.assign(records, JSON.parse(localStorage.getItem(LS) || '{}')); } catch (e) {}
+  const saveLocal = () => { try { localStorage.setItem(LS, JSON.stringify(records)); } catch (e) {} };
+  function setStatus() {
+    const n = Object.keys(records).length;
+    $('status').textContent = `已完成 ${n}/${TB_EVAL.length} · ` + (backend.kind === 'db' ? '结果保存在此页面的共享存储中' : '结果只存在本浏览器（汇总页可复制 JSON）');
+  }
+  async function connect() {
+    let db = null;
+    try { db = window.claude && window.claude.use ? await window.claude.use('db') : null; } catch (e) { db = null; }
+    if (!db) { setStatus(); return; }
+    backend = { kind: 'db', db };
+    const timer = setTimeout(() => { $('status').textContent = '共享存储暂时连不上，结果会先存在本浏览器'; }, 10000);
+    db.collection('trials').onSnapshot(snap => {
+      clearTimeout(timer);
+      for (const d of snap.docs) records[d.id] = d.data();
+      saveLocal(); setStatus(); drawDots();
+      if (!$('view-sum').hidden) drawSummary();
+    }, () => { clearTimeout(timer); backend = { kind: 'local' }; setStatus(); });
+    setStatus();
+  }
+  async function persist(rec) {
+    records[rec.trialId] = rec; saveLocal(); setStatus(); drawDots();
+    if (backend.kind === 'db') {
+      try { await backend.db.doc('trials/' + rec.trialId).set(rec); }
+      catch (e) { $('status').textContent = '保存到共享存储失败（' + (e && e.code || 'error') + '），已存在本浏览器'; }
+    }
+  }
+
+  // ---------- helpers ----------
+  const caseOf = t => TB_CASES.find(c => c.id === t.caseId);
+  function mountTable(host, c, t) {
+    const vp = document.createElement('div'); vp.className = 'viewport';
+    const wrap = document.createElement('div'); wrap.className = 'tb-wrap';
+    wrap.lang = c.lang; wrap.style.width = t.W + 'px'; wrap.style.setProperty('--tb-font-size', t.fs + 'px');
+    wrap.innerHTML = MD.toHTML(MD.parseTable(c.md));
+    vp.appendChild(wrap); host.appendChild(vp);
+    const table = wrap.querySelector('table');
+    const P = TB.prepareTable(table);
+    return { wrap, table, P };
+  }
+  const setCols = (m, colPx) => TB.applyWidths(m.table, { colPx, tableWidth: colPx.reduce((a, b) => a + b, 0) + m.P.tableExtra });
+  function colKinds(P) {
+    const fs = P.fontSize;
+    return P.cols.map(col => {
+      const ns = []; for (const e of col.entries) if (!/\u0000H\u0000/.test(e.key)) for (let k = 0; k < e.count; k++) ns.push(e.cell.natural);
+      ns.sort((a, b) => a - b);
+      const med = ns.length ? ns[ns.length >> 1] / fs : 0;
+      return med <= 8 ? 'short' : med > 20 ? 'long' : 'mid';
+    });
+  }
+  const KIND = { short: '短', mid: '中', long: '长' };
+  function metricsOf(m, W) {
+    const met = MT.measure(m.P, W, m.wrap);
+    const colPx = met.colWidths;
+    const loss = TB.predict(m.P, colPx.map((w, j) => w - m.P.overhead[j] - m.P.opts.safety)).loss;
+    return { short: met.shortIntact, shortN: met.shortCells, atomic: met.atomicBreaks, frag: met.severeFrag, longN: met.longCells,
+      height: Math.round(met.heightPx), overflow: Math.round(met.overflowPx), loss: +loss.toFixed(2), colPx: colPx.map(x => +x.toFixed(1)) };
+  }
+  const headers = c => MD.parseTable(c.md).header.map(h => h.replace(/[`*]/g, ''));
+
+  // ---------- handles (border j trades width between columns j and j+1; last border changes the total) ----------
+  function addHandles(m, onChange) {
+    const hs = [];
+    const n = m.P.nCols;
+    const minW = j => m.P.overhead[j] + 12;
+    const place = () => {
+      const row = Array.from(m.table.rows).find(r => r.cells.length === n);
+      Array.from(row.cells).forEach((c, j) => {
+        hs[j].style.left = (m.table.offsetLeft + c.offsetLeft + c.offsetWidth) + 'px';
+        hs[j].style.top = m.table.offsetTop + 'px'; hs[j].style.height = m.table.offsetHeight + 'px';
+      });
+    };
+    const shift = (j, d) => {
+      const w = trial.human.slice();
+      if (j < n - 1) {
+        d = Math.max(minW(j) - w[j], Math.min(w[j + 1] - minW(j + 1), d));
+        w[j] += d; w[j + 1] -= d;
+      } else w[j] = Math.max(minW(j), w[j] + d);
+      trial.human = w; setCols(m, w); place(); onChange();
+    };
+    for (let j = 0; j < n; j++) {
+      const h = document.createElement('div');
+      h.className = 'rz'; h.tabIndex = 0; h.setAttribute('role', 'separator'); h.setAttribute('aria-orientation', 'vertical');
+      h.setAttribute('aria-label', j < n - 1 ? `在第 ${j + 1} 和第 ${j + 2} 列之间调整宽度` : '调整最后一列（改变表格总宽）');
+      h.addEventListener('pointerdown', e => {
+        e.preventDefault(); h.setPointerCapture(e.pointerId); h.classList.add('on'); trial.drags++;
+        let last = e.clientX;
+        const move = ev => { const d = ev.clientX - last; if (d) { const before = trial.human[j]; shift(j, d); last += trial.human[j] - before; } };
+        const up = () => { h.classList.remove('on'); h.removeEventListener('pointermove', move); h.removeEventListener('pointerup', up); h.removeEventListener('pointercancel', up); };
+        h.addEventListener('pointermove', move); h.addEventListener('pointerup', up); h.addEventListener('pointercancel', up);
+      });
+      h.addEventListener('keydown', e => {
+        const d = e.key === 'ArrowLeft' ? -1 : e.key === 'ArrowRight' ? 1 : 0;
+        if (!d) return; e.preventDefault(); trial.drags++; shift(j, d * (e.shiftKey ? 16 : 4));
+      });
+      m.wrap.appendChild(h); hs.push(h);
+    }
+    place();
+    return place;
+  }
+
+  // ---------- trial view ----------
+  function openTrial(i, forceAdjust) {
+    cur = i; drawDots();
+    const t = TB_EVAL[i], c = caseOf(t), rec = records[t.id];
+    const v = $('view-trial'); v.innerHTML = '';
+    if (rec && !forceAdjust) return reveal(t, c, rec.human.colPx, rec);
+    const head = document.createElement('div');
+    head.innerHTML = `<h2>第 ${i + 1} 题 · 盲调</h2>
+      <div class="meta"><span>表格 <b>${esc(c.title.replace(/^\[[^\]]+\]\s*/, ''))}</b></span><span>可用宽度 <b>${t.W}px</b></span><span>字号 <b>${t.fs}px</b></span><span>起点 <b>等宽</b></span></div>
+      <p class="hint">拖动列边线（橙色细线）在相邻两列之间挪宽度；最右边线改变表格总宽，超出粉色虚线框就会横向滚动。也可以聚焦边线后用 ← → 键，按住 Shift 步长更大。</p>`;
+    v.appendChild(head);
+    const m = mountTable(v, c, t);
+    trial = { t, c, m, human: BL.equal(m.P, t.W).colPx.slice(), t0: performance.now(), drags: 0 };
+    setCols(m, trial.human);
+    addHandles(m, () => {});
+    const act = document.createElement('div'); act.className = 'actions';
+    act.innerHTML = `<button class="btn primary" type="button" id="done">完成调整，查看对比</button><button class="btn" type="button" id="reset">回到等宽</button><button class="btn" type="button" id="skip">跳过此题</button>`;
+    v.appendChild(act);
+    $('done').addEventListener('click', () => reveal(t, c, trial.human.slice(), null));
+    $('reset').addEventListener('click', () => openTrial(i, true));
+    $('skip').addEventListener('click', () => openTrial((i + 1) % TB_EVAL.length));
+  }
+
+  function reveal(t, c, humanCols, rec) {
+    const v = $('view-trial'); v.innerHTML = '';
+    const adjustMs = rec ? rec.adjustMs : Math.round(performance.now() - trial.t0);
+    const drags = rec ? rec.drags : trial.drags;
+    const h = document.createElement('div');
+    h.innerHTML = `<h2>第 ${cur + 1} 题 · 对比</h2><div class="meta"><span>表格 <b>${esc(c.title.replace(/^\[[^\]]+\]\s*/, ''))}</b></span><span>可用宽度 <b>${t.W}px</b></span><span>你的用时 <b>${(adjustMs / 1000).toFixed(0)} s</b></span><span>调整次数 <b>${drags}</b></span></div>`;
+    v.appendChild(h);
+    const panels = document.createElement('div'); panels.className = 'panels'; panels.style.gridTemplateColumns = `repeat(auto-fill, minmax(min(100%, ${t.W + 30}px), 1fr))`; v.appendChild(panels);
+    const defs = [
+      { key: 'human', name: '你的调整', cls: 'you' },
+      { key: 'tb', name: 'Table Badness', cls: 'tb' },
+      { key: 'css', name: '浏览器原生', cls: '' },
+      { key: 'mh', name: '最小高度', cls: '' },
+    ];
+    const res = {};
+    for (const d of defs) {
+      const p = document.createElement('section'); p.className = 'panel ' + d.cls;
+      p.innerHTML = `<div class="phead"><div class="pname">${d.name}</div><div class="chips"></div></div>`;
+      panels.appendChild(p);
+      const m = mountTable(p, c, t);
+      if (d.key === 'human') setCols(m, humanCols);
+      else if (d.key === 'tb') TB.applyWidths(m.table, TB.layoutAt(m.P, TB.buildPath(m.P), t.W));
+      else if (d.key === 'mh') TB.applyWidths(m.table, BL.minHeight(m.P, t.W, [BL.proportional(m.P, t.W).widths]));
+      else TB.clearWidths(m.table);
+      res[d.key] = { m, el: p, met: metricsOf(m, t.W) };
+    }
+    const keys = [
+      ['短值完整', r => r.shortN ? r.short / r.shortN : null, r => `${r.short}/${r.shortN}`, true],
+      ['词内断开', r => r.atomic, r => r.atomic, false],
+      ['长文碎片化', r => r.longN ? r.frag : null, r => r.longN ? `${r.frag}/${r.longN}` : '—', false],
+      ['总高', r => r.height, r => r.height + 'px', false],
+      ['横向溢出', r => r.overflow, r => r.overflow + 'px', false],
+      ['TB 损失', r => r.loss, r => r.loss.toFixed(1), false],
+    ];
+    const all = Object.values(res).map(r => r.met);
+    for (const r of Object.values(res)) {
+      const chips = r.el.querySelector('.chips');
+      for (const [label, val, fmt, hi] of keys) {
+        const vals = all.map(val).filter(x => x != null), x = val(r.met);
+        const best = hi ? Math.max(...vals) : Math.min(...vals), worst = hi ? Math.min(...vals) : Math.max(...vals);
+        const s = document.createElement('span');
+        s.className = 'chip' + (x != null && best !== worst ? (x === best ? ' best' : x === worst ? ' worst' : '') : '');
+        s.innerHTML = `<i>${label}</i>${esc(fmt(r.met))}`;
+        chips.appendChild(s);
+      }
+    }
+    // column-by-column difference, you vs Table Badness
+    const kinds = colKinds(res.tb.m.P), hd = headers(c);
+    const hu = res.human.met.colPx, tb = res.tb.met.colPx;
+    const mx = Math.max(...hu, ...tb);
+    const diff = document.createElement('section'); diff.className = 'panel';
+    let rows = '';
+    hd.forEach((name, j) => {
+      const dv = hu[j] - tb[j];
+      rows += `<div class="drow"><div class="nm" title="${esc(name)}">${esc(name)}<small>${KIND[kinds[j]]}</small></div>
+        <div class="bars"><span class="h" style="width:${(hu[j] / mx * 100).toFixed(1)}%"></span><span class="a" style="width:${(tb[j] / mx * 100).toFixed(1)}%"></span></div>
+        <div class="dv">${dv >= 0 ? '+' : ''}${dv.toFixed(0)}px</div></div>`;
+    });
+    const l1 = hu.reduce((s, x, j) => s + Math.abs(x - tb[j]), 0) / tb.reduce((a, b) => a + b, 0);
+    diff.innerHTML = `<div class="phead"><div class="pname">逐列对比：你 − Table Badness</div><div class="legend"><span style="color:var(--human)">你的列宽</span><span style="color:var(--accent)">算法列宽</span></div></div>
+      <div class="diff">${rows}</div><div class="hint">列宽差异 ${(l1 * 100).toFixed(0)}%（各列宽度差的绝对值之和 ÷ 算法总宽）。“短/中/长”按该列正文单行宽度的中位数划分（≤8em / 8–20em / >20em）。</div>`;
+    v.appendChild(diff);
+
+    // preference
+    const form = document.createElement('form'); form.className = 'panel';
+    const prev = rec ? rec.preference : '';
+    const opts = [['human', '我的更好读'], ['tb', 'Table Badness 更好读'], ['same', '差不多'], ['other', '浏览器原生或最小高度更好']];
+    form.innerHTML = `<fieldset><legend>综合来看，哪个布局更好读？</legend>${opts.map(([k, l]) => `<label class="opt"><input type="radio" name="pref" value="${k}" ${prev === k ? 'checked' : ''} required>${l}</label>`).join('')}</fieldset>
+      <label class="hint" for="note">原因（可选）：例如“编号不该断行”“说明列太窄”</label><textarea id="note">${esc(rec ? rec.note || '' : '')}</textarea>
+      <div class="actions"><button class="btn primary" type="submit">保存并进入下一题</button><button class="btn human" type="button" id="again">重新盲调这一题</button><span class="hint" id="saved"></span></div>`;
+    v.appendChild(form);
+    form.querySelector('#again').addEventListener('click', () => openTrial(cur, true));
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const pref = form.querySelector('input[name=pref]:checked');
+      if (!pref) return;
+      const out = {
+        v: VERSION, trialId: t.id, caseId: t.caseId, set: c.set, tags: c.tags, W: t.W, fs: t.fs,
+        columns: hd, kinds, adjustMs, drags, preference: pref.value, note: form.querySelector('#note').value.slice(0, 1000),
+        human: res.human.met, tb: res.tb.met, css: res.css.met, mh: res.mh.met, l1: +l1.toFixed(4),
+        savedAt: new Date().toISOString(),
+      };
+      form.querySelector('#saved').textContent = '保存中…';
+      await persist(out);
+      form.querySelector('#saved').textContent = '已保存';
+      const next = TB_EVAL.findIndex((x, k) => k > cur && !records[x.id]);
+      const any = TB_EVAL.findIndex(x => !records[x.id]);
+      if (next >= 0) openTrial(next); else if (any >= 0) openTrial(any); else showSummary();
+    });
+  }
+
+  // ---------- progress & summary ----------
+  function drawDots() {
+    const d = $('dots'); d.innerHTML = '';
+    TB_EVAL.forEach((t, i) => {
+      const b = document.createElement('button'); b.type = 'button';
+      b.className = 'dot' + (records[t.id] ? ' done' : '') + (i === cur && !$('view-trial').hidden ? ' cur' : '');
+      b.textContent = i + 1; b.title = `${caseOf(t).title} · ${t.W}px`;
+      b.addEventListener('click', () => { showTrial(); openTrial(i); });
+      d.appendChild(b);
+    });
+  }
+  const mean = xs => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : NaN);
+  const sgn = (x, d = 1, unit = '') => (isNaN(x) ? '—' : `<span class="${x > 0 ? 'pos' : x < 0 ? 'neg' : ''}">${x > 0 ? '+' : ''}${x.toFixed(d)}${unit}</span>`);
+  function drawSummary() {
+    const v = $('view-sum');
+    const rs = TB_EVAL.map(t => records[t.id]).filter(Boolean);
+    if (!rs.length) { v.innerHTML = '<h2>汇总</h2><p class="hint">还没有完成的题目。回到“评测”开始第一题，完成后这里会出现你与算法的差异。</p>'; return; }
+    const prefs = { human: 0, tb: 0, same: 0, other: 0 };
+    rs.forEach(r => prefs[r.preference]++);
+    // signed width shift by column kind: (you - tb) / tb
+    const byKind = { short: [], mid: [], long: [] };
+    rs.forEach(r => r.kinds.forEach((k, j) => byKind[k].push((r.human.colPx[j] - r.tb.colPx[j]) / r.tb.colPx[j] * 100)));
+    const d = (f) => mean(rs.map(f));
+    v.innerHTML = `<div class="bar"><h2>汇总 · ${rs.length} 题</h2><div class="actions"><button class="btn" type="button" id="copy">复制全部结果 JSON</button></div></div>
+      <div class="kpis">
+        <div class="kpi"><div class="l">更喜欢自己的 / 算法的 / 差不多 / 其他</div><div class="v">${prefs.human} / ${prefs.tb} / ${prefs.same} / ${prefs.other}</div></div>
+        <div class="kpi"><div class="l">平均列宽差异（你 vs 算法）</div><div class="v">${(d(r => r.l1) * 100).toFixed(0)}%</div></div>
+        <div class="kpi"><div class="l">短列：你比算法宽</div><div class="v">${sgn(mean(byKind.short), 0, '%')}</div></div>
+        <div class="kpi"><div class="l">中等列：你比算法宽</div><div class="v">${sgn(mean(byKind.mid), 0, '%')}</div></div>
+        <div class="kpi"><div class="l">长文列：你比算法宽</div><div class="v">${sgn(mean(byKind.long), 0, '%')}</div></div>
+        <div class="kpi"><div class="l">总高：你 − 算法（平均）</div><div class="v">${sgn(d(r => r.human.height - r.tb.height), 0, 'px')}</div></div>
+        <div class="kpi"><div class="l">TB 损失：你 − 算法（平均）</div><div class="v">${sgn(d(r => r.human.loss - r.tb.loss), 1)}</div></div>
+        <div class="kpi"><div class="l">平均用时</div><div class="v">${(d(r => r.adjustMs) / 1000).toFixed(0)} s</div></div>
+      </div>
+      <p class="hint">“你比算法宽”= (你的列宽 − 算法列宽) ÷ 算法列宽，按列类型平均。绿色为正。指标差值为“你 − 算法”，其中总高、词内断开、TB 损失越小越好。</p>
+      <div class="tablewrap"><table class="sum"><thead><tr><th>题</th><th>表格</th><th>宽度</th><th>偏好</th><th>列宽差异</th><th>短值完整 你/算法</th><th>词内断开 你/算法</th><th>碎片 你/算法</th><th>总高 你/算法</th><th>溢出 你/算法</th><th>TB损失 你/算法</th><th>备注</th></tr></thead><tbody>
+      ${TB_EVAL.map((t, i) => { const r = records[t.id]; if (!r) return ''; const P = { human: '自己', tb: '算法', same: '差不多', other: '其他' };
+        return `<tr><td class="l">${i + 1}</td><td class="l">${esc(caseOf(t).title.replace(/^\[[^\]]+\]\s*/, '').slice(0, 22))}</td><td>${r.W}</td><td class="l">${P[r.preference]}</td><td>${(r.l1 * 100).toFixed(0)}%</td>
+        <td>${r.human.short}/${r.tb.short}</td><td>${r.human.atomic}/${r.tb.atomic}</td><td>${r.human.frag}/${r.tb.frag}</td><td>${r.human.height}/${r.tb.height}</td><td>${r.human.overflow}/${r.tb.overflow}</td><td>${r.human.loss.toFixed(1)}/${r.tb.loss.toFixed(1)}</td><td class="l">${esc((r.note || '').slice(0, 40))}</td></tr>`; }).join('')}
+      </tbody></table></div>
+      <textarea id="json" readonly hidden></textarea>`;
+    $('copy').addEventListener('click', () => {
+      const txt = JSON.stringify(rs, null, 1);
+      const fallback = () => { const ta = $('json'); ta.hidden = false; ta.value = txt; ta.select(); $('copy').textContent = '已选中，按 ⌘C 复制'; };
+      try { navigator.clipboard.writeText(txt).then(() => { $('copy').textContent = '已复制'; }, fallback); } catch (e) { fallback(); }
+    });
+  }
+  function showTrial() { $('view-trial').hidden = false; $('view-sum').hidden = true; $('tab-trial').setAttribute('aria-pressed', 'true'); $('tab-sum').setAttribute('aria-pressed', 'false'); }
+  function showSummary() { $('view-trial').hidden = true; $('view-sum').hidden = false; $('tab-trial').setAttribute('aria-pressed', 'false'); $('tab-sum').setAttribute('aria-pressed', 'true'); drawSummary(); drawDots(); }
+  $('tab-trial').addEventListener('click', () => { showTrial(); openTrial(cur); });
+  $('tab-sum').addEventListener('click', showSummary);
+
+  setStatus();
+  connect();
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => {
+    const first = TB_EVAL.findIndex(t => !records[t.id]);
+    openTrial(first >= 0 ? first : 0);
+  });
+})();
+</script>
+</body>
+</html>
