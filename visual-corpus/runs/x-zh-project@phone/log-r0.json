@@ -1,0 +1,17 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nTable: 中文 · 项目任务跟踪 (language zh-CN).\nGrid: 5 columns × 7 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"编号\" · longest unbreakable word 17px · one-line width 32px\n  col 2: header \"负责人\" · longest unbreakable word 16px · one-line width 46px\n  col 3: header \"状态\" · longest unbreakable word 16px · one-line width 46px\n  col 4: header \"截止日期\" · longest unbreakable word 43px · one-line width 87px\n  col 5: header \"说明\" · longest unbreakable word 31px · one-line width 598px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nThe image shows the table's content with every cell on one line, so you can read everything. Study it first.\n1) Understand it: what is the table for, how will people read, scan and compare it, which columns play the same or similar role, which values must stay intact, which text may wrap naturally, and where existing row height could absorb wrapping.\n2) Propose 3 genuinely different column-width designs for 360px (different strategies, not small variations).\nReply ONLY JSON: {\"understanding\":{\"purpose\":\"\",\"reading\":\"\",\"groups\":[\"columns that belong together and why\"],\"keep_intact\":[\"\"],\"may_wrap\":[\"\"]},\"designs\":[{\"name\":\"A\",\"widths\":[int px per column, column 1 first],\"idea\":\"one sentence\"}]}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 40895,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"understanding\":{\"purpose\":\"一张窄屏（360px）的项目任务跟踪表：六条任务，每条给出编号、负责人、状态、截止日期和一句任务说明。读者用它快速分诊——谁在做什么、是否阻塞、何时到期——再读说明了解具体内容。\",\"reading\":\"先用眼睛沿 状态 和 截止日期 两列做纵向扫描，找出阻塞项和最紧的日期；然后按行阅读，从 编号 到 负责人 到 说明，判断这条任务是什么。行是阅读单位，日期和状态需要能逐行对齐比较，说明是每条任务的主体内容。\",\"groups\":[\"编号 + 负责人：身份类短标识，窄列、单行、彼此相邻，一起回答“哪条、谁负责”\",\"状态 + 截止日期：分诊类列，需要纵向对齐、逐行可比，绝对不能换行\",\"说明：唯一的叙述性长文本列，独立成组，是这一行的载荷\"],\"keep_intact\":[\"ISO 日期 2024-03-15（一旦在连字符处断成两行，跨行日期比较就失效）\",\"状态词 进行中 / 已完成 / 阻塞 / 未开始（三字短标签，必须单行，否则不再是可扫读的状态芯片）\",\"负责人姓名（2 字，必须单行）\",\"编号 F-12…F-17（短码，尽量单行）\"],\"may_wrap\":[\"说明（中文散文，天然可换行，行高可以吸收 2–6 行）\",\"表头标签 负责人 / 截止日期（换行只多占表头一行，不影响任何数据行，是成本最低的让步）\"]},\"designs\":[{\"name\":\"A\",\"widths\":[51,51,67,64,126],\"idea\":\"说明优先：四个元数据列压到单行下限，日期在连字符处折成两行，把省下的宽度几乎全部给说明，让每条任务描述在 6 行内读完。\"},{\"name\":\"B\",\"widths\":[51,51,67,108,82],\"idea\":\"网格优先：编号、负责人、状态、日期全部单行对齐，牺牲说明宽度（约 4 字/行）换取完美规整、可纵向扫读的分诊网格。\"},{\"name\":\"C\",\"widths\":[38,44,67,108,102],\"idea\":\"保日期、让编号：日期完整单行，编号压到最短（F- / 12 断行）以挤出 102px 给说明，是 A 与 B 之间以“短码可断、日期不可断”为原则的折中。\"}]}\n"
+  }
+ ]
+}

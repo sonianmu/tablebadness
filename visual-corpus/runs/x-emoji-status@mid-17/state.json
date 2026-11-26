@@ -1,0 +1,4161 @@
+{
+ "id": "x-emoji-status@mid-17",
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "Generous name column keeps 'API Gateway' well clear of the status chip; the 状态/可用率 pair still reads as one health block, and every row is legible with headers on one line (0/4 wrapped). Table stays at 395px.",
+     "problems": "The narrative column breaks mid-phrase: row 2 splits the verb '已切/换至' across lines and row 4 splits '阵/列', so readers stumble exactly where they need incident context. Column 3 also looks slightly airy relative to its tiny content, so the table's rhythm feels front-heavy.",
+     "cause": "col4 = 181px (160px of text) is too narrow for these phrases, while col3 = 88px (67px of text) and col1 = 126px (105px of text) both overshoot their 61px/96px content needs — roughly 6px and 9px of slack sit in the wrong columns."
+    },
+    {
+     "design": "r0B",
+     "good": "The best allocation of the three: col4 at 197px (176px text) keeps '已切换至' together and produces phrase-level rather than word-level breaks; the health pair is tight and clearly subordinate to the name column; still 395px tall.",
+     "problems": "'API Gateway' sits almost flush against the column rule (97px of text for a 96px name) so the identity column looks pinched, and the CDN row strands a single character '线' on its own second line while the 对象存储 row strands the 🔧 emoji alone. Both are classic orphans that make the table look unfinished.",
+     "cause": "col1 = 118px gives zero breathing room beyond the 96px name, and col4 = 197px (176px text) falls just under the ~180px the flag+text CDN string needs, so it breaks one character early; the total budget leaves no column with slack to absorb the overshoot."
+    },
+    {
+     "design": "r0C",
+     "good": "Airy, evenly spaced columns; nothing is cramped and the status icons have room to breathe; headers still one line.",
+     "problems": "The narrative column collapses into a narrow newspaper strip: row 2 becomes four lines, breaks '银行/卡' and leaves the 🔄 emoji dangling alone, the table grows to 422px, and row heights oscillate (39/39/118/66/92/66) so the table loses its scanning rhythm. Column 3 now looks disproportionately wide for a 5-character percentage.",
+     "cause": "col2 = 96 and col3 = 96 spend 28px of slack on columns whose content is only 61px wide each, forcing col4 down to 167px (146px text) — the one column that must wrap is the one starved."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "Column 1 is sized exactly to the longest service name (API Gateway at 96px + 21px chrome = 117px), so no identity wraps and no space is wasted; column 2 sits at the true floor of 82px; column 4 receives the largest share (196px) and the table stays at 395px with no mid-word splits.",
+     "problems": "Column 3 is given 84px when 可用率/99.99% only needs 82px, so 2px of dead space is taken straight out of the narrative column. More noticeable: API Gateway ends flush against the right padding edge of column 1, so the anchor column looks pinched against 状态 and the service→status scan loses its breathing gap. Column 4 still breaks 支付服务 and 对象存储 into 3 lines.",
+     "cause": "Zero slack in column 1 (117px = exactly the 96px name) combined with 2px of surplus in column 3; the surplus is too small to buy a line break in column 4 but large enough to starve the one column that actually wraps."
+    },
+    {
+     "design": "r1B",
+     "good": "The health-metric pair is at its true minimum (82/82), which is the correct instinct — 状态 and 可用率 never wrap and should not hoard width. Row rhythm and the 395px total height are clean, no mid-word splits.",
+     "problems": "Column 1 is inflated to 126px, i.e. 105px of text space for a 96px name: about 9px of empty air sits between the service name and the status column, widening the gap in the primary scan path. Meanwhile column 4 drops to 189px (168px of text) and still yields the same 3-line cells, so the width was moved from a column that needed it to one that did not.",
+     "cause": "Over-allocation to column 1 beyond the 117px one-line threshold; the 9px surplus is invisible as a benefit but measurably shrinks 最近事件 without changing any line count."
+    },
+    {
+     "design": "r1C",
+     "good": "The two metric columns look calm and evenly paired at 88/88, and the header row reads cleanly; nothing wraps and the table height is unchanged.",
+     "problems": "Both 状态 (88) and 可用率 (88) carry 6px of slack each — 12px total — while the only wrapping column is squeezed to 186px (165px of text). The result is surplus white space in two columns that never need it and the tightest possible text in the column that does, so 支付服务 and 对象存储 still run to 3 lines.",
+     "cause": "Equalising columns 2 and 3 at 88px for symmetry, when their one-line requirement is 82px each; symmetry was purchased entirely from column 4."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "Column 1 at 117px gives service names comfortable breathing room and a clean anchor; status and uptime columns sit at their true minimum (82px) so the fast-comparison pair reads tight and crisp; headers never wrap; no mid-word splits.",
+     "problems": "Column 4 is squeezed to 198px (177px of text), so nearly every incident cell becomes 3 lines and the table balloons to 395px tall. Worse, the wraps strand short orphans: 消息推送 row ends with a lone “复”, CDN row ends with a lone “线”, and the wrench emoji drops to its own line in 对象存储. Rows no longer read as compact service units, and the tall right column visually overwhelms the two narrow metric columns it is supposed to support.",
+     "cause": "Column 1 is over-allocated at 117px when its longest unbreakable word is only 67px (88px column would suffice), stealing ~29px from column 4. Column 2 and 3 are already at their hard minimum (82px), so every pixel not spent on column 1 could have gone to column 4."
+    },
+    {
+     "design": "r2B",
+     "good": "Same tight, well-matched 82/82 metric pair; headers all one line; slightly wider service column makes “API Gateway” feel unhurried.",
+     "problems": "The imbalance is worse than r2A: column 4 at 192px produces the ugliest break of the set, with “处理 🔄” split across lines in 对象存储 and “线” orphaned in CDN. Three-line cells dominate, the table stays 395px tall, and the right column reads as a narrow text chute rather than a supporting note.",
+     "cause": "Column 1 grew to 123px (35px more than the 88px it actually needs), pushing column 4 down to 192px — the narrowest event column of the two designs, and the direct cause of the extra wrapped lines and stranded fragments."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A",
+    "r3B",
+    "r3C"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    126,
+    84,
+    88,
+    181
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 6,
+    "tableWidth": 480,
+    "tableHeight": 395.1,
+    "overflow": 0,
+    "colWidths": [
+     126,
+     84,
+     88,
+     181
+    ],
+    "rowHeights": [
+     39.3,
+     39.3,
+     92,
+     65.7,
+     92,
+     65.7
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "服务",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "可用率",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最近事件",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "API Gateway",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "支付服务",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "⚠️ 降级",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.12%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "03:12 起部分银行卡渠道响应变慢，已切换至备用通道 🔁",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "消息推送",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.97%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "👨‍👩‍👧‍👦 家庭共享通知已恢复",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "对象存储",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "❌ 故障",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.40%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "华东 2 可用区磁盘阵列异常，工程师正在处理 🛠️",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CDN",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "🇨🇳 🇯🇵 🇺🇸 节点全部在线",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 67,
+      "natural": 96,
+      "padding": 21
+     },
+     {
+      "minContent": 21,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 61,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 437,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r0A.png",
+   "idea": "Balanced scan: give each column a comfortable minimum while reserving the largest share for event text, so all four fields read evenly.",
+   "notes": []
+  },
+  "r0B": {
+   "widths": [
+    118,
+    82,
+    82,
+    197
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 6,
+    "tableWidth": 480,
+    "tableHeight": 395.1,
+    "overflow": 0,
+    "colWidths": [
+     118,
+     82,
+     82,
+     197
+    ],
+    "rowHeights": [
+     39.3,
+     39.3,
+     92,
+     65.7,
+     92,
+     65.7
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "服务",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "可用率",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最近事件",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "API Gateway",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "支付服务",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "⚠️ 降级",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.12%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "03:12 起部分银行卡渠道响应变慢，已切换至备用通道 🔁",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "消息推送",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.97%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "👨‍👩‍👧‍👦 家庭共享通知已恢复",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "对象存储",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "❌ 故障",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.40%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "华东 2 可用区磁盘阵列异常，工程师正在处理 🛠️",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CDN",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "🇨🇳 🇯🇵 🇺🇸 节点全部在线",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 67,
+      "natural": 96,
+      "padding": 21
+     },
+     {
+      "minContent": 21,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 61,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 437,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r0B.png",
+   "idea": "Event-led: pin service, status, and uptime to their one-line minimums and spend the remaining width on 最近事件, accepting two- to three-line event cells.",
+   "notes": []
+  },
+  "r0C": {
+   "widths": [
+    120,
+    96,
+    96,
+    167
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 6,
+    "tableWidth": 480,
+    "tableHeight": 421.5,
+    "overflow": 0,
+    "colWidths": [
+     120,
+     96,
+     96,
+     167
+    ],
+    "rowHeights": [
+     39.3,
+     39.3,
+     118.4,
+     65.7,
+     92,
+     65.7
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "服务",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "可用率",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最近事件",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "API Gateway",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "支付服务",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "⚠️ 降级",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.12%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "03:12 起部分银行卡渠道响应变慢，已切换至备用通道 🔁",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "消息推送",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.97%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "👨‍👩‍👧‍👦 家庭共享通知已恢复",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "对象存储",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "❌ 故障",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.40%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "华东 2 可用区磁盘阵列异常，工程师正在处理 🛠️",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CDN",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "🇨🇳 🇯🇵 🇺🇸 节点全部在线",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 67,
+      "natural": 96,
+      "padding": 21
+     },
+     {
+      "minContent": 21,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 61,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 437,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r0C.png",
+   "idea": "Status-metric emphasis: widen 状态 and 可用率 beyond their minimums for fast icon and percentage scanning, while keeping service names intact and letting event text wrap more.",
+   "notes": []
+  },
+  "r1A": {
+   "widths": [
+    117,
+    82,
+    84,
+    196
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 6,
+    "tableWidth": 480,
+    "tableHeight": 395.1,
+    "overflow": 0,
+    "colWidths": [
+     117,
+     82,
+     84,
+     196
+    ],
+    "rowHeights": [
+     39.3,
+     39.3,
+     92,
+     65.7,
+     92,
+     65.7
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "服务",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "可用率",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最近事件",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "API Gateway",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "支付服务",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "⚠️ 降级",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.12%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "03:12 起部分银行卡渠道响应变慢，已切换至备用通道 🔁",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "消息推送",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.97%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "👨‍👩‍👧‍👦 家庭共享通知已恢复",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "对象存储",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "❌ 故障",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.40%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "华东 2 可用区磁盘阵列异常，工程师正在处理 🛠️",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CDN",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "🇨🇳 🇯🇵 🇺🇸 节点全部在线",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 67,
+      "natural": 96,
+      "padding": 21
+     },
+     {
+      "minContent": 21,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 61,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 437,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r1A.png",
+   "idea": "Cut col1 to its exact unbreakable minimum (117 = 96px 'API Gateway' + 21) and col2 to 82 (61px content + 21), keeping col3 at 84 so the percentage never touches the rule. Every reclaimed pixel goes to col4 (196, 175px of text), the only column that must wrap; this is the widest the incident column can get at 480px, so its line breaks fall on phrase boundaries as in r0B without r0B's pinched name column.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    126,
+    82,
+    82,
+    189
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 6,
+    "tableWidth": 480,
+    "tableHeight": 395.1,
+    "overflow": 0,
+    "colWidths": [
+     126,
+     82,
+     82,
+     189
+    ],
+    "rowHeights": [
+     39.3,
+     39.3,
+     92,
+     65.7,
+     92,
+     65.7
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "服务",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "可用率",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最近事件",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "API Gateway",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "支付服务",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "⚠️ 降级",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.12%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "03:12 起部分银行卡渠道响应变慢，已切换至备用通道 🔁",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "消息推送",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.97%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "👨‍👩‍👧‍👦 家庭共享通知已恢复",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "对象存储",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "❌ 故障",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.40%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "华东 2 可用区磁盘阵列异常，工程师正在处理 🛠️",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CDN",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "🇨🇳 🇯🇵 🇺🇸 节点全部在线",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 67,
+      "natural": 96,
+      "padding": 21
+     },
+     {
+      "minContent": 21,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 61,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 437,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r1B.png",
+   "idea": "Keeps r0A's comfortable name column (126px, 105px text) so the anchor column visibly outranks the metrics, but strips the 6px and 6px of slack out of 状态/可用率 and hands it to 最近事件 (181 → 189px). Rows still read as service units and the health pair stays tight, while the narrative column gains enough width to avoid splitting 切换 as r0A did.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1C": {
+   "widths": [
+    117,
+    88,
+    88,
+    186
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 6,
+    "tableWidth": 480,
+    "tableHeight": 395.1,
+    "overflow": 0,
+    "colWidths": [
+     117,
+     88,
+     88,
+     186
+    ],
+    "rowHeights": [
+     39.3,
+     39.3,
+     92,
+     65.7,
+     92,
+     65.7
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "服务",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "可用率",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最近事件",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "API Gateway",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "支付服务",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "⚠️ 降级",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.12%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "03:12 起部分银行卡渠道响应变慢，已切换至备用通道 🔁",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "消息推送",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.97%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "👨‍👩‍👧‍👦 家庭共享通知已恢复",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "对象存储",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "❌ 故障",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.40%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "华东 2 可用区磁盘阵列异常，工程师正在处理 🛠️",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CDN",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "🇨🇳 🇯🇵 🇺🇸 节点全部在线",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 67,
+      "natural": 96,
+      "padding": 21
+     },
+     {
+      "minContent": 21,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 61,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 437,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r1C.png",
+   "idea": "New idea: treat 状态 and 可用率 as a genuinely symmetrical two-column health block (88/88), with the identity column at its minimum and the narrative column at 186px. Tests whether visual symmetry inside the metric pair buys faster vertical scanning even at the cost of ~10px of narrative width.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    117,
+    82,
+    82,
+    198
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 6,
+    "tableWidth": 480,
+    "tableHeight": 395.1,
+    "overflow": 0,
+    "colWidths": [
+     117,
+     82,
+     82,
+     198
+    ],
+    "rowHeights": [
+     39.3,
+     39.3,
+     92,
+     65.7,
+     92,
+     65.7
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "服务",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "可用率",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最近事件",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "API Gateway",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "支付服务",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "⚠️ 降级",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.12%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "03:12 起部分银行卡渠道响应变慢，已切换至备用通道 🔁",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "消息推送",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.97%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "👨‍👩‍👧‍👦 家庭共享通知已恢复",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "对象存储",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "❌ 故障",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.40%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "华东 2 可用区磁盘阵列异常，工程师正在处理 🛠️",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CDN",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "🇨🇳 🇯🇵 🇺🇸 节点全部在线",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 67,
+      "natural": 96,
+      "padding": 21
+     },
+     {
+      "minContent": 21,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 61,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 437,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r2A.png",
+   "idea": "Set every non-wrapping column to its exact one-line floor (117 for API Gateway, 82 for 状态, 82 for 可用率) and hand all 12px of recovered slack to 最近事件, the only column that wraps. This is the widest the narrative column can be while service names, status labels and percentages stay intact, so it is the allocation that minimises wrapping and row-height variation by construction.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    123,
+    82,
+    82,
+    192
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 6,
+    "tableWidth": 480,
+    "tableHeight": 395.1,
+    "overflow": 0,
+    "colWidths": [
+     123,
+     82,
+     82,
+     192
+    ],
+    "rowHeights": [
+     39.3,
+     39.3,
+     92,
+     65.7,
+     92,
+     65.7
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "服务",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "可用率",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最近事件",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "API Gateway",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "支付服务",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "⚠️ 降级",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.12%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "03:12 起部分银行卡渠道响应变慢，已切换至备用通道 🔁",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "消息推送",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.97%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "👨‍👩‍👧‍👦 家庭共享通知已恢复",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "对象存储",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "❌ 故障",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.40%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "华东 2 可用区磁盘阵列异常，工程师正在处理 🛠️",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CDN",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "🇨🇳 🇯🇵 🇺🇸 节点全部在线",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 67,
+      "natural": 96,
+      "padding": 21
+     },
+     {
+      "minContent": 21,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 61,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 437,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r2B.png",
+   "idea": "Same metric floor (82/82) but gives column 1 six pixels of slack so the longest service name no longer sits flush against the column edge, restoring the visual gap between the row anchor and the status column that r1A lost. Costs only 6px from column 4 — below the threshold that changes any line break — so it trades no row height for a cleaner primary scan.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    88,
+    82,
+    82,
+    227
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 6,
+    "tableWidth": 480,
+    "tableHeight": 368.8,
+    "overflow": 0,
+    "colWidths": [
+     88,
+     82,
+     82,
+     227
+    ],
+    "rowHeights": [
+     39.3,
+     65.7,
+     92,
+     65.7,
+     65.7,
+     39.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "服务",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "可用率",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最近事件",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "API Gateway",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "支付服务",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "⚠️ 降级",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.12%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "03:12 起部分银行卡渠道响应变慢，已切换至备用通道 🔁",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "消息推送",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.97%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "👨‍👩‍👧‍👦 家庭共享通知已恢复",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "对象存储",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "❌ 故障",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.40%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "华东 2 可用区磁盘阵列异常，工程师正在处理 🛠️",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CDN",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "🇨🇳 🇯🇵 🇺🇸 节点全部在线",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 67,
+      "natural": 96,
+      "padding": 21
+     },
+     {
+      "minContent": 21,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 61,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 437,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r3A.png",
+   "idea": "Cut column 1 to its true content minimum (67px word + 21px chrome = 88px) and hand all 29 reclaimed pixels to column 4, taking it to 227px / 206px of text. This is the widest the event column can be while keeping 状态 and 可用率 at their unwrappable 82px minimum. Expect several 3-line cells to collapse to 2 lines and the lone “复”/“线” orphans to disappear, shortening the table.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3B": {
+   "widths": [
+    96,
+    82,
+    82,
+    219
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 6,
+    "tableWidth": 480,
+    "tableHeight": 342.4,
+    "overflow": 0,
+    "colWidths": [
+     96,
+     82,
+     82,
+     219
+    ],
+    "rowHeights": [
+     39.3,
+     65.7,
+     92,
+     39.3,
+     65.7,
+     39.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "服务",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "可用率",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最近事件",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "API Gateway",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "支付服务",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "⚠️ 降级",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.12%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "03:12 起部分银行卡渠道响应变慢，已切换至备用通道 🔁",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "消息推送",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.97%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "👨‍👩‍👧‍👦 家庭共享通知已恢复",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "对象存储",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "❌ 故障",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.40%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "华东 2 可用区磁盘阵列异常，工程师正在处理 🛠️",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CDN",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "🇨🇳 🇯🇵 🇺🇸 节点全部在线",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 67,
+      "natural": 96,
+      "padding": 21
+     },
+     {
+      "minContent": 21,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 61,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 437,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r3B.png",
+   "idea": "Same strategy but keeps an 8px cushion in column 1 so the longest name (API Gateway, 67px) is not flush to its padding and the column still reads as an identity column rather than a squeezed label. Column 4 gains 21px over r2A (198→219), enough to pull most event cells down a line while preserving a little air on the left.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3C": {
+   "widths": [
+    104,
+    82,
+    82,
+    211
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 6,
+    "tableWidth": 480,
+    "tableHeight": 368.8,
+    "overflow": 0,
+    "colWidths": [
+     104,
+     82,
+     82,
+     211
+    ],
+    "rowHeights": [
+     39.3,
+     65.7,
+     92,
+     39.3,
+     92,
+     39.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "服务",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "可用率",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最近事件",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "API Gateway",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "支付服务",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "⚠️ 降级",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.12%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "03:12 起部分银行卡渠道响应变慢，已切换至备用通道 🔁",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "消息推送",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.97%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "👨‍👩‍👧‍👦 家庭共享通知已恢复",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "对象存储",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "❌ 故障",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.40%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "华东 2 可用区磁盘阵列异常，工程师正在处理 🛠️",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CDN",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "🇨🇳 🇯🇵 🇺🇸 节点全部在线",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 67,
+      "natural": 96,
+      "padding": 21
+     },
+     {
+      "minContent": 21,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 61,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 437,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r3C.png",
+   "idea": "A deliberately left-weighted variant: column 1 at 104px gives service names clear precedence as the row anchor, and column 4 still gains 13px over r2A (198→211). Use this if the render shows 227/219 makes the event column visually heavy against the two narrow metric columns; it trades a few extra wrapped lines for a stronger identity column and more even optical weight across the four columns.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "contrast": {
+   "widths": [
+    150,
+    82,
+    82,
+    165
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 6,
+    "tableWidth": 480,
+    "tableHeight": 421.5,
+    "overflow": 0,
+    "colWidths": [
+     150,
+     82,
+     82,
+     165
+    ],
+    "rowHeights": [
+     39.3,
+     39.3,
+     118.4,
+     65.7,
+     92,
+     65.7
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "服务",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "可用率",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最近事件",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "API Gateway",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "支付服务",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "⚠️ 降级",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.12%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "03:12 起部分银行卡渠道响应变慢，已切换至备用通道 🔁",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "消息推送",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.97%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "👨‍👩‍👧‍👦 家庭共享通知已恢复",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "对象存储",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "❌ 故障",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.40%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "华东 2 可用区磁盘阵列异常，工程师正在处理 🛠️",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CDN",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "🇨🇳 🇯🇵 🇺🇸 节点全部在线",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 67,
+      "natural": 96,
+      "padding": 21
+     },
+     {
+      "minContent": 21,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 61,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 437,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-contrast.png",
+   "idea": "Gives the short service column 129px of text for content that needs 96px, wasting a third of a column on air, while the prose column drops to 144px and forces every event into four lines — the tallest, slowest-reading version of this table."
+  },
+  "ref_auto": {
+   "widths": [
+    100.3,
+    59.3,
+    81.2,
+    238.3
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 6,
+    "tableWidth": 480,
+    "tableHeight": 395.1,
+    "overflow": 0,
+    "colWidths": [
+     100.3,
+     59.3,
+     81.2,
+     238.3
+    ],
+    "rowHeights": [
+     39.3,
+     65.7,
+     92,
+     65.7,
+     65.7,
+     65.7
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "服务",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "可用率",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最近事件",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "API Gateway",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "支付服务",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "⚠️ 降级",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.12%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "03:12 起部分银行卡渠道响应变慢，已切换至备用通道 🔁",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "消息推送",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.97%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "👨‍👩‍👧‍👦 家庭共享通知已恢复",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "对象存储",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "❌ 故障",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.40%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "华东 2 可用区磁盘阵列异常，工程师正在处理 🛠️",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CDN",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "🇨🇳 🇯🇵 🇺🇸 节点全部在线",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 67,
+      "natural": 96,
+      "padding": 21
+     },
+     {
+      "minContent": 21,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 61,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 437,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    119,
+    119,
+    119,
+    119
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 6,
+    "tableWidth": 477,
+    "tableHeight": 526.8,
+    "overflow": 0,
+    "colWidths": [
+     119,
+     119,
+     119,
+     119
+    ],
+    "rowHeights": [
+     39.3,
+     39.3,
+     171.1,
+     65.7,
+     144.7,
+     65.7
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "服务",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "可用率",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最近事件",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "API Gateway",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "支付服务",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "⚠️ 降级",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.12%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "03:12 起部分银行卡渠道响应变慢，已切换至备用通道 🔁",
+      "lines": 6
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "消息推送",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.97%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "👨‍👩‍👧‍👦 家庭共享通知已恢复",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "对象存储",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "❌ 故障",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.40%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "华东 2 可用区磁盘阵列异常，工程师正在处理 🛠️",
+      "lines": 5
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CDN",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✅ 正常",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "99.99%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "🇨🇳 🇯🇵 🇺🇸 节点全部在线",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 67,
+      "natural": 96,
+      "padding": 21
+     },
+     {
+      "minContent": 21,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 61,
+      "natural": 61,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 437,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-ref_equal.png"
+  }
+ },
+ "understanding": {
+  "purpose": "An at-a-glance operations dashboard for comparing service health, availability, and recent incidents across five services.",
+  "reading": "Readers anchor on the service name in column 1, quickly scan the status icon/word in column 2 and the uptime percentage in column 3, then read column 4 only when they need incident context. Rows should read as service units, while columns 2 and 3 form the fast comparison pair.",
+  "groups": [
+   "Columns 2 状态 and 3 可用率 belong together as the health metrics: categorical status plus quantitative uptime.",
+   "Column 1 服务 is the row identity and anchor for every comparison.",
+   "Column 4 最近事件 is supporting narrative, read after status and uptime."
+  ],
+  "keep_intact": [
+   "Service names: API Gateway, 支付服务, 消息推送, 对象存储, CDN",
+   "Status labels and icons: 正常, 降级, 故障",
+   "Availability percentages: 99.99%, 99.12%, 99.97%, 97.40%",
+   "Timestamps such as 03:12 and identifiers such as 华东 2"
+  ],
+  "may_wrap": [
+   "Column 4 event descriptions; they are long narrative text and can wrap naturally.",
+   "Headers only if unavoidable; service names, status labels, and percentages should not wrap."
+  ]
+ },
+ "final": {
+  "preferred": [
+   "r2A"
+  ],
+  "acceptable": [
+   "r1A",
+   "r2B",
+   "r1B",
+   "r3B",
+   "r1C"
+  ],
+  "bad": [
+   {
+    "design": "r3A",
+    "why": "Col 1 is cut to 88px (67px of text), exactly the length of the longest unbreakable word, so every service name — including 4-character names like 支付服务/对象存储 that need only ~68px — breaks into two lines. The row key column loses its one-line scan rhythm to feed prose that still needs three lines in two rows."
+   },
+   {
+    "design": "r3C",
+    "why": "Dominated on both counts: 104px still cannot hold “API Gateway” on one line, so the name wraps anyway, yet the 8px taken from the event column pushes 对象存储 to three lines, making the table 369px — taller than r3B and with a narrower prose column."
+   },
+   {
+    "design": "contrast",
+    "why": "Gives the short service column 129px of text for content that needs 96px, wasting a third of a column on air, while the prose column drops to 144px and forces every event into four lines — the tallest, slowest-reading version of this table."
+   }
+  ],
+  "contrast": {
+   "widths": [
+    150,
+    82,
+    82,
+    165
+   ],
+   "why": "Gives the short service column 129px of text for content that needs 96px, wasting a third of a column on air, while the prose column drops to 144px and forces every event into four lines — the tallest, slowest-reading version of this table."
+  },
+  "ranges": [
+   [
+    117,
+    132
+   ],
+   [
+    82,
+    96
+   ],
+   [
+    82,
+    96
+   ],
+   [
+    186,
+    198
+   ]
+  ],
+  "rationale": "The table is read key-first: 服务 is the row identifier and 状态/可用率 are one-glance verdicts, so those three columns should sit at their natural single-line widths (117 / 82 / 82) and every remaining pixel belongs to 最近事件, which is the only column whose content is genuinely variable-length prose. r2A does exactly that: 96px of name text keeps “API Gateway” intact, 61px holds 正常/99.99%, and 198px of prose keeps events at two to three comfortable lines. r1A/r1B/r1C spend width on columns that already fit or on a hair more of col 1, at the prose column's expense. r3A/r3C break the identifier column just below its natural width, splitting four-character service names in half without buying any reduction in the prose wrapping.",
+  "principles": {
+   "general": [
+    "Give the identifier/key column exactly its longest single-line value, not more: extra pixels there are invisible, while the same pixels visibly shorten every prose cell.",
+    "Fixed-width, low-cardinality columns (status badge, percentage) should be sized to their one-line content; widening them changes nothing but starves the flexible column.",
+    "A column width set a few pixels below a common value's natural length is worse than one set far below: it produces uniform, needless wrapping of every row.",
+    "Uneven row heights are legitimate when driven by prose length, but they read as noise when they are caused by the identifier column folding."
+   ],
+   "specific": [
+    "“API Gateway” contains a space, so it can wrap without a mid-word split — which is why the compact r3B is defensible even though it breaks a product name across two lines.",
+    "99.99% and the emoji+正常 pair are both 61px of content, so cols 2 and 3 have identical, non-negotiable minimums of 82px.",
+    "The event strings carry emoji (🔄, 🛠️, flags) whose widths make the prose column's line count jump non-linearly with a few px of width."
+   ]
+  },
+  "tradeoffs": "A compactness-first designer would pick r3B: 342px instead of 395px, only one name wrapped, and most events on one or two lines. A scan-first designer keeps every service name on one line and accepts a taller table. Whether the 2px differences among r1A/r1C/r2A/r2B are perceptible at all is also arguable.",
+  "uncertain": "Whether breaking “API Gateway” at its space is acceptable in a status dashboard, and whether the ragged 39/66/92/39/66/39 rhythm of r3B reads as content-driven or as an accident."
+ },
+ "reviews": [
+  {
+   "order": [
+    "r3A",
+    "r2B",
+    "r2A",
+    "r1A",
+    "ref_equal",
+    "ref_auto"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "poor",
+     "why": "服务列过窄，“支付服务/消息推送/对象存储”被拆成3+1字，行标签难扫；事件列虽宽，但对象存储行以逗号开头换行，属于排版错误。"
+    },
+    "B": {
+     "grade": "good",
+     "why": "服务名、状态、可用率均保持单行，事件列获得剩余宽度并自然换行；整体平衡，仅个别事件末行只剩“复/线”单字。"
+    },
+    "C": {
+     "grade": "good",
+     "why": "前三列完整、可快速扫读，事件列宽度接近B；对象存储行把工具emoji单独挤到一行，CDN行末字“线”孤立。"
+    },
+    "D": {
+     "grade": "good",
+     "why": "与C几乎相同，短列完整、行高可控；事件列仍有emoji或单字孤行，宽度分配略偏保守。"
+    },
+    "E": {
+     "grade": "poor",
+     "why": "事件列过窄，长事件被切成五六行，行高膨胀；状态和可用率列相对内容过宽，浪费横向空间。"
+    },
+    "F": {
+     "grade": "poor",
+     "why": "状态列过窄，图标与“正常/降级/故障”被拆成上下两行，破坏状态扫读；API Gateway也换行，虽事件列较宽但代价太大。"
+    }
+   },
+   "best": [
+    "B"
+   ],
+   "confidence": "medium",
+   "unsure": "B/C/D宽度差异很小，仅凭渲染图难以精确比较；事件列的单字或emoji孤行在所有可行方案中都可能出现。"
+  },
+  {
+   "order": [
+    "r2B",
+    "ref_auto",
+    "r3A",
+    "r1A",
+    "ref_equal",
+    "r2A"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "good",
+     "why": "服务/状态/可用率 all stay on one line, events wrap to 3 lines; workable rhythm. But the events column is a touch narrow, so breaks fall mid-phrase (\"银行卡渠 / 道\") and two rows end with a lone character (\"复\", \"线\")."
+    },
+    "B": {
+     "grade": "poor",
+     "why": "The status column is starved: \"✅ 正常\" splits into icon-over-text in every row, doubling row height for the shortest value in the table. \"API Gateway\" also breaks in two while width is lavished on 最近事件."
+    },
+    "C": {
+     "grade": "poor",
+     "why": "服务 is squeezed to ~4 characters wide, so 支付服务 / 消息推送 / 对象存储 all wrap to two lines — the row identity is broken and rows no longer read as units, even though status and availability look fine."
+    },
+    "D": {
+     "grade": "good",
+     "why": "Same family as A but a slightly wider events column keeps phrases together better (\"…已切换至 / 备用通道\"); service and status remain intact. Still leaves orphan single characters (\"复\", \"线\") at line ends."
+    },
+    "E": {
+     "grade": "bad",
+     "why": "可用率 is grossly over-allocated (needs 61px, gets ~105px) while 最近事件 is crushed to ~5–6 short lines per row. Rows become very tall and ragged; the eye loses the horizontal scan entirely."
+    },
+    "F": {
+     "grade": "excellent",
+     "why": "Best balance: 服务 fits \"API Gateway\" on one line, 状态 keeps icon+word together, 可用率 is trimmed to what a 5-digit percentage needs, and the freed width goes to 最近事件, giving the most even row heights of the set."
+    }
+   },
+   "best": [
+    "F"
+   ],
+   "confidence": "medium",
+   "unsure": "A, D and F differ by only a few pixels per column and are hard to measure from the screenshots; A/D are close runner-ups, and I can't tell whether a slightly wider events column would also eliminate the orphan \"复\"/\"线\" breaks in F."
+  }
+ ]
+}

@@ -1,0 +1,23 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Business software subscription pricing (language en).\nGrid: 6 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"Plan\" spans 1 col × 2 row; \"Price\" spans 2 col × 1 row; \"Minimum seats\" spans 1 col × 2 row; \"Contract\" spans 1 col × 2 row; \"Support\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Plan\" · longest unbreakable word 75px · one-line width 75px\n  col 2: header \"Price › List price\" · longest unbreakable word 37px · one-line width 67px\n  col 3: header \"Price › Billing terms\" · longest unbreakable word 86px · one-line width 490px\n  col 4: header \"Minimum seats\" · longest unbreakable word 66px · one-line width 109px\n  col 5: header \"Contract\" · longest unbreakable word 63px · one-line width 123px\n  col 6: header \"Support\" · longest unbreakable word 79px · one-line width 195px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 707px (the dashed pink box). The column widths you choose must sum to at most 706px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 78826,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"excellent\",\"why\":\"The long Billing terms column gets the widest share, Plan and List price stay intact, and the short columns remain compact; rows scan cleanly and the table uses nearly the full measure.\"},\"B\":{\"grade\":\"poor\",\"why\":\"Billing terms is squeezed into 4–6 lines while Plan and List price have conspicuous empty space; rows become tall and ragged, so the table is slow to compare.\"},\"C\":{\"grade\":\"good\",\"why\":\"Billing terms has enough width for mostly 2–3 line rows, but “List price” is forced onto two lines and the table leaves a large unused right margin, weakening the Price group.\"},\"D\":{\"grade\":\"good\",\"why\":\"List price stays on one line and Billing terms remains readable at 2–3 lines; the hierarchy is clear, though unused width at the right could have enlarged the long text column.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"Billing terms is too narrow, pushing Team/Business/Enterprise to four lines while Support and the short columns have spare room; readable but unnecessarily tall and uneven.\"},\"F\":{\"grade\":\"bad\",\"why\":\"Billing terms is crushed into 5–8 lines; the main descriptive column dominates vertically while short columns waste width, making row comparison laborious.\"}},\"best\":[\"A\"],\"confidence\":\"high\",\"unsure\":\"Exact column widths are inferred from the renders; C/D/E differ only subtly, and I am unsure whether the unused right-hand space in C–F is intentional.\"}\n"
+  }
+ ]
+}

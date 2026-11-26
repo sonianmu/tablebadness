@@ -1,0 +1,23 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val2] 政务服务 · 办理时限 (language zh-CN).\nGrid: 4 columns × 5 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"事项名称\" spans 1 col × 2 row; \"办理时限（工作日）\" spans 2 col × 1 row; \"所需材料\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"事项名称\" · longest unbreakable word 16px · one-line width 92px\n  col 2: header \"办理时限（工作日） › 法定\" · longest unbreakable word 19px · one-line width 31px\n  col 3: header \"办理时限（工作日） › 承诺\" · longest unbreakable word 16px · one-line width 31px\n  col 4: header \"所需材料\" · longest unbreakable word 31px · one-line width 414px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 480px (the dashed pink box). The column widths you choose must sum to at most 479px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 13058,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"Row headers wrap (企业设立/登记, 食品经营/许可) and the merged header breaks mid-word as 办理时限（工/日）, splitting 工作日 — the ugliest break of the set. Material column is reasonably wide (3 lines), so the table stays compact, but the header damage costs it.\"},\"B\":{\"grade\":\"excellent\",\"why\":\"Clean breaks: merged header wraps at the parenthesis (办理时限 / （工作日）), all row labels stay on one line, and 所需材料 gets the dominant share (~2 lines). Narrow 法定/承诺 columns are fine for two-digit numbers; rhythm reads well and rows scan as units.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"Row headers stay intact and the material column is adequate, but the merged header breaks as 办理时限（工/作日）, cutting 工作日 in half even though there is room — a needless typographic fault. Otherwise close to B/E.\"},\"D\":{\"grade\":\"poor\",\"why\":\"Column 1 is squeezed so hard that the header splits (事项名/称) and every row label breaks (企业设/立登记, 食品经/营许可, 户口迁/移), destroying the row-header scan path. The extra width given to 所需材料 does not compensate.\"},\"E\":{\"grade\":\"excellent\",\"why\":\"Essentially the same sound proportions as B: header wraps cleanly at 办理时限 / （工作日）, row labels are single-line, numbers sit in tight columns, and the material column carries the bulk of the width in two comfortable lines.\"},\"F\":{\"grade\":\"bad\",\"why\":\"所需材料 is starved to ~105px, shredding the long material lists into 5–6 ragged lines and tripling table height, while 法定/承诺 sit in wide, mostly empty columns. Proportions are inverted relative to content weight.\"}},\"best\":[\"B\",\"E\"],\"confidence\":\"high\",\"unsure\":\"B and E look nearly identical at this size; the winner between them depends on a few pixels of column-1 and column-4 width that I cannot measure reliably from the renders.\"}\n"
+  }
+ ]
+}

@@ -1,0 +1,23 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: מערכת שעות כיתת י'2 – סמסטר א' (language he, right-to-left: column 1 is on the RIGHT).\nGrid: 6 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"ראשון\" spans 1 col × 2 row; \"שני\" spans 1 col × 2 row; \"שלישי\" spans 1 col × 3 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"יום\" · longest unbreakable word 41px · one-line width 41px\n  col 2: header \"שעה\" · longest unbreakable word 48px · one-line width 89px\n  col 3: header \"מקצוע\" · longest unbreakable word 63px · one-line width 63px\n  col 4: header \"מורה\" · longest unbreakable word 42px · one-line width 68px\n  col 5: header \"חדר\" · longest unbreakable word 46px · one-line width 76px\n  col 6: header \"הערות\" · longest unbreakable word 64px · one-line width 700px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 77258,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Notes get a wide column and stay at two lines; hour and subject remain intact. Teacher names such as אבי שפירא and שרה כהן break onto two lines, and מעבדה 1 wraps, slightly fragmenting comparison.\"},\"B\":{\"grade\":\"excellent\",\"why\":\"Best balance: notes stay to two lines while every time range and teacher name remains on one line. The day column is tight and מעבדה 1 wraps, but the scan path day→hour→subject→teacher→room→notes is clear and compact.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"Teacher names and times stay intact and notes are readable, but the day column is squeezed to about 46px, making the row headers cramped; the longest note still runs three lines.\"},\"D\":{\"grade\":\"poor\",\"why\":\"The notes column is far too narrow, turning each note into 4–7 short lines and making the table extremely tall; the day column is also too narrow, so row headers are cramped.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"Similar to C: times and teacher names stay intact, but the day column is too tight for the row labels and the notes column is slightly narrower, so long notes wrap more.\"},\"F\":{\"grade\":\"poor\",\"why\":\"The hour column breaks every time range at the dash into two lines, which disrupts the primary scan; teacher names and room also wrap, and the day column is tight.\"}},\"best\":[\"B\"],\"confidence\":\"high\",\"unsure\":\"Exact pixel widths and whether the narrow day columns clip or merely overflow into padding; B's day column is tight but visually the labels remain readable.\"}\n"
+  }
+ ]
+}

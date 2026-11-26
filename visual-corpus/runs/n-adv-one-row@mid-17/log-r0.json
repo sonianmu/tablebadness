@@ -1,0 +1,17 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nTable: 2024年重点信息化项目执行情况汇总表 (language zh-CN).\nGrid: 5 columns × 6 rows. Row headers: none declared.\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"项目\" · longest unbreakable word 25px · one-line width 243px\n  col 2: header \"负责人\" · longest unbreakable word 18px · one-line width 53px\n  col 3: header \"预算（万元）\" · longest unbreakable word 66px · one-line width 104px\n  col 4: header \"进度\" · longest unbreakable word 54px · one-line width 422px\n  col 5: header \"风险说明\" · longest unbreakable word 43px · one-line width 2070px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 506px (the dashed pink box). The column widths you choose must sum to at most 505px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nThe image shows the table's content with every cell on one line, so you can read everything. Study it first.\n1) Understand it: what is the table for, how will people read, scan and compare it, which columns play the same or similar role, which values must stay intact, which text may wrap naturally, and where existing row height could absorb wrapping.\n2) Propose 3 genuinely different column-width designs for 506px (different strategies, not small variations).\nReply ONLY JSON: {\"understanding\":{\"purpose\":\"\",\"reading\":\"\",\"groups\":[\"columns that belong together and why\"],\"keep_intact\":[\"\"],\"may_wrap\":[\"\"]},\"designs\":[{\"name\":\"A\",\"widths\":[int px per column, column 1 first],\"idea\":\"one sentence\"}]}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 53367,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"understanding\":{\"purpose\":\"汇总2024年重点信息化项目的预算、进度与风险，供管理者逐项审阅和跟踪。\",\"reading\":\"以“项目”为行锚点，先确认项目与负责人，再横向比较预算和进度，最后读风险说明；整体是逐行扫描、局部跨行比较。\",\"groups\":[\"项目与负责人：共同标识责任主体，项目为主、负责人为辅，应相邻\",\"预算与进度：同属执行度量，适合并置比较\",\"风险说明：解释性长文本，独立置于尾部，需保留可读宽度\"],\"keep_intact\":[\"预算金额（千分位、小数点及单位）\",\"负责人姓名\",\"项目名称中的专名、编号、引号内短语尽量不拆\",\"短进度词如“已完成”尽量保持完整\"],\"may_wrap\":[\"项目名称可按短语或语义断行\",\"较长的进度状态可折行\",\"风险说明可自由多行换行\"]},\"designs\":[{\"name\":\"A\",\"widths\":[170,74,95,80,86],\"idea\":\"项目优先：把最大宽度给项目名，确保行标识先被读清，风险和进度压缩换行。\"},{\"name\":\"B\",\"widths\":[125,74,95,80,131],\"idea\":\"风险优先：给风险说明最大宽度以减少长文本行数，项目名相应多折行。\"},{\"name\":\"C\",\"widths\":[130,74,105,105,91],\"idea\":\"指标优先：加宽预算与进度以便横向比较，项目与风险接受更多换行。\"}]}\n"
+  }
+ ]
+}

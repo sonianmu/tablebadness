@@ -1,0 +1,5376 @@
+{
+ "id": "x-sv-matrix@mid-17",
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "Best balance of the three: column 1 is at its maximum possible width (190px) because the four mark columns sit at their exact header minimums, so capability phrases wrap to at most 3 lines and the table stays compact (474px). The mark ladder Free→Enterprise reads as one family with a clean increasing rhythm, headers all fit on one line, and rows stay compact enough that the eye can sweep rightward without losing the row anchor.",
+     "problems": "The mark columns have zero breathing room: 'Business' (72px word in 72px of text space) and 'Enterprise' (83px in 83px) touch the cell edges, so the header band looks cramped and slightly anxious. The ✓/— glyphs sit left-aligned in very narrow columns, leaving an asymmetric gap on the right of each mark cell, and the whole right block reads as tight vertical strips rather than comfortable columns.",
+     "cause": "Widths are pinned exactly to longest-word + 21px padding (57/65/93/104), so any extra space went to column 1 beyond what it needed. A few px of slack per mark column would fix the crowding at negligible cost to column 1."
+    },
+    {
+     "design": "r0B",
+     "good": "Header band is comfortable — every plan header has visible padding on both sides, and the increasing width staircase still reads as a ladder. No mid-word splits, all headers on one line.",
+     "problems": "Column 1 at 155px forces the longest phrases to 4 lines, so rows become 118px tall while each mark cell contains a single glyph — the glyph floats in a tall empty box and row integrity weakens; you scan down a column of near-empty cells. Total height 580px is much taller than r0A for no informational gain, and the slack was spent on empty mark space rather than on the text that actually needs it.",
+     "cause": "Too much width diverted to the mark columns (65/75/100/114 = 354px vs the 319px minimum), starving column 1."
+    },
+    {
+     "design": "r0C",
+     "good": "Mark columns are the most evenly sized and the header band looks generous; headers still unwrapped.",
+     "problems": "Visually wrong as a whole: column 1 is squeezed to its 112px floor, so every capability phrase breaks into 4–6 short lines ('Data residency in the European Union' becomes six lines) and the table balloons to 790px. The row headers no longer read as phrases — they read as stacked word fragments — and the wide, mostly empty mark columns dominate the composition while the information-bearing column is the weakest element.",
+     "cause": "Widths pushed onto the mark family (90/96/104/107) even though their content is a single glyph; column 1 left at the unbreakable-word minimum instead of near its share."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "All five headers stay on one line and the mark columns are comfortably wide, so no tick is crowded. Column 1 at 166px still holds the shortest capability phrases on two lines and the table reads as a proper matrix.",
+     "problems": "Three rows fall to four lines and the table is 553px tall, so the five rows no longer scan as comparable units — the eye loses the tick pattern between row 1 and row 4. The plan ladder is also lopsided: Free (63) is barely more than half of Enterprise (110), so the spacing between ticks accelerates left to right.",
+     "cause": "Free/Team/Business/Enterprise are given 63/71/99/110, which is 6/6/6/6px above their header minimums (57/65/93/104) — roughly 24px spent on columns whose content is a single glyph — and that width is taken directly out of column 1, which drops below the width needed to keep the long phrases at three lines."
+    },
+    {
+     "design": "r1B",
+     "good": "The best of the three: column 1 at 178px (157px text) is the widest, so the tallest cell is only three lines and the table is 474px — rows read as units and the tick pattern is easy to follow down the Enterprise column. Headers intact, no mid-word splits, hyphen break in 'four-hour' is legitimate.",
+     "problems": "The mark columns still carry 2–11px of dead width (59/67/95/106 versus 57/65/93/104), and the table only sums to 506 of the 509px available, so 11px that belong to the row header are being wasted. The tick rhythm is still uneven (gaps of 63/81/100px between mark centres).",
+     "cause": "Mark columns were sized slightly above their header words for comfort rather than at the header minimum, and the 3px of leftover width was left unassigned instead of being handed to column 1."
+    },
+    {
+     "design": "r1C",
+     "good": "The mark family is the most even of the three (66/76/98/110), and Enterprise gets enough room to look unhurried; headers all fit on one line.",
+     "problems": "Column 1 at 158px (137px text) is the narrowest of all three, so three rows break into four short fragments and the table balloons to 580px — the tallest and least scannable version. 'Granular role-based access control for workspaces' becomes a four-line stack of stubs, which defeats the row-header anchor role.",
+     "cause": "Free and Team were given 66 and 76, i.e. 9 and 11px above their 57/65 minimums, for headers that are only 36 and 44px wide; that 20px came straight out of column 1 and pushed it below the three-line threshold."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "Widest Capability column of the three (188px), so the row headers break at the best points — 'Data residency in the / European Union' keeps the preposition with its phrase, and all four plan headers stay on one line with the ticks forming clean, aligned vertical columns. Row heights are the minimum achievable for this width (3 lines max).",
+     "problems": "The right side of the header row is visibly crowded: 'Business' and 'Enterprise' sit flush against their cell borders with zero breathing room, so the header band looks pinched at the table's right edge. The four tick columns are also unevenly spaced — mark centres land at roughly 29 / 91 / 169 / 267px, so the gaps grow 62 → 78 → 98px left to right, which makes the plan ladder read as accelerating rather than even.",
+     "cause": "Every spare pixel was given to col 1, leaving Business at exactly 72+21=93 and Enterprise at exactly 83+21=104 — the hard word+padding floor. Header widths therefore track header length with no slack, producing both the flush text and the widening inter-mark rhythm."
+    },
+    {
+     "design": "r2B",
+     "good": "A sensible middle position: col 1 is still close to maximum (184px), every header fits on one line, and no word is clipped. Row heights and line breaks in col 1 match r2A except at the very longest phrases.",
+     "problems": "The 1px of slack added to each mark column is invisible — it buys no perceptible breathing room around 'Business'/'Enterprise' yet costs col 1 four pixels, which is precisely the column where width changes real line breaks. It reads as an average of the other two rather than a decision, and the header band still looks tight.",
+     "cause": "Leftover pixels were distributed one-per-column instead of being concentrated where a few px actually register (the two long headers) or where they reduce wrapping (col 1)."
+    },
+    {
+     "design": "r2C",
+     "good": "The most comfortable header band of the three — 'Enterprise' at 108px finally has visible air on both sides, and the table's right edge no longer feels clipped.",
+     "problems": "Col 1 drops to 180px and this changes a real break: 'Data residency in / the European Union' now orphans the article and makes the shortest row header look ragged, while the taller phrases keep the same 3-line shape. The row header is the anchor readers enter on; trading its width for mark columns that hold a single glyph is the wrong direction, and the tick spacing becomes even more lopsided (Enterprise mark pushed to ~267px).",
+     "cause": "Mark columns were widened beyond their content need (96/108 vs 93/104 floors) at the direct expense of col 1, which is the only column whose width changes typographic quality."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A",
+    "r3B",
+    "r3C"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    190,
+    57,
+    65,
+    93,
+    104
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 510,
+    "tableHeight": 474.2,
+    "overflow": 0,
+    "colWidths": [
+     190,
+     57,
+     65,
+     93,
+     104
+    ],
+    "rowHeights": [
+     39.3,
+     92,
+     92,
+     92,
+     92,
+     65.7
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Capability",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Team",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Business",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Single sign-on with any SAML 2.0 identity provider",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Audit log export to external SIEM systems",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Granular role-based access control for workspaces",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Priority support with a guaranteed four-hour response",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Data residency in the European Union",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 91,
+      "natural": 411,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 36,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 72,
+      "natural": 72,
+      "padding": 21
+     },
+     {
+      "minContent": 83,
+      "natural": 83,
+      "padding": 21
+     }
+    ],
+    "frameW": 544
+   },
+   "png": "d-r0A.png",
+   "idea": "Text-first: hand every spare pixel to the capability column (only 3 lines per row, best for reading the phrases) and shrink each plan column to the exact width of its header word, accepting tight header gutters in exchange for the roomiest row headers.",
+   "notes": []
+  },
+  "r0B": {
+   "widths": [
+    155,
+    65,
+    75,
+    100,
+    114
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 510,
+    "tableHeight": 579.5,
+    "overflow": 0,
+    "colWidths": [
+     155,
+     65,
+     75,
+     100,
+     114
+    ],
+    "rowHeights": [
+     39.3,
+     118.4,
+     92,
+     118.4,
+     118.4,
+     92
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Capability",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Team",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Business",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Single sign-on with any SAML 2.0 identity provider",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Audit log export to external SIEM systems",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Granular role-based access control for workspaces",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Priority support with a guaranteed four-hour response",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Data residency in the European Union",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 91,
+      "natural": 411,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 36,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 72,
+      "natural": 72,
+      "padding": 21
+     },
+     {
+      "minContent": 83,
+      "natural": 83,
+      "padding": 21
+     }
+    ],
+    "frameW": 544
+   },
+   "png": "d-r0B.png",
+   "idea": "Balanced ladder: a compromise where capability still wraps to only 3 lines while each plan column gets a little air beyond its header word, with widths stepping upward Free→Enterprise so the plan ladder reads as a deliberate progression rather than four random slots.",
+   "notes": []
+  },
+  "r0C": {
+   "widths": [
+    112,
+    90,
+    96,
+    104,
+    107
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 510,
+    "tableHeight": 790.3,
+    "overflow": 0,
+    "colWidths": [
+     112,
+     90,
+     96,
+     104,
+     107
+    ],
+    "rowHeights": [
+     39.3,
+     144.7,
+     144.7,
+     144.7,
+     171.1,
+     144.7
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Capability",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Team",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Business",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Single sign-on with any SAML 2.0 identity provider",
+      "lines": 5
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Audit log export to external SIEM systems",
+      "lines": 5
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Granular role-based access control for workspaces",
+      "lines": 5
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Priority support with a guaranteed four-hour response",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Data residency in the European Union",
+      "lines": 5
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 91,
+      "natural": 411,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 36,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 72,
+      "natural": 72,
+      "padding": 21
+     },
+     {
+      "minContent": 83,
+      "natural": 83,
+      "padding": 21
+     }
+    ],
+    "frameW": 544
+   },
+   "png": "d-r0C.png",
+   "idea": "Mark-first: capability sits at its minimum safe width (4 lines, tall rows) so the four plan columns become near-equal, calm, evenly-spaced cells in which the ✓/— grid aligns into strong vertical stripes for quick cross-plan pattern spotting.",
+   "notes": []
+  },
+  "r1A": {
+   "widths": [
+    166,
+    63,
+    71,
+    99,
+    110
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 510,
+    "tableHeight": 553.2,
+    "overflow": 0,
+    "colWidths": [
+     166,
+     63,
+     71,
+     99,
+     110
+    ],
+    "rowHeights": [
+     39.3,
+     92,
+     92,
+     118.4,
+     118.4,
+     92
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Capability",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Team",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Business",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Single sign-on with any SAML 2.0 identity provider",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Audit log export to external SIEM systems",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Granular role-based access control for workspaces",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Priority support with a guaranteed four-hour response",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Data residency in the European Union",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 91,
+      "natural": 411,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 36,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 72,
+      "natural": 72,
+      "padding": 21
+     },
+     {
+      "minContent": 83,
+      "natural": 83,
+      "padding": 21
+     }
+    ],
+    "frameW": 544
+   },
+   "png": "d-r1A.png",
+   "idea": "Takes r0A's winning structure and gives every mark column a uniform +6px of slack over its header minimum (57/65/93/104), so 'Business' and 'Enterprise' stop touching the cell edges and the header band breathes. Column 1 drops only 24px (190→166), which still keeps the longest phrases at 3 lines, so compactness and row integrity are preserved while the crowding is removed.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    178,
+    59,
+    67,
+    95,
+    106
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 506,
+    "tableHeight": 474.2,
+    "overflow": 0,
+    "colWidths": [
+     178,
+     59,
+     67,
+     95,
+     106
+    ],
+    "rowHeights": [
+     39.3,
+     92,
+     92,
+     92,
+     92,
+     65.7
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Capability",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Team",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Business",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Single sign-on with any SAML 2.0 identity provider",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Audit log export to external SIEM systems",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Granular role-based access control for workspaces",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Priority support with a guaranteed four-hour response",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Data residency in the European Union",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 91,
+      "natural": 411,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 36,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 72,
+      "natural": 72,
+      "padding": 21
+     },
+     {
+      "minContent": 83,
+      "natural": 83,
+      "padding": 21
+     }
+    ],
+    "frameW": 544
+   },
+   "png": "d-r1B.png",
+   "idea": "Minimal-risk refinement of the best design: column 1 loses just 12px and each mark column gains 2px, enough to give the glyph cells a little air and the headers a hair of padding without changing the wrap behaviour or the compact 3-line rows. Choose this if 3-line rows must be guaranteed.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1C": {
+   "widths": [
+    158,
+    66,
+    76,
+    98,
+    110
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 509,
+    "tableHeight": 579.5,
+    "overflow": 0,
+    "colWidths": [
+     158,
+     66,
+     76,
+     98,
+     110
+    ],
+    "rowHeights": [
+     39.3,
+     118.4,
+     92,
+     118.4,
+     118.4,
+     92
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Capability",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Team",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Business",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Single sign-on with any SAML 2.0 identity provider",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Audit log export to external SIEM systems",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Granular role-based access control for workspaces",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Priority support with a guaranteed four-hour response",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Data residency in the European Union",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 91,
+      "natural": 411,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 36,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 72,
+      "natural": 72,
+      "padding": 21
+     },
+     {
+      "minContent": 83,
+      "natural": 83,
+      "padding": 21
+     }
+    ],
+    "frameW": 544
+   },
+   "png": "d-r1C.png",
+   "idea": "The alternative direction: accept a slightly narrower capability column (158px, text 137px) so the mark columns get a comfortable, smoothly graded width ladder (66→76→98→110). Rows will run 3–4 lines and the table will be a bit taller than r0A, but the plan block becomes a genuinely readable grid of columns rather than tight strips — worth testing against the compact versions.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    188,
+    58,
+    66,
+    93,
+    104
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 510,
+    "tableHeight": 474.2,
+    "overflow": 0,
+    "colWidths": [
+     188,
+     58,
+     66,
+     93,
+     104
+    ],
+    "rowHeights": [
+     39.3,
+     92,
+     92,
+     92,
+     92,
+     65.7
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Capability",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Team",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Business",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Single sign-on with any SAML 2.0 identity provider",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Audit log export to external SIEM systems",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Granular role-based access control for workspaces",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Priority support with a guaranteed four-hour response",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Data residency in the European Union",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 91,
+      "natural": 411,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 36,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 72,
+      "natural": 72,
+      "padding": 21
+     },
+     {
+      "minContent": 83,
+      "natural": 83,
+      "padding": 21
+     }
+    ],
+    "frameW": 544
+   },
+   "png": "d-r2A.png",
+   "idea": "Take the mark columns down to their header minimums (58/66/93/104, i.e. 1px of slack) and hand every recovered pixel to the row header: column 1 becomes 188px (167px text), the widest achievable given that Enterprise cannot go below 104. This is the theoretical maximum for keeping capability phrases at three lines, which keeps the table at its shortest and the tick rows closest together for vertical comparison.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    184,
+    59,
+    67,
+    94,
+    105
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 510,
+    "tableHeight": 474.2,
+    "overflow": 0,
+    "colWidths": [
+     184,
+     59,
+     67,
+     94,
+     105
+    ],
+    "rowHeights": [
+     39.3,
+     92,
+     92,
+     92,
+     92,
+     65.7
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Capability",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Team",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Business",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Single sign-on with any SAML 2.0 identity provider",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Audit log export to external SIEM systems",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Granular role-based access control for workspaces",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Priority support with a guaranteed four-hour response",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Data residency in the European Union",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 91,
+      "natural": 411,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 36,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 72,
+      "natural": 72,
+      "padding": 21
+     },
+     {
+      "minContent": 83,
+      "natural": 83,
+      "padding": 21
+     }
+    ],
+    "frameW": 544
+   },
+   "png": "d-r2B.png",
+   "idea": "Same strategy as tight-max but with a 2px safety margin on each mark column so sub-pixel rounding can never wrap a header, at a cost of only 4px from column 1 (163px text). Safer refinement of r1B: recovers the 11px r1B wasted while keeping a little air around 'Free' and 'Team'.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2C": {
+   "widths": [
+    180,
+    57,
+    68,
+    96,
+    108
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 510,
+    "tableHeight": 474.2,
+    "overflow": 0,
+    "colWidths": [
+     180,
+     57,
+     68,
+     96,
+     108
+    ],
+    "rowHeights": [
+     39.3,
+     92,
+     92,
+     92,
+     92,
+     65.7
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Capability",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Team",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Business",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Single sign-on with any SAML 2.0 identity provider",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Audit log export to external SIEM systems",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Granular role-based access control for workspaces",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Priority support with a guaranteed four-hour response",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Data residency in the European Union",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 91,
+      "natural": 411,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 36,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 72,
+      "natural": 72,
+      "padding": 21
+     },
+     {
+      "minContent": 83,
+      "natural": 83,
+      "padding": 21
+     }
+    ],
+    "frameW": 544
+   },
+   "png": "d-r2C.png",
+   "idea": "New idea: keep column 1 at a solid 159px text width (still three lines, as r1B proves) and spend the remainder on a deliberately widening ladder — Free pinned to its 57px minimum, Team 68, Business 96, Enterprise 108. The extra room goes to the right end, where the tick is densest and where readers look for the 'what does Enterprise add' answer, so the last two mark columns don't feel pinched next to the long row headers.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    60,
+    60,
+    60,
+    60,
+    60
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 301,
+    "tableHeight": 1633.3,
+    "overflow": 0,
+    "colWidths": [
+     60,
+     60,
+     60,
+     60,
+     60
+    ],
+    "rowHeights": [
+     92,
+     329.1,
+     250.1,
+     355.5,
+     355.5,
+     250.1
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Capability",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Team",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Business",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Single sign-on with any SAML 2.0 identity provider",
+      "lines": 12
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Audit log export to external SIEM systems",
+      "lines": 9
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Granular role-based access control for workspaces",
+      "lines": 13
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Priority support with a guaranteed four-hour response",
+      "lines": 13
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Data residency in the European Union",
+      "lines": 9
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 91,
+      "natural": 411,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 36,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 72,
+      "natural": 72,
+      "padding": 21
+     },
+     {
+      "minContent": 83,
+      "natural": 83,
+      "padding": 21
+     }
+    ],
+    "frameW": 544
+   },
+   "png": "d-r3A.png",
+   "idea": "Start from r2A (the best of the three) and fix its one real flaw: take 6px out of col 1 and give 3px of slack to Business and 2px to Enterprise, plus 1px to Team, so no header word touches its border. Col 1 stays at 184 — one line break at most, only on the longest phrases — while the header band stops looking pinched at the right edge.",
+   "notes": [
+    "expected 5 widths"
+   ],
+   "parentRound": 2
+  },
+  "r3B": {
+   "widths": [
+    60,
+    60,
+    60,
+    60,
+    60
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 301,
+    "tableHeight": 1633.3,
+    "overflow": 0,
+    "colWidths": [
+     60,
+     60,
+     60,
+     60,
+     60
+    ],
+    "rowHeights": [
+     92,
+     329.1,
+     250.1,
+     355.5,
+     355.5,
+     250.1
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Capability",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Team",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Business",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Single sign-on with any SAML 2.0 identity provider",
+      "lines": 12
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Audit log export to external SIEM systems",
+      "lines": 9
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Granular role-based access control for workspaces",
+      "lines": 13
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Priority support with a guaranteed four-hour response",
+      "lines": 13
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Data residency in the European Union",
+      "lines": 9
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 91,
+      "natural": 411,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 36,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 72,
+      "natural": 72,
+      "padding": 21
+     },
+     {
+      "minContent": 83,
+      "natural": 83,
+      "padding": 21
+     }
+    ],
+    "frameW": 544
+   },
+   "png": "d-r3B.png",
+   "idea": "The opposite bet: push col 1 to its absolute maximum (190) and put every mark column at its exact word+padding floor (57/65/93/104). This is the cleanest row-header reading possible in 510px — fewest wraps, no orphaned articles — accepting that Business and Enterprise headers sit flush against their borders as a deliberate, consistent typographic edge rather than an accident.",
+   "notes": [
+    "expected 5 widths"
+   ],
+   "parentRound": 2
+  },
+  "r3C": {
+   "widths": [
+    60,
+    60,
+    60,
+    60,
+    60
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 301,
+    "tableHeight": 1633.3,
+    "overflow": 0,
+    "colWidths": [
+     60,
+     60,
+     60,
+     60,
+     60
+    ],
+    "rowHeights": [
+     92,
+     329.1,
+     250.1,
+     355.5,
+     355.5,
+     250.1
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Capability",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Team",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Business",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Single sign-on with any SAML 2.0 identity provider",
+      "lines": 12
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Audit log export to external SIEM systems",
+      "lines": 9
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Granular role-based access control for workspaces",
+      "lines": 13
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Priority support with a guaranteed four-hour response",
+      "lines": 13
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Data residency in the European Union",
+      "lines": 9
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 91,
+      "natural": 411,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 36,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 72,
+      "natural": 72,
+      "padding": 21
+     },
+     {
+      "minContent": 83,
+      "natural": 83,
+      "padding": 21
+     }
+    ],
+    "frameW": 544
+   },
+   "png": "d-r3C.png",
+   "idea": "Keep col 1 near-maximum (186) but give each mark column 1px of uniform slack (58/66/94/105) instead of concentrating it. This tests whether a perfectly uniform +1 rhythm across the four plan columns reads tidier as a family than r2A's mixed slack, at the cost of 2px of capability width — the smallest possible sacrifice for a more even header band.",
+   "notes": [
+    "expected 5 widths"
+   ],
+   "parentRound": 2
+  },
+  "contrast": {
+   "widths": [
+    363,
+    36,
+    36,
+    36,
+    36
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 508,
+    "tableHeight": 526.8,
+    "overflow": 0,
+    "colWidths": [
+     363,
+     36,
+     36,
+     36,
+     36
+    ],
+    "rowHeights": [
+     250.1,
+     65.7,
+     39.3,
+     65.7,
+     65.7,
+     39.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Capability",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 4
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Team",
+      "lines": 4
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Business",
+      "lines": 7
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 9
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Single sign-on with any SAML 2.0 identity provider",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Audit log export to external SIEM systems",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Granular role-based access control for workspaces",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Priority support with a guaranteed four-hour response",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Data residency in the European Union",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 91,
+      "natural": 411,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 36,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 72,
+      "natural": 72,
+      "padding": 21
+     },
+     {
+      "minContent": 83,
+      "natural": 83,
+      "padding": 21
+     }
+    ],
+    "frameW": 544
+   },
+   "png": "d-contrast.png",
+   "idea": "Plausible-looking 'give the text room' move, but it pushes the four feature columns below their unbreakable-word widths: 'Business' and 'Enterprise' would break mid-word, tick marks get crammed against the borders, and the label column runs so wide the rows read as prose rather than a matrix."
+  },
+  "ref_auto": {
+   "widths": [
+    192.6,
+    56.3,
+    64.1,
+    92.7,
+    103.4
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 510,
+    "tableHeight": 447.8,
+    "overflow": 0,
+    "colWidths": [
+     192.6,
+     56.3,
+     64.1,
+     92.7,
+     103.4
+    ],
+    "rowHeights": [
+     39.3,
+     92,
+     65.7,
+     92,
+     92,
+     65.7
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Capability",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Team",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Business",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Single sign-on with any SAML 2.0 identity provider",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Audit log export to external SIEM systems",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Granular role-based access control for workspaces",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Priority support with a guaranteed four-hour response",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Data residency in the European Union",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 91,
+      "natural": 411,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 36,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 72,
+      "natural": 72,
+      "padding": 21
+     },
+     {
+      "minContent": 83,
+      "natural": 83,
+      "padding": 21
+     }
+    ],
+    "frameW": 544
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    101,
+    101,
+    101,
+    101,
+    101
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 506,
+    "tableHeight": 922,
+    "overflow": 0,
+    "colWidths": [
+     101,
+     101,
+     101,
+     101,
+     101
+    ],
+    "rowHeights": [
+     65.7,
+     171.1,
+     144.7,
+     197.4,
+     197.4,
+     144.7
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Capability",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Team",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Business",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Single sign-on with any SAML 2.0 identity provider",
+      "lines": 6
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Audit log export to external SIEM systems",
+      "lines": 5
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Granular role-based access control for workspaces",
+      "lines": 7
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Priority support with a guaranteed four-hour response",
+      "lines": 7
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Data residency in the European Union",
+      "lines": 5
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 91,
+      "natural": 411,
+      "padding": 21
+     },
+     {
+      "minContent": 36,
+      "natural": 36,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 72,
+      "natural": 72,
+      "padding": 21
+     },
+     {
+      "minContent": 83,
+      "natural": 83,
+      "padding": 21
+     }
+    ],
+    "frameW": 544
+   },
+   "png": "d-ref_equal.png"
+  }
+ },
+ "understanding": {
+  "purpose": "A plan-comparison feature matrix: readers check whether a capability exists in each of four plans (Free → Enterprise), so the primary task is scanning a row rightward and comparing the tick/dash pattern across plans, with the capability name as the anchor.",
+  "reading": "Readers enter on the left row header, read the capability phrase as a unit, then sweep across the four mark columns to find the first plan that includes it. Vertical comparison of the mark columns is secondary but matters for 'what does Enterprise add' questions. The four mark columns are read as a set, not individually.",
+  "groups": [
+   "Columns 2–5 (Free, Team, Business, Enterprise) form one visual family: same role (boolean presence), same content type (✓/—), same alignment, and they should share a similar width rhythm so the marks form clean vertical columns and the header row reads as a plan ladder.",
+   "Column 1 (Capability) stands alone as the row identifier and must be visually dominant over the mark family."
+  ],
+  "keep_intact": [
+   "All four plan headers — 'Free', 'Team', 'Business', 'Enterprise' are single unbreakable words (36/44/72/83px), so their columns cannot be narrower than word+21px padding (57/65/93/104).",
+   "The longest unbreakable word in column 1 (91px) — column 1 must stay at least ~112px so no word overflows.",
+   "✓ and — marks must never be split or clipped; they need only a few px of text width, so their columns are governed by header width, not content."
+  ],
+  "may_wrap": [
+   "Capability phrases in column 1 — they are multi-word noun phrases that wrap cleanly at spaces, and row height can absorb 2–4 lines without breaking row integrity.",
+   "Nothing else: the mark columns contain no wrappable text (headers are single words, cells are single glyphs)."
+  ]
+ },
+ "final": {
+  "preferred": [
+   "r2A"
+  ],
+  "acceptable": [
+   "r2B",
+   "r1B",
+   "r2C",
+   "r1C"
+  ],
+  "bad": [
+   {
+    "design": "r3A",
+    "why": "Equal 60px columns starve the label column: 'Capability' breaks as 'Cap/abilit/y', row labels shatter into 13 one-word lines ('Singl/e', 'work/spac/es'), the table balloons to 1633px tall while a third of the canvas sits empty on the right."
+   },
+   {
+    "design": "r3B",
+    "why": "Same fault as r3A — symmetric 60px columns force mid-word fragmentation in every header and label, destroying row unity and making the table unscannable."
+   },
+   {
+    "design": "r3C",
+    "why": "Same fault as r3A/r3B — false symmetry of 60px widths trades the only wide column (labels) for width that the tick columns cannot use."
+   },
+   {
+    "design": "contrast",
+    "why": "Plausible-looking 'give the text room' move, but it pushes the four feature columns below their unbreakable-word widths: 'Business' and 'Enterprise' would break mid-word, tick marks get crammed against the borders, and the label column runs so wide the rows read as prose rather than a matrix."
+   }
+  ],
+  "contrast": {
+   "widths": [
+    400,
+    27,
+    27,
+    27,
+    28
+   ],
+   "why": "Plausible-looking 'give the text room' move, but it pushes the four feature columns below their unbreakable-word widths: 'Business' and 'Enterprise' would break mid-word, tick marks get crammed against the borders, and the label column runs so wide the rows read as prose rather than a matrix."
+  },
+  "ranges": [
+   [
+    172,
+    200
+   ],
+   [
+    57,
+    64
+   ],
+   [
+    65,
+    72
+   ],
+   [
+    93,
+    100
+   ],
+   [
+    104,
+    112
+   ]
+  ],
+  "rationale": "This is a feature matrix, so the reader's task is a diagonal scan: read a capability on the left, then sweep right across four tick columns that must line up in a steady rhythm. The label column therefore deserves the surplus width — r2A's 188px lets 'Single sign-on with any SAML 2.0 identity provider' and 'Data residency in the European Union' break at phrase boundaries rather than mid-phrase, keeping every row at three lines or fewer and the whole table a compact 474px. The four plan columns sit at or just above their minimum unbreakable-word widths (65/93/104 vs 44/72/83 + padding), which is exactly right: headers stay on one line and no cell is padded out with dead space. r1C is publishable but pays a whole extra line per row (580px tall) for a narrower label column, so it is a worse trade, not a different taste.",
+  "principles": {
+   "general": [
+    "In a matrix with a text label column plus short symbolic columns, spend surplus width on the text column first; symbol columns need only their header word plus padding.",
+    "Set short header columns at their longest unbreakable word + padding; extra width there becomes dead space that dilutes the tick rhythm.",
+    "Avoid mid-word breaks in headers and row labels — they are the strongest single sign of a mis-proportioned table, worse than an extra line of height.",
+    "Equal column widths are only correct when the columns carry comparable content; false symmetry is a fault, not neutrality.",
+    "Row height is a cost: an extra line per row across a whole table is a real readability loss unless it buys cleaner phrase breaks."
+   ],
+   "specific": [
+    "Here the tick columns are 44/72/83px words, so 65–112px each is the entire useful range; anything below 65 breaks 'Team' or 'Business'.",
+    "With 509px total and ~411px of one-line label text, the label column can never be one line — the goal is 2–3 clean phrase breaks, which 178–200px achieves."
+   ]
+  },
+  "tradeoffs": "A designer could argue r2B or r1B is better balanced: r2A's label column is nearly 4× the Enterprise column, which some would call lopsided, and the four pixels r2A takes from Business/Enterprise buy very little. Conversely one could argue for r1C's more even rhythm at the cost of a taller table.",
+  "uncertain": "Whether 188px (r2A) or 184px (r2B) is the sweet spot is within noise — both keep phrase-level breaks, and the choice is essentially arbitrary. It is also debatable whether r1C's 4-line rows are 'acceptable' or a mild fault, since the extra height is uniform and harmless to the scan."
+ },
+ "reviews": [
+  {
+   "order": [
+    "ref_equal",
+    "r1B",
+    "ref_auto",
+    "r2A",
+    "r3A",
+    "r2B"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "bad",
+     "why": "Row-header column is squeezed to ~90px, so words split mid-character ('Capabilit y', 'workspac es', 'guarantee d') and even the 'Enterprise' header breaks. Identifiers and prose are destroyed, and the value columns are left far wider than their one-glyph content needs."
+    },
+    "B": {
+     "grade": "acceptable",
+     "why": "Headers all sit on one line and no words break, but the Capability column is noticeably tighter than the value columns deserve: rows run to 4–5 lines while 'Business'/'Enterprise' hold only a dash or check in a wide cell. Reads column-by-column okay, but row scanning is choppy."
+    },
+    "C": {
+     "grade": "excellent",
+     "why": "Best balance: Capability takes the lion's share of the 510px, so most rows settle at 2–3 lines and 'any SAML 2.0 identity' stays intact, while Free/Team/Business/Enterprise remain tight, evenly stepped and sufficient for their headers. Row headers read as units and the value block scans as a clean grid."
+    },
+    "D": {
+     "grade": "good",
+     "why": "Very close to C: capability column wide enough to keep words whole, headers on one line, compact value columns. Slightly narrower header column than C means a couple of rows wrap one line more, but nothing breaks and the rhythm is calm."
+    },
+    "E": {
+     "grade": "bad",
+     "why": "Catastrophic: Capability is ~45px, so nearly every word is hyphen-less broken ('Singl e', 'Audi t log', 'Busi ness', 'Enterpris e') and rows stretch to 15 lines, while a large empty band of unused width sits on the right inside the pink frame."
+    },
+    "F": {
+     "grade": "good",
+     "why": "Essentially the C/D family: generous row-header column, single-line column headers, tidy compact value columns. A hair narrower than C on the first column, so a few rows take an extra line, but no broken words and no wasted space."
+    }
+   },
+   "best": [
+    "C",
+    "D",
+    "F"
+   ],
+   "confidence": "high",
+   "unsure": "D and F render almost identically to C; the only visible difference is a few pixels of Capability width changing how one or two rows wrap, so the ordering among C/D/F is marginal."
+  },
+  {
+   "order": [
+    "r1B",
+    "ref_equal",
+    "r2B",
+    "ref_auto",
+    "r2A",
+    "r3A"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "good",
+     "why": "Capability column gets about 185px so row headers wrap to 3 lines and rows become tall and airy, but headers stay intact and the four plan columns are narrow and even, keeping the check/em-dash matrix readable."
+    },
+    "B": {
+     "grade": "bad",
+     "why": "Equal widths force mid-word breaks: \"Capabilit/y\", \"workspac/es\", \"Enterpris/e\". Header and row identifiers are destroyed, and tall narrow rows make scanning the ticks across columns hard."
+    },
+    "C": {
+     "grade": "excellent",
+     "why": "Wide Capability plus plan columns sized to their labels: all four headers on one line, row headers wrap to at most 2–3 lines, columns read as a compact comparison block with a clear row-header/value hierarchy."
+    },
+    "D": {
+     "grade": "excellent",
+     "why": "Most generous Capability column of the set: almost every row header fits on one or two lines (\"Data residency in the European Union\" on one), values sit in tight, evenly-scaled plan columns, so rows read as units and comparison across columns is fast."
+    },
+    "E": {
+     "grade": "good",
+     "why": "Very close to C: headers intact, Capability comfortably wide, plan columns sized to labels. Slightly narrower Capability than D means a bit more wrapping, but rhythm and hierarchy are sound."
+    },
+    "F": {
+     "grade": "bad",
+     "why": "All columns crushed narrow, breaking words mid-token everywhere (\"Singl/e\", \"Cap/abilit/y\", \"Euro/pean Unio/n\") while leaving a large empty area to the right of the pink box; unreadable identifiers and wasted space."
+    }
+   },
+   "best": [
+    "D",
+    "C"
+   ],
+   "confidence": "high",
+   "unsure": "Exact pixel widths are inferred from the renders; C, D and E differ only marginally in Capability width, so the ranking among them is a judgement call."
+  }
+ ]
+}

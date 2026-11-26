@@ -1,0 +1,29 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: EN · Issue tracker (language en).\nGrid: 6 columns × 7 rows. Row headers: none declared.\nPer-column content facts (content px at 13px font, excluding padding):\n  col 1: header \"ID\" · longest unbreakable word 34px · one-line width 66px\n  col 2: header \"Title\" · longest unbreakable word 81px · one-line width 349px\n  col 3: header \"Severity\" · longest unbreakable word 52px · one-line width 52px\n  col 4: header \"Assignee\" · longest unbreakable word 58px · one-line width 58px\n  col 5: header \"Status\" · longest unbreakable word 54px · one-line width 68px\n  col 6: header \"Updated\" · longest unbreakable word 55px · one-line width 77px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 651px (the dashed pink box). The column widths you choose must sum to at most 650px.\nFixed: content, font, 13px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}\n\nYour previous reply was rejected: no JSON in reply. Reply again with ONLY the JSON object.",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 20297,
+   "code": 0,
+   "problem": "no JSON in reply",
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"Several short fields are starved: ID breaks as BUG-/2041, Status as In/progress, and Updated as 2024-06-/02. Dates and identifiers lose integrity, and rows grow to three lines.\"},\"B\":{\"grade\":\"excellent\",\"why\":\"All short fields—ID, Severity, Assignee, Status and Updated—stay on one line, while Title takes the remaining width and wraps cleanly at two lines. Compact, balanced and easy to scan.\"},\"C\":{\"grade\":\"good\",\"why\":\"Title gets a little more room, but “In progress” breaks over two lines while other statuses stay intact, making the Status column inconsistent. Short fields otherwise read well.\"},\"D\":{\"grade\":\"bad\",\"why\":\"The Title column is far too narrow: every title breaks into four to six short lines, making rows extremely tall while the other columns sit mostly empty. The main descriptive field becomes hard to scan.\"},\"E\":{\"grade\":\"good\",\"why\":\"Keeps ID, Severity, Assignee, Status and Updated intact, and titles remain readable, but the table leaves available width unused and the narrower Title causes one row to run to three lines.\"},\"best\":[\"B\"],\"confidence\":\"high\",\"unsure\":\"Exact column widths are inferred from the renders; C and E are closer to B than A or D, and E’s apparent unused width may be partly a rendering artifact.\"}\n"
+  },
+  {
+   "attempt": 2,
+   "ms": 7470,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"ID breaks mid-token (BUG- / 2041) and dates split across three lines (2024-06- / 02); Status wraps too. Identifiers and dates are the most scannable fields here and both are destroyed, rows become ragged and tall.\"},\"B\":{\"grade\":\"excellent\",\"why\":\"All short fields (ID, Severity, Assignee, Status, Updated) stay on one line, dates intact; Title gets the remaining width and wraps cleanly at word boundaries into two lines. Column roles are clear and rhythm is even.\"},\"C\":{\"grade\":\"good\",\"why\":\"Very close to B: IDs and dates intact, Title comfortable. Only flaw is Status wrapping to two lines ('In / progress') in a few rows, which slightly jitters row heights.\"},\"D\":{\"grade\":\"bad\",\"why\":\"Title is squeezed to a narrow column and breaks into four to six lines per row, including 'long- / running' hyphen splits; other columns carry lots of dead space while the primary descriptive field is strangled. Rows no longer read as units.\"},\"E\":{\"grade\":\"good\",\"why\":\"ID, dates and status all intact on single lines; Title narrow enough to wrap into two or three lines. Slightly less generous to Title than B, giving some rows an extra line, but nothing breaks awkwardly.\"}},\"best\":[\"B\"],\"confidence\":\"high\",\"unsure\":\"Whether C or E should rank above the other is marginal; both are near B, differing only in how often Status or Title takes an extra line.\"}\n"
+  }
+ ]
+}

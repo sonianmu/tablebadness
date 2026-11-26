@@ -1,0 +1,1509 @@
+{
+ "id": "x-code-config@phone",
+ "family": "x-code-config",
+ "split": "research",
+ "status": "contested",
+ "table": {
+  "title": "Code · Config options with long tokens",
+  "lang": "en",
+  "structure": "markdown",
+  "html": null,
+  "md": "\n| Option | Default | Example | Description |\n|---|---|---|---|\n| `server.port` | `8080` | `9000` | TCP port the HTTP server listens on. |\n| `db.url` | — | `postgres://app:secret@db.internal.example.com:5432/production_main` | Connection string for the primary database. |\n| `log.pattern` | `%d{ISO8601} %-5level %logger{36} - %msg%n` | — | Logback pattern used for console output. |\n| `cache.ttlSeconds` | `300` | `3600` | Expiration time for cached responses; set to 0 to disable caching entirely. |\n| `auth.jwksUri` | — | https://login.example.com/.well-known/openid-configuration/jwks.json | Where public signing keys are fetched from. |\n",
+  "rowHeader": false,
+  "source": "project data/ (used during algorithm development)",
+  "brief": null
+ },
+ "conditions": {
+  "availableWidth": 360,
+  "fontSize": 15,
+  "policy": "scroll-allowed",
+  "css": "src/table.css (padding 6px 10px, 1px borders, line-height 1.55)",
+  "browser": "Chromium (Playwright build), macOS system fonts",
+  "contentFacts": {
+   "WminNoSplit": 926,
+   "WallOneLine": 1588
+  }
+ },
+ "understanding": {
+  "purpose": "A reference/config-option table: readers look up one option by name and then check its default, see a realistic example value, and read what it does. It is scanned by row, not compared across rows, so row identity (the option key) must be findable instantly.",
+  "reading": "Vertical scan down column 1 to find the key, then a short rightward hop to Default/Example and finally the prose Description. Option and Default form the 'lookup' pair read together; Example and Description form the 'explanation' pair. Rows must read as units, so keys should not break and the long code tokens should not be shredded into unreadable fragments.",
+  "groups": [
+   "Option + Default: the identity/lookup pair, read together in one glance",
+   "Example + Description: the explanation pair, both wide and both needing generous width",
+   "Option alone must lead: it is the scan anchor and the only column whose values are all short, uniform identifiers"
+  ],
+  "keep_intact": [
+   "Option keys (server.port, cache.ttlSeconds, auth.jwksUri) — the row's handle; 131px + 21px padding",
+   "Default values (8080, 300, —) — short, cheap to keep whole",
+   "The Example token is a single 537px unbreakable string: it can never be whole at 360px, so it must either be given a scrolling width or deliberately split"
+  ],
+  "may_wrap": [
+   "Description — ordinary prose, wraps cleanly at any width and absorbs height",
+   "Default's rare long value (334px one-liner) can wrap rather than steal width from Option",
+   "Example may be split only if the design accepts scroll or a fragment; it should not be squeezed into a 60px sliver where it becomes noise"
+  ]
+ },
+ "preferred": [
+  {
+   "name": "r1C",
+   "colWidths": [
+    152,
+    111,
+    558,
+    190
+   ],
+   "requestedWidths": [
+    152,
+    111,
+    558,
+    190
+   ],
+   "tableWidth": 1012,
+   "tableHeight": 427.8,
+   "rowHeights": [
+    36.3,
+    59.5,
+    59.5,
+    106,
+    106,
+    59.5
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     2
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     2
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     4
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     2
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     4
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     1
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     2
+    ]
+   ],
+   "overflow": 652,
+   "screenshot": "img/x-code-config@phone__r1C.png",
+   "note": "Take r0B's no-split allocation and trim Description 220→190 to reduce overflow by 31px while keeping Option, Default and the full Example token intact. Total 1011px, 0 mid-word splits. This is the option to choose when preserving copyable code tokens outranks avoiding horizontal scroll."
+  }
+ ],
+ "acceptable": [
+  {
+   "name": "r1B",
+   "colWidths": [
+    152,
+    111,
+    360,
+    190
+   ],
+   "requestedWidths": [
+    152,
+    111,
+    360,
+    190
+   ],
+   "tableWidth": 814,
+   "tableHeight": 427.8,
+   "rowHeights": [
+    36.3,
+    59.5,
+    59.5,
+    106,
+    106,
+    59.5
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     2
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     2
+    ],
+    [
+     2,
+     3,
+     2
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     4
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     2
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     4
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     1
+    ],
+    [
+     5,
+     2,
+     2
+    ],
+    [
+     5,
+     3,
+     2
+    ]
+   ],
+   "overflow": 454,
+   "screenshot": "img/x-code-config@phone__r1B.png",
+   "note": "Hold Option and Default at their intact minima, then give Example +70px over r0C (content 339px instead of 269px) so the long URL and postgres tokens break into fewer, more readable chunks at punctuation. Description remains 190px; total 813px. This trades 70px more scroll for visibly cleaner code values."
+  },
+  {
+   "name": "r2C",
+   "colWidths": [
+    152,
+    111,
+    230,
+    180
+   ],
+   "requestedWidths": [
+    152,
+    111,
+    230,
+    180
+   ],
+   "tableWidth": 674,
+   "tableHeight": 474.3,
+   "rowHeights": [
+    36.3,
+    59.5,
+    82.8,
+    106,
+    106,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     2
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     3
+    ],
+    [
+     2,
+     3,
+     2
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     4
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     2
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     4
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     1
+    ],
+    [
+     5,
+     2,
+     3
+    ],
+    [
+     5,
+     3,
+     2
+    ]
+   ],
+   "overflow": 314,
+   "screenshot": "img/x-code-config@phone__r2C.png",
+   "note": "A different bargain for readers who mainly want to copy the example: cap Example at 230 instead of r1C's 558. 230 shows roughly the first 80% of the postgres URL over two lines — visually almost as informative as 558 — while keeping Description only ~370px away (versus 650 in r1C), so the row's explanation is one short scroll from its key rather than lost in a three-screen table. Total 673."
+  }
+ ],
+ "bad": [
+  {
+   "name": "r2A",
+   "colWidths": [
+    152,
+    111,
+    140,
+    170
+   ],
+   "requestedWidths": [
+    152,
+    111,
+    140,
+    170
+   ],
+   "tableWidth": 574,
+   "tableHeight": 567.3,
+   "rowHeights": [
+    36.3,
+    59.5,
+    129.3,
+    106,
+    106,
+    129.3
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     2
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     5
+    ],
+    [
+     2,
+     3,
+     3
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     4
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     3
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     4
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     1
+    ],
+    [
+     5,
+     2,
+     5
+    ],
+    [
+     5,
+     3,
+     3
+    ]
+   ],
+   "overflow": 214,
+   "screenshot": "img/x-code-config@phone__r2A.png",
+   "note": "Keep the locked lookup pair (Option 152 whole keys, Default 111 whole %d{ISO8601}) but stop paying for an unwrappable token: Example drops from 290–558 to 140 (still 2 readable URL lines, no worse than r1A's 290) and the saved ~150px goes to Description at 170 (149px of prose, ~4 lines). Total 573 — one and a half screens, so the prose is reachable in a single thumb-scroll instead of never.",
+   "why": "Example at 140px and Description at 170px force six mid-word splits; URLs fragment into unreadable pieces and rows grow to five lines."
+  },
+  {
+   "name": "r2B",
+   "colWidths": [
+    152,
+    111,
+    115,
+    205
+   ],
+   "requestedWidths": [
+    152,
+    111,
+    115,
+    205
+   ],
+   "tableWidth": 584,
+   "tableHeight": 613.8,
+   "rowHeights": [
+    36.3,
+    59.5,
+    152.5,
+    106,
+    82.8,
+    175.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     2
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     6
+    ],
+    [
+     2,
+     3,
+     2
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     4
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     2
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     3
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     1
+    ],
+    [
+     5,
+     2,
+     7
+    ],
+    [
+     5,
+     3,
+     2
+    ]
+   ],
+   "overflow": 224,
+   "screenshot": "img/x-code-config@phone__r2B.png",
+   "note": "Same insight, different weighting: Example is cut to the minimum that still shows a recognisable fragment (115 ≈ 2 short lines) and Description gets 205 (184px text, ~3 lines). This treats the table as a document to be read rather than a token gallery; total 583, the smallest total of the family that keeps all four columns functional.",
+   "why": "Example at 115px causes nine mid-word splits and seven-line cells; the column is too narrow for code tokens and creates visual noise."
+  },
+  {
+   "name": "r3A",
+   "colWidths": [
+    152,
+    88,
+    240,
+    125
+   ],
+   "requestedWidths": [
+    152,
+    88,
+    240,
+    125
+   ],
+   "tableWidth": 606,
+   "tableHeight": 637,
+   "rowHeights": [
+    36.3,
+    82.8,
+    106,
+    152.5,
+    152.5,
+    106
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     3
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     3
+    ],
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     6
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     4
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     6
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     1
+    ],
+    [
+     5,
+     2,
+     3
+    ],
+    [
+     5,
+     3,
+     4
+    ]
+   ],
+   "overflow": 246,
+   "screenshot": "img/x-code-config@phone__r3A.png",
+   "note": "Refines r2C by cutting Default from 111 to 88 (8080/300/— need ~40px; log.pattern wraps to 4–5 lines either way, so nothing is lost) and trimming Description to 125 so the total drops from 674 to 605 — the smallest honest scroll of any usable layout. Example gets +10 to 240, which is where the tokens live. Every column now has a defensible job: Option whole, Default compact, Example readable in ~3 fragments, Description ~6 short lines visible after one nudge of scroll.",
+   "why": "Default at 88px splits %d{ISO8601}, Example at 240px still splits URLs, and six-line rows make the table unnecessarily tall."
+  },
+  {
+   "name": "r3B",
+   "colWidths": [
+    152,
+    88,
+    340,
+    130
+   ],
+   "requestedWidths": [
+    152,
+    88,
+    340,
+    130
+   ],
+   "tableWidth": 711,
+   "tableHeight": 637,
+   "rowHeights": [
+    36.3,
+    82.8,
+    106,
+    152.5,
+    152.5,
+    106
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     3
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     2
+    ],
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     6
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     4
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     6
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     1
+    ],
+    [
+     5,
+     2,
+     2
+    ],
+    [
+     5,
+     3,
+     4
+    ]
+   ],
+   "overflow": 351,
+   "screenshot": "img/x-code-config@phone__r3B.png",
+   "note": "Commits to the real constraint: the 537px token. At 340px it breaks into exactly two fragments per example instead of four, so a URL or DSN is still traceable by eye and copyable in two pieces. Default stays at 88 (no gain from widening it), Description at 130 keeps prose legible. Cost is ~350px of scroll, paid once, in exchange for the Example column finally doing its job.",
+   "why": "Default at 88px splits the ISO8601 token; Example at 340px still produces three mid-word splits, so it pays a token-integrity cost without meaningful width relief."
+  },
+  {
+   "name": "r3C",
+   "colWidths": [
+    152,
+    88,
+    558,
+    130
+   ],
+   "requestedWidths": [
+    152,
+    88,
+    558,
+    130
+   ],
+   "tableWidth": 929,
+   "tableHeight": 637,
+   "rowHeights": [
+    36.3,
+    82.8,
+    106,
+    152.5,
+    152.5,
+    106
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     3
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     6
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     4
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     1
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     6
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     1
+    ],
+    [
+     5,
+     2,
+     1
+    ],
+    [
+     5,
+     3,
+     4
+    ]
+   ],
+   "overflow": 569,
+   "screenshot": "img/x-code-config@phone__r3C.png",
+   "note": "The unexplored alternative: give Example its natural 537px + 21px padding so not a single token is ever broken — the only design where mid-word splits are 0 and every config value is verifiable at a glance. Option and Default are unchanged, Description at 130 stays readable prose. It costs ~570px of horizontal scroll (about 2.6 screens), which is a real price, but it is the only allocation that trades scroll for something the reader can actually use rather than for a wider column of confetti.",
+   "why": "It is nearly as wide as r1C yet Default at 88px splits a code token and Description at 130px adds wrapping; it gets the worst of both width and token integrity."
+  }
+ ],
+ "ranges": [
+  [
+   152,
+   180
+  ],
+  [
+   111,
+   150
+  ],
+  [
+   558,
+   620
+  ],
+  [
+   170,
+   230
+  ]
+ ],
+ "rationale": "r1C is the only candidate that keeps every code token intact: Option 152, Default 111, Example 558, and Description 190 all meet their unbreakable-token thresholds, so no URL or identifier is split. The cost is a 1012px table on a 360px viewport, but horizontal scrolling is the right trade for copyable config values; the table still has a compact 428px height and no wrapped headers. r1B and r2C are reasonable compromises only if reducing scroll outweighs token integrity.",
+ "principles": {
+  "general": [
+   "Column width should be driven by the longest unbreakable token in that column, not by equal widths or average content.",
+   "For code, identifiers, and URLs, preserve token integrity and accept horizontal scroll; mid-word breaks harm recognition and copyability.",
+   "Prose columns can wrap at spaces and need far less width than their one-line width suggests.",
+   "Avoid designs that save little width while adding mid-word splits and taller rows; those are dominated compromises."
+  ],
+  "specific": [
+   "Example is the width driver here: the 537px URL token plus 21px padding sets a 558px minimum no-split width.",
+   "Default's 334px one-line width is misleading because the log pattern wraps at spaces; 111px is enough to keep its tokens intact.",
+   "Option needs exactly 152px, while Description is comfortable at 190px and should not drop much below about 170px.",
+   "r1C's 1012px total is justified by zero mid-word splits, whereas r3C is almost as wide but still breaks tokens."
+  ]
+ },
+ "tradeoffs": "Horizontal scroll versus compactness: r1C preserves every token but is 1012px wide, while r1B and r2C reduce width to 814px and 674px at the cost of one and three mid-word splits. A designer may accept a single URL break to save roughly 200px of scrolling.",
+ "uncertain": "Whether one URL split in r1B is acceptable in publication; the exact lower bound for Description before prose becomes too tall; whether Example could be widened slightly beyond 558px without any real benefit.",
+ "designHistory": {
+  "r0": {
+   "critique": null,
+   "designs": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "Option is given exactly 152px, so every option key stays whole and remains a clear scan anchor. The table fits the 360px box with no horizontal scroll, and the column order still reads logically.",
+     "problems": "Default, Example and Description are crushed: their text areas are only about 51px, 45px and 48px wide. Headers wrap 3/4, code tokens become vertical fragments, prose reads one word per line, and the table grows to 1497px with 41 mid-word splits. Rows no longer read as units.",
+     "cause": "Widths [152,72,66,69] spend 152px on the one column that needs it and leave only 207px for three content-heavy columns. Example has 45px of text for a 537px token; Description has 48px for 501px one-line prose. This is not a viable allocation."
+    },
+    {
+     "design": "r0B",
+     "good": "The cleanest content integrity: Option 152, Default 111 and Example 558 preserve keys, default tokens and the full 537px example string. Headers do not wrap, there are 0 mid-word splits, and row heights stay modest at 36–106px.",
+     "problems": "At 1042px it overflows the box by 682px. On a 360px viewport the reader sees Option, Default and only about 97px of Example; Description is entirely off-screen. Horizontal scrolling across nearly three screens breaks the row-as-unit reading and hides the explanation.",
+     "cause": "Giving Example its full 558px (537px token + 21px padding), plus 152+111+220, sums to 1042px. The overflow is inherent to preserving the Example token, but the generous Description and total width make the scroll extreme."
+    },
+    {
+     "design": "r0C",
+     "good": "A useful compact compromise: 729px total, unwrapped headers, intact Option keys, and Example 290px shows meaningful chunks of the long tokens. Row heights remain 36–153px and the table is shorter than r0A.",
+     "problems": "Default is 15px too narrow for its 90px word, so `%d{ISO8601}` splits mid-token. Example still splits the 537px URL/postgres token, and Description gets 190px while Example is starved. The table still overflows by 369px, so the reader scrolls anyway.",
+     "cause": "Widths [152,96,290,190] shave Default below its longest unbreakable word and give Example only 54% of its token width. The width saved from Example went to Description rather than to the code column that needs it."
+    }
+   ],
+   "designs": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "Option at 152 keeps every key whole (cache.ttlSeconds fits exactly), and Default at 111 keeps the code token %d{ISO8601} whole, so the lookup pair reads cleanly. Of the three it is the tightest table (744px) and the header row stays on one line.",
+     "problems": "The Description column is completely off-screen — the prose, which is the point of a config reference, is never seen. Meanwhile Example at 290px still shreds the URL into 'postgres://ap' / '.example.com...' (1 mid-word split), so those 290px buy no readable gain. Rows are uneven (36/60/106) because log.pattern's Default wraps to 4 lines inside a narrow cell, so the table reads as a stack of loose boxes rather than scannable rows.",
+     "cause": "Example 290 is far short of the 537px its token needs, so it splits anyway; and 152+111+290 already exceeds 360, pushing Description (190) past the viewport edge."
+    },
+    {
+     "design": "r1B",
+     "good": "Giving Example 360 does show a slightly longer, more recognisable URL prefix, and the Option/Default pair is still intact and whole.",
+     "problems": "It pays 70px more than r1A for essentially the same readability: the token still breaks mid-word (1 split), because 360 < 537. Description is pushed even further out of reach, and the tall 106px rows and the 4-line Default wrap are unchanged. The extra width is pure scroll cost.",
+     "cause": "Example 360 is still under the 537px unbreakable width, so the split persists; the added 70px only worsens total overflow (814px)."
+    },
+    {
+     "design": "r1C",
+     "good": "The only design that respects the content: Example at 558 holds the 537px token whole (0 mid-word splits), so the example values are readable as real code/URLs, and headers remain one line.",
+     "problems": "The table is 1012px — nearly three phone screens — and Description now sits 650px to the right, so the table degenerates into an example showcase with no explanation attached. The widest column is the one read least often, while the narrow prose column that carries the meaning is starved at 190. A reader scrolling to the URL loses the Option anchor entirely, breaking row identity.",
+     "cause": "Full 537px (+21) was granted to a token that appears in only a few rows, and Description was not compensated — the width budget is inverted relative to reading frequency."
+    }
+   ],
+   "designs": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "Option at 152px is the one thing done right: every key (server.port, cache.ttlSeconds) sits on a single line, so the scan anchor works. Default at 111px reads comfortably and keeps 8080/300/— tight against its label. Total 574px is the smallest scroll of the three, and headers stay on one line in all four columns.",
+     "problems": "The Example column is the narrowest here (140px) and it is exactly the column whose content is a 537px unbreakable token: the postgres DSN is shredded into five fragments (\"postgres://ap\", \":secret@db.in\", \"ternal.examle\", \"com:5432/prod\", \"uction_main\") that a reader cannot reassemble or copy. Description at 170px is completely off-viewport in the render, so the prose that explains each row is never seen. Row rhythm is broken: db.url is 60px while log.pattern is 129px, because one column holds a 40px value and a 334px value at the same width.",
+     "cause": "Default was given 111px — 90px more than 8080/300/— need — while Example was starved at 140px. That width was borrowed from the two columns that actually have long content, so the table pays 214px of scroll and still gets 6 mid-word splits."
+    },
+    {
+     "design": "r2B",
+     "good": "Description gets 205px, the most readable prose measure of the three, and Option remains whole at 152px. Header row still clean, 0/4 wrapped.",
+     "problems": "This is the worst shredding of the set: Example at 115px produces 9 mid-word splits and turns the DSN and the JWKS URL into vertical confetti (\"postgres://\" / \"app:secret@\" / \"db.internat\"). The tallest cell reaches 7 lines and the table grows to 614px with rows of 176px, so a lookup table becomes a wall. The 205px Description is still off-screen at 360px, so its generosity is invisible.",
+     "cause": "36px was moved out of Example into Description. The width went to the column the reader cannot see and away from the column whose token was already the hardest constraint; Example fell below the threshold where a fragment is even recognisable."
+    },
+    {
+     "design": "r2C",
+     "good": "Clearly the best of the three and the right direction: Example at 230px cuts splits to 3, tallest cell to 4 lines, table to 474px, and row heights even out (36/60/83/106/106/83). Option stays whole; Default still holds log.pattern at 4 lines. Rows read as units for the first time.",
+     "problems": "It buys that with the largest overflow of the three (314px), and Default still carries 111px although three of its five values are 30–40px wide — that width is dead weight except for one row it cannot rescue anyway (log.pattern needs 334px to be one line, so at 111 it wraps regardless). Description at 180px begins at x≈494, far outside the box. No column reaches its \"intact\" threshold; the extra total width is spread thin instead of being committed.",
+     "cause": "Width was taken from Option-adjacent space and added to Example, but Default was never trimmed, so the total inflated without any single column crossing the point where its content stops being fragments."
+    }
+   ],
+   "designs": [
+    "r3A",
+    "r3B",
+    "r3C"
+   ]
+  }
+ },
+ "review": {
+  "method": "two fresh-context blind reviews; letters shuffled; includes browser auto layout and equal widths as neutral references",
+  "verdict": {
+   "status": "contested",
+   "per": [
+    {
+     "prefGrade": 4,
+     "prefIsBest": false,
+     "bestNames": [
+      "r2A",
+      "r2C"
+     ],
+     "badGrades": [
+      4
+     ],
+     "autoGrade": 3,
+     "equalGrade": 1
+    },
+    {
+     "prefGrade": 3,
+     "prefIsBest": false,
+     "bestNames": [
+      "r1B",
+      "r2A"
+     ],
+     "badGrades": [
+      4
+     ],
+     "autoGrade": 2,
+     "equalGrade": 1
+    }
+   ]
+  },
+  "raw": [
+   {
+    "order": [
+     "r2A",
+     "r1B",
+     "ref_equal",
+     "ref_auto",
+     "r1C",
+     "r2C"
+    ],
+    "best": [
+     "r2A",
+     "r2C"
+    ],
+    "ratings": {
+     "r2A": {
+      "grade": "good",
+      "why": "Option column holds 'cache.ttlSeconds' and 'auth.jwksUri' on one line, Default keeps each pattern token (%-5level, %logger{36}, — %msg%n) whole on its own line, and Example still starts inside the viewport so the first characters of every URL are visible. Only the URL itself is cut, which is unavoidable."
+     },
+     "r1B": {
+      "grade": "acceptable",
+      "why": "Option and Default stay intact, but the Example column starts very early (~x=205) and is narrow, so URL cells fragment into short stubs and rows grow tall; Default also gets squeezed relative to A while the widest content is still pushed off-screen."
+     },
+     "ref_equal": {
+      "grade": "bad",
+      "why": "Squeezing all four columns into 360px splits identifiers and even headers mid-word ('server.p ort', 'log.patt ern', 'cache.tt lSeconds', 'Descripti on', 'Connecti on'). For a code/config table this destroys the tokens the reader came for; seeing Description is not worth that."
+     },
+     "ref_auto": {
+      "grade": "acceptable",
+      "why": "Option and Default stay legible, but Default is narrow enough to force four-line wraps and the Example column sits far right, leaving large dead areas in short rows (server.port, db.url) and pushing the URL content mostly out of view."
+     },
+     "r1C": {
+      "grade": "good",
+      "why": "Close to B but better proportioned: Option keeps 'cache.ttlSeconds' intact, Default wraps at token boundaries, and Example begins early enough that each URL shows a readable opening fragment."
+     },
+     "r2C": {
+      "grade": "good",
+      "why": "Gives Example the most room, so URLs break into the fewest lines (three rather than five), while Option stays one line and Default still shows '%d{ISO8601}' intact; the cost is a slightly narrower Default and more horizontal scroll."
+     }
+    },
+    "confidence": "medium",
+    "unsure": "Exact column widths are hard to read off the scaled images; B/E vs A/F differ mainly in where the Example column starts, and D vs A differ only subtly. If the reader is expected to scroll horizontally anyway, F's wider Example may edge out A."
+   },
+   {
+    "order": [
+     "ref_equal",
+     "r1B",
+     "r2A",
+     "r1C",
+     "r2C",
+     "ref_auto"
+    ],
+    "best": [
+     "r1B",
+     "r2A"
+    ],
+    "ratings": {
+     "ref_equal": {
+      "grade": "bad",
+      "why": "All four columns are crushed into 360px: identifiers split mid-token (\"server.p/ort\", \"cache.tt/lSeconds\", \"auth.jwk/sUri\"), the Example URL fragments into slivers (\"postgres://app:s/ecret@db/.interna/l.exampl/e.com:54/32/produ/ction_ma/in\"), and even the header \"Descripti/on\" and words like \"Connecti/on\" break. Rows become enormous and nothing is comparable; fitting the box costs the content its integrity."
+     },
+     "r1B": {
+      "grade": "good",
+      "why": "Option is sized to just hold its longest token, Default wraps at spaces with tokens intact (\"%d{IS08601}\" / \"%-5level\" ...), and the remaining width goes to Example, the widest content — a rational allocation. The table scrolls and Description is off-screen, but within the visible frame the hierarchy and rhythm are clean."
+     },
+     "r2A": {
+      "grade": "good",
+      "why": "Like B but with a slightly wider Default, so the config pattern sits on cleaner lines and Option tokens (\"cache.ttlSeconds\") sit comfortably; Example still gets a usable share. Proportions are balanced and nothing breaks mid-token in the visible columns; Description is only reachable by scrolling."
+     },
+     "r1C": {
+      "grade": "acceptable",
+      "why": "Option fits its tokens and Default is roomy, but Default mostly holds short values (\"8080\", \"—\") while Example — the 537px column — is squeezed to a narrow strip, pushing more of the table off-screen. Workable but the width budget is spent in the wrong place."
+     },
+     "r2C": {
+      "grade": "acceptable",
+      "why": "Option and Default are readable and unbroken, and Example gets moderate room, but its URL wraps into three mid-path fragments that are hard to reassemble, and Description is entirely hidden. Functional with scrolling, but the first-glance value is limited."
+     },
+     "ref_auto": {
+      "grade": "poor",
+      "why": "Option is given far more width than its 131px token needs while Example — the widest column — is reduced to a sliver (\"postgres://ap\"), and Description is furthest away. This is the least defensible allocation: it maximises total table width while showing the least of the content that needs it."
+     }
+    },
+    "confidence": "medium",
+    "unsure": "I cannot measure exact column widths from the renders, so B/C/D/E differences are judged by visible proportions; also unclear how much of Example/Description lies off-screen and how wide each full table is, which affects how much scrolling each layout demands."
+   }
+  ]
+ },
+ "provenance": {
+  "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+  "pi": "1.3.0",
+  "created": "2026-11-26T15:28:06.370Z",
+  "note": "AI visual design judgement; not a human reading study"
+ }
+}

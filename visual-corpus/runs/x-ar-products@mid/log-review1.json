@@ -1,0 +1,23 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: العربية · المنتجات (language ar, right-to-left: column 1 is on the RIGHT).\nGrid: 4 columns × 5 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"المنتج\" · longest unbreakable word 50px · one-line width 97px\n  col 2: header \"السعر\" · longest unbreakable word 40px · one-line width 70px\n  col 3: header \"المخزون\" · longest unbreakable word 53px · one-line width 53px\n  col 4: header \"الوصف\" · longest unbreakable word 57px · one-line width 445px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 440px (the dashed pink box). The column widths you choose must sum to at most 439px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 24273,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"excellent\",\"why\":\"Clean RTL hierarchy: product names and prices each stay on one line, the narrow stock column is sized to its header, and the leftover width goes to the description, which wraps into even 3–4 line blocks. Rows read as units and the price/number stays intact.\"},\"B\":{\"grade\":\"excellent\",\"why\":\"Same sound allocation as A, with the description column given a touch more room; description lines break at natural phrase boundaries while product names and '3,200 ر.س' remain unbroken. Balanced and easy to scan.\"},\"C\":{\"grade\":\"poor\",\"why\":\"The description column is squeezed to a narrow strip (7–8 lines) while the stock column is wider than its content needs, and product names wrap onto two lines ('حاسوب / محمول'). Rows become very tall and the key text column is hardest to read.\"},\"D\":{\"grade\":\"poor\",\"why\":\"Description gets generous width, but the price column is too narrow: '3,200' and the currency 'ر.س' split onto separate lines (also 450, 1,150, 280), breaking the number–unit pair and doubling price-row height.\"},\"E\":{\"grade\":\"poor\",\"why\":\"Same defect as D: the price column cannot hold '3,200 ر.س' on one line, so every price breaks before the currency, and the description column is slightly narrower than in D for no gain.\"},\"F\":{\"grade\":\"excellent\",\"why\":\"Well-proportioned: description takes the remaining width and wraps cleanly, stock column is compact, product names and prices sit on single lines with visible breathing room. Consistent row rhythm across all four rows.\"}},\"best\":[\"A\",\"B\",\"F\"],\"confidence\":\"medium\",\"unsure\":\"A, B and F look nearly identical at this resolution; the few-pixel differences in description vs. product column widths are hard to verify, so the ranking among them could shift.\"}\n"
+  }
+ ]
+}

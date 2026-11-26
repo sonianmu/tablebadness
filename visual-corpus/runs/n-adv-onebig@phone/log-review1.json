@@ -1,0 +1,23 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 街道便民服务中心一窗受理事项办理台账 (language zh-CN).\nGrid: 3 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"序号\" · longest unbreakable word 16px · one-line width 31px\n  col 2: header \"状态\" · longest unbreakable word 16px · one-line width 46px\n  col 3: header \"内容\" · longest unbreakable word 31px · one-line width 1932px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 32507,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"excellent\",\"why\":\"Content column clearly dominates (~225px, ~15 chars per line), so rows read as compact units; status '已办结' stays on one line and only the 序号 header wraps, which is a harmless two-line label. Column hierarchy is clear and the table stays a sensible height.\"},\"B\":{\"grade\":\"bad\",\"why\":\"The 3-character status column is given roughly as much width as the content column, crushing 内容 to about 6–7 characters per line; every row becomes a tall ribbon of broken sentences and the table triples in height. Wide empty status cells next to cramped text destroy the scanning rhythm.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"Content width is nearly as good as A/E, but both short columns wrap: 序号 splits and status breaks into '已办/结', so the status values no longer line up as single comparable tokens. Workable but slightly fidgety for a column that is only three characters long.\"},\"D\":{\"grade\":\"poor\",\"why\":\"Status is squeezed until '已办结' stacks one character per line (header 状态 too), turning a key scanning column into vertical confetti and breaking row alignment. The content column does gain width and the table gets shorter, but the cost to the status column's legibility outweighs that.\"},\"E\":{\"grade\":\"excellent\",\"why\":\"Essentially the best balance: content column is the widest of the group (~230px), status stays on one line, and only the 序号 header wraps. Proportions follow the content facts (huge text column, two tiny label columns) and rows stay coherent.\"},\"F\":{\"grade\":\"good\",\"why\":\"Keeps 序号 on a single line and gives content a generous width (one extra character per line in places), but the status column wraps '已办/结' and '待补/正' — a small but visible flaw in a 3-character label column, and the two narrow columns feel slightly unbalanced.\"}},\"best\":[\"E\",\"A\"],\"confidence\":\"medium\",\"unsure\":\"Differences between A, E and F are only a few pixels of column width (text wrapping is nearly identical in places), so ranking them depends on whether wrapping the 序号 header or the 状态 label is judged the lesser evil; measured pixel edges are approximate from the screenshots.\"}\n"
+  }
+ ]
+}

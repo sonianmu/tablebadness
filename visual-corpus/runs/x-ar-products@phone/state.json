@@ -1,0 +1,2908 @@
+{
+ "id": "x-ar-products@phone",
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "Best of the three: price (91) and stock (74) sit at their exact one-line minimums, so every numeric cell stays a single line and the price/stock pair aligns cleanly for vertical comparison. Description gets the largest share (122) and the whole table stays compact at 438px. No header wrapping, no mid-word splits.",
+     "problems": "The product column at 72px is squeezed to its floor: 'شاشة 27 بوصة' breaks into three short lines and 'حاسوب محمول' into two, so the right-hand anchor column looks ragged next to the calm numeric columns. The description is still the tallest cell at 6 lines, which sets the height of row 1 and row 4 — those rows read as description blocks with a small label beside them rather than as product rows.",
+     "cause": "72px for the product column is only 1px above the hard minimum (50px longest word + 21px), so product names have no room to breathe; simultaneously description at 122px is 323px short of its 445px one-line width, forcing the wrap cascade that dictates all row heights."
+    },
+    {
+     "design": "r0B",
+     "good": "Product names now read in one or two lines, giving a clear, stable right-hand label column, and price/stock are still one-line and aligned.",
+     "problems": "The 24px taken from the description and given to the product produces no visual gain on the right but a large loss on the left: the description drops to 98px and grows to 8 lines, stretching the table to 531px. Rows 1 and 4 become tall, airy text blocks whose vertical white space outweighs the product label.",
+     "cause": "Width was moved from the column with the greatest wrap sensitivity (description, needs 445px one-line) to a column that was already legible at 72px, so every pixel transferred bought one saved product line but cost roughly two description lines."
+    },
+    {
+     "design": "r0C",
+     "good": "Product column is comfortable at 116px — names are clean single or double lines — and the numeric pair remains intact.",
+     "problems": "The table collapses into a narrow text ribbon: description at 78px gives 11 lines, table height 671px, and the description column visually dominates as a tall thin strip while the product column looks over-fed. Scanning rows as units becomes hard because row heights are enormous and uneven.",
+     "cause": "Allocating 116px to product and 78px to description inverts the content's actual needs; the description's 445px one-line width means every pixel removed from it costs a full line, whereas the product needs only ~97px to be one line."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "Every price stays on one line (3,200 ر.س, 450 ر.س, 1,150 ر.س, 280 ر.س), so column 2 reads as a clean numeric series; both numeric columns sit adjacent with identical one-line values and headers 'السعر' and 'المخزون' are unwrapped; no mid-word splits. Column 1 at 71px (50px of text) holds the longest Arabic word, so names wrap only at spaces.",
+     "problems": "The table is 438px tall with rows of 129 and 153px. The description column is the tallest cell in every row (5 and 6 lines) and is squeezed into 102px of text, so the supporting detail dominates the page and drowns the primary label. Column 1 shows 'شاشة 27 بوصة' as three stacked fragments (شاشة / 27 / بوصة), which weakens the product identifier — the first thing the eye should catch in an RTL read.",
+     "cause": "Columns 1–3 are at their hard floors (71 = 50px longest word + 21, 91 = 70px widest price + 21, 74 = 53px 'المخزون' + 21), so the description is forced to the residual 123px (102px text). Description line count, not product line count, drives every row height."
+    },
+    {
+     "design": "r1B",
+     "good": "Giving the description 138px (117px of text) drops exactly one line from every row — row 1 falls from 129 to 106, row 4 from 153 to 129 — producing a 392px table with a much better balance between the two text columns and a more even vertical rhythm. Headers still unwrapped, no mid-word splits.",
+     "problems": "The price column is now 76px (55px of text), below the 70px the widest price needs, so all four prices break into two lines with 'ر.س' dropped onto its own line under the digits. The currency marker detaches from its number, the price column stops scanning as a single numeric series, and the number/currency pair has to be re-assembled by the reader on every row. Column 1 is unchanged at 71px, so 'شاشة 27 بوصة' is still split into three fragments.",
+     "cause": "Price width 76 < 91 (70px content + 21 padding/border). The 15px taken from price bought the description one line per row, but it was taken from the one column whose values must stay unbreakable and comparable."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "Price values stay on one line and the currency marker stays attached; stock is comfortable; all four headers remain unwrapped; no mid-word splits. The numeric pair is adjacent and easy to compare vertically.",
+     "problems": "The product column is cramped: product names break into short, stacked fragments, and the description still needs 6 lines, producing tall rows (129/153px) and a 438px table. The price column has unused horizontal slack while the description is starved.",
+     "cause": "col1=71 leaves only 50px of text, so product names wrap early. col4=121 leaves 100px, so the long description needs 6 lines. col2=93 is 2px above its 91px one-line minimum, so that slack would be better spent on col4."
+    },
+    {
+     "design": "r2B",
+     "good": "The wider product column (82px) makes product names read better, especially “شاشة 27” staying on one line. Price remains intact at its exact 91px minimum, stock is intact, headers do not wrap, and there are no mid-word splits.",
+     "problems": "The description is the most compressed of the three designs: 7 lines, rows of 153/176px, and a 485px table. Numeric cells sit in very tall rows with large empty vertical space, slowing scanning.",
+     "cause": "col4=112 leaves only 91px of text, which crosses below the width needed for 6 description lines. col1=82 takes 11px more than r2A, and col2=91 plus col3=74 have no spare width to give back."
+    },
+    {
+     "design": "r2C",
+     "good": "The description is most readable here: 5 lines, a 392px table, and the shortest overall height. The numeric columns are compact and the description no longer dominates row height as severely.",
+     "problems": "Price values split: the currency marker drops to a second line under each amount, disrupting vertical price comparison. The product column is still too narrow, so “شاشة 27 بوصة” breaks into three short lines. The price column looks narrower than the stock column despite holding longer content.",
+     "cause": "col2=68 leaves only 47px, well below the 70px one-line width, so “3,200 ر.س” must break at the space. col4=146 leaves 125px and shortens the description, but the 23px taken from price is too costly. col1=71 still leaves 50px, so product names wrap early."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    72,
+    91,
+    74,
+    122
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 5,
+    "tableWidth": 360,
+    "tableHeight": 438,
+    "overflow": 0,
+    "colWidths": [
+     72,
+     91,
+     74,
+     122
+    ],
+    "rowHeights": [
+     36.3,
+     129.3,
+     59.5,
+     152.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "المنتج",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "السعر",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "المخزون",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الوصف",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "حاسوب محمول",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,200 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "جهاز خفيف الوزن مع بطارية تدوم حتى اثنتي عشرة ساعة وشاشة عال",
+      "lines": 5
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "سماعات لاسلكية",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "450 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "87",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "عزل نشط للضوضاء.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "شاشة 27 بوصة",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,150 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "23",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "دقة 4K مع دعم كامل لنطاق الألوان الواسع، مناسبة لأعمال التصم",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "لوحة مفاتيح",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "280 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "غير متوفر حاليًا",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 50,
+      "natural": 97,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 70,
+      "padding": 21
+     },
+     {
+      "minContent": 53,
+      "natural": 53,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 445,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r0A.png",
+   "idea": "Description-first: keep price and stock fully intact, give the description the largest share, and let product names wrap to two or three lines.",
+   "notes": []
+  },
+  "r0B": {
+   "widths": [
+    96,
+    91,
+    74,
+    98
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 5,
+    "tableWidth": 360,
+    "tableHeight": 531,
+    "overflow": 0,
+    "colWidths": [
+     96,
+     91,
+     74,
+     98
+    ],
+    "rowHeights": [
+     36.3,
+     175.8,
+     59.5,
+     199,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "المنتج",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "السعر",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "المخزون",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الوصف",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "حاسوب محمول",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,200 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "جهاز خفيف الوزن مع بطارية تدوم حتى اثنتي عشرة ساعة وشاشة عال",
+      "lines": 7
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "سماعات لاسلكية",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "450 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "87",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "عزل نشط للضوضاء.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "شاشة 27 بوصة",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,150 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "23",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "دقة 4K مع دعم كامل لنطاق الألوان الواسع، مناسبة لأعمال التصم",
+      "lines": 8
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "لوحة مفاتيح",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "280 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "غير متوفر حاليًا",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 50,
+      "natural": 97,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 70,
+      "padding": 21
+     },
+     {
+      "minContent": 53,
+      "natural": 53,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 445,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r0B.png",
+   "idea": "Balanced scan: preserve intact numeric columns while giving product and description comparable space, so product names wrap less and descriptions remain readable.",
+   "notes": []
+  },
+  "r0C": {
+   "widths": [
+    116,
+    91,
+    74,
+    78
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 5,
+    "tableWidth": 360,
+    "tableHeight": 670.5,
+    "overflow": 0,
+    "colWidths": [
+     116,
+     91,
+     74,
+     78
+    ],
+    "rowHeights": [
+     36.3,
+     268.8,
+     59.5,
+     245.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "المنتج",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "السعر",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "المخزون",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الوصف",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "حاسوب محمول",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,200 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "جهاز خفيف الوزن مع بطارية تدوم حتى اثنتي عشرة ساعة وشاشة عال",
+      "lines": 11
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "سماعات لاسلكية",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "450 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "87",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "عزل نشط للضوضاء.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "شاشة 27 بوصة",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,150 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "23",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "دقة 4K مع دعم كامل لنطاق الألوان الواسع، مناسبة لأعمال التصم",
+      "lines": 10
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "لوحة مفاتيح",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "280 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "غير متوفر حاليًا",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 50,
+      "natural": 97,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 70,
+      "padding": 21
+     },
+     {
+      "minContent": 53,
+      "natural": 53,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 445,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r0C.png",
+   "idea": "Product-first: nearly full one-line product names with price and stock protected, accepting a minimum-width description column where descriptions wrap into taller cells.",
+   "notes": []
+  },
+  "r1A": {
+   "widths": [
+    71,
+    91,
+    74,
+    123
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 5,
+    "tableWidth": 360,
+    "tableHeight": 438,
+    "overflow": 0,
+    "colWidths": [
+     71,
+     91,
+     74,
+     123
+    ],
+    "rowHeights": [
+     36.3,
+     129.3,
+     59.5,
+     152.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "المنتج",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "السعر",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "المخزون",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الوصف",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "حاسوب محمول",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,200 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "جهاز خفيف الوزن مع بطارية تدوم حتى اثنتي عشرة ساعة وشاشة عال",
+      "lines": 5
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "سماعات لاسلكية",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "450 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "87",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "عزل نشط للضوضاء.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "شاشة 27 بوصة",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,150 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "23",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "دقة 4K مع دعم كامل لنطاق الألوان الواسع، مناسبة لأعمال التصم",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "لوحة مفاتيح",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "280 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "غير متوفر حاليًا",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 50,
+      "natural": 97,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 70,
+      "padding": 21
+     },
+     {
+      "minContent": 53,
+      "natural": 53,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 445,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r1A.png",
+   "idea": "Take the proven r0A balance to its exact limit: price held at 91 (one-line minimum for '3,200 ر.س'), stock at 74 (one-line minimum for 'المخزون'), product at 71 (its 50px longest word + 21px padding), and hand every remaining pixel — 123 — to the description. This keeps both numeric columns single-line and aligned, prevents any mid-word break, and gives the description its maximum possible width, which is the only column where extra pixels actually remove whole lines.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    71,
+    76,
+    74,
+    138
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 5,
+    "tableWidth": 360,
+    "tableHeight": 391.5,
+    "overflow": 0,
+    "colWidths": [
+     71,
+     76,
+     74,
+     138
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     59.5,
+     129.3,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "المنتج",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "السعر",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "المخزون",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الوصف",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "حاسوب محمول",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,200 ر.س",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "جهاز خفيف الوزن مع بطارية تدوم حتى اثنتي عشرة ساعة وشاشة عال",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "سماعات لاسلكية",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "450 ر.س",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "87",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "عزل نشط للضوضاء.",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "شاشة 27 بوصة",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,150 ر.س",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "23",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "دقة 4K مع دعم كامل لنطاق الألوان الواسع، مناسبة لأعمال التصم",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "لوحة مفاتيح",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "280 ر.س",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "غير متوفر حاليًا",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 50,
+      "natural": 97,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 70,
+      "padding": 21
+     },
+     {
+      "minContent": 53,
+      "natural": 53,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 445,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r1B.png",
+   "idea": "An alternative that deliberately lets the price wrap: 76px still fits 'السعر' on one line and holds '3,200' and 'ر.س' as two short stacked lines, which is a normal Arabic convention. The 15px saved plus the product minimum lets the description grow to 138px, cutting the tallest description block from 6 to about 5 lines and shortening the table. Only worth choosing if the reader scans descriptions more than prices; it costs the price column its clean single-line numeric rhythm.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    71,
+    93,
+    74,
+    121
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 5,
+    "tableWidth": 360,
+    "tableHeight": 438,
+    "overflow": 0,
+    "colWidths": [
+     71,
+     93,
+     74,
+     121
+    ],
+    "rowHeights": [
+     36.3,
+     129.3,
+     59.5,
+     152.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "المنتج",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "السعر",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "المخزون",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الوصف",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "حاسوب محمول",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,200 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "جهاز خفيف الوزن مع بطارية تدوم حتى اثنتي عشرة ساعة وشاشة عال",
+      "lines": 5
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "سماعات لاسلكية",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "450 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "87",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "عزل نشط للضوضاء.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "شاشة 27 بوصة",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,150 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "23",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "دقة 4K مع دعم كامل لنطاق الألوان الواسع، مناسبة لأعمال التصم",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "لوحة مفاتيح",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "280 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "غير متوفر حاليًا",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 50,
+      "natural": 97,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 70,
+      "padding": 21
+     },
+     {
+      "minContent": 53,
+      "natural": 53,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 445,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r2A.png",
+   "idea": "Keep r1A's allocation but give the price column 2px of slack (93 → 72px of text for a 70px value) so '3,200 ر.س' never sits flush against the cell edge, and pay for it with 2px from the description. Measured line counts are unaffected at 100px of text (still 5 lines in row 1, 6 in row 4), so the table height is unchanged while the widest price gains breathing room and stays whole on one line.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    82,
+    91,
+    74,
+    112
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 5,
+    "tableWidth": 360,
+    "tableHeight": 484.5,
+    "overflow": 0,
+    "colWidths": [
+     82,
+     91,
+     74,
+     112
+    ],
+    "rowHeights": [
+     36.3,
+     152.5,
+     59.5,
+     175.8,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "المنتج",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "السعر",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "المخزون",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الوصف",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "حاسوب محمول",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,200 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "جهاز خفيف الوزن مع بطارية تدوم حتى اثنتي عشرة ساعة وشاشة عال",
+      "lines": 6
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "سماعات لاسلكية",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "450 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "87",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "عزل نشط للضوضاء.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "شاشة 27 بوصة",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,150 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "23",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "دقة 4K مع دعم كامل لنطاق الألوان الواسع، مناسبة لأعمال التصم",
+      "lines": 7
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "لوحة مفاتيح",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "280 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "غير متوفر حاليًا",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 50,
+      "natural": 97,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 70,
+      "padding": 21
+     },
+     {
+      "minContent": 53,
+      "natural": 53,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 445,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r2B.png",
+   "idea": "Take 11px from the description and give it to the product column (61px of text) so the item name reads as phrases instead of fragments — 'شاشة 27' and similar two-word units stop being split across three lines. Prices, stock header and description column all keep one-line headers and no mid-word breaks; the cost is an estimated extra description line in rows 1 and 4. This tests whether the primary identifier's readability is worth ~45px of height.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2C": {
+   "widths": [
+    71,
+    68,
+    74,
+    146
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 5,
+    "tableWidth": 360,
+    "tableHeight": 391.5,
+    "overflow": 0,
+    "colWidths": [
+     71,
+     68,
+     74,
+     146
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     59.5,
+     129.3,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "المنتج",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "السعر",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "المخزون",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الوصف",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "حاسوب محمول",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,200 ر.س",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "جهاز خفيف الوزن مع بطارية تدوم حتى اثنتي عشرة ساعة وشاشة عال",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "سماعات لاسلكية",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "450 ر.س",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "87",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "عزل نشط للضوضاء.",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "شاشة 27 بوصة",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,150 ر.س",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "23",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "دقة 4K مع دعم كامل لنطاق الألوان الواسع، مناسبة لأعمال التصم",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "لوحة مفاتيح",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "280 ر.س",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "غير متوفر حاليًا",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 50,
+      "natural": 97,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 70,
+      "padding": 21
+     },
+     {
+      "minContent": 53,
+      "natural": 53,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 445,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r2C.png",
+   "idea": "An unexplored alternative to r1B: if the price must wrap anyway, make it wrap consistently. At 68px (47px of text) all four prices put their digits on line 1 and 'ر.س' on line 2, so the column still aligns vertically, while the description gets 125px of text and the table shrinks to roughly 370–390px. Numeric columns stay adjacent and the stock header stays intact, but the price column becomes the narrowest, so the two numeric columns no longer have equal visual weight — a deliberate trade to evaluate against r1B's mixed wrapping.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    71,
+    91,
+    74,
+    123
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 5,
+    "tableWidth": 360,
+    "tableHeight": 438,
+    "overflow": 0,
+    "colWidths": [
+     71,
+     91,
+     74,
+     123
+    ],
+    "rowHeights": [
+     36.3,
+     129.3,
+     59.5,
+     152.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "المنتج",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "السعر",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "المخزون",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الوصف",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "حاسوب محمول",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,200 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "جهاز خفيف الوزن مع بطارية تدوم حتى اثنتي عشرة ساعة وشاشة عال",
+      "lines": 5
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "سماعات لاسلكية",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "450 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "87",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "عزل نشط للضوضاء.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "شاشة 27 بوصة",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,150 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "23",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "دقة 4K مع دعم كامل لنطاق الألوان الواسع، مناسبة لأعمال التصم",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "لوحة مفاتيح",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "280 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "غير متوفر حاليًا",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 50,
+      "natural": 97,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 70,
+      "padding": 21
+     },
+     {
+      "minContent": 53,
+      "natural": 53,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 445,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r3A.png",
+   "idea": "Restore price to 91px, the minimum for one-line “3,200 ر.س” with 21px padding, and keep stock at 74px. Keep product at its 71px minimum so the header and longest word fit without breaking, then give the remaining 123px to the description. This fixes r2C’s broken price and r2A’s wasted 2px in price, while maximizing description width under the intact-price/intact-stock constraint. The table should stay near r2A’s 438px height but with cleaner numeric scanning.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "ref_auto": {
+   "widths": [
+    78.1,
+    65.7,
+    73.4,
+    141.8
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 5,
+    "tableWidth": 360,
+    "tableHeight": 391.5,
+    "overflow": 0,
+    "colWidths": [
+     78.1,
+     65.7,
+     73.4,
+     141.8
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     59.5,
+     129.3,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "المنتج",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "السعر",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "المخزون",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الوصف",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "حاسوب محمول",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,200 ر.س",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "جهاز خفيف الوزن مع بطارية تدوم حتى اثنتي عشرة ساعة وشاشة عال",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "سماعات لاسلكية",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "450 ر.س",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "87",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "عزل نشط للضوضاء.",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "شاشة 27 بوصة",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,150 ر.س",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "23",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "دقة 4K مع دعم كامل لنطاق الألوان الواسع، مناسبة لأعمال التصم",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "لوحة مفاتيح",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "280 ر.س",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "غير متوفر حاليًا",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 50,
+      "natural": 97,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 70,
+      "padding": 21
+     },
+     {
+      "minContent": 53,
+      "natural": 53,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 445,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    89,
+    89,
+    89,
+    89
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 5,
+    "tableWidth": 357,
+    "tableHeight": 554.3,
+    "overflow": 0,
+    "colWidths": [
+     89,
+     89,
+     89,
+     89
+    ],
+    "rowHeights": [
+     36.3,
+     175.8,
+     59.5,
+     222.3,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "المنتج",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "السعر",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "المخزون",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الوصف",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "حاسوب محمول",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3,200 ر.س",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "جهاز خفيف الوزن مع بطارية تدوم حتى اثنتي عشرة ساعة وشاشة عال",
+      "lines": 7
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "سماعات لاسلكية",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "450 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "87",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "عزل نشط للضوضاء.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "شاشة 27 بوصة",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,150 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "23",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "دقة 4K مع دعم كامل لنطاق الألوان الواسع، مناسبة لأعمال التصم",
+      "lines": 9
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "لوحة مفاتيح",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "280 ر.س",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "غير متوفر حاليًا",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 50,
+      "natural": 97,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 70,
+      "padding": 21
+     },
+     {
+      "minContent": 53,
+      "natural": 53,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 445,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-ref_equal.png"
+  }
+ },
+ "understanding": {
+  "purpose": "A compact Arabic product-inventory table for scanning products, comparing prices and stock, and reading a short description as supporting detail.",
+  "reading": "Right-to-left, row by row: the reader first identifies the product on the right, then checks price and stock for comparison, and finally reads the description. The numeric columns need to align cleanly for quick vertical comparison.",
+  "groups": [
+   "Columns 2 and 3 (price and stock) form a numeric comparison pair and should remain adjacent and intact.",
+   "Columns 1 and 4 (product and description) both identify the item, but the product name is the primary label and the description is secondary detail."
+  ],
+  "keep_intact": [
+   "Price values including thousands separators and the currency marker (e.g. 3,200 ر.س)",
+   "Stock integers",
+   "Column headers",
+   "No mid-word breaks in Arabic words"
+  ],
+  "may_wrap": [
+   "Product names at spaces",
+   "Description text at spaces"
+  ]
+ },
+ "final": {
+  "preferred": [
+   "r1A",
+   "r2A",
+   "r3A"
+  ],
+  "acceptable": [
+   "r1B",
+   "r2C",
+   "r2B"
+  ],
+  "bad": [
+   {
+    "design": "r0B",
+    "why": "الوصف gets only 98px, producing 8-line description cells and a 531px table while المنتج is over-widened to 96px without making product names one-line; the long-text column is starved."
+   },
+   {
+    "design": "r0C",
+    "why": "الوصف is squeezed to 78px, giving 11-line cells and a 671px table; المنتج at 116px is wider than the description column, which is a clear hierarchy and proportion failure."
+   }
+  ],
+  "contrast": null,
+  "ranges": [
+   [
+    71,
+    77
+   ],
+   [
+    91,
+    97
+   ],
+   [
+    74,
+    80
+   ],
+   [
+    117,
+    123
+   ]
+  ],
+  "rationale": "r1A/r3A, with r2A within an invisible 2px, give every non-description column its minimum viable width: product at 71px, price at 91px so '3,200 ر.س' stays on one line, stock at 74px, and all remaining width to الوصف. That preserves numeric scanning and word integrity while keeping the table at 438px rather than 531–671px. r1B/r2C are publishable compact alternatives, but they wrap ر.س under every price; r2B is a milder tradeoff that improves product wrapping at the cost of a seventh description line.",
+  "principles": {
+   "general": [
+    "Allocate by content role: short identifiers and numerics get minimum viable widths; the long-text column receives the residual width.",
+    "Keep repeated numeric/currency patterns on one line when possible; wrapping them weakens vertical comparison more than a modest height increase.",
+    "Judge widths by their line-break consequences, not by equal widths or the shortest table alone.",
+    "In RTL tables the visual order reverses, so the long prose column may be the leftmost column rather than the rightmost."
+   ],
+   "specific": [
+    "At 71px, Arabic product names wrap cleanly without mid-word splits, though 'شاشة 27 بوصة' takes three lines; at about 82px it takes two.",
+    "The price column needs 91px to keep '3,200 ر.س' on one line; 76px and 68px wrap the currency onto a second line.",
+    "الوصف drives row heights: 123px gives 6 lines, 138px gives 5, 112px gives 7, 98px gives 8, and 78px gives 11.",
+    "On the 360px canvas, after 71+91+74px for product, price, and stock, only 123px remains for الوصف."
+   ]
+  },
+  "tradeoffs": "One-line prices versus a roughly 46px shorter table; product-name readability versus description width; r2B's extra product width versus its 47px height penalty. The 2px difference between r1A and r2A is below perceptual significance.",
+  "uncertain": "Whether wrapping ر.س under each price is acceptable on a phone-sized table; the exact description line-break thresholds between 112px and 138px; and whether r2B's cleaner product wrapping justifies its extra height."
+ },
+ "reviews": [
+  {
+   "order": [
+    "r0B",
+    "r1B",
+    "ref_equal",
+    "ref_auto",
+    "r1A",
+    "r2C"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "acceptable",
+     "why": "Price and stock stay compact and '3,200 ر.س' holds together, but the description column is starved — 6–8 short lines per row with ragged, choppy wrapping, making the widest-content column the hardest to read."
+    },
+    "B": {
+     "grade": "poor",
+     "why": "Description gets moderate width, but the price column is too tight: '3,200 ر.س' and '450 ر.س' break across two lines, and 'شاشة 27 بوصة' shatters into three short lines, so both numeric and identifier cells lose integrity."
+    },
+    "C": {
+     "grade": "bad",
+     "why": "Description is the narrowest of all (8–9 lines of 1–3 words), prices wrap onto a second line, and the table becomes a tall stack of fragments with no clear reading rhythm."
+    },
+    "D": {
+     "grade": "acceptable",
+     "why": "Balanced-ish: description is workable and stock is clean, but the price column still wraps '3,200 ر.س' and the product names break awkwardly, so numbers and names don't read as units."
+    },
+    "E": {
+     "grade": "good",
+     "why": "Price fits on one line ('3,200 ر.س'), stock is clean, and description is wide enough to form sentences rather than fragments; only 'شاشة 27 بوصة' breaks into three lines in the product column."
+    },
+    "F": {
+     "grade": "excellent",
+     "why": "Best distribution: the description column is widest (4–5 line paragraphs instead of stubs), prices stay intact on one line, and product names wrap acceptably; rows read as units and the hierarchy is clear."
+    }
+   },
+   "best": [
+    "F"
+   ],
+   "confidence": "medium",
+   "unsure": "I can't measure exact widths, so F vs E is close — E keeps product names slightly tighter while F gives description more room; also unclear whether splitting the number from 'ر.س' is considered acceptable in the target Arabic convention."
+  },
+  {
+   "order": [
+    "ref_equal",
+    "r1B",
+    "r0B",
+    "r1A",
+    "r2C",
+    "ref_auto"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "poor",
+     "why": "الوصف مضغوط إلى أضيق عمود تقريبًا فيلتفّ إلى سبعة أسطر وتتضخم كل صف (الجدول يبلغ ضعف ارتفاع غيره)، والسعر ينكسر إلى '3,200' ثم 'ر.س'، بينما عمود المخزون يأخذ عرضًا لا يحتاجه."
+    },
+    "B": {
+     "grade": "acceptable",
+     "why": "الوصف حصل على عرض معقول (أربعة أسطر) لكن عمود السعر ضيّق جدًا فينكسر المبلغ والعملة في كل صف، وعمود المنتج مزدحم فيلتف الاسم مرتين، فتضيع مقارنة الأسعار عموديًا."
+    },
+    "C": {
+     "grade": "acceptable",
+     "why": "السعر يبقى في سطر واحد (ميزة واضحة)، لكن الوصف عاد مضغوطًا إلى سبعة أسطر فطالت الصفوف بلا داعٍ؛ توزيع غير متوازن يرجّح عمودًا قصيرًا على حساب العمود النصي الطويل."
+    },
+    "D": {
+     "grade": "excellent",
+     "why": "الوصف يأخذ النصيب الأكبر بوضوح (خمسة أسطر متوازنة)، والسعر '3,200 ر.س' في سطر واحد فتُقارن الأرقام رأسيًا بسهولة، والمخزون والمنتج بعرض كافٍ دون هدر؛ إيقاع الصفوف منتظم والجدول أقصر من C مع سلامة العمود الرقمي."
+    },
+    "E": {
+     "grade": "good",
+     "why": "الوصف هو الأوسع فتقصر الصفوف إلى أربعة أسطر والجدول متماسك، لكن عمود السعر ضُيّق إلى حد يكسر المبلغ عن العملة في كل صف، وهو ثمن مبالغ فيه مقابل سطر واحد موفّر."
+    },
+    "F": {
+     "grade": "good",
+     "why": "قريب من E: وصف واسع وصفوف قصيرة، لكن السعر مكسور '450' ثم 'ر.س' وعمود المنتج ضيق قليلًا، فيفقد الجدول سهولة المسح السريع للأرقام."
+    }
+   },
+   "best": [
+    "D"
+   ],
+   "confidence": "medium",
+   "unsure": "لا أستطيع قياس العروض بالبكسل بدقة من الصور؛ الفروق بين B وE وF وبين C وD طفيفة، وقد يتغيّر الترتيب لو كان كسر السعر إلى سطرين مقبولًا تحريريًا في هذا السياق."
+  }
+ ]
+}

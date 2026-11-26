@@ -1,0 +1,3690 @@
+{
+ "id": "x-formula@mid",
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "Most compact (252px) and the rhythm is even: all four body rows are 60px, so rows read as units. No mid-word splits; 说明 at 185px holds most notes in 2 lines; three of four quantity names sit on one line.",
+     "problems": "The 公式 column is the weakest link: at 90px (69px of text) the 91px formulas break after the equals sign, so 万有引力 renders as “F =” over “G·m₁m₂/r²” — the definition reads as two fragments, and the reader's cross-row scan of formulas (the column that should be compared vertically) is broken. Meanwhile 理想气体状态方程 wraps in col 1, and 说明 gets only two lines for the longest note.",
+     "cause": "col 3 is 90px, 1px short of the 112px needed to keep the 91px formula tokens whole; col 1 at 100px is 44px short of the 144px that holds 理想气体状态方程. Both 符号 and 单位 sit at 52px with 21px of pure slack each, so the budget is being spent in the wrong place."
+    },
+    {
+     "design": "r0B",
+     "good": "Gives 说明 the most air (209px), so prose is comfortable at 2 lines and the table reads calmly on the right-hand side. Headers all stay on one line.",
+     "problems": "Row identity collapses on the left: 万有引力 breaks as “万有引 / 力” and 理想气体状态方程 needs 3 lines, so the eye cannot grab a quantity name in one fixation. Every formula is split after “=” (公式 86px = 65px of text vs 91px needed). Result is the tallest of the three (299px) with ragged left column — the worst of both worlds.",
+     "cause": "col 1 squeezed to 80px (needs 81px even for 万有引力 alone, 144px for the long name) and col 3 squeezed to 86px, while col 5 is over-fed at 209px — roughly 40px past the point where the longest note stops needing a third line."
+    },
+    {
+     "design": "r0C",
+     "good": "The technical block is perfect: all quantity names on one line (144px), all formulas on one line (112px), so rows 1–4 read left-to-right as complete statements. This is the cleanest interpretation of the content.",
+     "problems": "The prose column is starved: 说明 at 119px (98px of text) forces 3–4 lines, with orphan fragments like “能量。” and “约” stranded on their own lines. Row heights jump 83/83/106 and the table stretches to 368px — a short lookup table turned into a tall document. The vertical rhythm is destroyed and the prose no longer reads as sentences.",
+     "cause": "col 1 takes 144px (only 123px of content, 21px slack) and col 3 takes 112px (only 91px, 21px slack); those two maxed-out widths leave 说明 with the remainder. Since 说明's longest line is 274px, anything under ~140px forces 3+ lines."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "The most even vertical rhythm of the three: every body row is 60px, so the table reads as a steady stack of equal units. 符号/公式/单位 are given exactly what they need (52/112/52), all formulas, symbols and units sit on one line, and 理想气体状态方程 breaks cleanly 4/4 rather than mid-word.",
+     "problems": "The last row's note ends with an orphan: 静止质量对应的能量。 breaks as 静止质量对应的能 / 量。, leaving a two-character line dangling in the widest column — the most visible flaw in the render. At the same time the name column looks slightly padded relative to how tight the prose is.",
+     "cause": "col5 = 167 leaves 146px of text, about 4px short of the 150px that 静止质量对应的能量。 needs, so one character is pushed to a second line; meanwhile col1 = 96 gives 75px of text where 4 CJK characters (60px) already fill a line, so ~15px of the name column is slack that the prose column needed."
+    },
+    {
+     "design": "r1B",
+     "good": "Cleanest typography: col5 = 175 gives 154px of text, so 静止质量对应的能量。 fits on one line (no orphan), row 2's G ≈ 6.674×10⁻¹¹ / N·m²/kg² breaks at the space into value and unit, and row 3 breaks at the space between the constant and 8.314. Compact 252px table, no mid-word splits, headers all single-line.",
+     "problems": "The row rhythm collapses at the bottom: rows 2–4 are 60px but the final row is only 36px, so the table looks pinched under row 3 and the last entry reads as less important than it is. The name column is also at its tight limit.",
+     "cause": "Because col5 = 175 is just wide enough to fit the shortest note on one line, that row auto-shrinks to a single 36px line while every other note needs two; col1 = 88 leaves only 67px of text, barely one 4-character line, so 理想气体状态方程 has almost no slack."
+    },
+    {
+     "design": "r1C",
+     "good": "The name column is comfortable — 理想气体状态方程 wraps 4/4 with visible air — and formulas/units are still exact and unbroken.",
+     "problems": "The note column is visibly ragged: row 3's note breaks into three lines (R 为摩尔气体常 / 数，约 8.314 / J/(mol·K)。), splitting the constant from its unit and inflating that row to 83px; the table grows to 299px and the last row still orphans 量。. The table looks unbalanced — a wide left column and a squeezed right column.",
+     "cause": "col5 = 155 leaves 134px of text (short of the 150px needed for the last note and far short of what row 3 needs), while col1 = 108 gives 87px of text for names whose longest line only needs 60px — about 20px of width is taken from the column that is starving and given to the one that has surplus."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "物理量 at 90px breaks 理想气体状态方程 into a clean 4+4; 符号 and 单位 are stable at their minimum; every formula and unit token stays intact; no header wraps.",
+     "problems": "说明 at 173px is just under the width needed to keep the short last note on one line, so all four body rows become two-line 60px rows and the table grows to 275px. 公式 at 112px is exactly at its one-line threshold, leaving no breathing room around the math.",
+     "cause": "The 173px 说明 column directly causes the extra row height; 112px 公式 is the minimum that fits the 91px longest formula, so any tighter width would split a formula."
+    },
+    {
+     "design": "r2B",
+     "good": "Most compact at 252px; the short last note fits on one line, formulas and headers remain intact, and the table reads quickly.",
+     "problems": "物理量 at 84px is the tightest of the three and leaves the long quantity name close to the cell padding; the one-line final row makes the bottom edge feel abruptly lighter than the three two-line rows above; 公式 at 112px has no slack.",
+     "cause": "Taking 179px for 说明 bought the one-line last row, but it came out of 物理量 (84px) and 公式 (112px), so the identifying column is cramped and the formula column is threshold-tight."
+    },
+    {
+     "design": "r2C",
+     "good": "Best overall balance: 物理量 still breaks 4+4, 公式 at 119px has about 7px slack, and 说明 at 172px keeps all body rows at two lines, producing even 60px rows and a calm grid.",
+     "problems": "物理量 at 84px remains at its tight minimum; 公式 at 119px is slightly over-generous relative to the 91px longest formula, while 说明 at 172px is just below the one-line threshold for the shortest note, so row 4 wraps and the table stays 275px.",
+     "cause": "The extra 7px in 公式 improves math comfort but does not change line count; 说明 at 172px is the boundary that forces the last note onto a second line."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A",
+    "r3B",
+    "r3C"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    100,
+    52,
+    90,
+    52,
+    185
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 480,
+    "tableHeight": 252,
+    "overflow": 0,
+    "colWidths": [
+     100,
+     52,
+     90,
+     52,
+     185
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     59.5,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "物理量",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "符号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "公式",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "单位",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "动能",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Eₖ",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Eₖ = ½mv²",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "J",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "物体由于运动而具有的能量。",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "万有引力",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F = G·m₁m₂/r²",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "N",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "G ≈ 6.674×10⁻¹¹ N·m²/kg²",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "理想气体状态方程",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "pV = nRT",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "R 为摩尔气体常数，约 8.314 J/(mol·K)。",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "质能关系",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "E",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "E = mc²",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "J",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "静止质量对应的能量。",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 123,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 65,
+      "natural": 91,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 77,
+      "natural": 274,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r0A.png",
+   "idea": "Balanced compromise: keep symbol and unit columns intact, let long quantity names and formulas wrap modestly, and give the explanation enough width to remain readable.",
+   "notes": []
+  },
+  "r0B": {
+   "widths": [
+    80,
+    52,
+    86,
+    52,
+    209
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 480,
+    "tableHeight": 298.5,
+    "overflow": 0,
+    "colWidths": [
+     80,
+     52,
+     86,
+     52,
+     209
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     82.8,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "物理量",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "符号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "公式",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "单位",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "动能",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Eₖ",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Eₖ = ½mv²",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "J",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "物体由于运动而具有的能量。",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "万有引力",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F = G·m₁m₂/r²",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "N",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "G ≈ 6.674×10⁻¹¹ N·m²/kg²",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "理想气体状态方程",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "pV = nRT",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "R 为摩尔气体常数，约 8.314 J/(mol·K)。",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "质能关系",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "E",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "E = mc²",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "J",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "静止质量对应的能量。",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 123,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 65,
+      "natural": 91,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 77,
+      "natural": 274,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r0B.png",
+   "idea": "Prose-forward: compress the quantity and formula columns to near their safe minimums so the explanation column gets the most space.",
+   "notes": []
+  },
+  "r0C": {
+   "widths": [
+    144,
+    52,
+    112,
+    52,
+    119
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 480,
+    "tableHeight": 368.3,
+    "overflow": 0,
+    "colWidths": [
+     144,
+     52,
+     112,
+     52,
+     119
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     82.8,
+     106,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "物理量",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "符号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "公式",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "单位",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "动能",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Eₖ",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Eₖ = ½mv²",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "J",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "物体由于运动而具有的能量。",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "万有引力",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F = G·m₁m₂/r²",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "N",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "G ≈ 6.674×10⁻¹¹ N·m²/kg²",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "理想气体状态方程",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "pV = nRT",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "R 为摩尔气体常数，约 8.314 J/(mol·K)。",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "质能关系",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "E",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "E = mc²",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "J",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "静止质量对应的能量。",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 123,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 65,
+      "natural": 91,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 77,
+      "natural": 274,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r0C.png",
+   "idea": "Integrity-first: keep quantity names, formulas, symbols, and units all on one line, accepting a narrow, heavily wrapped explanation column.",
+   "notes": []
+  },
+  "r1A": {
+   "widths": [
+    96,
+    52,
+    112,
+    52,
+    167
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 480,
+    "tableHeight": 275.3,
+    "overflow": 0,
+    "colWidths": [
+     96,
+     52,
+     112,
+     52,
+     167
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     59.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "物理量",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "符号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "公式",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "单位",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "动能",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Eₖ",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Eₖ = ½mv²",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "J",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "物体由于运动而具有的能量。",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "万有引力",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F = G·m₁m₂/r²",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "N",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "G ≈ 6.674×10⁻¹¹ N·m²/kg²",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "理想气体状态方程",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "pV = nRT",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "R 为摩尔气体常数，约 8.314 J/(mol·K)。",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "质能关系",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "E",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "E = mc²",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "J",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "静止质量对应的能量。",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 123,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 65,
+      "natural": 91,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 77,
+      "natural": 274,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r1A.png",
+   "idea": "Keep r0C's intact formula column (112px) but give back the surplus in col 1: 96px holds 动能, 万有引力 and 质能关系 on one line, letting only 理想气体状态方程 wrap to 2 lines. The 48px released goes to 说明 (167px = 146px of text), which drops the longest notes to 2 lines. Formulas stay whole, row heights settle near 60px, and no column carries dead slack.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    88,
+    52,
+    112,
+    52,
+    175
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 480,
+    "tableHeight": 252,
+    "overflow": 0,
+    "colWidths": [
+     88,
+     52,
+     112,
+     52,
+     175
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     59.5,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "物理量",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "符号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "公式",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "单位",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "动能",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Eₖ",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Eₖ = ½mv²",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "J",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "物体由于运动而具有的能量。",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "万有引力",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F = G·m₁m₂/r²",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "N",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "G ≈ 6.674×10⁻¹¹ N·m²/kg²",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "理想气体状态方程",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "pV = nRT",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "R 为摩尔气体常数，约 8.314 J/(mol·K)。",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "质能关系",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "E",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "E = mc²",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "J",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "静止质量对应的能量。",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 123,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 65,
+      "natural": 91,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 77,
+      "natural": 274,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r1B.png",
+   "idea": "Trade a little more name width for prose: 88px still fits 万有引力 (60px) with slack, so only the long equation name wraps, while 说明 gains 175px (154px of text) — safely past the 2-line threshold so the R-note stops breaking mid-clause. Preferred if the notes matter more than one-line names.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1C": {
+   "widths": [
+    108,
+    52,
+    112,
+    52,
+    155
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 480,
+    "tableHeight": 298.5,
+    "overflow": 0,
+    "colWidths": [
+     108,
+     52,
+     112,
+     52,
+     155
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     82.8,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "物理量",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "符号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "公式",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "单位",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "动能",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Eₖ",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Eₖ = ½mv²",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "J",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "物体由于运动而具有的能量。",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "万有引力",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F = G·m₁m₂/r²",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "N",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "G ≈ 6.674×10⁻¹¹ N·m²/kg²",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "理想气体状态方程",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "pV = nRT",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "R 为摩尔气体常数，约 8.314 J/(mol·K)。",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "质能关系",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "E",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "E = mc²",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "J",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "静止质量对应的能量。",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 123,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 65,
+      "natural": 91,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 77,
+      "natural": 274,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r1C.png",
+   "idea": "Opposite tilt: 108px gives the quantity column a comfortable margin over the 81px needed by the short names (guarding against font-metric jitter in the browser), and 说明 at 155px (134px) still lands on 2 lines for all but the longest note. Formula column untouched at 112px, so the technical block remains the strongest, most scannable part of the table.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    90,
+    52,
+    112,
+    52,
+    173
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 480,
+    "tableHeight": 275.3,
+    "overflow": 0,
+    "colWidths": [
+     90,
+     52,
+     112,
+     52,
+     173
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     59.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "物理量",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "符号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "公式",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "单位",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "动能",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Eₖ",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Eₖ = ½mv²",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "J",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "物体由于运动而具有的能量。",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "万有引力",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F = G·m₁m₂/r²",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "N",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "G ≈ 6.674×10⁻¹¹ N·m²/kg²",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "理想气体状态方程",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "pV = nRT",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "R 为摩尔气体常数，约 8.314 J/(mol·K)。",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "质能关系",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "E",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "E = mc²",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "J",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "静止质量对应的能量。",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 123,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 65,
+      "natural": 91,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 77,
+      "natural": 274,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r2A.png",
+   "idea": "Keep r1B's decisive win — col5 ≥ 171 so 静止质量对应的能量。 stays on one line and no orphan appears — but trim col5 by 2px and hand them to col1 (88→90), which now has 69px of text for its 4-character name lines instead of 67px. Everything else stays at exact content fit (52/112/52), so the table keeps B's compact 252px height with a slightly less cramped identifier column.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    84,
+    52,
+    112,
+    52,
+    179
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 480,
+    "tableHeight": 252,
+    "overflow": 0,
+    "colWidths": [
+     84,
+     52,
+     112,
+     52,
+     179
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     59.5,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "物理量",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "符号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "公式",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "单位",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "动能",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Eₖ",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Eₖ = ½mv²",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "J",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "物体由于运动而具有的能量。",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "万有引力",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F = G·m₁m₂/r²",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "N",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "G ≈ 6.674×10⁻¹¹ N·m²/kg²",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "理想气体状态方程",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "pV = nRT",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "R 为摩尔气体常数，约 8.314 J/(mol·K)。",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "质能关系",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "E",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "E = mc²",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "J",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "静止质量对应的能量。",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 123,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 65,
+      "natural": 91,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 77,
+      "natural": 274,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r2B.png",
+   "idea": "Test the opposite allocation: drop col1 to its practical floor (84 → 63px of text, still enough for the 60px four-character line, so 万有引力 and 动能 stay intact and 理想气体状态方程 still wraps 4/4) and pour all remaining width into 说明 (179 → 158px). The prose now gets the longest lines available, the last note still fits on one line, and the two long notes keep breaking at their spaces rather than inside the numeric value.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2C": {
+   "widths": [
+    84,
+    52,
+    119,
+    52,
+    172
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 480,
+    "tableHeight": 275.3,
+    "overflow": 0,
+    "colWidths": [
+     84,
+     52,
+     119,
+     52,
+     172
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     59.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "物理量",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "符号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "公式",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "单位",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "动能",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Eₖ",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Eₖ = ½mv²",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "J",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "物体由于运动而具有的能量。",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "万有引力",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F = G·m₁m₂/r²",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "N",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "G ≈ 6.674×10⁻¹¹ N·m²/kg²",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "理想气体状态方程",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "pV = nRT",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "R 为摩尔气体常数，约 8.314 J/(mol·K)。",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "质能关系",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "E",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "E = mc²",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "J",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "静止质量对应的能量。",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 123,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 65,
+      "natural": 91,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 77,
+      "natural": 274,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r2C.png",
+   "idea": "Address an unexplored risk: 公式 is currently given exactly its one-line width (112 = 91px content + 21), i.e. zero tolerance, so any metric variation would wrap a formula. Widen it to 119 (98px of text) for a little slack and clearer separation between the formula and the 单位 it produces, funded by col1 at its 4-character minimum and col5 at 172 (151px — still just above the 150px the shortest note needs, so no orphan returns).",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    88,
+    52,
+    116,
+    52,
+    171
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 480,
+    "tableHeight": 275.3,
+    "overflow": 0,
+    "colWidths": [
+     88,
+     52,
+     116,
+     52,
+     171
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     59.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "物理量",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "符号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "公式",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "单位",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "动能",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Eₖ",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Eₖ = ½mv²",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "J",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "物体由于运动而具有的能量。",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "万有引力",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F = G·m₁m₂/r²",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "N",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "G ≈ 6.674×10⁻¹¹ N·m²/kg²",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "理想气体状态方程",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "pV = nRT",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "R 为摩尔气体常数，约 8.314 J/(mol·K)。",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "质能关系",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "E",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "E = mc²",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "J",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "静止质量对应的能量。",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 123,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 65,
+      "natural": 91,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 77,
+      "natural": 274,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r3A.png",
+   "idea": "Refines r2C by moving 4px from 说明 to 物理量 and 3px from 公式 to 物理量. This gives the row-label column breathing room, keeps 公式 above the 91px longest token (95px content), and keeps 说明 at 171px so the even two-line row rhythm and 275px height are preserved.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3B": {
+   "widths": [
+    87,
+    52,
+    112,
+    52,
+    176
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 480,
+    "tableHeight": 252,
+    "overflow": 0,
+    "colWidths": [
+     87,
+     52,
+     112,
+     52,
+     176
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     59.5,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "物理量",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "符号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "公式",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "单位",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "动能",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Eₖ",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Eₖ = ½mv²",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "J",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "物体由于运动而具有的能量。",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "万有引力",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F = G·m₁m₂/r²",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "N",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "G ≈ 6.674×10⁻¹¹ N·m²/kg²",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "理想气体状态方程",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "pV = nRT",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "R 为摩尔气体常数，约 8.314 J/(mol·K)。",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "质能关系",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "E",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "E = mc²",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "J",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "静止质量对应的能量。",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 123,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 65,
+      "natural": 91,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 77,
+      "natural": 274,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r3B.png",
+   "idea": "Refines r2B by giving 3px to 物理量 and taking 3px from 说明. 说明 at 176px still has enough width for the short last note to stay on one line, while the label column is less cramped; 公式 stays at the proven 112px minimum.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3C": {
+   "widths": [
+    92,
+    52,
+    112,
+    52,
+    171
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 480,
+    "tableHeight": 275.3,
+    "overflow": 0,
+    "colWidths": [
+     92,
+     52,
+     112,
+     52,
+     171
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     59.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "物理量",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "符号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "公式",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "单位",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "动能",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Eₖ",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Eₖ = ½mv²",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "J",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "物体由于运动而具有的能量。",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "万有引力",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F = G·m₁m₂/r²",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "N",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "G ≈ 6.674×10⁻¹¹ N·m²/kg²",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "理想气体状态方程",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "pV = nRT",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "R 为摩尔气体常数，约 8.314 J/(mol·K)。",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "质能关系",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "E",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "E = mc²",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "J",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "静止质量对应的能量。",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 123,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 65,
+      "natural": 91,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 77,
+      "natural": 274,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
+   },
+   "png": "d-r3C.png",
+   "idea": "New emphasis: put the extra width into 物理量 (92px) so the row labels dominate the first scan, while holding 公式 at the proven 112px and 说明 at 171px. This tests whether label prominence is worth more than extra math breathing room; all formulas still fit.",
+   "notes": [],
+   "parentRound": 2
+  }
+ },
+ "understanding": {
+  "purpose": "A compact physics reference table for looking up quantities, their symbols, defining formulas, SI units, and brief explanatory notes.",
+  "reading": "Readers scan row by row from quantity to symbol, formula, and unit, then read the explanation; cross-row comparison concentrates on the formula and unit columns.",
+  "groups": [
+   "Columns 1–2: quantity name and symbol together identify the row.",
+   "Columns 3–4: formula and unit together state the technical definition.",
+   "Column 5: explanatory prose that supports the row but is read after the formula."
+  ],
+  "keep_intact": [
+   "Formula tokens and subscripts, especially unbreakable segments such as G·m₁m₂/r² and ½mv²",
+   "Symbols and units, including the em dash placeholders",
+   "Short headers 符号 and 单位",
+   "Quantity names where possible, though long names can wrap"
+  ],
+  "may_wrap": [
+   "说明 prose, which can wrap naturally over several lines",
+   "Long quantity names such as 理想气体状态方程",
+   "Formulas at spaces or operators when the full expression cannot fit on one line"
+  ]
+ },
+ "final": {
+  "preferred": [
+   "r1B",
+   "r3B"
+  ],
+  "acceptable": [
+   "r2B",
+   "r2A",
+   "r2C",
+   "r3A",
+   "r3C"
+  ],
+  "bad": [
+   {
+    "design": "r1C",
+    "why": "It over-allocates 108px to 物理量 while starving 说明 at 155px; row 3's description breaks to 3 lines, creating an 83px row and a 299px table. The column hierarchy is inverted: the widest prose column is squeezed while a short-label column gets extra air."
+   }
+  ],
+  "contrast": null,
+  "ranges": [
+   [
+    84,
+    90
+   ],
+   [
+    52,
+    54
+   ],
+   [
+    112,
+    116
+   ],
+   [
+    52,
+    54
+   ],
+   [
+    175,
+    179
+   ]
+  ],
+  "rationale": "r1B and r3B are effectively tied: both keep 符号/单位 at the 52px minimum, protect every formula with 112px, and give 说明 enough width (175–176px) that its longest entry is 2 lines while the last row remains 1 line. That yields a compact 252px table with a steady 36/60/60/60/36 rhythm. r1C is the clear failure because it spends 108px on 物理量 and leaves 说明 at 155px, forcing a 3-line cell and an 83px row. r2B is publishable but its 84px 物理量 column leaves only about 3px slack around 万有引力, so it is less robust.",
+  "principles": {
+   "general": [
+    "Allocate width by content role, not equality: identifier/symbol columns should sit near their content minimum while the prose column gets the residual.",
+    "Protect formulas and identifiers from wrapping; a one-line formula column is worth more than extra whitespace in a short-label column.",
+    "Avoid letting a high-information prose column reach 3 lines while a low-entropy column is over-wide; that creates uneven row rhythm and inflates the table.",
+    "Chinese text wraps at character boundaries, so a phrase can be narrower than its full one-line width without mid-word splits, but tight fits around 4-character terms are fragile."
+   ],
+   "specific": [
+    "符号 and 单位 both need exactly 52px: 31px of content plus 21px padding/border.",
+    "公式 needs 112px so all formulas stay on one line; 116px adds harmless breathing room, beyond that is mostly waste.",
+    "物理量 works at 87–88px: 万有引力 stays on one line and 理想气体状态方程 wraps cleanly to two lines.",
+    "说明 needs about 175–176px to keep row 3 at two lines and the final row at one line; 155px pushes row 3 to three lines."
+   ]
+  },
+  "tradeoffs": "The main tradeoff is 物理量 vs 说明: a wider first column calms the long Chinese term, but every pixel comes from the prose column and can push 说明 from 2 to 3 lines. A 275px version with all rows 60px is more airy and even, but it wastes vertical space without improving line breaks; the compact 252px layout is better for a reference table. There is also a choice between exact-fit 52px role columns and a few pixels of breathing room.",
+  "uncertain": "Whether 84px for 物理量 is too tight is a judgment call; the exact 说明 threshold for keeping the last row on one line depends on font metrics and kerning. Reasonable designers may accept r2B for its wider prose column, or prefer the 275px layouts for their even row heights."
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Emoji · 服务状态 (language zh-CN).\nGrid: 4 columns × 6 rows. Row headers: none declared.\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"服务\" · longest unbreakable word 67px · one-line width 96px\n  col 2: header \"状态\" · longest unbreakable word 21px · one-line width 61px\n  col 3: header \"可用率\" · longest unbreakable word 61px · one-line width 61px\n  col 4: header \"最近事件\" · longest unbreakable word 43px · one-line width 437px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 480px (the dashed pink box). The column widths you choose must sum to at most 479px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 66937,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"服务列过窄，“支付服务/消息推送/对象存储”被拆成3+1字，行标签难扫；事件列虽宽，但对象存储行以逗号开头换行，属于排版错误。\"},\"B\":{\"grade\":\"good\",\"why\":\"服务名、状态、可用率均保持单行，事件列获得剩余宽度并自然换行；整体平衡，仅个别事件末行只剩“复/线”单字。\"},\"C\":{\"grade\":\"good\",\"why\":\"前三列完整、可快速扫读，事件列宽度接近B；对象存储行把工具emoji单独挤到一行，CDN行末字“线”孤立。\"},\"D\":{\"grade\":\"good\",\"why\":\"与C几乎相同，短列完整、行高可控；事件列仍有emoji或单字孤行，宽度分配略偏保守。\"},\"E\":{\"grade\":\"poor\",\"why\":\"事件列过窄，长事件被切成五六行，行高膨胀；状态和可用率列相对内容过宽，浪费横向空间。\"},\"F\":{\"grade\":\"poor\",\"why\":\"状态列过窄，图标与“正常/降级/故障”被拆成上下两行，破坏状态扫读；API Gateway也换行，虽事件列较宽但代价太大。\"}},\"best\":[\"B\"],\"confidence\":\"medium\",\"unsure\":\"B/C/D宽度差异很小，仅凭渲染图难以精确比较；事件列的单字或emoji孤行在所有可行方案中都可能出现。\"}\n"
+  }
+ ]
+}

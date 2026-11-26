@@ -1,0 +1,15 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "low",
+ "images": [],
+ "prompt": "Write ONE realistic, information-dense data table as it would appear in a real document. Language of all content: zh-CN. Structure: plain. Subject and columns: API 错误码：错误码（如 40013）/ 错误信息（英文常量如 INVALID_APPID）/ 含义（中文）/ 解决办法（长）\nRules: 3–8 body rows; natural, varied, truthful-sounding content (no lorem ipsum, no \"Item 1/Item 2\"); vary cell lengths realistically; HTML only with <table><thead>…</thead><tbody>…</tbody></table>; column headers are <th> in <thead>; row headers (if any) are <th scope=\"row\"> in <tbody>; use rowspan/colspan exactly as the structure requires and keep the grid consistent; no styles, classes, ids or attributes other than rowspan, colspan and scope; no markdown.\nReply ONLY JSON: {\"title\": \"short title in zh-CN\", \"html\": \"<table>…</table>\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 17414,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"title\":\"API 错误码排查对照表\",\"html\":\"<table><thead><tr><th>错误码</th><th>错误信息</th><th>含义</th><th>解决办法</th></tr></thead><tbody><tr><th scope=\\\"row\\\">40013</th><td>INVALID_APPID</td><td>请求携带的 AppID 不合法，常见于拼写错误、误用其他应用的 AppID，或公众号、小程序主体与接口不匹配。</td><td>登录微信公众平台，在“设置与开发-基本配置”中复制 AppID，与代码、配置中心及各环境变量逐项比对；检查是否误用了同项目下其他应用的凭据。服务商代调用时确认授权方 AppID 与授权关系一致，修改后清除本地缓存并重新获取 access_token 再试。</td></tr><tr><th scope=\\\"row\\\">40001</th><td>INVALID_CREDENTIAL</td><td>access_token 无效、已过期或不是最新值；同一账号在别处刷新后，旧 token 会提前失效。</td><td>统一由服务端集中获取并缓存 token，按 expires_in 提前 5 分钟刷新；避免多实例各自刷新，使用 Redis 等共享缓存并加分布式锁。检查请求参数是否把 access_token 放在 query 中、是否被 URL 编码破坏；确认没有混用其他应用的 token。若刚重置 AppSecret，需重新获取 token。</td></tr><tr><th scope=\\\"row\\\">48001</th><td>API_UNAUTHORIZED</td><td>当前账号未获得该接口权限，可能因公众号未认证、权限集未开通、接口已下线或调用主体类型不符。</td><td>在公众平台“接口权限”中核对账号类型与认证状态，确认目标接口对应该账号开放；服务商需检查第三方平台权限集是否勾选并重新授权。若接口已调整或下线，改用官方推荐的替代接口；小程序端还需确认类目和权限申请已通过，避免用测试号调用正式权限接口。</td></tr><tr><th scope=\\\"row\\\">45009</th><td>API_FREQ_LIMIT</td><td>接口调用超过当日或每分钟配额，触发频率限制；共享同一 AppID 的服务会合并计算。</td><td>查看公众平台“接口调用频次”及返回头中的限额信息，定位高频来源并增加本地缓存、合并请求与异步重试；重试采用指数退避，避免整点集中刷新 token。多业务共用账号时按优先级拆分调用或申请独立账号，必要时联系微信调整配额，切勿通过轮换 AppID 绕过限制。</td></tr><tr><th scope=\\\"row\\\">40125</th><td>INVALID_APPSECRET</td><td>AppSecret 不正确或已失效，通常发生在重置密钥后旧配置未同步，或复制时混入空格、换行。</td><td>到“设置与开发-基本配置”重置 AppSecret，立即更新配置中心、密钥管理服务和各环境变量，重启相关服务并清理旧 token 缓存。核对代码中是否硬编码了历史密钥，检查 CI/CD 注入值与线上实际值是否一致；重置会使旧 Secret 立即失效，应安排在低峰期并提前通知协作方。</td></tr><tr><th scope=\\\"row\\\">40003</th><td>INVALID_OPENID</td><td>OpenID 格式错误、不属于当前 AppID，或用户已注销、取消关注导致无法定位。</td><td>确认 OpenID 来自当前公众号或小程序的授权流程，避免跨应用混用；检查数据库字段长度与编码，排除前后空格及被截断的情况。若用户已注销，应引导重新授权获取新 OpenID；批量任务先调用用户信息接口校验有效性，对无效值记录日志并跳过，不要反复重试。</td></tr><tr><th scope=\\\"row\\\">40029</th><td>INVALID_CODE</td><td>OAuth2 授权 code 不合法、已过期或已被使用；code 通常一次性有效且有效期较短。</td><td>检查网页授权回调是否重复消费同一 code，确保拿到 code 后立即在服务端换取 access_token；不要在前端缓存或多次转发。核对 redirect_uri 与后台配置完全一致，排除 URL 编码差异；分布式部署时避免并发换取，可对 code 加短期锁。过期后让用户重新发起授权，不要用旧 code 重试。</td></tr></tbody></table>\"}\n"
+  }
+ ]
+}

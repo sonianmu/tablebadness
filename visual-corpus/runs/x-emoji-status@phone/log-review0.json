@@ -1,0 +1,23 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Emoji · 服务状态 (language zh-CN).\nGrid: 4 columns × 6 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"服务\" · longest unbreakable word 60px · one-line width 87px\n  col 2: header \"状态\" · longest unbreakable word 19px · one-line width 54px\n  col 3: header \"可用率\" · longest unbreakable word 54px · one-line width 54px\n  col 4: header \"最近事件\" · longest unbreakable word 39px · one-line width 387px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 57356,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"最近事件 is squeezed into a narrow ribbon, breaking into 5–6 short lines while 状态 gets nearly as much width; rows become tall and the event text is hard to scan.\"},\"B\":{\"grade\":\"bad\",\"why\":\"状态 collapses to about 30px: the header splits 状/态 and every status stacks vertically, destroying at-a-glance comparison of the key categorical column.\"},\"C\":{\"grade\":\"excellent\",\"why\":\"Balanced allocation: service names stay intact (API Gateway breaks only at its space), status and availability fit on one line, and 最近事件 gets the remaining width in a readable block.\"},\"D\":{\"grade\":\"excellent\",\"why\":\"Essentially the same sound allocation as C: compact status/availability, intact service labels, and the surplus width goes to the event column.\"},\"E\":{\"grade\":\"poor\",\"why\":\"The service column is too narrow: 支付服务, 消息推送 and 对象存储 break mid-word, weakening row identity, while 最近事件 still wraps to the same four lines.\"},\"F\":{\"grade\":\"poor\",\"why\":\"Like E, service labels split mid-word with no visible gain in event readability; the first column is sacrificed for little benefit.\"}},\"best\":[\"C\",\"D\"],\"confidence\":\"high\",\"unsure\":\"C and D look nearly identical, as do E and F; exact pixel widths and whether A leaves part of the available width unused are hard to confirm from the renders.\"}\n"
+  }
+ ]
+}

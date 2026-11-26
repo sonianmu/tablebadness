@@ -1,0 +1,23 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val2] 政务服务 · 办理时限 (language zh-CN).\nGrid: 4 columns × 5 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"事项名称\" spans 1 col × 2 row; \"办理时限（工作日）\" spans 2 col × 1 row; \"所需材料\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"事项名称\" · longest unbreakable word 16px · one-line width 92px\n  col 2: header \"办理时限（工作日） › 法定\" · longest unbreakable word 19px · one-line width 31px\n  col 3: header \"办理时限（工作日） › 承诺\" · longest unbreakable word 16px · one-line width 31px\n  col 4: header \"所需材料\" · longest unbreakable word 31px · one-line width 414px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 480px (the dashed pink box). The column widths you choose must sum to at most 479px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 14198,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"excellent\",\"why\":\"Balanced allocation: 事项名称 fits one line, 法定/承诺 are tight but adequate, and 所需材料 gets the dominant share so it wraps cleanly into two lines. The group header 办理时限（工作日） breaks at the natural boundary after 办理时限, keeping the merged group legible. Rows read as compact units.\"},\"B\":{\"grade\":\"poor\",\"why\":\"Too much width given to the merged 办理时限 column, which breaks the header as 办理时限（工 / 日）—splitting 工作日 across lines—while 事项名称 is squeezed so 企业设立登记 wraps to two lines. The widest, most variable column (所需材料) is underfed, so row heights inflate unevenly.\"},\"C\":{\"grade\":\"poor\",\"why\":\"事项名称 collapses to 事项名 / 称 and every row label breaks mid-word (企业设 / 立登记). The materials column is reasonably wide, but the row-identifier column, which the reader scans first, is the worst offender—hierarchy is inverted.\"},\"D\":{\"grade\":\"poor\",\"why\":\"Overly generous widths for 事项名称 and the two duration columns push 所需材料 down to four to five short lines, making rows very tall and the table hard to scan vertically. Good header fit, but the proportion is wrong for the content that actually varies in length.\"},\"E\":{\"grade\":\"excellent\",\"why\":\"Same logic as A with slightly more room for 所需材料: row headers stay on one line, the duration group header breaks cleanly after 办理时限, and material text wraps into two even lines. Clear column roles and steady rhythm.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"Row headers and materials are fine, but the merged 办理时限 header breaks as 办理时限（工 / 作日）, cutting 工作日 in half, and 法定/承诺 are wider than their content needs while 所需材料 is slightly tight. Workable but the header break looks careless.\"}},\"best\":[\"A\",\"E\"],\"confidence\":\"high\",\"unsure\":\"Exact pixel widths are inferred from the render; A and E are near-equivalent in quality, and my preference between them rests on the slightly wider materials column in E versus marginally more breathing room in A's row-header column.\"}\n"
+  }
+ ]
+}

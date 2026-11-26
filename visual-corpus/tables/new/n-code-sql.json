@@ -1,0 +1,12 @@
+{
+ "id": "n-code-sql",
+ "family": "n-code-sql",
+ "lang": "en",
+ "structure": "plain",
+ "brief": "Database column spec: Column (snake_case) / Type (like VARCHAR(255), TIMESTAMP WITH TIME ZONE) / Nullable / Default / Comment",
+ "title": "Database column specification for orders table",
+ "html": "<table><thead><tr><th>Column</th><th>Type</th><th>Nullable</th><th>Default</th><th>Comment</th></tr></thead><tbody><tr><td>order_id</td><td>BIGINT UNSIGNED</td><td>NO</td><td>—</td><td>Primary key; auto-increment sequence shared across all sales channels</td></tr><tr><td>customer_id</td><td>BIGINT UNSIGNED</td><td>NO</td><td>—</td><td>References customers.id; indexed for order history lookups</td></tr><tr><td>order_reference</td><td>VARCHAR(32)</td><td>NO</td><td>—</td><td>Human-readable code shown to customers and on invoices, e.g. ORD-2024-008731</td></tr><tr><td>status</td><td>VARCHAR(24)</td><td>NO</td><td>'pending'</td><td>One of pending, paid, fulfilled, cancelled, refunded; enforced by CHECK constraint</td></tr><tr><td>total_amount_cents</td><td>INTEGER</td><td>NO</td><td>0</td><td>Order total in minor currency units; never store floating-point money here</td></tr><tr><td>currency_code</td><td>CHAR(3)</td><td>NO</td><td>'USD'</td><td>ISO 4217 alphabetic code; must match the currency of all line items</td></tr><tr><td>placed_at</td><td>TIMESTAMP WITH TIME ZONE</td><td>NO</td><td>CURRENT_TIMESTAMP</td><td>Moment the order was submitted; stored in UTC regardless of storefront locale</td></tr><tr><td>cancelled_at</td><td>TIMESTAMP WITH TIME ZONE</td><td>YES</td><td>NULL</td><td>Set when status transitions to cancelled or refunded; NULL for active orders</td></tr></tbody></table>",
+ "source": "generated",
+ "generator": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "split": "validation"
+}

@@ -1,0 +1,5269 @@
+{
+ "id": "x-zh-project@phone",
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "说明 at 126px (105px of text, ~6–7 CJK chars/line) is the most readable prose column of the three; 状态 67 keeps 进行中/已完成 on one line, so the triage column scans; rows stay compact (tallest 176px, table 813px — the shortest of the three).",
+     "problems": "The row key is broken: every 编号 reads “F-” / “12” on two lines, so the identifier no longer exists as a token. 负责人 is worse: names stack as 王 / 磊 and the header 负 / 责 / 人 takes three lines, inflating the header band to 83px. 截止日期 breaks at the hyphen and inconsistently — some rows “2024-” / “03-15”, others “2024-” / “03-” / “08” — so dates no longer align down the column and the vertical date scan is dead.",
+     "cause": "51px for 编号 (30px content) is just under the 32px its longest token needs; 51px for 负责人 (30px content) is just under the ~32px two CJK names need, so both wrap. 64px for 截止日期 (43px content) fits only one hyphen segment, so the date falls to two or three lines. Those 26px were bought to fund 说明 126."
+    },
+    {
+     "design": "r0B",
+     "good": "截止日期 at 108 is the only column here that keeps 2024-03-15 whole and single-line, so dates are perfectly comparable row to row; 状态 also single-line; no mid-word splits anywhere.",
+     "problems": "说明 collapses to 82px (61px text, ~4 chars/line): the first row is 14 lines and 339px tall, the table is 1324px — the reader loses the task description in a vertical ribbon. Meanwhile 编号 still splits “F-”/“12” and 负责人 still stacks 王/磊 with a 3-line header, so the table pays the price of broken identity columns and still gets nothing for 说明.",
+     "cause": "108 for the date plus 51+51+67 for the identity/status columns consumes 277 of 359, leaving 82 for the payload. The 编号 and 负责人 widths were shaved to 51 (30px content) — too little to save the tokens, too little to give 说明 anything meaningful."
+    },
+    {
+     "design": "r0C",
+     "good": "Best compromise so far: 说明 at 102 (81px text, ~5 chars/line) reads as prose, dates are whole and single-line at 108, table height 883 is tolerable, no mid-word splits reported.",
+     "problems": "编号 at 38 is the worst version of the identifier problem — “F-” / “12”, “F-” / “13” on every single row, breaking the very key the reader uses to refer to a task. 负责人 at 44 gives 负/责/人 three header lines and stacked names, so the header band and every short row are inflated by whitespace above and below the name. The narrowest columns are the ones carrying the tallest dead space.",
+     "cause": "编号 38 (17px content) can hold only the “F-” segment; 负责人 44 (23px content) holds one CJK char per line. The 26px saved versus 53/55 was spent on 说明 102 — a real gain, but bought by destroying the row key, which is the wrong place to pay."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "日期列 108px 恰好让 2024-03-15 完整落在单行内，六行日期左对齐、可以纵向逐行比较；编号、负责人、状态都单行，身份区与分诊区干净利落。",
+     "problems": "说明列只剩 76px（55px 文本 ≈ 3 字/行），中文散文被切成三字一行的竖条，最长单元格 14 行，整表 1301px，一行任务就占约 340px；读者为扫一遍 6 条任务的截止日期要滚动约 3.6 屏，分诊目的基本失效。另外每行巨大的空白让行不再像一个阅读单位。",
+     "cause": "截止日期 108px + 编号 53 + 负责人 55 + 状态 67 = 283px，360px 里只剩 76px 给唯一的叙述列。这是“日期必须单行”这一条硬约束的直接代价，不是偶然。"
+    },
+    {
+     "design": "r1B",
+     "good": "说明列 118px（97px 文本 ≈ 6 字/行）让散文恢复可读，表高降到 766px，六条任务基本能在一屏半内看完，行也重新成为阅读单位。",
+     "problems": "日期被拆成 2024- / 03-15 两行，跨行比较时第一行全是相同的年份，真正有信息量的月日在第二行，视觉上日期列成了碎块；表头 截止日期 也折成两行，表头区与数据区高度不齐，标题行显得拥挤。",
+     "cause": "日期列只给 66px，文本宽 45px，小于 ISO 串 87px 的整串宽度，浏览器在连字符处断行；而 66px 仅够容纳最长片段 2024-（43px），所以是“刚好够断、不够不断”的临界值。"
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "唯一保住 ISO 日期的方案：108px 让 2024-03-15 单行显示，逐行比日期、找最近到期项都成立；编号列 53px 也刚好容下 F-12 与“编号”表头。",
+     "problems": "说明列被压到 81px（文字 60px，约 4 字/行），最长一条撑到 14 行，整表 1324px，行变成一条条竖排细带，行作为阅读单位彻底失效。更致命的是 状态 显示成“进行/中”、“已成/完”，负责人显示成“王/磊”竖排——分诊芯片被打碎，扫读全废。",
+     "cause": "66px 的状态列只有 45px 文字宽，而“进行中”需 46px，差 1px 就换行；51px 的负责人列文字宽正好 30px = 两个字，浏览器取整后换行。108px 的日期列独吞 30% 宽度，剩给说明的只有 81px。"
+    },
+    {
+     "design": "r2B",
+     "good": "说明列拿到 119px（文字 98px，约 6 字/行），最长单元格 7 行，整表 790px，行高与载荷平衡，是三个方案里阅读节奏最好的。",
+     "problems": "状态与负责人仍然被拆碎（“进行/中”“王/磊”），这是全表最该修却未修的硬伤；日期断成“2024-/03-15”，同一行内重复六次的年份独占一整行，日期列读起来是六个两行块而非一条可对齐的日期带。",
+     "cause": "状态 66 = 46+20，仍差 1px；负责人 51 仍是 30px 文字的临界值；日期 70（文字 49）远小于 87，只能在连字符处折行。"
+    },
+    {
+     "design": "r2C",
+     "good": "在 r2B 基础上把说明加宽到 123px（文字 102px），叙述列更舒展；日期列缩到 66 仍保持两行断法，说明优先的方向正确。",
+     "problems": "与 r2B 同病：状态、负责人照旧竖排断裂；日期仍被切成“2024-/03-15”，日期列无法一眼纵向比较；四个窄列（53/51/66/66）挤在一起，表头“负/责/人”三行堆叠，表头区高达 83px，比任何数据行都重。",
+     "cause": "66px 状态列差 1px、51px 负责人列正好卡在 30px 文字宽；说明加宽只挪了 4px，没有解决短列的根本尺寸问题。"
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A",
+    "r3B",
+    "r3C"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    51,
+    51,
+    67,
+    64,
+    126
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 360,
+    "tableHeight": 812.8,
+    "overflow": 0,
+    "colWidths": [
+     51,
+     51,
+     67,
+     64,
+     126
+    ],
+    "rowHeights": [
+     82.8,
+     175.8,
+     82.8,
+     152.5,
+     129.3,
+     82.8,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "编号",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "负责人",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "截止日期",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-12",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-15",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "完成支付模块的接口联调，需要与风控团队确认异常订单的回滚策略，并补充单元测试。",
+      "lines": 7
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-13",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-08",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "首页改版上线",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-14",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "张伟",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "阻塞",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-20",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "等待第三方物流平台提供新的签名算法文档，目前沙箱环境无法通过鉴权。",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-15",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-22",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "优化商品搜索的分词与排序逻辑，重点解决同义词召回不足的问题。",
+      "lines": 5
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-16",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "陈静",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "未开始",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-04-01",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户反馈中心的工单自动分派规则设计。",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-17",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-02",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "修复安卓端在低内存设备上偶发的白屏问题。",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 15,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 17,
+      "natural": 32,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 598,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r0A.png",
+   "idea": "说明优先：四个元数据列压到单行下限，日期在连字符处折成两行，把省下的宽度几乎全部给说明，让每条任务描述在 6 行内读完。",
+   "notes": []
+  },
+  "r0B": {
+   "widths": [
+    51,
+    51,
+    67,
+    108,
+    82
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 360,
+    "tableHeight": 1324.3,
+    "overflow": 0,
+    "colWidths": [
+     51,
+     51,
+     67,
+     108,
+     82
+    ],
+    "rowHeights": [
+     82.8,
+     338.5,
+     59.5,
+     268.8,
+     245.5,
+     152.5,
+     175.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "编号",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "负责人",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "截止日期",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-12",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-15",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "完成支付模块的接口联调，需要与风控团队确认异常订单的回滚策略，并补充单元测试。",
+      "lines": 14
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-13",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-08",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "首页改版上线",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-14",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "张伟",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "阻塞",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-20",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "等待第三方物流平台提供新的签名算法文档，目前沙箱环境无法通过鉴权。",
+      "lines": 11
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-15",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-22",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "优化商品搜索的分词与排序逻辑，重点解决同义词召回不足的问题。",
+      "lines": 10
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-16",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "陈静",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "未开始",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-04-01",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户反馈中心的工单自动分派规则设计。",
+      "lines": 6
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-17",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-02",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "修复安卓端在低内存设备上偶发的白屏问题。",
+      "lines": 7
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 6,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 17,
+      "natural": 32,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 598,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r0B.png",
+   "idea": "网格优先：编号、负责人、状态、日期全部单行对齐，牺牲说明宽度（约 4 字/行）换取完美规整、可纵向扫读的分诊网格。",
+   "notes": []
+  },
+  "r0C": {
+   "widths": [
+    38,
+    44,
+    67,
+    108,
+    102
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 360,
+    "tableHeight": 882.5,
+    "overflow": 0,
+    "colWidths": [
+     38,
+     44,
+     67,
+     108,
+     102
+    ],
+    "rowHeights": [
+     82.8,
+     199,
+     59.5,
+     175.8,
+     152.5,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "编号",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "负责人",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "截止日期",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-12",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-15",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "完成支付模块的接口联调，需要与风控团队确认异常订单的回滚策略，并补充单元测试。",
+      "lines": 8
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-13",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-08",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "首页改版上线",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-14",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "张伟",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "阻塞",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-20",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "等待第三方物流平台提供新的签名算法文档，目前沙箱环境无法通过鉴权。",
+      "lines": 7
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-15",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-22",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "优化商品搜索的分词与排序逻辑，重点解决同义词召回不足的问题。",
+      "lines": 6
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-16",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "陈静",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "未开始",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-04-01",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户反馈中心的工单自动分派规则设计。",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-17",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-02",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "修复安卓端在低内存设备上偶发的白屏问题。",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 6,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 17,
+      "natural": 32,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 598,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r0C.png",
+   "idea": "保日期、让编号：日期完整单行，编号压到最短（F- / 12 断行）以挤出 102px 给说明，是 A 与 B 之间以“短码可断、日期不可断”为原则的折中。",
+   "notes": []
+  },
+  "r1A": {
+   "widths": [
+    53,
+    55,
+    67,
+    108,
+    76
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 360,
+    "tableHeight": 1301,
+    "overflow": 0,
+    "colWidths": [
+     53,
+     55,
+     67,
+     108,
+     76
+    ],
+    "rowHeights": [
+     59.5,
+     338.5,
+     59.5,
+     268.8,
+     245.5,
+     152.5,
+     175.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "编号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "负责人",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "截止日期",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-12",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-15",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "完成支付模块的接口联调，需要与风控团队确认异常订单的回滚策略，并补充单元测试。",
+      "lines": 14
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-13",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-08",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "首页改版上线",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-14",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "张伟",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "阻塞",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-20",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "等待第三方物流平台提供新的签名算法文档，目前沙箱环境无法通过鉴权。",
+      "lines": 11
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-15",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-22",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "优化商品搜索的分词与排序逻辑，重点解决同义词召回不足的问题。",
+      "lines": 10
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-16",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "陈静",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "未开始",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-04-01",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户反馈中心的工单自动分派规则设计。",
+      "lines": 6
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-17",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-02",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "修复安卓端在低内存设备上偶发的白屏问题。",
+      "lines": 7
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 17,
+      "natural": 32,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 598,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r1A.png",
+   "idea": "Restores the two columns r0A/r0B/r0C broke: 编号 53 gives 32px so F-12 and the 编号 header stay whole on one line (the row key is the thing readers quote); 负责人 55 gives 34px so 王磊/李娜 stay on one line and the header wraps to a clean two lines instead of three; 状态 67 and 截止日期 108 keep status chips and ISO dates single-line and vertically comparable. The honest consequence is 说明 at 76px (~3.5 chars/line, tall rows) — choose this only if reading dates down the column matters more than reading the prose, because on 360px an intact date and a readable 说明 cannot both exist.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    53,
+    55,
+    67,
+    66,
+    118
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 360,
+    "tableHeight": 766.3,
+    "overflow": 0,
+    "colWidths": [
+     53,
+     55,
+     67,
+     66,
+     118
+    ],
+    "rowHeights": [
+     59.5,
+     175.8,
+     59.5,
+     152.5,
+     129.3,
+     82.8,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "编号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "负责人",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "截止日期",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-12",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-15",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "完成支付模块的接口联调，需要与风控团队确认异常订单的回滚策略，并补充单元测试。",
+      "lines": 7
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-13",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-08",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "首页改版上线",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-14",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "张伟",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "阻塞",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-20",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "等待第三方物流平台提供新的签名算法文档，目前沙箱环境无法通过鉴权。",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-15",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-22",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "优化商品搜索的分词与排序逻辑，重点解决同义词召回不足的问题。",
+      "lines": 5
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-16",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "陈静",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "未开始",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-04-01",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户反馈中心的工单自动分派规则设计。",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-17",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-02",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "修复安卓端在低内存设备上偶发的白屏问题。",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 6,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 17,
+      "natural": 32,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 598,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r1B.png",
+   "idea": "Same identity/status block as id-safe (53/55/67 — no broken row key, no stacked names, no 3-line header), but the date column yields instead of the payload: 66px gives 45px of text, enough for the hyphen break to land as exactly two lines, “2024-” over “03-15”, with 2px slack so it never spills to a third line. Since the year is 2024 on every row, the discarded line carries no discriminating information, while the month-day stays whole and aligned for scanning; 截止日期 header wraps to two lines at the same width, so the column reads as one consistent block. The 42px freed lifts 说明 to 118 (97px text, ~6 chars/line) — r0A's prose density without r0A's broken identifiers, and roughly half r0B's table height.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    53,
+    51,
+    66,
+    108,
+    81
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 360,
+    "tableHeight": 1324.3,
+    "overflow": 0,
+    "colWidths": [
+     53,
+     51,
+     66,
+     108,
+     81
+    ],
+    "rowHeights": [
+     82.8,
+     338.5,
+     59.5,
+     268.8,
+     245.5,
+     152.5,
+     175.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "编号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "负责人",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "截止日期",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-12",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-15",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "完成支付模块的接口联调，需要与风控团队确认异常订单的回滚策略，并补充单元测试。",
+      "lines": 14
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-13",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-08",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "首页改版上线",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-14",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "张伟",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "阻塞",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-20",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "等待第三方物流平台提供新的签名算法文档，目前沙箱环境无法通过鉴权。",
+      "lines": 11
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-15",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-22",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "优化商品搜索的分词与排序逻辑，重点解决同义词召回不足的问题。",
+      "lines": 10
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-16",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "陈静",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "未开始",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-04-01",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户反馈中心的工单自动分派规则设计。",
+      "lines": 6
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-17",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-02",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "修复安卓端在低内存设备上偶发的白屏问题。",
+      "lines": 7
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 17,
+      "natural": 32,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 598,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r2A.png",
+   "idea": "在“日期绝不换行”的分支里把每一列压到最小：编号 53（F-12 单行）、负责人 51（两个字的姓名 30px 够用，表头 负责人 折成两行，只多占表头一行）、状态 66（三字标签 45px 单行）、截止日期 108（87px 日期整串单行）；剩下的 81px 全部给说明，从 r1A 的 55px 提到 60px 文本宽，行数从 14 降到约 11–12，表高约 1150px。这是保守方案：牺牲高度换日期可逐行对齐，适合把日期当作主排序键的读者。",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    53,
+    51,
+    66,
+    70,
+    119
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 360,
+    "tableHeight": 789.5,
+    "overflow": 0,
+    "colWidths": [
+     53,
+     51,
+     66,
+     70,
+     119
+    ],
+    "rowHeights": [
+     82.8,
+     175.8,
+     59.5,
+     152.5,
+     129.3,
+     82.8,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "编号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "负责人",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "截止日期",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-12",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-15",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "完成支付模块的接口联调，需要与风控团队确认异常订单的回滚策略，并补充单元测试。",
+      "lines": 7
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-13",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-08",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "首页改版上线",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-14",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "张伟",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "阻塞",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-20",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "等待第三方物流平台提供新的签名算法文档，目前沙箱环境无法通过鉴权。",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-15",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-22",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "优化商品搜索的分词与排序逻辑，重点解决同义词召回不足的问题。",
+      "lines": 5
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-16",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "陈静",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "未开始",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-04-01",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户反馈中心的工单自动分派规则设计。",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-17",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-02",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "修复安卓端在低内存设备上偶发的白屏问题。",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 6,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 17,
+      "natural": 32,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 598,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r2B.png",
+   "idea": "修 r1B 的临界问题：日期列 66→70，给 2024- 片段留 6px 余量，避免任何行被挤成 2024-/03-/15 三段；负责人 55→51、状态 67→66 省下的 5px 转给说明，说明拿到 119px（98px 文本，6 字/行），表高仍约 770px。日期仍是两行，但两行宽度接近、断点一致，月日始终落在第二行，纵向扫读月份日仍成立，代价只是日期不再是一次性读完的原子串。",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2C": {
+   "widths": [
+    53,
+    51,
+    66,
+    66,
+    123
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 360,
+    "tableHeight": 789.5,
+    "overflow": 0,
+    "colWidths": [
+     53,
+     51,
+     66,
+     66,
+     123
+    ],
+    "rowHeights": [
+     82.8,
+     175.8,
+     59.5,
+     152.5,
+     129.3,
+     82.8,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "编号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "负责人",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "截止日期",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-12",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-15",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "完成支付模块的接口联调，需要与风控团队确认异常订单的回滚策略，并补充单元测试。",
+      "lines": 7
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-13",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-08",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "首页改版上线",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-14",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "张伟",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "阻塞",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-20",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "等待第三方物流平台提供新的签名算法文档，目前沙箱环境无法通过鉴权。",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-15",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-22",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "优化商品搜索的分词与排序逻辑，重点解决同义词召回不足的问题。",
+      "lines": 5
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-16",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "陈静",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "未开始",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-04-01",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户反馈中心的工单自动分派规则设计。",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-17",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-02",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "修复安卓端在低内存设备上偶发的白屏问题。",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 6,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 17,
+      "natural": 32,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 598,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r2C.png",
+   "idea": "把两行日期方案推到极限：日期取 66（只够容纳 2024-，与 r1B 同宽但说明更宽），说明 123px → 102px 文本，约 6–7 字/行，最长单元格再少一行，表高约 720px。用于验证“说明宽度每多 4px 是否还值得”——如果读者更在意分诊速度而非日期原子性，这是最紧凑的版本；如果日期断行不可接受，则回退到 intact-81。",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    53,
+    53,
+    67,
+    64,
+    122
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 360,
+    "tableHeight": 789.5,
+    "overflow": 0,
+    "colWidths": [
+     53,
+     53,
+     67,
+     64,
+     122
+    ],
+    "rowHeights": [
+     59.5,
+     175.8,
+     82.8,
+     152.5,
+     129.3,
+     82.8,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "编号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "负责人",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "截止日期",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-12",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-15",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "完成支付模块的接口联调，需要与风控团队确认异常订单的回滚策略，并补充单元测试。",
+      "lines": 7
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-13",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-08",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "首页改版上线",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-14",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "张伟",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "阻塞",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-20",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "等待第三方物流平台提供新的签名算法文档，目前沙箱环境无法通过鉴权。",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-15",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-22",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "优化商品搜索的分词与排序逻辑，重点解决同义词召回不足的问题。",
+      "lines": 5
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-16",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "陈静",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "未开始",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-04-01",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户反馈中心的工单自动分派规则设计。",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-17",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-02",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "修复安卓端在低内存设备上偶发的白屏问题。",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 9,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 17,
+      "natural": 32,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 598,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r3A.png",
+   "idea": "先把 1px 硬伤修掉：状态列 66→67（46+21，进行中/已完成/未开始全部单行），负责人列 51→53（32px 文字，王磊/李娜不再竖排，表头折成“负责/人”两行即可）。省出的宽度全给说明，日期列收到 64（43px 文字，正好容下 2024-，仍在连字符处断行）。结果：三个短列数据全部单行可扫，说明拿到 122px 成为唯一载荷列，行高由说明决定，日期两行不额外增加行高。",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3B": {
+   "widths": [
+    53,
+    53,
+    67,
+    108,
+    78
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 360,
+    "tableHeight": 1301,
+    "overflow": 0,
+    "colWidths": [
+     53,
+     53,
+     67,
+     108,
+     78
+    ],
+    "rowHeights": [
+     59.5,
+     338.5,
+     59.5,
+     268.8,
+     245.5,
+     152.5,
+     175.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "编号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "负责人",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "截止日期",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-12",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-15",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "完成支付模块的接口联调，需要与风控团队确认异常订单的回滚策略，并补充单元测试。",
+      "lines": 14
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-13",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-08",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "首页改版上线",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-14",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "张伟",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "阻塞",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-20",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "等待第三方物流平台提供新的签名算法文档，目前沙箱环境无法通过鉴权。",
+      "lines": 11
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-15",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-22",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "优化商品搜索的分词与排序逻辑，重点解决同义词召回不足的问题。",
+      "lines": 10
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-16",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "陈静",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "未开始",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-04-01",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户反馈中心的工单自动分派规则设计。",
+      "lines": 6
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-17",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-02",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "修复安卓端在低内存设备上偶发的白屏问题。",
+      "lines": 7
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 17,
+      "natural": 32,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 598,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r3B.png",
+   "idea": "保留日期单行的对照组：日期 108（2024-03-15 完整不断），代价是说明只剩 78px（文字 57px，约 4 字/行）。用于验证“日期完整性优先”是否值得——修好状态与负责人后，本方案唯一的短板是说明过窄导致的超长行。",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3C": {
+   "widths": [
+    53,
+    66,
+    67,
+    64,
+    109
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 360,
+    "tableHeight": 882.5,
+    "overflow": 0,
+    "colWidths": [
+     53,
+     66,
+     67,
+     64,
+     109
+    ],
+    "rowHeights": [
+     59.5,
+     199,
+     82.8,
+     175.8,
+     152.5,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "编号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "负责人",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "截止日期",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-12",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-15",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "完成支付模块的接口联调，需要与风控团队确认异常订单的回滚策略，并补充单元测试。",
+      "lines": 8
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-13",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-08",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "首页改版上线",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-14",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "张伟",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "阻塞",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-20",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "等待第三方物流平台提供新的签名算法文档，目前沙箱环境无法通过鉴权。",
+      "lines": 7
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-15",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-22",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "优化商品搜索的分词与排序逻辑，重点解决同义词召回不足的问题。",
+      "lines": 6
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-16",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "陈静",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "未开始",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-04-01",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户反馈中心的工单自动分派规则设计。",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-17",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-02",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "修复安卓端在低内存设备上偶发的白屏问题。",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 9,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 17,
+      "natural": 32,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 598,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r3C.png",
+   "idea": "在 r3A 基础上把负责人列扩到 66，让“负责人”表头单行不折、姓名两侧留白，消除表头三行堆叠造成的头重脚轻；代价是从说明借 13px（122→109，仍约 6 字/行）。适合更看重表头整洁与列节奏、而非说明极限宽度的场合。",
+   "notes": [],
+   "parentRound": 2
+  },
+  "ref_auto": {
+   "widths": [
+    40.1,
+    42.3,
+    42.3,
+    72.4,
+    162
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 360,
+    "tableHeight": 673.3,
+    "overflow": 0,
+    "colWidths": [
+     40.1,
+     42.3,
+     42.3,
+     72.4,
+     162
+    ],
+    "rowHeights": [
+     82.8,
+     129.3,
+     82.8,
+     106,
+     106,
+     82.8,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "编号",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "负责人",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "截止日期",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-12",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-15",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "完成支付模块的接口联调，需要与风控团队确认异常订单的回滚策略，并补充单元测试。",
+      "lines": 5
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-13",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-08",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "首页改版上线",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-14",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "张伟",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "阻塞",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-20",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "等待第三方物流平台提供新的签名算法文档，目前沙箱环境无法通过鉴权。",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-15",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-22",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "优化商品搜索的分词与排序逻辑，重点解决同义词召回不足的问题。",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-16",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "陈静",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "未开始",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-04-01",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户反馈中心的工单自动分派规则设计。",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-17",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-02",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "修复安卓端在低内存设备上偶发的白屏问题。",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 12,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 17,
+      "natural": 32,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 598,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    71,
+    71,
+    71,
+    71,
+    71
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 356,
+    "tableHeight": 1301,
+    "overflow": 0,
+    "colWidths": [
+     71,
+     71,
+     71,
+     71,
+     71
+    ],
+    "rowHeights": [
+     59.5,
+     338.5,
+     59.5,
+     268.8,
+     245.5,
+     152.5,
+     175.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "编号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "负责人",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "截止日期",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-12",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-15",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "完成支付模块的接口联调，需要与风控团队确认异常订单的回滚策略，并补充单元测试。",
+      "lines": 14
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-13",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-08",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "首页改版上线",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-14",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "张伟",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "阻塞",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-20",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "等待第三方物流平台提供新的签名算法文档，目前沙箱环境无法通过鉴权。",
+      "lines": 11
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-15",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "王磊",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "进行中",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-22",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "优化商品搜索的分词与排序逻辑，重点解决同义词召回不足的问题。",
+      "lines": 10
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-16",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "陈静",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "未开始",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-04-01",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户反馈中心的工单自动分派规则设计。",
+      "lines": 6
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "F-17",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "李娜",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已完成",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-03-02",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "修复安卓端在低内存设备上偶发的白屏问题。",
+      "lines": 7
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 6,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 17,
+      "natural": 32,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 43,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 598,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-ref_equal.png"
+  }
+ },
+ "understanding": {
+  "purpose": "一张窄屏（360px）的项目任务跟踪表：六条任务，每条给出编号、负责人、状态、截止日期和一句任务说明。读者用它快速分诊——谁在做什么、是否阻塞、何时到期——再读说明了解具体内容。",
+  "reading": "先用眼睛沿 状态 和 截止日期 两列做纵向扫描，找出阻塞项和最紧的日期；然后按行阅读，从 编号 到 负责人 到 说明，判断这条任务是什么。行是阅读单位，日期和状态需要能逐行对齐比较，说明是每条任务的主体内容。",
+  "groups": [
+   "编号 + 负责人：身份类短标识，窄列、单行、彼此相邻，一起回答“哪条、谁负责”",
+   "状态 + 截止日期：分诊类列，需要纵向对齐、逐行可比，绝对不能换行",
+   "说明：唯一的叙述性长文本列，独立成组，是这一行的载荷"
+  ],
+  "keep_intact": [
+   "ISO 日期 2024-03-15（一旦在连字符处断成两行，跨行日期比较就失效）",
+   "状态词 进行中 / 已完成 / 阻塞 / 未开始（三字短标签，必须单行，否则不再是可扫读的状态芯片）",
+   "负责人姓名（2 字，必须单行）",
+   "编号 F-12…F-17（短码，尽量单行）"
+  ],
+  "may_wrap": [
+   "说明（中文散文，天然可换行，行高可以吸收 2–6 行）",
+   "表头标签 负责人 / 截止日期（换行只多占表头一行，不影响任何数据行，是成本最低的让步）"
+  ]
+ },
+ "final": {
+  "preferred": [
+   "r1B"
+  ],
+  "acceptable": [
+   "r3A"
+  ],
+  "bad": [
+   {
+    "design": "r1A",
+    "why": "说明 is only 76px (55px content), forcing 14-line cells and a 1301px table; the intact date is not worth that extreme height."
+   },
+   {
+    "design": "r2A",
+    "why": "负责人 at 51px stacks two-character names vertically, and 说明 at 81px still forces 14-line cells, producing a 1324px table."
+   },
+   {
+    "design": "r2B",
+    "why": "负责人 at 51px stacks names and 状态 at 66px splits three-character statuses; the table is 790px with no height advantage over r1B."
+   },
+   {
+    "design": "r2C",
+    "why": "负责人 at 51px stacks names and 状态 at 66px splits statuses; 说明 gets 123px, but the row rhythm is damaged for no net gain."
+   },
+   {
+    "design": "r3B",
+    "why": "说明 is only 78px (57px content), yielding 14-line cells and a 1301px table; the date stays intact but the description becomes unreadable."
+   },
+   {
+    "design": "r3C",
+    "why": "It wastes 66px on 负责人 while 说明 falls to 109px, producing 8-line descriptions and 3-line dates in an 883px table."
+   }
+  ],
+  "contrast": null,
+  "ranges": [
+   [
+    53,
+    57
+   ],
+   [
+    53,
+    58
+   ],
+   [
+    67,
+    70
+   ],
+   [
+    66,
+    72
+   ],
+   [
+    114,
+    124
+   ]
+  ],
+  "rationale": "r1B is the best compromise: it keeps 编号, 负责人 and 状态 on one line, gives 说明 enough width for 7-line cells, and holds the table to 766px. Its 截止日期 cells wrap consistently as 2024-/03-15, a cleaner break than the 3-line YYYY-/MM-/DD in r3A and far better than letting 说明 collapse to 14 lines. r3A is still publishable because its only real fault is the 3-line date and the height penalty is modest, but r1B scans better.",
+  "principles": {
+   "general": [
+    "Column width should follow reading role: identifiers, names and categorical statuses need just enough width to stay on one line; prose absorbs the remainder.",
+    "Do not buy a one-line date with a 14-line description; total table height and row rhythm are part of legibility.",
+    "Consistent, semantically clean wraps are preferable to ragged three-line splits of fixed-format data.",
+    "Header wrapping is acceptable when it protects data cells, but avoid splitting short categorical values or two-character names."
+   ],
+   "specific": [
+    "At 360px, this table's hard minima are about 53px for 编号, 53px for 负责人 and 67px for 状态; 66px lets 截止日期 break as 2024-/03-15.",
+    "说明 needs roughly 114–124px to stay at 7 lines; at 109px it becomes 8 lines and the table grows to 883px.",
+    "r1B's two-line date is the best compromise; r3A's three-line date is tolerable but less scannable.",
+    "r1A and r3B over-prioritize the date and produce 14-line descriptions in a 1301px table."
+   ]
+  },
+  "tradeoffs": "The main tradeoff is date integrity versus description width. One could argue dates should never break, but on a 360px phone that forces 14-line descriptions; conversely, a three-line date is legible but slows scanning. Reasonable designers may also differ on how much vertical stacking of two-character Chinese names is acceptable.",
+  "uncertain": "Exact px thresholds (66 vs 67) depend on font metrics and rendering; whether a three-line date is publishable at all is debatable, and stacking two-character names vertically may be acceptable to some Chinese-language designers even though it damages row rhythm here."
+ },
+ "reviews": [
+  {
+   "order": [
+    "ref_equal",
+    "ref_auto",
+    "r1B",
+    "r1A",
+    "r3A"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "poor",
+     "why": "The 说明 column is far too narrow (about 6 characters per line), so every note becomes a tall vertical strip; rows balloon to 7–9 lines and the table becomes a long ribbon. The date column also wraps ('2024-' / '03-15'), and the header '截止日期' breaks. Reader cannot scan notes or compare rows."
+    },
+    "B": {
+     "grade": "bad",
+     "why": "编号, 负责人 and 状态 are squeezed to 2 characters per line, so identifiers and names break mid-word (F- / 12, 王 / 磊, 进 / 行 / 中) and headers stack vertically. Dates still wrap into two lines. Only the 说明 column is usable, so the table's identifying and status data is destroyed."
+    },
+    "C": {
+     "grade": "good",
+     "why": "A sensible balance: 编号 and 负责人 stay on one line, 状态 on one line, dates wrap cleanly at the hyphen into two lines, and 说明 gets a wide column with roughly 10–11 characters per line. Rows read as compact units and the eye can move from ID to note without jumping. The date column wrapping is the main compromise."
+    },
+    "D": {
+     "grade": "acceptable",
+     "why": "Dates stay intact on one line ('2024-03-15'), which helps scanning, but that is bought by shrinking 说明 to about 5–6 characters per line, making notes very tall and rows uneven. The header '负责人' wraps. Overall readable but the most information-dense column is over-penalised."
+    },
+    "E": {
+     "grade": "poor",
+     "why": "The date column is narrow enough to break '2024-03-08' into three lines ('2024-' / '03-' / '08'), which makes dates nearly unreadable and creates ragged row heights. 说明 is narrow (about 8 characters per line) so notes are tall strips. Status and names survive, but the date damage is severe for a tracking table."
+    }
+   },
+   "best": [
+    "C"
+   ],
+   "confidence": "high",
+   "unsure": "Exact column widths are inferred from the images; grading D vs C depends on whether keeping dates unbroken outweighs note readability. If dates are the primary scan key, D could edge closer to C."
+  },
+  {
+   "order": [
+    "ref_equal",
+    "r3A",
+    "ref_auto",
+    "r1B",
+    "r1A"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "poor",
+     "why": "说明 column is starved to ~3–4 characters per line, so every description becomes a tall vertical ribbon and rows balloon with dead space beside the short left cells; the date also splits as '2024-' / '03-15'. Width spent on 编号/负责人/状态 buys nothing since those were already one line, while the only column that needs space gets least."
+    },
+    "B": {
+     "grade": "acceptable",
+     "why": "说明 gets a workable ~5–6 characters per line and 编号 stays intact, but 截止日期 fractures into three stacked fragments ('2024-' / '03-' / '15'), which destroys date comparability, and the 负责人 header wraps awkwardly while its data does not."
+    },
+    "C": {
+     "grade": "poor",
+     "why": "The description column finally reads well (~12–13 chars/line) and the table is shortest, but the price is unacceptable: 编号 breaks as 'F-' / '12', names stack vertically, 状态 becomes '进/行/中' over three lines, and the 截止日期 header itself splits. Identifiers and statuses are the scan keys of a task tracker and they are shredded."
+    },
+    "D": {
+     "grade": "good",
+     "why": "Best balance: 编号, 负责人 data and 状态 all hold one line, dates break cleanly at a single hyphen ('2024-' / '03-15') so they stay readable as dates, and 说明 gets enough width (~6 chars/line) to read as prose rather than a ribbon. Header wraps are minor and row rhythm is consistent."
+    },
+    "E": {
+     "grade": "acceptable",
+     "why": "Dates stay whole on one line, which is genuinely valuable, and 编号/状态 are intact; but paying for that by crushing 说明 to ~3 characters per line makes the tallest table with the most wasted vertical space, and the description is the payload of this table."
+    }
+   },
+   "best": [
+    "D"
+   ],
+   "confidence": "medium",
+   "unsure": "Pixel widths are hard to read exactly from the renders, so my A-vs-D and B-vs-D description-width comparisons are eyeballed; also debatable whether a clean two-line date break (D) beats a whole one-line date (E) under stricter publication conventions."
+  }
+ ]
+}

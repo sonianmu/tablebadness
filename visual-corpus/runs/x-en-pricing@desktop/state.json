@@ -1,0 +1,4245 @@
+{
+ "id": "x-en-pricing@desktop",
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "All headers stay on one line; Feature reads clearly as the row label; the plan block scans left to right, and Support wraps to only two lines in Enterprise.",
+     "problems": "The SSO row is noticeably taller because Notes breaks into three lines, interrupting the row rhythm. Enterprise is much wider than Free/Pro yet still wraps its longest value, and Feature is more generous than it needs to be. The plan block feels asymmetric.",
+     "cause": "Notes at 229px leaves 208px of text, just under the roughly 216px needed for the Okta/Azure note to fit in two lines. Enterprise at 170px leaves 149px, enough for two lines but not one. Feature at 130px could donate width to Notes or Enterprise."
+    },
+    {
+     "design": "r0B",
+     "good": "Headers fit, Notes is comfortable and most notes read in two lines, and the table height stays moderate.",
+     "problems": "Enterprise is cramped: Support becomes three short lines ('24/7 phone' / '& dedicated' / 'manager'), making the most important plan cell hard to read. Equal 110px plan columns falsely imply equal content needs, while Notes dominates the table.",
+     "cause": "Enterprise at 110px leaves only 89px of text versus a 229px one-line need. Free and Pro each get 110px even though Pro needs only 66px of text, while Notes at 264px becomes the widest column."
+    },
+    {
+     "design": "r0C",
+     "good": "Notes is very readable, mostly two lines, and all headers fit; Feature, Free and Pro remain intact.",
+     "problems": "Enterprise is squeezed to four lines with '&' stranded on its own line, creating a 106px Support row. Notes takes almost half the table width, so the supplementary column dominates the plan comparison and the table looks right-heavy.",
+     "cause": "Notes at 322px leaves 301px, over-allocating the supplementary column. Enterprise at 100px leaves 79px, barely above its 75px header and far below the 229px one-line need. Pro at 87px is already at its minimum."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "Rows are all uniform two-line units, so the table scans cleanly; every header stays on one line; Notes at 216px of text holds every note to two lines (the SSO note sits comfortably at 2 lines); Feature at 91px clears SSO / SAML (83px) with real slack, so nothing is knife-edge there. The Feature→plan-block→Notes reading order is clear and the plan trio reads as one block despite Enterprise being wider.",
+     "problems": "The Support row's Enterprise cell breaks as “24/7 phone &” / “dedicated manager” — the ampersand dangles at the end of the line, which is the ugliest break available for that phrase. Feature is also visibly over-wide relative to its content (91px of text for an 83px requirement), and Free at 79px of text is exactly the width of “Community”, so that cell has zero slack and would clip or wrap under any font fallback or kerning change.",
+     "cause": "Enterprise at 180px gives only 159px of text, just under the ~165px needed for “24/7 phone & dedicated”, so the browser breaks one word early. Feature's 112px was chosen by eye rather than from the 83px requirement, and Free's 100px was set to the minimum without rounding up."
+    },
+    {
+     "design": "r1B",
+     "good": "The most generous Notes column of the three (226px of text), so the prose column is never cramped; the overall proportions look calm and the two-line row rhythm is preserved; Feature at 94px is still comfortable.",
+     "problems": "It fixes nothing that r1A got wrong and makes two things worse: Enterprise drops to 149px of text, so the Support row still breaks after the ampersand, and now with even less room to breathe. Pro at 87px gives exactly 66px of text — precisely the width of “Unlimited” — a knife-edge fit, and Free is still at exactly 79px for “Community”. Two columns now sit on their exact minimum, so the table is fragile rather than merely imperfect.",
+     "cause": "Width was shaved off Pro (90→87) and Enterprise (180→170) to feed Notes, pushing those two columns onto their content-exact minimums while leaving the actual problem column (Enterprise) below its phrase-break threshold."
+    },
+    {
+     "design": "r1C",
+     "good": "This is the only design that gets the best available Enterprise break — “24/7 phone & dedicated” / “manager” — because 179px of text finally clears the threshold. The Support row reads as a phrase rather than a fragment.",
+     "problems": "The Notes column collapses to 198px of text, which pushes the SSO note to three lines and blows that row out to 83px. The result is a visibly uneven row rhythm — one tall row in the middle of five short ones — and the table grows to 335px. The eye stumbles exactly at the row where the reader is checking the most caveat text. It also overpays Enterprise by ~10px for a marginal typographic gain.",
+     "cause": "Notes at 219px (198px of text) fell below the ~210px needed for “Supports Okta, Azure AD and any SAML 2.0 identity provider.” to stay at two lines; the 20px taken from Notes went to Enterprise, which only needed about 10px more than r1A had."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "Even 60px row rhythm; all five headers stay on one line; Feature, Free and Pro values fit without splitting; Enterprise's long Support cell wraps into two balanced lines; Notes prose stays at two lines.",
+     "problems": "Notes is held at the minimum two-line measure, so there is no reserve for longer copy. The Support cell breaks after the ampersand ('24/7 phone &' / 'dedicated manager'), which is acceptable but typographically weaker than a break at a phrase boundary. Feature and Pro carry small unused slack.",
+     "cause": "Widths [106,100,90,180,243]: Feature is 2px above its 104px minimum and Pro 3px above 87px, while Notes gets only 243px. Enterprise at 180px is actually well chosen; the slack in the plan columns is the issue."
+    },
+    {
+     "design": "r2B",
+     "good": "Enterprise is the most prominent tier column and the long Support cell fits in two lines; headers remain one line; Notes prose is readable.",
+     "problems": "The SSO note wraps to three lines, making that row 83px tall and the table 335px, so the otherwise even row rhythm breaks. The wider Enterprise cell also produces an orphan 'manager' on the second line.",
+     "cause": "Widths [106,100,90,192,231]: 9px moved from Notes to Enterprise versus r2A. Notes text width drops to 210px, below the roughly 220px needed for the longest note to stay at two lines; Enterprise at 192px is wider than needed and changes the Support break."
+    },
+    {
+     "design": "r2C",
+     "good": "Best of the three: all rows are 60px and the table is 312px; Notes gets 248px and keeps every note at two lines; Enterprise at 175px still fits its header and wraps the long Support cell into two lines without an orphan.",
+     "problems": "The Support cell still breaks after '&' ('24/7 phone &' / 'dedicated manager'), and Enterprise is now the narrowest of the three renders, so the top tier feels slightly compressed. Feature and Pro still have 2–3px of unused width.",
+     "cause": "Widths [106,100,90,175,248]: the 5px taken from Enterprise versus r2A is well spent on Notes, but the plan columns were not tightened; the remaining slack is small."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A",
+    "r3B",
+    "r3C"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    130,
+    100,
+    90,
+    170,
+    229
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 720,
+    "tableHeight": 334.8,
+    "overflow": 0,
+    "colWidths": [
+     130,
+     100,
+     90,
+     170,
+     229
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     82.8,
+     36.3,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Feature",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Pro",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Notes",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Projects",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unlimited",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unlimited",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Archived projects do not count toward the limit.",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Storage",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2 GB",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "100 GB",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Custom",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Additional storage can be purchased in 50 GB blocks.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SSO / SAML",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Supports Okta, Azure AD and any SAML 2.0 identity provider.",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Audit log",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30 days",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1 year",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Support",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Community",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Email",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "24/7 phone & dedicated manager",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Response time targets are defined in the SLA.",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 56,
+      "natural": 83,
+      "padding": 21
+     },
+     {
+      "minContent": 79,
+      "natural": 79,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 66,
+      "padding": 21
+     },
+     {
+      "minContent": 75,
+      "natural": 229,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 419,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r0A.png",
+   "idea": "Balanced publication layout: readable Feature labels, compact but intact Free/Pro columns, extra room for Enterprise, and Notes as a secondary wrapping column.",
+   "notes": []
+  },
+  "r0B": {
+   "widths": [
+    125,
+    110,
+    110,
+    110,
+    264
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 720,
+    "tableHeight": 334.8,
+    "overflow": 0,
+    "colWidths": [
+     125,
+     110,
+     110,
+     110,
+     264
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     59.5,
+     36.3,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Feature",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Pro",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Notes",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Projects",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unlimited",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unlimited",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Archived projects do not count toward the limit.",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Storage",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2 GB",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "100 GB",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Custom",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Additional storage can be purchased in 50 GB blocks.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SSO / SAML",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Supports Okta, Azure AD and any SAML 2.0 identity provider.",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Audit log",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30 days",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1 year",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Support",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Community",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Email",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "24/7 phone & dedicated manager",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Response time targets are defined in the SLA.",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 56,
+      "natural": 83,
+      "padding": 21
+     },
+     {
+      "minContent": 79,
+      "natural": 79,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 66,
+      "padding": 21
+     },
+     {
+      "minContent": 75,
+      "natural": 229,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 419,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r0B.png",
+   "idea": "Peer-plan comparison: set Free, Pro and Enterprise to equal widths so the three tiers scan as a single comparable block, with Notes taking the remainder.",
+   "notes": []
+  },
+  "r0C": {
+   "widths": [
+    110,
+    100,
+    87,
+    100,
+    322
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 720,
+    "tableHeight": 358,
+    "overflow": 0,
+    "colWidths": [
+     110,
+     100,
+     87,
+     100,
+     322
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     59.5,
+     36.3,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Feature",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Pro",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Notes",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Projects",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unlimited",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unlimited",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Archived projects do not count toward the limit.",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Storage",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2 GB",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "100 GB",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Custom",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Additional storage can be purchased in 50 GB blocks.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SSO / SAML",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Supports Okta, Azure AD and any SAML 2.0 identity provider.",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Audit log",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30 days",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1 year",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Support",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Community",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Email",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "24/7 phone & dedicated manager",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Response time targets are defined in the SLA.",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 56,
+      "natural": 83,
+      "padding": 21
+     },
+     {
+      "minContent": 79,
+      "natural": 79,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 66,
+      "padding": 21
+     },
+     {
+      "minContent": 75,
+      "natural": 229,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 419,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r0C.png",
+   "idea": "Notes-forward reference: keep plan columns near their minimum intact widths and give maximum space to Notes to reduce wrapping in the commentary column.",
+   "notes": []
+  },
+  "r1A": {
+   "widths": [
+    112,
+    100,
+    90,
+    180,
+    237
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 720,
+    "tableHeight": 311.5,
+    "overflow": 0,
+    "colWidths": [
+     112,
+     100,
+     90,
+     180,
+     237
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     59.5,
+     36.3,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Feature",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Pro",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Notes",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Projects",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unlimited",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unlimited",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Archived projects do not count toward the limit.",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Storage",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2 GB",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "100 GB",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Custom",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Additional storage can be purchased in 50 GB blocks.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SSO / SAML",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Supports Okta, Azure AD and any SAML 2.0 identity provider.",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Audit log",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30 days",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1 year",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Support",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Community",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Email",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "24/7 phone & dedicated manager",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Response time targets are defined in the SLA.",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 56,
+      "natural": 83,
+      "padding": 21
+     },
+     {
+      "minContent": 79,
+      "natural": 79,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 66,
+      "padding": 21
+     },
+     {
+      "minContent": 75,
+      "natural": 229,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 419,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r1A.png",
+   "idea": "Trim Feature by 18px, give 10px to Enterprise and 8px to Notes. Enterprise 180px gives the long Support value a cleaner two-line break; Notes 237px should pull the SSO caveat down to two lines, shortening the tallest row without making Notes the dominant column.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    115,
+    100,
+    87,
+    170,
+    247
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 720,
+    "tableHeight": 311.5,
+    "overflow": 0,
+    "colWidths": [
+     115,
+     100,
+     87,
+     170,
+     247
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     59.5,
+     36.3,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Feature",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Pro",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Notes",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Projects",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unlimited",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unlimited",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Archived projects do not count toward the limit.",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Storage",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2 GB",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "100 GB",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Custom",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Additional storage can be purchased in 50 GB blocks.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SSO / SAML",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Supports Okta, Azure AD and any SAML 2.0 identity provider.",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Audit log",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30 days",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1 year",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Support",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Community",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Email",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "24/7 phone & dedicated manager",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Response time targets are defined in the SLA.",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 56,
+      "natural": 83,
+      "padding": 21
+     },
+     {
+      "minContent": 79,
+      "natural": 79,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 66,
+      "padding": 21
+     },
+     {
+      "minContent": 75,
+      "natural": 229,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 419,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r1B.png",
+   "idea": "Keep Feature readable, take Pro to its 87px minimum, hold Enterprise at 170px, and give the released width to Notes. Notes 247px makes all prose notes two lines and keeps the table compact, though Pro has no spare width.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1C": {
+   "widths": [
+    110,
+    100,
+    90,
+    200,
+    219
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 720,
+    "tableHeight": 334.8,
+    "overflow": 0,
+    "colWidths": [
+     110,
+     100,
+     90,
+     200,
+     219
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     82.8,
+     36.3,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Feature",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Pro",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Notes",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Projects",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unlimited",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unlimited",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Archived projects do not count toward the limit.",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Storage",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2 GB",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "100 GB",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Custom",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Additional storage can be purchased in 50 GB blocks.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SSO / SAML",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Supports Okta, Azure AD and any SAML 2.0 identity provider.",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Audit log",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30 days",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1 year",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Support",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Community",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Email",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "24/7 phone & dedicated manager",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Response time targets are defined in the SLA.",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 56,
+      "natural": 83,
+      "padding": 21
+     },
+     {
+      "minContent": 79,
+      "natural": 79,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 66,
+      "padding": 21
+     },
+     {
+      "minContent": 75,
+      "natural": 229,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 419,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r1C.png",
+   "idea": "Trade Notes width for a stronger plan block: Enterprise 200px makes the tier values prominent and gives Support a comfortable two-line cell; Notes 219px is narrower and may wrap the SSO caveat to three lines. This tests the opposite priority from r0A.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    106,
+    100,
+    90,
+    180,
+    243
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 720,
+    "tableHeight": 311.5,
+    "overflow": 0,
+    "colWidths": [
+     106,
+     100,
+     90,
+     180,
+     243
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     59.5,
+     36.3,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Feature",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Pro",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Notes",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Projects",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unlimited",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unlimited",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Archived projects do not count toward the limit.",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Storage",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2 GB",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "100 GB",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Custom",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Additional storage can be purchased in 50 GB blocks.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SSO / SAML",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Supports Okta, Azure AD and any SAML 2.0 identity provider.",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Audit log",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30 days",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1 year",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Support",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Community",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Email",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "24/7 phone & dedicated manager",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Response time targets are defined in the SLA.",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 56,
+      "natural": 83,
+      "padding": 21
+     },
+     {
+      "minContent": 79,
+      "natural": 79,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 66,
+      "padding": 21
+     },
+     {
+      "minContent": 75,
+      "natural": 229,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 419,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r2A.png",
+   "idea": "Take 6px off the over-generous Feature column (91→85px of text, still 2px clear of the 83px SSO / SAML) and hand it to Notes (216→222px). Keeps r1A's proven uniform two-line row rhythm, gives the prose column real breathing room, and leaves Free/Pro/Enterprise exactly as they were so nothing regresses. Safest incremental fix.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    106,
+    100,
+    90,
+    192,
+    231
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 720,
+    "tableHeight": 334.8,
+    "overflow": 0,
+    "colWidths": [
+     106,
+     100,
+     90,
+     192,
+     231
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     82.8,
+     36.3,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Feature",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Pro",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Notes",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Projects",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unlimited",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unlimited",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Archived projects do not count toward the limit.",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Storage",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2 GB",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "100 GB",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Custom",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Additional storage can be purchased in 50 GB blocks.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SSO / SAML",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Supports Okta, Azure AD and any SAML 2.0 identity provider.",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Audit log",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30 days",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1 year",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Support",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Community",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Email",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "24/7 phone & dedicated manager",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Response time targets are defined in the SLA.",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 56,
+      "natural": 83,
+      "padding": 21
+     },
+     {
+      "minContent": 79,
+      "natural": 79,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 66,
+      "padding": 21
+     },
+     {
+      "minContent": 75,
+      "natural": 229,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 419,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r2B.png",
+   "idea": "Spend the Feature surplus on Enterprise instead of Notes: 192px gives ~171px of text, enough for the cleaner “24/7 phone & dedicated” / “manager” break that r1C earned, without r1C's 20px raid on Notes. Notes keeps 210px of text, which should still hold the SSO note to two lines — this is the design that gets the best of r1C without its uneven row.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2C": {
+   "widths": [
+    106,
+    100,
+    90,
+    175,
+    248
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 720,
+    "tableHeight": 311.5,
+    "overflow": 0,
+    "colWidths": [
+     106,
+     100,
+     90,
+     175,
+     248
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     59.5,
+     36.3,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Feature",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Pro",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Notes",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Projects",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unlimited",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unlimited",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Archived projects do not count toward the limit.",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Storage",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2 GB",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "100 GB",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Custom",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Additional storage can be purchased in 50 GB blocks.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SSO / SAML",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Supports Okta, Azure AD and any SAML 2.0 identity provider.",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Audit log",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30 days",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1 year",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Support",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Community",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Email",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "24/7 phone & dedicated manager",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Response time targets are defined in the SLA.",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 56,
+      "natural": 83,
+      "padding": 21
+     },
+     {
+      "minContent": 79,
+      "natural": 79,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 66,
+      "padding": 21
+     },
+     {
+      "minContent": 75,
+      "natural": 229,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 419,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r2C.png",
+   "idea": "Opposite trade: accept the “24/7 phone &” / “dedicated manager” break in one cell and maximise the prose column (227px of text), since Notes is the only column whose content actually needs width and is read after the plan values. Feature is trimmed to its requirement, Pro kept at the proven 69px, so Free, Pro and Enterprise still read as one peer block while Notes dominates the right edge as commentary.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    105,
+    100,
+    88,
+    175,
+    251
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 720,
+    "tableHeight": 311.5,
+    "overflow": 0,
+    "colWidths": [
+     105,
+     100,
+     88,
+     175,
+     251
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     59.5,
+     36.3,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Feature",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Pro",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Notes",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Projects",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unlimited",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unlimited",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Archived projects do not count toward the limit.",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Storage",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2 GB",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "100 GB",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Custom",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Additional storage can be purchased in 50 GB blocks.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SSO / SAML",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Supports Okta, Azure AD and any SAML 2.0 identity provider.",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Audit log",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30 days",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1 year",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Support",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Community",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Email",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "24/7 phone & dedicated manager",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Response time targets are defined in the SLA.",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 56,
+      "natural": 83,
+      "padding": 21
+     },
+     {
+      "minContent": 79,
+      "natural": 79,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 66,
+      "padding": 21
+     },
+     {
+      "minContent": 75,
+      "natural": 229,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 419,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r3A.png",
+   "idea": "Trim Feature from 106 to 105 and Pro from 90 to 88 (both still above their content minimums), keep Enterprise at 175 because it already gives the long Support cell a good two-line break, and give the recovered 3px to Notes (248→251). This preserves r2C's even 60px rows while giving the prose column a little more reserve.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3B": {
+   "widths": [
+    105,
+    100,
+    88,
+    170,
+    256
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 720,
+    "tableHeight": 311.5,
+    "overflow": 0,
+    "colWidths": [
+     105,
+     100,
+     88,
+     170,
+     256
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     59.5,
+     36.3,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Feature",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Pro",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Notes",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Projects",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unlimited",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unlimited",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Archived projects do not count toward the limit.",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Storage",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2 GB",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "100 GB",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Custom",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Additional storage can be purchased in 50 GB blocks.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SSO / SAML",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Supports Okta, Azure AD and any SAML 2.0 identity provider.",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Audit log",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30 days",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1 year",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Support",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Community",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Email",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "24/7 phone & dedicated manager",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Response time targets are defined in the SLA.",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 56,
+      "natural": 83,
+      "padding": 21
+     },
+     {
+      "minContent": 79,
+      "natural": 79,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 66,
+      "padding": 21
+     },
+     {
+      "minContent": 75,
+      "natural": 229,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 419,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r3B.png",
+   "idea": "Start from the tightened plan block and take another 5px from Enterprise (175→170), where the header and short values still fit and the long Support cell still wraps to two lines, and give it to Notes (251→256). This tests how far Notes can flex before it starts to dominate the supplementary role.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3C": {
+   "widths": [
+    105,
+    100,
+    88,
+    180,
+    246
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 720,
+    "tableHeight": 311.5,
+    "overflow": 0,
+    "colWidths": [
+     105,
+     100,
+     88,
+     180,
+     246
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     59.5,
+     36.3,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Feature",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Free",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Pro",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Enterprise",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Notes",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Projects",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unlimited",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unlimited",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Archived projects do not count toward the limit.",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Storage",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2 GB",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "100 GB",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Custom",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Additional storage can be purchased in 50 GB blocks.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SSO / SAML",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "✓",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Supports Okta, Azure AD and any SAML 2.0 identity provider.",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Audit log",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "30 days",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1 year",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Support",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Community",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Email",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "24/7 phone & dedicated manager",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Response time targets are defined in the SLA.",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 56,
+      "natural": 83,
+      "padding": 21
+     },
+     {
+      "minContent": 79,
+      "natural": 79,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 66,
+      "padding": 21
+     },
+     {
+      "minContent": 75,
+      "natural": 229,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 419,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r3C.png",
+   "idea": "Use the same tightened Feature/Free/Pro widths but move 5px from Notes to Enterprise (175→180), keeping Notes at 246px (text 225px), which is still enough for the longest note to stay at two lines. This is the alternative if the top tier should feel more prominent than the Notes commentary.",
+   "notes": [],
+   "parentRound": 2
+  }
+ },
+ "understanding": {
+  "purpose": "Compare three plans feature by feature, with a free-text Notes column for caveats and supporting detail.",
+  "reading": "Readers scan the Feature column down the rows, then compare Free, Pro and Enterprise across each row; Notes is read secondarily after the plan values and is not part of the main tier comparison.",
+  "groups": [
+   "Free, Pro and Enterprise are peer plan columns and should read as one comparison block.",
+   "Feature is the row-label column and should stay visually distinct from the plan values.",
+   "Notes is supplementary commentary, so its width can flex against the plan block."
+  ],
+  "keep_intact": [
+   "Feature, Free, Pro, Enterprise headers",
+   "Community, Unlimited, Custom, 1 year, 30 days, —, ✓",
+   "SSO / SAML",
+   "24/7"
+  ],
+  "may_wrap": [
+   "Notes prose",
+   "the long Enterprise cell 24/7 phone & dedicated manager",
+   "longer Notes such as response-time and Okta/Azure details"
+  ]
+ },
+ "final": {
+  "preferred": [
+   "r2C"
+  ],
+  "acceptable": [
+   "r1B",
+   "r2A",
+   "r3A",
+   "r3B",
+   "r3C"
+  ],
+  "bad": [
+   {
+    "design": "r1C",
+    "why": "Notes is squeezed to 219px, so the SSO note breaks into three lines and orphans “provider.”; the resulting 83px row breaks the otherwise 60px row rhythm and makes the table 335px tall."
+   },
+   {
+    "design": "r2B",
+    "why": "Notes at 231px causes the same three-line SSO note with an orphaned “provider.” and an isolated 83px row; the extra Enterprise width is not worth the uneven vertical rhythm."
+   }
+  ],
+  "contrast": null,
+  "ranges": [
+   [
+    104,
+    112
+   ],
+   [
+    100,
+    106
+   ],
+   [
+    87,
+    94
+   ],
+   [
+    170,
+    180
+   ],
+   [
+    246,
+    251
+   ]
+  ],
+  "rationale": "r2C is the best balance: Free stays at its 100px minimum for “Community,” Pro has a little slack at 90px for “Unlimited,” and Feature is just above the 104px needed to keep “SSO / SAML” on one line. Its 248px Notes column keeps the SSO note to two lines and avoids the orphaned “provider.” that makes r1C/r2B taller, while 175px Enterprise wraps the support value into two acceptable lines. The result is a 312px table with uniform 60px rows, no wrapped headers, and no mid-word splits.",
+  "principles": {
+   "general": [
+    "Column widths should be driven by the longest unbreakable token and the desired line break, not by equal widths.",
+    "A single three-line row among two-line rows creates a visible rhythm break; allocate enough width to the secondary notes column to prevent avoidable orphans.",
+    "Do not starve a secondary column to overfeed a primary column once the primary column’s content already wraps acceptably.",
+    "Semantic line breaks matter: keeping “and any” together is better than a technically valid but awkward split."
+   ],
+   "specific": [
+    "Free cannot go below 100px because “Community” is 79px plus 21px padding.",
+    "Pro cannot go below 87px because “Unlimited” is 66px plus 21px padding.",
+    "Notes needs about 246px to keep “Supports Okta, Azure AD and any” on one line; around 231px it becomes three lines with an orphan.",
+    "Enterprise’s “24/7 phone & dedicated manager” can wrap into two balanced lines at 170–180px without a third line."
+   ]
+  },
+  "tradeoffs": "A reasonable designer could prefer r3C’s 180px Enterprise and 246px Notes for a roomier plan column; the difference from r2C is only a few pixels and both preserve two-line rows. r3B’s 256px Notes produces a less balanced support-note break (“Response time targets are defined / in the SLA.”) but is still publishable.",
+  "uncertain": "The exact pixel threshold where Notes drops to three lines is font-metric sensitive; r2A at 243px is borderline and some designers would accept its break after “and.” Whether the 3-line row in r1C/r2B is a true fault or an acceptable tradeoff for a wider Enterprise column is also debatable."
+ }
+}

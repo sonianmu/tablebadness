@@ -1,0 +1,15 @@
+{
+ "id": "x-v-h-shift",
+ "family": "x-v-h-shift",
+ "lang": "zh-CN",
+ "structure": "markdown",
+ "title": "[验证] 行高瓶颈转移 · 故障复盘",
+ "md": "\n| 模块 | 问题描述 | 影响范围 | 修复方案 |\n|---|---|---|---|\n| 网关 | 证书自动续期脚本在凌晨切换时未重载配置，导致约 7 分钟内部分 HTTPS 握手失败。 | 华东 | 续期后强制热加载 |\n| 订单 | 超时 | 全部渠道的预售订单，以及使用分期付款且在活动开始后 10 分钟内下单的用户 | 回滚 |\n| 搜索 | 索引延迟 | 华南 | 将增量索引从批处理改为流式写入，并为热点商品单独建立刷新队列，降低高峰期的端到端延迟。 |\n| 推送 | 重复 | 安卓 | 去重 |\n",
+ "rowHeader": false,
+ "tags": [
+  "zh",
+  "hs-shift"
+ ],
+ "source": "project data/ (used during algorithm development)",
+ "split": "research"
+}

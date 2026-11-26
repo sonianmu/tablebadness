@@ -1,0 +1,22 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 中文 · 项目任务跟踪 (language zh-CN).\nGrid: 5 columns × 7 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"编号\" · longest unbreakable word 17px · one-line width 32px\n  col 2: header \"负责人\" · longest unbreakable word 16px · one-line width 46px\n  col 3: header \"状态\" · longest unbreakable word 16px · one-line width 46px\n  col 4: header \"截止日期\" · longest unbreakable word 43px · one-line width 87px\n  col 5: header \"说明\" · longest unbreakable word 31px · one-line width 598px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 24834,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"说明 column is starved to ~3–4 characters per line, so every description becomes a tall vertical ribbon and rows balloon with dead space beside the short left cells; the date also splits as '2024-' / '03-15'. Width spent on 编号/负责人/状态 buys nothing since those were already one line, while the only column that needs space gets least.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"说明 gets a workable ~5–6 characters per line and 编号 stays intact, but 截止日期 fractures into three stacked fragments ('2024-' / '03-' / '15'), which destroys date comparability, and the 负责人 header wraps awkwardly while its data does not.\"},\"C\":{\"grade\":\"poor\",\"why\":\"The description column finally reads well (~12–13 chars/line) and the table is shortest, but the price is unacceptable: 编号 breaks as 'F-' / '12', names stack vertically, 状态 becomes '进/行/中' over three lines, and the 截止日期 header itself splits. Identifiers and statuses are the scan keys of a task tracker and they are shredded.\"},\"D\":{\"grade\":\"good\",\"why\":\"Best balance: 编号, 负责人 data and 状态 all hold one line, dates break cleanly at a single hyphen ('2024-' / '03-15') so they stay readable as dates, and 说明 gets enough width (~6 chars/line) to read as prose rather than a ribbon. Header wraps are minor and row rhythm is consistent.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"Dates stay whole on one line, which is genuinely valuable, and 编号/状态 are intact; but paying for that by crushing 说明 to ~3 characters per line makes the tallest table with the most wasted vertical space, and the description is the payload of this table.\"}},\"best\":[\"D\"],\"confidence\":\"medium\",\"unsure\":\"Pixel widths are hard to read exactly from the renders, so my A-vs-D and B-vs-D description-width comparisons are eyeballed; also debatable whether a clean two-line date break (D) beats a whole one-line date (E) under stricter publication conventions.\"}\n"
+  }
+ ]
+}

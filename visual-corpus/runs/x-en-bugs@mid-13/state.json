@@ -1,0 +1,2474 @@
+{
+ "id": "x-en-bugs@mid-13",
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "All five short columns—ID, Severity, Assignee, Status and Updated—stay on one line, with no header wraps and no mid-word splits. The table is compact at 314px and the metadata reads cleanly.",
+     "problems": "The Title column is visually starved: four of six titles wrap to two lines, so rows alternate 33/53px and the primary scan anchor becomes ragged. The table reads as metadata-first rather than issue-first.",
+     "cause": "Title is 224px, leaving only 203px of text against a 349px one-line requirement. However, this is already the maximum possible title width after reserving the exact one-line minima for the other columns: 87+73+79+89+98 = 426px."
+    },
+    {
+     "design": "r0B",
+     "good": "Title gains 14px over r0A, and the table height remains 314px. The narrower Status column creates a tighter overall grid.",
+     "problems": "Status phrases now break: “In progress” wraps to two lines in several rows. Title still wraps in the same four rows, so there is no row-height saving—only extra fragmentation inside cells.",
+     "cause": "Status is 75px, below the 89px needed for “In progress” on one line. The 14px transferred to Title raises it to 238px, still far short of the width needed to bring any wrapped title down to one line."
+    },
+    {
+     "design": "r0C",
+     "good": "The metadata columns are comfortable, Status remains intact, and the wider Assignee/Severity columns reduce any sense of crowding there.",
+     "problems": "Title is the weakest element: one row grows to three lines and the table becomes 334px tall. Row heights are highly uneven, and the surplus space in metadata columns is wasted while the main reading column is compressed.",
+     "cause": "Title is only 200px, leaving 179px of text. Meanwhile Severity (79px), Assignee (90px) and Status (96px) exceed their one-line minima by about 24px total—space that should have gone to Title."
+    }
+   ],
+   "done": true,
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    87,
+    224,
+    73,
+    79,
+    89,
+    98
+   ],
+   "geom": {
+    "nCols": 6,
+    "nRows": 7,
+    "tableWidth": 651,
+    "tableHeight": 313.5,
+    "overflow": 0,
+    "colWidths": [
+     87,
+     224,
+     73,
+     79,
+     89,
+     98
+    ],
+    "rowHeights": [
+     33.1,
+     53.3,
+     33.1,
+     53.3,
+     53.3,
+     33.1,
+     53.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Title",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Assignee",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Status",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Updated",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2041",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Checkout button unresponsive on Safari 17",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Critical",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "m.garcia",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In progress",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-02",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2038",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Typo in password reset email",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Low",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "j.chen",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Done",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-05-30",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2035",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Dashboard charts render blank when timezone is UTC+13",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "m.garcia",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In review",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-01",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2031",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CSV export drops rows containing emoji",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "a.okafor",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In progress",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-05-28",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2029",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Tooltip overlaps dropdown",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Low",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "j.chen",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Backlog",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-05-20",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2027",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Memory leak in long-running notification worker",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Critical",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "a.okafor",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In review",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-05-31",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 34,
+      "natural": 66,
+      "padding": 21
+     },
+     {
+      "minContent": 81,
+      "natural": 349,
+      "padding": 21
+     },
+     {
+      "minContent": 52,
+      "natural": 52,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 77,
+      "padding": 21
+     }
+    ],
+    "frameW": 685
+   },
+   "png": "d-r0A.png",
+   "idea": "Keep every short metadata field on one line and let Title absorb all compression, wrapping naturally at phrase boundaries.",
+   "notes": []
+  },
+  "r0B": {
+   "widths": [
+    87,
+    238,
+    73,
+    79,
+    75,
+    98
+   ],
+   "geom": {
+    "nCols": 6,
+    "nRows": 7,
+    "tableWidth": 651,
+    "tableHeight": 313.5,
+    "overflow": 0,
+    "colWidths": [
+     87,
+     238,
+     73,
+     79,
+     75,
+     98
+    ],
+    "rowHeights": [
+     33.1,
+     53.3,
+     33.1,
+     53.3,
+     53.3,
+     33.1,
+     53.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Title",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Assignee",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Status",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Updated",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2041",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Checkout button unresponsive on Safari 17",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Critical",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "m.garcia",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In progress",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-02",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2038",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Typo in password reset email",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Low",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "j.chen",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Done",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-05-30",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2035",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Dashboard charts render blank when timezone is UTC+13",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "m.garcia",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In review",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-01",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2031",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CSV export drops rows containing emoji",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "a.okafor",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In progress",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-05-28",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2029",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Tooltip overlaps dropdown",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Low",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "j.chen",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Backlog",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-05-20",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2027",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Memory leak in long-running notification worker",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Critical",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "a.okafor",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In review",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-05-31",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 34,
+      "natural": 66,
+      "padding": 21
+     },
+     {
+      "minContent": 81,
+      "natural": 349,
+      "padding": 21
+     },
+     {
+      "minContent": 52,
+      "natural": 52,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 77,
+      "padding": 21
+     }
+    ],
+    "frameW": 685
+   },
+   "png": "d-r0B.png",
+   "idea": "Spend the last 14px on Title by letting Status phrases wrap at spaces while keeping IDs, names, severity labels and dates intact.",
+   "notes": []
+  },
+  "r0C": {
+   "widths": [
+    87,
+    200,
+    79,
+    90,
+    96,
+    98
+   ],
+   "geom": {
+    "nCols": 6,
+    "nRows": 7,
+    "tableWidth": 651,
+    "tableHeight": 333.7,
+    "overflow": 0,
+    "colWidths": [
+     87,
+     200,
+     79,
+     90,
+     96,
+     98
+    ],
+    "rowHeights": [
+     33.1,
+     53.3,
+     33.1,
+     73.4,
+     53.3,
+     33.1,
+     53.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Title",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Assignee",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Status",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Updated",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2041",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Checkout button unresponsive on Safari 17",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Critical",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "m.garcia",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In progress",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-02",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2038",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Typo in password reset email",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Low",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "j.chen",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Done",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-05-30",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2035",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Dashboard charts render blank when timezone is UTC+13",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "m.garcia",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In review",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-01",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2031",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CSV export drops rows containing emoji",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "a.okafor",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In progress",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-05-28",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2029",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Tooltip overlaps dropdown",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Low",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "j.chen",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Backlog",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-05-20",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2027",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Memory leak in long-running notification worker",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Critical",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "a.okafor",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In review",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-05-31",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 34,
+      "natural": 66,
+      "padding": 21
+     },
+     {
+      "minContent": 81,
+      "natural": 349,
+      "padding": 21
+     },
+     {
+      "minContent": 52,
+      "natural": 52,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 77,
+      "padding": 21
+     }
+    ],
+    "frameW": 685
+   },
+   "png": "d-r0C.png",
+   "idea": "Give the short metadata columns consistent breathing room for fast severity/status/assignee scanning, accepting a narrower Title that wraps more.",
+   "notes": []
+  },
+  "ref_auto": {
+   "widths": [
+    73.1,
+    254.6,
+    73,
+    78.8,
+    82.6,
+    87.8
+   ],
+   "geom": {
+    "nCols": 6,
+    "nRows": 7,
+    "tableWidth": 651,
+    "tableHeight": 353.8,
+    "overflow": 0,
+    "colWidths": [
+     73.1,
+     254.6,
+     73,
+     78.8,
+     82.6,
+     87.8
+    ],
+    "rowHeights": [
+     33.1,
+     53.3,
+     53.3,
+     53.3,
+     53.3,
+     53.3,
+     53.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Title",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Assignee",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Status",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Updated",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2041",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Checkout button unresponsive on Safari 17",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Critical",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "m.garcia",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In progress",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-02",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2038",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Typo in password reset email",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Low",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "j.chen",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Done",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-05-30",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2035",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Dashboard charts render blank when timezone is UTC+13",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "m.garcia",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In review",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-01",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2031",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CSV export drops rows containing emoji",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "a.okafor",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In progress",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-05-28",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2029",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Tooltip overlaps dropdown",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Low",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "j.chen",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Backlog",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-05-20",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2027",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Memory leak in long-running notification worker",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Critical",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "a.okafor",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In review",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-05-31",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 12,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 34,
+      "natural": 66,
+      "padding": 21
+     },
+     {
+      "minContent": 81,
+      "natural": 349,
+      "padding": 21
+     },
+     {
+      "minContent": 52,
+      "natural": 52,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 77,
+      "padding": 21
+     }
+    ],
+    "frameW": 685
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    108,
+    108,
+    108,
+    108,
+    108,
+    108
+   ],
+   "geom": {
+    "nCols": 6,
+    "nRows": 7,
+    "tableWidth": 649,
+    "tableHeight": 595.5,
+    "overflow": 0,
+    "colWidths": [
+     108,
+     108,
+     108,
+     108,
+     108,
+     108
+    ],
+    "rowHeights": [
+     33.1,
+     93.6,
+     73.4,
+     113.7,
+     93.6,
+     73.4,
+     113.7
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Title",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Assignee",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Status",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Updated",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2041",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Checkout button unresponsive on Safari 17",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Critical",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "m.garcia",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In progress",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-02",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2038",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Typo in password reset email",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Low",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "j.chen",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Done",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-05-30",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2035",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Dashboard charts render blank when timezone is UTC+13",
+      "lines": 5
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "m.garcia",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In review",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-01",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2031",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "CSV export drops rows containing emoji",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "High",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "a.okafor",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In progress",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-05-28",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2029",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Tooltip overlaps dropdown",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Low",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "j.chen",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Backlog",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-05-20",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BUG-2027",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Memory leak in long-running notification worker",
+      "lines": 5
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Critical",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "a.okafor",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In review",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-05-31",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 1,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 34,
+      "natural": 66,
+      "padding": 21
+     },
+     {
+      "minContent": 81,
+      "natural": 349,
+      "padding": 21
+     },
+     {
+      "minContent": 52,
+      "natural": 52,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 77,
+      "padding": 21
+     }
+    ],
+    "frameW": 685
+   },
+   "png": "d-ref_equal.png"
+  }
+ },
+ "understanding": {
+  "purpose": "Triage and track engineering bugs: identify each issue, judge severity and status, and see who owns it and when it changed.",
+  "reading": "Readers use ID + Title as the row anchor, compare Severity and Status for triage, then check Assignee and Updated for ownership and recency; row-level scanning matters more than deep reading of any one column.",
+  "groups": [
+   "ID + Title: issue identity and scan anchor",
+   "Severity + Status: triage state",
+   "Assignee + Updated: ownership and recency"
+  ],
+  "keep_intact": [
+   "ID values such as BUG-2041",
+   "Severity labels such as Critical",
+   "Assignee handles such as m.garcia",
+   "Status single words such as Backlog, and ideally phrases such as In progress",
+   "Updated dates/values"
+  ],
+  "may_wrap": [
+   "Title at word boundaries",
+   "Status phrases at spaces if width is tight",
+   "Long titles may take two lines; short metadata should not be split"
+  ]
+ },
+ "final": {
+  "preferred": [
+   "r0A"
+  ],
+  "acceptable": [
+   "r0C"
+  ],
+  "bad": [
+   {
+    "design": "r0B",
+    "why": "Status is reduced to 54px of text, so “In progress” wraps to two lines even though this is a short categorical value. That makes the Status column visually inconsistent and slows row scanning; the table gains title width by damaging a column that should stay intact."
+   }
+  ],
+  "contrast": null,
+  "ranges": [
+   [
+    87,
+    91
+   ],
+   [
+    195,
+    224
+   ],
+   [
+    73,
+    77
+   ],
+   [
+    79,
+    83
+   ],
+   [
+    89,
+    93
+   ],
+   [
+    98,
+    102
+   ]
+  ],
+  "rationale": "r0A is the cleanest allocation: every non-title column is held at the width needed for its longest one-line value, and the remaining space goes to Title, the only genuinely elastic column. The result keeps IDs, severities, assignees, statuses and dates intact while allowing titles to wrap only where necessary. r0C is publishable but over-widens several short columns and starves Title, creating an avoidable three-line row and a taller, less even table. r0B is the clear failure because it buys Title width by wrapping the short Status values.",
+  "principles": {
+   "general": [
+    "Give the elastic prose column the leftover width after fixing the one-line widths of short categorical, date, and identifier columns.",
+    "Do not improve a long text column by making a short categorical column wrap; the scan cost is usually higher than a little extra title wrapping.",
+    "Keep row height driven by the column that genuinely needs multiple lines, not by avoidable wraps in other columns."
+   ],
+   "specific": [
+    "Title is the only column that should wrap here; Status needs 68px of text for “In progress”, and Updated needs 77px for its dates.",
+    "The preferred title width of 203px content is just enough to keep “Dashboard charts render blank when timezone is UTC+13” at two lines; below roughly 192px it becomes three lines.",
+    "ID, Severity, Assignee, Status and Updated are all at or near their minimum one-line widths in r0A, so extra width there is mostly unused whitespace."
+   ]
+  },
+  "tradeoffs": "A designer could reasonably prefer r0C if they value more generous spacing in the categorical columns and accept a three-line title; another might give Status a few extra pixels for breathing room at the cost of a slightly narrower Title.",
+  "uncertain": "The exact title-width threshold between two and three lines is font-dependent; 192–195px is an estimate. Also, whether the extra whitespace in the non-title columns of r0C is merely inelegant or actually bad is a judgment call."
+ },
+ "reviews": [
+  {
+   "order": [
+    "r0A",
+    "r0C",
+    "r0B",
+    "ref_auto",
+    "ref_equal"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "excellent",
+     "why": "Title receives the remaining width and wraps to at most two lines, while ID, Severity, Assignee, Status and Updated all stay on one line. Rows stay compact and easy to scan."
+    },
+    "B": {
+     "grade": "good",
+     "why": "The short fields remain intact, but Title is narrower than needed, forcing BUG-2035 onto three lines and making row heights less even."
+    },
+    "C": {
+     "grade": "acceptable",
+     "why": "Title is generously sized, but Status is squeezed so In progress breaks over two lines, hurting quick categorical scanning."
+    },
+    "D": {
+     "grade": "poor",
+     "why": "ID and Updated are too narrow: identifiers split as BUG- and 2041, dates split as 2024-06- and 02, and Status also wraps. Atomic values are broken."
+    },
+    "E": {
+     "grade": "bad",
+     "why": "Title is drastically under-allocated, producing four- and five-line titles while the short columns have surplus width. The table becomes tall and hard to scan."
+    }
+   },
+   "best": [
+    "A"
+   ],
+   "confidence": "high",
+   "unsure": "Exact pixel widths are hard to judge from the render, but the wrapping and broken-value effects are clear."
+  },
+  {
+   "order": [
+    "ref_auto",
+    "r0A",
+    "r0B",
+    "ref_equal",
+    "r0C"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "poor",
+     "why": "ID breaks mid-token (BUG- / 2041) and dates split across three lines (2024-06- / 02); Status wraps too. Identifiers and dates are the most scannable fields here and both are destroyed, rows become ragged and tall."
+    },
+    "B": {
+     "grade": "excellent",
+     "why": "All short fields (ID, Severity, Assignee, Status, Updated) stay on one line, dates intact; Title gets the remaining width and wraps cleanly at word boundaries into two lines. Column roles are clear and rhythm is even."
+    },
+    "C": {
+     "grade": "good",
+     "why": "Very close to B: IDs and dates intact, Title comfortable. Only flaw is Status wrapping to two lines ('In / progress') in a few rows, which slightly jitters row heights."
+    },
+    "D": {
+     "grade": "bad",
+     "why": "Title is squeezed to a narrow column and breaks into four to six lines per row, including 'long- / running' hyphen splits; other columns carry lots of dead space while the primary descriptive field is strangled. Rows no longer read as units."
+    },
+    "E": {
+     "grade": "good",
+     "why": "ID, dates and status all intact on single lines; Title narrow enough to wrap into two or three lines. Slightly less generous to Title than B, giving some rows an extra line, but nothing breaks awkwardly."
+    }
+   },
+   "best": [
+    "B"
+   ],
+   "confidence": "high",
+   "unsure": "Whether C or E should rank above the other is marginal; both are near B, differing only in how often Status or Title takes an extra line."
+  }
+ ]
+}

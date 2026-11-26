@@ -1,0 +1,23 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Business software subscription pricing (language en).\nGrid: 6 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"Plan\" spans 1 col × 2 row; \"Price\" spans 2 col × 1 row; \"Minimum seats\" spans 1 col × 2 row; \"Contract\" spans 1 col × 2 row; \"Support\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Plan\" · longest unbreakable word 75px · one-line width 75px\n  col 2: header \"Price › List price\" · longest unbreakable word 37px · one-line width 67px\n  col 3: header \"Price › Billing terms\" · longest unbreakable word 86px · one-line width 490px\n  col 4: header \"Minimum seats\" · longest unbreakable word 66px · one-line width 109px\n  col 5: header \"Contract\" · longest unbreakable word 63px · one-line width 123px\n  col 6: header \"Support\" · longest unbreakable word 79px · one-line width 195px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 707px (the dashed pink box). The column widths you choose must sum to at most 706px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 112573,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"Billing terms is the longest content but gets a narrow column, wrapping into 5–7 lines and making rows very tall; Support is over-wide with dead space, so proportions and scanning rhythm fail.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"Billing terms is generously wide and rows stay compact, but the 'List price' header wraps awkwardly and Support is squeezed narrower than Contract despite longer text.\"},\"C\":{\"grade\":\"good\",\"why\":\"Billing terms gets the dominant share and headers mostly fit, but Support is narrower than Contract and wraps into three-line stacks, slightly weakening comparison.\"},\"D\":{\"grade\":\"excellent\",\"why\":\"Best balance: Billing terms remains clearly widest, Support is wider than Contract and wraps less, List price header fits, and the shorter columns stay proportionate.\"},\"E\":{\"grade\":\"good\",\"why\":\"Very close to the best: Billing terms is well served, but Support remains slightly narrower than Contract and some support cells still stack into three lines.\"},\"F\":{\"grade\":\"poor\",\"why\":\"Billing terms is starved while List price, Contract and Support are over-wide, producing excessive wrapping and tall, uneven rows.\"}},\"best\":[\"D\"],\"confidence\":\"medium\",\"unsure\":\"C, D and E are close and exact rendered widths are hard to measure; the choice depends on whether Billing terms width or reduced Support wrapping matters more.\"}\n"
+  }
+ ]
+}

@@ -1,0 +1,23 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: دورات تدريبية معتمدة (language ar, right-to-left: column 1 is on the RIGHT).\nGrid: 5 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"اسم الدورة\" · longest unbreakable word 67px · one-line width 250px\n  col 2: header \"المدة\" · longest unbreakable word 50px · one-line width 168px\n  col 3: header \"المدرب\" · longest unbreakable word 55px · one-line width 105px\n  col 4: header \"الوصف\" · longest unbreakable word 73px · one-line width 1420px\n  col 5: header \"الرسوم\" · longest unbreakable word 43px · one-line width 70px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 26305,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Balanced RTL layout: course titles and fees stay readable, but the description is slightly tight and the duration breaks into three short lines.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"Description gets generous width, but the fee column is too narrow: currency symbols wrap onto separate lines from amounts, disrupting numeric scanning.\"},\"C\":{\"grade\":\"excellent\",\"why\":\"Best overall balance: description is wide enough for efficient reading, course titles wrap cleanly, fees stay on one line, and no column looks wasteful.\"},\"D\":{\"grade\":\"good\",\"why\":\"Clean and readable with intact fees; the trainer column is a little over-wide at the expense of the description, but rows still scan well.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"Description remains usable, but the course-name column is too narrow, breaking titles into three lines and making the table unnecessarily tall.\"},\"F\":{\"grade\":\"bad\",\"why\":\"Description is squeezed into a narrow vertical strip while the trainer column is over-wide and mostly empty, producing tall rows and destroying scan rhythm.\"}},\"best\":[\"C\"],\"confidence\":\"medium\",\"unsure\":\"Exact pixel widths are estimated visually; C and D are close, and the main judgement hinges on whether the duration column’s extra line breaks matter more than description width.\"}\n"
+  }
+ ]
+}

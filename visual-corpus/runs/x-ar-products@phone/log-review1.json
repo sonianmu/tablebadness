@@ -1,0 +1,23 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: العربية · المنتجات (language ar, right-to-left: column 1 is on the RIGHT).\nGrid: 4 columns × 5 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"المنتج\" · longest unbreakable word 50px · one-line width 97px\n  col 2: header \"السعر\" · longest unbreakable word 40px · one-line width 70px\n  col 3: header \"المخزون\" · longest unbreakable word 53px · one-line width 53px\n  col 4: header \"الوصف\" · longest unbreakable word 57px · one-line width 445px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 23453,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"الوصف مضغوط إلى أضيق عمود تقريبًا فيلتفّ إلى سبعة أسطر وتتضخم كل صف (الجدول يبلغ ضعف ارتفاع غيره)، والسعر ينكسر إلى '3,200' ثم 'ر.س'، بينما عمود المخزون يأخذ عرضًا لا يحتاجه.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"الوصف حصل على عرض معقول (أربعة أسطر) لكن عمود السعر ضيّق جدًا فينكسر المبلغ والعملة في كل صف، وعمود المنتج مزدحم فيلتف الاسم مرتين، فتضيع مقارنة الأسعار عموديًا.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"السعر يبقى في سطر واحد (ميزة واضحة)، لكن الوصف عاد مضغوطًا إلى سبعة أسطر فطالت الصفوف بلا داعٍ؛ توزيع غير متوازن يرجّح عمودًا قصيرًا على حساب العمود النصي الطويل.\"},\"D\":{\"grade\":\"excellent\",\"why\":\"الوصف يأخذ النصيب الأكبر بوضوح (خمسة أسطر متوازنة)، والسعر '3,200 ر.س' في سطر واحد فتُقارن الأرقام رأسيًا بسهولة، والمخزون والمنتج بعرض كافٍ دون هدر؛ إيقاع الصفوف منتظم والجدول أقصر من C مع سلامة العمود الرقمي.\"},\"E\":{\"grade\":\"good\",\"why\":\"الوصف هو الأوسع فتقصر الصفوف إلى أربعة أسطر والجدول متماسك، لكن عمود السعر ضُيّق إلى حد يكسر المبلغ عن العملة في كل صف، وهو ثمن مبالغ فيه مقابل سطر واحد موفّر.\"},\"F\":{\"grade\":\"good\",\"why\":\"قريب من E: وصف واسع وصفوف قصيرة، لكن السعر مكسور '450' ثم 'ر.س' وعمود المنتج ضيق قليلًا، فيفقد الجدول سهولة المسح السريع للأرقام.\"}},\"best\":[\"D\"],\"confidence\":\"medium\",\"unsure\":\"لا أستطيع قياس العروض بالبكسل بدقة من الصور؛ الفروق بين B وE وF وبين C وD طفيفة، وقد يتغيّر الترتيب لو كان كسر السعر إلى سطرين مقبولًا تحريريًا في هذا السياق.\"}\n"
+  }
+ ]
+}

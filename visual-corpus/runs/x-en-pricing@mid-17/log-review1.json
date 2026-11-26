@@ -1,0 +1,23 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: EN · Plan comparison (language en).\nGrid: 5 columns × 6 rows. Row headers: none declared.\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"Feature\" · longest unbreakable word 63px · one-line width 93px\n  col 2: header \"Free\" · longest unbreakable word 88px · one-line width 88px\n  col 3: header \"Pro\" · longest unbreakable word 73px · one-line width 73px\n  col 4: header \"Enterprise\" · longest unbreakable word 83px · one-line width 255px\n  col 5: header \"Notes\" · longest unbreakable word 81px · one-line width 465px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 643px (the dashed pink box). The column widths you choose must sum to at most 642px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 43456,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"All words stay intact, but Notes is starved into 5–7 lines while Free and Pro carry excess width, making rows unnecessarily tall and uneven.\"},\"B\":{\"grade\":\"good\",\"why\":\"Clean and readable: headers and values stay intact, Notes wraps to 3–4 lines, and column proportions are sensible, though Notes is slightly tighter than in D.\"},\"C\":{\"grade\":\"bad\",\"why\":\"Pro is too narrow, breaking “Unlimited” into “Unlimite d,” and Free breaks “Community”; mid-word breaks make the table look broken.\"},\"D\":{\"grade\":\"excellent\",\"why\":\"Balanced and publication-ready: Feature and all headers fit comfortably, no words break, and Notes has enough width to stay compact in 3 lines.\"},\"E\":{\"grade\":\"good\",\"why\":\"Very close to D: no broken words and compact Notes, but the Enterprise header is squeezed with almost no side breathing room.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"Notes is generously wide, but Feature is squeezed so “SSO / SAML” wraps and the Feature header is tight; the extra Notes width does not reduce line count.\"}},\"best\":[\"D\"],\"confidence\":\"high\",\"unsure\":\"Pixel widths are inferred from the screenshots; D and E are very close, and reasonable viewers might prefer E's wider Notes despite its tighter Enterprise header.\"}\n"
+  }
+ ]
+}

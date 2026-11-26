@@ -1,0 +1,4076 @@
+{
+ "id": "x-en-api@desktop",
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "Gives Description the most room (216px), keeps the table shortest at 438px, preserves all endpoint paths and short values intact, and avoids mid-word splits.",
+     "problems": "The Rate limit header wraps to two lines, making the header band 60px instead of 36px and visually heavier than the other headers. The longest endpoint has zero horizontal slack.",
+     "cause": "Rate limit is 78px, leaving 57px of text: enough for the longest word but not the 68px one-line header. Endpoint is 282px, exactly 261px of text plus 21px padding."
+    },
+    {
+     "design": "r0B",
+     "good": "All headers stay on one line, the endpoint has breathing room, and no tokens split mid-word.",
+     "problems": "Descriptions become 5-line blocks; the table grows to 485px, 47px taller than r0A. Short metadata columns gain large empty vertical gaps, so rows feel bloated.",
+     "cause": "Endpoint is 300px, wasting 18px beyond the 282px minimum, and Rate limit is 89px. Description falls to 187px, leaving only 166px of text, below the width needed for 4-line descriptions."
+    },
+    {
+     "design": "r0C",
+     "good": "All headers are one line, the short metadata columns are visually calm, and no identifiers or values split mid-word.",
+     "problems": "The table is 508px tall, the first description needs 6 lines, and Description reads as a narrow ribbon. Method, Auth, and Rate limit have excessive white space.",
+     "cause": "Method 90px, Auth 80px, and Rate limit 95px exceed their minima by 14px, 13px, and 6px. Description is only 172px, leaving 151px of text."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "The metadata block (Method/Auth/Rate limit at 76/67/89) is exactly right: each column is at its true one-line minimum, so 'DELETE', 'Bearer', '600/min' and all five headers sit on one line with no wasted width. The endpoint column is comfortably wider than the prose column, which correctly signals that paths are the row anchor. No mid-word splits anywhere, and rows still read as units.",
+     "problems": "Two visible faults. (1) The longest path '/api/v1/exports/{jobId}/download' overruns the Endpoint column rule and bleeds toward the Method cell — the row identifier literally crosses into the control-metadata block, which is the one thing that must never happen in an API table. (2) Description at 205px (184px of text) is far too narrow for prose: it breaks into 4–5 lines of ~24 characters, which is below a comfortable reading measure and inflates rows 1, 2 and 4 to 106px. The result is a tall, airy table whose Endpoint cells (rows 1–3) are 80% empty white space while the prose beside them is crushed.",
+     "cause": "Column 1 was set to 282 = 261 (the path) + 21 (cell padding) with zero slack, ignoring the inline-code chip padding that the endpoint values are rendered with, so the longest path overflows its box by roughly the chip padding and collides with the Method rule. Column 5 absorbed the remainder (205) and is the only column asked to hold multi-word text, so it is the one that suffers."
+    },
+    {
+     "design": "r1B",
+     "good": "Same correct, tight metadata block as r1A; the 2px shift (Endpoint 284, Description 203) keeps every header on one line and every value intact. Row rhythm and cell alignment are clean and consistent.",
+     "problems": "Identical failure modes to r1A, and the 2px difference is imperceptible — this is not a refinement, it is the same design. The endpoint path still crosses the divider, and Description is still a ~24-character column producing 4–5 line paragraphs inside 106px rows. The long path in row 4 also sits alone with a large empty block beneath it, exaggerating the table's height.",
+     "cause": "Same root cause: Endpoint 284 leaves only 263px of content for a path plus chip padding (overflow), and Description 203 leaves 182px of text, far under the width prose needs; the two columns are fighting over ~20px that cannot fix either problem."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "All five headers stay on one line, no mid-word splits, and Method/Auth/Rate limit sit as a compact, evenly spaced control block. Rows are clearly delimited.",
+     "problems": "The Endpoint column carries a visible dead gutter: in the three short-path rows the path ends around x≈250 while the column edge is at ≈300, so the eye must jump a wide empty band to reach Method, weakening the row as a unit. Description is the narrowest of the three (166px of text) and every row breaks into 5 ragged, short lines ('Returns the public / profile of a user,'), including row 3 which does not need 5 lines.",
+     "cause": "Endpoint 300px is ~18px more than the 282px the longest path (/api/v1/exports/{jobId}/download, 261px) actually requires; that surplus plus Rate limit 89px is taken straight out of Description at 187px."
+    },
+    {
+     "design": "r2B",
+     "good": "Most promising: shortest table (461px) and the only one where row 3 compresses to 4 lines (106px), because Description at 193 is the widest here. Endpoint paths remain intact, all headers single-line, no splits.",
+     "problems": "Still leaves ~12px of unused slack in the Endpoint column, so the gutter problem is only partly solved. Description at 172px of text still forces 5 lines on rows 1, 2 and 4, and row 4 still breaks at the hyphen ('gzip- / compressed'). The row rhythm is slightly uneven (106 vs 129) but that is an acceptable, content-driven effect.",
+     "cause": "Endpoint 294 exceeds the 282 minimum, and the whole control block (76+67+89) is already at its natural single-line minimum, so Description is capped at 193 when it could reach ~205."
+    },
+    {
+     "design": "r2C",
+     "good": "Still safe: no splits, no wrapped headers, and Method/Auth/Rate limit read cleanly as a block.",
+     "problems": "Worst balance of the three. The Endpoint column is the widest (308) and therefore the emptiest, making the gap between path and Method the most pronounced. Description is squeezed to 158px of text — the most ragged column, back to 5 lines even for the short session row — and the table returns to 485px tall. Description, the column people actually read, is visually subordinate to whitespace.",
+     "cause": "Endpoint 308 is 26px beyond what the longest path needs; every one of those pixels is stolen from Description (179), which is the only column with real prose."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A",
+    "r3B",
+    "r3C"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    282,
+    76,
+    67,
+    78,
+    216
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 720,
+    "tableHeight": 438,
+    "overflow": 0,
+    "colWidths": [
+     282,
+     76,
+     67,
+     78,
+     216
+    ],
+    "rowHeights": [
+     59.5,
+     106,
+     106,
+     59.5,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Endpoint",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Method",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Auth",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Rate limit",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Description",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users/{id}",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "600/min",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Returns the public profile of a user, including display name",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "POST",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Admin",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "60/min",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Creates a new user. Email addresses must be verified before ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/sessions",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "DELETE",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "120/min",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Revokes the current session token.",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/exports/{jobId}/download",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10/min",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Streams a finished export as a gzip-compressed CSV file; ret",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 261,
+      "natural": 261,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 55,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 85,
+      "natural": 670,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r0A.png",
+   "idea": "Description-first: keep every endpoint path on one line at its exact minimum, compress the control columns, let the Rate limit header wrap, and give all remaining width to prose.",
+   "notes": []
+  },
+  "r0B": {
+   "widths": [
+    300,
+    76,
+    67,
+    89,
+    187
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 720,
+    "tableHeight": 484.5,
+    "overflow": 0,
+    "colWidths": [
+     300,
+     76,
+     67,
+     89,
+     187
+    ],
+    "rowHeights": [
+     36.3,
+     129.3,
+     129.3,
+     59.5,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Endpoint",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Method",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Auth",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Rate limit",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Description",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users/{id}",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "600/min",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Returns the public profile of a user, including display name",
+      "lines": 5
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "POST",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Admin",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "60/min",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Creates a new user. Email addresses must be verified before ",
+      "lines": 5
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/sessions",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "DELETE",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "120/min",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Revokes the current session token.",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/exports/{jobId}/download",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10/min",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Streams a finished export as a gzip-compressed CSV file; ret",
+      "lines": 5
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 1,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 261,
+      "natural": 261,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 55,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 85,
+      "natural": 670,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r0B.png",
+   "idea": "Balanced/header-clean: add breathing room to the endpoint column and keep every header on one line, accepting a somewhat narrower description column.",
+   "notes": []
+  },
+  "r0C": {
+   "widths": [
+    282,
+    90,
+    80,
+    95,
+    172
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 720,
+    "tableHeight": 507.8,
+    "overflow": 0,
+    "colWidths": [
+     282,
+     90,
+     80,
+     95,
+     172
+    ],
+    "rowHeights": [
+     36.3,
+     152.5,
+     129.3,
+     59.5,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Endpoint",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Method",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Auth",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Rate limit",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Description",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users/{id}",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "600/min",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Returns the public profile of a user, including display name",
+      "lines": 6
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "POST",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Admin",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "60/min",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Creates a new user. Email addresses must be verified before ",
+      "lines": 5
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/sessions",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "DELETE",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "120/min",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Revokes the current session token.",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/exports/{jobId}/download",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10/min",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Streams a finished export as a gzip-compressed CSV file; ret",
+      "lines": 5
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 1,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 261,
+      "natural": 261,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 55,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 85,
+      "natural": 670,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r0C.png",
+   "idea": "Control-first: keep endpoints intact but give Method, Auth, and Rate limit comfortable, clearly separated columns; the description wraps more and rows grow taller.",
+   "notes": []
+  },
+  "r1A": {
+   "widths": [
+    282,
+    76,
+    67,
+    89,
+    205
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 720,
+    "tableHeight": 414.8,
+    "overflow": 0,
+    "colWidths": [
+     282,
+     76,
+     67,
+     89,
+     205
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     59.5,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Endpoint",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Method",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Auth",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Rate limit",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Description",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users/{id}",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "600/min",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Returns the public profile of a user, including display name",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "POST",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Admin",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "60/min",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Creates a new user. Email addresses must be verified before ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/sessions",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "DELETE",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "120/min",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Revokes the current session token.",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/exports/{jobId}/download",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10/min",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Streams a finished export as a gzip-compressed CSV file; ret",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 261,
+      "natural": 261,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 55,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 85,
+      "natural": 670,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r1A.png",
+   "idea": "Pin Endpoint, Method, and Auth to their minima; widen Rate limit to 89px so its header stays on one line; give the remaining 205px to Description. This removes r0A's 24px wrapped-header cost while keeping description lines near 4 lines.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    284,
+    76,
+    67,
+    89,
+    203
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 720,
+    "tableHeight": 414.8,
+    "overflow": 0,
+    "colWidths": [
+     284,
+     76,
+     67,
+     89,
+     203
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     59.5,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Endpoint",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Method",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Auth",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Rate limit",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Description",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users/{id}",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "600/min",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Returns the public profile of a user, including display name",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "POST",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Admin",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "60/min",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Creates a new user. Email addresses must be verified before ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/sessions",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "DELETE",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "120/min",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Revokes the current session token.",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/exports/{jobId}/download",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10/min",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Streams a finished export as a gzip-compressed CSV file; ret",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 261,
+      "natural": 261,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 55,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 85,
+      "natural": 670,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r1B.png",
+   "idea": "Use the same one-line-header structure, but add 2px of slack to Endpoint so /api/v1/exports/{jobId}/download cannot sit flush against the cell edge. Description loses only 2px, which should not change its line breaks.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    300,
+    76,
+    67,
+    89,
+    187
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 720,
+    "tableHeight": 484.5,
+    "overflow": 0,
+    "colWidths": [
+     300,
+     76,
+     67,
+     89,
+     187
+    ],
+    "rowHeights": [
+     36.3,
+     129.3,
+     129.3,
+     59.5,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Endpoint",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Method",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Auth",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Rate limit",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Description",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users/{id}",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "600/min",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Returns the public profile of a user, including display name",
+      "lines": 5
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "POST",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Admin",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "60/min",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Creates a new user. Email addresses must be verified before ",
+      "lines": 5
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/sessions",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "DELETE",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "120/min",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Revokes the current session token.",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/exports/{jobId}/download",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10/min",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Streams a finished export as a gzip-compressed CSV file; ret",
+      "lines": 5
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 1,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 261,
+      "natural": 261,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 55,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 85,
+      "natural": 670,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r2A.png",
+   "idea": "Give Endpoint 18px more (300 = 279px content) so the longest path plus its inline-code chip padding clears the Method rule with a few pixels to spare — fixing the collision, the single most damaging defect in both renders. Method/Auth/Rate limit stay at their proven one-line minima (76/67/89). Description takes the remainder at 187; slightly narrower than before, but the trade is worth it because a path that crosses a column rule destroys row identity, whereas one extra line of prose does not.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    294,
+    76,
+    67,
+    89,
+    193
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 720,
+    "tableHeight": 461.3,
+    "overflow": 0,
+    "colWidths": [
+     294,
+     76,
+     67,
+     89,
+     193
+    ],
+    "rowHeights": [
+     36.3,
+     129.3,
+     106,
+     59.5,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Endpoint",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Method",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Auth",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Rate limit",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Description",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users/{id}",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "600/min",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Returns the public profile of a user, including display name",
+      "lines": 5
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "POST",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Admin",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "60/min",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Creates a new user. Email addresses must be verified before ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/sessions",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "DELETE",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "120/min",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Revokes the current session token.",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/exports/{jobId}/download",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10/min",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Streams a finished export as a gzip-compressed CSV file; ret",
+      "lines": 5
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 1,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 261,
+      "natural": 261,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 55,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 85,
+      "natural": 670,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r2B.png",
+   "idea": "Take the most conservative endpoint width that still clears the chip padding (294 → 273px content, ~12px of slack over the 261px path) and hand every remaining pixel to Description (193). This is the best reading measure the table can afford while keeping all metadata columns on one line; it minimizes prose line count and therefore row height. Slight risk that the chip crowds the divider, so it is the fallback rather than the primary.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2C": {
+   "widths": [
+    308,
+    76,
+    67,
+    89,
+    179
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 720,
+    "tableHeight": 484.5,
+    "overflow": 0,
+    "colWidths": [
+     308,
+     76,
+     67,
+     89,
+     179
+    ],
+    "rowHeights": [
+     36.3,
+     129.3,
+     129.3,
+     59.5,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Endpoint",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Method",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Auth",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Rate limit",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Description",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users/{id}",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "600/min",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Returns the public profile of a user, including display name",
+      "lines": 5
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "POST",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Admin",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "60/min",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Creates a new user. Email addresses must be verified before ",
+      "lines": 5
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/sessions",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "DELETE",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "120/min",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Revokes the current session token.",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/exports/{jobId}/download",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10/min",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Streams a finished export as a gzip-compressed CSV file; ret",
+      "lines": 5
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 1,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 261,
+      "natural": 261,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 55,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 85,
+      "natural": 670,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r2C.png",
+   "idea": "A deliberately endpoint-weighted option: 308 gives the path 287px of content, so even if the code chip renders wider than expected the identifier can never touch the Method rule, and all four endpoint cells read as clean single-line chips. Description drops to 179 (158px of text) and will run to five or six lines, so this is the option to choose if the table's job is path lookup first and prose second; it trades row height for absolute integrity of the identifiers.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    286,
+    76,
+    67,
+    89,
+    201
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 720,
+    "tableHeight": 438,
+    "overflow": 0,
+    "colWidths": [
+     286,
+     76,
+     67,
+     89,
+     201
+    ],
+    "rowHeights": [
+     36.3,
+     129.3,
+     106,
+     59.5,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Endpoint",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Method",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Auth",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Rate limit",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Description",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users/{id}",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "600/min",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Returns the public profile of a user, including display name",
+      "lines": 5
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "POST",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Admin",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "60/min",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Creates a new user. Email addresses must be verified before ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/sessions",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "DELETE",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "120/min",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Revokes the current session token.",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/exports/{jobId}/download",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10/min",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Streams a finished export as a gzip-compressed CSV file; ret",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 261,
+      "natural": 261,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 55,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 85,
+      "natural": 670,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r3A.png",
+   "idea": "Pull Endpoint from ~300 down to 286 — just 4px of slack over the 261px longest path — so the path visually fills its cell and the dead gutter before Method disappears, letting rows read left-to-right as units. All freed width goes to Description (201, i.e. 180px of text, its maximum while keeping every header on one line). Method/Auth/Rate limit stay at their natural single-line minimums, so nothing wraps or splits.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3B": {
+   "widths": [
+    284,
+    76,
+    67,
+    78,
+    214
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 720,
+    "tableHeight": 438,
+    "overflow": 0,
+    "colWidths": [
+     284,
+     76,
+     67,
+     78,
+     214
+    ],
+    "rowHeights": [
+     59.5,
+     106,
+     106,
+     59.5,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Endpoint",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Method",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Auth",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Rate limit",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Description",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users/{id}",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "600/min",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Returns the public profile of a user, including display name",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "POST",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Admin",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "60/min",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Creates a new user. Email addresses must be verified before ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/sessions",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "DELETE",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "120/min",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Revokes the current session token.",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/exports/{jobId}/download",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10/min",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Streams a finished export as a gzip-compressed CSV file; ret",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 261,
+      "natural": 261,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 55,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 85,
+      "natural": 670,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r3B.png",
+   "idea": "Trade one header break for prose measure: let the 'Rate limit' header wrap to two words at 78px (its longest word 'limit' is 57px, and all rate values still fit on one line), freeing 11px for Description at 214 (193px of text). Combined with the snug 284px Endpoint, this is the widest description measure achievable, giving the prose the longest lines and the least ragged right edge. The two-line header is confined to the header row, so no data cell is affected.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3C": {
+   "widths": [
+    294,
+    76,
+    67,
+    78,
+    204
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 720,
+    "tableHeight": 438,
+    "overflow": 0,
+    "colWidths": [
+     294,
+     76,
+     67,
+     78,
+     204
+    ],
+    "rowHeights": [
+     59.5,
+     106,
+     106,
+     59.5,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Endpoint",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Method",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Auth",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Rate limit",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Description",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users/{id}",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "600/min",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Returns the public profile of a user, including display name",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "POST",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Admin",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "60/min",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Creates a new user. Email addresses must be verified before ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/sessions",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "DELETE",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "120/min",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Revokes the current session token.",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/exports/{jobId}/download",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10/min",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Streams a finished export as a gzip-compressed CSV file; ret",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 261,
+      "natural": 261,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 55,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 85,
+      "natural": 670,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r3C.png",
+   "idea": "Refinement of r2B: keep its comfortable 294px Endpoint (no risk of the long path touching the cell edge) but recover the wasted Rate limit width by allowing that one header to wrap, pushing Description from 193 to 204. This tests whether the extra 11px of prose measure is worth the single wrapped header, while leaving the proven r2B endpoint/method rhythm untouched.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "ref_auto": {
+   "widths": [
+    281.1,
+    75.8,
+    66.1,
+    79.8,
+    216.1
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 720,
+    "tableHeight": 438,
+    "overflow": 0,
+    "colWidths": [
+     281.1,
+     75.8,
+     66.1,
+     79.8,
+     216.1
+    ],
+    "rowHeights": [
+     59.5,
+     106,
+     106,
+     59.5,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Endpoint",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Method",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Auth",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Rate limit",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Description",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users/{id}",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "600/min",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Returns the public profile of a user, including display name",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "POST",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Admin",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "60/min",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Creates a new user. Email addresses must be verified before ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/sessions",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "DELETE",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "120/min",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Revokes the current session token.",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/exports/{jobId}/download",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10/min",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Streams a finished export as a gzip-compressed CSV file; ret",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 261,
+      "natural": 261,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 55,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 85,
+      "natural": 670,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    143,
+    143,
+    143,
+    143,
+    143
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 716,
+    "tableHeight": 624,
+    "overflow": 0,
+    "colWidths": [
+     143,
+     143,
+     143,
+     143,
+     143
+    ],
+    "rowHeights": [
+     36.3,
+     175.8,
+     152.5,
+     82.8,
+     175.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Endpoint",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Method",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Auth",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Rate limit",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Description",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users/{id}",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "600/min",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Returns the public profile of a user, including display name",
+      "lines": 7
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/users",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "POST",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Admin",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "60/min",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Creates a new user. Email addresses must be verified before ",
+      "lines": 6
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/sessions",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "DELETE",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "120/min",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Revokes the current session token.",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "/api/v1/exports/{jobId}/download",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GET",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bearer",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10/min",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Streams a finished export as a gzip-compressed CSV file; ret",
+      "lines": 7
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 4,
+    "tokenBreaks": 1,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 261,
+      "natural": 261,
+      "padding": 21
+     },
+     {
+      "minContent": 55,
+      "natural": 55,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 85,
+      "natural": 670,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-ref_equal.png"
+  }
+ },
+ "understanding": {
+  "purpose": "An API reference table for scanning REST endpoints and quickly comparing their method, auth requirement, rate limit, and behavior.",
+  "reading": "Readers anchor on the endpoint path, then scan the short Method/Auth/Rate limit control fields, and finally read the Description for behavior. Rows must remain identifiable as units even when descriptions wrap.",
+  "groups": [
+   "Endpoint stands alone as the row identifier.",
+   "Method, Auth, and Rate limit form a compact control-metadata block; they are short categorical values read together.",
+   "Description is explanatory prose and should receive the remaining width for readable line lengths."
+  ],
+  "keep_intact": [
+   "Endpoint paths, especially /api/v1/exports/{jobId}/download",
+   "HTTP methods such as DELETE",
+   "Auth values such as Bearer and Admin",
+   "Rate values such as 600/min",
+   "Description words and identifiers should not be split mid-token"
+  ],
+  "may_wrap": [
+   "Description prose across several lines",
+   "The 'Rate limit' header between words if necessary",
+   "Other short headers only as a last resort"
+  ]
+ },
+ "final": {
+  "preferred": [
+   "r1A",
+   "r1B"
+  ],
+  "acceptable": [
+   "r3A",
+   "r3B",
+   "r3C",
+   "r2B"
+  ],
+  "bad": [
+   {
+    "design": "r2A",
+    "why": "Endpoint has 18px of unused content width beyond the longest path while Description is squeezed to 187px, forcing five-line descriptions in three rows and a 485px table; the extra endpoint space is visibly idle."
+   },
+   {
+    "design": "r2C",
+    "why": "This is the most over-allocated endpoint column (26px of unused content width) and the narrowest Description (179px), so descriptions run to five lines and the table grows to 485px for no identifier benefit."
+   }
+  ],
+  "contrast": null,
+  "ranges": [
+   [
+    282,
+    284
+   ],
+   [
+    76,
+    78
+   ],
+   [
+    67,
+    69
+   ],
+   [
+    89,
+    91
+   ],
+   [
+    203,
+    205
+   ]
+  ],
+  "rationale": "The endpoint paths are unbreakable row keys, so they must stay on one line; once Endpoint reaches about 282px, additional width there buys nothing and only steals from Description. Method, Auth and Rate limit are short categorical columns that should be just wide enough for their headers, with Rate limit at 89px or more so its two-word header stays on one line. Description should get the remaining width down to about 203px, which keeps the longest descriptions at four lines; r1A and r1B are effectively the same solution, differing only in whether the last 2px go to Endpoint or Description.",
+  "principles": {
+   "general": [
+    "Allocate width by each column's role and minimum content, not by symmetry: hard-to-break identifiers need a firm minimum, short categorical columns need only header width, and prose gets the remainder.",
+    "Do not give slack to a column that already fits at the expense of the column that determines row height; small changes in the prose column can add a whole line and inflate the table.",
+    "A single-line header row is worth protecting, but a two-line header can be an acceptable tradeoff if it materially improves the main prose column."
+   ],
+   "specific": [
+    "Endpoint needs roughly 282–284px (261px content plus padding) to keep every API path on one line.",
+    "Rate limit needs at least 89px to keep its header on one line; at 78px it wraps to 'Rate / limit'.",
+    "Description needs at least about 203px to keep the longest descriptions at four lines; at 201px the first row gains a fifth line.",
+    "r2A and r2C over-widen Endpoint to 300/308px while starving Description to 187/179px, producing five-line rows and a 485px table."
+   ]
+  },
+  "tradeoffs": "r3B/r3C trade a wrapped 'Rate limit' header for a wider Description; some designers would accept that because the prose line breaks improve, while others would keep the header row clean. r2B is a middle ground with a little endpoint breathing room and slightly taller rows.",
+  "uncertain": "Whether the extra prose width in r3B/r3C is worth the wrapped header, and whether 2px of endpoint slack in r1B is worth 2px less Description. The exact 203px Description threshold is renderer-dependent, so the boundary could shift by a pixel or two."
+ },
+ "reviews": [
+  {
+   "order": [
+    "r1A",
+    "r3A",
+    "r3B",
+    "r2A",
+    "ref_auto",
+    "ref_equal"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "good",
+     "why": "Endpoint column is roomy enough to keep every path on one line, but it holds more width than the 261px longest path needs, so Description is squeezed to ~5 short lines per row and rows get tall."
+    },
+    "B": {
+     "grade": "good",
+     "why": "Nearly identical to A: clean single-line endpoints and tidy numeric columns, but Description is the narrowest of the wide-endpoint variants, forcing 5–6 ragged lines and making rows read as tall blocks."
+    },
+    "C": {
+     "grade": "excellent",
+     "why": "Endpoint is trimmed to just fit the longest path (/api/v1/exports/{jobId}/download) on one line, giving Description the most remaining width; descriptions wrap in 4 calm lines and the small Method/Auth/Rate columns stay compact. Only cost is the 'Rate limit' header breaking over two lines."
+    },
+    "D": {
+     "grade": "acceptable",
+     "why": "Endpoint keeps slack (empty space after short paths) while Description is the narrowest of the non-broken variants, wrapping to 6 narrow lines per row; the balance is inverted from what the content needs."
+    },
+    "E": {
+     "grade": "excellent",
+     "why": "Like C, endpoints stay intact on one line and Description gets the widest share, so prose wraps in ~4 lines; 'Rate limit' header wraps, but the body columns read well and rate values remain aligned."
+    },
+    "F": {
+     "grade": "bad",
+     "why": "Endpoint is far too narrow: identifiers break mid-token ('/api/v1/users/{ / id}', '/api/v1/session s', '/api/v1/exports /{jobId}/downlo ad'), which destroys scannability of the key column, and Description is also cramped into 6–7 lines."
+    }
+   },
+   "best": [
+    "C",
+    "E"
+   ],
+   "confidence": "medium",
+   "unsure": "Exact column pixel widths are estimated from the renders; A vs B and C vs E differ only marginally, and I am unsure how much to penalise the two-line 'Rate limit' header versus a slightly narrower Description."
+  },
+  {
+   "order": [
+    "r3B",
+    "ref_auto",
+    "r1A",
+    "r2A",
+    "ref_equal",
+    "r3A"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "good",
+     "why": "Endpoint identifiers stay on one line and the description reads in four comfortable lines, but the Rate limit header is squeezed into two lines, making the header row uneven, and the description column is a touch tight."
+    },
+    "B": {
+     "grade": "good",
+     "why": "Same solid structure as A with a slightly wider description (row 4 fits an extra word), but the Rate limit header still breaks across two lines, which weakens the header band."
+    },
+    "C": {
+     "grade": "excellent",
+     "why": "Balanced proportions: Endpoint intact, Rate limit on a single header line, description wide enough for four lines per row; short Method/Auth columns carry only modest dead space."
+    },
+    "D": {
+     "grade": "acceptable",
+     "why": "Width is concentrated in Endpoint while the description is the narrowest of the intact layouts, forcing five to six lines per row and visibly taller rows; the imbalance hurts scanning."
+    },
+    "E": {
+     "grade": "bad",
+     "why": "The Endpoint column is far too narrow, splitting unbreakable path identifiers mid-token ('/api/v1/session s', '/{jobId}/downlo ad'), and the description is also cramped—identifiers must never break."
+    },
+    "F": {
+     "grade": "excellent",
+     "why": "Cleanest overall: one-line Rate limit header, endpoints intact, description wide enough for four balanced lines, and a calm rhythm across the narrow Method/Auth/Rate columns."
+    }
+   },
+   "best": [
+    "F",
+    "C"
+   ],
+   "confidence": "medium",
+   "unsure": "Exact pixel widths of A/B/C/F are hard to distinguish visually and differ only marginally; whether the two-line 'Rate limit' header in A/B is a deliberate trade-off or just a side effect of width allocation is unclear."
+  }
+ ]
+}

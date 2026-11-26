@@ -1,0 +1,23 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: מערכת שעות כיתת י'2 – סמסטר א' (language he, right-to-left: column 1 is on the RIGHT).\nGrid: 6 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"ראשון\" spans 1 col × 2 row; \"שני\" spans 1 col × 2 row; \"שלישי\" spans 1 col × 3 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"יום\" · longest unbreakable word 41px · one-line width 41px\n  col 2: header \"שעה\" · longest unbreakable word 48px · one-line width 89px\n  col 3: header \"מקצוע\" · longest unbreakable word 63px · one-line width 63px\n  col 4: header \"מורה\" · longest unbreakable word 42px · one-line width 68px\n  col 5: header \"חדר\" · longest unbreakable word 46px · one-line width 76px\n  col 6: header \"הערות\" · longest unbreakable word 64px · one-line width 700px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 100432,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"bad\",\"why\":\"Every column collapses to a few characters; times, names and notes break letter-by-letter, making the table a tall unreadable strip.\"},\"B\":{\"grade\":\"good\",\"why\":\"Day, hour, subject, teacher and room columns are well proportioned and words stay intact; the long notes column appears off-screen/scrollable, with tall rows but a scannable schedule.\"},\"C\":{\"grade\":\"poor\",\"why\":\"Main columns are readable, but the notes column is crushed to a sliver with a truncated header and clipped/wrapped notes, so one content column is effectively lost.\"},\"D\":{\"grade\":\"bad\",\"why\":\"The notes column is a narrow vertical strip; long notes break one character per line and inflate every row, destroying row scanning.\"},\"E\":{\"grade\":\"poor\",\"why\":\"Similar squeeze: notes header and content are clipped into an unreadable strip; main columns survive but the notes column is unusable.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"The most balanced fit-to-width version: main columns read cleanly, but the notes column is still too narrow and clipped, so it only works if notes are secondary.\"}},\"best\":[\"B\"],\"confidence\":\"medium\",\"unsure\":\"I am inferring that B's notes column is off-screen/scrollable rather than absent; if it is actually a clipped sliver, B would be worse. The exact widths of C/E/F are hard to distinguish visually.\"}\n"
+  }
+ ]
+}

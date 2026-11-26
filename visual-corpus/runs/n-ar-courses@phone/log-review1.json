@@ -1,0 +1,22 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: دورات تدريبية معتمدة (language ar, right-to-left: column 1 is on the RIGHT).\nGrid: 5 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"اسم الدورة\" · longest unbreakable word 67px · one-line width 250px\n  col 2: header \"المدة\" · longest unbreakable word 50px · one-line width 168px\n  col 3: header \"المدرب\" · longest unbreakable word 55px · one-line width 105px\n  col 4: header \"الوصف\" · longest unbreakable word 73px · one-line width 1420px\n  col 5: header \"الرسوم\" · longest unbreakable word 43px · one-line width 70px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 53206,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"bad\",\"why\":\"All five columns are crushed into 360px: the description and course names break into near-character fragments, producing an extremely tall table that cannot be scanned or compared.\"},\"B\":{\"grade\":\"bad\",\"why\":\"Only course name, duration and trainer are visible; description and fees are off-screen, yet the rows are enormous because the hidden description column is very narrow, leaving large blank areas.\"},\"C\":{\"grade\":\"poor\",\"why\":\"All five columns fit, but the description is still over-wrapped and split, rows are extremely tall, and the reading rhythm collapses; it avoids horizontal scroll at the cost of legibility.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"Course name, duration and trainer are legible and well-proportioned, with horizontal scrolling left for description and fees; however the off-screen description is narrow enough to keep rows tall and mostly blank.\"},\"E\":{\"grade\":\"poor\",\"why\":\"Course name, duration and trainer are readable, but the visible description is squeezed into a very narrow column with broken words and fees are off-screen; rows are tall and uneven.\"}},\"best\":[\"D\"],\"confidence\":\"medium\",\"unsure\":\"The off-screen columns in B/D/E are not fully visible, so I inferred their widths from the unusually tall rows and blank space. Exact intended horizontal-scroll behaviour is therefore uncertain.\"}\n"
+  }
+ ]
+}

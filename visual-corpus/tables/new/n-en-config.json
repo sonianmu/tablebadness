@@ -1,0 +1,12 @@
+{
+ "id": "n-en-config",
+ "family": "n-en-config",
+ "lang": "en",
+ "structure": "plain",
+ "brief": "Environment variables: Name (SCREAMING_SNAKE_CASE long names) / Required / Default / Description",
+ "title": "Document ingestion environment variables",
+ "html": "<table><thead><tr><th>Name</th><th>Required</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><th scope=\"row\">DOCUMENT_STORAGE_BUCKET_NAME</th><td>Yes</td><td>None</td><td>Name of the S3-compatible bucket where uploaded source files and derived page images are stored; the bucket must already exist and be in the same region as the worker fleet.</td></tr><tr><th scope=\"row\">DATABASE_CONNECTION_POOL_MAX_SIZE</th><td>No</td><td>20</td><td>Maximum number of PostgreSQL connections each API pod may hold; increase only after confirming the PgBouncer pool has sufficient headroom.</td></tr><tr><th scope=\"row\">OCR_PROCESSING_TIMEOUT_SECONDS</th><td>No</td><td>300</td><td>Wall-clock limit for a single OCR job before the worker marks the attempt as failed and schedules a retry with exponential backoff.</td></tr><tr><th scope=\"row\">JWT_SIGNING_KEY_ROTATION_INTERVAL_HOURS</th><td>No</td><td>168</td><td>Interval between automatic signing-key rotations; retired keys remain accepted for token verification for twice this duration.</td></tr><tr><th scope=\"row\">CORS_ALLOWED_ORIGINS</th><td>No</td><td>https://app.example.com</td><td>Comma-separated list of exact origins permitted to call browser-facing endpoints; wildcard entries are rejected when the service runs in production mode.</td></tr><tr><th scope=\"row\">FEATURE_FLAG_ENABLE_INCREMENTAL_INDEXING</th><td>No</td><td>false</td><td>Enables delta indexing after document updates; when disabled, a full reindex is required before changes appear in search results.</td></tr><tr><th scope=\"row\">SMTP_RELAY_HOSTNAME</th><td>Conditional</td><td>localhost</td><td>Hostname of the outbound mail relay used for invitations and alerts; required when EMAIL_DELIVERY_MODE is set to smtp and ignored when it is set to ses.</td></tr></tbody></table>",
+ "source": "generated",
+ "generator": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "split": "validation"
+}

@@ -1,0 +1,23 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Mixed · Multilingual glossary (language en).\nGrid: 5 columns × 6 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"English\" · longest unbreakable word 76px · one-line width 165px\n  col 2: header \"中文\" · longest unbreakable word 16px · one-line width 62px\n  col 3: header \"日本語\" · longest unbreakable word 16px · one-line width 107px\n  col 4: header \"한국어\" · longest unbreakable word 13px · one-line width 73px\n  col 5: header \"العربية\" · longest unbreakable word 44px · one-line width 112px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 19108,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"English column has real room (\\\"Horizontal scrolling\\\" only two lines) and Arabic wraps at word boundaries, but the header hierarchy is damaged: 日本語 and 한국어 break across lines, and 横向滚动 splits mid-compound.\"},\"B\":{\"grade\":\"poor\",\"why\":\"Every CJK column is squeezed so tight that even two-character headers (中文, 日本語, 한국어) break into stacked single glyphs; each row becomes 3+ lines and no word stays intact. Only English reads comfortably.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"All five headers stay on one line and Arabic is clean, but the price is mid-word breaks in Japanese (横スク/ロール) and Korean (가로 스/크롤), plus a three-line English cell.\"},\"D\":{\"grade\":\"good\",\"why\":\"Headers all intact, English words never split, Arabic breaks only between words, and Korean \\\"가로/스크롤\\\" breaks at the space. Residual flaws: \\\"줄 바/꿈\\\" and 横スク/ロール still split mid-word.\"},\"E\":{\"grade\":\"good\",\"why\":\"Effectively the same allocation as D: one-line headers, intact English words, clean Arabic wrapping, Korean breaking at spaces in the long cell; the same Japanese and 줄 바꿈 mid-word splits remain.\"},\"F\":{\"grade\":\"bad\",\"why\":\"English is starved to fix the CJK columns: the header breaks as \\\"Englis/h\\\" and words shatter (Reada/bility, Horizo/ntal, Colum/n … allocati/on), destroying the leftmost, most-scanned column.\"}},\"best\":[\"D\",\"E\"],\"confidence\":\"medium\",\"unsure\":\"D and E look nearly identical in width; any few-pixel difference is not visible to me, so I cannot rank one above the other. I also cannot tell whether the Korean 줄 바꿈 split could be avoided within the 359px budget without hurting English.\"}\n"
+  }
+ ]
+}

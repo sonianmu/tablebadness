@@ -1,0 +1,21 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: EN · Issue tracker (language en).\nGrid: 6 columns × 7 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"ID\" · longest unbreakable word 39px · one-line width 75px\n  col 2: header \"Title\" · longest unbreakable word 92px · one-line width 394px\n  col 3: header \"Severity\" · longest unbreakable word 59px · one-line width 59px\n  col 4: header \"Assignee\" · longest unbreakable word 66px · one-line width 66px\n  col 5: header \"Status\" · longest unbreakable word 61px · one-line width 77px\n  col 6: header \"Updated\" · longest unbreakable word 62px · one-line width 87px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 31838,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"ID breaks into “BUG-” / “2041,” dates split after “2024-06-,” and “In progress” wraps. Width is spent on secondary columns while atomic identifiers and dates are broken.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"ID and title stay readable, but dates break after the year and “In progress” wraps. Secondary columns are over-wide relative to the cramped date/status fields.\"},\"C\":{\"grade\":\"poor\",\"why\":\"The title is crushed into four or five short lines while other columns sit mostly empty. The primary scanning column is sacrificed, making rows very tall and comparison slow.\"},\"D\":{\"grade\":\"excellent\",\"why\":\"Title gets the dominant width and wraps only at natural spaces; ID, severity, assignee, status and dates stay intact on one line. Clear hierarchy and efficient row rhythm.\"}},\"best\":[\"D\"],\"confidence\":\"high\",\"unsure\":\"Exact pixel widths are hard to measure from the renders, but the visible wrapping clearly distinguishes D from the others.\"}\n"
+  }
+ ]
+}

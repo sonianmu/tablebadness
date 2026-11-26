@@ -1,0 +1,3940 @@
+{
+ "id": "n-adv-onebig@desktop",
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "This is the strongest of the three. Both metadata columns are close to their minimum widths, so 内容 gets the full 600px and every row still settles at 4 lines. The left block (序号 + 状态) reads as one tight unit, and the eye moves straight from the status into the narrative.",
+     "problems": "The two left columns are effectively at their minimum widths, so they look cramped: 序号 values sit close to both borders, and 已办结/办理中 fill 状态 edge to edge with no breathing room. The vertical rule between 状态 and 内容 sits very close to the status text, which slightly crowds the labels.",
+     "cause": "52px for 序号 and 67px for 状态 are the exact one-line minimums (31px and 46px of text plus 21px padding); with 0px of slack, the text looks pressed against the borders."
+    },
+    {
+     "design": "r0B",
+     "good": "This design gives 状态 obvious room, so the four labels never feel constrained and the column stays stable. 内容 at 523px still resolves to 4 lines, so nothing is lost in height.",
+     "problems": "状态 at 144px is nearly three times wider than the content it holds, leaving a large dead white gap between each short label and 内容. That gap visually breaks the row into two disconnected halves, and the empty space is concentrated in the least important column. The width ordering also inverts the hierarchy: 状态 gets more space than 序号 even though it is no more important.",
+     "cause": "144px is 77px more than 状态 needs, and 内容 pays for it by dropping from 600px to 523px, shrinking the only column that actually carries substance."
+    },
+    {
+     "design": "r0C",
+     "good": "The header row is comfortable, and no label or number is pressed against a border. 内容 at 519px still fits in 4 lines.",
+     "problems": "序号 at 80px is far wider than the single-digit values need, so each number floats in a wide empty gutter and loses its attachment to its status. 状态 at 120px is still loose. Together the left block is airy and the right block is squeezed, which inverts the visual weight of the table: the metadata dominates and the record feels secondary.",
+     "cause": "80px vs the 52px minimum for 序号 (49px of unused text space) and 120px vs 67px for 状态 push roughly 60px away from 内容, which shrinks to 519px with no benefit anywhere."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "Compact and readable overall: 状态 has enough breathing room for its three-character labels, 内容 still holds every row at four lines, and there are no hard mid-word splits.",
+     "problems": "内容 is too wide for Chinese phrase boundaries: row 1 breaks 不 / 一致 and row 2 breaks 一 / 次性. Several rows also end in short orphan lines such as 现场核查。, making the right edge look ragged. 序号 is slightly tight, though usable.",
+     "cause": "587px for 内容 gives 566px of text, which packs too many characters per line and pushes phrase-final characters into the next line. 56px for 序号 leaves only 35px of text for a 31px header, so side bearing is minimal."
+    },
+    {
+     "design": "r1B",
+     "good": "Gives 内容 the most width while still keeping all rows at four lines; the table reads as a compact ledger and has no hard word splits.",
+     "problems": "Both metadata columns are visibly pinched: the 序号 header nearly touches its borders and the 状态 labels almost fill their cells. The wider 内容 also keeps the same awkward phrase splits and produces very short final lines such as 发送。 and 查。, so the table feels right-heavy.",
+     "cause": "52px for 序号 leaves exactly 31px of text for the 31px header, effectively zero side bearing. 70px for 状态 leaves 49px of text for 46px labels, only about 1.5px each side. 597px for 内容 gives 576px of text, maximising line fill and worsening orphans."
+    },
+    {
+     "design": "r1C",
+     "good": "Best narrative line breaks of the three: 不一致 and 一次性 stay intact, and rows 2–6 end with fuller final lines. 状态 is airy and nothing is split awkwardly.",
+     "problems": "状态 at 96px is over-wide relative to 序号 at 56px, so the metadata block looks unbalanced and the status labels float in unnecessary white. 序号 remains a little tight. 内容 could reclaim some of that width without losing its good breaks.",
+     "cause": "96px for 状态 gives 75px of text for 46px labels, about 14.5px each side, while 56px for 序号 gives only 35px of text for a 31px header. The 40px difference makes the two short columns read as unrelated rather than as one metadata block."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "Best overall of the three: 60/84 establishes a clear 序号<状态 hierarchy, both headers and status labels stay on one line, and the 575px 内容 column gives the cleanest breaks (row 2 ends “补正后”, row 4 ends “推送至”).",
+     "problems": "The left metadata block still feels airy: 序号 has 8px of unused content width and 状态 has 17px, while 内容 gets only 554px of text. Some phrases still break early, e.g. row 1 splits “五个工作日/内”.",
+     "cause": "60px and 84px exceed the one-line minima (52px and 67px) more than necessary; that 25px of slack is taken from 内容 at 575px."
+    },
+    {
+     "design": "r2B",
+     "good": "Status labels are comfortable, the 序号<状态 hierarchy is preserved, and no header wraps.",
+     "problems": "This is the worst line-breaking result: row 2 breaks “补正/后转现场核查” and row 4 breaks “推送/至合作银行”. Meanwhile 状态 is the widest status column and 内容 is the narrowest, so the allocation feels backwards.",
+     "cause": "64/88 spend 33px above the practical minimum, while 内容 drops to 567px (546px text), forcing premature breaks."
+    },
+    {
+     "design": "r2C",
+     "good": "内容 at 571px recovers most of r2A’s line-break quality; status labels and headers still fit on one line.",
+     "problems": "序号 is the widest of the three at 68px despite holding one digit, while 状态 is only 80px. That nearly equalizes a one-digit rail and a three-character status column, weakening the hierarchy and leaving dead space around the serial numbers.",
+     "cause": "68px 序号 gives 47px content for a 31px header/value (16px slack), and 80px 状态 gives 59px for 46px labels (13px slack); only 571px remains for 内容."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A",
+    "r3B",
+    "r3C"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    52,
+    67,
+    600
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 673.3,
+    "overflow": 0,
+    "colWidths": [
+     52,
+     67,
+     600
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     106,
+     106,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "序号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "内容",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3月12日，居民王女士到窗口申请办理灵活就业社保补贴，因身份证地址与参保地不一致，系统校验未通过。工作人员现场核验居住证",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "办理中",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "某餐饮店经营者咨询食品经营许可证延续，原许可证将于4月8日到期。窗口人员一次性告知需提交场所平面图、从业人员健康证明及设",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已退回",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月1日受理的一起户外广告设置申请，申报位置位于城市主干道建筑控制区，依据户外广告设施设置规划不属于可设区域。窗口已向申",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月3日，辖区某小微企业申请创业担保贷款资格认定，法人征信报告显示一笔已结清贷款存在逾期记录。工作人员指导其补充银行出具",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "待补正",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月7日收到老旧小区加装电梯财政补助申请，申报材料缺少业主意见征询结果公示照片和资金分摊协议签字页。已电话联系经办人，明",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月9日，残疾人两项补贴年度复核中发现一名对象户籍已迁往外区，原社区仍将其列入发放名单。经与公安人口信息比对并联系本人确",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 1932,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r0A.png",
+   "idea": "Content-maximising: give 序号 and 状态 only their exact one-line fit and leave all remaining width to the narrative.",
+   "notes": []
+  },
+  "r0B": {
+   "widths": [
+    52,
+    144,
+    523
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 673.3,
+    "overflow": 0,
+    "colWidths": [
+     52,
+     144,
+     523
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     106,
+     106,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "序号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "内容",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3月12日，居民王女士到窗口申请办理灵活就业社保补贴，因身份证地址与参保地不一致，系统校验未通过。工作人员现场核验居住证",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "办理中",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "某餐饮店经营者咨询食品经营许可证延续，原许可证将于4月8日到期。窗口人员一次性告知需提交场所平面图、从业人员健康证明及设",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已退回",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月1日受理的一起户外广告设置申请，申报位置位于城市主干道建筑控制区，依据户外广告设施设置规划不属于可设区域。窗口已向申",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月3日，辖区某小微企业申请创业担保贷款资格认定，法人征信报告显示一笔已结清贷款存在逾期记录。工作人员指导其补充银行出具",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "待补正",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月7日收到老旧小区加装电梯财政补助申请，申报材料缺少业主意见征询结果公示照片和资金分摊协议签字页。已电话联系经办人，明",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月9日，残疾人两项补贴年度复核中发现一名对象户籍已迁往外区，原社区仍将其列入发放名单。经与公安人口信息比对并联系本人确",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 1932,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r0B.png",
+   "idea": "Status-led: keep 序号 minimal but widen 状态 into a clear comparison band, accepting a slightly narrower content column that still wraps to about four lines.",
+   "notes": []
+  },
+  "r0C": {
+   "widths": [
+    80,
+    120,
+    519
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 673.3,
+    "overflow": 0,
+    "colWidths": [
+     80,
+     120,
+     519
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     106,
+     106,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "序号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "内容",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3月12日，居民王女士到窗口申请办理灵活就业社保补贴，因身份证地址与参保地不一致，系统校验未通过。工作人员现场核验居住证",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "办理中",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "某餐饮店经营者咨询食品经营许可证延续，原许可证将于4月8日到期。窗口人员一次性告知需提交场所平面图、从业人员健康证明及设",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已退回",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月1日受理的一起户外广告设置申请，申报位置位于城市主干道建筑控制区，依据户外广告设施设置规划不属于可设区域。窗口已向申",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月3日，辖区某小微企业申请创业担保贷款资格认定，法人征信报告显示一笔已结清贷款存在逾期记录。工作人员指导其补充银行出具",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "待补正",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月7日收到老旧小区加装电梯财政补助申请，申报材料缺少业主意见征询结果公示照片和资金分摊协议签字页。已电话联系经办人，明",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月9日，残疾人两项补贴年度复核中发现一名对象户籍已迁往外区，原社区仍将其列入发放名单。经与公安人口信息比对并联系本人确",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 1932,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r0C.png",
+   "idea": "Reference-led: give both metadata columns generous fixed widths for easy row lookup and future longer labels, while content remains the dominant column at about four lines.",
+   "notes": []
+  },
+  "r1A": {
+   "widths": [
+    56,
+    76,
+    587
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 673.3,
+    "overflow": 0,
+    "colWidths": [
+     56,
+     76,
+     587
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     106,
+     106,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "序号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "内容",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3月12日，居民王女士到窗口申请办理灵活就业社保补贴，因身份证地址与参保地不一致，系统校验未通过。工作人员现场核验居住证",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "办理中",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "某餐饮店经营者咨询食品经营许可证延续，原许可证将于4月8日到期。窗口人员一次性告知需提交场所平面图、从业人员健康证明及设",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已退回",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月1日受理的一起户外广告设置申请，申报位置位于城市主干道建筑控制区，依据户外广告设施设置规划不属于可设区域。窗口已向申",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月3日，辖区某小微企业申请创业担保贷款资格认定，法人征信报告显示一笔已结清贷款存在逾期记录。工作人员指导其补充银行出具",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "待补正",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月7日收到老旧小区加装电梯财政补助申请，申报材料缺少业主意见征询结果公示照片和资金分摊协议签字页。已电话联系经办人，明",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月9日，残疾人两项补贴年度复核中发现一名对象户籍已迁往外区，原社区仍将其列入发放名单。经与公安人口信息比对并联系本人确",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 1932,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r1A.png",
+   "idea": "Keep r0A's efficient idea but add about 4–9px of slack to each metadata column so 序号 and 状态 stop touching the borders, while 内容 keeps 587px. At 566px of text the longest record still needs only 3.4 lines, so the 4-line rhythm and 673px height are unchanged.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    52,
+    70,
+    597
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 673.3,
+    "overflow": 0,
+    "colWidths": [
+     52,
+     70,
+     597
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     106,
+     106,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "序号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "内容",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3月12日，居民王女士到窗口申请办理灵活就业社保补贴，因身份证地址与参保地不一致，系统校验未通过。工作人员现场核验居住证",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "办理中",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "某餐饮店经营者咨询食品经营许可证延续，原许可证将于4月8日到期。窗口人员一次性告知需提交场所平面图、从业人员健康证明及设",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已退回",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月1日受理的一起户外广告设置申请，申报位置位于城市主干道建筑控制区，依据户外广告设施设置规划不属于可设区域。窗口已向申",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月3日，辖区某小微企业申请创业担保贷款资格认定，法人征信报告显示一笔已结清贷款存在逾期记录。工作人员指导其补充银行出具",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "待补正",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月7日收到老旧小区加装电梯财政补助申请，申报材料缺少业主意见征询结果公示照片和资金分摊协议签字页。已电话联系经办人，明",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月9日，残疾人两项补贴年度复核中发现一名对象户籍已迁往外区，原社区仍将其列入发放名单。经与公安人口信息比对并联系本人确",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 1932,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r1B.png",
+   "idea": "Take r0A as the base and spend the slack only on 状态 (67→70) to relieve the tightest label, leaving 序号 at its exact minimum and pushing 内容 to 597px — the largest narrative column available. This prioritises sequential reading of 内容 and accepts that the metadata block is intentionally compact.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1C": {
+   "widths": [
+    56,
+    96,
+    567
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 673.3,
+    "overflow": 0,
+    "colWidths": [
+     56,
+     96,
+     567
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     106,
+     106,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "序号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "内容",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3月12日，居民王女士到窗口申请办理灵活就业社保补贴，因身份证地址与参保地不一致，系统校验未通过。工作人员现场核验居住证",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "办理中",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "某餐饮店经营者咨询食品经营许可证延续，原许可证将于4月8日到期。窗口人员一次性告知需提交场所平面图、从业人员健康证明及设",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已退回",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月1日受理的一起户外广告设置申请，申报位置位于城市主干道建筑控制区，依据户外广告设施设置规划不属于可设区域。窗口已向申",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月3日，辖区某小微企业申请创业担保贷款资格认定，法人征信报告显示一笔已结清贷款存在逾期记录。工作人员指导其补充银行出具",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "待补正",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月7日收到老旧小区加装电梯财政补助申请，申报材料缺少业主意见征询结果公示照片和资金分摊协议签字页。已电话联系经办人，明",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月9日，残疾人两项补贴年度复核中发现一名对象户籍已迁往外区，原社区仍将其列入发放名单。经与公安人口信息比对并联系本人确",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 1932,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r1C.png",
+   "idea": "A different balance: since 状态 is the only column compared across rows, give it a genuinely comfortable 96px so the four labels form a calm, aligned column with consistent trailing white space, keep 序号 modest at 56, and hold 内容 at 567px (546px text, still ~3.5 lines, still 4 rendered lines). This trades a little narrative width for a cleaner scanning axis.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    60,
+    84,
+    575
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 673.3,
+    "overflow": 0,
+    "colWidths": [
+     60,
+     84,
+     575
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     106,
+     106,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "序号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "内容",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3月12日，居民王女士到窗口申请办理灵活就业社保补贴，因身份证地址与参保地不一致，系统校验未通过。工作人员现场核验居住证",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "办理中",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "某餐饮店经营者咨询食品经营许可证延续，原许可证将于4月8日到期。窗口人员一次性告知需提交场所平面图、从业人员健康证明及设",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已退回",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月1日受理的一起户外广告设置申请，申报位置位于城市主干道建筑控制区，依据户外广告设施设置规划不属于可设区域。窗口已向申",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月3日，辖区某小微企业申请创业担保贷款资格认定，法人征信报告显示一笔已结清贷款存在逾期记录。工作人员指导其补充银行出具",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "待补正",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月7日收到老旧小区加装电梯财政补助申请，申报材料缺少业主意见征询结果公示照片和资金分摊协议签字页。已电话联系经办人，明",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月9日，残疾人两项补贴年度复核中发现一名对象户籍已迁往外区，原社区仍将其列入发放名单。经与公安人口信息比对并联系本人确",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 1932,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r2A.png",
+   "idea": "Start from r1C's good content width and rebalance the metadata: +4px to 序号, −12px to 状态, +8px to 内容. 状态 still has 63px of text for 45px labels, 序号 gains proper side bearing, and 内容 rises to 554px of text—enough to keep r1C's phrase breaks while reducing the over-wide status column.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    64,
+    88,
+    567
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 673.3,
+    "overflow": 0,
+    "colWidths": [
+     64,
+     88,
+     567
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     106,
+     106,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "序号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "内容",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3月12日，居民王女士到窗口申请办理灵活就业社保补贴，因身份证地址与参保地不一致，系统校验未通过。工作人员现场核验居住证",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "办理中",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "某餐饮店经营者咨询食品经营许可证延续，原许可证将于4月8日到期。窗口人员一次性告知需提交场所平面图、从业人员健康证明及设",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已退回",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月1日受理的一起户外广告设置申请，申报位置位于城市主干道建筑控制区，依据户外广告设施设置规划不属于可设区域。窗口已向申",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月3日，辖区某小微企业申请创业担保贷款资格认定，法人征信报告显示一笔已结清贷款存在逾期记录。工作人员指导其补充银行出具",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "待补正",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月7日收到老旧小区加装电梯财政补助申请，申报材料缺少业主意见征询结果公示照片和资金分摊协议签字页。已电话联系经办人，明",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月9日，残疾人两项补贴年度复核中发现一名对象户籍已迁往外区，原社区仍将其列入发放名单。经与公安人口信息比对并联系本人确",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 1932,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r2B.png",
+   "idea": "Keep r1C's 567px content width exactly and move 8px from 状态 to 序号. This preserves the best line breaks, gives 序号 a more substantial header and row presence, and leaves 状态 with 67px of text—still comfortable but no longer dominant.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2C": {
+   "widths": [
+    68,
+    80,
+    571
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 673.3,
+    "overflow": 0,
+    "colWidths": [
+     68,
+     80,
+     571
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     106,
+     106,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "序号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "内容",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3月12日，居民王女士到窗口申请办理灵活就业社保补贴，因身份证地址与参保地不一致，系统校验未通过。工作人员现场核验居住证",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "办理中",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "某餐饮店经营者咨询食品经营许可证延续，原许可证将于4月8日到期。窗口人员一次性告知需提交场所平面图、从业人员健康证明及设",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已退回",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月1日受理的一起户外广告设置申请，申报位置位于城市主干道建筑控制区，依据户外广告设施设置规划不属于可设区域。窗口已向申",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月3日，辖区某小微企业申请创业担保贷款资格认定，法人征信报告显示一笔已结清贷款存在逾期记录。工作人员指导其补充银行出具",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "待补正",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月7日收到老旧小区加装电梯财政补助申请，申报材料缺少业主意见征询结果公示照片和资金分摊协议签字页。已电话联系经办人，明",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月9日，残疾人两项补贴年度复核中发现一名对象户籍已迁往外区，原社区仍将其列入发放名单。经与公安人口信息比对并联系本人确",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 1932,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r2C.png",
+   "idea": "New idea: treat 序号 and 状态 as a paired metadata block with closer widths instead of one narrow and one wide column. 状态 still has 59px of text for 45px labels, while 内容 gets 550px of text, close enough to r1C to retain its phrase boundaries.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    56,
+    72,
+    591
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 673.3,
+    "overflow": 0,
+    "colWidths": [
+     56,
+     72,
+     591
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     106,
+     106,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "序号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "内容",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3月12日，居民王女士到窗口申请办理灵活就业社保补贴，因身份证地址与参保地不一致，系统校验未通过。工作人员现场核验居住证",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "办理中",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "某餐饮店经营者咨询食品经营许可证延续，原许可证将于4月8日到期。窗口人员一次性告知需提交场所平面图、从业人员健康证明及设",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已退回",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月1日受理的一起户外广告设置申请，申报位置位于城市主干道建筑控制区，依据户外广告设施设置规划不属于可设区域。窗口已向申",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月3日，辖区某小微企业申请创业担保贷款资格认定，法人征信报告显示一笔已结清贷款存在逾期记录。工作人员指导其补充银行出具",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "待补正",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月7日收到老旧小区加装电梯财政补助申请，申报材料缺少业主意见征询结果公示照片和资金分摊协议签字页。已电话联系经办人，明",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月9日，残疾人两项补贴年度复核中发现一名对象户籍已迁往外区，原社区仍将其列入发放名单。经与公安人口信息比对并联系本人确",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 1932,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r3A.png",
+   "idea": "Trim 4px from 序号 and 12px from 状态 versus r2A, giving all 16px to 内容. This keeps 4–5px safety in both metadata columns, raises 内容 text from 554px to 570px, and should preserve r2A’s better breaks while removing the empty left-block feel.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3B": {
+   "widths": [
+    54,
+    70,
+    595
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 673.3,
+    "overflow": 0,
+    "colWidths": [
+     54,
+     70,
+     595
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     106,
+     106,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "序号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "内容",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3月12日，居民王女士到窗口申请办理灵活就业社保补贴，因身份证地址与参保地不一致，系统校验未通过。工作人员现场核验居住证",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "办理中",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "某餐饮店经营者咨询食品经营许可证延续，原许可证将于4月8日到期。窗口人员一次性告知需提交场所平面图、从业人员健康证明及设",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已退回",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月1日受理的一起户外广告设置申请，申报位置位于城市主干道建筑控制区，依据户外广告设施设置规划不属于可设区域。窗口已向申",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月3日，辖区某小微企业申请创业担保贷款资格认定，法人征信报告显示一笔已结清贷款存在逾期记录。工作人员指导其补充银行出具",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "待补正",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月7日收到老旧小区加装电梯财政补助申请，申报材料缺少业主意见征询结果公示照片和资金分摊协议签字页。已电话联系经办人，明",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月9日，残疾人两项补贴年度复核中发现一名对象户籍已迁往外区，原社区仍将其列入发放名单。经与公安人口信息比对并联系本人确",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 1932,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r3B.png",
+   "idea": "Push the metadata to the practical minimum: 33px content in 序号 (2px over the 31px requirement) and 49px in 状态 (3px over the 46px labels). Gives 内容 574px of text, the widest safe measure, and tests whether the extra 20px over r2A removes the remaining premature breaks such as “五个工作日/内”.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3C": {
+   "widths": [
+    56,
+    76,
+    587
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 673.3,
+    "overflow": 0,
+    "colWidths": [
+     56,
+     76,
+     587
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     106,
+     106,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "序号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "内容",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3月12日，居民王女士到窗口申请办理灵活就业社保补贴，因身份证地址与参保地不一致，系统校验未通过。工作人员现场核验居住证",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "办理中",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "某餐饮店经营者咨询食品经营许可证延续，原许可证将于4月8日到期。窗口人员一次性告知需提交场所平面图、从业人员健康证明及设",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已退回",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月1日受理的一起户外广告设置申请，申报位置位于城市主干道建筑控制区，依据户外广告设施设置规划不属于可设区域。窗口已向申",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月3日，辖区某小微企业申请创业担保贷款资格认定，法人征信报告显示一笔已结清贷款存在逾期记录。工作人员指导其补充银行出具",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "待补正",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月7日收到老旧小区加装电梯财政补助申请，申报材料缺少业主意见征询结果公示照片和资金分摊协议签字页。已电话联系经办人，明",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月9日，残疾人两项补贴年度复核中发现一名对象户籍已迁往外区，原社区仍将其列入发放名单。经与公安人口信息比对并联系本人确",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 1932,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r3C.png",
+   "idea": "A conservative alternative: keep 状态 slightly more open at 76px for quick scanning, trim 序号 to 56px, and still add 12px to 内容 over r2A. Use this if 72px 状态 looks tight in the browser; it fixes r2C’s overwide serial column without sacrificing status legibility.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "contrast": {
+   "widths": [
+    90,
+    110,
+    519
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 673.3,
+    "overflow": 0,
+    "colWidths": [
+     90,
+     110,
+     519
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     106,
+     106,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "序号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "内容",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3月12日，居民王女士到窗口申请办理灵活就业社保补贴，因身份证地址与参保地不一致，系统校验未通过。工作人员现场核验居住证",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "办理中",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "某餐饮店经营者咨询食品经营许可证延续，原许可证将于4月8日到期。窗口人员一次性告知需提交场所平面图、从业人员健康证明及设",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已退回",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月1日受理的一起户外广告设置申请，申报位置位于城市主干道建筑控制区，依据户外广告设施设置规划不属于可设区域。窗口已向申",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月3日，辖区某小微企业申请创业担保贷款资格认定，法人征信报告显示一笔已结清贷款存在逾期记录。工作人员指导其补充银行出具",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "待补正",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月7日收到老旧小区加装电梯财政补助申请，申报材料缺少业主意见征询结果公示照片和资金分摊协议签字页。已电话联系经办人，明",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月9日，残疾人两项补贴年度复核中发现一名对象户籍已迁往外区，原社区仍将其列入发放名单。经与公安人口信息比对并联系本人确",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 1932,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-contrast.png",
+   "idea": "A plausible 'give every column room' choice, but it over-allocates 90px to 序号 and 110px to 状态 even though their longest text is only 31px and 45px, while squeezing 内容 to 519px. The narrative then wraps more heavily, the table grows taller, and the short columns become mostly white space."
+  },
+  "ref_auto": {
+   "widths": [
+    41,
+    45.7,
+    632.4
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 7,
+    "tableWidth": 720,
+    "tableHeight": 650,
+    "overflow": 0,
+    "colWidths": [
+     41,
+     45.7,
+     632.4
+    ],
+    "rowHeights": [
+     59.5,
+     82.8,
+     82.8,
+     106,
+     106,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "序号",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "内容",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3月12日，居民王女士到窗口申请办理灵活就业社保补贴，因身份证地址与参保地不一致，系统校验未通过。工作人员现场核验居住证",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "办理中",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "某餐饮店经营者咨询食品经营许可证延续，原许可证将于4月8日到期。窗口人员一次性告知需提交场所平面图、从业人员健康证明及设",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已退回",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月1日受理的一起户外广告设置申请，申报位置位于城市主干道建筑控制区，依据户外广告设施设置规划不属于可设区域。窗口已向申",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月3日，辖区某小微企业申请创业担保贷款资格认定，法人征信报告显示一笔已结清贷款存在逾期记录。工作人员指导其补充银行出具",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "待补正",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月7日收到老旧小区加装电梯财政补助申请，申报材料缺少业主意见征询结果公示照片和资金分摊协议签字页。已电话联系经办人，明",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月9日，残疾人两项补贴年度复核中发现一名对象户籍已迁往外区，原社区仍将其列入发放名单。经与公安人口信息比对并联系本人确",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 1932,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    239,
+    239,
+    239
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 7,
+    "tableWidth": 718,
+    "tableHeight": 1394,
+    "overflow": 0,
+    "colWidths": [
+     239,
+     239,
+     239
+    ],
+    "rowHeights": [
+     36.3,
+     222.3,
+     222.3,
+     222.3,
+     222.3,
+     245.5,
+     222.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "序号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "状态",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "内容",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3月12日，居民王女士到窗口申请办理灵活就业社保补贴，因身份证地址与参保地不一致，系统校验未通过。工作人员现场核验居住证",
+      "lines": 9
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "办理中",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "某餐饮店经营者咨询食品经营许可证延续，原许可证将于4月8日到期。窗口人员一次性告知需提交场所平面图、从业人员健康证明及设",
+      "lines": 9
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已退回",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月1日受理的一起户外广告设置申请，申报位置位于城市主干道建筑控制区，依据户外广告设施设置规划不属于可设区域。窗口已向申",
+      "lines": 9
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月3日，辖区某小微企业申请创业担保贷款资格认定，法人征信报告显示一笔已结清贷款存在逾期记录。工作人员指导其补充银行出具",
+      "lines": 9
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "待补正",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月7日收到老旧小区加装电梯财政补助申请，申报材料缺少业主意见征询结果公示照片和资金分摊协议签字页。已电话联系经办人，明",
+      "lines": 10
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "6",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "已办结",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4月9日，残疾人两项补贴年度复核中发现一名对象户籍已迁往外区，原社区仍将其列入发放名单。经与公安人口信息比对并联系本人确",
+      "lines": 9
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 1932,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-ref_equal.png"
+  }
+ },
+ "understanding": {
+  "purpose": "A working ledger for street-level one-window service cases, used to locate a case by 序号, check its 状态, and read the narrative 内容.",
+  "reading": "Readers scan the short left-hand metadata first, then read each 内容 row as a unit; cross-row comparison is mainly on 状态, while 内容 is read sequentially. The content is about 1932px on one line, so 500–600px still gives roughly four lines and metadata can be widened without much height penalty.",
+  "groups": [
+   "序号 and 状态 belong together as a compact left metadata block because both are short row-level labels",
+   "内容 stands alone as the substantive record and needs the remaining width"
+  ],
+  "keep_intact": [
+   "序号 values and the 状态 labels 已办结/办理中/已退回/待补正",
+   "dates such as 3月12日 and 4月8日",
+   "permit/licence numbers, amounts, names and other case identifiers inside 内容"
+  ],
+  "may_wrap": [
+   "the long 内容 narrative at Chinese punctuation and phrase boundaries",
+   "long addresses, agency names and document titles when necessary"
+  ]
+ },
+ "final": {
+  "preferred": [
+   "r2A"
+  ],
+  "acceptable": [
+   "r3A",
+   "r3C",
+   "r2B",
+   "r1B",
+   "r1C",
+   "r2C",
+   "r3B"
+  ],
+  "bad": [
+   {
+    "design": "contrast",
+    "why": "A plausible 'give every column room' choice, but it over-allocates 90px to 序号 and 110px to 状态 even though their longest text is only 31px and 45px, while squeezing 内容 to 519px. The narrative then wraps more heavily, the table grows taller, and the short columns become mostly white space."
+   }
+  ],
+  "contrast": {
+   "widths": [
+    90,
+    110,
+    519
+   ],
+   "why": "A plausible 'give every column room' choice, but it over-allocates 90px to 序号 and 110px to 状态 even though their longest text is only 31px and 45px, while squeezing 内容 to 519px. The narrative then wraps more heavily, the table grows taller, and the short columns become mostly white space."
+  },
+  "ranges": [
+   [
+    56,
+    64
+   ],
+   [
+    76,
+    88
+   ],
+   [
+    571,
+    583
+   ]
+  ],
+  "rationale": "r2A best balances the three roles: 序号 at 60px leaves margin beyond the 31px header, 状态 at 84px comfortably holds three-character labels, and 内容 still receives 575px. That content measure gives the most even last-line rags among the candidates, avoiding the one-character endings produced by the 591–597px versions. r1C/r2B spend too much width on 状态, while r1B/r3B sit so close to the minimum that the first two columns look pinched. The ranges assume the other columns remain near their preferred proportions.",
+  "principles": {
+   "general": [
+    "Allocate by role and content length: identifiers and short categorical labels get minimum-plus-margin, while the long-text column gets the remainder.",
+    "A little slack prevents pinched columns, but slack in a short column is taken directly from the main reading measure; do not equalize or over-center columns by reflex.",
+    "For CJK paragraphs, line-end rag is a real quality signal even when row height is unchanged; a 15–25px change in measure can create or remove one-character orphans.",
+    "Column width should reflect the longest value, not only the header; status values longer than their header need the extra width."
+   ],
+   "specific": [
+    "Here 状态 labels are 45px, so 70px is the hard minimum, 76–88px is comfortable, and 96px leaves a visible dead zone.",
+    "序号 needs only 31px for the header and 8px for the current digits; 52px is minimum, while 56–64px gives margin for future two-digit numbering.",
+    "内容 is 1932px on one line, and all candidates still resolve to four lines, so the decision is about measure and rag rather than table height.",
+    "Mid-word splits are not a concern in this Chinese text; the visible flaw to watch is orphaned last lines."
+   ]
+  },
+  "tradeoffs": "Compact 序号/状态 columns maximize the narrative measure but can look pinched and produce one- or two-character last lines; generous short columns look airier but waste space and narrow the main text. A 60px 序号 is also more future-proof for two-digit numbering than 52–56px, although this six-row table does not require it.",
+  "uncertain": "Whether the ledger will grow beyond nine rows or acquire four-character status labels; whether the reviewer values maximum content width over even rag; and whether the 96px status column is an intentional grouping cue. Exact line breaks can also shift slightly with font or browser, so r2A's rag advantage is not guaranteed everywhere."
+ },
+ "reviews": [
+  {
+   "order": [
+    "ref_equal",
+    "ref_auto",
+    "r3A",
+    "r2A",
+    "r3C",
+    "contrast"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "poor",
+     "why": "序号 and 状态 are given huge ~210px columns holding one digit or three characters, so two-thirds of the table is empty white, while 内容 is squeezed into a narrow strip that wraps every row to 10–12 lines and makes the table very tall; scanning status across rows is easy but reading the substance is laborious."
+    },
+    "B": {
+     "grade": "poor",
+     "why": "The content column gets generous width, but 序号 and 状态 are crushed: the header 序号 stacks vertically as 序/号 and status cells break into 已/办/结, destroying two short, comparison-critical fields and making the header row read as a vertical smear rather than a label."
+    },
+    "C": {
+     "grade": "excellent",
+     "why": "序号 and 状态 are sized to their content (headers and 已办结/办理中/已退回 stay on one line) and all remaining width goes to 内容, giving ~4 balanced lines per row; the table is compact, the header hierarchy is clear and rows read as single units."
+    },
+    "D": {
+     "grade": "excellent",
+     "why": "Essentially the same sensible proportion as C: minimal identifier and status columns, maximal content column, all short fields intact on one line, rows of even height and a clean rhythm down the page; nothing is wasted and nothing is cramped."
+    },
+    "E": {
+     "grade": "good",
+     "why": "Same good allocation, but the content column is a touch narrower than C/D, so a couple of rows gain an extra line and break mid-phrase; still readable and well balanced, just slightly less efficient."
+    },
+    "F": {
+     "grade": "acceptable",
+     "why": "The short columns are fine, but 内容 is noticeably narrower than in C/D/E, pushing most rows to five lines with more awkward breaks (e.g. dates and phrases splitting across lines) and a taller, more ragged table."
+    }
+   },
+   "best": [
+    "D",
+    "C"
+   ],
+   "confidence": "medium",
+   "unsure": "C, D and E differ by only a few pixels, so their relative order is close to arbitrary; I inferred widths from the rendered separators rather than exact measurements."
+  },
+  {
+   "order": [
+    "r2A",
+    "contrast",
+    "r3C",
+    "r3A",
+    "ref_auto",
+    "ref_equal"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "excellent",
+     "why": "Compact 序号 and 状态 columns, status stays on one line, and 内容 gets most of the width; rows scan cleanly."
+    },
+    "B": {
+     "grade": "acceptable",
+     "why": "Readable, but the 内容 column is noticeably narrower, causing early line breaks and ragged right edges; short columns remain intact."
+    },
+    "C": {
+     "grade": "good",
+     "why": "Balanced and intact, with 状态 on one line, but 内容 is slightly narrower than the best layouts, costing some efficiency."
+    },
+    "D": {
+     "grade": "excellent",
+     "why": "Tightest workable short columns while keeping 序号, 状态 and 已办结 intact; widest 内容 column gives the best row rhythm."
+    },
+    "E": {
+     "grade": "poor",
+     "why": "状态 is too narrow: the header and 已办结 stack vertically, breaking category scanning and the table’s row rhythm."
+    },
+    "F": {
+     "grade": "poor",
+     "why": "序号 and 状态 are hugely over-wide with empty space, while 内容 is starved into many short lines and unnecessarily tall rows."
+    }
+   },
+   "best": [
+    "D"
+   ],
+   "confidence": "medium",
+   "unsure": "Exact column widths are not given, and A/C/D differ only subtly in line breaks; the ranking among them is based on apparent content width and whether short fields remain intact."
+  }
+ ]
+}

@@ -1,0 +1,3621 @@
+{
+ "id": "x-s-2d@phone",
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "Keeps the table close to the phone width and preserves the merged Time/day structure; the Time column and row labels remain readable.",
+     "problems": "Room B and Tuesday Room A collapse into one-letter-per-line vertical stacks. Headers wrap 2/7, long cells reach 7 lines, row heights balloon to 129–176px, and 28 mid-word splits make clinic names and room labels unreadable. The 2px overflow is trivial compared with the legibility damage.",
+     "cause": "38px widths leave only 17px of text for cols 3–4, far below their 87/98px unbreakable words; 110px on cols 2/5 is also too narrow for 378/367px prose. The table fits width by destroying words and making the table very tall."
+    },
+    {
+     "design": "r0B",
+     "good": "Best current balance: all headers stay on one line, there are zero mid-word splits, row heights are 36–106px, and the table is only 286px tall. Monday/Tuesday blocks and room pairs are easy to compare; prose wraps at word boundaries.",
+     "problems": "The table is 586px wide, overflowing the 360px box by 226px, so Tuesday’s block is cut off in the phone viewport and requires substantial horizontal scrolling. Columns 3–4 are given 120px each although their longest words are only 87/98px, wasting width while the prose columns still need more.",
+     "cause": "140px prose columns plus 120px short columns sum to 585px. The short columns are over-allocated relative to their content, and the long columns are already near the width needed for four lines. Refine by trimming short columns to no-split minima and rebalancing prose columns."
+    },
+    {
+     "design": "r0C",
+     "good": "Every cell stays on one line, there are no mid-word splits, full clinic names are intact, and row heights are a uniform 36px.",
+     "problems": "At 1080px wide it overflows by 720px; only Time and Monday Room A are visible, so the reader cannot compare Monday with Tuesday or Room A with Room B without scrolling across a huge distance. The table loses its two-dimensional schedule function.",
+     "cause": "Cols 2 and 5 are sized to the full 378/367px one-line prose, making them 399/388px. That optimizes individual cells but ignores cross-column comparison and the 360px context."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "Best of the three: shortest table (286px), no mid-word splits, and the Monday block (65+140+108 = 313px) sits entirely inside the 360px box, so a reader sees a complete Monday without scrolling. The 4-line Cardiology cell is acceptable inside a 2-row merged cell.",
+     "problems": "The 11:00 row is 106px tall — taller than the merged 09:00+10:00 pair (53+53) — so a single closing-time slot visually dominates the schedule and the row rhythm collapses at the bottom. Rows 3–4 are also pushed to 53px each.",
+     "cause": "Col 5 at 140px gives only 119px of text for a 367px-long Tuesday/Room B entry, so that cell wraps to ~5 lines and inflates the shared last row. Col 2 at 140px (119px text for 378px of prose) forces 4 lines into the merged rows 3–4. Both long-prose columns are under-fed while the short columns already sit at their word-safe minimums (108 / 119)."
+    },
+    {
+     "design": "r1B",
+     "good": "Monday block (303px) still fits the box and header wrapping is clean (0/7 broken headers); slightly more balanced than r1C.",
+     "problems": "Taller than r1A (332px) with a 5-line tallest cell and a 129px last row; the extra height buys only 25px of width, so the table is still clipped at the Tuesday column and nothing is gained.",
+     "cause": "Shrinking col 2 from 140→130 and col 5 from 140→125 crossed a wrap threshold: 109 and 104px of text push the prose to 5 lines, adding ~21px per row while saving almost nothing horizontally."
+    },
+    {
+     "design": "r1C",
+     "good": "Narrowest (498px) and still free of true mid-word splits; the 'Staff training — closed to patients' cell spanning cols 2–3 (203px) still reads in two clean lines.",
+     "problems": "Reads as a column of prose rather than a schedule: the Cardiology entry becomes 6 lines and the 11:00 row is 129px. It still overflows by 138px, so the reader scrolls anyway — the squeeze paid for nothing.",
+     "cause": "Col 2 at 95px (74px text) and col 5 at 110px (89px text) are far below the ~150px needed to hold these ~370px entries in 3 lines; every 20px removed below that threshold adds a full line to the tallest cell."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "The Time column is exactly wide enough for 'Time' and stays a narrow 65px axis. Monday and Tuesday prose columns are equal at 150px, all headers stay on one line, and no words are split.",
+     "problems": "At 593px it overflows the 360px box by 233px, and the render shows only the Monday block plus a sliver of Tuesday, so comparing days requires a long horizontal scroll. The 11:00 row is 106px tall and the 09:00/10:00 block is also 106px, making the table 286px tall and visually heavy at the closed notice.",
+     "cause": "Both 150px prose columns give only 129px of text width, just below the roughly 144px needed to keep 'accepted until 10:30' and the Tuesday equivalent on one line. Both long cells wrap to four lines, and the four-line Tuesday cell sets the tall 11:00 row."
+    },
+    {
+     "design": "r2B",
+     "good": "Widening Tuesday Room B to 172px reduces the long Tuesday prose to three lines and cuts the table height to 262px. The Time column remains compact and there are no mid-word splits.",
+     "problems": "The 145/172 split makes the parallel room columns visibly unequal: Monday Room A wraps to four lines while Tuesday Room B wraps to three, so the Monday 09:00/10:00 block is taller than necessary and the table looks left-heavy. Total width grows to 610px, increasing horizontal scroll beyond r2A.",
+     "cause": "At 145px, Monday Room A has 124px of text and sits below the three-line threshold, while at 172px Tuesday Room B has 151px and sits above it. The 27px difference is enough to change the line count and produce the imbalance."
+    },
+    {
+     "design": "r2C",
+     "good": "Symmetric 175px prose columns give both long cells three lines, produce the shortest table at 239px, keep the Monday and Tuesday blocks balanced, and preserve all words and one-line headers.",
+     "problems": "At 643px it is the widest design, overflowing by 283px. The Monday prose breaks as 'Cardiology clinic (Dr.' / 'Ito), walk-ins', separating the title from the clinician's name. The 175px Monday column is also wider than needed once that break is fixed.",
+     "cause": "At 175px the text width is 154px, just enough to fit 'Cardiology clinic (Dr.' but not 'Ito),', so the browser breaks after 'Dr.'. Using 175px on both prose columns maximizes total width even though 165px is sufficient for three lines."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A",
+    "r3B",
+    "r3C"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    65,
+    110,
+    38,
+    38,
+    110
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 362,
+    "tableHeight": 670.5,
+    "overflow": 2,
+    "colWidths": [
+     65,
+     110,
+     38,
+     38,
+     110
+    ],
+    "rowHeights": [
+     36.3,
+     129.3,
+     175.8,
+     175.8,
+     152.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "Time",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Monday",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Tuesday",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 5
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 5
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "09:00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Cardiology clinic (Dr. Ito), walk-ins accepted until 10:30",
+      "lines": 5
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Vaccinations",
+      "lines": 7
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 7
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Dermatology",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "10:00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Blood tests",
+      "lines": 7
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 7
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "11:00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "data",
+      "text": "Staff training — closed to patients",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pediatrics",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Nutrition counselling for patients with type 2 diabetes",
+      "lines": 5
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 28,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 74,
+      "natural": 378,
+      "padding": 21
+     },
+     {
+      "minContent": 87,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 98,
+      "natural": 98,
+      "padding": 21
+     },
+     {
+      "minContent": 89,
+      "natural": 367,
+      "padding": 21
+     }
+    ],
+    "frameW": 396
+   },
+   "png": "d-r0A.png",
+   "idea": "No-scroll content-first fit: keep Time intact and give the two long clinic columns equal width, accepting severe header splits in the two narrow room-only columns.",
+   "notes": [
+    "raised a column to the minimum 38px",
+    "raised a column to the minimum 38px"
+   ]
+  },
+  "r0B": {
+   "widths": [
+    65,
+    140,
+    120,
+    120,
+    140
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 586,
+    "tableHeight": 285.5,
+    "overflow": 226,
+    "colWidths": [
+     65,
+     140,
+     120,
+     120,
+     140
+    ],
+    "rowHeights": [
+     36.3,
+     36.3,
+     53,
+     53,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "Time",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Monday",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Tuesday",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "09:00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Cardiology clinic (Dr. Ito), walk-ins accepted until 10:30",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Vaccinations",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Dermatology",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "10:00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Blood tests",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "11:00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "data",
+      "text": "Staff training — closed to patients",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pediatrics",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Nutrition counselling for patients with type 2 diabetes",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 74,
+      "natural": 378,
+      "padding": 21
+     },
+     {
+      "minContent": 87,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 98,
+      "natural": 98,
+      "padding": 21
+     },
+     {
+      "minContent": 89,
+      "natural": 367,
+      "padding": 21
+     }
+    ],
+    "frameW": 620
+   },
+   "png": "d-r0B.png",
+   "idea": "Symmetric day-block scroll layout: each day gets equal width, the long outer room columns get more space, and the inner columns are wide enough to preserve all day/room header words.",
+   "notes": []
+  },
+  "r0C": {
+   "widths": [
+    65,
+    399,
+    108,
+    119,
+    388
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 1080,
+    "tableHeight": 182.3,
+    "overflow": 720,
+    "colWidths": [
+     65,
+     399,
+     108,
+     119,
+     388
+    ],
+    "rowHeights": [
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "Time",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Monday",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Tuesday",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "09:00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Cardiology clinic (Dr. Ito), walk-ins accepted until 10:30",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Vaccinations",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Dermatology",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "10:00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Blood tests",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "11:00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "data",
+      "text": "Staff training — closed to patients",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pediatrics",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Nutrition counselling for patients with type 2 diabetes",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 74,
+      "natural": 378,
+      "padding": 21
+     },
+     {
+      "minContent": 87,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 98,
+      "natural": 98,
+      "padding": 21
+     },
+     {
+      "minContent": 89,
+      "natural": 367,
+      "padding": 21
+     }
+    ],
+    "frameW": 1114
+   },
+   "png": "d-r0C.png",
+   "idea": "Full one-line scroll layout: every cell stays on one line, preserving exact wording and the merged-block shape at the cost of a very wide table.",
+   "notes": []
+  },
+  "r1A": {
+   "widths": [
+    65,
+    140,
+    108,
+    119,
+    140
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 573,
+    "tableHeight": 285.5,
+    "overflow": 213,
+    "colWidths": [
+     65,
+     140,
+     108,
+     119,
+     140
+    ],
+    "rowHeights": [
+     36.3,
+     36.3,
+     53,
+     53,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "Time",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Monday",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Tuesday",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "09:00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Cardiology clinic (Dr. Ito), walk-ins accepted until 10:30",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Vaccinations",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Dermatology",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "10:00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Blood tests",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "11:00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "data",
+      "text": "Staff training — closed to patients",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pediatrics",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Nutrition counselling for patients with type 2 diabetes",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 74,
+      "natural": 378,
+      "padding": 21
+     },
+     {
+      "minContent": 87,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 98,
+      "natural": 98,
+      "padding": 21
+     },
+     {
+      "minContent": 89,
+      "natural": 367,
+      "padding": 21
+     }
+    ],
+    "frameW": 607
+   },
+   "png": "d-r1A.png",
+   "idea": "Refines r0B: keep the readable 140px prose columns and one-line headers, but shrink Room B/Tuesday Room A from 120 to their 108/119px no-split minima. Saves 13px (table ~573px) with no new word splits; still horizontal scroll, but less overflow and less wasted width in short slots.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    65,
+    130,
+    108,
+    119,
+    125
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 548,
+    "tableHeight": 332,
+    "overflow": 188,
+    "colWidths": [
+     65,
+     130,
+     108,
+     119,
+     125
+    ],
+    "rowHeights": [
+     36.3,
+     36.3,
+     64.6,
+     64.6,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "Time",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Monday",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Tuesday",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "09:00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Cardiology clinic (Dr. Ito), walk-ins accepted until 10:30",
+      "lines": 5
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Vaccinations",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Dermatology",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "10:00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Blood tests",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "11:00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "data",
+      "text": "Staff training — closed to patients",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pediatrics",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Nutrition counselling for patients with type 2 diabetes",
+      "lines": 5
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 74,
+      "natural": 378,
+      "padding": 21
+     },
+     {
+      "minContent": 87,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 98,
+      "natural": 98,
+      "padding": 21
+     },
+     {
+      "minContent": 89,
+      "natural": 367,
+      "padding": 21
+     }
+    ],
+    "frameW": 582
+   },
+   "png": "d-r1B.png",
+   "idea": "Trade a little height for less horizontal scroll: trim the long-prose columns to 130/125px, accepting one extra wrap line in Cardiology/Nutrition, while keeping short columns at no-split minima. Table ~548px, overflow ~188px, still no mid-word splits.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1C": {
+   "widths": [
+    65,
+    95,
+    108,
+    119,
+    110
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 498,
+    "tableHeight": 355.3,
+    "overflow": 138,
+    "colWidths": [
+     65,
+     95,
+     108,
+     119,
+     110
+    ],
+    "rowHeights": [
+     36.3,
+     36.3,
+     76.3,
+     76.3,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "Time",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Monday",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Tuesday",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "09:00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Cardiology clinic (Dr. Ito), walk-ins accepted until 10:30",
+      "lines": 6
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Vaccinations",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Dermatology",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "10:00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Blood tests",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "11:00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "data",
+      "text": "Staff training — closed to patients",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pediatrics",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Nutrition counselling for patients with type 2 diabetes",
+      "lines": 5
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 1,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 74,
+      "natural": 378,
+      "padding": 21
+     },
+     {
+      "minContent": 87,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 98,
+      "natural": 98,
+      "padding": 21
+     },
+     {
+      "minContent": 89,
+      "natural": 367,
+      "padding": 21
+     }
+    ],
+    "frameW": 532
+   },
+   "png": "d-r1C.png",
+   "idea": "Narrowest no-mid-word-split option: long-prose columns at their 74/89px longest words plus padding, short columns at 87/98px minima. Table ~498px, overflow ~138px, but long cells become tall; use only if reducing horizontal scroll matters more than table height.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    65,
+    150,
+    108,
+    119,
+    150
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 593,
+    "tableHeight": 285.5,
+    "overflow": 233,
+    "colWidths": [
+     65,
+     150,
+     108,
+     119,
+     150
+    ],
+    "rowHeights": [
+     36.3,
+     36.3,
+     53,
+     53,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "Time",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Monday",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Tuesday",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "09:00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Cardiology clinic (Dr. Ito), walk-ins accepted until 10:30",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Vaccinations",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Dermatology",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "10:00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Blood tests",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "11:00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "data",
+      "text": "Staff training — closed to patients",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pediatrics",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Nutrition counselling for patients with type 2 diabetes",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 74,
+      "natural": 378,
+      "padding": 21
+     },
+     {
+      "minContent": 87,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 98,
+      "natural": 98,
+      "padding": 21
+     },
+     {
+      "minContent": 89,
+      "natural": 367,
+      "padding": 21
+     }
+    ],
+    "frameW": 627
+   },
+   "png": "d-r2A.png",
+   "idea": "Set both long-prose columns to 150px and keep the short columns at their word-safe minimums (108 for 'Vaccinations', 119 for 'Physiotherapy'). This should drop the Cardiology and Tuesday/Room B cells to 3 lines, cutting the 11:00 row from 106px to roughly 75px and bringing the whole table down to ~250px tall. Monday block is 323px, still fully inside the 360px box, so a complete Monday is visible before any scrolling.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    65,
+    145,
+    108,
+    119,
+    172
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 610,
+    "tableHeight": 262.3,
+    "overflow": 250,
+    "colWidths": [
+     65,
+     145,
+     108,
+     119,
+     172
+    ],
+    "rowHeights": [
+     36.3,
+     36.3,
+     53,
+     53,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "Time",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Monday",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Tuesday",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "09:00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Cardiology clinic (Dr. Ito), walk-ins accepted until 10:30",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Vaccinations",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Dermatology",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "10:00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Blood tests",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "11:00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "data",
+      "text": "Staff training — closed to patients",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pediatrics",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Nutrition counselling for patients with type 2 diabetes",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 74,
+      "natural": 378,
+      "padding": 21
+     },
+     {
+      "minContent": 87,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 98,
+      "natural": 98,
+      "padding": 21
+     },
+     {
+      "minContent": 89,
+      "natural": 367,
+      "padding": 21
+     }
+    ],
+    "frameW": 644
+   },
+   "png": "d-r2B.png",
+   "idea": "Trade 5px from col 2 to col 5 because the evidence points at col 5: it owns the tallest shared row (the 11:00 slot) and drives row height for the whole table, whereas col 2's prose already lives in a 2-row merged cell that can absorb a line. Monday block stays at 318px (still fits the box) while Tuesday Room B gets 151px of text.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2C": {
+   "widths": [
+    65,
+    175,
+    108,
+    119,
+    175
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 643,
+    "tableHeight": 239,
+    "overflow": 283,
+    "colWidths": [
+     65,
+     175,
+     108,
+     119,
+     175
+    ],
+    "rowHeights": [
+     36.3,
+     36.3,
+     41.4,
+     41.4,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "Time",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Monday",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Tuesday",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "09:00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Cardiology clinic (Dr. Ito), walk-ins accepted until 10:30",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Vaccinations",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Dermatology",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "10:00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Blood tests",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "11:00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "data",
+      "text": "Staff training — closed to patients",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pediatrics",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Nutrition counselling for patients with type 2 diabetes",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 74,
+      "natural": 378,
+      "padding": 21
+     },
+     {
+      "minContent": 87,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 98,
+      "natural": 98,
+      "padding": 21
+     },
+     {
+      "minContent": 89,
+      "natural": 367,
+      "padding": 21
+     }
+    ],
+    "frameW": 677
+   },
+   "png": "d-r2C.png",
+   "idea": "Deliberate experiment at the wide end: since the table cannot fit 360px under any arrangement, spend width to buy height. Both prose columns at 175px (~154px text) should settle at 3 lines with margin, giving a compact ~250px table with generous, calm cells; overflow rises to ~282px, but the reader's scroll is a single clean gesture rather than a fight with 6-line cells.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    65,
+    165,
+    108,
+    119,
+    165
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 623,
+    "tableHeight": 239,
+    "overflow": 263,
+    "colWidths": [
+     65,
+     165,
+     108,
+     119,
+     165
+    ],
+    "rowHeights": [
+     36.3,
+     36.3,
+     41.4,
+     41.4,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "Time",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Monday",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Tuesday",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "09:00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Cardiology clinic (Dr. Ito), walk-ins accepted until 10:30",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Vaccinations",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Dermatology",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "10:00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Blood tests",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "11:00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "data",
+      "text": "Staff training — closed to patients",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pediatrics",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Nutrition counselling for patients with type 2 diabetes",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 74,
+      "natural": 378,
+      "padding": 21
+     },
+     {
+      "minContent": 87,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 98,
+      "natural": 98,
+      "padding": 21
+     },
+     {
+      "minContent": 89,
+      "natural": 367,
+      "padding": 21
+     }
+    ],
+    "frameW": 657
+   },
+   "png": "d-r3A.png",
+   "idea": "Reduce both prose columns from 175px to 165px, giving 144px of text. This is the threshold where 'Cardiology clinic' / '(Dr. Ito), walk-ins' / 'accepted until 10:30' fits in three lines and the bad break after 'Dr.' disappears. If Tuesday prose also holds at three lines, the table is 622px wide with the same roughly 239px height as r2C; otherwise it trades 10px of width for one extra line.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3B": {
+   "widths": [
+    65,
+    165,
+    108,
+    119,
+    175
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 633,
+    "tableHeight": 239,
+    "overflow": 273,
+    "colWidths": [
+     65,
+     165,
+     108,
+     119,
+     175
+    ],
+    "rowHeights": [
+     36.3,
+     36.3,
+     41.4,
+     41.4,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "Time",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Monday",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Tuesday",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "09:00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Cardiology clinic (Dr. Ito), walk-ins accepted until 10:30",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Vaccinations",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Dermatology",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "10:00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Blood tests",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "11:00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "data",
+      "text": "Staff training — closed to patients",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pediatrics",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Nutrition counselling for patients with type 2 diabetes",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 74,
+      "natural": 378,
+      "padding": 21
+     },
+     {
+      "minContent": 87,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 98,
+      "natural": 98,
+      "padding": 21
+     },
+     {
+      "minContent": 89,
+      "natural": 367,
+      "padding": 21
+     }
+    ],
+    "frameW": 667
+   },
+   "png": "d-r3B.png",
+   "idea": "Keep Tuesday Room B at the proven 175px for three-line prose, but narrow Monday Room A to 165px so the break falls before '(Dr.' and 'Dr. Ito' stays together. Total 632px, 11px narrower than r2C, with both day blocks still fitting inside a 360px viewport when scrolled to.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3C": {
+   "widths": [
+    65,
+    145,
+    108,
+    119,
+    145
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 583,
+    "tableHeight": 285.5,
+    "overflow": 223,
+    "colWidths": [
+     65,
+     145,
+     108,
+     119,
+     145
+    ],
+    "rowHeights": [
+     36.3,
+     36.3,
+     53,
+     53,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "Time",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Monday",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Tuesday",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "09:00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Cardiology clinic (Dr. Ito), walk-ins accepted until 10:30",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Vaccinations",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Dermatology",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "10:00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Blood tests",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "11:00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "data",
+      "text": "Staff training — closed to patients",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pediatrics",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Nutrition counselling for patients with type 2 diabetes",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 74,
+      "natural": 378,
+      "padding": 21
+     },
+     {
+      "minContent": 87,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 98,
+      "natural": 98,
+      "padding": 21
+     },
+     {
+      "minContent": 89,
+      "natural": 367,
+      "padding": 21
+     }
+    ],
+    "frameW": 617
+   },
+   "png": "d-r3C.png",
+   "idea": "Trade height for width: 145px prose columns, giving 124px of text, are the narrowest safe point that keeps '(Dr. Ito), walk-ins' on one line. This produces a 582px table, 40px narrower than r3-compact, but the long cells wrap to four lines and the height returns to about 286px. Both day blocks remain under 360px, so horizontal scrolling is reduced without splitting words.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "ref_auto": {
+   "widths": [
+    64.7,
+    94.9,
+    108,
+    118.2,
+    109.2
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 496,
+    "tableHeight": 355.3,
+    "overflow": 136,
+    "colWidths": [
+     64.7,
+     94.9,
+     108,
+     118.2,
+     109.2
+    ],
+    "rowHeights": [
+     36.3,
+     36.3,
+     76.3,
+     76.3,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "Time",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Monday",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Tuesday",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "09:00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Cardiology clinic (Dr. Ito), walk-ins accepted until 10:30",
+      "lines": 6
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Vaccinations",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Dermatology",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "10:00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Blood tests",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "11:00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "data",
+      "text": "Staff training — closed to patients",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pediatrics",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Nutrition counselling for patients with type 2 diabetes",
+      "lines": 5
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 1,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 74,
+      "natural": 378,
+      "padding": 21
+     },
+     {
+      "minContent": 87,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 98,
+      "natural": 98,
+      "padding": 21
+     },
+     {
+      "minContent": 89,
+      "natural": 367,
+      "padding": 21
+     }
+    ],
+    "frameW": 530
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    71,
+    71,
+    71,
+    71,
+    71
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 5,
+    "tableWidth": 356,
+    "tableHeight": 611,
+    "overflow": 0,
+    "colWidths": [
+     71,
+     71,
+     71,
+     71,
+     71
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     134.4,
+     134.4,
+     245.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "Time",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Monday",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "Tuesday",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room A",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Room B",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "09:00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Cardiology clinic (Dr. Ito), walk-ins accepted until 10:30",
+      "lines": 11
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Vaccinations",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 2,
+      "cs": 1,
+      "role": "data",
+      "text": "Dermatology",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "10:00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Blood tests",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Physiotherapy",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "11:00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "data",
+      "text": "Staff training — closed to patients",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pediatrics",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Nutrition counselling for patients with type 2 diabetes",
+      "lines": 10
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 13,
+    "tokenBreaks": 1,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 44,
+      "natural": 44,
+      "padding": 21
+     },
+     {
+      "minContent": 74,
+      "natural": 378,
+      "padding": 21
+     },
+     {
+      "minContent": 87,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 98,
+      "natural": 98,
+      "padding": 21
+     },
+     {
+      "minContent": 89,
+      "natural": 367,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-ref_equal.png"
+  }
+ },
+ "understanding": {
+  "purpose": "A two-day clinic schedule: time rows crossed with Monday/Tuesday and Room A/B columns, showing which clinic is running, when walk-ins are accepted, and when the clinic is closed.",
+  "reading": "Readers scan down the Time column for a slot, then across the day/room columns to compare availability. Merged day headers and multi-row clinic cells mean the table is read in blocks rather than cell by cell; the multi-row cells can absorb some prose wrapping before the schedule becomes too tall.",
+  "groups": [
+   "col 1 (Time) is the row axis and should stay narrow and stable",
+   "cols 2–3 form the Monday block, with Room A and Room B as parallel slots under one merged Monday header",
+   "cols 4–5 form the Tuesday block, with Room A and Room B as parallel slots under one merged Tuesday header",
+   "cols 2 and 5 carry the long clinic prose; cols 3 and 4 are short/empty slots but still carry day/room headers"
+  ],
+  "keep_intact": [
+   "time labels 09:00, 10:00, 11:00",
+   "day names Monday/Tuesday and room labels Room A/Room B where possible",
+   "clinic names and identifiers such as Cardiology, Dermatology, Dr. Ito",
+   "merged-cell relationships: Monday/Tuesday group their two rooms, and multi-row clinic cells stay associated with their time span"
+  ],
+  "may_wrap": [
+   "long clinic descriptions such as 'Cardiology clinic (Dr. Ito), walk-ins accepted until 10:30'",
+   "the 'Staff training — closed to patients' note",
+   "day/room headers may wrap after '›' or between words; avoid splitting words when possible"
+  ]
+ },
+ "final": {
+  "preferred": [
+   "r3A"
+  ],
+  "acceptable": [
+   "r2B",
+   "r2C",
+   "r3B",
+   "r3C",
+   "r2A"
+  ],
+  "bad": [
+   {
+    "design": "r1B",
+    "why": "Still overflows, but pays for it with a 5-line clinic cell and 332px height, making the time rows hard to compare."
+   },
+   {
+    "design": "r1C",
+    "why": "Col 2 is far too narrow: the clinic cell becomes 6 lines, splits 'walk-ins' across lines, and the table is 355px tall while still overflowing."
+   }
+  ],
+  "contrast": null,
+  "ranges": [
+   [
+    65,
+    75
+   ],
+   [
+    160,
+    185
+   ],
+   [
+    108,
+    120
+   ],
+   [
+    119,
+    130
+   ],
+   [
+    160,
+    185
+   ]
+  ],
+  "rationale": "This is a schedule read by time first, then by day and room, so the time column should stay compact while each day group reads as a coherent pair of rooms. Because 360px cannot hold the content, a controlled horizontal scroll is better than shredding words; r3A gives the shortest table (239px) with no mid-word splits and the least total width among designs that bring the long cells down to three lines. Equal 165px widths for Monday Room A and Tuesday Room B are justified because both carry long prose, while the other room columns only need their header minimums.",
+  "principles": {
+   "general": [
+    "When content exceeds the viewport, preserve whole words and identifiers and let the table scroll rather than compressing every column.",
+    "Allocate width by column role and content length, not by symmetry; equal widths are only for columns doing equal work.",
+    "Excessive wrapping destroys row rhythm and makes time-based comparison slower, so vertical compactness matters even when scrolling."
+   ],
+   "specific": [
+    "Time can remain 65px because 'Time' and the hour labels are short.",
+    "The long-content cells are Monday Room A and Tuesday Room B; they need roughly 160–185px each, while Monday Room B and Tuesday Room A can stay near 108/119px.",
+    "The day headers span two room columns, so the room subheaders should remain subordinate and narrow.",
+    "r3A's 165/165 allocation is better than 175/175 because the extra 20px buys no line reduction."
+   ]
+  },
+  "tradeoffs": "A wider col 2 could keep 'Dr. Ito' together or reduce the clinic cell to two lines, but at the cost of more horizontal scrolling; r3A accepts a break after 'Dr.' to keep the table narrower. Some designers may prefer r2B or r3C if they value less scrolling over a shorter table.",
+  "uncertain": "Exact wrap thresholds around 155–165px and 185–205px depend on the font and content; whether a break after 'Dr.' is acceptable is a judgment call. If horizontal scrolling is considered unacceptable, no design is publishable at 360px."
+ },
+ "reviews": [
+  {
+   "order": [
+    "ref_auto",
+    "r1B",
+    "ref_equal",
+    "r2B",
+    "r2C",
+    "r3A"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "poor",
+     "why": "Column 2 is squeezed into a seven-line fragment of the main clinic entry, making 09:00 hard to scan; the 09:00 row towers over a very thin 10:00 row, and Tuesday is still cut off, so the narrowness buys nothing."
+    },
+    "B": {
+     "grade": "acceptable",
+     "why": "Wider column 2 gives a steadier five-line entry and keeps words intact, but the 09:00 row remains tall, the 10:00 row collapses to one thin line, and the 11:00 row is stretched by the off-screen narrow Tuesday Room B column."
+    },
+    "C": {
+     "grade": "poor",
+     "why": "Fits all five columns, but forces mid-word splits everywhere — 'Cardiol ogy', 'Vaccin ations', 'Physio therap y', 'Derma tology', 'Pediatr ics', 'Nutriti on...' — destroying word shapes and making the schedule slow to scan."
+    },
+    "D": {
+     "grade": "excellent",
+     "why": "Best balance: column 2 is wide enough for four clean lines with 'Dr. Ito' kept together, column 3 keeps 'Vaccinations' intact, staff training stays on one line, and row heights are relatively even; horizontal scrolling is the sensible tradeoff."
+    },
+    "E": {
+     "grade": "good",
+     "why": "Column 2 reads in three lines and column 3 keeps 'Vaccinations' intact, but the break separates 'Dr.' from 'Ito)', and the very tall 11:00 row suggests the off-screen Tuesday Room B column is too narrow; only 'Tu' of Tuesday is visible."
+    },
+    "F": {
+     "grade": "good",
+     "why": "Nearly identical to E, with slightly more of Tuesday visible, but the same tall 11:00 row and the awkward 'Dr. / Ito)' break; readable, though less balanced than D."
+    }
+   },
+   "best": [
+    "D"
+   ],
+   "confidence": "medium",
+   "unsure": "The right-hand columns, especially Tuesday Room B / column 5, are off-screen; I inferred their narrowness from the tall 11:00 rows. E and F differ only slightly in the visible area."
+  },
+  {
+   "order": [
+    "r3A",
+    "ref_equal",
+    "r1B",
+    "r2B",
+    "ref_auto",
+    "r2C"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "excellent",
+     "why": "Clear hierarchy and sensible content-driven widths: Time stays narrow, Monday Room A is wide enough for the long clinic note, and Monday Room B fits Vaccinations/Blood tests without splits. Cardiology wraps cleanly in three lines and staff training stays on one line. Tuesday is off-screen, but horizontal scrolling is preferable to broken words here."
+    },
+    "B": {
+     "grade": "bad",
+     "why": "All columns are squeezed into 360px, causing severe mid-word splits such as Cardiol/ogy, Vaccin/ations, Derma/tology and diabet/es. The table technically fits, but words and identifiers no longer read as units and the rows become extremely tall."
+    },
+    "C": {
+     "grade": "acceptable",
+     "why": "Words remain intact, but Monday Room A is too narrow for the long cardiology cell, producing five lines, and staff training wraps to two lines. Tuesday is still clipped, so the vertical cost buys little horizontal benefit."
+    },
+    "D": {
+     "grade": "good",
+     "why": "No word splits, and staff training fits on one line, but Monday Room A is narrower than in A/F, so the cardiology cell takes four lines. Tuesday remains clipped; readable, though less efficient and less rhythmic than A."
+    },
+    "E": {
+     "grade": "poor",
+     "why": "Monday Room A is over-compressed: the cardiology cell runs to six lines with an awkward walk-/ins break, and staff training wraps to two lines. The table still overflows toward Tuesday, so the compression sacrifices readability without solving the width problem."
+    },
+    "F": {
+     "grade": "good",
+     "why": "Very readable: no mid-word splits, cardiology wraps in three lines, and staff training stays on one line. However, Monday Room A is wider than its content needs, pushing Tuesday farther off-screen than necessary compared with A."
+    }
+   },
+   "best": [
+    "A"
+   ],
+   "confidence": "medium",
+   "unsure": "The exact right-edge column widths are partly off-screen, so I inferred overflow and proportions from visible borders and line wraps; A and F are close, but A appears more efficient."
+  }
+ ]
+}

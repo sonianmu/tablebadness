@@ -1,0 +1,22 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: מערכת שעות כיתת י'2 – סמסטר א' (language he, right-to-left: column 1 is on the RIGHT).\nGrid: 6 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"ראשון\" spans 1 col × 2 row; \"שני\" spans 1 col × 2 row; \"שלישי\" spans 1 col × 3 row.\nPer-column content facts (content px at 13px font, excluding padding):\n  col 1: header \"יום\" · longest unbreakable word 36px · one-line width 36px\n  col 2: header \"שעה\" · longest unbreakable word 42px · one-line width 78px\n  col 3: header \"מקצוע\" · longest unbreakable word 56px · one-line width 56px\n  col 4: header \"מורה\" · longest unbreakable word 37px · one-line width 60px\n  col 5: header \"חדר\" · longest unbreakable word 41px · one-line width 67px\n  col 6: header \"הערות\" · longest unbreakable word 57px · one-line width 619px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 629px (the dashed pink box). The column widths you choose must sum to at most 628px.\nFixed: content, font, 13px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 92390,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"The notes column is starved (~105px) while the day column is hugely over-wide; notes wrap into 6–8 lines and rows become very tall, with wasted white space in hour/teacher/subject.\"},\"B\":{\"grade\":\"excellent\",\"why\":\"Well proportioned: notes receives the surplus (~165px), the day column is compact, and hour, teacher, subject and room stay on one line; rows scan cleanly.\"},\"C\":{\"grade\":\"excellent\",\"why\":\"Near-ideal balance: room column sits at its one-line width, notes gets ~155px, day ~85px; all critical identifiers stay intact and only notes wrap naturally.\"},\"D\":{\"grade\":\"bad\",\"why\":\"Notes is over-allocated (~200px) while hour, teacher and room fall below one-line widths; times split at the dash, names wrap, and rooms such as 'מעבדה 1' break across lines, disrupting scanning.\"},\"E\":{\"grade\":\"good\",\"why\":\"Close to C: compact day column, adequate room, notes ~155px; critical fields stay readable, though notes gets slightly less width and the room column looks tighter than in C.\"}},\"best\":[\"B\",\"C\"],\"confidence\":\"medium\",\"unsure\":\"Exact pixel widths are estimated from the renders; B vs C is very close, and I am not fully certain whether E's room column causes 'אולם ספורט' to wrap.\"}\n"
+  }
+ ]
+}

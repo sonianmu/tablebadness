@@ -1,0 +1,23 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: مواقيت الصلاة في مدن سعودية (language ar, right-to-left: column 1 is on the RIGHT).\nGrid: 6 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"المدينة\" · longest unbreakable word 49px · one-line width 91px\n  col 2: header \"الفجر\" · longest unbreakable word 35px · one-line width 35px\n  col 3: header \"الظهر\" · longest unbreakable word 35px · one-line width 35px\n  col 4: header \"العصر\" · longest unbreakable word 38px · one-line width 38px\n  col 5: header \"المغرب\" · longest unbreakable word 47px · one-line width 47px\n  col 6: header \"العشاء\" · longest unbreakable word 41px · one-line width 41px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 414px (the dashed pink box). The column widths you choose must sum to at most 413px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 55919,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"The city column is disproportionately wide yet 'مكة المكرمة' breaks into three lines, splitting 'المكرمة' into 'المكرم'/'ة'; rows 2–3 become tall and disrupt the row rhythm.\"},\"B\":{\"grade\":\"poor\",\"why\":\"Same problem as A: awkward three-line break inside 'المكرمة' and uneven row heights, despite the city column taking far more width than the time columns.\"},\"C\":{\"grade\":\"good\",\"why\":\"Time columns are balanced and readable; 'مكة المكرمة' stays on one line and 'المدينة المنورة' wraps cleanly at the word boundary, though that one row is taller.\"},\"D\":{\"grade\":\"good\",\"why\":\"Similar to C: clean word-boundary wrapping and even time columns; one taller city row is acceptable, though the city column could be slightly more generous.\"},\"E\":{\"grade\":\"excellent\",\"why\":\"All city names fit on one line, including 'المدينة المنورة'; time columns remain legible, rows are uniform, and the wider city column is justified as the row-header column.\"},\"F\":{\"grade\":\"excellent\",\"why\":\"Like E, it avoids broken words and uneven rows: every city name stays intact, time columns are consistent, and the hierarchy of row headers versus time data is clear.\"}},\"best\":[\"E\",\"F\"],\"confidence\":\"medium\",\"unsure\":\"A/B appear visually identical, and C/D and E/F are very close; without exact pixel widths I may be over-weighting small differences, especially the extra width in the city column versus the time columns.\"}\n"
+  }
+ ]
+}

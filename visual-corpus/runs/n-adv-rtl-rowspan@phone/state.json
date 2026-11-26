@@ -1,0 +1,6913 @@
+{
+ "id": "n-adv-rtl-rowspan@phone",
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "Fits the 359px budget and keeps the day/time anchor adjacent; the 62px day column is adequate.",
+     "problems": "Catastrophic vertical fragmentation: notes run to 29 lines and the table reaches 3453px; 70 mid-word splits and 3/6 wrapped headers. Time, subject, teacher and room are all below their unbreakable word widths.",
+     "cause": "The 359px is spread too evenly. Col 6 notes is only 55px (34px text), col 5 room 44px (23px), col 4 teacher 52px (31px), col 3 subject 64px (43px), col 2 time 82px (61px). Cols 5-6 starve the table."
+    },
+    {
+     "design": "r0B",
+     "good": "All six headers stay on one line, there are no mid-word splits, and the day/time/subject/teacher/room columns read cleanly.",
+     "problems": "Notes are still far too narrow, producing 14 lines and row heights of 176-339px. The main lesson row sits at the top of a huge empty cell. The table both overflows by 183px and is 1663px tall.",
+     "cause": "The five core columns at 62/110/84/89/97 sum to 442px, leaving only 100px for notes. Total width 543px. Width is spent on core columns while the long notes column is starved, so notes control height despite being ancillary."
+    },
+    {
+     "design": "r0C",
+     "good": "Much better vertical rhythm: notes at 180px reduce the tallest cell to 5 lines, rows to 83-129px, headers stay on one line, and there are no mid-word splits. Day/time/subject/teacher read well.",
+     "problems": "Total 613px overflows by 253px, so the notes column is entirely off-screen and room is clipped; the reader must scroll horizontally. Subject is over-wide while room is under-wide, so the allocation is unbalanced. Notes still set row height at 5 lines.",
+     "cause": "Core columns 62/110/95/85/80 sum to 432px and notes add 180px. Subject 95 is 11px wider than its 84px one-line need, while room 80 is 17px below its 97px one-line need. The overflow is driven by giving notes 180px, but shrinking notes much further inflates every row."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "Day, time and subject columns are exactly one-line wide; headers stay unwrapped; there are no mid-word splits; merged day blocks read clearly.",
+     "problems": "The notes column is completely outside the visible box, and the room column is clipped to a narrow sliver, so the lesson row cannot be completed. Teacher and room wrap to two lines, and most rows are 106px tall.",
+     "cause": "Teacher is 85px (64px content, needs 68px) and room is 91px (70px content, needs 76px), so both wrap. Notes is 180px (159px content) for 700px of text, forcing about five lines. The core columns total 432px, so room and notes are pushed left outside the 360px box."
+    },
+    {
+     "design": "r1B",
+     "good": "Slightly less overflow than r1A; day, time and subject remain intact; headers unwrapped; no mid-word splits.",
+     "problems": "Teacher and room wrap more aggressively, room is still clipped, notes remain entirely offscreen, and row heights are still 106px. The narrower table did not improve the reading experience.",
+     "cause": "Teacher is 80px (59px content) and room is 76px (55px content), both well below their one-line needs of 68px and 76px. Notes at 180px still wraps the 700px notes into about five lines. Reducing teacher/room saved only 20px of overflow while worsening core wrapping."
+    },
+    {
+     "design": "r1C",
+     "good": "Best current row rhythm: notes at 200px reduces several rows from 106px to 83px; day, time and subject stay intact; no mid-word splits.",
+     "problems": "Teacher and room still wrap, room is clipped, notes are entirely offscreen, and some rows remain 106px or 129px tall. Total overflow is unchanged from r1A.",
+     "cause": "Teacher 80px and room 76px are too narrow for their one-line content. Notes at 200px still gives only 179px of text width for 700px of notes, so four to five lines remain. The core columns total 412px, leaving room partly outside the box and notes fully outside."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "Day, time, subject, teacher and room all sit at their natural one-line widths (62/110/84/89/97), so nothing splits mid-word, all six headers stay on one line, and the right-hand schedule block reads cleanly.",
+     "problems": "Rows are very tall (36/106/106/83/83/106/83/129) and uneven; the timetable feels airy and loses the week's rhythm, and the notes column is still cut off at the box edge showing only fragments.",
+     "cause": "Notes 200 → 179px of text, just under the ~234px needed for 3 lines, so notes wrap to 5 lines and every row inherits that height. You pay 283px of overflow without buying any compactness."
+    },
+    {
+     "design": "r2B",
+     "good": "Slightly narrower table (613) than r2A and the five schedule/lesson columns still read at full one-line width.",
+     "problems": "Worst vertical result: 803px tall, five-line cells, ragged 83/106/129 heights, and the notes column is barely readable at the edge.",
+     "cause": "Notes 170 → 149px text pushes notes to 5–6 lines; the 30px saved in width costs ~70px of height. The narrowest notes column is the least efficient one."
+    },
+    {
+     "design": "r2C",
+     "good": "Best of the three: notes 255 → 234px text lands on the 3-line plateau, so most rows are 83px, the table is only 617px tall, and the header strip stays tight.",
+     "problems": "Still 698px wide (338 overflow) yet rows remain ragged — one 4-line row (106), one 2-line row (60) — and the extra 55px over r2A bought only about one and a half lines of notes.",
+     "cause": "255 is the *minimum* that yields 3 lines, so there is no slack; notes sits exactly on a step of the wrap curve. Meanwhile day+time+subject+teacher+room already cost 442px (83px over the box), so overflow is unavoidable and should be spent deliberately, not incidentally."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A",
+    "r3B",
+    "r3C"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    62,
+    82,
+    64,
+    52,
+    44,
+    55
+   ],
+   "geom": {
+    "nCols": 6,
+    "nRows": 8,
+    "tableWidth": 360,
+    "tableHeight": 3453,
+    "overflow": 0,
+    "colWidths": [
+     62,
+     82,
+     64,
+     52,
+     44,
+     55
+    ],
+    "rowHeights": [
+     59.5,
+     478,
+     478,
+     454.8,
+     431.5,
+     478,
+     385,
+     687.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "יום",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "שעה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מקצוע",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מורה",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "חדר",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "הערות",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "ראשון",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "08:15–09:00",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מתמטיקה",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "רונית לוי",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "204",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "להביא מחברת תרגול; בשיעור הראשון ייערך מבחן אבחון קצר בנושא ",
+      "lines": 20
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "09:10–09:55",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "תנ\"ך",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אבי שפירא",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור נדחה מהשבוע שעבר עקב הטיול השנתי; יש לקרוא את פרק ו' ",
+      "lines": 20
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "שני",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10:05–10:50",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אנגלית",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "שרה כהן",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "305",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "קבוצת מתקדמים בלבד; שאר התלמידים ילמדו עם המורה המחליפה בחדר",
+      "lines": 19
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11:00–11:45",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "היסטוריה",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "דוד מזרחי",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "210",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור יכלול הכנה למצגת על תקופת בית שני; חלוקה לזוגות תתבצע",
+      "lines": 18
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 3,
+      "cs": 1,
+      "role": "row",
+      "text": "שלישי",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12:00–12:45",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "פיזיקה",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "יעל ברק",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מעבדה 1",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חובה להביא חלוק מעבדה ונעליים סגורות; ניסוי בעקרונות ארכימדס",
+      "lines": 20
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "13:00–13:45",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ספרות",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מיכל אדרי",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "118",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "נקרא את \"הדרך\" מאת עגנון; יש להגיש תגובה קצרה עד יום חמישי.",
+      "lines": 16
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14:00–14:45",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חינוך גופני",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "עומר פרץ",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אולם ספורט",
+      "lines": 4
+     },
+     {
+      "r": 7,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "בגלל עבודות תחזוקה באולם, השיעור יתקיים במגרש החיצוני אם מזג",
+      "lines": 29
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 70,
+    "tokenBreaks": 7,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 48,
+      "natural": 89,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 63,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 76,
+      "padding": 21
+     },
+     {
+      "minContent": 64,
+      "natural": 700,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r0A.png",
+   "idea": "No-scroll compact layout: preserve day and give time priority, then squeeze the lesson columns and let notes wrap into a narrow trailing column.",
+   "notes": []
+  },
+  "r0B": {
+   "widths": [
+    62,
+    110,
+    84,
+    89,
+    97,
+    100
+   ],
+   "geom": {
+    "nCols": 6,
+    "nRows": 8,
+    "tableWidth": 543,
+    "tableHeight": 1662.8,
+    "overflow": 183,
+    "colWidths": [
+     62,
+     110,
+     84,
+     89,
+     97,
+     100
+    ],
+    "rowHeights": [
+     36.3,
+     245.5,
+     222.3,
+     199,
+     199,
+     245.5,
+     175.8,
+     338.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "יום",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "שעה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מקצוע",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מורה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "חדר",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "הערות",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "ראשון",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "08:15–09:00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מתמטיקה",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "רונית לוי",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "204",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "להביא מחברת תרגול; בשיעור הראשון ייערך מבחן אבחון קצר בנושא ",
+      "lines": 10
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "09:10–09:55",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "תנ\"ך",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אבי שפירא",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור נדחה מהשבוע שעבר עקב הטיול השנתי; יש לקרוא את פרק ו' ",
+      "lines": 9
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "שני",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10:05–10:50",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אנגלית",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "שרה כהן",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "305",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "קבוצת מתקדמים בלבד; שאר התלמידים ילמדו עם המורה המחליפה בחדר",
+      "lines": 8
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11:00–11:45",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "היסטוריה",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "דוד מזרחי",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "210",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור יכלול הכנה למצגת על תקופת בית שני; חלוקה לזוגות תתבצע",
+      "lines": 8
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 3,
+      "cs": 1,
+      "role": "row",
+      "text": "שלישי",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12:00–12:45",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "פיזיקה",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "יעל ברק",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מעבדה 1",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חובה להביא חלוק מעבדה ונעליים סגורות; ניסוי בעקרונות ארכימדס",
+      "lines": 10
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "13:00–13:45",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ספרות",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מיכל אדרי",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "118",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "נקרא את \"הדרך\" מאת עגנון; יש להגיש תגובה קצרה עד יום חמישי.",
+      "lines": 7
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14:00–14:45",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חינוך גופני",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "עומר פרץ",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אולם ספורט",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "בגלל עבודות תחזוקה באולם, השיעור יתקיים במגרש החיצוני אם מזג",
+      "lines": 14
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 48,
+      "natural": 89,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 63,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 76,
+      "padding": 21
+     },
+     {
+      "minContent": 64,
+      "natural": 700,
+      "padding": 21
+     }
+    ],
+    "frameW": 577
+   },
+   "png": "d-r0B.png",
+   "idea": "Key-column integrity: keep day, time, subject, teacher and room at one-line widths and accept horizontal scrolling mainly for a moderately narrow notes column.",
+   "notes": []
+  },
+  "r0C": {
+   "widths": [
+    62,
+    110,
+    95,
+    85,
+    80,
+    180
+   ],
+   "geom": {
+    "nCols": 6,
+    "nRows": 8,
+    "tableWidth": 613,
+    "tableHeight": 779.3,
+    "overflow": 253,
+    "colWidths": [
+     62,
+     110,
+     95,
+     85,
+     80,
+     180
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     106,
+     106,
+     106,
+     82.8,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "יום",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "שעה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מקצוע",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מורה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "חדר",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "הערות",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "ראשון",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "08:15–09:00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מתמטיקה",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "רונית לוי",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "204",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "להביא מחברת תרגול; בשיעור הראשון ייערך מבחן אבחון קצר בנושא ",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "09:10–09:55",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "תנ\"ך",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אבי שפירא",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור נדחה מהשבוע שעבר עקב הטיול השנתי; יש לקרוא את פרק ו' ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "שני",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10:05–10:50",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אנגלית",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "שרה כהן",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "305",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "קבוצת מתקדמים בלבד; שאר התלמידים ילמדו עם המורה המחליפה בחדר",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11:00–11:45",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "היסטוריה",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "דוד מזרחי",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "210",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור יכלול הכנה למצגת על תקופת בית שני; חלוקה לזוגות תתבצע",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 3,
+      "cs": 1,
+      "role": "row",
+      "text": "שלישי",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12:00–12:45",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "פיזיקה",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "יעל ברק",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מעבדה 1",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חובה להביא חלוק מעבדה ונעליים סגורות; ניסוי בעקרונות ארכימדס",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "13:00–13:45",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ספרות",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מיכל אדרי",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "118",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "נקרא את \"הדרך\" מאת עגנון; יש להגיש תגובה קצרה עד יום חמישי.",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14:00–14:45",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חינוך גופני",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "עומר פרץ",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אולם ספורט",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "בגלל עבודות תחזוקה באולם, השיעור יתקיים במגרש החיצוני אם מזג",
+      "lines": 5
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 48,
+      "natural": 89,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 63,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 76,
+      "padding": 21
+     },
+     {
+      "minContent": 64,
+      "natural": 700,
+      "padding": 21
+     }
+    ],
+    "frameW": 647
+   },
+   "png": "d-r0C.png",
+   "idea": "Notes-readable wide layout: keep schedule anchors and subject intact, allow teacher/room to wrap at word boundaries, and give notes enough width to remain useful while scrolling.",
+   "notes": []
+  },
+  "r1A": {
+   "widths": [
+    62,
+    110,
+    84,
+    85,
+    91,
+    180
+   ],
+   "geom": {
+    "nCols": 6,
+    "nRows": 8,
+    "tableWidth": 613,
+    "tableHeight": 779.3,
+    "overflow": 253,
+    "colWidths": [
+     62,
+     110,
+     84,
+     85,
+     91,
+     180
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     106,
+     106,
+     106,
+     82.8,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "יום",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "שעה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מקצוע",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מורה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "חדר",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "הערות",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "ראשון",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "08:15–09:00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מתמטיקה",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "רונית לוי",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "204",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "להביא מחברת תרגול; בשיעור הראשון ייערך מבחן אבחון קצר בנושא ",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "09:10–09:55",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "תנ\"ך",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אבי שפירא",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור נדחה מהשבוע שעבר עקב הטיול השנתי; יש לקרוא את פרק ו' ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "שני",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10:05–10:50",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אנגלית",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "שרה כהן",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "305",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "קבוצת מתקדמים בלבד; שאר התלמידים ילמדו עם המורה המחליפה בחדר",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11:00–11:45",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "היסטוריה",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "דוד מזרחי",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "210",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור יכלול הכנה למצגת על תקופת בית שני; חלוקה לזוגות תתבצע",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 3,
+      "cs": 1,
+      "role": "row",
+      "text": "שלישי",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12:00–12:45",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "פיזיקה",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "יעל ברק",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מעבדה 1",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חובה להביא חלוק מעבדה ונעליים סגורות; ניסוי בעקרונות ארכימדס",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "13:00–13:45",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ספרות",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מיכל אדרי",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "118",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "נקרא את \"הדרך\" מאת עגנון; יש להגיש תגובה קצרה עד יום חמישי.",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14:00–14:45",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חינוך גופני",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "עומר פרץ",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אולם ספורט",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "בגלל עבודות תחזוקה באולם, השיעור יתקיים במגרש החיצוני אם מזג",
+      "lines": 5
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 48,
+      "natural": 89,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 63,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 76,
+      "padding": 21
+     },
+     {
+      "minContent": 64,
+      "natural": 700,
+      "padding": 21
+     }
+    ],
+    "frameW": 647
+   },
+   "png": "d-r1A.png",
+   "idea": "Trim subject from 95 to its exact one-line 84px and move the 11px to room (80 to 91px), keeping teacher 85 and notes 180. Same total as r0C, so no extra overflow, but the lesson identity is better balanced and room labels are less likely to wrap.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    62,
+    110,
+    84,
+    80,
+    76,
+    180
+   ],
+   "geom": {
+    "nCols": 6,
+    "nRows": 8,
+    "tableWidth": 593,
+    "tableHeight": 779.3,
+    "overflow": 233,
+    "colWidths": [
+     62,
+     110,
+     84,
+     80,
+     76,
+     180
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     106,
+     106,
+     106,
+     82.8,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "יום",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "שעה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מקצוע",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מורה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "חדר",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "הערות",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "ראשון",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "08:15–09:00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מתמטיקה",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "רונית לוי",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "204",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "להביא מחברת תרגול; בשיעור הראשון ייערך מבחן אבחון קצר בנושא ",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "09:10–09:55",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "תנ\"ך",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אבי שפירא",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור נדחה מהשבוע שעבר עקב הטיול השנתי; יש לקרוא את פרק ו' ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "שני",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10:05–10:50",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אנגלית",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "שרה כהן",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "305",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "קבוצת מתקדמים בלבד; שאר התלמידים ילמדו עם המורה המחליפה בחדר",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11:00–11:45",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "היסטוריה",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "דוד מזרחי",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "210",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור יכלול הכנה למצגת על תקופת בית שני; חלוקה לזוגות תתבצע",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 3,
+      "cs": 1,
+      "role": "row",
+      "text": "שלישי",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12:00–12:45",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "פיזיקה",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "יעל ברק",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מעבדה 1",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חובה להביא חלוק מעבדה ונעליים סגורות; ניסוי בעקרונות ארכימדס",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "13:00–13:45",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ספרות",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מיכל אדרי",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "118",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "נקרא את \"הדרך\" מאת עגנון; יש להגיש תגובה קצרה עד יום חמישי.",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14:00–14:45",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חינוך גופני",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "עומר פרץ",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אולם ספורט",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "בגלל עבודות תחזוקה באולם, השיעור יתקיים במגרש החיצוני אם מזג",
+      "lines": 5
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 48,
+      "natural": 89,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 63,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 76,
+      "padding": 21
+     },
+     {
+      "minContent": 64,
+      "natural": 700,
+      "padding": 21
+     }
+    ],
+    "frameW": 627
+   },
+   "png": "d-r1B.png",
+   "idea": "Use practical no-split minimums for teacher and room, keep notes at 180px. This cuts overflow from 253px to 232px without increasing row height; teacher and room may wrap between words but should not split words.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1C": {
+   "widths": [
+    62,
+    110,
+    84,
+    80,
+    76,
+    200
+   ],
+   "geom": {
+    "nCols": 6,
+    "nRows": 8,
+    "tableWidth": 613,
+    "tableHeight": 732.8,
+    "overflow": 253,
+    "colWidths": [
+     62,
+     110,
+     84,
+     80,
+     76,
+     200
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     82.8,
+     82.8,
+     106,
+     82.8,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "יום",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "שעה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מקצוע",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מורה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "חדר",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "הערות",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "ראשון",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "08:15–09:00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מתמטיקה",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "רונית לוי",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "204",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "להביא מחברת תרגול; בשיעור הראשון ייערך מבחן אבחון קצר בנושא ",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "09:10–09:55",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "תנ\"ך",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אבי שפירא",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור נדחה מהשבוע שעבר עקב הטיול השנתי; יש לקרוא את פרק ו' ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "שני",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10:05–10:50",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אנגלית",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "שרה כהן",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "305",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "קבוצת מתקדמים בלבד; שאר התלמידים ילמדו עם המורה המחליפה בחדר",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11:00–11:45",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "היסטוריה",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "דוד מזרחי",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "210",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור יכלול הכנה למצגת על תקופת בית שני; חלוקה לזוגות תתבצע",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 3,
+      "cs": 1,
+      "role": "row",
+      "text": "שלישי",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12:00–12:45",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "פיזיקה",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "יעל ברק",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מעבדה 1",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חובה להביא חלוק מעבדה ונעליים סגורות; ניסוי בעקרונות ארכימדס",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "13:00–13:45",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ספרות",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מיכל אדרי",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "118",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "נקרא את \"הדרך\" מאת עגנון; יש להגיש תגובה קצרה עד יום חמישי.",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14:00–14:45",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חינוך גופני",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "עומר פרץ",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אולם ספורט",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "בגלל עבודות תחזוקה באולם, השיעור יתקיים במגרש החיצוני אם מזג",
+      "lines": 5
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 48,
+      "natural": 89,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 63,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 76,
+      "padding": 21
+     },
+     {
+      "minContent": 64,
+      "natural": 700,
+      "padding": 21
+     }
+    ],
+    "frameW": 647
+   },
+   "png": "d-r1C.png",
+   "idea": "Keep the tighter core widths and give the 20px saved to notes (180 to 200px). Same total as r0C, but notes text width rises from 159px to 179px, which can drop the tallest note from 5 to 4 lines and shorten every row; the tradeoff is more teacher/room wrapping.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    62,
+    110,
+    84,
+    89,
+    97,
+    200
+   ],
+   "geom": {
+    "nCols": 6,
+    "nRows": 8,
+    "tableWidth": 643,
+    "tableHeight": 732.8,
+    "overflow": 283,
+    "colWidths": [
+     62,
+     110,
+     84,
+     89,
+     97,
+     200
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     82.8,
+     82.8,
+     106,
+     82.8,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "יום",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "שעה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מקצוע",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מורה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "חדר",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "הערות",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "ראשון",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "08:15–09:00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מתמטיקה",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "רונית לוי",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "204",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "להביא מחברת תרגול; בשיעור הראשון ייערך מבחן אבחון קצר בנושא ",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "09:10–09:55",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "תנ\"ך",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אבי שפירא",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור נדחה מהשבוע שעבר עקב הטיול השנתי; יש לקרוא את פרק ו' ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "שני",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10:05–10:50",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אנגלית",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "שרה כהן",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "305",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "קבוצת מתקדמים בלבד; שאר התלמידים ילמדו עם המורה המחליפה בחדר",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11:00–11:45",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "היסטוריה",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "דוד מזרחי",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "210",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור יכלול הכנה למצגת על תקופת בית שני; חלוקה לזוגות תתבצע",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 3,
+      "cs": 1,
+      "role": "row",
+      "text": "שלישי",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12:00–12:45",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "פיזיקה",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "יעל ברק",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מעבדה 1",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חובה להביא חלוק מעבדה ונעליים סגורות; ניסוי בעקרונות ארכימדס",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "13:00–13:45",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ספרות",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מיכל אדרי",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "118",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "נקרא את \"הדרך\" מאת עגנון; יש להגיש תגובה קצרה עד יום חמישי.",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14:00–14:45",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חינוך גופני",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "עומר פרץ",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אולם ספורט",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "בגלל עבודות תחזוקה באולם, השיעור יתקיים במגרש החיצוני אם מזג",
+      "lines": 5
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 48,
+      "natural": 89,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 63,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 76,
+      "padding": 21
+     },
+     {
+      "minContent": 64,
+      "natural": 700,
+      "padding": 21
+     }
+    ],
+    "frameW": 677
+   },
+   "png": "d-r2A.png",
+   "idea": "Refines r1C: give teacher and room their exact one-line widths (89px and 97px) so the lesson identity never wraps, while keeping notes at 200px to preserve the shorter 83px rows. Core needs 442px, so horizontal scrolling is deliberate; notes stay secondary and offscreen until scrolled.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    62,
+    110,
+    84,
+    89,
+    97,
+    170
+   ],
+   "geom": {
+    "nCols": 6,
+    "nRows": 8,
+    "tableWidth": 613,
+    "tableHeight": 802.5,
+    "overflow": 253,
+    "colWidths": [
+     62,
+     110,
+     84,
+     89,
+     97,
+     170
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     106,
+     106,
+     129.3,
+     82.8,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "יום",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "שעה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מקצוע",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מורה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "חדר",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "הערות",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "ראשון",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "08:15–09:00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מתמטיקה",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "רונית לוי",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "204",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "להביא מחברת תרגול; בשיעור הראשון ייערך מבחן אבחון קצר בנושא ",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "09:10–09:55",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "תנ\"ך",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אבי שפירא",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור נדחה מהשבוע שעבר עקב הטיול השנתי; יש לקרוא את פרק ו' ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "שני",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10:05–10:50",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אנגלית",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "שרה כהן",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "305",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "קבוצת מתקדמים בלבד; שאר התלמידים ילמדו עם המורה המחליפה בחדר",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11:00–11:45",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "היסטוריה",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "דוד מזרחי",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "210",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור יכלול הכנה למצגת על תקופת בית שני; חלוקה לזוגות תתבצע",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 3,
+      "cs": 1,
+      "role": "row",
+      "text": "שלישי",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12:00–12:45",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "פיזיקה",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "יעל ברק",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מעבדה 1",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חובה להביא חלוק מעבדה ונעליים סגורות; ניסוי בעקרונות ארכימדס",
+      "lines": 5
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "13:00–13:45",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ספרות",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מיכל אדרי",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "118",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "נקרא את \"הדרך\" מאת עגנון; יש להגיש תגובה קצרה עד יום חמישי.",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14:00–14:45",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חינוך גופני",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "עומר פרץ",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אולם ספורט",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "בגלל עבודות תחזוקה באולם, השיעור יתקיים במגרש החיצוני אם מזג",
+      "lines": 5
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 48,
+      "natural": 89,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 63,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 76,
+      "padding": 21
+     },
+     {
+      "minContent": 64,
+      "natural": 700,
+      "padding": 21
+     }
+    ],
+    "frameW": 647
+   },
+   "png": "d-r2B.png",
+   "idea": "Same unbroken core as above, but trim notes to 170px to reduce the table from about 643px to 613px and overflow from about 283px to 253px. Trade-off: notes wrap one more line, so some rows grow back toward 106px. Use this if limiting scroll distance matters more than row height.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2C": {
+   "widths": [
+    62,
+    110,
+    84,
+    89,
+    97,
+    255
+   ],
+   "geom": {
+    "nCols": 6,
+    "nRows": 8,
+    "tableWidth": 698,
+    "tableHeight": 616.5,
+    "overflow": 338,
+    "colWidths": [
+     62,
+     110,
+     84,
+     89,
+     97,
+     255
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     82.8,
+     82.8,
+     82.8,
+     82.8,
+     59.5,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "יום",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "שעה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מקצוע",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מורה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "חדר",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "הערות",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "ראשון",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "08:15–09:00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מתמטיקה",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "רונית לוי",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "204",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "להביא מחברת תרגול; בשיעור הראשון ייערך מבחן אבחון קצר בנושא ",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "09:10–09:55",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "תנ\"ך",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אבי שפירא",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור נדחה מהשבוע שעבר עקב הטיול השנתי; יש לקרוא את פרק ו' ",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "שני",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10:05–10:50",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אנגלית",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "שרה כהן",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "305",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "קבוצת מתקדמים בלבד; שאר התלמידים ילמדו עם המורה המחליפה בחדר",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11:00–11:45",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "היסטוריה",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "דוד מזרחי",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "210",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור יכלול הכנה למצגת על תקופת בית שני; חלוקה לזוגות תתבצע",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 3,
+      "cs": 1,
+      "role": "row",
+      "text": "שלישי",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12:00–12:45",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "פיזיקה",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "יעל ברק",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מעבדה 1",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חובה להביא חלוק מעבדה ונעליים סגורות; ניסוי בעקרונות ארכימדס",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "13:00–13:45",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ספרות",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מיכל אדרי",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "118",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "נקרא את \"הדרך\" מאת עגנון; יש להגיש תגובה קצרה עד יום חמישי.",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14:00–14:45",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חינוך גופני",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "עומר פרץ",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אולם ספורט",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "בגלל עבודות תחזוקה באולם, השיעור יתקיים במגרש החיצוני אם מזג",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 48,
+      "natural": 89,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 63,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 76,
+      "padding": 21
+     },
+     {
+      "minContent": 64,
+      "natural": 700,
+      "padding": 21
+     }
+    ],
+    "frameW": 732
+   },
+   "png": "d-r2C.png",
+   "idea": "New idea: since notes are offscreen anyway, widen notes to 255px so the 700px notes text fits in about three lines. This should shorten visible core rows to roughly 62-83px and make the timetable much easier to scan. Cost: total about 698px and roughly 338px overflow, so notes require a longer horizontal scroll.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    62,
+    110,
+    84,
+    66,
+    67,
+    255
+   ],
+   "geom": {
+    "nCols": 6,
+    "nRows": 8,
+    "tableWidth": 645,
+    "tableHeight": 616.5,
+    "overflow": 285,
+    "colWidths": [
+     62,
+     110,
+     84,
+     66,
+     67,
+     255
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     82.8,
+     82.8,
+     82.8,
+     82.8,
+     59.5,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "יום",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "שעה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מקצוע",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מורה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "חדר",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "הערות",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "ראשון",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "08:15–09:00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מתמטיקה",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "רונית לוי",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "204",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "להביא מחברת תרגול; בשיעור הראשון ייערך מבחן אבחון קצר בנושא ",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "09:10–09:55",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "תנ\"ך",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אבי שפירא",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור נדחה מהשבוע שעבר עקב הטיול השנתי; יש לקרוא את פרק ו' ",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "שני",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10:05–10:50",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אנגלית",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "שרה כהן",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "305",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "קבוצת מתקדמים בלבד; שאר התלמידים ילמדו עם המורה המחליפה בחדר",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11:00–11:45",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "היסטוריה",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "דוד מזרחי",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "210",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור יכלול הכנה למצגת על תקופת בית שני; חלוקה לזוגות תתבצע",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 3,
+      "cs": 1,
+      "role": "row",
+      "text": "שלישי",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12:00–12:45",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "פיזיקה",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "יעל ברק",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מעבדה 1",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חובה להביא חלוק מעבדה ונעליים סגורות; ניסוי בעקרונות ארכימדס",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "13:00–13:45",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ספרות",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מיכל אדרי",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "118",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "נקרא את \"הדרך\" מאת עגנון; יש להגיש תגובה קצרה עד יום חמישי.",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14:00–14:45",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חינוך גופני",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "עומר פרץ",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אולם ספורט",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "בגלל עבודות תחזוקה באולם, השיעור יתקיים במגרש החיצוני אם מזג",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 48,
+      "natural": 89,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 63,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 76,
+      "padding": 21
+     },
+     {
+      "minContent": 64,
+      "natural": 700,
+      "padding": 21
+     }
+    ],
+    "frameW": 679
+   },
+   "png": "d-r3A.png",
+   "idea": "Keep r2C's notes at 255 (the cheapest 3-line setting) but stop paying for no-wrap in the two flexible columns: teacher 89→66 (45px text, longest word 42 still intact, names wrap between words) and room 97→67 (46px text = longest word, so 'חדר 12' wraps between words but never splits). Because notes already forces 3-line rows, the 2-line teacher and room cells cost zero extra height, and the table drops from 698 to 644 — same overflow as r2A but ~120px shorter, with uniform ~83px rows and no mid-word splits.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3B": {
+   "widths": [
+    62,
+    110,
+    84,
+    68,
+    97,
+    262
+   ],
+   "geom": {
+    "nCols": 6,
+    "nRows": 8,
+    "tableWidth": 684,
+    "tableHeight": 570,
+    "overflow": 324,
+    "colWidths": [
+     62,
+     110,
+     84,
+     68,
+     97,
+     262
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     82.8,
+     82.8,
+     59.5,
+     82.8,
+     59.5,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "יום",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "שעה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מקצוע",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מורה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "חדר",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "הערות",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "ראשון",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "08:15–09:00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מתמטיקה",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "רונית לוי",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "204",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "להביא מחברת תרגול; בשיעור הראשון ייערך מבחן אבחון קצר בנושא ",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "09:10–09:55",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "תנ\"ך",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אבי שפירא",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור נדחה מהשבוע שעבר עקב הטיול השנתי; יש לקרוא את פרק ו' ",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "שני",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10:05–10:50",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אנגלית",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "שרה כהן",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "305",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "קבוצת מתקדמים בלבד; שאר התלמידים ילמדו עם המורה המחליפה בחדר",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11:00–11:45",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "היסטוריה",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "דוד מזרחי",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "210",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור יכלול הכנה למצגת על תקופת בית שני; חלוקה לזוגות תתבצע",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 3,
+      "cs": 1,
+      "role": "row",
+      "text": "שלישי",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12:00–12:45",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "פיזיקה",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "יעל ברק",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מעבדה 1",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חובה להביא חלוק מעבדה ונעליים סגורות; ניסוי בעקרונות ארכימדס",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "13:00–13:45",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ספרות",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מיכל אדרי",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "118",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "נקרא את \"הדרך\" מאת עגנון; יש להגיש תגובה קצרה עד יום חמישי.",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14:00–14:45",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חינוך גופני",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "עומר פרץ",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אולם ספורט",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "בגלל עבודות תחזוקה באולם, השיעור יתקיים במגרש החיצוני אם מזג",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 48,
+      "natural": 89,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 63,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 76,
+      "padding": 21
+     },
+     {
+      "minContent": 64,
+      "natural": 700,
+      "padding": 21
+     }
+    ],
+    "frameW": 718
+   },
+   "png": "d-r3B.png",
+   "idea": "Conservative refinement of r2C for a reader who scans room numbers: trim only the teacher column (89→68, names wrap between words, free under the 3-line row) and keep room at 97 so room identifiers stay whole on one line, giving notes 262 — a little slack above the 3-line threshold so the outlier row drops from 4 lines to 3. Total 673 (25px narrower than r2C) for the same ~617px height and a more even row rhythm.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3C": {
+   "widths": [
+    62,
+    110,
+    84,
+    89,
+    97,
+    371
+   ],
+   "geom": {
+    "nCols": 6,
+    "nRows": 8,
+    "tableWidth": 814,
+    "tableHeight": 477,
+    "overflow": 454,
+    "colWidths": [
+     62,
+     110,
+     84,
+     89,
+     97,
+     371
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     59.5,
+     59.5,
+     59.5,
+     59.5,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "יום",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "שעה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מקצוע",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מורה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "חדר",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "הערות",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "ראשון",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "08:15–09:00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מתמטיקה",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "רונית לוי",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "204",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "להביא מחברת תרגול; בשיעור הראשון ייערך מבחן אבחון קצר בנושא ",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "09:10–09:55",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "תנ\"ך",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אבי שפירא",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור נדחה מהשבוע שעבר עקב הטיול השנתי; יש לקרוא את פרק ו' ",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "שני",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10:05–10:50",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אנגלית",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "שרה כהן",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "305",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "קבוצת מתקדמים בלבד; שאר התלמידים ילמדו עם המורה המחליפה בחדר",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11:00–11:45",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "היסטוריה",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "דוד מזרחי",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "210",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור יכלול הכנה למצגת על תקופת בית שני; חלוקה לזוגות תתבצע",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 3,
+      "cs": 1,
+      "role": "row",
+      "text": "שלישי",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12:00–12:45",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "פיזיקה",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "יעל ברק",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מעבדה 1",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חובה להביא חלוק מעבדה ונעליים סגורות; ניסוי בעקרונות ארכימדס",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "13:00–13:45",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ספרות",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מיכל אדרי",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "118",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "נקרא את \"הדרך\" מאת עגנון; יש להגיש תגובה קצרה עד יום חמישי.",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14:00–14:45",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חינוך גופני",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "עומר פרץ",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אולם ספורט",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "בגלל עבודות תחזוקה באולם, השיעור יתקיים במגרש החיצוני אם מזג",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 48,
+      "natural": 89,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 63,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 76,
+      "padding": 21
+     },
+     {
+      "minContent": 64,
+      "natural": 700,
+      "padding": 21
+     }
+    ],
+    "frameW": 848
+   },
+   "png": "d-r3C.png",
+   "idea": "New idea: step off the 3-line plateau entirely. Notes needs ~350px of text to fit in 2 lines, so 371 collapses every row to 63px and the whole week fits in ~477px with a uniform rhythm and no wrapping anywhere except notes (teacher and room stay at full no-wrap widths). Deliberately accepts 454px of horizontal scroll — more than any current design — in exchange for a table you can read top-to-bottom as a single block; worth testing to see whether compactness beats scroll distance.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "ref_auto": {
+   "widths": [
+    61.8,
+    68.3,
+    83.7,
+    62.5,
+    66.6,
+    84.5
+   ],
+   "geom": {
+    "nCols": 6,
+    "nRows": 8,
+    "tableWidth": 428.4,
+    "tableHeight": 1988.3,
+    "overflow": 68.4,
+    "colWidths": [
+     61.8,
+     68.3,
+     83.7,
+     62.5,
+     66.6,
+     84.5
+    ],
+    "rowHeights": [
+     36.3,
+     292,
+     268.8,
+     245.5,
+     268.8,
+     292,
+     222.3,
+     361.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "יום",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "שעה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מקצוע",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מורה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "חדר",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "הערות",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "ראשון",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "08:15–09:00",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מתמטיקה",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "רונית לוי",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "204",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "להביא מחברת תרגול; בשיעור הראשון ייערך מבחן אבחון קצר בנושא ",
+      "lines": 12
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "09:10–09:55",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "תנ\"ך",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אבי שפירא",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור נדחה מהשבוע שעבר עקב הטיול השנתי; יש לקרוא את פרק ו' ",
+      "lines": 11
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "שני",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10:05–10:50",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אנגלית",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "שרה כהן",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "305",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "קבוצת מתקדמים בלבד; שאר התלמידים ילמדו עם המורה המחליפה בחדר",
+      "lines": 10
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11:00–11:45",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "היסטוריה",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "דוד מזרחי",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "210",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור יכלול הכנה למצגת על תקופת בית שני; חלוקה לזוגות תתבצע",
+      "lines": 11
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 3,
+      "cs": 1,
+      "role": "row",
+      "text": "שלישי",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12:00–12:45",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "פיזיקה",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "יעל ברק",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מעבדה 1",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חובה להביא חלוק מעבדה ונעליים סגורות; ניסוי בעקרונות ארכימדס",
+      "lines": 12
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "13:00–13:45",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ספרות",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מיכל אדרי",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "118",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "נקרא את \"הדרך\" מאת עגנון; יש להגיש תגובה קצרה עד יום חמישי.",
+      "lines": 9
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14:00–14:45",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חינוך גופני",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "עומר פרץ",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אולם ספורט",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "בגלל עבודות תחזוקה באולם, השיעור יתקיים במגרש החיצוני אם מזג",
+      "lines": 15
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 7,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 48,
+      "natural": 89,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 63,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 76,
+      "padding": 21
+     },
+     {
+      "minContent": 64,
+      "natural": 700,
+      "padding": 21
+     }
+    ],
+    "frameW": 463
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    59,
+    59,
+    59,
+    59,
+    59,
+    59
+   ],
+   "geom": {
+    "nCols": 6,
+    "nRows": 8,
+    "tableWidth": 355,
+    "tableHeight": 3174,
+    "overflow": 0,
+    "colWidths": [
+     59,
+     59,
+     59,
+     59,
+     59,
+     59
+    ],
+    "rowHeights": [
+     59.5,
+     478,
+     385,
+     385,
+     408.3,
+     478,
+     361.8,
+     617.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "יום",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "שעה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מקצוע",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "מורה",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "חדר",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "הערות",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "ראשון",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "08:15–09:00",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מתמטיקה",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "רונית לוי",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "204",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "להביא מחברת תרגול; בשיעור הראשון ייערך מבחן אבחון קצר בנושא ",
+      "lines": 20
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "09:10–09:55",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "תנ\"ך",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אבי שפירא",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור נדחה מהשבוע שעבר עקב הטיול השנתי; יש לקרוא את פרק ו' ",
+      "lines": 16
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "row",
+      "text": "שני",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10:05–10:50",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אנגלית",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "שרה כהן",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "305",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "קבוצת מתקדמים בלבד; שאר התלמידים ילמדו עם המורה המחליפה בחדר",
+      "lines": 16
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11:00–11:45",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "היסטוריה",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "דוד מזרחי",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "210",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "השיעור יכלול הכנה למצגת על תקופת בית שני; חלוקה לזוגות תתבצע",
+      "lines": 17
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 3,
+      "cs": 1,
+      "role": "row",
+      "text": "שלישי",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12:00–12:45",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "פיזיקה",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "יעל ברק",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מעבדה 1",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חובה להביא חלוק מעבדה ונעליים סגורות; ניסוי בעקרונות ארכימדס",
+      "lines": 20
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "13:00–13:45",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ספרות",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "מיכל אדרי",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "118",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "נקרא את \"הדרך\" מאת עגנון; יש להגיש תגובה קצרה עד יום חמישי.",
+      "lines": 15
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14:00–14:45",
+      "lines": 4
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "חינוך גופני",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "עומר פרץ",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "אולם ספורט",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "בגלל עבודות תחזוקה באולם, השיעור יתקיים במגרש החיצוני אם מזג",
+      "lines": 26
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 67,
+    "tokenBreaks": 7,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 48,
+      "natural": 89,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 63,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 68,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 76,
+      "padding": 21
+     },
+     {
+      "minContent": 64,
+      "natural": 700,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-ref_equal.png"
+  }
+ },
+ "understanding": {
+  "purpose": "A weekly class timetable for quick lookup of when a lesson occurs, what subject it is, who teaches it, where it meets, and any notes.",
+  "reading": "Read right-to-left: scan the merged day blocks first, then the time within each day, then read across subject → teacher → room; notes are secondary and consulted only after the lesson row is identified.",
+  "groups": [
+   "Columns 1–2 (day + time) form the schedule anchor and should stay adjacent and dominant.",
+   "Columns 3–5 (subject + teacher + room) form the lesson identity and should read as a compact row unit.",
+   "Column 6 (notes) is ancillary and should not compete with the schedule or lesson columns."
+  ],
+  "keep_intact": [
+   "Day names",
+   "Time ranges, ideally unbroken",
+   "Subject names without mid-word splits",
+   "Teacher names, allowing wraps between words",
+   "Room identifiers where possible"
+  ],
+  "may_wrap": [
+   "Notes text, freely",
+   "Teacher names between words",
+   "Long subject words only when forced",
+   "Room labels only when forced"
+  ]
+ },
+ "final": {
+  "preferred": [
+   "r2A"
+  ],
+  "acceptable": [
+   "r1B",
+   "r1C",
+   "r2B",
+   "r2C",
+   "r3B"
+  ],
+  "bad": [
+   {
+    "design": "r3A",
+    "why": "Teacher column 66px (needs 89) forces every name — רונית לוי, אבי שפירא, שרה כהן, דוד מזרחי — onto two lines, and room 67px wraps מעבר 1 / אולם ספורט, while 255px is handed to the הערות column that sits entirely off-screen. Width is taken from the columns the reader actually reads and given to the one they cannot see, producing ragged 83/60 cell heights for no benefit."
+   },
+   {
+    "design": "r3C",
+    "why": "814px wide: 454px of horizontal scrolling, and 371px of that overflow is spent on a notes column that is invisible at rest, so the reader scrolls the furthest for the least-read data. Internally clean (single-line rows at 60px), but the allocation is backwards — the day/time/subject/teacher/room block that must be scanned as a unit is pushed off-screen by an oversized tail column."
+   }
+  ],
+  "contrast": null,
+  "ranges": [
+   [
+    62,
+    80
+   ],
+   [
+    110,
+    130
+   ],
+   [
+    84,
+    100
+   ],
+   [
+    89,
+    105
+   ],
+   [
+    97,
+    110
+   ],
+   [
+    150,
+    260
+   ]
+  ],
+  "rationale": "The five core columns (day, time, subject, teacher, room) are what a timetable is read for, and each has a hard floor: 62/110/84/89/97px is the width at which its longest entry stays on one line, totalling 442px — already 82px past the 360px box, so scrolling is unavoidable and the only question is how to spend it. r2A sits exactly on those floors for all five columns and gives the notes tail a modest 200px, so every timetable cell is a single unbroken line and only the incidental הערות text wraps. r1B and r1C buy back 30–50px of scroll by dropping teacher and room below their floors, which costs a wrapped two-line name in almost every row and destroys the row rhythm (106/83/129 heights). r3A/r3C invert the priority, shrinking readable data columns to fund a notes column that is never on screen.",
+  "principles": {
+   "general": [
+    "A data column should not fall below its one-line width for its longest entry; once it does, every row pays a wrap penalty for a saving the reader never sees.",
+    "When a table must scroll, allocate width by reading importance, not by content length: the rarely-read tail column should not be the widest thing in the table.",
+    "Uniform row heights are worth real width — ragged rows (83/106/129) make a schedule much harder to scan down a single weekday."
+   ],
+   "specific": [
+    "The notes column's 700px one-line demand is unreachable at any sane width, so it must wrap; giving it 150–260px is enough to keep it legible when scrolled to.",
+    "The RTL order puts הערות at the far left, i.e. last to be reached by scrolling, which is exactly why its width should stay small.",
+    "Rowspan labels ראשון/שני/שלישי live in the day column, so that column must never shrink below 62px or the vertical grouping labels break."
+   ]
+  },
+  "tradeoffs": "Whether it is better to scroll ~280px with clean single-line cells (r2A) or ~230px with wrapped teacher/room names (r1B); and whether height (r3B's compact 570px, uniform rows) is worth a narrower teacher column. A designer who values a whole-week overview at a glance could reasonably prefer the shortest table.",
+  "uncertain": "The actual content of the הערות column is unknown beyond its 700px one-line demand — if it holds one long sentence, 200px may be too narrow; if mostly empty, even 150px would do. Also arguable whether any design that hides a column entirely at rest is publishable without a scroll affordance."
+ },
+ "reviews": [
+  {
+   "order": [
+    "ref_equal",
+    "r3A",
+    "r1B",
+    "ref_auto",
+    "r1C",
+    "r2A"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "bad",
+     "why": "Every column collapses to a few characters; times, names and notes break letter-by-letter, making the table a tall unreadable strip."
+    },
+    "B": {
+     "grade": "good",
+     "why": "Day, hour, subject, teacher and room columns are well proportioned and words stay intact; the long notes column appears off-screen/scrollable, with tall rows but a scannable schedule."
+    },
+    "C": {
+     "grade": "poor",
+     "why": "Main columns are readable, but the notes column is crushed to a sliver with a truncated header and clipped/wrapped notes, so one content column is effectively lost."
+    },
+    "D": {
+     "grade": "bad",
+     "why": "The notes column is a narrow vertical strip; long notes break one character per line and inflate every row, destroying row scanning."
+    },
+    "E": {
+     "grade": "poor",
+     "why": "Similar squeeze: notes header and content are clipped into an unreadable strip; main columns survive but the notes column is unusable."
+    },
+    "F": {
+     "grade": "acceptable",
+     "why": "The most balanced fit-to-width version: main columns read cleanly, but the notes column is still too narrow and clipped, so it only works if notes are secondary."
+    }
+   },
+   "best": [
+    "B"
+   ],
+   "confidence": "medium",
+   "unsure": "I am inferring that B's notes column is off-screen/scrollable rather than absent; if it is actually a clipped sliver, B would be worse. The exact widths of C/E/F are hard to distinguish visually."
+  },
+  {
+   "order": [
+    "r2A",
+    "r1B",
+    "r3A",
+    "ref_equal",
+    "ref_auto",
+    "r1C"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "acceptable",
+     "why": "Core columns are generous: time '08:15–09:00' and full names (רונית לוי, אבי שפירא) sit on one line, headers intact. But the leftmost room/notes area is squeezed to a sliver ('הד', 'מע'), so the notes column is unreachable, and its wrapped content inflates every row to ~150px of blank space under the short middle columns."
+    },
+    "B": {
+     "grade": "good",
+     "why": "Time stays on one line and long names wrap at word boundaries (אבי / שפירא, דוד / מזרחי), which reads cleanly; headers all whole. The room column is reduced to a fragment ('מעב..1') and the notes column is clipped off, so the rightmost-to-left balance is still lost, but every visible column is legible."
+    },
+    "C": {
+     "grade": "poor",
+     "why": "It buys space for the room values (204, 112, 305, 210, מעברה 1, 118, אולם ספורט fully visible) by starving מקצוע and מורה, so words break mid-word (מתמטי/קה, אנגלי/ת, היסטורי/ה, ספרו/ת) — a typographic failure that slows scanning more than it gains, and the notes column still overflows."
+    },
+    "D": {
+     "grade": "bad",
+     "why": "Every column is crushed to a few characters: subjects, names and notes stack letter-by-letter vertically ('מ ת מ ט י ק ה'), the time splits ('08:1 / 5– / 09:0 / 0') and the table becomes an unreadable wall of single glyphs. Content is present but effectively destroyed."
+    },
+    "E": {
+     "grade": "bad",
+     "why": "Same collapse as D, only marginally wider: notes run as a vertical column of single letters, teacher and subject names break into fragments, and even the time wraps ('08:15– / 09:00', '10:05– / 10:50'). Nothing is scannable."
+    },
+    "F": {
+     "grade": "good",
+     "why": "Essentially the B solution: time intact, subject and day on one line, names wrapped at word boundaries, headers whole. Only the room fragment and the clipped notes column spoil it, and the tall rows leave large blank areas under the short columns."
+    }
+   },
+   "best": [
+    "B",
+    "F"
+   ],
+   "confidence": "medium",
+   "unsure": "The screenshots all clip the left (notes) side of the dashed box, so I cannot tell whether horizontal scrolling is available — if it is, A/B/F would gain real credit for keeping core columns unsplit while allowing the wide הערות column to be scrolled to. B and F look near-identical in widths; their ordering is within measurement noise. D and E differ mainly in degree of the same failure."
+  }
+ ]
+}

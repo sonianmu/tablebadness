@@ -1,0 +1,23 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 街道便民服务中心一窗受理事项办理台账 (language zh-CN).\nGrid: 3 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"序号\" · longest unbreakable word 16px · one-line width 31px\n  col 2: header \"状态\" · longest unbreakable word 16px · one-line width 46px\n  col 3: header \"内容\" · longest unbreakable word 31px · one-line width 1932px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 17074,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"序号 and 状态 are given huge ~210px columns holding one digit or three characters, so two-thirds of the table is empty white, while 内容 is squeezed into a narrow strip that wraps every row to 10–12 lines and makes the table very tall; scanning status across rows is easy but reading the substance is laborious.\"},\"B\":{\"grade\":\"poor\",\"why\":\"The content column gets generous width, but 序号 and 状态 are crushed: the header 序号 stacks vertically as 序/号 and status cells break into 已/办/结, destroying two short, comparison-critical fields and making the header row read as a vertical smear rather than a label.\"},\"C\":{\"grade\":\"excellent\",\"why\":\"序号 and 状态 are sized to their content (headers and 已办结/办理中/已退回 stay on one line) and all remaining width goes to 内容, giving ~4 balanced lines per row; the table is compact, the header hierarchy is clear and rows read as single units.\"},\"D\":{\"grade\":\"excellent\",\"why\":\"Essentially the same sensible proportion as C: minimal identifier and status columns, maximal content column, all short fields intact on one line, rows of even height and a clean rhythm down the page; nothing is wasted and nothing is cramped.\"},\"E\":{\"grade\":\"good\",\"why\":\"Same good allocation, but the content column is a touch narrower than C/D, so a couple of rows gain an extra line and break mid-phrase; still readable and well balanced, just slightly less efficient.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"The short columns are fine, but 内容 is noticeably narrower than in C/D/E, pushing most rows to five lines with more awkward breaks (e.g. dates and phrases splitting across lines) and a taller, more ragged table.\"}},\"best\":[\"D\",\"C\"],\"confidence\":\"medium\",\"unsure\":\"C, D and E differ by only a few pixels, so their relative order is close to arbitrary; I inferred widths from the rendered separators rather than exact measurements.\"}\n"
+  }
+ ]
+}

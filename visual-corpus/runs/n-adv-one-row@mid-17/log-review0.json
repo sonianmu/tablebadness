@@ -1,0 +1,23 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 2024年重点信息化项目执行情况汇总表 (language zh-CN).\nGrid: 5 columns × 6 rows. Row headers: none declared.\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"项目\" · longest unbreakable word 25px · one-line width 243px\n  col 2: header \"负责人\" · longest unbreakable word 18px · one-line width 53px\n  col 3: header \"预算（万元）\" · longest unbreakable word 66px · one-line width 104px\n  col 4: header \"进度\" · longest unbreakable word 54px · one-line width 422px\n  col 5: header \"风险说明\" · longest unbreakable word 43px · one-line width 2070px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 506px (the dashed pink box). The column widths you choose must sum to at most 505px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 38789,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"风险说明 is squeezed to roughly a third of the width (~6 characters per line), so the long risk paragraphs explode vertically and the whole table runs to ~3666px; 项目 still wraps to three lines, and the narrow 进度 column also fragments, so the sacrificed space buys nothing.\"},\"B\":{\"grade\":\"poor\",\"why\":\"负责人 is only ~40px wide, so names stack one character per line (李/建/国) and the header itself breaks vertically; 项目 breaks at ~3 characters per line. 风险说明 gets a fair share, but the identifier and header damage is severe.\"},\"C\":{\"grade\":\"good\",\"why\":\"负责人 names and 预算 figures stay on one line, 项目 wraps to a readable 3 lines, and 风险说明 takes the largest share, giving the shortest table of the set; only 预算（万元） wraps in the header and 进度 is a bit tight.\"},\"D\":{\"grade\":\"excellent\",\"why\":\"Cleanest hierarchy: 预算（万元） and 负责人 headers each sit on one line, names and amounts are intact, 风险说明 is clearly the dominant reading column, and 项目/进度 are given just enough room; near-shortest overall height with no column starved.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"风险说明 is generously wide, but 预算（万元） collapses into three stacked lines and 进度 breaks into short fragments, so the table grows ~40% taller than C/D for little gain in risk-text legibility.\"},\"F\":{\"grade\":\"poor\",\"why\":\"进度 is crushed to about two characters per line and 项目 to three, pushing the table to ~2981px; 风险说明 is widest here, but the cost to the progress and project columns outweighs it and the header block is fragmented.\"}},\"best\":[\"D\"],\"confidence\":\"medium\",\"unsure\":\"My pixel estimates of column widths are rough, especially for E and F where the render heights differ; C is a close second to D and could tie if the wrapped 预算 header is judged unimportant. I also cannot verify whether the 进度 column's short fragments are considered acceptable for this publication.\"}\n"
+  }
+ ]
+}

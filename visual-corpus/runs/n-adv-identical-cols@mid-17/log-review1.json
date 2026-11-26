@@ -1,0 +1,22 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 华东区门店2024年1—5月销量 (language zh-CN).\nGrid: 6 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"门店\" · longest unbreakable word 18px · one-line width 105px\n  col 2: header \"1月\" · longest unbreakable word 39px · one-line width 39px\n  col 3: header \"2月\" · longest unbreakable word 38px · one-line width 38px\n  col 4: header \"3月\" · longest unbreakable word 38px · one-line width 38px\n  col 5: header \"4月\" · longest unbreakable word 39px · one-line width 39px\n  col 6: header \"5月\" · longest unbreakable word 39px · one-line width 39px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 392px (the dashed pink box). The column widths you choose must sum to at most 391px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 61000,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"The row-header column is far too narrow: store names break into three short lines, fragmenting each row and making the table tall and hard to scan. The month columns are wider than their four-digit values need, so width is wasted where it is least useful.\"},\"B\":{\"grade\":\"good\",\"why\":\"A sensible balance: the store column is wide enough for most names to wrap into two lines with the branch name largely intact, while the month columns comfortably hold four-digit values. Rows remain readable as units, though some names still break awkwardly and a lone “店” is orphaned.\"},\"C\":{\"grade\":\"poor\",\"why\":\"Essentially the same narrow row-header problem as A: names are chopped into three lines, weakening row identity, while the numeric columns receive surplus width that does not improve legibility.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"The wider store column keeps labels to two lines, but the breaks fall mid-branch-name (e.g. 上海徐/汇店, 南京新/街口店), which harms recognition. The month columns are squeezed to the minimum, leaving four-digit numbers with very little breathing room.\"},\"E\":{\"grade\":\"good\",\"why\":\"Like B, it gives the store column enough room for two-line labels and keeps the month columns comfortable for four-digit values. The table reads row by row more naturally than A/C, despite some unavoidable awkward wraps.\"}},\"best\":[\"B\",\"E\"],\"confidence\":\"medium\",\"unsure\":\"A/C and B/E appear visually identical or nearly identical, so I cannot reliably distinguish their exact widths; D’s line breaks are also hard to reconcile with its apparently wider first column.\"}\n"
+  }
+ ]
+}

@@ -1,0 +1,3818 @@
+{
+ "id": "n-adv-jp-long-words@phone",
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "The most usable balance: 115px gives the Japanese terms about 6 characters per line (long terms break into 2–3 lines), 124px keeps the 103px English word intact, and the headers stay on one line. The term/translation pair remains adjacent and readable.",
+     "problems": "The explanation column is still cramped at 99px of text, so definitions run to 10 lines and dominate row height (1430px). Long terms split into three short lines, making the primary lookup key feel fragmented.",
+     "cause": "115px is just below a comfortable term width, while 120px for 説明 is too little for the longest definitions; the middle column cannot give up width because 124px is the minimum for “interoperability.”"
+    },
+    {
+     "design": "r0B",
+     "good": "145px lets Japanese terms break cleanly into two lines and 124px preserves English words; the term/translation pair reads well.",
+     "problems": "説明 has only 69px of text, so definitions collapse to 15 lines and the table balloons to 2081px. Rows are mostly empty under columns 1–2 while column 3 becomes a vertical ribbon; scanning definitions is painful.",
+     "cause": "90px total for 説明 is far too narrow. The 145px term column took width from the explanation even though the term column only needed enough for two lines."
+    },
+    {
+     "design": "r0C",
+     "good": "145px for 説明 gives 124px of text, the most readable definitions and the shortest table (1151px); English words stay intact and all headers are single-line.",
+     "problems": "用語 has only 69px of text, so Japanese terms split into 3–4 lines and the primary lookup column becomes the narrowest of the three. Terms look chopped, and the term/translation pair is visually unbalanced.",
+     "cause": "90px total for 用語 is below the 5-character threshold (75px of text); the extra width went to 説明, which was already adequate."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "The most compact of the three (1268px) and the only one that reads as a coherent unit: 用語 and 英語 sit side by side as a lookup pair, the English column at 124px never splits interoperability and holds transaction manager / service level agreement on two clean lines, and no column header wraps. Row starts are stable and scanning down column 1 works.",
+     "problems": "Descriptions are still the dominant cost: the 説明 cell runs 9 lines and every row is 150–220px tall, while the 英語 cell beside it holds only 1–2 short lines and ends up as a tall empty strip of white space. Column 1 at 100px is wider than it needs to be — its longest term only reaches 2–3 lines, well under the description height — so it is spending width that the description needs. The table looks bottom-heavy and vertically wasteful.",
+     "cause": "col1 = 100px (79px text ≈ 5 chars/line) is over-provisioned relative to its actual line count, while col3 = 135px (114px text ≈ 7.5 chars/line) is starved; descriptions dominate row height, so width taken from col1 and given to col3 reduces every row."
+    },
+    {
+     "design": "r1B",
+     "good": "Even column 1 and 3 widths give the term/translation pair a little more breathing room than r1A, and Japanese terms stay at 2 lines in most rows, which keeps the lookup key readable. English column still intact at 124px.",
+     "problems": "Worse overall: the table grows to 1430px and descriptions hit 10 lines. Column 3 (124px) is now the same width as the short English label column, so the explanatory field and the one-word translation field look equally important — a flat hierarchy that misrepresents the content. Column 1's extra 11px bought nothing because terms were not the height driver.",
+     "cause": "col1 raised to 111 and col3 cut to 124 — width moved in exactly the wrong direction, from the height-dominating description into a column that already fits its content."
+    },
+    {
+     "design": "r1C",
+     "good": "The term column is comfortable: most Japanese terms close on two lines and the longest only needs two, so the lookup keys are the most legible of the three. English column intact.",
+     "problems": "The hierarchy is inverted and the table is unusable for scanning: 説明 at 109px (88px text ≈ 5.8 chars/line) is narrower than 英語 and 用語, so the explanatory column is the skinniest of the three, descriptions run 12 lines, and the table balloons to 1733px. Each row becomes a tall column of stacked fragments with a huge void under the English label; comparing definitions across rows is impossible because no two definitions line up at a glance.",
+     "cause": "col1 = 126px is the largest of the three while contributing almost nothing to row height; col3 = 109px is the smallest and carries all the text volume. Width went to the wrong column, so every description line pays for it."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "The term column breaks on a clean 4-character grid (インター/オペラビ/リティ, ミドル/ウェア), so each lookup key reads as a stack of even chunks; English stays whole on one or two lines (col 2 at exactly the 124px needed for \"interoperability\"); headers unwrapped; zero mid-word splits.",
+     "problems": "Tallest table of the three (1151px) and col 3 is visibly the tightest: 8 characters per line with almost no slack, so lines containing Latin fragments (\"OS\") or trailing punctuation wrap early and the description column looks cramped against col 1.",
+     "cause": "col 1 is 92px, but 81px already yields 4 Japanese characters per line — 11px of col 1 is dead width that col 3 needs, and col 3 at 143px (122px text = 8.1 chars) sits exactly on the 8-character boundary, so it gains nothing from the shave."
+    },
+    {
+     "design": "r2B",
+     "good": "Same clean 4-character term breaks as r2A, and col 3 has slightly more slack (130px text) so its right edge is a touch more forgiving; no mid-word splits, headers intact.",
+     "problems": "Visually indistinguishable from r2A — identical row heights (153/199/153…) and identical total height (1151px). Nothing was gained for the width taken from the term column.",
+     "cause": "col 1 went 92→84px (71→63px text) without crossing a character boundary (4 chars needs only 60px), and col 3 went 143→151px (130px text = 8.6 chars) without crossing one either (9 chars needs 158px). Both columns moved inside the same grid cell, so the layout is a strictly neutral reshuffle of r2A."
+    },
+    {
+     "design": "r2C",
+     "good": "Shortest table (1035px) and by far the most readable description column: col 3 at 159px gives 9 characters per line, rows drop from 8 to 7 lines, and line lengths look even and calm. No mid-word splits, English still intact.",
+     "problems": "The lookup key column is shredded into a narrow strip of 3-character fragments: インター/オペ/ラビリ/ティ (4 lines), アイデ/ンティ/ティプ/ロバイ/ダー (5 lines), トランザ/クション/マネー/ジャー. The reader cannot take a term in at a glance, the column's ragged rhythm makes row starts feel inconsistent, and the table looks lopsided — a skinny key column beside a generous description column.",
+     "cause": "col 1 = 76px leaves 55px of text = 3 characters, one step below the 4-character threshold (81px). Every 14-character term then needs 5 lines instead of 4, and the extra height it would have cost is hidden because col 3 (not col 1) governs the row heights."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A",
+    "r3B"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    115,
+    124,
+    120
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 8,
+    "tableWidth": 360,
+    "tableHeight": 1430.3,
+    "overflow": 0,
+    "colWidths": [
+     115,
+     124,
+     120
+    ],
+    "rowHeights": [
+     36.3,
+     199,
+     245.5,
+     199,
+     175.8,
+     175.8,
+     175.8,
+     222.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "用語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "英語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "説明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "インターオペラビリティ",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "interoperability",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "異なるシステムやソフトウェア同士が、仕様やデータ形式の差異を意識せずに連携・相互運用できる性質。",
+      "lines": 8
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "トランザクションマネージャー",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "transaction manager",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "複数のリソースにまたがる処理の開始・確定・取り消しを一元管理し、分散トランザクションの整合性を保つコンポーネント。",
+      "lines": 10
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "オブザーバビリティ",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "observability",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ログ、メトリクス、トレースなどの出力から、システム内部の状態を外部から推測できる能力。",
+      "lines": 8
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "コンテナオーケストレーション",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "container orchestration",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "多数のコンテナの配置、スケーリング、障害復旧、ネットワーク設定を自動化する運用基盤。",
+      "lines": 7
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "アイデンティティプロバイダー",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "identity provider",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ユーザー認証を行い、認証済みの身元情報を他サービスへ連携する仕組みまたはサービス。",
+      "lines": 7
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "サービスレベルアグリーメント",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "service level agreement",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "提供者と利用者の間で、可用性や応答時間などのサービス品質と責任範囲を定めた合意。",
+      "lines": 7
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ミドルウェア",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "middleware",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "業務アプリケーションとOSやネットワークの間に位置し、通信やデータ管理などの共通機能を提供するソフトウェア。",
+      "lines": 9
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 210,
+      "padding": 21
+     },
+     {
+      "minContent": 103,
+      "natural": 163,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 860,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r0A.png",
+   "idea": "A balanced mobile layout that keeps the term/translation pair readable while giving the explanation a workable middle width.",
+   "notes": []
+  },
+  "r0B": {
+   "widths": [
+    145,
+    124,
+    90
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 8,
+    "tableWidth": 360,
+    "tableHeight": 2081.3,
+    "overflow": 0,
+    "colWidths": [
+     145,
+     124,
+     90
+    ],
+    "rowHeights": [
+     36.3,
+     292,
+     361.8,
+     268.8,
+     268.8,
+     268.8,
+     245.5,
+     338.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "用語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "英語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "説明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "インターオペラビリティ",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "interoperability",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "異なるシステムやソフトウェア同士が、仕様やデータ形式の差異を意識せずに連携・相互運用できる性質。",
+      "lines": 12
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "トランザクションマネージャー",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "transaction manager",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "複数のリソースにまたがる処理の開始・確定・取り消しを一元管理し、分散トランザクションの整合性を保つコンポーネント。",
+      "lines": 15
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "オブザーバビリティ",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "observability",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ログ、メトリクス、トレースなどの出力から、システム内部の状態を外部から推測できる能力。",
+      "lines": 11
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "コンテナオーケストレーション",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "container orchestration",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "多数のコンテナの配置、スケーリング、障害復旧、ネットワーク設定を自動化する運用基盤。",
+      "lines": 11
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "アイデンティティプロバイダー",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "identity provider",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ユーザー認証を行い、認証済みの身元情報を他サービスへ連携する仕組みまたはサービス。",
+      "lines": 11
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "サービスレベルアグリーメント",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "service level agreement",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "提供者と利用者の間で、可用性や応答時間などのサービス品質と責任範囲を定めた合意。",
+      "lines": 10
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ミドルウェア",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "middleware",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "業務アプリケーションとOSやネットワークの間に位置し、通信やデータ管理などの共通機能を提供するソフトウェア。",
+      "lines": 14
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 210,
+      "padding": 21
+     },
+     {
+      "minContent": 103,
+      "natural": 163,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 860,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r0B.png",
+   "idea": "Prioritize the Japanese term and English label for fast lookup, accepting a narrower, taller description column.",
+   "notes": []
+  },
+  "r0C": {
+   "widths": [
+    90,
+    124,
+    145
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 8,
+    "tableWidth": 360,
+    "tableHeight": 1151.3,
+    "overflow": 0,
+    "colWidths": [
+     90,
+     124,
+     145
+    ],
+    "rowHeights": [
+     36.3,
+     152.5,
+     199,
+     152.5,
+     152.5,
+     152.5,
+     129.3,
+     175.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "用語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "英語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "説明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "インターオペラビリティ",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "interoperability",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "異なるシステムやソフトウェア同士が、仕様やデータ形式の差異を意識せずに連携・相互運用できる性質。",
+      "lines": 6
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "トランザクションマネージャー",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "transaction manager",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "複数のリソースにまたがる処理の開始・確定・取り消しを一元管理し、分散トランザクションの整合性を保つコンポーネント。",
+      "lines": 8
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "オブザーバビリティ",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "observability",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ログ、メトリクス、トレースなどの出力から、システム内部の状態を外部から推測できる能力。",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "コンテナオーケストレーション",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "container orchestration",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "多数のコンテナの配置、スケーリング、障害復旧、ネットワーク設定を自動化する運用基盤。",
+      "lines": 6
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "アイデンティティプロバイダー",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "identity provider",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ユーザー認証を行い、認証済みの身元情報を他サービスへ連携する仕組みまたはサービス。",
+      "lines": 6
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "サービスレベルアグリーメント",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "service level agreement",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "提供者と利用者の間で、可用性や応答時間などのサービス品質と責任範囲を定めた合意。",
+      "lines": 5
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ミドルウェア",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "middleware",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "業務アプリケーションとOSやネットワークの間に位置し、通信やデータ管理などの共通機能を提供するソフトウェア。",
+      "lines": 7
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 210,
+      "padding": 21
+     },
+     {
+      "minContent": 103,
+      "natural": 163,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 860,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r0C.png",
+   "idea": "Give the explanation the largest share for prose readability, letting Japanese terms wrap more aggressively.",
+   "notes": []
+  },
+  "r1A": {
+   "widths": [
+    100,
+    124,
+    135
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 8,
+    "tableWidth": 360,
+    "tableHeight": 1267.5,
+    "overflow": 0,
+    "colWidths": [
+     100,
+     124,
+     135
+    ],
+    "rowHeights": [
+     36.3,
+     175.8,
+     222.3,
+     175.8,
+     152.5,
+     152.5,
+     152.5,
+     199
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "用語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "英語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "説明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "インターオペラビリティ",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "interoperability",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "異なるシステムやソフトウェア同士が、仕様やデータ形式の差異を意識せずに連携・相互運用できる性質。",
+      "lines": 7
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "トランザクションマネージャー",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "transaction manager",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "複数のリソースにまたがる処理の開始・確定・取り消しを一元管理し、分散トランザクションの整合性を保つコンポーネント。",
+      "lines": 9
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "オブザーバビリティ",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "observability",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ログ、メトリクス、トレースなどの出力から、システム内部の状態を外部から推測できる能力。",
+      "lines": 7
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "コンテナオーケストレーション",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "container orchestration",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "多数のコンテナの配置、スケーリング、障害復旧、ネットワーク設定を自動化する運用基盤。",
+      "lines": 6
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "アイデンティティプロバイダー",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "identity provider",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ユーザー認証を行い、認証済みの身元情報を他サービスへ連携する仕組みまたはサービス。",
+      "lines": 6
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "サービスレベルアグリーメント",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "service level agreement",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "提供者と利用者の間で、可用性や応答時間などのサービス品質と責任範囲を定めた合意。",
+      "lines": 6
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ミドルウェア",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "middleware",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "業務アプリケーションとOSやネットワークの間に位置し、通信やデータ管理などの共通機能を提供するソフトウェア。",
+      "lines": 8
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 210,
+      "padding": 21
+     },
+     {
+      "minContent": 103,
+      "natural": 163,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 860,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r1A.png",
+   "idea": "From r0C, move 10px from 説明 to 用語. 100px gives 79px of text—enough for 5 Japanese characters per line—so 14-character terms drop from four lines to three. 説明 still gets 114px of text, preserving most of r0C’s readable definitions and compact height.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    111,
+    124,
+    124
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 8,
+    "tableWidth": 360,
+    "tableHeight": 1430.3,
+    "overflow": 0,
+    "colWidths": [
+     111,
+     124,
+     124
+    ],
+    "rowHeights": [
+     36.3,
+     199,
+     245.5,
+     199,
+     175.8,
+     175.8,
+     175.8,
+     222.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "用語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "英語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "説明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "インターオペラビリティ",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "interoperability",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "異なるシステムやソフトウェア同士が、仕様やデータ形式の差異を意識せずに連携・相互運用できる性質。",
+      "lines": 8
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "トランザクションマネージャー",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "transaction manager",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "複数のリソースにまたがる処理の開始・確定・取り消しを一元管理し、分散トランザクションの整合性を保つコンポーネント。",
+      "lines": 10
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "オブザーバビリティ",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "observability",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ログ、メトリクス、トレースなどの出力から、システム内部の状態を外部から推測できる能力。",
+      "lines": 8
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "コンテナオーケストレーション",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "container orchestration",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "多数のコンテナの配置、スケーリング、障害復旧、ネットワーク設定を自動化する運用基盤。",
+      "lines": 7
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "アイデンティティプロバイダー",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "identity provider",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ユーザー認証を行い、認証済みの身元情報を他サービスへ連携する仕組みまたはサービス。",
+      "lines": 7
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "サービスレベルアグリーメント",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "service level agreement",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "提供者と利用者の間で、可用性や応答時間などのサービス品質と責任範囲を定めた合意。",
+      "lines": 7
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ミドルウェア",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "middleware",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "業務アプリケーションとOSやネットワークの間に位置し、通信やデータ管理などの共通機能を提供するソフトウェア。",
+      "lines": 9
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 210,
+      "padding": 21
+     },
+     {
+      "minContent": 103,
+      "natural": 163,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 860,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r1B.png",
+   "idea": "Trim r0A’s 用語 from 115px to the 6-character threshold (111px) and give the 4px to 説明. 用語 still shows 6 Japanese characters per line, so its line breaks do not get worse, while 説明 gains text width and slightly shorter definitions.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1C": {
+   "widths": [
+    126,
+    124,
+    109
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 8,
+    "tableWidth": 360,
+    "tableHeight": 1732.5,
+    "overflow": 0,
+    "colWidths": [
+     126,
+     124,
+     109
+    ],
+    "rowHeights": [
+     36.3,
+     245.5,
+     292,
+     222.3,
+     222.3,
+     222.3,
+     222.3,
+     268.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "用語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "英語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "説明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "インターオペラビリティ",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "interoperability",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "異なるシステムやソフトウェア同士が、仕様やデータ形式の差異を意識せずに連携・相互運用できる性質。",
+      "lines": 10
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "トランザクションマネージャー",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "transaction manager",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "複数のリソースにまたがる処理の開始・確定・取り消しを一元管理し、分散トランザクションの整合性を保つコンポーネント。",
+      "lines": 12
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "オブザーバビリティ",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "observability",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ログ、メトリクス、トレースなどの出力から、システム内部の状態を外部から推測できる能力。",
+      "lines": 9
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "コンテナオーケストレーション",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "container orchestration",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "多数のコンテナの配置、スケーリング、障害復旧、ネットワーク設定を自動化する運用基盤。",
+      "lines": 9
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "アイデンティティプロバイダー",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "identity provider",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ユーザー認証を行い、認証済みの身元情報を他サービスへ連携する仕組みまたはサービス。",
+      "lines": 9
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "サービスレベルアグリーメント",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "service level agreement",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "提供者と利用者の間で、可用性や応答時間などのサービス品質と責任範囲を定めた合意。",
+      "lines": 9
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ミドルウェア",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "middleware",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "業務アプリケーションとOSやネットワークの間に位置し、通信やデータ管理などの共通機能を提供するソフトウェア。",
+      "lines": 11
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 210,
+      "padding": 21
+     },
+     {
+      "minContent": 103,
+      "natural": 163,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 860,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r1C.png",
+   "idea": "Prioritise the lookup pair: 126px gives 105px of text, exactly 7 Japanese characters, so the longest 14-character terms fit in two balanced lines. 124px keeps English intact; 説明 takes the remaining 88px, narrower than r0A but still well above r0B’s 69px. This trades table height for stronger term/translation rows.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    92,
+    124,
+    143
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 8,
+    "tableWidth": 360,
+    "tableHeight": 1151.3,
+    "overflow": 0,
+    "colWidths": [
+     92,
+     124,
+     143
+    ],
+    "rowHeights": [
+     36.3,
+     152.5,
+     199,
+     152.5,
+     152.5,
+     152.5,
+     129.3,
+     175.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "用語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "英語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "説明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "インターオペラビリティ",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "interoperability",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "異なるシステムやソフトウェア同士が、仕様やデータ形式の差異を意識せずに連携・相互運用できる性質。",
+      "lines": 6
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "トランザクションマネージャー",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "transaction manager",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "複数のリソースにまたがる処理の開始・確定・取り消しを一元管理し、分散トランザクションの整合性を保つコンポーネント。",
+      "lines": 8
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "オブザーバビリティ",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "observability",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ログ、メトリクス、トレースなどの出力から、システム内部の状態を外部から推測できる能力。",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "コンテナオーケストレーション",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "container orchestration",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "多数のコンテナの配置、スケーリング、障害復旧、ネットワーク設定を自動化する運用基盤。",
+      "lines": 6
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "アイデンティティプロバイダー",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "identity provider",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ユーザー認証を行い、認証済みの身元情報を他サービスへ連携する仕組みまたはサービス。",
+      "lines": 6
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "サービスレベルアグリーメント",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "service level agreement",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "提供者と利用者の間で、可用性や応答時間などのサービス品質と責任範囲を定めた合意。",
+      "lines": 5
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ミドルウェア",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "middleware",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "業務アプリケーションとOSやネットワークの間に位置し、通信やデータ管理などの共通機能を提供するソフトウェア。",
+      "lines": 7
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 210,
+      "padding": 21
+     },
+     {
+      "minContent": 103,
+      "natural": 163,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 860,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r2A.png",
+   "idea": "Take 8px from the over-wide term column (100→92, still ~4.4 chars/line, terms stay at 3–4 lines, well under the description height) and give it to 説明 (135→143). Keeps r1A's compact 3-line-max terms and intact English column but trims roughly one line off each description cell — the column that actually sets row height.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    84,
+    124,
+    151
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 8,
+    "tableWidth": 360,
+    "tableHeight": 1151.3,
+    "overflow": 0,
+    "colWidths": [
+     84,
+     124,
+     151
+    ],
+    "rowHeights": [
+     36.3,
+     152.5,
+     199,
+     152.5,
+     152.5,
+     152.5,
+     129.3,
+     175.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "用語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "英語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "説明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "インターオペラビリティ",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "interoperability",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "異なるシステムやソフトウェア同士が、仕様やデータ形式の差異を意識せずに連携・相互運用できる性質。",
+      "lines": 6
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "トランザクションマネージャー",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "transaction manager",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "複数のリソースにまたがる処理の開始・確定・取り消しを一元管理し、分散トランザクションの整合性を保つコンポーネント。",
+      "lines": 8
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "オブザーバビリティ",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "observability",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ログ、メトリクス、トレースなどの出力から、システム内部の状態を外部から推測できる能力。",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "コンテナオーケストレーション",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "container orchestration",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "多数のコンテナの配置、スケーリング、障害復旧、ネットワーク設定を自動化する運用基盤。",
+      "lines": 6
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "アイデンティティプロバイダー",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "identity provider",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ユーザー認証を行い、認証済みの身元情報を他サービスへ連携する仕組みまたはサービス。",
+      "lines": 6
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "サービスレベルアグリーメント",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "service level agreement",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "提供者と利用者の間で、可用性や応答時間などのサービス品質と責任範囲を定めた合意。",
+      "lines": 5
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ミドルウェア",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "middleware",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "業務アプリケーションとOSやネットワークの間に位置し、通信やデータ管理などの共通機能を提供するソフトウェア。",
+      "lines": 7
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 210,
+      "padding": 21
+     },
+     {
+      "minContent": 103,
+      "natural": 163,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 860,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r2B.png",
+   "idea": "Push the same logic further: col1 down to 84px (63px text, longest terms reach 4 lines but that is still shorter than any description) and 説明 up to 151px, the widest explanatory field achievable. Rows shrink the most of any option; the trade is that long Japanese terms break into 4 short fragments, so the lookup key is slightly harder to read.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2C": {
+   "widths": [
+    76,
+    124,
+    159
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 8,
+    "tableWidth": 360,
+    "tableHeight": 1035,
+    "overflow": 0,
+    "colWidths": [
+     76,
+     124,
+     159
+    ],
+    "rowHeights": [
+     36.3,
+     152.5,
+     175.8,
+     129.3,
+     129.3,
+     129.3,
+     129.3,
+     152.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "用語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "英語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "説明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "インターオペラビリティ",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "interoperability",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "異なるシステムやソフトウェア同士が、仕様やデータ形式の差異を意識せずに連携・相互運用できる性質。",
+      "lines": 6
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "トランザクションマネージャー",
+      "lines": 5
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "transaction manager",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "複数のリソースにまたがる処理の開始・確定・取り消しを一元管理し、分散トランザクションの整合性を保つコンポーネント。",
+      "lines": 7
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "オブザーバビリティ",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "observability",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ログ、メトリクス、トレースなどの出力から、システム内部の状態を外部から推測できる能力。",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "コンテナオーケストレーション",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "container orchestration",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "多数のコンテナの配置、スケーリング、障害復旧、ネットワーク設定を自動化する運用基盤。",
+      "lines": 5
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "アイデンティティプロバイダー",
+      "lines": 5
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "identity provider",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ユーザー認証を行い、認証済みの身元情報を他サービスへ連携する仕組みまたはサービス。",
+      "lines": 5
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "サービスレベルアグリーメント",
+      "lines": 5
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "service level agreement",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "提供者と利用者の間で、可用性や応答時間などのサービス品質と責任範囲を定めた合意。",
+      "lines": 5
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ミドルウェア",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "middleware",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "業務アプリケーションとOSやネットワークの間に位置し、通信やデータ管理などの共通機能を提供するソフトウェア。",
+      "lines": 6
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 210,
+      "padding": 21
+     },
+     {
+      "minContent": 103,
+      "natural": 163,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 860,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r2C.png",
+   "idea": "The extreme end of the trade-off: col1 at its practical minimum (55px text ≈ 3.5 chars/line) with 英語 pinned at 124 and 説明 at 159px. This tests whether description width, not term width, is what the reader actually needs; it will produce the shortest table, at the cost of 4-line term cells and some mid-term breaks at character boundaries.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    81,
+    124,
+    154
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 8,
+    "tableWidth": 360,
+    "tableHeight": 1151.3,
+    "overflow": 0,
+    "colWidths": [
+     81,
+     124,
+     154
+    ],
+    "rowHeights": [
+     36.3,
+     152.5,
+     199,
+     152.5,
+     152.5,
+     152.5,
+     129.3,
+     175.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "用語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "英語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "説明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "インターオペラビリティ",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "interoperability",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "異なるシステムやソフトウェア同士が、仕様やデータ形式の差異を意識せずに連携・相互運用できる性質。",
+      "lines": 6
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "トランザクションマネージャー",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "transaction manager",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "複数のリソースにまたがる処理の開始・確定・取り消しを一元管理し、分散トランザクションの整合性を保つコンポーネント。",
+      "lines": 8
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "オブザーバビリティ",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "observability",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ログ、メトリクス、トレースなどの出力から、システム内部の状態を外部から推測できる能力。",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "コンテナオーケストレーション",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "container orchestration",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "多数のコンテナの配置、スケーリング、障害復旧、ネットワーク設定を自動化する運用基盤。",
+      "lines": 6
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "アイデンティティプロバイダー",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "identity provider",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ユーザー認証を行い、認証済みの身元情報を他サービスへ連携する仕組みまたはサービス。",
+      "lines": 6
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "サービスレベルアグリーメント",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "service level agreement",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "提供者と利用者の間で、可用性や応答時間などのサービス品質と責任範囲を定めた合意。",
+      "lines": 5
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ミドルウェア",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "middleware",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "業務アプリケーションとOSやネットワークの間に位置し、通信やデータ管理などの共通機能を提供するソフトウェア。",
+      "lines": 7
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 210,
+      "padding": 21
+     },
+     {
+      "minContent": 103,
+      "natural": 163,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 860,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r3A.png",
+   "idea": "Keep r2A's 4-character term grid but stop paying for it: col 1 shrinks to the exact 4-character width (81px = 60px text), and the 11px it releases goes to col 3 (154px = 133px text, 8.8 chars). Line counts are unchanged from r2A, so row heights stay identical, but the description column now has real slack at the right edge and the term column no longer carries unused width.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3B": {
+   "widths": [
+    77,
+    124,
+    158
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 8,
+    "tableWidth": 360,
+    "tableHeight": 1035,
+    "overflow": 0,
+    "colWidths": [
+     77,
+     124,
+     158
+    ],
+    "rowHeights": [
+     36.3,
+     152.5,
+     175.8,
+     129.3,
+     129.3,
+     129.3,
+     129.3,
+     152.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "用語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "英語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "説明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "インターオペラビリティ",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "interoperability",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "異なるシステムやソフトウェア同士が、仕様やデータ形式の差異を意識せずに連携・相互運用できる性質。",
+      "lines": 6
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "トランザクションマネージャー",
+      "lines": 5
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "transaction manager",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "複数のリソースにまたがる処理の開始・確定・取り消しを一元管理し、分散トランザクションの整合性を保つコンポーネント。",
+      "lines": 7
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "オブザーバビリティ",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "observability",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ログ、メトリクス、トレースなどの出力から、システム内部の状態を外部から推測できる能力。",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "コンテナオーケストレーション",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "container orchestration",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "多数のコンテナの配置、スケーリング、障害復旧、ネットワーク設定を自動化する運用基盤。",
+      "lines": 5
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "アイデンティティプロバイダー",
+      "lines": 5
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "identity provider",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ユーザー認証を行い、認証済みの身元情報を他サービスへ連携する仕組みまたはサービス。",
+      "lines": 5
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "サービスレベルアグリーメント",
+      "lines": 5
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "service level agreement",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "提供者と利用者の間で、可用性や応答時間などのサービス品質と責任範囲を定めた合意。",
+      "lines": 5
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ミドルウェア",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "middleware",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "業務アプリケーションとOSやネットワークの間に位置し、通信やデータ管理などの共通機能を提供するソフトウェア。",
+      "lines": 6
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 210,
+      "padding": 21
+     },
+     {
+      "minContent": 103,
+      "natural": 163,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 860,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r3B.png",
+   "idea": "Commit to r2C's compact reading but take the term column to the widest 3-character width (77px = 56px text) and pin col 3 to the 9-character boundary (158px = 137px text) rather than overshooting to 159px. Result is the short 1035px table with even 9-character description lines, while col 1 keeps every pixel available inside its grid cell — choose this only if the shorter, calmer description column outweighs the fragmented lookup keys.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "ref_auto": {
+   "widths": [
+    62.8,
+    131.8,
+    164.4
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 8,
+    "tableWidth": 360,
+    "tableHeight": 1174.5,
+    "overflow": 0,
+    "colWidths": [
+     62.8,
+     131.8,
+     164.4
+    ],
+    "rowHeights": [
+     36.3,
+     152.5,
+     175.8,
+     129.3,
+     175.8,
+     175.8,
+     175.8,
+     152.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "用語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "英語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "説明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "インターオペラビリティ",
+      "lines": 6
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "interoperability",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "異なるシステムやソフトウェア同士が、仕様やデータ形式の差異を意識せずに連携・相互運用できる性質。",
+      "lines": 6
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "トランザクションマネージャー",
+      "lines": 7
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "transaction manager",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "複数のリソースにまたがる処理の開始・確定・取り消しを一元管理し、分散トランザクションの整合性を保つコンポーネント。",
+      "lines": 7
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "オブザーバビリティ",
+      "lines": 5
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "observability",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ログ、メトリクス、トレースなどの出力から、システム内部の状態を外部から推測できる能力。",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "コンテナオーケストレーション",
+      "lines": 7
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "container orchestration",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "多数のコンテナの配置、スケーリング、障害復旧、ネットワーク設定を自動化する運用基盤。",
+      "lines": 5
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "アイデンティティプロバイダー",
+      "lines": 7
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "identity provider",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ユーザー認証を行い、認証済みの身元情報を他サービスへ連携する仕組みまたはサービス。",
+      "lines": 5
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "サービスレベルアグリーメント",
+      "lines": 7
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "service level agreement",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "提供者と利用者の間で、可用性や応答時間などのサービス品質と責任範囲を定めた合意。",
+      "lines": 5
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ミドルウェア",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "middleware",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "業務アプリケーションとOSやネットワークの間に位置し、通信やデータ管理などの共通機能を提供するソフトウェア。",
+      "lines": 6
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 210,
+      "padding": 21
+     },
+     {
+      "minContent": 103,
+      "natural": 163,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 860,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    119,
+    119,
+    119
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 8,
+    "tableWidth": 358,
+    "tableHeight": 1430.3,
+    "overflow": 0,
+    "colWidths": [
+     119,
+     119,
+     119
+    ],
+    "rowHeights": [
+     36.3,
+     199,
+     245.5,
+     199,
+     175.8,
+     175.8,
+     175.8,
+     222.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "用語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "英語",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "説明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "インターオペラビリティ",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "interoperability",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "異なるシステムやソフトウェア同士が、仕様やデータ形式の差異を意識せずに連携・相互運用できる性質。",
+      "lines": 8
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "トランザクションマネージャー",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "transaction manager",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "複数のリソースにまたがる処理の開始・確定・取り消しを一元管理し、分散トランザクションの整合性を保つコンポーネント。",
+      "lines": 10
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "オブザーバビリティ",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "observability",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ログ、メトリクス、トレースなどの出力から、システム内部の状態を外部から推測できる能力。",
+      "lines": 8
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "コンテナオーケストレーション",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "container orchestration",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "多数のコンテナの配置、スケーリング、障害復旧、ネットワーク設定を自動化する運用基盤。",
+      "lines": 7
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "アイデンティティプロバイダー",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "identity provider",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ユーザー認証を行い、認証済みの身元情報を他サービスへ連携する仕組みまたはサービス。",
+      "lines": 7
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "サービスレベルアグリーメント",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "service level agreement",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "提供者と利用者の間で、可用性や応答時間などのサービス品質と責任範囲を定めた合意。",
+      "lines": 7
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "ミドルウェア",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "middleware",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "業務アプリケーションとOSやネットワークの間に位置し、通信やデータ管理などの共通機能を提供するソフトウェア。",
+      "lines": 9
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 1,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 210,
+      "padding": 21
+     },
+     {
+      "minContent": 103,
+      "natural": 163,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 860,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-ref_equal.png"
+  }
+ },
+ "understanding": {
+  "purpose": "A bilingual glossary for system-integration terms: readers identify a Japanese term, map it to its English equivalent, and read a short definition.",
+  "reading": "Scan down column 1 for the term, compare across to column 2 for the English label, then read column 3. Rows are the unit of comparison, so stable row starts and a readable term/translation pair matter more than equal column widths.",
+  "groups": [
+   "Columns 1–2 form the term/translation lookup pair and should stay adjacent with related widths.",
+   "Column 3 is a separate explanatory field and can absorb most wrapping."
+  ],
+  "keep_intact": [
+   "English unbreakable tokens; column 2 needs at least 124px total for the 103px longest word.",
+   "Japanese terms as whole lookup keys where possible, ideally without splitting across more than 2–3 lines.",
+   "Headers 用語 / 英語 / 説明."
+  ],
+  "may_wrap": [
+   "Column 3 descriptions at natural Japanese line breaks.",
+   "Multi-word English phrases at spaces, e.g. transaction manager / service level agreement.",
+   "Long Japanese terms at character boundaries only when necessary."
+  ]
+ },
+ "final": {
+  "preferred": [
+   "r3A"
+  ],
+  "acceptable": [
+   "r1A",
+   "r2A",
+   "r2B"
+  ],
+  "bad": [
+   {
+    "design": "r1B",
+    "why": "The description column is only 124px total / 103px text, no wider than the English column; long definitions run to 10 lines and the table grows to 1430px, so the main prose is starved."
+   },
+   {
+    "design": "r1C",
+    "why": "The description column is 109px total / 88px text, forcing 12-line cells and a 1733px table; the term column is over-allocated at 126px while the content readers actually read is crushed."
+   },
+   {
+    "design": "r2C",
+    "why": "The term column is 76px total / 55px text, shredding katakana entries into 4–5 short fragments and sometimes starting lines with small kana; the 116px saved is not worth losing the row-header scan key."
+   },
+   {
+    "design": "r3B",
+    "why": "Same fault as r2C: a 77px term column fragments entries into short pieces and leaves the description 158px; it is compact but the row headers become hard to scan."
+   }
+  ],
+  "contrast": null,
+  "ranges": [
+   [
+    81,
+    92
+   ],
+   [
+    124,
+    128
+   ],
+   [
+    143,
+    154
+   ]
+  ],
+  "rationale": "r3A fixes English at 124px—exactly the 103px longest word plus padding—and gives the remaining width to the description without crossing the next height step. At 81px the term column still holds each katakana term in 2–4 lines, while 76–77px fragments them into 4–5 pieces for only a 116px shorter table. r1A is a defensible term-first alternative, but it spends 117px more height and narrows the prose to 114px of text. r2A/r2B sit on the same height plateau as r3A but give width back to the term column without reducing its line count, so r3A is the better balance.",
+  "principles": {
+   "general": [
+    "Fix an English or identifier column at the width of its longest unbreakable token; extra width there is wasted and too little causes mid-word splits.",
+    "For a glossary, the row-header term column must remain wide enough to preserve recognizable word chunks; the shortest table is not best if it shreds the scan keys.",
+    "When one long prose column drives row heights, reallocating a few pixels to a short header column can be free; find the height plateau rather than optimizing total height alone.",
+    "Japanese katakana terms can break at character boundaries, but frequent 2–4-character fragments and lines starting with small kana or prolonged marks hurt scanning."
+   ],
+   "specific": [
+    "This table’s height is dominated by the description column; term-column width matters mainly at thresholds, e.g. 77→81px crosses from 1035px to 1151px total height.",
+    "Column 2 must be at least 124px because “interoperability” is 103px plus 21px padding; all candidates correctly hold it there.",
+    "r3A’s [81,124,154] is the best point just above the 77px term-column cliff.",
+    "r1C’s 109px description column is too narrow, while r2C/r3B’s 76/77px term column is too narrow."
+   ]
+  },
+  "tradeoffs": "A designer could prefer r1A for more comfortable term wrapping and accept a 1268px table, or r2A for a slightly wider term column at the cost of a narrower description. Strict kinsoku enforcement might reject some katakana breaks in all candidates.",
+  "uncertain": "Whether the small-kana/prolonged-mark line starts visible in these renders are acceptable in the target browser, and whether the 81px term column is just over the line; the exact threshold depends on font metrics and line-break rules."
+ },
+ "reviews": [
+  {
+   "order": [
+    "ref_auto",
+    "r3A",
+    "ref_equal",
+    "r1B",
+    "r1A",
+    "r2A"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "poor",
+     "why": "col 1 is squeezed to a single character per line, so every term becomes a vertical stack of 6–11 glyphs (イ/ン/タ/ー/ポ…). The row headers — the thing a glossary is scanned by — stop reading as words. col 2 and col 3 are generous, but the scan column is sacrificed to buy that."
+    },
+    "B": {
+     "grade": "good",
+     "why": "A sensible balance: col 1 holds about five characters per line so terms stay recognisable in 2–3 lines, col 2 is wide enough that 'interoperability' and 'transaction manager' keep their word shapes, and col 3 gets the widest measure of the three-column split (~8 characters per line, six lines per definition). Minor cost: compounds like トランザクション|マネージャー break mid-term."
+    },
+    "C": {
+     "grade": "acceptable",
+     "why": "col 2 is pulled in just past the breaking point, so 'interoperability' splits into 'interoperabilit' + a dangling 'y' — a visible defect on the key English term. col 1 gains a little room and col 3 stays at ~6 characters per line, so rows are tall; nothing is broken beyond that, but D achieves the same proportions without the split word."
+    },
+    "D": {
+     "grade": "good",
+     "why": "col 1 is the roomiest of the narrow-header options (~7 characters), so loanword compounds split closer to their natural joints (トランザクション|マネージャ), and col 2 still keeps every English term whole. The price is a tighter 説明 column (~6 characters per line), which makes rows taller and the prose more ragged than B/F."
+    },
+    "E": {
+     "grade": "good",
+     "why": "col 1 at ~5 characters and col 2 keeping English words intact, while 説明 gets a slightly wider measure than D (~7 characters per line). Middle-of-the-road compromise: nothing broken, nothing excellent — col 1 still breaks マネージャー across lines."
+    },
+    "F": {
+     "grade": "good",
+     "why": "Effectively the same trade as B: readable multi-character row headers, English terms held whole in col 2, and the widest 説明 measure (~8 characters per line, six lines per definition) so the long prose column drives row height least. Slightly cramped header column is the only cost."
+    }
+   },
+   "best": [
+    "B",
+    "F"
+   ],
+   "confidence": "medium",
+   "unsure": "I cannot measure the exact widths from the renders, so my reading of col 2 (whether it clears the 103px 'interoperability' or is a hair under, as in C) is inferred from the visible line breaks; B and F look nearly identical and may be the same proportions, and D/E are close enough that on a different font metric the ranking could shift."
+  },
+  {
+   "order": [
+    "r1A",
+    "r2A",
+    "r3A",
+    "ref_equal",
+    "r1B",
+    "ref_auto"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "acceptable",
+     "why": "English terms stay intact and the term column holds most katakana words on 2–3 lines, but 説明 is squeezed to ~7 characters per line, so every description becomes a tall ragged block and rows grow long; readable, just cramped on the column that carries the most content."
+    },
+    "B": {
+     "grade": "good",
+     "why": "A reasonable compromise: 用語 stays wide enough for 3-line wraps, 英語 keeps \"interoperability\" whole (only multi-word phrases wrap), and 説明 gains enough width for 8–9 characters per line, giving descriptions a steadier rhythm than A."
+    },
+    "C": {
+     "grade": "good",
+     "why": "Very similar to B but with slightly more room in 説明 (lines reach 8–9 characters) and terms still resolving in 2–3 lines; the clearest reading of the long descriptive text among the layouts that also keep English terms unbroken."
+    },
+    "D": {
+     "grade": "poor",
+     "why": "英語 is too narrow — \"interoperability\" breaks as \"interoperabilit/y\" — and 説明 is only ~6 characters wide, so descriptions are the most fragmented of all while the term column is not noticeably better than B/C; it loses on both counts."
+    },
+    "E": {
+     "grade": "acceptable",
+     "why": "English terms stay whole and katakana terms wrap cleanly in 2 lines, but 説明 is narrow (~6 characters per line), producing very tall rows and choppy descriptive text — the opposite of what the 860px-wide content needs."
+    },
+    "F": {
+     "grade": "poor",
+     "why": "Descriptions finally get generous width (10–11 characters per line, fewest lines), but the 用語 column is starved to 1–2 characters per line, so row headers become vertical stacks that are unreadable and inflate every row; the trade is not worth it."
+    }
+   },
+   "best": [
+    "C",
+    "B"
+   ],
+   "confidence": "medium",
+   "unsure": "B and C look nearly identical at this rendering size; I judged C marginally better on 説明 line length. I also cannot fully verify exact pixel widths from the images, so the A-vs-B ordering and whether any layout keeps \"interoperability\" unbroken purely by luck of padding are uncertain."
+  }
+ ]
+}

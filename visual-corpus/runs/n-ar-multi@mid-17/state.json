@@ -1,0 +1,4713 @@
+{
+ "id": "n-ar-multi@mid-17",
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "This is the only design that hits the real constraint: every vote count and percentage stays on one line, no mid-word splits, and the table is the shortest of the three (395px). The width profile also mirrors the reading hierarchy — widest column for the district identifier, medium for the vote counts, narrowest for the percentages — so the eye can tell votes from shares by proportion alone. District names wrap to two lines, which is an acceptable price for keeping the numbers intact.",
+     "problems": "There is zero slack anywhere. The two-line district rows (66px) break the vertical rhythm of the otherwise 39px rows, and the percentage columns look pinched relative to the vote columns right beside them. Column 1 also carries a couple of pixels more than the district text actually needs, while the numeric columns have none to spare.",
+     "cause": "Cols 2/4 are 79px and cols 3/5 are 71px — exactly the one-line minimums (58+21 and 50+21). Any subpixel rounding or a hair-wider glyph pushes a figure onto a second line and silently inflates a row. Col 1 at 112px (91px of text) is the maximum the numeric columns permit, so the layout sits on a knife edge with no reserve."
+    },
+    {
+     "design": "r0B",
+     "good": "Numbers are comfortable and unambiguously single-line; vote columns at 86px have generous breathing room and the percentage columns stay at their one-line minimum, so at least the roles remain distinguishable by width.",
+     "problems": "The district column is now visibly starved: names break into three lines ('دائرة / المفرق / الأولى'), so five of six rows grow to 92px and the table becomes 474px tall — 20% taller than r0A with no gain in legibility. Rows no longer read as units because the identifier occupies more vertical space than the data it labels.",
+     "cause": "Col 1 was cut to 98px, leaving only 77px of text width — below the width needed to fit 'دائرة المفرق' on one line. The 7px taken from col 1 were handed to the vote columns (86px), where 79px already sufficed, so the width was spent where it produced nothing."
+    },
+    {
+     "design": "r0C",
+     "good": "All numeric cells are safely single-line and the table looks superficially calm and even.",
+     "problems": "The worst of the three: every multi-word district name breaks to three lines, the table balloons to 553px, and the rows become tall, airy boxes in which the district label dominates. Equal widths also erase the distinction between identifier, count and share — the reader loses the cue that columns 2 and 4 are the same kind of quantity and 3 and 5 another.",
+     "cause": "Forcing all five columns to 82px gives the district column only 61px of text width — barely more than the longest single word — while over-provisioning the percentages (82px for 50px of content) and the votes (82px for 58px). Width was moved from the column that needed it to columns that did not."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "All 7 header cells stay on one line; no mid-word splits; every vote count and percentage sits intact on a single line; the two candidate blocks are exactly symmetric (79/72 and 79/72), which makes A-versus-B comparison down the table effortless; the district column is wide enough that the long names break into only two lines (دائرة المفرق / الأولى).",
+     "problems": "Three of the six district rows are 66px tall while the other three are 39px, so the body has a lumpy vertical rhythm — the eye drops out of the table exactly where the district names are long. The district column is the only column that could still use pixels, yet the two percentage columns are each carrying 1px more than they need.",
+     "cause": "District column is 110px = 89px of text, well short of the 130px the longest district name needs on one line, so المفرق الأولى, إربد الثانية and الزرقاء الأولى must wrap. The 79/72 split leaves 1px of slack in each percentage column that is being spent on numbers rather than on the identifier column."
+    },
+    {
+     "design": "r1B",
+     "good": "The vote columns get 80px instead of 79, so 21,340 and 13,905 have a fraction more air around them, and header wrapping is still 0/7 with no mid-word splits.",
+     "problems": "Visually indistinguishable from r1A, but it is the wrong trade: the two pixels came out of the district column, moving it from 89px to 87px of text, i.e. closer to the three-line cliff that r1C falls off. The same uneven 39/66 row rhythm remains, and the numbers already fitted comfortably at 79px, so nothing was actually gained.",
+     "cause": "District column reduced to 108px while the percentage columns stayed at 72px, so the scarce width was moved from the identifier column (which needs 151px for one line) to numeric columns that need only 58px and 50px."
+    },
+    {
+     "design": "r1C",
+     "good": "The percentage columns are slightly wider and the candidate blocks still read as coherent pairs; no numbers or words are broken.",
+     "problems": "This is the worst of the three: دائرة المفرق الأولى collapses to three lines, that row becomes 92px tall, the table grows to 421px, and the body now has three different row heights (39/92/66). The wrapped fragment الأولى sits alone under a two-word first line, which reads as a caption rather than a district name. The 3–4px handed to the percentage columns buy nothing visible.",
+     "cause": "District column cut to 104px = 83px of text, which is below the wrap threshold: at 89px the browser fits دائرة المفرق on one line, at 83px it does not. The columns receiving the stolen width only need 50px of text each."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "RTL reading order is correct, the district column stays on the right, and the two candidate blocks are visually grouped under المرشح أ and المرشح ب. Vote and percentage columns keep their intended roles.",
+     "problems": "Every column is too narrow: الدائرة splits as الدائر/ة, district names break mid-word across 3–5 lines, vote counts split as 13,9/05 and 21,3/40, percentages split as 31.1/% , and headers split as الأصو/ات and النسب/ة. Rows become 66–145px tall, the table reaches 737px, and the 24 mid-word splits make row comparison and column scanning almost impossible.",
+     "cause": "Equal 60px widths leave only 39px of text after 21px padding. That is below every key unbreakable token: 49px for الدائرة, 58px for vote counts and الأصوات, and 50px for percentages and النسبة. The layout treats unequal content as if it were equal."
+    },
+    {
+     "design": "r2B",
+     "good": "Same correct RTL order and candidate grouping as r2A; the grouped headers still communicate the two-candidate structure.",
+     "problems": "The render is effectively identical to r2A, so it repeats the same failures: split district names, split vote counts, split percentages, split subheaders, very tall rows, and a table that is much too long for six data rows. No visual problem from r2A is fixed.",
+     "cause": "The widths are again [60,60,60,60,60]. With 39px of usable text per column, no numeric token or key Arabic word can remain intact, regardless of the grouping logic."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    112,
+    79,
+    71,
+    79,
+    71
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 413,
+    "tableHeight": 394.8,
+    "overflow": 0,
+    "colWidths": [
+     112,
+     79,
+     71,
+     79,
+     71
+    ],
+    "rowHeights": [
+     39.3,
+     39.3,
+     65.7,
+     65.7,
+     65.7,
+     39.3,
+     39.3,
+     39.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "الدائرة",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "المرشح أ",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "المرشح ب",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الأصوات",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "النسبة",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الأصوات",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "النسبة",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة المفرق الأولى",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "18,420",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "41.2%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "13,905",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "31.1%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة إربد الثانية",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15,760",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "36.8%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12,240",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.6%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة الزرقاء الأولى",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "21,340",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "44.5%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14,890",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "31.0%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة الكرك",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9,870",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "33.7%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8,450",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.9%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة جرش",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7,620",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "39.4%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5,410",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.0%",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة معان",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11,250",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "35.6%",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9,030",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.6%",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 49,
+      "natural": 130,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     }
+    ],
+    "frameW": 448
+   },
+   "png": "d-r0A.png",
+   "idea": "District-priority: give the row label the largest possible width while keeping every numeric column exactly at its one-line minimum.",
+   "notes": []
+  },
+  "r0B": {
+   "widths": [
+    98,
+    86,
+    71,
+    86,
+    71
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 413,
+    "tableHeight": 473.8,
+    "overflow": 0,
+    "colWidths": [
+     98,
+     86,
+     71,
+     86,
+     71
+    ],
+    "rowHeights": [
+     39.3,
+     39.3,
+     92,
+     65.7,
+     92,
+     65.7,
+     39.3,
+     39.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "الدائرة",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "المرشح أ",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "المرشح ب",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الأصوات",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "النسبة",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الأصوات",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "النسبة",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة المفرق الأولى",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "18,420",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "41.2%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "13,905",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "31.1%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة إربد الثانية",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15,760",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "36.8%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12,240",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.6%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة الزرقاء الأولى",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "21,340",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "44.5%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14,890",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "31.0%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة الكرك",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9,870",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "33.7%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8,450",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.9%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة جرش",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7,620",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "39.4%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5,410",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.0%",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة معان",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11,250",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "35.6%",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9,030",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.6%",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 49,
+      "natural": 130,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     }
+    ],
+    "frameW": 448
+   },
+   "png": "d-r0B.png",
+   "idea": "Vote-comfort: trade district width for extra breathing room in the two vote columns, while percentages stay at their intact minimum.",
+   "notes": []
+  },
+  "r0C": {
+   "widths": [
+    84,
+    82,
+    82,
+    82,
+    82
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 413,
+    "tableHeight": 552.8,
+    "overflow": 0,
+    "colWidths": [
+     84,
+     82,
+     82,
+     82,
+     82
+    ],
+    "rowHeights": [
+     39.3,
+     39.3,
+     92,
+     92,
+     92,
+     65.7,
+     65.7,
+     65.7
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "الدائرة",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "المرشح أ",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "المرشح ب",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الأصوات",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "النسبة",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الأصوات",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "النسبة",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة المفرق الأولى",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "18,420",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "41.2%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "13,905",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "31.1%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة إربد الثانية",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15,760",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "36.8%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12,240",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.6%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة الزرقاء الأولى",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "21,340",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "44.5%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14,890",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "31.0%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة الكرك",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9,870",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "33.7%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8,450",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.9%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة جرش",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7,620",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "39.4%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5,410",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.0%",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة معان",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11,250",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "35.6%",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9,030",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.6%",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 49,
+      "natural": 130,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     }
+    ],
+    "frameW": 448
+   },
+   "png": "d-r0C.png",
+   "idea": "Numeric symmetry: make all four numeric columns equal and generous, accepting a compact district column that wraps row labels more aggressively.",
+   "notes": []
+  },
+  "r1A": {
+   "widths": [
+    110,
+    79,
+    72,
+    79,
+    72
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 413,
+    "tableHeight": 394.8,
+    "overflow": 0,
+    "colWidths": [
+     110,
+     79,
+     72,
+     79,
+     72
+    ],
+    "rowHeights": [
+     39.3,
+     39.3,
+     65.7,
+     65.7,
+     65.7,
+     39.3,
+     39.3,
+     39.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "الدائرة",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "المرشح أ",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "المرشح ب",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الأصوات",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "النسبة",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الأصوات",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "النسبة",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة المفرق الأولى",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "18,420",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "41.2%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "13,905",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "31.1%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة إربد الثانية",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15,760",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "36.8%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12,240",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.6%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة الزرقاء الأولى",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "21,340",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "44.5%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14,890",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "31.0%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة الكرك",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9,870",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "33.7%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8,450",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.9%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة جرش",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7,620",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "39.4%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5,410",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.0%",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة معان",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11,250",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "35.6%",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9,030",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.6%",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 49,
+      "natural": 130,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     }
+    ],
+    "frameW": 448
+   },
+   "png": "d-r1A.png",
+   "idea": "Keep r0A's successful structure and shave only 2px from the district column to buy 1px of slack for each percentage column. Districts should still hold at two lines, numbers stay single-line, and the percentages stop sitting at their absolute minimum.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    108,
+    80,
+    72,
+    80,
+    72
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 413,
+    "tableHeight": 394.8,
+    "overflow": 0,
+    "colWidths": [
+     108,
+     80,
+     72,
+     80,
+     72
+    ],
+    "rowHeights": [
+     39.3,
+     39.3,
+     65.7,
+     65.7,
+     65.7,
+     39.3,
+     39.3,
+     39.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "الدائرة",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "المرشح أ",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "المرشح ب",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الأصوات",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "النسبة",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الأصوات",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "النسبة",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة المفرق الأولى",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "18,420",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "41.2%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "13,905",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "31.1%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة إربد الثانية",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15,760",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "36.8%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12,240",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.6%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة الزرقاء الأولى",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "21,340",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "44.5%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14,890",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "31.0%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة الكرك",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9,870",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "33.7%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8,450",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.9%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة جرش",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7,620",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "39.4%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5,410",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.0%",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة معان",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11,250",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "35.6%",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9,030",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.6%",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 49,
+      "natural": 130,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     }
+    ],
+    "frameW": 448
+   },
+   "png": "d-r1B.png",
+   "idea": "Spread a small reserve across every numeric column (1px each) by taking 4px from the district column. Tests whether a 87px text width still keeps 'دائرة المفرق' on one line; if it does, this is the most robust version against rounding, if it does not, r1A is the answer.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1C": {
+   "widths": [
+    104,
+    79,
+    74,
+    79,
+    74
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 411,
+    "tableHeight": 421.1,
+    "overflow": 0,
+    "colWidths": [
+     104,
+     79,
+     74,
+     79,
+     74
+    ],
+    "rowHeights": [
+     39.3,
+     39.3,
+     92,
+     65.7,
+     65.7,
+     39.3,
+     39.3,
+     39.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "الدائرة",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "المرشح أ",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "المرشح ب",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الأصوات",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "النسبة",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الأصوات",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "النسبة",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة المفرق الأولى",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "18,420",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "41.2%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "13,905",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "31.1%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة إربد الثانية",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15,760",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "36.8%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12,240",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.6%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة الزرقاء الأولى",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "21,340",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "44.5%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14,890",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "31.0%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة الكرك",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9,870",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "33.7%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8,450",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.9%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة جرش",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7,620",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "39.4%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5,410",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.0%",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة معان",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11,250",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "35.6%",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9,030",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.6%",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 49,
+      "natural": 130,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     }
+    ],
+    "frameW": 447
+   },
+   "png": "d-r1C.png",
+   "idea": "Deliberate boundary probe: push the district column down to 104px (83px of text) to give the percentage columns 3px of slack each. If districts still wrap at two lines this is the most comfortable numeric layout; if they jump to three lines it confirms r0A/r1A's district width is the floor and should be abandoned.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    60,
+    60,
+    60,
+    60,
+    60
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 301,
+    "tableHeight": 737.3,
+    "overflow": 0,
+    "colWidths": [
+     60,
+     60,
+     60,
+     60,
+     60
+    ],
+    "rowHeights": [
+     39.3,
+     65.7,
+     144.7,
+     118.4,
+     144.7,
+     92,
+     65.7,
+     65.7
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "الدائرة",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "المرشح أ",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "المرشح ب",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الأصوات",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "النسبة",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الأصوات",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "النسبة",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة المفرق الأولى",
+      "lines": 5
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "18,420",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "41.2%",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "13,905",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "31.1%",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة إربد الثانية",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15,760",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "36.8%",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12,240",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.6%",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة الزرقاء الأولى",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "21,340",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "44.5%",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14,890",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "31.0%",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة الكرك",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9,870",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "33.7%",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8,450",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.9%",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة جرش",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7,620",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "39.4%",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5,410",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.0%",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة معان",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11,250",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "35.6%",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9,030",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.6%",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 24,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 49,
+      "natural": 130,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     }
+    ],
+    "frameW": 447
+   },
+   "png": "d-r2A.png",
+   "idea": "Push the identifier column to the largest width the grid allows and drop both percentage columns to their exact content minimum: 112/79/71/79/71. The district column now has 91px of text (a safe margin above the ~85px three-line threshold), so the long names stay at two lines while the table keeps its 395px height, and the two candidate blocks become exactly equal 150px blocks — a cleaner A/B symmetry than 79/72. Nothing is lost on the numbers: 79 is exactly 58+21 and 71 is exactly 50+21.",
+   "notes": [
+    "expected 5 widths"
+   ],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    60,
+    60,
+    60,
+    60,
+    60
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 301,
+    "tableHeight": 737.3,
+    "overflow": 0,
+    "colWidths": [
+     60,
+     60,
+     60,
+     60,
+     60
+    ],
+    "rowHeights": [
+     39.3,
+     65.7,
+     144.7,
+     118.4,
+     144.7,
+     92,
+     65.7,
+     65.7
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "الدائرة",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "المرشح أ",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "المرشح ب",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الأصوات",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "النسبة",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الأصوات",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "النسبة",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة المفرق الأولى",
+      "lines": 5
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "18,420",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "41.2%",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "13,905",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "31.1%",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة إربد الثانية",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15,760",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "36.8%",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12,240",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.6%",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة الزرقاء الأولى",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "21,340",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "44.5%",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14,890",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "31.0%",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة الكرك",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9,870",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "33.7%",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8,450",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.9%",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة جرش",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7,620",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "39.4%",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5,410",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.0%",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة معان",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11,250",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "35.6%",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9,030",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.6%",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 24,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 49,
+      "natural": 130,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     }
+    ],
+    "frameW": 447
+   },
+   "png": "d-r2B.png",
+   "idea": "Keep the proven r1A district width but stop over-feeding the percentage columns: 110/80/71/80/71. The two pixels released by trimming percentages go to the vote columns instead, giving the four- and five-digit counts a little breathing room from the cell rules, while the district column stays at the 89px that is known to wrap only to two lines. Header row still one line everywhere, no mid-word splits.",
+   "notes": [
+    "expected 5 widths"
+   ],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    112,
+    79,
+    71,
+    79,
+    71
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 413,
+    "tableHeight": 394.8,
+    "overflow": 0,
+    "colWidths": [
+     112,
+     79,
+     71,
+     79,
+     71
+    ],
+    "rowHeights": [
+     39.3,
+     39.3,
+     65.7,
+     65.7,
+     65.7,
+     39.3,
+     39.3,
+     39.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "الدائرة",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "المرشح أ",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "المرشح ب",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الأصوات",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "النسبة",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الأصوات",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "النسبة",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة المفرق الأولى",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "18,420",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "41.2%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "13,905",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "31.1%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة إربد الثانية",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15,760",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "36.8%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12,240",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.6%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة الزرقاء الأولى",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "21,340",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "44.5%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14,890",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "31.0%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة الكرك",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9,870",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "33.7%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8,450",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.9%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة جرش",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7,620",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "39.4%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5,410",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.0%",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة معان",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11,250",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "35.6%",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9,030",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.6%",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 49,
+      "natural": 130,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     }
+    ],
+    "frameW": 448
+   },
+   "png": "d-r3A.png",
+   "idea": "Set the district column to 112px (91px text), the vote columns to 79px (58px text), and the percentage columns to 71px (50px text), summing to 412px. This is the maximum district width possible while keeping every vote count and percentage intact. الدائرة and all subheaders stay on one line; vote counts and percentages stay unbroken on one line; only multi-word district names wrap, and they wrap at word boundaries in 2–3 lines instead of splitting words.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "ref_auto": {
+   "widths": [
+    114.3,
+    78.3,
+    70.9,
+    78.3,
+    70.3
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 413,
+    "tableHeight": 394.8,
+    "overflow": 0,
+    "colWidths": [
+     114.3,
+     78.3,
+     70.9,
+     78.3,
+     70.3
+    ],
+    "rowHeights": [
+     39.3,
+     39.3,
+     65.7,
+     65.7,
+     65.7,
+     39.3,
+     39.3,
+     39.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "الدائرة",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "المرشح أ",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "المرشح ب",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الأصوات",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "النسبة",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الأصوات",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "النسبة",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة المفرق الأولى",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "18,420",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "41.2%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "13,905",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "31.1%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة إربد الثانية",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15,760",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "36.8%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12,240",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.6%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة الزرقاء الأولى",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "21,340",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "44.5%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14,890",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "31.0%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة الكرك",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9,870",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "33.7%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8,450",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.9%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة جرش",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7,620",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "39.4%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5,410",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.0%",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة معان",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11,250",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "35.6%",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9,030",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.6%",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 49,
+      "natural": 130,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     }
+    ],
+    "frameW": 447
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    82,
+    82,
+    82,
+    82,
+    82
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 8,
+    "tableWidth": 411,
+    "tableHeight": 552.8,
+    "overflow": 0,
+    "colWidths": [
+     82,
+     82,
+     82,
+     82,
+     82
+    ],
+    "rowHeights": [
+     39.3,
+     39.3,
+     92,
+     92,
+     92,
+     65.7,
+     65.7,
+     65.7
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "الدائرة",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "المرشح أ",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 2,
+      "role": "col",
+      "text": "المرشح ب",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الأصوات",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "النسبة",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "الأصوات",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "النسبة",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة المفرق الأولى",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "18,420",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "41.2%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "13,905",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "31.1%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة إربد الثانية",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15,760",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "36.8%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12,240",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.6%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة الزرقاء الأولى",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "21,340",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "44.5%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14,890",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "31.0%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة الكرك",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9,870",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "33.7%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8,450",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.9%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة جرش",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7,620",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "39.4%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5,410",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.0%",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "دائرة معان",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11,250",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "35.6%",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9,030",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.6%",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 49,
+      "natural": 130,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     },
+     {
+      "minContent": 58,
+      "natural": 58,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     }
+    ],
+    "frameW": 447
+   },
+   "png": "d-ref_equal.png"
+  }
+ },
+ "understanding": {
+  "purpose": "Publication table of election results by district, comparing candidate A and candidate B vote counts and vote shares in each district.",
+  "reading": "Right-to-left: identify the district at the far right, then scan candidate A votes and percentage, then candidate B votes and percentage; compare candidates within each row and compare vote/share columns down the table.",
+  "groups": [
+   "col 1: row identifier (district)",
+   "cols 2–3: candidate A block (votes, percentage)",
+   "cols 4–5: candidate B block (votes, percentage)",
+   "cols 2 and 4: vote counts, same role and should align",
+   "cols 3 and 5: percentages, same role and should align"
+  ],
+  "keep_intact": [
+   "all vote counts such as 21,340 and 13,905",
+   "all percentages such as 41.2% and 8.6%",
+   "candidate labels المرشح أ and المرشح ب",
+   "unbreakable Arabic words in district names"
+  ],
+  "may_wrap": [
+   "multi-word district names such as دائرة المفرق الأولى",
+   "two-level header labels if necessary, but not numeric data cells"
+  ]
+ },
+ "final": {
+  "preferred": [
+   "r1A",
+   "r1B",
+   "r3A"
+  ],
+  "acceptable": [
+   "r0B",
+   "r0C",
+   "r1C"
+  ],
+  "bad": [
+   {
+    "design": "r2A",
+    "why": "60px columns force 5/7 headers to wrap and split numbers and percentages mid-token (e.g. 13,9 / 05), producing 5-line cells and an unreadable 737px table."
+   },
+   {
+    "design": "r2B",
+    "why": "Same 60px collapse as r2A: headers wrap, numeric tokens break, and rows become very tall; the table is unusable for comparison."
+   }
+  ],
+  "contrast": null,
+  "ranges": [
+   [
+    108,
+    112
+   ],
+   [
+    79,
+    80
+   ],
+   [
+    71,
+    72
+   ],
+   [
+    79,
+    80
+   ],
+   [
+    71,
+    72
+   ]
+  ],
+  "rationale": "The r1A/r1B/r3A cluster is the only group that keeps every row header to two lines, every header on one line, and every number intact; the table is 395px tall with a regular row rhythm. They allocate about 108–112px to the district column and 79–80/71–72px to the numeric columns, close to the measured token widths. r0B, r0C and r1C remain readable but waste width on numeric columns or equalize columns, pushing district names to three lines and making the table 421–553px tall. r2A/r2B are unusable because 60px columns wrap headers 5/7 and split numbers such as 13,905 into 13,9/05.",
+  "principles": {
+   "general": [
+    "Column width should follow content role: the identifying text column usually needs more width than short numeric columns.",
+    "Keep numeric and identifier tokens above their unbreakable width; extra width there is only useful if it prevents wrapping elsewhere.",
+    "A regular row rhythm matters: if one column forces three-line cells while neighboring cells stay one line, the table becomes harder to scan.",
+    "Paired subcolumns under a spanning header should be equal or near-equal so readers can compare them directly."
+   ],
+   "specific": [
+    "Here the district column needs about 108–112px to hold names in two lines; 104px or less produces a three-line row.",
+    "Vote columns need about 79px and percentage columns about 71px; 86px vote columns are over-generous and steal width from the district column.",
+    "The spanning candidate headers do not force the numeric columns wider; the numeric content itself sets the minimum.",
+    "RTL order means the district anchor is on the right, with each candidate's votes/percentage pair to its left and candidate A before B."
+   ]
+  },
+  "tradeoffs": "Reasonable designers may prefer r3A's maximum district width or r1A/r1B's 1px numeric breathing room; the rendered difference is negligible. Another disagreement is whether r0C's three-line row headers are acceptable in a dense report or should be rejected as too tall.",
+  "uncertain": "The exact wrap threshold for the longest district name is between 104 and 108px; I used the observed safe 108px. It is also debatable whether a 112px district column with zero numeric slack is better than 108px with 1px slack."
+ },
+ "reviews": [
+  {
+   "order": [
+    "r0C",
+    "ref_equal",
+    "ref_auto",
+    "r2A",
+    "r0B",
+    "r1A"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "good",
+     "why": "All numbers and both header rows stay on one line and remain comparable, but the district column is squeezed so far that names stack into three lines (دائرة / المفرق / الأولى), making rows tall and the vertical rhythm heavy; still perfectly legible."
+    },
+    "B": {
+     "grade": "good",
+     "why": "Same trade-off as A: figures intact and aligned, headers on one line, but district cells break into three short lines, inflating row height without adding information."
+    },
+    "C": {
+     "grade": "excellent",
+     "why": "Best balance: numeric columns and headers each hold one line while the district column keeps two-line wraps (دائرة المفرق / الأولى), so rows read as compact units, numbers align in columns and the header block sits as a clean two-tier band."
+    },
+    "D": {
+     "grade": "bad",
+     "why": "Widths collapse the data columns: numbers split mid-digits ('18,4 / 20', '13,9 / 05') and percentages split from their % sign, and the header 'النسبة' breaks into 'النسب / ة'. Values become unreadable and uncomparable."
+    },
+    "E": {
+     "grade": "good",
+     "why": "Numbers and headers stay whole, but the district column is narrower than needed, forcing three-line cells in the upper rows while lower rows use two, giving an uneven row rhythm; acceptable but less tidy than C."
+    },
+    "F": {
+     "grade": "excellent",
+     "why": "Equivalent to C in effect: figures on one line, headers intact, district names wrap at word boundaries in at most two lines, so rows stay compact and the two-candidate grouping under 'المرشح أ' / 'المرشح ب' reads clearly."
+    }
+   },
+   "best": [
+    "C",
+    "F"
+   ],
+   "confidence": "medium",
+   "unsure": "C and F look nearly identical at this rendering; the few pixels of difference in the district column are hard to judge, and I cannot tell whether A/B/E's extra row height would be considered acceptable in the intended publication context."
+  },
+  {
+   "order": [
+    "r0B",
+    "r1A",
+    "ref_equal",
+    "ref_auto",
+    "r2A",
+    "r0C"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "acceptable",
+     "why": "The row-header column is squeezed so the first row breaks into three lines ('دائرة / المفرق / الأولى'), giving tall uneven rows, while the four numeric columns sit on generous width with lots of dead space; numbers stay intact and comparable, but the vertical rhythm is broken and the header column looks starved next to fat data columns."
+    },
+    "B": {
+     "grade": "good",
+     "why": "The row-header column is wide enough for clean two-line breaks ('دائرة إربد / الثانية'), rows stay moderately compact, and the numeric columns are tight enough to read across a row. Some rows still wrap to two lines while others don't, so row heights alternate slightly, and numeric columns carry a little spare space."
+    },
+    "C": {
+     "grade": "poor",
+     "why": "The district column is the narrowest of the set, so every single row header breaks into three lines ('دائرة / الزرقاء / الأولى'), stretching the table vertically and making row-to-row comparison slow; meanwhile the percentage and vote columns keep width they don't need."
+    },
+    "D": {
+     "grade": "excellent",
+     "why": "Widest row-header column: most districts ('دائرة الكرك', 'دائرة جرش', 'دائرة معان') sit on one line and only the long names wrap at a natural point ('دائرة المفرق / الأولى'). Numeric columns are narrow but keep every figure and percent intact, so a reader can scan votes/proportions across a row without effort; header grouping over each candidate stays clear."
+    },
+    "E": {
+     "grade": "bad",
+     "why": "Columns are far too narrow: numbers split mid-figure ('13,9 / 05', '18,4 / 20'), the header breaks into 'النسب / ة' and 'الأصو / ات', and the district names fragment into single words per line. Content is destroyed and the table is unreadable."
+    },
+    "F": {
+     "grade": "good",
+     "why": "Very close to D: wide row-header column with clean two-line wraps and intact numeric columns, readable row scanning. Row heights still vary between one- and two-line headers, and a touch of unused space remains in the votes/percent columns, but nothing breaks."
+    }
+   },
+   "best": [
+    "D"
+   ],
+   "confidence": "medium",
+   "unsure": "B, D and F differ only slightly in the row-header width; at this rendering scale I may be misjudging a few pixels, so D and F are close to a tie, with F just slightly less economical."
+  }
+ ]
+}

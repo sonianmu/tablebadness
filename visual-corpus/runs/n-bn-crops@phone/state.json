@@ -1,0 +1,5616 @@
+{
+ "id": "n-bn-crops@phone",
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "Fits the 360px box exactly, so nothing is cut off; the header row is legible and the crop names still sit in a clear first column.",
+     "problems": "Catastrophic vertical stretch (3301px tall, single rows up to 594px / 25 lines) and 29 mid-word splits. Every cell is a narrow stack of fragments: 'বোরো ধান (উফশী)' breaks into four lines, the sowing window into 'ডিসেম্ব/র শেষ/সপ্তাহ—/জানুয়ারি/র মাঝা/মাঝি', and even the short yield range '৫.৮–৬.৮' is broken. Because cols 2 and 3 are stacked, the sowing→harvest pair can no longer be read as one span, which is the table's whole point.",
+     "cause": "Widths 67/65/63/74 leave only 46/44/42/53px of text room — below the 66–68px longest words in cols 2, 3 and 5 — so the browser is forced to break inside words everywhere. Col 5's 74px also sets the row height for the entire table."
+    },
+    {
+     "design": "r0B",
+     "good": "Zero mid-word splits; crop names, month names and the '৫.৮–৬.৮' style ranges all stay intact. Rows are compact (176px) and read as units, the header block is clean, and the table is only 1138px tall — by far the most usable of the three.",
+     "problems": "Overflows the box by 140px, so the মন্তব্য column is sliced off at the right edge — the commentary, which is the reason the rows are tall, is the part you can't see. Col 5 at 170px still produces 8-line paragraphs and drives row height; cols 2 and 3 at 87/89 wrap into 4–5 short lines each, so the paired timing reads as two stacks rather than a span.",
+     "cause": "Col 5 was given 170px (34% of the table) while cols 2–3 got only their minimum word width; the sum 500 simply exceeds 359, and the surplus went to the least space-efficient place."
+    },
+    {
+     "design": "r0C",
+     "good": "A reasonable compromise attempt: header block and col 1 read well, and total height (1557px) is far better than r0A.",
+     "problems": "Pays both penalties at once: 54px overflow *and* 20 mid-word splits. Cols 2/3 at 66/64 break 'ডিসেম্বর' as 'ডিসেম্ব/র', 'জানুয়ারির' as 'জানুয়া/রির', 'জানুয়ারি' as 'জাবুয়া/রির' — dates are exactly the content a reader must not have to reconstruct. Col 5 at 130px is still clipped by the overflow and still 12 lines tall.",
+     "cause": "Shaving cols 2 and 3 below their longest words (66/68px → they need 87/89px) recovers only ~46px, nowhere near the 54px needed, so the design buys splits without buying fit."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "Cols 1–4 sit at their true minimums, so no crop name, season word or unit is broken; only 59px of overflow, so almost everything is reachable with one small nudge.",
+     "problems": "Visually it collapses: the মন্তব্য column is a 2–3-words-per-line ribbon 21 lines deep, rows swell to 500px, and the table runs 2650px — roughly seven phone screens. Reading a comment means reading a vertical word list, and the eye can no longer associate the note with its crop row.",
+     "cause": "col 5 = 89px gives only 68px of text for a column whose one-line content is 1035px; the whole budget was spent holding cols 2–3 at their unbreakable-word minimums, but they are not what sets row height — col 5 is."
+    },
+    {
+     "design": "r1B",
+     "good": "Recognises that col 5, not the timing pair, drives height and starts paying width to it; 1859px and 14-line cells is a real improvement, still with zero mid-word splits.",
+     "problems": "Still the wrong side of the readability threshold — 90px of text is under four short words per line, so comments remain unscannable and rows are 270–340px. 81px of overflow also buys very little: you scroll right and still get a cramped comment.",
+     "cause": "col 5 = 111px (90px text) against 1035px of content ≈ 12–14 lines; the 22px added over r1A is spread too thin to change the line count materially."
+    },
+    {
+     "design": "r1C",
+     "good": "Best of the three: 1417px, comments down to 11 lines, rows 200–270px, headers all one line except the intentionally stacked ফলন (টন/হেক্টর), no splits. The 90/88/90/63 timing-and-yield block is compact and consistent.",
+     "problems": "Two coupled faults. (1) 112px of overflow means that when the reader scrolls right to read the comment, col 1 and half of col 2 leave the screen — the crop name, the row anchor, is gone exactly when the note is being read. (2) The date ranges in cols 2–3 still break to 3–4 short lines, and the em dash lands at line end (“সপ্তাহ—” / “জানুয়ারির”), so the sowing→harvest window does not read as one phrase.",
+     "cause": "col 5 = 140px (119px text) is still only ~1/9 of the column's content width, so 11 lines remain; and cols 2–3 at 88/90px carry 263/239px one-line content, i.e. three-plus wraps each."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "All five columns are present and no word is split mid-glyph. The crop anchor (col 1, 90px) wraps to a predictable two lines and every row starts with an unambiguous name. Row banding keeps rows legible as units.",
+     "problems": "The yield column is the weakest thing on the page: at 63px (42px of text) the header 'ফলন (টন/হেক্টর)' is forced onto three lines, inflating the header row to 83px, and the values themselves break into '৫.৮–' / '৬.৪', so the one number a reader wants to compare is the one that is hardest to read. Meanwhile the timing pair at 87/89px is barely a third of its one-line width, so sowing and harvest each run to four or five lines and stop reading as a single sowing→harvest window. Comments at 195px still clip at the dashed edge and reach seven lines; the table grows to 999px tall.",
+     "cause": "The width budget was spent on col 5 (195px) while col 4 was left pinned at its unbreakable-word floor of 63px. A column that carries short numeric ranges needs width for the whole string, not for its longest token."
+    },
+    {
+     "design": "r2B",
+     "good": "The most readable comments of the three: at 250px the note text wraps in six lines instead of seven and the prose finally looks like prose rather than a ribbon. No mid-word splits, consistent row heights.",
+     "problems": "Total width rose to 580px (220px overflow) and almost none of that gain is visible inside the box: at rest the reader still sees only crop + sowing and then a hard clip through the middle of a comment. Cols 1–4 are untouched, so the three-line yield header and the fragmented '৫.৮– / ৬.৪' values persist, and the narrow timing columns still cost four lines each. Rows are 129–153px tall, so the table got taller without becoming easier to scan.",
+     "cause": "Only the oversized column (col 5) was widened; 1035px of text at 250px still needs 5–6 lines, so the extra 55px bought almost nothing, while the genuinely starved columns (2, 3, 4) received nothing."
+    },
+    {
+     "design": "r2C",
+     "good": "The best treatment of the paired timing columns: 115/110px lets the date ranges wrap at spaces and dashes into three or four tidy lines, and sowing and harvest finally sit side by side as a readable window. No mid-word splits.",
+     "problems": "The comments column was squeezed to 185px to pay for that, so notes now run to seven lines and rows reach 176px — the table is the tallest of the three at 1069px. The yield column is still 63px, so the header remains three lines and the yield values still split after the en dash. The crop column at 90px breaks 'সরিষা (বারি সরিষা-১৪)' into an awkward three-line stack.",
+     "cause": "Width was moved from the one column that needs the most space (col 5, 1035px of content) into cols 2–3, while col 4 stayed at its floor — the trade was made in the wrong direction."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A",
+    "r3B",
+    "r3C"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    90,
+    67,
+    65,
+    63,
+    74
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 360,
+    "tableHeight": 3300.5,
+    "overflow": 0,
+    "colWidths": [
+     90,
+     67,
+     65,
+     63,
+     74
+    ],
+    "rowHeights": [
+     82.8,
+     594.3,
+     454.8,
+     524.5,
+     571,
+     501.3,
+     571
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফসল",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "বপন",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "কাটা",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফলন (টন/হেক্টর)",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "মন্তব্য",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "বোরো ধান (উফশী)",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ডিসেম্বরের শেষ সপ্তাহ–জানুয়ারির মাঝামাঝি",
+      "lines": 8
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "এপ্রিলের শেষ–মে মাসের প্রথম সপ্তাহ",
+      "lines": 7
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৫.৮–৬.৪",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচনির্ভর চাষ; কুয়াশা ও ঠান্ডায় চারা মরে যাওয়ার ঝুঁকি থাক",
+      "lines": 25
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "আমন ধান (স্থানীয়)",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুনের শেষ–জুলাইয়ের মাঝামাঝি",
+      "lines": 6
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের মাঝামাঝি–ডিসেম্বরের শুরু",
+      "lines": 7
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.২–৩.৮",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "বৃষ্টিনির্ভর চাষ; জমিতে পানি ধরে রাখার ব্যবস্থা থাকলে ফলন স্",
+      "lines": 19
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "গম (বারি গম-৩৩)",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের প্রথম–শেষ সপ্তাহ",
+      "lines": 5
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের প্রথম–তৃতীয় সপ্তাহ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.৫–৪.২",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচের সময়সূচি ঠিক রাখা জরুরি; বিশেষ করে মুকুল আসার সময় ও দ",
+      "lines": 22
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "সরিষা (বারি সরিষা-১৪)",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম সপ্তাহ",
+      "lines": 7
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জানুয়ারির শেষ–ফেব্রুয়ারির প্রথম সপ্তাহ",
+      "lines": 7
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.৪–১.৮",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "কম সেচে চলে; তবে ফুল আসার আগে একবার সেচ দিলে ফলন বাড়ে। জাব ",
+      "lines": 24
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "পাট (তোষা)",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের শেষ–এপ্রিলের মাঝামাঝি",
+      "lines": 6
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুলাইয়ের প্রথম–মধ্য",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "২.৬–৩.১",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "উঁচু ও বৃষ্টিবহুল জমি উপযোগী; বীজ বপনের পর আগাছা দমন না করলে",
+      "lines": 21
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "মসুর ডাল",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম",
+      "lines": 6
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ফেব্রুয়ারির শেষ–মার্চের প্রথম",
+      "lines": 5
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.২–১.৬",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "শুষ্ক মৌসুমে তুলনামূলক নিরাপদ; বীজ বপনের আগে বীজ শোধন করলে গ",
+      "lines": 24
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 29,
+    "tokenBreaks": 18,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 69,
+      "natural": 149,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 263,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 239,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 108,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1035,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r0A.png",
+   "idea": "All five columns fit the phone by protecting crop names and the yield unit, while date words split and comments wrap in a very narrow well (359px total).",
+   "notes": []
+  },
+  "r0B": {
+   "widths": [
+    90,
+    87,
+    89,
+    63,
+    170
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 500,
+    "tableHeight": 1138.3,
+    "overflow": 140,
+    "colWidths": [
+     90,
+     87,
+     89,
+     63,
+     170
+    ],
+    "rowHeights": [
+     82.8,
+     199,
+     152.5,
+     175.8,
+     175.8,
+     175.8,
+     175.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফসল",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "বপন",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "কাটা",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফলন (টন/হেক্টর)",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "মন্তব্য",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "বোরো ধান (উফশী)",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ডিসেম্বরের শেষ সপ্তাহ–জানুয়ারির মাঝামাঝি",
+      "lines": 5
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "এপ্রিলের শেষ–মে মাসের প্রথম সপ্তাহ",
+      "lines": 5
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৫.৮–৬.৪",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচনির্ভর চাষ; কুয়াশা ও ঠান্ডায় চারা মরে যাওয়ার ঝুঁকি থাক",
+      "lines": 8
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "আমন ধান (স্থানীয়)",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুনের শেষ–জুলাইয়ের মাঝামাঝি",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের মাঝামাঝি–ডিসেম্বরের শুরু",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.২–৩.৮",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "বৃষ্টিনির্ভর চাষ; জমিতে পানি ধরে রাখার ব্যবস্থা থাকলে ফলন স্",
+      "lines": 6
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "গম (বারি গম-৩৩)",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের প্রথম–শেষ সপ্তাহ",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের প্রথম–তৃতীয় সপ্তাহ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.৫–৪.২",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচের সময়সূচি ঠিক রাখা জরুরি; বিশেষ করে মুকুল আসার সময় ও দ",
+      "lines": 7
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "সরিষা (বারি সরিষা-১৪)",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম সপ্তাহ",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জানুয়ারির শেষ–ফেব্রুয়ারির প্রথম সপ্তাহ",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.৪–১.৮",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "কম সেচে চলে; তবে ফুল আসার আগে একবার সেচ দিলে ফলন বাড়ে। জাব ",
+      "lines": 7
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "পাট (তোষা)",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের শেষ–এপ্রিলের মাঝামাঝি",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুলাইয়ের প্রথম–মধ্য",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "২.৬–৩.১",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "উঁচু ও বৃষ্টিবহুল জমি উপযোগী; বীজ বপনের পর আগাছা দমন না করলে",
+      "lines": 7
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "মসুর ডাল",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ফেব্রুয়ারির শেষ–মার্চের প্রথম",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.২–১.৬",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "শুষ্ক মৌসুমে তুলনামূলক নিরাপদ; বীজ বপনের আগে বীজ শোধন করলে গ",
+      "lines": 7
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 15,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 69,
+      "natural": 149,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 263,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 239,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 108,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1035,
+      "padding": 21
+     }
+    ],
+    "frameW": 534
+   },
+   "png": "d-r0B.png",
+   "idea": "Give the four data columns their no-split widths and a 149px comment well, accepting horizontal scroll mainly to read notes (499px total).",
+   "notes": []
+  },
+  "r0C": {
+   "widths": [
+    90,
+    66,
+    64,
+    63,
+    130
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 414,
+    "tableHeight": 1556.8,
+    "overflow": 54,
+    "colWidths": [
+     90,
+     66,
+     64,
+     63,
+     130
+    ],
+    "rowHeights": [
+     82.8,
+     292,
+     222.3,
+     222.3,
+     222.3,
+     245.5,
+     268.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফসল",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "বপন",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "কাটা",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফলন (টন/হেক্টর)",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "মন্তব্য",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "বোরো ধান (উফশী)",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ডিসেম্বরের শেষ সপ্তাহ–জানুয়ারির মাঝামাঝি",
+      "lines": 8
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "এপ্রিলের শেষ–মে মাসের প্রথম সপ্তাহ",
+      "lines": 7
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৫.৮–৬.৪",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচনির্ভর চাষ; কুয়াশা ও ঠান্ডায় চারা মরে যাওয়ার ঝুঁকি থাক",
+      "lines": 12
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "আমন ধান (স্থানীয়)",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুনের শেষ–জুলাইয়ের মাঝামাঝি",
+      "lines": 6
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের মাঝামাঝি–ডিসেম্বরের শুরু",
+      "lines": 7
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.২–৩.৮",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "বৃষ্টিনির্ভর চাষ; জমিতে পানি ধরে রাখার ব্যবস্থা থাকলে ফলন স্",
+      "lines": 9
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "গম (বারি গম-৩৩)",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের প্রথম–শেষ সপ্তাহ",
+      "lines": 5
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের প্রথম–তৃতীয় সপ্তাহ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.৫–৪.২",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচের সময়সূচি ঠিক রাখা জরুরি; বিশেষ করে মুকুল আসার সময় ও দ",
+      "lines": 9
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "সরিষা (বারি সরিষা-১৪)",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম সপ্তাহ",
+      "lines": 7
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জানুয়ারির শেষ–ফেব্রুয়ারির প্রথম সপ্তাহ",
+      "lines": 7
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.৪–১.৮",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "কম সেচে চলে; তবে ফুল আসার আগে একবার সেচ দিলে ফলন বাড়ে। জাব ",
+      "lines": 9
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "পাট (তোষা)",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের শেষ–এপ্রিলের মাঝামাঝি",
+      "lines": 6
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুলাইয়ের প্রথম–মধ্য",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "২.৬–৩.১",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "উঁচু ও বৃষ্টিবহুল জমি উপযোগী; বীজ বপনের পর আগাছা দমন না করলে",
+      "lines": 10
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "মসুর ডাল",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম",
+      "lines": 6
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ফেব্রুয়ারির শেষ–মার্চের প্রথম",
+      "lines": 5
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.২–১.৬",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "শুষ্ক মৌসুমে তুলনামূলক নিরাপদ; বীজ বপনের আগে বীজ শোধন করলে গ",
+      "lines": 11
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 20,
+    "tokenBreaks": 18,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 69,
+      "natural": 149,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 263,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 239,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 108,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1035,
+      "padding": 21
+     }
+    ],
+    "frameW": 448
+   },
+   "png": "d-r0C.png",
+   "idea": "Protect the row anchor, yield unit and a readable 109px notes well, squeeze the sowing/harvest pair, and accept a short horizontal scroll (413px total).",
+   "notes": []
+  },
+  "r1A": {
+   "widths": [
+    90,
+    87,
+    89,
+    63,
+    89
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 419,
+    "tableHeight": 2649.5,
+    "overflow": 59,
+    "colWidths": [
+     90,
+     87,
+     89,
+     63,
+     89
+    ],
+    "rowHeights": [
+     82.8,
+     501.3,
+     385,
+     431.5,
+     361.8,
+     431.5,
+     454.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফসল",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "বপন",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "কাটা",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফলন (টন/হেক্টর)",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "মন্তব্য",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "বোরো ধান (উফশী)",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ডিসেম্বরের শেষ সপ্তাহ–জানুয়ারির মাঝামাঝি",
+      "lines": 5
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "এপ্রিলের শেষ–মে মাসের প্রথম সপ্তাহ",
+      "lines": 5
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৫.৮–৬.৪",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচনির্ভর চাষ; কুয়াশা ও ঠান্ডায় চারা মরে যাওয়ার ঝুঁকি থাক",
+      "lines": 21
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "আমন ধান (স্থানীয়)",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুনের শেষ–জুলাইয়ের মাঝামাঝি",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের মাঝামাঝি–ডিসেম্বরের শুরু",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.২–৩.৮",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "বৃষ্টিনির্ভর চাষ; জমিতে পানি ধরে রাখার ব্যবস্থা থাকলে ফলন স্",
+      "lines": 16
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "গম (বারি গম-৩৩)",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের প্রথম–শেষ সপ্তাহ",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের প্রথম–তৃতীয় সপ্তাহ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.৫–৪.২",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচের সময়সূচি ঠিক রাখা জরুরি; বিশেষ করে মুকুল আসার সময় ও দ",
+      "lines": 18
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "সরিষা (বারি সরিষা-১৪)",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম সপ্তাহ",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জানুয়ারির শেষ–ফেব্রুয়ারির প্রথম সপ্তাহ",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.৪–১.৮",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "কম সেচে চলে; তবে ফুল আসার আগে একবার সেচ দিলে ফলন বাড়ে। জাব ",
+      "lines": 15
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "পাট (তোষা)",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের শেষ–এপ্রিলের মাঝামাঝি",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুলাইয়ের প্রথম–মধ্য",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "২.৬–৩.১",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "উঁচু ও বৃষ্টিবহুল জমি উপযোগী; বীজ বপনের পর আগাছা দমন না করলে",
+      "lines": 18
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "মসুর ডাল",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ফেব্রুয়ারির শেষ–মার্চের প্রথম",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.২–১.৬",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "শুষ্ক মৌসুমে তুলনামূলক নিরাপদ; বীজ বপনের আগে বীজ শোধন করলে গ",
+      "lines": 19
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 15,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 69,
+      "natural": 149,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 263,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 239,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 108,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1035,
+      "padding": 21
+     }
+    ],
+    "frameW": 453
+   },
+   "png": "d-r1A.png",
+   "idea": "Give cols 1–3 exactly their longest-word width plus padding (69/66/68 + 21) and col 4 its 42px word, which eliminates every mid-word split including in dates, then hand the remaining minimum 89px to col 5. Totals 418px: a deliberate 59px overflow instead of 29 broken words. Col 5 will be tall (~15 lines), so this is the zero-split floor, not the final answer.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    90,
+    87,
+    89,
+    63,
+    111
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 441,
+    "tableHeight": 1859,
+    "overflow": 81,
+    "colWidths": [
+     90,
+     87,
+     89,
+     63,
+     111
+    ],
+    "rowHeights": [
+     82.8,
+     338.5,
+     268.8,
+     315.3,
+     292,
+     268.8,
+     292
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফসল",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "বপন",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "কাটা",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফলন (টন/হেক্টর)",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "মন্তব্য",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "বোরো ধান (উফশী)",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ডিসেম্বরের শেষ সপ্তাহ–জানুয়ারির মাঝামাঝি",
+      "lines": 5
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "এপ্রিলের শেষ–মে মাসের প্রথম সপ্তাহ",
+      "lines": 5
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৫.৮–৬.৪",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচনির্ভর চাষ; কুয়াশা ও ঠান্ডায় চারা মরে যাওয়ার ঝুঁকি থাক",
+      "lines": 14
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "আমন ধান (স্থানীয়)",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুনের শেষ–জুলাইয়ের মাঝামাঝি",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের মাঝামাঝি–ডিসেম্বরের শুরু",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.২–৩.৮",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "বৃষ্টিনির্ভর চাষ; জমিতে পানি ধরে রাখার ব্যবস্থা থাকলে ফলন স্",
+      "lines": 11
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "গম (বারি গম-৩৩)",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের প্রথম–শেষ সপ্তাহ",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের প্রথম–তৃতীয় সপ্তাহ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.৫–৪.২",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচের সময়সূচি ঠিক রাখা জরুরি; বিশেষ করে মুকুল আসার সময় ও দ",
+      "lines": 13
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "সরিষা (বারি সরিষা-১৪)",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম সপ্তাহ",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জানুয়ারির শেষ–ফেব্রুয়ারির প্রথম সপ্তাহ",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.৪–১.৮",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "কম সেচে চলে; তবে ফুল আসার আগে একবার সেচ দিলে ফলন বাড়ে। জাব ",
+      "lines": 12
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "পাট (তোষা)",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের শেষ–এপ্রিলের মাঝামাঝি",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুলাইয়ের প্রথম–মধ্য",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "২.৬–৩.১",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "উঁচু ও বৃষ্টিবহুল জমি উপযোগী; বীজ বপনের পর আগাছা দমন না করলে",
+      "lines": 11
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "মসুর ডাল",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ফেব্রুয়ারির শেষ–মার্চের প্রথম",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.২–১.৬",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "শুষ্ক মৌসুমে তুলনামূলক নিরাপদ; বীজ বপনের আগে বীজ শোধন করলে গ",
+      "lines": 12
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 15,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 69,
+      "natural": 149,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 263,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 239,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 108,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1035,
+      "padding": 21
+     }
+    ],
+    "frameW": 475
+   },
+   "png": "d-r1B.png",
+   "idea": "Keeps the same no-split floors for cols 1–4 and spends the extra 22px on col 5 (99px of text), which still fits every unbreakable word in the comments but cuts roughly 3 lines per row versus the tight version. 81px overflow, rows around 220px, table near 1500px — the best height/scroll compromise.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1C": {
+   "widths": [
+    90,
+    88,
+    90,
+    63,
+    140
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 472,
+    "tableHeight": 1417.3,
+    "overflow": 112,
+    "colWidths": [
+     90,
+     88,
+     90,
+     63,
+     140
+    ],
+    "rowHeights": [
+     82.8,
+     268.8,
+     199,
+     222.3,
+     199,
+     199,
+     245.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফসল",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "বপন",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "কাটা",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফলন (টন/হেক্টর)",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "মন্তব্য",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "বোরো ধান (উফশী)",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ডিসেম্বরের শেষ সপ্তাহ–জানুয়ারির মাঝামাঝি",
+      "lines": 5
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "এপ্রিলের শেষ–মে মাসের প্রথম সপ্তাহ",
+      "lines": 5
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৫.৮–৬.৪",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচনির্ভর চাষ; কুয়াশা ও ঠান্ডায় চারা মরে যাওয়ার ঝুঁকি থাক",
+      "lines": 11
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "আমন ধান (স্থানীয়)",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুনের শেষ–জুলাইয়ের মাঝামাঝি",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের মাঝামাঝি–ডিসেম্বরের শুরু",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.২–৩.৮",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "বৃষ্টিনির্ভর চাষ; জমিতে পানি ধরে রাখার ব্যবস্থা থাকলে ফলন স্",
+      "lines": 8
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "গম (বারি গম-৩৩)",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের প্রথম–শেষ সপ্তাহ",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের প্রথম–তৃতীয় সপ্তাহ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.৫–৪.২",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচের সময়সূচি ঠিক রাখা জরুরি; বিশেষ করে মুকুল আসার সময় ও দ",
+      "lines": 9
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "সরিষা (বারি সরিষা-১৪)",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম সপ্তাহ",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জানুয়ারির শেষ–ফেব্রুয়ারির প্রথম সপ্তাহ",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.৪–১.৮",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "কম সেচে চলে; তবে ফুল আসার আগে একবার সেচ দিলে ফলন বাড়ে। জাব ",
+      "lines": 8
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "পাট (তোষা)",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের শেষ–এপ্রিলের মাঝামাঝি",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুলাইয়ের প্রথম–মধ্য",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "২.৬–৩.১",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "উঁচু ও বৃষ্টিবহুল জমি উপযোগী; বীজ বপনের পর আগাছা দমন না করলে",
+      "lines": 8
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "মসুর ডাল",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ফেব্রুয়ারির শেষ–মার্চের প্রথম",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.২–১.৬",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "শুষ্ক মৌসুমে তুলনামূলক নিরাপদ; বীজ বপনের আগে বীজ শোধন করলে গ",
+      "lines": 10
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 15,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 69,
+      "natural": 149,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 263,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 239,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 108,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1035,
+      "padding": 21
+     }
+    ],
+    "frameW": 506
+   },
+   "png": "d-r1C.png",
+   "idea": "Refines r0B rather than squeezing: trim col 5 from 170 to 140 and give cols 2–3 two extra px each, dropping the overflow from 140 to 112px while keeping zero splits. Col 5 at 119px of text runs about 9 lines and rows stay near 180px, so this is the option to choose if the commentary is the main thing readers come for and a right-edge scroll is acceptable.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    90,
+    87,
+    89,
+    63,
+    195
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 525,
+    "tableHeight": 998.8,
+    "overflow": 165,
+    "colWidths": [
+     90,
+     87,
+     89,
+     63,
+     195
+    ],
+    "rowHeights": [
+     82.8,
+     175.8,
+     129.3,
+     152.5,
+     152.5,
+     152.5,
+     152.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফসল",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "বপন",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "কাটা",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফলন (টন/হেক্টর)",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "মন্তব্য",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "বোরো ধান (উফশী)",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ডিসেম্বরের শেষ সপ্তাহ–জানুয়ারির মাঝামাঝি",
+      "lines": 5
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "এপ্রিলের শেষ–মে মাসের প্রথম সপ্তাহ",
+      "lines": 5
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৫.৮–৬.৪",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচনির্ভর চাষ; কুয়াশা ও ঠান্ডায় চারা মরে যাওয়ার ঝুঁকি থাক",
+      "lines": 7
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "আমন ধান (স্থানীয়)",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুনের শেষ–জুলাইয়ের মাঝামাঝি",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের মাঝামাঝি–ডিসেম্বরের শুরু",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.২–৩.৮",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "বৃষ্টিনির্ভর চাষ; জমিতে পানি ধরে রাখার ব্যবস্থা থাকলে ফলন স্",
+      "lines": 5
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "গম (বারি গম-৩৩)",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের প্রথম–শেষ সপ্তাহ",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের প্রথম–তৃতীয় সপ্তাহ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.৫–৪.২",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচের সময়সূচি ঠিক রাখা জরুরি; বিশেষ করে মুকুল আসার সময় ও দ",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "সরিষা (বারি সরিষা-১৪)",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম সপ্তাহ",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জানুয়ারির শেষ–ফেব্রুয়ারির প্রথম সপ্তাহ",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.৪–১.৮",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "কম সেচে চলে; তবে ফুল আসার আগে একবার সেচ দিলে ফলন বাড়ে। জাব ",
+      "lines": 6
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "পাট (তোষা)",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের শেষ–এপ্রিলের মাঝামাঝি",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুলাইয়ের প্রথম–মধ্য",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "২.৬–৩.১",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "উঁচু ও বৃষ্টিবহুল জমি উপযোগী; বীজ বপনের পর আগাছা দমন না করলে",
+      "lines": 6
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "মসুর ডাল",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ফেব্রুয়ারির শেষ–মার্চের প্রথম",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.২–১.৬",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "শুষ্ক মৌসুমে তুলনামূলক নিরাপদ; বীজ বপনের আগে বীজ শোধন করলে গ",
+      "lines": 6
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 15,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 69,
+      "natural": 149,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 263,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 239,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 108,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1035,
+      "padding": 21
+     }
+    ],
+    "frameW": 559
+   },
+   "png": "d-r2A.png",
+   "idea": "Keep cols 1–4 at the proven minimums (no splits, tight timing block) and move all discretionary width into the height driver: col 5 at 195px (174px text) brings comments to ~6 lines and rows to ~150px, cutting the table from 1417 to roughly 1000px. Accepts 165px of scroll, but that scroll now buys a readable note instead of a one-word-per-line ribbon.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    90,
+    87,
+    89,
+    63,
+    250
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 580,
+    "tableHeight": 836,
+    "overflow": 220,
+    "colWidths": [
+     90,
+     87,
+     89,
+     63,
+     250
+    ],
+    "rowHeights": [
+     82.8,
+     152.5,
+     106,
+     129.3,
+     129.3,
+     106,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফসল",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "বপন",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "কাটা",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফলন (টন/হেক্টর)",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "মন্তব্য",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "বোরো ধান (উফশী)",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ডিসেম্বরের শেষ সপ্তাহ–জানুয়ারির মাঝামাঝি",
+      "lines": 5
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "এপ্রিলের শেষ–মে মাসের প্রথম সপ্তাহ",
+      "lines": 5
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৫.৮–৬.৪",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচনির্ভর চাষ; কুয়াশা ও ঠান্ডায় চারা মরে যাওয়ার ঝুঁকি থাক",
+      "lines": 6
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "আমন ধান (স্থানীয়)",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুনের শেষ–জুলাইয়ের মাঝামাঝি",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের মাঝামাঝি–ডিসেম্বরের শুরু",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.২–৩.৮",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "বৃষ্টিনির্ভর চাষ; জমিতে পানি ধরে রাখার ব্যবস্থা থাকলে ফলন স্",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "গম (বারি গম-৩৩)",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের প্রথম–শেষ সপ্তাহ",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের প্রথম–তৃতীয় সপ্তাহ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.৫–৪.২",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচের সময়সূচি ঠিক রাখা জরুরি; বিশেষ করে মুকুল আসার সময় ও দ",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "সরিষা (বারি সরিষা-১৪)",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম সপ্তাহ",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জানুয়ারির শেষ–ফেব্রুয়ারির প্রথম সপ্তাহ",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.৪–১.৮",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "কম সেচে চলে; তবে ফুল আসার আগে একবার সেচ দিলে ফলন বাড়ে। জাব ",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "পাট (তোষা)",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের শেষ–এপ্রিলের মাঝামাঝি",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুলাইয়ের প্রথম–মধ্য",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "২.৬–৩.১",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "উঁচু ও বৃষ্টিবহুল জমি উপযোগী; বীজ বপনের পর আগাছা দমন না করলে",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "মসুর ডাল",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ফেব্রুয়ারির শেষ–মার্চের প্রথম",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.২–১.৬",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "শুষ্ক মৌসুমে তুলনামূলক নিরাপদ; বীজ বপনের আগে বীজ শোধন করলে গ",
+      "lines": 5
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 15,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 69,
+      "natural": 149,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 263,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 239,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 108,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1035,
+      "padding": 21
+     }
+    ],
+    "frameW": 614
+   },
+   "png": "d-r2B.png",
+   "idea": "Push the same logic further: 229px of comment text gives ~4–5 lines per row, so rows become near-uniform (~130px) and the whole table fits in about two screens. Overflow grows to 224px, so this is the 'read the notes as prose' extreme; choose it only if the comments are the payload rather than the garnish.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2C": {
+   "widths": [
+    90,
+    115,
+    110,
+    63,
+    185
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 564,
+    "tableHeight": 1068.5,
+    "overflow": 204,
+    "colWidths": [
+     90,
+     115,
+     110,
+     63,
+     185
+    ],
+    "rowHeights": [
+     82.8,
+     175.8,
+     152.5,
+     175.8,
+     152.5,
+     152.5,
+     175.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফসল",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "বপন",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "কাটা",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফলন (টন/হেক্টর)",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "মন্তব্য",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "বোরো ধান (উফশী)",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ডিসেম্বরের শেষ সপ্তাহ–জানুয়ারির মাঝামাঝি",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "এপ্রিলের শেষ–মে মাসের প্রথম সপ্তাহ",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৫.৮–৬.৪",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচনির্ভর চাষ; কুয়াশা ও ঠান্ডায় চারা মরে যাওয়ার ঝুঁকি থাক",
+      "lines": 7
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "আমন ধান (স্থানীয়)",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুনের শেষ–জুলাইয়ের মাঝামাঝি",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের মাঝামাঝি–ডিসেম্বরের শুরু",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.২–৩.৮",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "বৃষ্টিনির্ভর চাষ; জমিতে পানি ধরে রাখার ব্যবস্থা থাকলে ফলন স্",
+      "lines": 6
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "গম (বারি গম-৩৩)",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের প্রথম–শেষ সপ্তাহ",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের প্রথম–তৃতীয় সপ্তাহ",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.৫–৪.২",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচের সময়সূচি ঠিক রাখা জরুরি; বিশেষ করে মুকুল আসার সময় ও দ",
+      "lines": 7
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "সরিষা (বারি সরিষা-১৪)",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম সপ্তাহ",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জানুয়ারির শেষ–ফেব্রুয়ারির প্রথম সপ্তাহ",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.৪–১.৮",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "কম সেচে চলে; তবে ফুল আসার আগে একবার সেচ দিলে ফলন বাড়ে। জাব ",
+      "lines": 6
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "পাট (তোষা)",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের শেষ–এপ্রিলের মাঝামাঝি",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুলাইয়ের প্রথম–মধ্য",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "২.৬–৩.১",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "উঁচু ও বৃষ্টিবহুল জমি উপযোগী; বীজ বপনের পর আগাছা দমন না করলে",
+      "lines": 6
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "মসুর ডাল",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ফেব্রুয়ারির শেষ–মার্চের প্রথম",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.২–১.৬",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "শুষ্ক মৌসুমে তুলনামূলক নিরাপদ; বীজ বপনের আগে বীজ শোধন করলে গ",
+      "lines": 7
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 12,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 69,
+      "natural": 149,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 263,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 239,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 108,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1035,
+      "padding": 21
+     }
+    ],
+    "frameW": 598
+   },
+   "png": "d-r2C.png",
+   "idea": "Alternative spend: give cols 2–3 enough room (94/89px of text) to hold a date range in two lines with the em dash inside a line, so the sowing→harvest pair finally reads as one phrase — the table's primary scan. col 5 stays at a still-workable 185px (~6 lines). Costs 239px of overflow; the trade is legible season columns at the price of a longer horizontal swipe.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    90,
+    93,
+    93,
+    83,
+    300
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 660,
+    "tableHeight": 719.8,
+    "overflow": 300,
+    "colWidths": [
+     90,
+     93,
+     93,
+     83,
+     300
+    ],
+    "rowHeights": [
+     82.8,
+     106,
+     106,
+     106,
+     106,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফসল",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "বপন",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "কাটা",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফলন (টন/হেক্টর)",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "মন্তব্য",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "বোরো ধান (উফশী)",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ডিসেম্বরের শেষ সপ্তাহ–জানুয়ারির মাঝামাঝি",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "এপ্রিলের শেষ–মে মাসের প্রথম সপ্তাহ",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৫.৮–৬.৪",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচনির্ভর চাষ; কুয়াশা ও ঠান্ডায় চারা মরে যাওয়ার ঝুঁকি থাক",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "আমন ধান (স্থানীয়)",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুনের শেষ–জুলাইয়ের মাঝামাঝি",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের মাঝামাঝি–ডিসেম্বরের শুরু",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.২–৩.৮",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "বৃষ্টিনির্ভর চাষ; জমিতে পানি ধরে রাখার ব্যবস্থা থাকলে ফলন স্",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "গম (বারি গম-৩৩)",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের প্রথম–শেষ সপ্তাহ",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের প্রথম–তৃতীয় সপ্তাহ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.৫–৪.২",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচের সময়সূচি ঠিক রাখা জরুরি; বিশেষ করে মুকুল আসার সময় ও দ",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "সরিষা (বারি সরিষা-১৪)",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম সপ্তাহ",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জানুয়ারির শেষ–ফেব্রুয়ারির প্রথম সপ্তাহ",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.৪–১.৮",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "কম সেচে চলে; তবে ফুল আসার আগে একবার সেচ দিলে ফলন বাড়ে। জাব ",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "পাট (তোষা)",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের শেষ–এপ্রিলের মাঝামাঝি",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুলাইয়ের প্রথম–মধ্য",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "২.৬–৩.১",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "উঁচু ও বৃষ্টিবহুল জমি উপযোগী; বীজ বপনের পর আগাছা দমন না করলে",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "মসুর ডাল",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ফেব্রুয়ারির শেষ–মার্চের প্রথম",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.২–১.৬",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "শুষ্ক মৌসুমে তুলনামূলক নিরাপদ; বীজ বপনের আগে বীজ শোধন করলে গ",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 8,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 69,
+      "natural": 149,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 263,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 239,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 108,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1035,
+      "padding": 21
+     }
+    ],
+    "frameW": 694
+   },
+   "png": "d-r3A.png",
+   "idea": "Rebalance so the four core columns sum to exactly 359px and fill the box at rest: crop, sowing, harvest and yield are all fully visible without scrolling, and only মন্তব্য becomes the horizontal-scroll annex. Col 4 goes 63→83 so '৫.৮–৬.৪' stays on one line and its header drops from three lines to two; cols 2–3 stay near r2C's proven 3–4 line wrap; col 5 gets 300px, which cuts each note to about four lines and keeps rows near 110px instead of 176px.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3B": {
+   "widths": [
+    96,
+    112,
+    106,
+    88,
+    340
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 743,
+    "tableHeight": 650,
+    "overflow": 383,
+    "colWidths": [
+     96,
+     112,
+     106,
+     88,
+     340
+    ],
+    "rowHeights": [
+     59.5,
+     106,
+     106,
+     82.8,
+     106,
+     82.8,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফসল",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "বপন",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "কাটা",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফলন (টন/হেক্টর)",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "মন্তব্য",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "বোরো ধান (উফশী)",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ডিসেম্বরের শেষ সপ্তাহ–জানুয়ারির মাঝামাঝি",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "এপ্রিলের শেষ–মে মাসের প্রথম সপ্তাহ",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৫.৮–৬.৪",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচনির্ভর চাষ; কুয়াশা ও ঠান্ডায় চারা মরে যাওয়ার ঝুঁকি থাক",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "আমন ধান (স্থানীয়)",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুনের শেষ–জুলাইয়ের মাঝামাঝি",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের মাঝামাঝি–ডিসেম্বরের শুরু",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.২–৩.৮",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "বৃষ্টিনির্ভর চাষ; জমিতে পানি ধরে রাখার ব্যবস্থা থাকলে ফলন স্",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "গম (বারি গম-৩৩)",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের প্রথম–শেষ সপ্তাহ",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের প্রথম–তৃতীয় সপ্তাহ",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.৫–৪.২",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচের সময়সূচি ঠিক রাখা জরুরি; বিশেষ করে মুকুল আসার সময় ও দ",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "সরিষা (বারি সরিষা-১৪)",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম সপ্তাহ",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জানুয়ারির শেষ–ফেব্রুয়ারির প্রথম সপ্তাহ",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.৪–১.৮",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "কম সেচে চলে; তবে ফুল আসার আগে একবার সেচ দিলে ফলন বাড়ে। জাব ",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "পাট (তোষা)",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের শেষ–এপ্রিলের মাঝামাঝি",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুলাইয়ের প্রথম–মধ্য",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "২.৬–৩.১",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "উঁচু ও বৃষ্টিবহুল জমি উপযোগী; বীজ বপনের পর আগাছা দমন না করলে",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "মসুর ডাল",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ফেব্রুয়ারির শেষ–মার্চের প্রথম",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.২–১.৬",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "শুষ্ক মৌসুমে তুলনামূলক নিরাপদ; বীজ বপনের আগে বীজ শোধন করলে গ",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 8,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 69,
+      "natural": 149,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 263,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 239,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 108,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1035,
+      "padding": 21
+     }
+    ],
+    "frameW": 777
+   },
+   "png": "d-r3B.png",
+   "idea": "Accept a wider scroll (742px) in exchange for a balanced table where no column is starved: the timing pair gets r2C-like breathing room (112/106), the yield column gets enough for its header and ranges (88), the crop anchor gets a little more so two-word names stack evenly (96), and the comments — 1035px of real text — get 340px so notes read in three or four lines. Row heights become dominated by the date columns rather than by a shredded note column, so rows stay around 100–120px and the vertical rhythm is even.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3C": {
+   "widths": [
+    118,
+    94,
+    94,
+    82,
+    260
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 649,
+    "tableHeight": 766.3,
+    "overflow": 289,
+    "colWidths": [
+     118,
+     94,
+     94,
+     82,
+     260
+    ],
+    "rowHeights": [
+     82.8,
+     129.3,
+     106,
+     129.3,
+     106,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফসল",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "বপন",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "কাটা",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফলন (টন/হেক্টর)",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "মন্তব্য",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "বোরো ধান (উফশী)",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ডিসেম্বরের শেষ সপ্তাহ–জানুয়ারির মাঝামাঝি",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "এপ্রিলের শেষ–মে মাসের প্রথম সপ্তাহ",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৫.৮–৬.৪",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচনির্ভর চাষ; কুয়াশা ও ঠান্ডায় চারা মরে যাওয়ার ঝুঁকি থাক",
+      "lines": 5
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "আমন ধান (স্থানীয়)",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুনের শেষ–জুলাইয়ের মাঝামাঝি",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের মাঝামাঝি–ডিসেম্বরের শুরু",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.২–৩.৮",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "বৃষ্টিনির্ভর চাষ; জমিতে পানি ধরে রাখার ব্যবস্থা থাকলে ফলন স্",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "গম (বারি গম-৩৩)",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের প্রথম–শেষ সপ্তাহ",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের প্রথম–তৃতীয় সপ্তাহ",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.৫–৪.২",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচের সময়সূচি ঠিক রাখা জরুরি; বিশেষ করে মুকুল আসার সময় ও দ",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "সরিষা (বারি সরিষা-১৪)",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম সপ্তাহ",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জানুয়ারির শেষ–ফেব্রুয়ারির প্রথম সপ্তাহ",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.৪–১.৮",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "কম সেচে চলে; তবে ফুল আসার আগে একবার সেচ দিলে ফলন বাড়ে। জাব ",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "পাট (তোষা)",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের শেষ–এপ্রিলের মাঝামাঝি",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুলাইয়ের প্রথম–মধ্য",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "২.৬–৩.১",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "উঁচু ও বৃষ্টিবহুল জমি উপযোগী; বীজ বপনের পর আগাছা দমন না করলে",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "মসুর ডাল",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ফেব্রুয়ারির শেষ–মার্চের প্রথম",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.২–১.৬",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "শুষ্ক মৌসুমে তুলনামূলক নিরাপদ; বীজ বপনের আগে বীজ শোধন করলে গ",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 8,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 69,
+      "natural": 149,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 263,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 239,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 108,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1035,
+      "padding": 21
+     }
+    ],
+    "frameW": 683
+   },
+   "png": "d-r3C.png",
+   "idea": "Spend width on the row anchor instead of on overflow: col 1 goes to 118px so crop names such as 'সরিষা (বারি সরিষা-১৪)' break into two clean lines rather than three, which is what makes row-wise scanning work. Cols 2–3 at 94 keep three-to-four-line date wraps, col 4 at 82 keeps yield values whole and its header at two lines, and col 5 is held at 260 — a deliberate compromise that keeps the total near 648px (less scrolling than core-fit) at the cost of five-line notes.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "ref_auto": {
+   "widths": [
+    89.8,
+    86.6,
+    88.3,
+    62.2,
+    88.1
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 416.1,
+    "tableHeight": 2672.8,
+    "overflow": 56.1,
+    "colWidths": [
+     89.8,
+     86.6,
+     88.3,
+     62.2,
+     88.1
+    ],
+    "rowHeights": [
+     82.8,
+     501.3,
+     385,
+     431.5,
+     385,
+     431.5,
+     454.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফসল",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "বপন",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "কাটা",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফলন (টন/হেক্টর)",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "মন্তব্য",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "বোরো ধান (উফশী)",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ডিসেম্বরের শেষ সপ্তাহ–জানুয়ারির মাঝামাঝি",
+      "lines": 5
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "এপ্রিলের শেষ–মে মাসের প্রথম সপ্তাহ",
+      "lines": 5
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৫.৮–৬.৪",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচনির্ভর চাষ; কুয়াশা ও ঠান্ডায় চারা মরে যাওয়ার ঝুঁকি থাক",
+      "lines": 21
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "আমন ধান (স্থানীয়)",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুনের শেষ–জুলাইয়ের মাঝামাঝি",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের মাঝামাঝি–ডিসেম্বরের শুরু",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.২–৩.৮",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "বৃষ্টিনির্ভর চাষ; জমিতে পানি ধরে রাখার ব্যবস্থা থাকলে ফলন স্",
+      "lines": 16
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "গম (বারি গম-৩৩)",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের প্রথম–শেষ সপ্তাহ",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের প্রথম–তৃতীয় সপ্তাহ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.৫–৪.২",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচের সময়সূচি ঠিক রাখা জরুরি; বিশেষ করে মুকুল আসার সময় ও দ",
+      "lines": 18
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "সরিষা (বারি সরিষা-১৪)",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম সপ্তাহ",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জানুয়ারির শেষ–ফেব্রুয়ারির প্রথম সপ্তাহ",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.৪–১.৮",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "কম সেচে চলে; তবে ফুল আসার আগে একবার সেচ দিলে ফলন বাড়ে। জাব ",
+      "lines": 16
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "পাট (তোষা)",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের শেষ–এপ্রিলের মাঝামাঝি",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুলাইয়ের প্রথম–মধ্য",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "২.৬–৩.১",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "উঁচু ও বৃষ্টিবহুল জমি উপযোগী; বীজ বপনের পর আগাছা দমন না করলে",
+      "lines": 18
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "মসুর ডাল",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ফেব্রুয়ারির শেষ–মার্চের প্রথম",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.২–১.৬",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "শুষ্ক মৌসুমে তুলনামূলক নিরাপদ; বীজ বপনের আগে বীজ শোধন করলে গ",
+      "lines": 19
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 16,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 69,
+      "natural": 149,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 263,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 239,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 108,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1035,
+      "padding": 21
+     }
+    ],
+    "frameW": 451
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    71,
+    71,
+    71,
+    71,
+    71
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 7,
+    "tableWidth": 356,
+    "tableHeight": 3440,
+    "overflow": 0,
+    "colWidths": [
+     71,
+     71,
+     71,
+     71,
+     71
+    ],
+    "rowHeights": [
+     82.8,
+     664,
+     454.8,
+     547.8,
+     594.3,
+     501.3,
+     594.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফসল",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "বপন",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "কাটা",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ফলন (টন/হেক্টর)",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "মন্তব্য",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "বোরো ধান (উফশী)",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ডিসেম্বরের শেষ সপ্তাহ–জানুয়ারির মাঝামাঝি",
+      "lines": 8
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "এপ্রিলের শেষ–মে মাসের প্রথম সপ্তাহ",
+      "lines": 6
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৫.৮–৬.৪",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচনির্ভর চাষ; কুয়াশা ও ঠান্ডায় চারা মরে যাওয়ার ঝুঁকি থাক",
+      "lines": 28
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "আমন ধান (স্থানীয়)",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুনের শেষ–জুলাইয়ের মাঝামাঝি",
+      "lines": 6
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের মাঝামাঝি–ডিসেম্বরের শুরু",
+      "lines": 7
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.২–৩.৮",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "বৃষ্টিনির্ভর চাষ; জমিতে পানি ধরে রাখার ব্যবস্থা থাকলে ফলন স্",
+      "lines": 19
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "গম (বারি গম-৩৩)",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "নভেম্বরের প্রথম–শেষ সপ্তাহ",
+      "lines": 5
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের প্রথম–তৃতীয় সপ্তাহ",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "৩.৫–৪.২",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "সেচের সময়সূচি ঠিক রাখা জরুরি; বিশেষ করে মুকুল আসার সময় ও দ",
+      "lines": 23
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "সরিষা (বারি সরিষা-১৪)",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম সপ্তাহ",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জানুয়ারির শেষ–ফেব্রুয়ারির প্রথম সপ্তাহ",
+      "lines": 7
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.৪–১.৮",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "কম সেচে চলে; তবে ফুল আসার আগে একবার সেচ দিলে ফলন বাড়ে। জাব ",
+      "lines": 25
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "পাট (তোষা)",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "মার্চের শেষ–এপ্রিলের মাঝামাঝি",
+      "lines": 6
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "জুলাইয়ের প্রথম–মধ্য",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "২.৬–৩.১",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "উঁচু ও বৃষ্টিবহুল জমি উপযোগী; বীজ বপনের পর আগাছা দমন না করলে",
+      "lines": 21
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "মসুর ডাল",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "অক্টোবরের শেষ–নভেম্বরের প্রথম",
+      "lines": 5
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "ফেব্রুয়ারির শেষ–মার্চের প্রথম",
+      "lines": 5
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "১.২–১.৬",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "শুষ্ক মৌসুমে তুলনামূলক নিরাপদ; বীজ বপনের আগে বীজ শোধন করলে গ",
+      "lines": 25
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 34,
+    "tokenBreaks": 18,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 69,
+      "natural": 149,
+      "padding": 21
+     },
+     {
+      "minContent": 66,
+      "natural": 263,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 239,
+      "padding": 21
+     },
+     {
+      "minContent": 42,
+      "natural": 108,
+      "padding": 21
+     },
+     {
+      "minContent": 68,
+      "natural": 1035,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-ref_equal.png"
+  }
+ },
+ "understanding": {
+  "purpose": "A crop-by-crop season reference: compare when each crop is sown and harvested, what it yields, and any notes.",
+  "reading": "Primarily row-wise: fix the crop in col 1, read cols 2–3 as one sowing-to-harvest window, then col 4 yield and col 5 caveat; secondarily scan down the date columns to compare seasons.",
+  "groups": [
+   "col 1 is the row anchor",
+   "cols 2–3 are a paired timing unit and must stay adjacent",
+   "col 4 is the quantitative outcome",
+   "col 5 is free-text commentary attached to the whole row"
+  ],
+  "keep_intact": [
+   "crop names in col 1",
+   "month/season names and date ranges in cols 2–3",
+   "yield numbers and the টন/হেক্টর unit in col 4",
+   "row identity"
+  ],
+  "may_wrap": [
+   "date ranges at spaces and em dashes",
+   "the yield header between ফলন and (টন/হেক্টর)",
+   "parenthetical crop qualifiers",
+   "comments in col 5, which must wrap extensively"
+  ]
+ },
+ "final": {
+  "preferred": [
+   "r3A"
+  ],
+  "acceptable": [
+   "r3B",
+   "r3C",
+   "r2B",
+   "r2A"
+  ],
+  "bad": [
+   {
+    "design": "r1B",
+    "why": "The comment column collapses to 111px, producing 14-line comment cells and a 1859px-tall table; yield ranges also split across lines."
+   },
+   {
+    "design": "r1C",
+    "why": "The comment column is still only 140px, leaving 11-line cells and a 1417px table; yield ranges split, so the narrow-table compromise fails."
+   },
+   {
+    "design": "r2C",
+    "why": "Width is misallocated: already-adequate date columns get 115/110px while the long comment column gets only 185px, yielding 7-line comments, a 1069px table, and split yield ranges."
+   }
+  ],
+  "contrast": null,
+  "ranges": [
+   [
+    90,
+    104
+   ],
+   [
+    87,
+    106
+   ],
+   [
+    89,
+    106
+   ],
+   [
+    80,
+    94
+   ],
+   [
+    285,
+    340
+   ]
+  ],
+  "rationale": "r3A is the best balance: the comment column gets 300px, enough to hold the longest comment in four lines, while the table stays at 660px rather than 743px. Its 83px yield column keeps ranges such as ৫.৮–৬.৪ on one line, and 90/93/93px keep every Bengali word intact. Horizontal scrolling is unavoidable given a 1035px one-line comment width, so I accept it rather than collapsing comments into 11–14-line strips.",
+  "principles": {
+   "general": [
+    "Give the column with the longest prose the largest share; equal or symmetric widths waste space on short identifiers and force tall comment cells.",
+    "Numbers, ranges and identifiers should not wrap at dashes or within units; set a minimum width from the longest atomic value, not just the longest word.",
+    "When a table cannot fit, choose a deliberate scroll width and preserve scan rhythm; a slightly wider table can be better than a very tall one."
+   ],
+   "specific": [
+    "This table's comment column has a 1035px one-line width, so it dominates; the other four columns are short schedule and yield fields.",
+    "The yield column needs about 80px to keep ranges on one line, even though its longest word is only 42px.",
+    "Column 1 cannot go below 90px without splitting its 69px longest word; extra width there yields little because its labels still wrap to two lines."
+   ]
+  },
+  "tradeoffs": "A narrower 525–580px table reduces horizontal scrolling but forces 6–7-line comments and splits yield ranges; a 660px table is easier to read but requires nearly two screen widths. r3B's extra 83px improves the date columns but does not reduce the tallest comment below four lines.",
+  "uncertain": "Whether the phone reader prefers less horizontal scroll (r2B/r2A) or more readable comments (r3A) depends on context; the exact 4-to-5-line threshold for the comment column is approximate."
+ },
+ "reviews": [
+  {
+   "order": [
+    "r3A",
+    "r3B",
+    "r3C",
+    "r1B",
+    "ref_auto",
+    "ref_equal"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "good",
+     "why": "First four columns get workable widths: crop names wrap in two lines, dates in three, and the ফলন numbers (৫.৮–৬.৪) stay on one line. But the ফলন header breaks into three lines with an orphaned 'হেক্টর)', and the মন্তব্য column is reduced to a bare sliver ('ম') at the right edge, which is worse than letting it scroll into view at a usable width."
+    },
+    "B": {
+     "grade": "good",
+     "why": "Even rhythm across ফসল/বপন/কাটা, headers on one or two lines, dates wrap cleanly. But ফলন is wider than needed relative to its content and gets clipped at the viewport edge (৫.৮–৬.), so a reader sees a half-cut number column before reaching মন্তব্য by scroll — the cut looks like an error rather than a deliberate scroll boundary."
+    },
+    "C": {
+     "grade": "good",
+     "why": "Best-proportioned of the scrolling variants: ফসল wide enough that 'সরিষা (বারি সরিষা-১৪)' and 'বোরো ধান (উফশী)' read as units, বপন/কাটা share a sensible width so their parallel date phrasing aligns row to row, and ফলন takes its two-line header without orphaning 'হেক্টর)'. মন্তব্য is pushed off to a horizontal scroll, which is the only sane answer for a 1035px text column."
+    },
+    "D": {
+     "grade": "acceptable",
+     "why": "Squeezes all five columns into the 360px box. The four data columns survive — numbers intact, headers on two lines — but মন্তব্য becomes a 4–5 character vertical river, so rows balloon and the eye cannot scan across a row; the comment text is technically present but practically unreadable."
+    },
+    "E": {
+     "grade": "poor",
+     "why": "Same squeeze with an even narrower মন্তব্য, so each comment cell is a tall stack of fragments and rows become ~400px high; the row-to-row rhythm collapses, and ফসল/বপন start breaking words mid-syllable. Neither scannable as a table nor readable as prose."
+    },
+    "F": {
+     "grade": "bad",
+     "why": "Everything is crushed: column headers stack letter by letter, 'বোরো ধান (উফশী)' and the season phrases split mid-word, and মন্তব্য is a narrow ribbon. No column keeps its words intact and rows read as vertical strips rather than units."
+    }
+   },
+   "best": [
+    "C"
+   ],
+   "confidence": "medium",
+   "unsure": "Whether A's মন্তব্য column is genuinely a ~50px sliver or simply the first sliver of a wider off-screen column; if it is a sliver, A drops toward acceptable. B and C are nearly identical — the choice between them rests on a few pixels of ফলন width, and the clipped number in B may just be a viewport crop artefact."
+  }
+ ]
+}

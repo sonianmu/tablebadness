@@ -1,0 +1,22 @@
+{
+ "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "thinking": "medium",
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: دورات تدريبية معتمدة (language ar, right-to-left: column 1 is on the RIGHT).\nGrid: 5 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"اسم الدورة\" · longest unbreakable word 67px · one-line width 250px\n  col 2: header \"المدة\" · longest unbreakable word 50px · one-line width 168px\n  col 3: header \"المدرب\" · longest unbreakable word 55px · one-line width 105px\n  col 4: header \"الوصف\" · longest unbreakable word 73px · one-line width 1420px\n  col 5: header \"الرسوم\" · longest unbreakable word 43px · one-line width 70px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "ms": 50516,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"bad\",\"why\":\"All five columns are squeezed into thin strips; course names, trainer names and the description break into one- or two-letter vertical stacks. Unreadable as a table.\"},\"B\":{\"grade\":\"bad\",\"why\":\"Same five-column squeeze as A; the name column is only marginally wider but still breaks words vertically, and the description remains a tall unreadable column.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"The visible name, duration and trainer columns are readable and reasonably proportioned, but description and fees are not visible, and the very tall rows show the hidden description is still being squeezed.\"},\"D\":{\"grade\":\"poor\",\"why\":\"The main three columns are readable, but the description is reduced to a narrow vertical strip at the left, making it effectively unreadable; fees are also not visible.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"Like C, the three visible columns are readable and clear, but description/fees are missing from view and the oversized empty rows reveal a badly squeezed hidden description; duration/trainer are slightly tighter than C.\"}},\"best\":[\"C\"],\"confidence\":\"medium\",\"unsure\":\"Whether the missing description/fees in C and E are collapsed or merely off-canvas via horizontal scrolling; if off-canvas, their narrow hidden width still causes the excessive row heights.\"}\n"
+  }
+ ]
+}
