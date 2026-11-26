@@ -1,79 +1,129 @@
 # Table Badness
 
-Readability-aware column-width allocation for Markdown tables. Research brief: [RESEARCH.md](RESEARCH.md).
+Readability-aware layout of text tables: plain Markdown tables, header roles, and HTML tables with `colspan`/`rowspan` and multi-level headers. The research brief is in [RESEARCH.md](RESEARCH.md).
 
-The core claim is that space is worth what it saves the reader, not how long the content is. The width a column needs is read from the browser's own text layout, and the whole viewport range is solved once.
+Interactive demo: `index.html`. Human evaluation page: `eval.html`. Both open directly from `file://`.
 
-## Method
+## Model (v2, `src/tablebadness.js`)
 
-1. **Prepare (independent of width, once per distinct cell).** Each distinct cell is laid out twice in a hidden host. At `width:0` the browser starts a line at every soft-wrap opportunity, so break opportunities come from the browser's own UAX #14 rules, Thai/Lao dictionary breaking, CJK kinsoku and emoji clusters. With `nowrap`, the same text gives the in-context width of every unbreakable unit. That is two reflows for the whole table, with no language-specific code. Each break opportunity is then classified:
-   - *natural*: after whitespace, or next to a character from a script written without spaces (Han, Kana, Thai, …);
-   - *intra-token*: any other browser-legal break, e.g. `F-|12`, `2024-|03-15`, `user-|profile`, or between Hangul syllables;
-   - *emergency*: an `overflow-wrap` break inside a unit.
+**One boundary grid for every table.** Columns have boundaries x₀…xₘ and rows have boundaries y₀…yₙ. A cell covering columns [a,b) and rows [c,d) gets content width `x_b − x_a − padding` and needs height `lines(W)·lh + padding`. The natural table height is a **longest path over row boundaries** (`y_d ≥ y_c + h(cell)`). The plain "row height = tallest cell" rule is the special case where no cell spans rows. Spans are input constraints, never inferred or changed.
 
-   Chrome breaks `F-12` and ISO dates at the hyphen, so atomicity cannot be taken from the browser's break opportunities alone.
-2. **Staircase (pure arithmetic).** *Shrink-wrap descent*, `w ← tightWidth(layout(w − ε))`, lists every distinct greedy layout of a cell exactly, without bisection and without touching the DOM. A column's candidate widths are the union of its cells' staircase widths. No width between two candidates can change anything.
-3. **Loss.** Each cell is charged `(lines−1) + A·intraTokenBreaks + E·emergencyBreaks + φ·lines·max(0, m₀/measure − 1)²`. Each row is charged `λ·(rowLines−1)`. Horizontal scroll costs `rows·(κ₀ + ρ·hiddenWidth/W)`. Defaults are in `TableBadness.DEFAULTS`.
-4. **Allocation path (computed once for every width).** A greedy marginal-utility search repeatedly widens the one column whose jump to a larger candidate buys the most loss reduction per pixel. Every step only widens, so the result is a monotone width schedule. A resize is a binary search on that schedule, and column widths are continuous and non-decreasing in the available width. With `λ = 0` the objective is separable and the path reduces to merging the upper concave hulls of the columns' gain curves.
+**Measurement** (`src/measure.js`, shared with the v1 prototype). Each distinct cell is laid out twice in the browser:
+
+- at `width:0`, every soft-wrap opportunity becomes a line start;
+- with `nowrap`, the browser gives the in-context width of every unbreakable unit.
+
+*Shrink-wrap descent* (`w ← tight(layout(w−ε))`) then lists every distinct layout of the cell exactly. Breaks are classified with the browser's own UAX #14 behaviour plus `Intl.Segmenter` word boundaries:
+
+| Break kind | Example |
+|---|---|
+| natural | at a space or word boundary |
+| intra-token | `F-12` → `F-\|12` |
+| intra-word | `毛利率` → `毛利\|率` |
+| emergency | `Enterprise` → `Enterpris\|e` |
+
+Prediction matches Chromium in **99.8% of 31,220** random-width samples.
+
+**Loss.** For each cell: `α(role) · [(lines−1) + A·(intra-token + intra-word-in-a-term breaks) + E·emergency]`. For the whole table: `λ · height / line-height`.
+
+- **Scan axis.** A column header is scanned across, so a line break stacks its text against the scan: α = 1+σ. A row header is scanned down, so a break follows the scan: α = 1−σ. This one principle replaces separate header rules. Row headers wrap "for free" only where the longest path already has vertical slack.
+- **Terms.** A term is a short cell such as a label, ID or header word (≤ 4 words). It is never split mid-word by choice: its min-content width is a hard floor.
+
+**Solver.** The solver is an event-driven marginal-utility path that widens one column at a time. The candidate widths for a column are the staircase steps of the cells covering it; for a spanning cell this is its next step minus its current width. It also has:
+
+- **cut moves**, which widen all columns of a row's tied tallest cells together, because lowering a row needs all of them to drop;
+- **span-aware upper bounds**, so a single column can finish a span on its own.
+
+The path is built once, every column width is monotone in the available width, and a resize is a binary search on the path.
+
+**Scrolling.** The *comfort width* D is the narrowest point of the path below which widening still buys more than scrolling costs. The table scrolls only when W < D, so column widths stay monotone. The scroll rate was calibrated on the dev set to the browser's own scroll rate (13.6% browser vs 14.5% ours).
+
+`tb2-ls` is an optional per-width refinement: local search on the same objective. It is better per width but not monotone across widths.
+
+## Evaluation
+
+All metrics are measured on the real rendered DOM (`src/metrics.js`), never on the engine's own prediction. Comparisons hold content, font, padding, break rules, width and scroll constraint fixed. The `*-fit` variants never scroll voluntarily.
+
+**Sets** (`data/`):
+
+| Set | Contents | Written |
+|---|---|---|
+| plain dev / val | 27 / 18 Markdown tables, 12+ scripts | before tuning |
+| struct dev / val | 11 / 10 tables with row headers, multi-level headers, rowspan/colspan, 2-D merges, RTL, same-text-in-two-roles controls, adversarial cases (⚑) | before tuning |
+| val2 | 8 more tables | after the last algorithm change, before running it |
+
+Every case is run at widths 320–960 px and font sizes 14/16.
+
+**Metrics.** Short values on one line; intra-token and emergency breaks; term breaks; severe fragmentation; column-header and group-header single-line rate; header-row height; row-header wrap rate and the height row headers add; height and row-height P90/max relative to CSS; overflow; clipped spanning cells; grid-boundary errors; prediction agreement.
+
+**AI visual review.** Claude judged real renders with method names hidden behind seeded random letters, scoring integrity, coherence, space use, structure and overall. Judgments are in `results/visual/**/judgments.json` and the unblinded results in `unblinded.json`. This is a model's visual judgement, not a human reading study.
+
+## Results (Chromium; `results/summary.txt`)
+
+**Structural validation set**, same no-scroll constraint:
+
+| method | short 1-line | col header 1-line | group header 1-line | header height / CSS | table height / CSS |
+|---|--:|--:|--:|--:|--:|
+| browser `table-layout:auto` | 87.8% | 85.5% | 80.6% | 1.000 | 1.000 |
+| min-height (same grid model) | 97.0% | 94.5% | 84.7% | 0.872 | 0.901 |
+| **v2 path** | **98.0%** | **95.6%** | **86.1%** | **0.857** | 0.906 |
+
+On every set, clipped spanning cells and grid-boundary errors are 0 for every method.
+
+**val2, fresh held-out set:** v2 93.9% short values on one line vs browser 83.8% vs min-height 93.0%; height 0.926 vs 1.000 vs 0.925.
+
+**Plain validation set:** v2 88.0% short values on one line vs browser 73.4% vs min-height 85.7%. Column headers stay on one line in 94.5% of v2 layouts vs 85.2% for the browser.
+
+**Blind visual review**
+
+- **Validation set, 16 tables, before the term floor existed:**
+  - v2: best 11, worst 2
+  - min-height: best 11, worst 4
+  - browser: best 2, worst 12
+  - v2's losses were mid-word header splits (`Enterpris|e`). Dev case `s-2d` showed the same problem (`Vaccinat|ions`), which led to the term floor.
+  - Three composites were cropped by the screenshot tool. They were invalidated, regenerated and re-judged blind.
+- **val2, 8 tables:**
+  - min-height: best 6, worst 1
+  - v2: best 3, worst 2
+  - browser: best 1, worst 5
+  - A follow-up showed the cause was the convex fragmentation term (`tb2-ls` reproduced v2's choices), not the greedy path. The term is now off by default, which dev renders (`zh-project`, `s-multihdr`) also supported. With it off, v2 produces the same layout as min-height on the val2 tables it lost. That re-check is post-hoc, not a new held-out result.
+
+**Path vs per-width optimum** (same objective, exhaustive search where small): the greedy path is exactly optimal in 204 of 252 instances, with a mean excess of 1.3% and a worst of 32% (`v-th-lo`). Local search reaches the optimum in 250 of 252.
+
+**Stability and speed**, resizing 300→1000 px:
+
+| | excess column movement | column shrinks per step | time per layout |
+|---|--:|--:|--:|
+| v2 path | 0 px | 0 | ≈1 µs |
+| min-height | 9.4 px per 10 px step | 0.80 | 0.33 ms |
+
+For 1,000 rows × 5 columns: prepare 62 ms (55 ms is DOM measurement), path 31 ms (60 ms with spans), re-prepare after an edit 12 ms, query 0.4 µs.
+
+## What did not work or remains open
+
+- **Role weights matter less than expected.** Turning σ off changes the metrics by about 1 point. Most header behaviour comes out of the geometry: the header row height is on the longest path, and row headers sit in slack.
+- **The convex fragmentation penalty** made narrow tables worse. It is off by default and kept as an ablation (`fragCost`).
+- **Greedy prefix commitment.** At some widths the monotone path is worse than a per-width optimum: about 1.3% on average and 32% in the worst case. `tb2-ls` fixes this but jitters across widths.
+- **Dictionary gaps.** Breaks inside words the ICU dictionary does not know, such as the Thai loanword ห้องดีลักซ์ in `w-th-colspan` or `毛利|率`, are invisible to term protection.
+- **Scope of measurement and validation.** Only Chromium on macOS system fonts was measured. Rowspan height is the theoretical longest path; the browser distributes extra height its own way, so the metrics use the real DOM. Inline elements must not have horizontal padding (`table.css` fakes code padding with `box-shadow`). No human reading experiment was run.
 
 ## Run
 
-Requires Node 18+ and the Playwright Chromium build (or set `CHROME_PATH`).
-
 ```bash
-npm install            # playwright-core only (project-local)
-npm test               # invariants: staircase monotone, path monotone, DP ≤ path on the separable objective
-npm run all            # accuracy + experiment + stability + perf → results/*.json, results/summary.txt
-npm run sweep          # parameter sweep on the DEV set only
-node bench/inspect.mjs zh-project 400 15    # one case, all methods, plus a screenshot
-open index.html        # interactive demo (works from file://); drag column borders or use ←/→ to resize by hand
-open eval.html         # human evaluation (v2): 8 row-height structures x 3 width tightness, hard width limit;
-                       # blind adjust -> blind A/B (TB vs a rotated baseline) -> reveal with row-height profiles
+npm install                    # playwright-core (project-local); uses Playwright's cached Chromium or CHROME_PATH
+npm test                       # grid partition, staircase monotone, longest-path, path monotone/budget, path cost bookkeeping
+npm run all                    # accuracy, experiment, gap, stability, perf → results/*.json + results/summary.txt
+node bench/calibrate.mjs       # comfort-width scroll calibration (dev set only)
+node bench/inspect.mjs s-2d 430 15 css-auto,min-height,tb2-fit   # side-by-side render + metrics
+node bench/visual-batch.mjs val2                                  # blinded composites for review
+open index.html                # demo (Markdown or HTML input, role switches, manual column resizing)
+open eval.html                 # human evaluation: blind adjust → blind A/B → reveal
 ```
-
-API (classic script, `window.TableBadness`):
 
 ```js
-const P = TableBadness.prepareTable(tableEl);   // measure (cached per distinct cell + font)
-const path = TableBadness.buildPath(P);          // width-independent
-const L = TableBadness.layoutAt(P, path, availableWidthPx); // ~µs
-TableBadness.applyWidths(tableEl, L);            // <colgroup> + table-layout: fixed
+const M = TableBadness.prepare(tableEl, { rowHeader: true });    // measure + grid model (width-independent)
+const path = TableBadness.buildPath(M);                          // once
+TableBadness.apply(tableEl, TableBadness.layout(M, path, availableWidthPx)); // per resize, ~µs
 ```
 
-## Test set and protocol
-
-`data/cases.js` has 41 GFM tables: 27 in the dev set and 14 in the validation set, which was written before any tuning and was never used to choose parameters. They cover Chinese (16 tables), English, Japanese, Korean, Arabic, Hebrew, Hindi, Bengali, Tamil, Thai, Lao, Russian, Vietnamese, emoji, code, formula text, mixed scripts, repeated values, outliers, long headers and up to 10 columns.
-
-Every case is run at widths 320/400/480/600/760/960 px and font sizes 14/16 px. All methods share the same CSS and the same break rules. Metrics are measured from the rendered DOM, not from the engine's predictions.
-
-## Results (Chromium, `results/summary.txt`)
-
-Engine accuracy: the predicted line count matches the browser in **99.8%** of 22,752 random-width samples across all scripts. The misses are sub-pixel cases where the engine predicts one extra line, which is the safe direction. Rendered columns add 1 px of slack.
-
-Validation set (28 case × font, 6 widths):
-
-| method | short values on one line | intra-token + emergency breaks / table | long text < 6em measure | height vs CSS | layouts that scroll |
-|---|--:|--:|--:|--:|--:|
-| browser `table-layout:auto` | 76.1% | 2.37 | 23.1% | 1.000 | 18.5% |
-| content-proportional | 61.5% | 8.78 | 14.8% | 1.020 | 0% |
-| min-height (local search) | 82.9% | 3.22 | 24.2% | 0.987 | 8.9% |
-| **tb-fit** (scrolls only when forced) | 85.0% | 3.10 | 25.5% | 1.001 | 8.9% |
-| **tb-path** (default) | **86.7%** | **1.96** | **9.7%** | **0.905** | 19.6% |
-
-- At a similar scroll rate to the browser, `tb-path` keeps more short values intact, breaks fewer tokens, has less than half the severe fragmentation, and is about 10% shorter.
-- Under the same "scroll only when forced" constraint, `tb-fit` is only marginally better than a min-height optimiser: a few more short values intact, slightly taller.
-- The greedy path is within about 1% of a local-search optimum of the same objective (`tb-ls`).
-- Ablations (`tb-separable`, `tb-nofrag`, `tb-lines-only`) each lose on at least one metric. The separable model (no row coupling) is visibly worse: it pays for breaking a date even when another cell already sets that row's height.
-
-Resize stability (W = 300…1000 px, 5 px steps): `tb-fit` has 0 px excess column movement and 0 column shrinks. Min-height moves columns by 7.1 px per step, with some column shrinking on 67% of steps.
-
-Performance (5 columns, 1000 rows): cold prepare 56 ms, path 10 ms, warm re-prepare after an edit 4 ms, one layout query about 10 µs. Line counts for every cell at 32 widths take 310 ms by DOM probing and 0.9 ms with the arithmetic engine.
-
-## Known failures and limits
-
-- **Long code tokens and URLs** (`code-config`, `v-en-deps`, `v-cli-flags`, `en-api` at ≤ 480 px): the browser overflows and scrolls, while Table Badness often emergency-breaks the token. As a result it scores below CSS auto on short-value integrity and atomic breaks in these cases.
-- **Lao, Thai, Russian/Vietnamese and some Arabic** at ≤ 400 px: short-value integrity is sometimes below the min-height baseline.
-- `tb-path` scrolls slightly more often than the browser on the validation set (19.6% vs 18.5%). The scroll trade-off is controlled by `scrollEntry`/`scrollCost`.
-- All results are typesetting proxies. No human reading study was run, so nothing here shows that people read faster.
-- Only Chromium on macOS system fonts was measured. Inline elements must not have horizontal padding: `table.css` fakes code padding with `box-shadow`. Vertical text, merged cells and nested tables are out of scope.
-- The research skills listed in RESEARCH.md §7 are installed project-locally under `.claude/skills/` (git-ignored; versions pinned in `skills-lock.json`). Reinstall with the command in RESEARCH.md §7 from the repo root, adding `-a claude-code -y`.
+The prototype v1 (plain grids only) is kept in `src/v1/` as a baseline. The research skills from RESEARCH.md §7 are installed project-locally under `.claude/skills/` (git-ignored; pinned in `skills-lock.json`).
