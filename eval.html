@@ -123,6 +123,7 @@ table.sum th { color: var(--muted); font-weight: 500; }
 </div>
 
 <script src="src/markdown.js"></script>
+<script src="src/measure.js"></script>
 <script src="src/tablebadness.js"></script>
 <script src="src/baselines.js"></script>
 <script src="src/metrics.js"></script>
@@ -183,18 +184,18 @@ table.sum th { color: var(--muted); font-weight: 500; }
     wrap.innerHTML = MD.toHTML(MD.parseTable(c.md));
     vp.appendChild(wrap); host.appendChild(vp);
     const table = wrap.querySelector('table');
-    const P = TB.prepareTable(table, { scroll: false });
+    const P = TB.prepare(table, { scroll: false, rowHeader: !!c.rowHeader });
     return { wrap, table, P };
   }
-  const setCols = (m, colPx) => TB.applyWidths(m.table, { colPx, tableWidth: colPx.reduce((a, b) => a + b, 0) + m.P.tableExtra });
+  const setCols = (m, colPx) => TB.apply(m.table, { colPx, tableWidth: colPx.reduce((a, b) => a + b, 0) + m.P.tableExtra });
   // the trial's available width from its tightness level (computed once per browser, then fixed)
   function widthFor(t, c) {
     const host = document.createElement('div'); host.style.cssText = 'position:absolute;left:-99999px;top:0;';
     document.body.appendChild(host);
     const m = mountTable(host, c, 2000, t.fs);
     const ov = 2000 - TB.budgetOf(m.P, 2000);
-    const fit = ov + m.P.cols.reduce((s, x) => s + x.floor, 0);
-    const nat = ov + m.P.cols.reduce((s, x) => s + x.natural, 0);
+    const fit = ov + m.P.floors.reduce((s, x) => s + x, 0);
+    const nat = ov + m.P.naturals.reduce((s, x) => s + x, 0);
     host.remove();
     // geometric interpolation between the fit width and min(natural, 960): tight / medium / loose stay distinct for long-text tables
     const top = Math.max(fit, Math.min(nat, 960));
@@ -202,7 +203,7 @@ table.sum th { color: var(--muted); font-weight: 500; }
   }
   function layout(method, m, W) {
     switch (method) {
-      case 'tb': return TB.layoutAt(m.P, TB.buildPath(m.P), W);
+      case 'tb': return TB.layout(m.P, TB.buildPath(m.P), W, { scroll: false });
       case 'min-height': return BL.minHeight(m.P, W, [BL.proportional(m.P, W).widths]);
       case 'proportional': return BL.proportional(m.P, W);
       case 'equal': return BL.equal(m.P, W);
@@ -211,20 +212,29 @@ table.sum th { color: var(--muted); font-weight: 500; }
   }
   function apply(method, m, W, humanCols) {
     if (method === 'human') setCols(m, humanCols);
-    else if (method === 'css-auto') TB.clearWidths(m.table);
-    else TB.applyWidths(m.table, layout(method, m, W));
+    else if (method === 'css-auto') TB.clear(m.table);
+    else TB.apply(m.table, layout(method, m, W));
   }
   function colKinds(P) {
-    return P.cols.map(col => {
-      const ns = []; for (const e of col.entries) if (!/\u0000H\u0000/.test(e.key)) for (let k = 0; k < e.count; k++) ns.push(e.cell.natural);
+    return P.colSingle.map(list => {
+      const ns = []; for (const i of list) { const c = P.cells[i]; if (c.el.tagName !== 'TH') ns.push(c.m.natural); }
       ns.sort((a, b) => a - b);
       const med = ns.length ? ns[ns.length >> 1] / P.fontSize : 0;
       return med <= 8 ? 'short' : med > 20 ? 'long' : 'mid';
     });
   }
   function metricsOf(m, W) {
-    const met = MT.measure(m.P, W, m.wrap);
-    const loss = TB.predict(m.P, met.colWidths.map((w, j) => w - m.P.overhead[j] - m.P.opts.safety)).loss;
+    const met = MT.measure(m.P, m.table, W, m.wrap);
+    const M = m.P, els = []; for (const tr of m.table.rows) for (const td of tr.cells) els.push(td);
+    met.colWidths = new Array(M.nCols).fill(0);
+    M.cells.forEach((c, i) => { if (c.cs === 1 && !met.colWidths[c.c]) met.colWidths[c.c] = els[i].getBoundingClientRect().width; });
+    const h = M.cells.map((c, i) => met.cellLines[i] * c.lh + c.padV), rowMax = new Array(M.rows).fill(0);
+    M.cells.forEach((c, i) => { if (c.rs === 1 && h[i] > rowMax[c.r]) rowMax[c.r] = h[i]; });
+    met.bottlenecks = Array.from({ length: M.rows }, () => []);
+    M.cells.forEach((c, i) => { if (c.rs === 1 && met.cellLines[i] > 1 && h[i] > rowMax[c.r] - 0.5) met.bottlenecks[c.r].push(c.c); });
+    const lines2d = Array.from({ length: M.rows }, () => []); M.cells.forEach((c, i) => { lines2d[c.r][c.c] = met.cellLines[i]; }); met.cellLines = lines2d;
+    met.visibleRows600 = met.visibleRows600;
+    const loss = TB.evaluate(M, met.colWidths.map((w, j) => w - M.colPad[j] - M.opts.safety)).cost;
     return {
       short: met.shortIntact, shortN: met.shortCells, atomic: met.atomicBreaks, frag: met.severeFrag, longN: met.longCells,
       height: Math.round(met.heightPx), rowMed: met.rowMedianPx, rowP90: met.rowP90Px, rowMax: met.rowMaxPx,
@@ -256,7 +266,7 @@ table.sum th { color: var(--muted); font-weight: 500; }
   // ---------- step 1: blind adjust (total width locked) ----------
   function addHandles(m, onChange) {
     const n = m.P.nCols, hs = [];
-    const minW = j => m.P.overhead[j] + 12;
+    const minW = j => m.P.colPad[j] + 12;
     const place = () => {
       const row = Array.from(m.table.rows).find(r => r.cells.length === n);
       Array.from(row.cells).forEach((c, j) => {

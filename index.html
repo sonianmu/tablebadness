@@ -73,6 +73,8 @@ input[type=range] { flex: 1 1 200px; accent-color: var(--accent); min-width: 0; 
 .rz:focus-visible { outline: none; }
 .btn { font: 500 12px/1 var(--f-body); color: var(--accent); background: transparent; border: 1px solid var(--accent); border-radius: 4px; padding: 5px 8px; cursor: pointer; }
 .chip.manual { border-color: var(--warn); color: var(--warn); }
+.bnon .tb-table .bn { box-shadow: inset 3px 0 0 var(--warn); }
+.chip.diag { border-style: dashed; }
 .chart { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: grid; gap: 8px; min-width: 0; }
 .chart h2, .panels-title { font: 600 15px/1.2 var(--f-display); margin: 0; }
 .charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
@@ -87,18 +89,19 @@ input[type=range] { flex: 1 1 200px; accent-color: var(--accent); min-width: 0; 
 <div class="page">
   <header>
     <h1>Table Badness</h1>
-    <p>可读性感知的表格列宽分配。每张表都是真实 HTML 表格，由浏览器按相同字体、内边距和断行规则排版；粉色虚线框是可用宽度。指标从实际渲染结果测量，不取自算法的预测。拖动任意表格的列边线可手动调整列宽（也可聚焦后用 ← → 键），指标实时重新测量；双击边线或点“恢复”回到算法结果，拖动可用宽度滑块也会恢复。</p>
+    <p>可读性感知的表格布局。表格被看成由列边界和行边界组成的网格：跨列、跨行的格子与普通格子用同一套模型，表格高度是行边界上的最长路径。每张表都是真实 HTML 表格，由浏览器按相同字体、内边距和断行规则排版；粉色虚线框是可用宽度。指标从实际渲染测量，不取自算法的预测。拖动列边线可手动调整（← → 键也可），双击边线或点“恢复”回到算法结果。</p>
   </header>
 
   <section class="controls" aria-label="控制">
     <div class="field md">
-      <label for="md">Markdown 表格（可编辑、可粘贴）</label>
+      <label for="md">表格源：Markdown，或带合并单元格的 HTML &lt;table&gt;（可编辑、可粘贴）</label>
       <textarea id="md" spellcheck="false"></textarea>
     </div>
     <div class="right">
       <div class="field">
         <label for="case">案例</label>
         <select id="case"></select>
+        <p class="note" id="casenote" style="margin:0"></p>
       </div>
       <div class="field">
         <label for="w">可用宽度</label>
@@ -107,9 +110,15 @@ input[type=range] { flex: 1 1 200px; accent-color: var(--accent); min-width: 0; 
       <div class="row">
         <div class="field"><label for="fs">字号</label>
           <select id="fs"><option>13</option><option>14</option><option selected>15</option><option>16</option><option>18</option></select></div>
-        <div class="field"><label for="scroll">横向滚动</label>
-          <select id="scroll"><option value="1" selected>按成本决策</option><option value="0">仅在放不下时</option></select></div>
+        <div class="field"><label for="scroll">横向滚动（v2）</label>
+          <select id="scroll"><option value="0" selected>仅在放不下时</option><option value="1">低于舒适宽度时滚动</option></select></div>
       </div>
+      <div class="field"><span class="lbl">表头角色</span>
+        <div class="methods">
+          <label class="chk"><input type="checkbox" id="roles" checked>启用角色（列标题 / 行标题）</label>
+          <label class="chk"><input type="checkbox" id="rowhdr">首列是行标题</label>
+          <label class="chk"><input type="checkbox" id="bn" checked>标出撑高行的格子</label>
+        </div></div>
       <div class="field"><span class="lbl">对比方法</span><div class="methods" id="methods"></div></div>
       <div class="timing" id="timing"></div>
     </div>
@@ -119,44 +128,62 @@ input[type=range] { flex: 1 1 200px; accent-color: var(--accent); min-width: 0; 
 
   <section class="chart" aria-label="列宽路径">
     <h2>列宽随可用宽度的变化</h2>
-    <p class="note" style="margin:0">Table Badness 只计算一次列宽路径；可用宽度变化时只查表，每列宽度单调不减。最小高度优化每个宽度单独求解，列宽会来回跳动。竖线是当前宽度。</p>
+    <p class="note" style="margin:0">Table Badness v2 只计算一次列宽路径（有时一步同时加宽几列，以降低由多个并列最高格子撑起的行）；可用宽度变化时只查表，每列宽度单调不减。最小高度优化每个宽度单独求解，列宽会来回跳动。竖线是当前宽度。</p>
     <div class="charts" id="charts"></div>
     <div class="legend" id="legend"></div>
   </section>
 </div>
 
 <script src="src/markdown.js"></script>
+<script src="src/measure.js"></script>
+<script src="src/v1/tablebadness-v1.js"></script>
 <script src="src/tablebadness.js"></script>
 <script src="src/baselines.js"></script>
 <script src="src/metrics.js"></script>
 <script src="data/cases.js"></script>
+<script src="data/struct-cases.js"></script>
+<script src="data/val2-cases.js"></script>
 <script>
 (function () {
   'use strict';
-  const TB = TableBadness, BL = TBBaselines, MD = TBMarkdown, MT = TBMetrics;
+  const TB = TableBadness, BL = TBBaselines, MD = TBMarkdown, MT = TBMetrics, V1 = TableBadnessV1;
   const METHODS = [
     { id: 'css-auto', name: '浏览器原生', note: 'table-layout: auto' },
     { id: 'equal', name: '等宽', note: '' },
-    { id: 'proportional', name: '内容比例', note: '按平均单行宽度' },
-    { id: 'min-height', name: '最小高度', note: '成对交换局部搜索' },
-    { id: 'tb-fit', name: 'Table Badness', note: '不主动滚动' },
-    { id: 'tb-path', name: 'Table Badness', note: '默认' },
+    { id: 'proportional', name: '内容比例', note: '' },
+    { id: 'min-height', name: '最小高度', note: '同一网格模型 · 局部搜索' },
+    { id: 'tb-v1', name: 'Table Badness v1', note: '旧原型 · 仅普通表格' },
+    { id: 'tb2', name: 'Table Badness v2', note: '单调路径' },
+    { id: 'tb2-ls', name: 'v2 逐宽度精修', note: '同一目标 · 局部搜索' },
   ];
-  const shown = new Set(['css-auto', 'min-height', 'tb-path']);
+  const FAILURES = {
+    'w-th-colspan': '已知失败：泰文外来词 ห้องดีลักซ์ 不在 ICU 词典里，词内断开无法识别，v2 与最小高度都在词中间断行，浏览器原生反而更好。',
+    's-longcolhdr': '已知不足：几个表头并列最高时，单调路径在窄宽度下比逐宽度最优多一行表头高度（看“v2 逐宽度精修”）。',
+    's-2d': '反例：430px 以下放不下而不拆单词，v2 选择横向溢出（与浏览器一致），而不是把 Vaccinations 拆开。',
+    'v-th-lo': '已知不足：单调路径与逐宽度最优差距最大的案例之一（约 32%）。',
+    'sv-matrix': '盲评曾失败（术语下限修正之前）：所有优化器都把表头 Enterprise 拆成 Enterpris|e。修正后不再拆分。',
+  };
+  const shown = new Set(['css-auto', 'min-height', 'tb2']);
   const $ = id => document.getElementById(id);
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
   const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
 
-  // case selector
   const sel = $('case');
-  for (const [set, label] of [['dev', '开发集'], ['val', '独立验证集（未用于调参）']]) {
+  const groups = [
+    ['普通表格 · 开发集', c => !c.html && c.kind !== 'struct' && c.set === 'dev'],
+    ['普通表格 · 独立验证集', c => !c.html && c.kind !== 'struct' && c.set === 'val'],
+    ['表头与合并 · 开发集', c => c.kind === 'struct' && c.set === 'dev'],
+    ['表头与合并 · 独立验证集', c => c.kind === 'struct' && c.set === 'val'],
+    ['第二独立验证集（最后一次算法修改后编写）', c => c.set === 'val2'],
+    ['失败与不足案例', c => c.id in FAILURES],
+  ];
+  for (const [label, f] of groups) {
     const g = document.createElement('optgroup'); g.label = label;
-    TB_CASES.filter(c => c.set === set).forEach(c => { const o = document.createElement('option'); o.value = c.id; o.textContent = c.title; g.appendChild(o); });
+    TB_CASES.filter(f).forEach(c => { const o = document.createElement('option'); o.value = c.id; o.textContent = c.title + (c.adversarial ? ' ⚑' : ''); g.appendChild(o); });
     sel.appendChild(g);
   }
-  const g2 = document.createElement('optgroup'); g2.label = '自定义';
-  g2.innerHTML = '<option value="custom">粘贴的表格</option>'; sel.appendChild(g2);
+  const g2 = document.createElement('optgroup'); g2.label = '自定义'; g2.innerHTML = '<option value="custom">粘贴的表格</option>'; sel.appendChild(g2);
 
-  // method toggles
   for (const m of METHODS) {
     const l = document.createElement('label'); l.className = 'chk';
     l.innerHTML = `<input type="checkbox" id="m-${m.id}" ${shown.has(m.id) ? 'checked' : ''}>${m.name}${m.note ? ' · ' + m.note : ''}`;
@@ -164,252 +191,235 @@ input[type=range] { flex: 1 1 200px; accent-color: var(--accent); min-width: 0; 
     $('methods').appendChild(l);
   }
 
-  let panels = [], lang = 'zh-CN', tbCtx = null, timingInfo = {};
-
-  function currentW() { return Math.max(160, +$('wnum').value || 480); }
-  function fs() { return +$('fs').value; }
+  let panels = [], lang = 'zh-CN', ref = null, timing = {};
+  const currentW = () => Math.max(160, +$('wnum').value || 480);
+  const fs = () => +$('fs').value;
+  const opts = () => ({ roles: $('roles').checked, rowHeader: $('rowhdr').checked, scroll: $('scroll').value === '1' });
+  function sourceHTML() {
+    const src = $('md').value.trim();
+    if (/<table[\s>]/i.test(src)) {
+      const d = document.createElement('div'); d.innerHTML = src;
+      const t = d.querySelector('table'); if (!t) return null;
+      t.className = 'tb-table'; t.removeAttribute('style');
+      return { html: t.outerHTML, plain: false };
+    }
+    const t = MD.parseTable(src);
+    return t ? { html: MD.toHTML(t), plain: true } : null;
+  }
 
   function build() {
-    const md = $('md').value;
-    const t = MD.parseTable(md);
-    const host = $('panels');
-    host.innerHTML = '';
-    panels = [];
-    if (!t) { host.innerHTML = '<p class="note">没有找到 Markdown 表格：需要表头行和分隔行（如 <code>|---|---|</code>）。</p>'; return; }
-    const html = MD.toHTML(t);
-    const t0 = performance.now();
-    const cachedBefore = TB._cache.size;
+    const srcT = sourceHTML();
+    const host = $('panels'); host.innerHTML = ''; panels = [];
+    if (!srcT) { host.innerHTML = '<p class="note">没有找到表格：Markdown 需要表头行和分隔行（如 <code>|---|---|</code>），HTML 需要一个 &lt;table&gt;。</p>'; return; }
+    const cached = TB._cache.size;
     for (const m of METHODS) {
       if (!shown.has(m.id)) continue;
+      if (m.id === 'tb-v1' && !srcT.plain) continue;
       const el = document.createElement('article');
-      el.className = 'panel' + (m.id.startsWith('tb') ? ' ours' : '');
+      el.className = 'panel' + (m.id.startsWith('tb2') ? ' ours' : '');
       el.innerHTML = `<div class="phead"><div class="pname">${m.name}<small>${m.note}</small></div><div class="chips"></div></div><div class="viewport"><div class="tb-wrap"></div></div>`;
       const wrap = el.querySelector('.tb-wrap');
-      wrap.lang = lang;
+      wrap.lang = lang; wrap.dir = /^(ar|he|fa|ur)/.test(lang) ? 'rtl' : 'ltr';
       wrap.style.setProperty('--tb-font-size', fs() + 'px');
-      wrap.innerHTML = html;
+      wrap.innerHTML = srcT.html;
       host.appendChild(el);
-      panels.push({ m, el, wrap, table: wrap.querySelector('table') });
-    }
-    // prepare (first table measures; the rest hit the shared cell cache)
-    for (const p of panels) {
-      const a = performance.now();
-      p.P = TB.prepareTable(p.table, { scroll: $('scroll').value === '1' });
-      p.prepMs = performance.now() - a;
-      if (p.m.id.startsWith('tb')) {
-        const b = performance.now();
-        p.path = TB.buildPath(p.P);
-        p.pathMs = performance.now() - b;
-      }
+      const table = wrap.querySelector('table');
+      const t0 = performance.now();
+      const M = TB.prepare(table, opts());
+      const p = { m, el, wrap, table, M, prepMs: performance.now() - t0, plain: srcT.plain };
+      if (m.id.startsWith('tb2')) { const a = performance.now(); p.path = TB.buildPath(M); p.pathMs = performance.now() - a; }
+      if (m.id === 'tb-v1') { p.P = V1.prepareTable(table, { scroll: false }); p.v1path = V1.buildPath(p.P); }
+      panels.push(p);
     }
     const first = panels[0];
-    timingInfo = {
-      prepMs: first ? first.P.timing.prepareMs : 0, measured: first ? first.P.timing.measuredCells : 0,
-      distinct: first ? first.P.cols.reduce((s, c) => s + c.entries.length, 0) : 0,
-      cacheHit: cachedBefore > 0, buildAll: performance.now() - t0,
-    };
-    // reference context for the chart and timing (always available)
-    const ref = document.createElement('div');
-    ref.style.cssText = 'position:absolute;left:-99999px;top:0;';
-    ref.lang = lang; ref.style.setProperty('--tb-font-size', fs() + 'px');
-    ref.className = 'tb-wrap'; ref.innerHTML = html;
-    document.body.appendChild(ref);
-    const P = TB.prepareTable(ref.querySelector('table'), { scroll: $('scroll').value === '1' });
-    const a = performance.now(); const path = TB.buildPath(P); const pathMs = performance.now() - a;
-    tbCtx = { P, path, ref };
-    timingInfo.pathMs = pathMs; timingInfo.steps = path.segs.length;
-    relayout();
-    drawCharts();
-    ref.remove();
+    timing = first ? { prep: first.M.timing.prepareMs, measured: first.M.timing.measuredCells, cells: first.M.cells.length, cached: cached > 0 && first.M.timing.measuredCells === 0 } : {};
+    // reference model for the width-schedule chart
+    const box = document.createElement('div'); box.style.cssText = 'position:absolute;left:-99999px;top:0;';
+    box.className = 'tb-wrap'; box.lang = lang; box.style.setProperty('--tb-font-size', fs() + 'px'); box.innerHTML = srcT.html;
+    document.body.appendChild(box);
+    const M = TB.prepare(box.querySelector('table'), opts());
+    const a = performance.now(); const path = TB.buildPath(M); timing.path = performance.now() - a; timing.steps = path.segs.length;
+    timing.multi = path.segs.filter(sg => sg.cols.length > 1).length;
+    ref = { M, path };
+    relayout(); drawCharts();
+    box.remove();
   }
 
   function layoutFor(p, W) {
-    const P = p.P;
+    const M = p.M;
     switch (p.m.id) {
-      case 'equal': return BL.equal(P, W);
-      case 'proportional': return BL.proportional(P, W);
-      case 'min-height': return BL.minHeight(P, W, [BL.proportional(P, W).widths]);
-      case 'tb-fit': return TB.layoutAt(Object.assign({}, P, { opts: Object.assign({}, P.opts, { scroll: false }) }), p.path, W);
-      case 'tb-path': return TB.layoutAt(P, p.path, W);
+      case 'equal': return BL.equal(M, W);
+      case 'proportional': return BL.proportional(M, W);
+      case 'min-height': return BL.minHeight(M, W, [BL.proportional(M, W).widths]);
+      case 'tb2': return TB.layout(M, p.path, W);
+      case 'tb2-ls': return BL.tbLocalSearch(M, W, [TB.layout(M, p.path, W, { scroll: false }).widths, BL.proportional(M, W).widths]);
+      case 'tb-v1': return V1.layoutAt(p.P, p.v1path, W);
     }
     return null;
   }
-
-  const fmtMs = ms => (ms < 0.1 ? (ms * 1000).toFixed(0) + ' µs' : ms.toFixed(2) + ' ms');
+  const fmtMs = ms => (ms < 0.1 ? Math.max(1, Math.round(ms * 1000)) + ' µs' : ms.toFixed(2) + ' ms');
 
   function relayout() {
-    const W = currentW();
-    const results = [];
-    let tbQuery = null;
+    const W = currentW(), results = [];
+    let q = null;
     for (const p of panels) {
       p.wrap.style.width = W + 'px';
       let L = null, ms;
-      if (p.manual) {
-        TB.applyWidths(p.table, { colPx: p.manual, tableWidth: p.manual.reduce((a, b) => a + b, 0) + p.P.tableExtra });
-        ms = 0;
-      } else if (p.m.id === 'css-auto') {
-        TB.clearWidths(p.table);
-        const a = performance.now(); void p.table.offsetHeight; ms = performance.now() - a;
-      } else {
-        const a = performance.now(); L = layoutFor(p, W); ms = performance.now() - a;
-        TB.applyWidths(p.table, L);
-        if (p.m.id === 'tb-path') {
-          const b = performance.now(); for (let i = 0; i < 200; i++) TB.layoutAt(p.P, p.path, W - i % 7); tbQuery = (performance.now() - b) / 200;
-        }
+      if (p.manual) { TB.apply(p.table, { colPx: p.manual, tableWidth: p.manual.reduce((a, b) => a + b, 0) + p.M.tableExtra }); ms = 0; }
+      else if (p.m.id === 'css-auto') { TB.clear(p.table); const a = performance.now(); void p.table.offsetHeight; ms = performance.now() - a; }
+      else {
+        const a = performance.now(); L = layoutFor(p, W); ms = performance.now() - a; TB.apply(p.table, L);
+        if (p.m.id === 'tb2') { const b = performance.now(); for (let i = 0; i < 200; i++) TB.layout(p.M, p.path, W - i % 7); q = (performance.now() - b) / 200; }
       }
-      const met = MT.measure(p.P, W, p.wrap);
-      met.tbLoss = TB.predict(p.P, met.colWidths.map((w, j) => w - p.P.overhead[j] - p.P.opts.safety)).loss;
+      const met = MT.measure(p.M, p.table, W, p.wrap);
+      markBottlenecks(p, met);
       results.push({ p, met, ms, L });
       placeHandles(p);
     }
-    // chips, best/worst marking across shown methods
     const keys = [
-      { k: 'short', label: '短值完整', v: r => r.met.shortCells ? r.met.shortIntact / r.met.shortCells : null, fmt: r => `${r.met.shortIntact}/${r.met.shortCells}`, hi: true },
-      { k: 'atomic', label: '词内断开', v: r => r.met.atomicBreaks, fmt: r => String(r.met.atomicBreaks), hi: false },
-      { k: 'frag', label: '长文碎片化', v: r => r.met.longCells ? r.met.severeFrag : null, fmt: r => r.met.longCells ? `${r.met.severeFrag}/${r.met.longCells}` : '—', hi: false },
-      { k: 'h', label: '总高', v: r => r.met.heightPx, fmt: r => Math.round(r.met.heightPx) + 'px', hi: false },
-      { k: 'ovf', label: '横向溢出', v: r => r.met.overflowPx, fmt: r => Math.round(r.met.overflowPx) + 'px', hi: false },
-      { k: 'loss', label: 'TB 损失', v: r => r.met.tbLoss, fmt: r => r.met.tbLoss.toFixed(1), hi: false },
+      ['短值完整', r => r.met.shortCells ? r.met.shortIntact / r.met.shortCells : null, r => `${r.met.shortIntact}/${r.met.shortCells}`, 1],
+      ['编号/术语断开', r => r.met.atomicBreaks + r.met.termBreaks, r => String(r.met.atomicBreaks + r.met.termBreaks), -1],
+      ['列标题单行', r => r.met.colHeaders ? r.met.colHeaderSingle / r.met.colHeaders : null, r => r.met.colHeaders ? `${r.met.colHeaderSingle}/${r.met.colHeaders}` : '—', 1],
+      ['组标题单行', r => r.met.groupHeaders ? r.met.groupHeaderSingle / r.met.groupHeaders : null, r => r.met.groupHeaders ? `${r.met.groupHeaderSingle}/${r.met.groupHeaders}` : '—', 1],
+      ['表头高', r => r.met.headerHeightPx || null, r => r.met.headerHeightPx ? Math.round(r.met.headerHeightPx) + 'px' : '—', -1],
+      ['行标题折行', null, r => r.met.rowHeaders ? `${r.met.rowHeaderWrapped}/${r.met.rowHeaders}` : '—', 0],
+      ['行标题增高', r => r.met.rowHeaders ? r.met.rowHeaderExtraPx : null, r => r.met.rowHeaders ? Math.round(r.met.rowHeaderExtraPx) + 'px' : '—', -1],
+      ['总高', r => r.met.heightPx, r => Math.round(r.met.heightPx) + 'px', -1],
+      ['行高 P90/最高', null, r => `${Math.round(r.met.rowP90Px)}/${Math.round(r.met.rowMaxPx)}`, 0],
+      ['横向溢出', r => r.met.overflowPx, r => Math.round(r.met.overflowPx) + 'px', -1],
     ];
     for (const r of results) {
-      const chips = r.p.el.querySelector('.chips');
-      chips.innerHTML = '';
-      for (const key of keys) {
-        const vals = results.map(key.v).filter(x => x != null);
-        const v = key.v(r);
-        const best = key.hi ? Math.max(...vals) : Math.min(...vals), worst = key.hi ? Math.min(...vals) : Math.max(...vals);
-        const c = document.createElement('span');
-        c.className = 'chip' + (v != null && vals.length > 1 && best !== worst ? (Math.abs(v - best) < 1e-9 ? ' best' : Math.abs(v - worst) < 1e-9 ? ' worst' : '') : '');
-        c.innerHTML = `<i>${key.label}</i>${key.fmt(r)}`;
-        chips.appendChild(c);
+      const chips = r.p.el.querySelector('.chips'); chips.innerHTML = '';
+      for (const [label, val, fmt, dir] of keys) {
+        const c = document.createElement('span'); let cls = 'chip' + (dir === 0 ? ' diag' : '');
+        if (val) {
+          const vals = results.map(x => val(x)).filter(x => x != null), v = val(r);
+          const best = dir > 0 ? Math.max(...vals) : Math.min(...vals), worst = dir > 0 ? Math.min(...vals) : Math.max(...vals);
+          if (v != null && vals.length > 1 && best !== worst) cls += Math.abs(v - best) < 1e-9 ? ' best' : Math.abs(v - worst) < 1e-9 ? ' worst' : '';
+        }
+        const text = fmt(r); if (text === '—' && dir !== 0) continue;
+        c.className = cls; c.innerHTML = `<i>${label}</i>${esc(text)}`; chips.appendChild(c);
       }
       if (r.p.manual) {
-        const t = document.createElement('span'); t.className = 'chip manual'; t.innerHTML = '<i>列宽</i>手动 ' + r.p.manual.map(w => Math.round(w)).join('/');
-        chips.appendChild(t);
+        const t = document.createElement('span'); t.className = 'chip manual'; t.innerHTML = '<i>列宽</i>手动'; chips.appendChild(t);
         const b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = '恢复';
-        b.addEventListener('click', () => { r.p.manual = null; relayout(); });
-        chips.appendChild(b);
+        b.addEventListener('click', () => { r.p.manual = null; relayout(); }); chips.appendChild(b);
       } else {
         const t = document.createElement('span'); t.className = 'chip';
-        t.innerHTML = `<i>${r.p.m.id === 'css-auto' ? '浏览器重排' : '求解'}</i>${fmtMs(r.ms)}`;
-        chips.appendChild(t);
+        t.innerHTML = `<i>${r.p.m.id === 'css-auto' ? '浏览器重排' : '求解'}</i>${fmtMs(r.ms)}`; chips.appendChild(t);
       }
-      if (r.L && r.L.scroll) { const s = document.createElement('span'); s.className = 'chip'; s.innerHTML = '<i>决策</i>横向滚动'; chips.appendChild(s); }
     }
-    const T = timingInfo;
     $('timing').innerHTML =
-      `预处理 <b>${T.prepMs.toFixed(1)} ms</b>（${T.cacheHit && !T.measured ? '全部命中缓存' : '测量 ' + T.measured + ' 个新单元格'}，去重后 ${T.distinct} 个）<br>` +
-      `列宽路径 <b>${T.pathMs.toFixed(2)} ms</b>（${T.steps} 步，与宽度无关，只算一次）<br>` +
-      (tbQuery != null ? `每次调整宽度 <b>${fmtMs(tbQuery)}</b>（二分查表，不触发排版测量）` : '勾选 Table Badness 以查看实时布局耗时');
+      `预处理 <b>${(timing.prep || 0).toFixed(1)} ms</b>（${timing.cached ? '全部命中缓存' : '测量 ' + timing.measured + ' 个新单元格'}，共 ${timing.cells} 个格子）<br>` +
+      `列宽路径 <b>${(timing.path || 0).toFixed(2)} ms</b>（${timing.steps} 步，其中 ${timing.multi} 步同时加宽多列；与宽度无关，只算一次）<br>` +
+      (q != null ? `每次调整宽度 <b>${fmtMs(q)}</b>（在路径上二分查找，不触发排版测量）` : '勾选 Table Badness v2 以查看实时布局耗时');
     drawMarker();
+  }
+
+  // cells that set their row's height (single-row cells with the row's largest content height)
+  function markBottlenecks(p, met) {
+    const M = p.M, els = []; for (const tr of p.table.rows) for (const td of tr.cells) els.push(td);
+    const h = M.cells.map((c, i) => met.cellLines[i] * c.lh + c.padV);
+    const rowMax = new Array(M.rows).fill(0);
+    M.cells.forEach((c, i) => { if (c.rs === 1 && h[i] > rowMax[c.r]) rowMax[c.r] = h[i]; });
+    M.cells.forEach((c, i) => els[i].classList.toggle('bn', c.rs === 1 && met.cellLines[i] > 1 && h[i] > rowMax[c.r] - 0.5));
+    p.wrap.classList.toggle('bnon', $('bn').checked);
   }
 
   // ---- manual column resizing ----
   let pending = 0;
   const schedule = () => { cancelAnimationFrame(pending); pending = requestAnimationFrame(relayout); };
-  function currentColPx(p) {
-    const row = Array.from(p.table.rows).find(r => r.cells.length === p.P.nCols);
-    return Array.from(row.cells, c => c.getBoundingClientRect().width);
+  function colBoxes(p) {
+    const n = p.M.nCols, out = new Array(n).fill(null), els = [];
+    for (const tr of p.table.rows) for (const td of tr.cells) els.push(td);
+    p.M.cells.forEach((c, i) => { if (c.cs === 1 && !out[c.c]) out[c.c] = els[i]; });
+    return out;
   }
+  function currentColPx(p) { return colBoxes(p).map((el, j) => (el ? el.getBoundingClientRect().width : p.M.colPad[j] + 20)); }
   function placeHandles(p) {
-    let layer = p.handles;
-    if (!layer) {
-      layer = p.handles = [];
-      for (let j = 0; j < p.P.nCols; j++) {
+    if (!p.handles) {
+      p.handles = [];
+      for (let j = 0; j < p.M.nCols; j++) {
         const h = document.createElement('div');
         h.className = 'rz'; h.tabIndex = 0; h.setAttribute('role', 'separator'); h.setAttribute('aria-orientation', 'vertical');
         h.setAttribute('aria-label', `调整第 ${j + 1} 列宽度`);
         h.addEventListener('pointerdown', e => {
           e.preventDefault(); h.setPointerCapture(e.pointerId); h.classList.add('on');
-          const x0 = e.clientX, w0 = currentColPx(p);
-          const move = ev => { const w = w0.slice(); w[j] = Math.max(p.P.overhead[j] + 8, w0[j] + ev.clientX - x0); p.manual = w; schedule(); };
+          const x0 = e.clientX, w0 = currentColPx(p), sign = p.wrap.dir === 'rtl' ? -1 : 1;
+          const move = ev => { const w = w0.slice(); w[j] = Math.max(p.M.colPad[j] + 8, w0[j] + sign * (ev.clientX - x0)); p.manual = w; schedule(); };
           const up = () => { h.classList.remove('on'); h.removeEventListener('pointermove', move); h.removeEventListener('pointerup', up); h.removeEventListener('pointercancel', up); };
           h.addEventListener('pointermove', move); h.addEventListener('pointerup', up); h.addEventListener('pointercancel', up);
         });
         h.addEventListener('dblclick', () => { p.manual = null; relayout(); });
         h.addEventListener('keydown', e => {
-          const d = e.key === 'ArrowLeft' ? -1 : e.key === 'ArrowRight' ? 1 : 0;
-          if (!d) return;
-          e.preventDefault();
-          const w = p.manual ? p.manual.slice() : currentColPx(p);
-          w[j] = Math.max(p.P.overhead[j] + 8, w[j] + d * (e.shiftKey ? 16 : 4));
-          p.manual = w; relayout(); h.focus();
+          const d = e.key === 'ArrowLeft' ? -1 : e.key === 'ArrowRight' ? 1 : 0; if (!d) return;
+          e.preventDefault(); const w = p.manual ? p.manual.slice() : currentColPx(p);
+          w[j] = Math.max(p.M.colPad[j] + 8, w[j] + d * (e.shiftKey ? 16 : 4)); p.manual = w; relayout(); h.focus();
         });
-        p.wrap.appendChild(h); layer.push(h);
+        p.wrap.appendChild(h); p.handles.push(h);
       }
     }
-    const row = Array.from(p.table.rows).find(r => r.cells.length === p.P.nCols);
-    const tl = p.table.offsetLeft, tt = p.table.offsetTop, H = p.table.offsetHeight;
-    Array.from(row.cells).forEach((c, j) => {
-      const h = layer[j];
-      const rtl = getComputedStyle(p.table).direction === 'rtl';
-      h.style.left = (tl + c.offsetLeft + (rtl ? 0 : c.offsetWidth)) + 'px';
-      h.style.top = tt + 'px'; h.style.height = H + 'px';
+    const boxes = colBoxes(p), rtl = p.wrap.dir === 'rtl';
+    boxes.forEach((el, j) => {
+      const h = p.handles[j]; if (!el) { h.hidden = true; return; }
+      h.hidden = false;
+      h.style.left = (p.table.offsetLeft + el.offsetLeft + (rtl ? 10 : el.offsetWidth)) + 'px';
+      h.style.top = p.table.offsetTop + 'px'; h.style.height = p.table.offsetHeight + 'px';
     });
   }
 
   // ---- width schedule charts ----
   const PALETTE = ['#0f6e6a', '#c2410c', '#6d28d9', '#1d4ed8', '#b45309', '#be185d', '#15803d', '#475569', '#0e7490', '#9f1239'];
-  let chartState = null;
+  let chart = null;
   function drawCharts() {
-    const { P, path } = tbCtx;
-    const Wmin = 240, Wmax = 1100, step = 10;
-    const series = { 'Table Badness 路径': [], '最小高度（逐宽度求解）': [] };
+    const { M, path } = ref, Wmin = 240, Wmax = 1100, step = 10;
+    const series = { 'Table Badness v2 路径': [], '最小高度（逐宽度求解）': [] };
     for (let W = Wmin; W <= Wmax; W += step) {
-      series['Table Badness 路径'].push([W, TB.layoutAt(P, path, W).colPx]);
-      series['最小高度（逐宽度求解）'].push([W, BL.minHeight(P, W, [BL.proportional(P, W).widths]).colPx]);
+      series['Table Badness v2 路径'].push([W, TB.layout(M, path, W).colPx]);
+      series['最小高度（逐宽度求解）'].push([W, BL.minHeight(M, W, [BL.proportional(M, W).widths]).colPx]);
     }
-    let ymax = 0;
-    for (const s of Object.values(series)) for (const [, ws] of s) for (const w of ws) ymax = Math.max(ymax, w);
+    let ymax = 0; for (const s of Object.values(series)) for (const [, ws] of s) for (const w of ws) ymax = Math.max(ymax, w);
     ymax = Math.ceil(ymax / 100) * 100 || 100;
     const host = $('charts'); host.innerHTML = '';
     const VW = 520, VH = 220, L = 40, R = 10, Tm = 22, B = 26;
-    const x = W => L + (W - Wmin) / (Wmax - Wmin) * (VW - L - R);
-    const y = v => VH - B - v / ymax * (VH - Tm - B);
-    chartState = { x, svgs: [], Tm, B, VH };
+    const x = W => L + (W - Wmin) / (Wmax - Wmin) * (VW - L - R), y = v => VH - B - v / ymax * (VH - Tm - B);
+    chart = { x, marks: [] };
     for (const [name, pts] of Object.entries(series)) {
       let s = `<svg viewBox="0 0 ${VW} ${VH}" role="img" aria-label="${name}"><text x="${L}" y="14" fill="var(--fg)" font-family="var(--f-display)" font-size="12.5" font-weight="600">${name}</text>`;
-      for (let v = 0; v <= ymax; v += ymax / 4) s += `<line x1="${L}" x2="${VW - R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-width="1"/><text x="${L - 6}" y="${y(v) + 4}" text-anchor="end" fill="var(--muted)" font-size="10" font-family="var(--f-mono)">${Math.round(v)}</text>`;
+      for (let v = 0; v <= ymax; v += ymax / 4) s += `<line x1="${L}" x2="${VW - R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="${L - 6}" y="${y(v) + 4}" text-anchor="end" fill="var(--muted)" font-size="10" font-family="var(--f-mono)">${Math.round(v)}</text>`;
       for (const W of [300, 500, 700, 900, 1100]) s += `<text x="${x(W)}" y="${VH - 8}" text-anchor="middle" fill="var(--muted)" font-size="10" font-family="var(--f-mono)">${W}</text>`;
-      for (let j = 0; j < P.nCols; j++) {
-        const d = pts.map(([W, ws], i) => `${i ? 'L' : 'M'}${x(W).toFixed(1)},${y(ws[j]).toFixed(1)}`).join('');
-        s += `<path d="${d}" fill="none" stroke="${PALETTE[j % PALETTE.length]}" stroke-width="1.6" stroke-linejoin="round"/>`;
-      }
+      for (let j = 0; j < M.nCols; j++) s += `<path d="${pts.map(([W, ws], i) => `${i ? 'L' : 'M'}${x(W).toFixed(1)},${y(ws[j]).toFixed(1)}`).join('')}" fill="none" stroke="${PALETTE[j % PALETTE.length]}" stroke-width="1.6" stroke-linejoin="round"/>`;
       s += `<line class="marker" x1="0" x2="0" y1="${Tm}" y2="${VH - B}" stroke="var(--ruler)" stroke-width="1.2" stroke-dasharray="3 3"/></svg>`;
-      const div = document.createElement('div'); div.innerHTML = s; host.appendChild(div);
-      chartState.svgs.push(div.querySelector('.marker'));
+      const d = document.createElement('div'); d.innerHTML = s; host.appendChild(d); chart.marks.push(d.querySelector('.marker'));
     }
-    const head = MD.parseTable($('md').value).header;
-    $('legend').innerHTML = head.map((h, j) => `<span style="color:${PALETTE[j % PALETTE.length]}">${h.replace(/[`*]/g, '').replace(/</g, '&lt;')}</span>`).join('') + '<span style="color:var(--muted)">纵轴：列宽 px · 横轴：可用宽度 px</span>';
+    $('legend').innerHTML = Array.from({ length: M.nCols }, (_, j) => `<span style="color:${PALETTE[j % PALETTE.length]}">第 ${j + 1} 列</span>`).join('') + '<span style="color:var(--muted)">纵轴：列宽 px · 横轴：可用宽度 px</span>';
     drawMarker();
   }
-  function drawMarker() {
-    if (!chartState) return;
-    const X = chartState.x(Math.min(1100, Math.max(240, currentW())));
-    for (const m of chartState.svgs) { m.setAttribute('x1', X); m.setAttribute('x2', X); }
-  }
+  function drawMarker() { if (!chart) return; const X = chart.x(Math.min(1100, Math.max(240, currentW()))); for (const m of chart.marks) { m.setAttribute('x1', X); m.setAttribute('x2', X); } }
 
   // ---- events ----
   function loadCase(id) {
     const c = TB_CASES.find(c => c.id === id);
-    if (c) { $('md').value = c.md.trim(); lang = c.lang; }
-    store.set('tb-case', id);
-    build();
+    if (c) {
+      $('md').value = (c.html || c.md).trim(); lang = c.lang;
+      $('rowhdr').checked = !!c.rowHeader;
+      $('casenote').textContent = FAILURES[id] || (c.adversarial ? '反例：' + c.adversarial : '');
+    }
+    store.set('tb-case', id); build();
   }
   sel.addEventListener('change', () => { if (sel.value !== 'custom') loadCase(sel.value); });
   let editTimer = null;
-  $('md').addEventListener('input', () => { sel.value = 'custom'; lang = /[぀-ヿ]/.test($('md').value) ? 'ja' : 'zh-CN'; clearTimeout(editTimer); editTimer = setTimeout(build, 180); });
+  $('md').addEventListener('input', () => { sel.value = 'custom'; $('casenote').textContent = ''; clearTimeout(editTimer); editTimer = setTimeout(build, 180); });
   let raf = 0;
   const onW = v => { panels.forEach(p => { p.manual = null; }); $('w').value = v; $('wnum').value = v; store.set('tb-w', v); cancelAnimationFrame(raf); raf = requestAnimationFrame(relayout); };
   $('w').addEventListener('input', e => onW(e.target.value));
   $('wnum').addEventListener('change', e => onW(e.target.value));
-  $('fs').addEventListener('change', build);
-  $('scroll').addEventListener('change', build);
-
+  for (const id of ['fs', 'scroll', 'roles', 'rowhdr']) $(id).addEventListener('change', build);
+  $('bn').addEventListener('change', relayout);
   const w0 = store.get('tb-w') || String(Math.min(480, Math.max(280, window.innerWidth - 40)));
   $('w').value = w0; $('wnum').value = w0;
   const c0 = store.get('tb-case');
-  const startId = c0 && TB_CASES.some(c => c.id === c0) ? c0 : 'zh-project';
+  const startId = c0 && TB_CASES.some(c => c.id === c0) ? c0 : 's-multihdr';
   sel.value = startId;
   (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => loadCase(startId));
 })();
