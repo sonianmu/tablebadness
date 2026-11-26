@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val] Extreme · 10 columns + unbreakable values (language en).\nGrid: 10 columns × 4 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"ID\" · longest unbreakable word 16px · one-line width 16px\n  col 2: header \"SKU\" · longest unbreakable word 44px · one-line width 136px\n  col 3: header \"Color\" · longest unbreakable word 40px · one-line width 40px\n  col 4: header \"Size\" · longest unbreakable word 31px · one-line width 31px\n  col 5: header \"Qty\" · longest unbreakable word 26px · one-line width 26px\n  col 6: header \"Price\" · longest unbreakable word 41px · one-line width 41px\n  col 7: header \"Tax\" · longest unbreakable word 32px · one-line width 32px\n  col 8: header \"Total\" · longest unbreakable word 47px · one-line width 47px\n  col 9: header \"Warehouse\" · longest unbreakable word 81px · one-line width 122px\n  col 10: header \"Tracking\" · longest unbreakable word 159px · one-line width 159px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nRendering convention: the screenshot always shows the WHOLE table. Anything beyond the dashed box is not clipped; it is the part a reader reaches by scrolling sideways, so judge both what fits in the box at first sight and the cost of scrolling to the rest.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9657,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"The SKU wraps at hyphens and rows remain easy to follow, but Price is cut by the viewport edge, so its values require scrolling to read.\"},\"B\":{\"grade\":\"good\",\"why\":\"SKU wraps into two readable lines, and the first view includes complete values through Price. Tax begins at the edge, signalling more columns to the right.\"},\"C\":{\"grade\":\"bad\",\"why\":\"Nearly every header and many values split into isolated letters or digits. The very tall rows make comparison difficult, while Tracking still extends beyond the viewport.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"The first view reaches Tax and keeps the short values intact, but the narrow SKU column breaks each identifier across four lines, making rows taller and identifiers harder to scan.\"},\"E\":{\"grade\":\"bad\",\"why\":\"The compressed columns fragment headers, prices, colours and identifiers across many lines. Despite the dense layout, the rightmost content still requires scrolling.\"},\"F\":{\"grade\":\"good\",\"why\":\"Complete SKUs make the rows compact and identifiers easy to compare, but the first view stops at the start of Price, leaving more of the table to horizontal scrolling.\"}},\"best\":[\"B\"],\"confidence\":\"medium\",\"unsure\":\"The supplied views show only portions of the wider layouts, so the readability and width of columns farther to the right cannot be assessed fully. F may be preferable if keeping each SKU on one line is especially important.\"}\n"
+  }
+ ]
+}

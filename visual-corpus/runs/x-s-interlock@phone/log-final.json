@@ -1,0 +1,27 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "d-r1B.png",
+  "d-r1C.png",
+  "d-r2A.png",
+  "d-r2B.png",
+  "d-r2C.png",
+  "d-r3A.png",
+  "d-r3B.png",
+  "d-r3C.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nTable: [反例] 交错跨列 · 共享中间列 (language zh-CN).\nGrid: 4 columns × 4 rows. Row headers: none declared.\nMerged cells: \"与业务方共同梳理核心流程，输出需求说明书并完成评\" spans 2 col × 1 row; \"完成核心模块开发与联调，接入统一认证与日志平台\" spans 2 col × 1 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"项目\" · longest unbreakable word 16px · one-line width 31px\n  col 2: header \"阶段一\" · longest unbreakable word 16px · one-line width 77px\n  col 3: header \"阶段二\" · longest unbreakable word 16px · one-line width 46px\n  col 4: header \"阶段三\" · longest unbreakable word 16px · one-line width 46px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nThese are all candidate designs you produced, rendered in a real browser:\nDesign r1B: widths [52, 98, 116, 93] · table 360×216px · row heights [36, 83, 60, 36] · column headers wrapped 0/4 · tallest cell 3 lines · mid-word splits 0\nDesign r1C: widths [52, 105, 109, 93] · table 360×239px · row heights [36, 83, 83, 36] · column headers wrapped 0/4 · tallest cell 3 lines · mid-word splits 0\nDesign r2A: widths [52, 94, 117, 96] · table 360×216px · row heights [36, 83, 60, 36] · column headers wrapped 0/4 · tallest cell 3 lines · mid-word splits 0\nDesign r2B: widths [52, 99, 110, 98] · table 360×216px · row heights [36, 83, 60, 36] · column headers wrapped 0/4 · tallest cell 3 lines · mid-word splits 0\nDesign r2C: widths [51, 96, 116, 96] · table 360×262px · row heights [60, 83, 60, 60] · column headers wrapped 1/4 · tallest cell 3 lines · mid-word splits 0\nDesign r3A: widths [52, 102, 110, 95] · table 360×216px · row heights [36, 83, 60, 36] · column headers wrapped 0/4 · tallest cell 3 lines · mid-word splits 0\nDesign r3B: widths [52, 98, 116, 93] · table 360×216px · row heights [36, 83, 60, 36] · column headers wrapped 0/4 · tallest cell 3 lines · mid-word splits 0\nDesign r3C: widths [52, 105, 105, 97] · table 360×239px · row heights [36, 83, 83, 36] · column headers wrapped 0/4 · tallest cell 3 lines · mid-word splits 0\n\nDecide as a designer:\n- \"preferred\": the best design(s). Name more than one only if they are genuinely equally good.\n- \"acceptable\": other designs a careful designer would still publish.\n- \"bad\": designs with clear visual faults, each with the fault. If none of these is clearly bad, also return ONE deliberately bad but plausible alternative as \"contrast\" widths and say what is wrong with it.\n- \"ranges\": for each column, the px range within which the preferred design stays equally good (keep other columns' proportions).\n- \"rationale\": 2–4 concrete sentences about this table.\n- \"principles\": observations that seem GENERAL (likely to hold for other tables) vs SPECIFIC to this case.\n- \"tradeoffs\" and \"uncertain\": what reasonable designers could disagree on.\nReply ONLY JSON: {\"preferred\":[\"name\"],\"acceptable\":[\"name\"],\"bad\":[{\"design\":\"name\",\"why\":\"\"}],\"contrast\":{\"widths\":[int px],\"why\":\"\"} or null,\"ranges\":[[min,max]],\"rationale\":\"\",\"principles\":{\"general\":[\"\"],\"specific\":[\"\"]},\"tradeoffs\":\"\",\"uncertain\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 16969,
+   "code": 0,
+   "problem": null,
+   "raw": "{\n  \"preferred\": [\"r2B\"],\n  \"acceptable\": [\"r1B\", \"r1C\", \"r3A\", \"r3B\", \"r3C\"],\n  \"bad\": [\n    {\n      \"design\": \"r2A\",\n      \"why\": \"阶段一的“搭建脚手架”被拆成两行，末行只剩一个“架”，破坏了这一短语的完整性。\"\n    },\n    {\n      \"design\": \"r2C\",\n      \"why\": \"项目列过窄，表头和各行标签都被拆成竖排，削弱了行的识别和横向阅读。\"\n    }\n  ],\n  \"contrast\": null,\n  \"ranges\": [[52, 52], [98, 102], [110, 116], [93, 98]],\n  \"rationale\": \"r2B 让项目标签和短阶段内容保持完整，同时为两处交错跨列的长说明提供足够空间。阶段一和阶段二的合并说明均以自然的多行块呈现，开发行的长说明也能在两行内容纳。三个阶段的列宽有轻微差别，但视觉上仍属于同一组。\",\n  \"principles\": {\n    \"general\": [\n      \"先保证行标签和短语的可读性，再把余宽分配给需要换行的长内容。\",\n      \"判断跨列内容时，应同时考虑合并单元格的总宽度与各独立列的阅读需求。\",\n      \"高度较小只有在换行和阅读节奏仍然合适时才是优势。\"\n    ],\n    \"specific\": [\n      \"项目列至少需要 52px，才能在此字号和内边距下保持双字标签横排。\",\n      \"阶段二同时参与两处交错合并，因此它的宽度会影响两条长说明；阶段一还须容纳“搭建脚手架”。\"\n    ]\n  },\n  \"tradeoffs\": \"r1B 和 r3B 给共享的阶段二更多空间；r2B 给阶段三稍多空间，三个阶段的比例更均衡。r1C 和 r3C 的开发说明占三行，增加了行高，但内容仍可读。\",\n  \"uncertain\": \"这些范围是依据已渲染候选给出的近似范围，列宽须联动调整且总和不超过 359px，并非各列可独立取任意端点；范围内未展示的组合也未逐一验证。设计师可能对阶段列的均衡程度以及末行单独出现“平台”的可接受程度有不同判断。\"\n}\n"
+  }
+ ]
+}

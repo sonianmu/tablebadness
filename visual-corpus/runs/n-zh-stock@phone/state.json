@@ -1,0 +1,7108 @@
+{
+ "id": "n-zh-stock@phone",
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "代码、名称和各项数字完整，行高一致，纵向比较容易；价格与涨跌幅并列，阅读顺序清楚。",
+     "problems": "表格横向跨度较大，首屏只露出成交额的一部分，市盈率和行业需要向右滚动。名称和行业均保持单行，整齐但占用了较多横向空间。",
+     "cause": "名称和行业各宽83px；成交额宽67px，容得下数值但标题需换行。总宽537px，超出视口177px。"
+    },
+    {
+     "design": "r0B",
+     "good": "代码、最新价和涨跌幅保持完整；名称按两字换行后仍可辨认。相比r0A，主要行情在首屏占据更集中。",
+     "problems": "成交额数字被拆成两行，破坏小数的整体性和纵向比较；成交额标题拆得零碎，表头很高。行业也被压窄，整体行高明显增加。",
+     "cause": "成交额宽53px，仅有32px文字空间，小于最长数字所需的46px；名称和行业各宽53px，使较长词组换行。"
+    },
+    {
+     "design": "r0C",
+     "good": "横向溢出仅7px，几乎所有列都能在首屏看到；代码仍保持完整。",
+     "problems": "价格、涨跌幅、成交额和市盈率的数字及符号多处断开，比较困难；名称和行业接近逐字竖排，表头也十分零碎。行高过大，读者难以将每行看成一个整体。",
+     "cause": "最新价68px、涨跌幅60px，均小于保持最长数值完整所需的81px和75px；成交额39px、市盈率38px进一步压碎数值。名称39px和行业42px也不足以稳定容纳两个汉字。"
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "代码、价格、涨跌幅和数值保持完整；前四列连同行情方向都能在首屏看到，便于先识别股票再比较表现。成交额标题换行为两行，仍可辨认。",
+     "problems": "所有数据行都偏高，名称被拆成短行，股票识别和横向扫读较费力；市盈率和行业需要横向滚动。",
+     "cause": "名称列和行业列均为53px，扣除内边距后仅有32px文字空间，较长名称及行业被迫换行。总宽477px，比视口宽117px。"
+    },
+    {
+     "design": "r1B",
+     "good": "83px名称列让股票名称保持单行，前几行明显更紧凑，代码与名称的识别关系清楚；主要价格指标仍在首屏内。",
+     "problems": "后两行仍较高，行高节奏不一致；成交额在首屏右边缘附近，完整查看后续指标需要更多横向滚动。",
+     "cause": "行业列仍为53px，较长行业名称换行并撑高对应行；名称列比r1A宽30px，使总宽增至507px。"
+    },
+    {
+     "design": "r1C",
+     "good": "保留了代码和主要行情数值的完整性；比r1A略窄，横向滚动距离有所减少。",
+     "problems": "名称导致的高行与碎片化阅读仍然存在；市盈率标题额外换行，表头层级更零碎，而节省的宽度不足以改变首屏可见的主要内容。",
+     "cause": "名称与行业列仍为53px；市盈率列从67px缩至56px，扣除内边距后只有35px，容不下46px的单行标题。"
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "代码、名称和主要行情都保持完整，数据行高度一致，便于沿行识别股票和纵向比较数值。成交额标题换行集中在表头，没有增加数据行高度。",
+     "problems": "表格横向较宽，首屏只能看到成交额列的一部分，市盈率和所属行业需要向右滚动。",
+     "cause": "前四列合计319px，加上成交额列后达到386px；总宽537px。成交额列为67px，其46px内容区不足以容纳完整标题。"
+    },
+    {
+     "design": "r2B",
+     "good": "代码和行情数字保持完整，表格比r2A窄15px，首屏能多显示一部分成交额列。",
+     "problems": "多个四字股票名称被拆成三字加一字，行高因此反复增大，名称辨识和跨行比较都受到影响；节省的宽度也不足以让首屏完整显示成交额列。",
+     "cause": "名称列从83px缩至68px，47px内容区不足以容纳约62px的完整名称，导致四个数据行增高至60px。"
+    },
+    {
+     "design": "r2C",
+     "good": "保留了完整的代码、名称和行情数字；相比r2A，表格更窄，只有最后一个数据行因行业换行而增高。",
+     "problems": "市盈率标题也发生换行，表头的换行列增至三列；末行增高打破了原本均匀的数据行节奏。缩窄后首屏仍不能完整显示成交额列。",
+     "cause": "市盈率列为56px，35px内容区不足以容纳46px的一行标题；所属行业列为68px，47px内容区不足以容纳最长行业名称。"
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A",
+    "r3B"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    80,
+    83,
+    81,
+    75,
+    67,
+    67,
+    83
+   ],
+   "geom": {
+    "nCols": 7,
+    "nRows": 7,
+    "tableWidth": 537,
+    "tableHeight": 278,
+    "overflow": 177,
+    "colWidths": [
+     80,
+     83,
+     81,
+     75,
+     67,
+     67,
+     83
+    ],
+    "rowHeights": [
+     59.5,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "代码",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "名称",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最新价",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "涨跌幅",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交额（亿）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "市盈率",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "所属行业",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "600519",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "贵州茅台",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,438.00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-0.76%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32.15",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "23.8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "300750",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "宁德时代",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "251.30",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.14%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "68.42",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "21.6",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "电池",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "601318",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中国平安",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "52.47",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+1.03%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "41.78",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8.9",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "保险",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "000858",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "五粮液",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "129.65",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-1.28%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "18.93",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15.4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "688981",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中芯国际",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.80",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+3.56%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "55.27",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112.3",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "半导体",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "002594",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "比亚迪",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "356.20",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-2.01%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "74.86",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.7",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "汽车整车",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 60,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 92,
+      "padding": 21
+     },
+     {
+      "minContent": 35,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     }
+    ],
+    "frameW": 571
+   },
+   "png": "d-r0A.png",
+   "idea": "采用横向滚动，保留代码、名称和数值的完整性，让较长标题换行，以清晰比较行情为优先。",
+   "notes": []
+  },
+  "r0B": {
+   "widths": [
+    80,
+    53,
+    81,
+    75,
+    53,
+    56,
+    53
+   ],
+   "geom": {
+    "nCols": 7,
+    "nRows": 7,
+    "tableWidth": 452,
+    "tableHeight": 464,
+    "overflow": 92,
+    "colWidths": [
+     80,
+     53,
+     81,
+     75,
+     53,
+     56,
+     53
+    ],
+    "rowHeights": [
+     106,
+     59.5,
+     59.5,
+     59.5,
+     59.5,
+     59.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "代码",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "名称",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最新价",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "涨跌幅",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交额（亿）",
+      "lines": 4
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "市盈率",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "所属行业",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "600519",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "贵州茅台",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,438.00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-0.76%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32.15",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "23.8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "300750",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "宁德时代",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "251.30",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.14%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "68.42",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "21.6",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "电池",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "601318",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中国平安",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "52.47",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+1.03%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "41.78",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8.9",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "保险",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "000858",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "五粮液",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "129.65",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-1.28%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "18.93",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15.4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "688981",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中芯国际",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.80",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+3.56%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "55.27",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112.3",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "半导体",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "002594",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "比亚迪",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "356.20",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-2.01%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "74.86",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.7",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "汽车整车",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 6,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 60,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 92,
+      "padding": 21
+     },
+     {
+      "minContent": 35,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     }
+    ],
+    "frameW": 486
+   },
+   "png": "d-r0B.png",
+   "idea": "采用适度横向滚动，完整保留代码、最新价和涨跌幅，让名称、行业及部分次要指标利用换行节省宽度。",
+   "notes": []
+  },
+  "r0C": {
+   "widths": [
+    80,
+    39,
+    68,
+    60,
+    39,
+    38,
+    42
+   ],
+   "geom": {
+    "nCols": 7,
+    "nRows": 7,
+    "tableWidth": 367,
+    "tableHeight": 766.3,
+    "overflow": 7,
+    "colWidths": [
+     80,
+     39,
+     68,
+     60,
+     39,
+     38,
+     42
+    ],
+    "rowHeights": [
+     152.5,
+     106,
+     106,
+     106,
+     82.8,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "代码",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "名称",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最新价",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "涨跌幅",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交额（亿）",
+      "lines": 6
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "市盈率",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "所属行业",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "600519",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "贵州茅台",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,438.00",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-0.76%",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32.15",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "23.8",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "300750",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "宁德时代",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "251.30",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.14%",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "68.42",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "21.6",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "电池",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "601318",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中国平安",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "52.47",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+1.03%",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "41.78",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8.9",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "保险",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "000858",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "五粮液",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "129.65",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-1.28%",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "18.93",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15.4",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "688981",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中芯国际",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.80",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+3.56%",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "55.27",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112.3",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "半导体",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "002594",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "比亚迪",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "356.20",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-2.01%",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "74.86",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.7",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "汽车整车",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 30,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 60,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 92,
+      "padding": 21
+     },
+     {
+      "minContent": 35,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     }
+    ],
+    "frameW": 401
+   },
+   "png": "d-r0C.png",
+   "idea": "全部压入首屏，优先保住代码并给价格和涨跌幅较多空间，接受名称、标题和部分数值拆行及随之增加的行高。",
+   "notes": [
+    "raised a column to the minimum 38px"
+   ]
+  },
+  "r1A": {
+   "widths": [
+    80,
+    53,
+    81,
+    75,
+    67,
+    67,
+    53
+   ],
+   "geom": {
+    "nCols": 7,
+    "nRows": 7,
+    "tableWidth": 477,
+    "tableHeight": 417.5,
+    "overflow": 117,
+    "colWidths": [
+     80,
+     53,
+     81,
+     75,
+     67,
+     67,
+     53
+    ],
+    "rowHeights": [
+     59.5,
+     59.5,
+     59.5,
+     59.5,
+     59.5,
+     59.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "代码",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "名称",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最新价",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "涨跌幅",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交额（亿）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "市盈率",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "所属行业",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "600519",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "贵州茅台",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,438.00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-0.76%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32.15",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "23.8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "300750",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "宁德时代",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "251.30",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.14%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "68.42",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "21.6",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "电池",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "601318",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中国平安",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "52.47",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+1.03%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "41.78",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8.9",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "保险",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "000858",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "五粮液",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "129.65",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-1.28%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "18.93",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15.4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "688981",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中芯国际",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.80",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+3.56%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "55.27",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112.3",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "半导体",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "002594",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "比亚迪",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "356.20",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-2.01%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "74.86",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.7",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "汽车整车",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 60,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 92,
+      "padding": 21
+     },
+     {
+      "minContent": 35,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     }
+    ],
+    "frameW": 511
+   },
+   "png": "d-r1A.png",
+   "idea": "保留代码和所有数值的完整宽度，将名称和行业收至可容纳约两个汉字的宽度。前五列合计356px，首屏可看到身份、价格表现和完整成交额；市盈率与行业通过横向滚动查看。",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    80,
+    83,
+    81,
+    75,
+    67,
+    67,
+    53
+   ],
+   "geom": {
+    "nCols": 7,
+    "nRows": 7,
+    "tableWidth": 507,
+    "tableHeight": 324.5,
+    "overflow": 147,
+    "colWidths": [
+     80,
+     83,
+     81,
+     75,
+     67,
+     67,
+     53
+    ],
+    "rowHeights": [
+     59.5,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     59.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "代码",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "名称",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最新价",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "涨跌幅",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交额（亿）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "市盈率",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "所属行业",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "600519",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "贵州茅台",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,438.00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-0.76%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32.15",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "23.8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "300750",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "宁德时代",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "251.30",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.14%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "68.42",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "21.6",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "电池",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "601318",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中国平安",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "52.47",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+1.03%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "41.78",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8.9",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "保险",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "000858",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "五粮液",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "129.65",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-1.28%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "18.93",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15.4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "688981",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中芯国际",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.80",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+3.56%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "55.27",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112.3",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "半导体",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "002594",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "比亚迪",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "356.20",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-2.01%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "74.86",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.7",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "汽车整车",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 60,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 92,
+      "padding": 21
+     },
+     {
+      "minContent": 35,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     }
+    ],
+    "frameW": 541
+   },
+   "png": "d-r1B.png",
+   "idea": "在数值完整的基础上恢复名称单行，改善股票识别与行内阅读；行业允许换行以节省宽度。首屏完整展示身份、最新价和涨跌幅，成交额需向右滚动查看。",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1C": {
+   "widths": [
+    80,
+    53,
+    81,
+    75,
+    67,
+    56,
+    53
+   ],
+   "geom": {
+    "nCols": 7,
+    "nRows": 7,
+    "tableWidth": 466,
+    "tableHeight": 417.5,
+    "overflow": 106,
+    "colWidths": [
+     80,
+     53,
+     81,
+     75,
+     67,
+     56,
+     53
+    ],
+    "rowHeights": [
+     59.5,
+     59.5,
+     59.5,
+     59.5,
+     59.5,
+     59.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "代码",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "名称",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最新价",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "涨跌幅",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交额（亿）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "市盈率",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "所属行业",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "600519",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "贵州茅台",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,438.00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-0.76%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32.15",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "23.8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "300750",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "宁德时代",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "251.30",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.14%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "68.42",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "21.6",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "电池",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "601318",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中国平安",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "52.47",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+1.03%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "41.78",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8.9",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "保险",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "000858",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "五粮液",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "129.65",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-1.28%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "18.93",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15.4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "688981",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中芯国际",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.80",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+3.56%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "55.27",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112.3",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "半导体",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "002594",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "比亚迪",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "356.20",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-2.01%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "74.86",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.7",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "汽车整车",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 60,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 92,
+      "padding": 21
+     },
+     {
+      "minContent": 35,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     }
+    ],
+    "frameW": 500
+   },
+   "png": "d-r1C.png",
+   "idea": "沿用主要行情首屏方案，将市盈率收至56px，仍为最长数值保留35px文字空间，允许市盈率标题换行；进一步缩短横向滚动距离，代价是表头层级更紧凑。",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    80,
+    83,
+    81,
+    75,
+    67,
+    67,
+    83
+   ],
+   "geom": {
+    "nCols": 7,
+    "nRows": 7,
+    "tableWidth": 537,
+    "tableHeight": 278,
+    "overflow": 177,
+    "colWidths": [
+     80,
+     83,
+     81,
+     75,
+     67,
+     67,
+     83
+    ],
+    "rowHeights": [
+     59.5,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "代码",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "名称",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最新价",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "涨跌幅",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交额（亿）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "市盈率",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "所属行业",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "600519",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "贵州茅台",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,438.00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-0.76%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32.15",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "23.8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "300750",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "宁德时代",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "251.30",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.14%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "68.42",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "21.6",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "电池",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "601318",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中国平安",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "52.47",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+1.03%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "41.78",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8.9",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "保险",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "000858",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "五粮液",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "129.65",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-1.28%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "18.93",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15.4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "688981",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中芯国际",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.80",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+3.56%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "55.27",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112.3",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "半导体",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "002594",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "比亚迪",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "356.20",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-2.01%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "74.86",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.7",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "汽车整车",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 60,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 92,
+      "padding": 21
+     },
+     {
+      "minContent": 35,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     }
+    ],
+    "frameW": 571
+   },
+   "png": "d-r2A.png",
+   "idea": "保留r1B完整的单行股票名称，将行业列加宽至83px，尝试让行业名称也保持单行，使各数据行更均匀；代价是需要更多横向滚动。",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    80,
+    68,
+    81,
+    75,
+    67,
+    67,
+    83
+   ],
+   "geom": {
+    "nCols": 7,
+    "nRows": 7,
+    "tableWidth": 522,
+    "tableHeight": 371,
+    "overflow": 162,
+    "colWidths": [
+     80,
+     68,
+     81,
+     75,
+     67,
+     67,
+     83
+    ],
+    "rowHeights": [
+     59.5,
+     59.5,
+     59.5,
+     59.5,
+     36.3,
+     59.5,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "代码",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "名称",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最新价",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "涨跌幅",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交额（亿）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "市盈率",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "所属行业",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "600519",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "贵州茅台",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,438.00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-0.76%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32.15",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "23.8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "300750",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "宁德时代",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "251.30",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.14%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "68.42",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "21.6",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "电池",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "601318",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中国平安",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "52.47",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+1.03%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "41.78",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8.9",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "保险",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "000858",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "五粮液",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "129.65",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-1.28%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "18.93",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15.4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "688981",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中芯国际",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.80",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+3.56%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "55.27",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112.3",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "半导体",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "002594",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "比亚迪",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "356.20",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-2.01%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "74.86",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.7",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "汽车整车",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 60,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 92,
+      "padding": 21
+     },
+     {
+      "minContent": 35,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     }
+    ],
+    "frameW": 556
+   },
+   "png": "d-r2B.png",
+   "idea": "名称列设为68px，容纳约三个汉字；较长名称可自然换行，较短名称保持单行。行业列加宽，减少它对行高的影响，同时比完整名称方案节省15px横向宽度。",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2C": {
+   "widths": [
+    80,
+    83,
+    81,
+    75,
+    67,
+    56,
+    68
+   ],
+   "geom": {
+    "nCols": 7,
+    "nRows": 7,
+    "tableWidth": 511,
+    "tableHeight": 301.3,
+    "overflow": 151,
+    "colWidths": [
+     80,
+     83,
+     81,
+     75,
+     67,
+     56,
+     68
+    ],
+    "rowHeights": [
+     59.5,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "代码",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "名称",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最新价",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "涨跌幅",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交额（亿）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "市盈率",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "所属行业",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "600519",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "贵州茅台",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,438.00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-0.76%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32.15",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "23.8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "300750",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "宁德时代",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "251.30",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.14%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "68.42",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "21.6",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "电池",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "601318",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中国平安",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "52.47",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+1.03%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "41.78",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8.9",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "保险",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "000858",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "五粮液",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "129.65",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-1.28%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "18.93",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15.4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "688981",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中芯国际",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.80",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+3.56%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "55.27",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112.3",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "半导体",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "002594",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "比亚迪",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "356.20",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-2.01%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "74.86",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.7",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "汽车整车",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 60,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 92,
+      "padding": 21
+     },
+     {
+      "minContent": 35,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     }
+    ],
+    "frameW": 545
+   },
+   "png": "d-r2C.png",
+   "idea": "保持股票名称和主要数值完整，将市盈率标题换行，并让行业列容纳约三个汉字，以降低横向滚动成本；用于检验标题及部分行业换行是否比增加表宽更合适。",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    80,
+    83,
+    81,
+    75,
+    67,
+    67,
+    68
+   ],
+   "geom": {
+    "nCols": 7,
+    "nRows": 7,
+    "tableWidth": 522,
+    "tableHeight": 301.3,
+    "overflow": 162,
+    "colWidths": [
+     80,
+     83,
+     81,
+     75,
+     67,
+     67,
+     68
+    ],
+    "rowHeights": [
+     59.5,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "代码",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "名称",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最新价",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "涨跌幅",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交额（亿）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "市盈率",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "所属行业",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "600519",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "贵州茅台",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,438.00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-0.76%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32.15",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "23.8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "300750",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "宁德时代",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "251.30",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.14%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "68.42",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "21.6",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "电池",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "601318",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中国平安",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "52.47",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+1.03%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "41.78",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8.9",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "保险",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "000858",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "五粮液",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "129.65",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-1.28%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "18.93",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15.4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "688981",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中芯国际",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.80",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+3.56%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "55.27",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112.3",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "半导体",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "002594",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "比亚迪",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "356.20",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-2.01%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "74.86",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.7",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "汽车整车",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 60,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 92,
+      "padding": 21
+     },
+     {
+      "minContent": 35,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     }
+    ],
+    "frameW": 556
+   },
+   "png": "d-r3A.png",
+   "idea": "以r2C为基础，将市盈率恢复至67px，使其标题完整；保留较窄的行业列。总宽522px，以末行行业换行换取比r2A少15px的横向滚动。",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3B": {
+   "widths": [
+    80,
+    83,
+    81,
+    75,
+    67,
+    67,
+    77
+   ],
+   "geom": {
+    "nCols": 7,
+    "nRows": 7,
+    "tableWidth": 531,
+    "tableHeight": 301.3,
+    "overflow": 171,
+    "colWidths": [
+     80,
+     83,
+     81,
+     75,
+     67,
+     67,
+     77
+    ],
+    "rowHeights": [
+     59.5,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "代码",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "名称",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最新价",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "涨跌幅",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交额（亿）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "市盈率",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "所属行业",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "600519",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "贵州茅台",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,438.00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-0.76%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32.15",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "23.8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "300750",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "宁德时代",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "251.30",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.14%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "68.42",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "21.6",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "电池",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "601318",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中国平安",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "52.47",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+1.03%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "41.78",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8.9",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "保险",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "000858",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "五粮液",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "129.65",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-1.28%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "18.93",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15.4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "688981",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中芯国际",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.80",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+3.56%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "55.27",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112.3",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "半导体",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "002594",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "比亚迪",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "356.20",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-2.01%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "74.86",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.7",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "汽车整车",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 60,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 92,
+      "padding": 21
+     },
+     {
+      "minContent": 35,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     }
+    ],
+    "frameW": 565
+   },
+   "png": "d-r3B.png",
+   "idea": "保留r2A完整的股票名称、数字和市盈率标题，适度缩窄行业列。总宽531px，测试较宽的行业内容区能否改善换行后的词组和行内留白。",
+   "notes": [],
+   "parentRound": 2
+  },
+  "ref_auto": {
+   "widths": [
+    79.6,
+    36.3,
+    80.6,
+    74.6,
+    66.9,
+    56,
+    36.3
+   ],
+   "geom": {
+    "nCols": 7,
+    "nRows": 7,
+    "tableWidth": 431.4,
+    "tableHeight": 719.8,
+    "overflow": 71.4,
+    "colWidths": [
+     79.6,
+     36.3,
+     80.6,
+     74.6,
+     66.9,
+     56,
+     36.3
+    ],
+    "rowHeights": [
+     106,
+     106,
+     106,
+     106,
+     82.8,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "代码",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "名称",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最新价",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "涨跌幅",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交额（亿）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "市盈率",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "所属行业",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "600519",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "贵州茅台",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,438.00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-0.76%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32.15",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "23.8",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "300750",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "宁德时代",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "251.30",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.14%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "68.42",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "21.6",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "电池",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "601318",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中国平安",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "52.47",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+1.03%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "41.78",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8.9",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "保险",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "000858",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "五粮液",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "129.65",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-1.28%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "18.93",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15.4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "688981",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中芯国际",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.80",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+3.56%",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "55.27",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112.3",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "半导体",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "002594",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "比亚迪",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "356.20",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-2.01%",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "74.86",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.7",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "汽车整车",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 60,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 92,
+      "padding": 21
+     },
+     {
+      "minContent": 35,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     }
+    ],
+    "frameW": 466
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    51,
+    51,
+    51,
+    51,
+    51,
+    51,
+    51
+   ],
+   "geom": {
+    "nCols": 7,
+    "nRows": 7,
+    "tableWidth": 358,
+    "tableHeight": 766.3,
+    "overflow": 0,
+    "colWidths": [
+     51,
+     51,
+     51,
+     51,
+     51,
+     51,
+     51
+    ],
+    "rowHeights": [
+     152.5,
+     106,
+     106,
+     106,
+     82.8,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "代码",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "名称",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最新价",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "涨跌幅",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交额（亿）",
+      "lines": 6
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "市盈率",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "所属行业",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "600519",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "贵州茅台",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,438.00",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-0.76%",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "32.15",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "23.8",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "300750",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "宁德时代",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "251.30",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.14%",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "68.42",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "21.6",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "电池",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "601318",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中国平安",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "52.47",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+1.03%",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "41.78",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8.9",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "保险",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "000858",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "五粮液",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "129.65",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-1.28%",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "18.93",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "15.4",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "白酒",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "688981",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "中芯国际",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "97.80",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+3.56%",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "55.27",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "112.3",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "半导体",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "002594",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "比亚迪",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "356.20",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "-2.01%",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "74.86",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "28.7",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "汽车整车",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 22,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     },
+     {
+      "minContent": 60,
+      "natural": 60,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 46,
+      "natural": 92,
+      "padding": 21
+     },
+     {
+      "minContent": 35,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 62,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-ref_equal.png"
+  }
+ },
+ "modelsUsed": [
+  "codex/gpt-6.1-terra"
+ ],
+ "understanding": {
+  "purpose": "展示部分A股个股的行情，帮助读者识别股票并比较价格、涨跌、成交额和估值。",
+  "reading": "读者先通过代码和名称定位个股，再沿行查看行情，也会纵向比较同一指标；手机首屏应优先呈现身份和主要行情。",
+  "groups": [
+   "代码、名称和所属行业共同描述股票身份及分类。",
+   "最新价与涨跌幅共同描述当前价格表现。",
+   "成交额与市盈率分别反映交易规模和估值，都是供纵向比较的数值指标。"
+  ],
+  "keep_intact": [
+   "股票代码应尽量完整，避免识别错误。",
+   "价格、涨跌幅、成交额和市盈率的数字及符号应尽量保持完整，便于比较。"
+  ],
+  "may_wrap": [
+   "名称和所属行业可按汉字自然换行，但应尽量保持词语易读。",
+   "较长的列标题可换行；若同一行已有单元格换行，其他文字换行可利用已有行高。"
+  ]
+ },
+ "final": {
+  "preferred": [
+   "r2A"
+  ],
+  "acceptable": [
+   "r1B",
+   "r2C",
+   "r3A",
+   "r3B"
+  ],
+  "bad": [
+   {
+    "design": "r1A",
+    "why": "The narrow name column wraps every company name, making all data rows tall and weakening the connection between each name and its figures."
+   },
+   {
+    "design": "r1C",
+    "why": "Every company name wraps, while the narrower valuation column also wraps its header. The small saving in horizontal scrolling comes at a substantial cost to readability."
+   },
+   {
+    "design": "r2B",
+    "why": "Several company names break after three characters, leaving isolated characters on a second line and producing an uneven row rhythm."
+   }
+  ],
+  "contrast": null,
+  "ranges": [
+   [
+    80,
+    82
+   ],
+   [
+    83,
+    85
+   ],
+   [
+    81,
+    83
+   ],
+   [
+    75,
+    77
+   ],
+   [
+    67,
+    70
+   ],
+   [
+    67,
+    69
+   ],
+   [
+    83,
+    85
+   ]
+  ],
+  "rationale": "r2A keeps stock codes, company names and figures intact, with a consistent single-line rhythm across the data rows. The turnover header wraps, but its unit remains associated with the label. The table requires 177px of horizontal scrolling, and the turnover column is only partly visible initially; that cost buys legible names and industries throughout.",
+  "principles": {
+   "general": [
+    "Preserve identifiers and numerical values intact so readers can scan and compare rows reliably.",
+    "Judge width savings against the wrapping and row-height changes they cause, especially in columns used to identify rows.",
+    "For a horizontally scrolling table, assess both the initial viewport and the readability of the columns reached by scrolling."
+   ],
+   "specific": [
+    "Company names benefit from 83px because narrower alternatives wrap names and increase row heights.",
+    "An 83px industry column keeps all six data rows on one line in r2A.",
+    "The turnover header can wrap without forcing the numerical cells to wrap."
+   ]
+  },
+  "tradeoffs": "r3A and r3B reduce scrolling slightly, but wrap an industry entry and make the last row taller. r1B saves more width at the cost of additional wrapped industry entries and tall rows.",
+  "uncertain": "A designer prioritizing the initial viewport or less horizontal travel could reasonably prefer a narrower industry column. The ranges are conservative estimates from the supplied width and rendering data; intermediate widths were not separately rendered."
+ },
+ "reviews": [
+  {
+   "order": [
+    "r2A",
+    "r1B",
+    "r2C",
+    "r1A",
+    "ref_auto",
+    "ref_equal"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "good",
+     "why": "Codes, names, prices and changes remain intact and scan cleanly in compact rows. The turnover header wraps, and the remaining columns require horizontal scrolling."
+    },
+    "B": {
+     "grade": "acceptable",
+     "why": "The visible identifiers and figures remain intact, but several rows are much taller and uneven, adding white space without improving the visible columns. The later columns require scrolling."
+    },
+    "C": {
+     "grade": "acceptable",
+     "why": "The visible identifiers and figures scan well, though the uneven row heights leave extra white space. The later columns require scrolling."
+    },
+    "D": {
+     "grade": "poor",
+     "why": "Stock names break across two lines, weakening the link between each code and its name. More financial columns appear near the viewport edge, but the table still requires scrolling."
+    },
+    "E": {
+     "grade": "bad",
+     "why": "The name column is so narrow that company names stack almost one character per line, making rows very tall and difficult to scan. The table still extends beyond the viewport."
+    },
+    "F": {
+     "grade": "bad",
+     "why": "All columns fit, but stock codes, prices, percentages and headers break into fragments. The dense vertical stacking makes both identification and numerical comparison difficult."
+    }
+   },
+   "best": [
+    "A"
+   ],
+   "confidence": "medium",
+   "unsure": "The supplied views cut off the right side of the horizontally scrollable layouts, so wrapping in their later columns cannot be fully assessed. A, B and C look similar in the visible columns, but their differing row heights suggest differences outside the visible crop."
+  },
+  {
+   "order": [
+    "r2C",
+    "ref_auto",
+    "r2A",
+    "r1A",
+    "ref_equal",
+    "r1B"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "good",
+     "why": "Codes, names and visible prices stay intact, but the unusually tall final row weakens the row rhythm. Several columns require horizontal scrolling."
+    },
+    "B": {
+     "grade": "poor",
+     "why": "Names wrap one character per line, making rows very tall and names hard to scan. The table still extends beyond the viewport."
+    },
+    "C": {
+     "grade": "good",
+     "why": "Visible codes, names and prices stay intact, with compact, consistent rows. Several columns require horizontal scrolling."
+    },
+    "D": {
+     "grade": "acceptable",
+     "why": "Codes and visible numbers stay intact, but names break across two lines and the table still requires horizontal scrolling."
+    },
+    "E": {
+     "grade": "bad",
+     "why": "All columns fit in the viewport, but codes, prices and percentages split across lines, making individual values and comparisons difficult to read."
+    },
+    "F": {
+     "grade": "good",
+     "why": "Visible codes, names and prices stay intact, but the taller final rows interrupt an otherwise compact rhythm. Several columns require horizontal scrolling."
+    }
+   },
+   "best": [
+    "C"
+   ],
+   "confidence": "medium",
+   "unsure": "The supplied images cut off the right side of the wider layouts, so the widths and wrapping of the remaining columns cannot be assessed directly."
+  }
+ ],
+ "reviewPrompt": "v2"
+}

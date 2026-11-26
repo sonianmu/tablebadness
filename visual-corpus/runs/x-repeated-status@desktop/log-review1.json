@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 重复值 · 审批流水 (language zh-CN).\nGrid: 6 columns × 9 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"单号\" · longest unbreakable word 38px · one-line width 64px\n  col 2: header \"申请人\" · longest unbreakable word 16px · one-line width 46px\n  col 3: header \"类型\" · longest unbreakable word 16px · one-line width 62px\n  col 4: header \"金额\" · longest unbreakable word 71px · one-line width 71px\n  col 5: header \"状态\" · longest unbreakable word 16px · one-line width 46px\n  col 6: header \"审批意见\" · longest unbreakable word 31px · one-line width 368px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 6975,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Identifiers, names, types, amounts and statuses stay intact; the long opinion wraps to two lines. The opinion column leaves some available width unused.\"},\"B\":{\"grade\":\"good\",\"why\":\"The compact columns scan cleanly and only the long opinion wraps, though the narrower opinion column splits 公司 across lines and leaves more viewport space unused.\"},\"C\":{\"grade\":\"excellent\",\"why\":\"All short fields remain intact, amounts align cleanly, and the long opinion wraps at a natural phrase boundary. The opinion column has generous room without disturbing the compact columns.\"},\"D\":{\"grade\":\"poor\",\"why\":\"Equal-looking widths give short fields excess space while squeezing opinions into several lines. The tall rows and broken phrases make scanning approvals harder.\"},\"E\":{\"grade\":\"good\",\"why\":\"Short fields stay intact and the opinion column uses the available width, but the long opinion splits 选择 across lines.\"},\"F\":{\"grade\":\"bad\",\"why\":\"Identifiers, names, types, statuses and a header wrap repeatedly. The resulting tall rows make the repeated values and individual records difficult to scan.\"}},\"best\":[\"C\"],\"confidence\":\"high\",\"unsure\":\"C and E are close; the preferred wrap point in the long Chinese opinion is partly a matter of editorial judgment.\"}\n"
+  }
+ ]
+}

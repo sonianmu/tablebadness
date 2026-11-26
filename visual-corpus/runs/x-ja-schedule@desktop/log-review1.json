@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 日本語 · カンファレンス日程 (language ja).\nGrid: 4 columns × 5 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"日付\" · longest unbreakable word 46px · one-line width 102px\n  col 2: header \"時間\" · longest unbreakable word 50px · one-line width 89px\n  col 3: header \"会場\" · longest unbreakable word 16px · one-line width 76px\n  col 4: header \"内容\" · longest unbreakable word 61px · one-line width 695px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 5827,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"Dates, time ranges and venue names all wrap, making the schedule harder to scan even though the content column has ample space.\"},\"B\":{\"grade\":\"poor\",\"why\":\"Dates and every time range wrap, and the final venue name also breaks; the wide content column does not compensate for the fragmented schedule details.\"},\"C\":{\"grade\":\"good\",\"why\":\"Dates and times remain intact and the content column has useful space, but the final venue name wraps onto a second line.\"},\"D\":{\"grade\":\"bad\",\"why\":\"The first three columns contain large amounts of unused space while the narrow content column forces excessive wrapping and makes rows much taller.\"},\"E\":{\"grade\":\"excellent\",\"why\":\"Dates, times and venue names stay intact, while the content column remains wide enough for readable two-line descriptions. Rows are compact and easy to scan.\"}},\"best\":[\"E\"],\"confidence\":\"high\",\"unsure\":\"C and E are close in proportion, but E visibly keeps the final venue name on one line.\"}\n"
+  }
+ ]
+}

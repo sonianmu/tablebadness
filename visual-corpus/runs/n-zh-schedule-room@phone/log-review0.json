@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 会议室预订周视图（5/12–5/16） (language zh-CN).\nGrid: 6 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"2025 春季校园招聘宣讲会（09:00–17:\" spans 3 col × 1 row; \"产品需求评审（09:00–12:00）｜A301\" spans 1 col × 2 row; \"新员工入职培训（13:30–16:30）｜C20\" spans 1 col × 2 row; \"客户方案演示与答疑（13:30–16:30）｜A\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"时间段\" · longest unbreakable word 53px · one-line width 94px\n  col 2: header \"周一（5/12）\" · longest unbreakable word 65px · one-line width 261px\n  col 3: header \"周二（5/13）\" · longest unbreakable word 65px · one-line width 214px\n  col 4: header \"周三（5/14）\" · longest unbreakable word 63px · one-line width 274px\n  col 5: header \"周四（5/15）\" · longest unbreakable word 63px · one-line width 304px\n  col 6: header \"周五（5/16）\" · longest unbreakable word 62px · one-line width 190px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nRendering convention: the screenshot always shows the WHOLE table. Anything beyond the dashed box is not clipped; it is the part a reader reaches by scrolling sideways, so judge both what fits in the box at first sight and the cost of scrolling to the rest.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 12149,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"时间段保持完整，但日期和会议内容换行较多，部分时间被拆开；查看后面的日期也需要横向滚动。\"},\"B\":{\"grade\":\"bad\",\"why\":\"虽然整表放进视口，日期、时间段、会议时间和房间号都被拆成零碎的多行，行与列很难扫读。\"},\"C\":{\"grade\":\"good\",\"why\":\"时间段和日期表头完整，会议内容的换行相对自然，行之间也容易区分；代价是首屏只能看到前两天的大部分内容。\"},\"D\":{\"grade\":\"good\",\"why\":\"时间段保持完整，日期列宽较均衡，会议内容仍可辨读；表头和部分时间需要换行，后面的日期需要滚动。\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"首屏能看到更多日期，但时间段被拆成两行，会议时间也频繁换行，削弱了按行比较的便利性。\"},\"F\":{\"grade\":\"good\",\"why\":\"时间段完整，日期列比例和行高较协调；会议内容有一些密集换行，查看后面的日期需要横向滚动。\"}},\"best\":[\"C\"],\"confidence\":\"medium\",\"unsure\":\"截图中部分日期列位于可见图像之外，无法完整比较各布局在表格右侧的换行和总滚动距离；D 与 F 的可见部分也非常相似。\"}\n"
+  }
+ ]
+}

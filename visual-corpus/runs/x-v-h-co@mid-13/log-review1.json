@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val] Co-bottleneck · Framework trade-offs (language en).\nGrid: 4 columns × 4 rows. Row headers: none declared.\nPer-column content facts (content px at 13px font, excluding padding):\n  col 1: header \"Option\" · longest unbreakable word 59px · one-line width 102px\n  col 2: header \"Strengths\" · longest unbreakable word 72px · one-line width 541px\n  col 3: header \"Weaknesses\" · longest unbreakable word 79px · one-line width 646px\n  col 4: header \"Verdict\" · longest unbreakable word 46px · one-line width 46px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 582px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 581px.\nFixed: content, font, 13px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 7918,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"Equal widths leave much of the Verdict column empty while both prose columns wrap heavily, making rows tall and comparisons harder to scan.\"},\"B\":{\"grade\":\"good\",\"why\":\"The two prose columns have useful space and the verdicts remain compact. All three option names wrap, though, weakening the left-hand scan.\"},\"C\":{\"grade\":\"good\",\"why\":\"The wider Option column keeps Client SPA together and gives the labels more room, but the narrower Weaknesses column makes the second row taller.\"},\"D\":{\"grade\":\"excellent\",\"why\":\"Client SPA stays together, while the prose columns are balanced and wide enough to keep the rows compact. The Verdict column fits its short entries without wasting space.\"},\"E\":{\"grade\":\"excellent\",\"why\":\"The option names and verdicts scan cleanly, and the two prose columns have a balanced, compact rhythm with no awkward word breaks.\"},\"F\":{\"grade\":\"excellent\",\"why\":\"The columns are well proportioned: Client SPA stays together, the verdicts fit, and both prose columns wrap into readable blocks.\"}},\"best\":[\"D\",\"E\",\"F\"],\"confidence\":\"medium\",\"unsure\":\"The differences among D, E and F are very small at the displayed image size; their line breaks and overall readability appear nearly equivalent.\"}\n"
+  }
+ ]
+}

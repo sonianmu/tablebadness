@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 重复值 · 审批流水 (language zh-CN).\nGrid: 6 columns × 9 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"单号\" · longest unbreakable word 38px · one-line width 64px\n  col 2: header \"申请人\" · longest unbreakable word 16px · one-line width 46px\n  col 3: header \"类型\" · longest unbreakable word 16px · one-line width 62px\n  col 4: header \"金额\" · longest unbreakable word 71px · one-line width 71px\n  col 5: header \"状态\" · longest unbreakable word 16px · one-line width 46px\n  col 6: header \"审批意见\" · longest unbreakable word 31px · one-line width 368px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 8594,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"金额完整且类型按词组分行，审批意见也有一定阅读宽度；但单号断开，姓名和状态逐字竖排，扫描较费力。\"},\"B\":{\"grade\":\"poor\",\"why\":\"金额完整，状态比 A 稍易读，但单号断开、姓名竖排，狭窄的意见栏使长意见和对应行过分拉长。\"},\"C\":{\"grade\":\"poor\",\"why\":\"单号和金额完整，便于识别与比较；但类型、状态和意见都很窄，长意见形成密集的竖排文字，行间空白失衡。\"},\"D\":{\"grade\":\"bad\",\"why\":\"金额在逗号和小数部分随意断行，严重妨碍数值比较；单号也断开，长意见仍被挤成窄列。\"},\"E\":{\"grade\":\"good\",\"why\":\"金额完整，意见栏较宽，长意见能以较自然的短句阅读，行高也较均衡；代价是单号断开，类型和状态逐字竖排。\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"金额完整，姓名和类型比多数方案易读；但单号断开，状态逐字竖排，意见栏过窄使长意见及其所在行很长。\"}},\"best\":[\"E\"],\"confidence\":\"medium\",\"unsure\":\"E 的类型和状态竖排较难扫描；若读者主要按单号查找，C 保留完整单号的优势可能更重要，但其意见栏更难读。\"}\n"
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [검증] 한국어 · 뉴스 요약 (language ko).\nGrid: 4 columns × 4 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"분야\" · longest unbreakable word 14px · one-line width 39px\n  col 2: header \"제목\" · longest unbreakable word 14px · one-line width 203px\n  col 3: header \"출처\" · longest unbreakable word 45px · one-line width 89px\n  col 4: header \"요약\" · longest unbreakable word 45px · one-line width 629px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10858,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"분야와 제목이 비교적 쉽게 읽히고 요약에도 충분한 폭을 준다. 다만 출처의 ‘스포츠조선’이 두 줄로 갈라진다.\"},\"B\":{\"grade\":\"poor\",\"why\":\"비슷한 폭의 열들이 긴 요약을 지나치게 좁혀 첫 행이 매우 길어진다. 제목과 요약 모두 잦은 줄바꿈으로 읽기 어렵다.\"},\"C\":{\"grade\":\"bad\",\"why\":\"요약은 넓지만 분야 머리글과 ‘경제’, ‘스포츠’가 글자 단위로 갈라지고 제목도 심하게 끊겨 행을 훑기 어렵다.\"},\"D\":{\"grade\":\"good\",\"why\":\"분야와 제목이 또렷하고 제목의 줄바꿈도 적다. 다만 요약이 좁아 첫 행이 길어지고 출처 ‘스포츠조선’이 갈라진다.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"요약에 비교적 넉넉한 폭을 주지만 제목과 출처에서 단어가 자주 끊기고 일부 요약의 마지막 글자가 홀로 남는다.\"},\"F\":{\"grade\":\"good\",\"why\":\"제목과 요약의 폭이 균형을 이루어 행을 비교하기 쉽다. 다만 ‘스포츠조선’이 갈라지고 일부 요약의 마지막 글자가 홀로 남는다.\"}},\"best\":[\"A\",\"F\"],\"confidence\":\"medium\",\"unsure\":\"A와 F는 폭과 줄바꿈이 매우 비슷해 어느 쪽이 더 읽기 좋은지 판단이 근소하다.\"}\n"
+  }
+ ]
+}

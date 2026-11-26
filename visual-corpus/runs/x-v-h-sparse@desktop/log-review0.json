@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val] Sparse tall row · Server inventory (language en).\nGrid: 6 columns × 8 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Host\" · longest unbreakable word 49px · one-line width 65px\n  col 2: header \"Role\" · longest unbreakable word 59px · one-line width 59px\n  col 3: header \"Zone\" · longest unbreakable word 39px · one-line width 79px\n  col 4: header \"CPU\" · longest unbreakable word 32px · one-line width 32px\n  col 5: header \"Status\" · longest unbreakable word 67px · one-line width 67px\n  col 6: header \"Notes\" · longest unbreakable word 64px · one-line width 1403px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 7143,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"Zone identifiers wrap onto three lines throughout, and some host names split; the wide Notes column does not compensate for the damage to scanning the inventory.\"},\"B\":{\"grade\":\"poor\",\"why\":\"The narrow Notes column turns the one substantial note into a very tall, fragmented row, while the other columns have space to spare.\"},\"C\":{\"grade\":\"excellent\",\"why\":\"Host names and zones stay intact, compact fields have enough room, and Notes has a comfortable measure. The rows remain easy to scan and compare.\"},\"D\":{\"grade\":\"good\",\"why\":\"Identifiers stay intact and the table scans cleanly, though extra space in the short fields leaves the note narrower and its row taller than in C.\"},\"E\":{\"grade\":\"poor\",\"why\":\"Host names stay intact, but every zone identifier wraps onto three lines, making otherwise sparse rows unnecessarily tall and harder to compare.\"}},\"best\":[\"C\"],\"confidence\":\"high\",\"unsure\":\"\"}\n"
+  }
+ ]
+}

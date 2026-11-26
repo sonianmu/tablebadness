@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 部分A股个股行情一览 (language zh-CN).\nGrid: 7 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"代码\" · longest unbreakable word 66px · one-line width 66px\n  col 2: header \"名称\" · longest unbreakable word 18px · one-line width 70px\n  col 3: header \"最新价\" · longest unbreakable word 67px · one-line width 67px\n  col 4: header \"涨跌幅\" · longest unbreakable word 60px · one-line width 60px\n  col 5: header \"成交额（亿）\" · longest unbreakable word 52px · one-line width 104px\n  col 6: header \"市盈率\" · longest unbreakable word 39px · one-line width 53px\n  col 7: header \"所属行业\" · longest unbreakable word 18px · one-line width 70px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 496px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 495px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10446,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"Codes and financial values remain intact, and names mostly read in two-character chunks. The industry column is only one character wide, making its header and longer entries difficult to scan.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"Identifiers and numbers stay intact, but names wrap into short fragments and the industry column reads one character per line. The narrow name column also makes the table feel cramped.\"},\"C\":{\"grade\":\"bad\",\"why\":\"Codes, prices and percentages split across lines, breaking the identifiers and numeric values readers need to compare. Several headers also fragment awkwardly.\"},\"D\":{\"grade\":\"poor\",\"why\":\"Financial values remain intact, but both company names and industries run vertically one character at a time. Tall rows and empty numeric cells weaken the connection across each row.\"},\"E\":{\"grade\":\"poor\",\"why\":\"Codes and financial values are readable, but company names and industries are forced into vertical character stacks. The resulting tall rows make comparisons across the table laborious.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"Codes and numbers stay intact, and company names generally wrap in readable two-character chunks. The one-character-wide industry column remains a major scanning problem.\"}},\"best\":[\"A\",\"F\"],\"confidence\":\"medium\",\"unsure\":\"A and F are very close visually; their small differences in column proportions do not clearly outweigh the shared problem of the narrow industry column.\"}\n"
+  }
+ ]
+}

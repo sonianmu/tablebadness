@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [検証] 仕様比較 · セクション行 (language ja).\nGrid: 3 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"ディスプレイ\" spans 3 col × 1 row; \"バッテリー\" spans 3 col × 1 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"項目 › ディスプレイ › バッテリー\" · longest unbreakable word 16px · one-line width 135px\n  col 2: header \"スタンダード › ディスプレイ › バッテリー\" · longest unbreakable word 32px · one-line width 90px\n  col 3: header \"プロ › ディスプレイ › バッテリー\" · longest unbreakable word 33px · one-line width 590px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 8689,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"excellent\",\"why\":\"Row labels and standard values stay intact, while the wide Pro column keeps the long explanation to two lines and the charging note on one line.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"The equal columns are orderly, but they give excess space to short labels and standard values; the Pro explanation and charging note wrap more than necessary.\"},\"C\":{\"grade\":\"poor\",\"why\":\"The narrow first two columns split the Standard header, a row label, and several values, weakening scanning and comparison despite the generous Pro column.\"},\"D\":{\"grade\":\"good\",\"why\":\"Labels and standard values remain intact, and the Pro explanation takes two lines, but the charging note wraps its final characters onto a second line.\"},\"E\":{\"grade\":\"excellent\",\"why\":\"Both comparison columns are easy to scan, labels and short values stay intact, and the Pro text wraps economically without splitting the charging note.\"},\"F\":{\"grade\":\"excellent\",\"why\":\"Labels and standard values remain intact, and the Pro column accommodates the charging note on one line and the longer explanation on two.\"}},\"best\":[\"A\",\"E\",\"F\"],\"confidence\":\"medium\",\"unsure\":\"A, E, and F differ only slightly in column proportions; the visual advantage among them is marginal.\"}\n"
+  }
+ ]
+}

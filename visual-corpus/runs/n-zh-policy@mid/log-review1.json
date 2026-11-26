@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 公司差旅报销标准 (language zh-CN).\nGrid: 4 columns × 6 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"费用项目\" · longest unbreakable word 16px · one-line width 92px\n  col 2: header \"普通员工\" · longest unbreakable word 31px · one-line width 170px\n  col 3: header \"经理\" · longest unbreakable word 31px · one-line width 223px\n  col 4: header \"总监\" · longest unbreakable word 35px · one-line width 202px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 480px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 479px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 8511,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"行标题完整，但总监列偏窄，高铁说明占三行；普通员工和经理的部分说明也被切得较碎。\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"行标题完整，但普通员工的飞机说明末尾单独留下一个“订”字，总监的高铁说明也占三行，阅读节奏较差。\"},\"C\":{\"grade\":\"good\",\"why\":\"行标题完整，总监列较宽，高铁说明缩为两行；各列仍有换行，但行与行之间的节奏清楚。\"},\"D\":{\"grade\":\"good\",\"why\":\"行标题完整，三个职级列的比例较均衡，总监的高铁说明占两行；经理的住宿说明仍需三行。\"},\"E\":{\"grade\":\"poor\",\"why\":\"首列过窄，表头和多个费用项目被拆成两行，削弱了作为行标题的辨识度；多出的宽度虽改善了职级列，却损害了逐行扫描。\"},\"F\":{\"grade\":\"good\",\"why\":\"行标题完整，总监列的长说明较易阅读；经理的住宿说明换成三行，断行略显零碎。\"}},\"best\":[\"C\",\"D\"],\"confidence\":\"medium\",\"unsure\":\"C、D 的列宽和呈现非常接近，图片中难以可靠地区分两者的细微差异。\"}\n"
+  }
+ ]
+}

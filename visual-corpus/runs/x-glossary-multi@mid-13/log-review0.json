@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Mixed · Multilingual glossary (language en).\nGrid: 5 columns × 6 rows. Row headers: none declared.\nPer-column content facts (content px at 13px font, excluding padding):\n  col 1: header \"English\" · longest unbreakable word 67px · one-line width 146px\n  col 2: header \"中文\" · longest unbreakable word 14px · one-line width 54px\n  col 3: header \"日本語\" · longest unbreakable word 14px · one-line width 93px\n  col 4: header \"한국어\" · longest unbreakable word 12px · one-line width 64px\n  col 5: header \"العربية\" · longest unbreakable word 38px · one-line width 97px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 480px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 479px.\nFixed: content, font, 13px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 8335,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"Chinese, Korean and Arabic fit comfortably, but the narrow English column makes the final term span three lines, and Japanese wraps in two rows.\"},\"B\":{\"grade\":\"poor\",\"why\":\"Extra width in English leaves Arabic so narrow that several short entries wrap, creating tall rows and an uneven balance between languages.\"},\"C\":{\"grade\":\"good\",\"why\":\"The columns are fairly balanced and most entries fit, though Korean wraps in two rows and Japanese wraps in the final row.\"},\"D\":{\"grade\":\"poor\",\"why\":\"The wide English column comes at the expense of the three East Asian columns, where several entries break across lines.\"},\"E\":{\"grade\":\"poor\",\"why\":\"English has ample space, but narrow Chinese, Japanese and Korean columns cause repeated wrapping and fragment the longer entries.\"},\"F\":{\"grade\":\"excellent\",\"why\":\"The widths suit the different scripts well: the East Asian entries remain on one line, while the longer English and Arabic entries wrap naturally. Rows remain easy to scan.\"}},\"best\":[\"F\"],\"confidence\":\"high\",\"unsure\":\"The images are small, so some individual line breaks are difficult to inspect precisely.\"}\n"
+  }
+ ]
+}

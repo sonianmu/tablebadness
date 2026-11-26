@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: ไทย · สถานที่ท่องเที่ยว (language th).\nGrid: 4 columns × 4 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"สถานที่\" · longest unbreakable word 45px · one-line width 147px\n  col 2: header \"จังหวัด\" · longest unbreakable word 77px · one-line width 77px\n  col 3: header \"ค่าเข้าชม\" · longest unbreakable word 28px · one-line width 59px\n  col 4: header \"รายละเอียด\" · longest unbreakable word 74px · one-line width 507px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 494px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 493px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9253,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"The description has useful space and the fees stay together, but the long place name breaks across three lines, weakening the first column's scanability.\"},\"B\":{\"grade\":\"good\",\"why\":\"Place names and fees remain easy to scan, while the descriptions wrap into manageable lines. The first description is somewhat fragmented.\"},\"C\":{\"grade\":\"good\",\"why\":\"The description has generous space and the fees stay intact, though the longest place name wraps and the first description breaks into uneven phrases.\"},\"D\":{\"grade\":\"poor\",\"why\":\"The description column is much too narrow for its long text, producing many short lines and tall rows, while the province and fee columns have spare space.\"},\"E\":{\"grade\":\"good\",\"why\":\"Place names and fees scan clearly, and the description column accommodates the longer entries reasonably well. The first description still wraps across four lines.\"},\"F\":{\"grade\":\"poor\",\"why\":\"The narrow fee column splits both its header and every amount from its currency, making comparisons harder despite the generous description column.\"}},\"best\":[\"C\"],\"confidence\":\"medium\",\"unsure\":\"B and E are close alternatives: they give the place-name column a little more room, while C gives more room to the longer descriptions. The small rendering makes some Thai line breaks difficult to judge precisely.\"}\n"
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 日本語 · CLI オプション (language ja).\nGrid: 3 columns × 4 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"オプション\" · longest unbreakable word 57px · one-line width 98px\n  col 2: header \"短縮形\" · longest unbreakable word 16px · one-line width 46px\n  col 3: header \"説明\" · longest unbreakable word 145px · one-line width 680px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10624,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"説明欄には比較的余裕があるが、--output-dir が分断され、短縮形の見出しも２行になる。オプション名を素早く照合しにくい。\"},\"B\":{\"grade\":\"good\",\"why\":\"オプション名と短縮形を保ち、説明も読みやすい幅がある。短縮形の見出しだけが２行になる。\"},\"C\":{\"grade\":\"excellent\",\"why\":\"見出しとオプション名がすべて１行に収まり、説明欄にも十分な幅がある。列の役割が明快で、各行を追いやすい。\"},\"D\":{\"grade\":\"good\",\"why\":\"オプション名を保ち、説明欄も読みやすい。短縮形の見出しが２行になり、ヘッダーがやや高い。\"},\"E\":{\"grade\":\"poor\",\"why\":\"短縮形の列に余白が多く、説明欄が狭すぎる。日本語が細かく折り返され、tb.config.json も分断されて行が長くなる。\"},\"F\":{\"grade\":\"bad\",\"why\":\"説明欄は広いが、オプション名と両方の見出しが細かく分断される。--output-dir や --config を識別しにくい。\"}},\"best\":[\"C\"],\"confidence\":\"high\",\"unsure\":\"B と D の差は小さく、どちらも同程度に読める。\"}\n"
+  }
+ ]
+}

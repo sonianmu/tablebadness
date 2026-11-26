@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 会议室预订周视图（5/12–5/16） (language zh-CN).\nGrid: 6 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"2025 春季校园招聘宣讲会（09:00–17:\" spans 3 col × 1 row; \"产品需求评审（09:00–12:00）｜A301\" spans 1 col × 2 row; \"新员工入职培训（13:30–16:30）｜C20\" spans 1 col × 2 row; \"客户方案演示与答疑（13:30–16:30）｜A\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"时间段\" · longest unbreakable word 53px · one-line width 94px\n  col 2: header \"周一（5/12）\" · longest unbreakable word 65px · one-line width 261px\n  col 3: header \"周二（5/13）\" · longest unbreakable word 65px · one-line width 214px\n  col 4: header \"周三（5/14）\" · longest unbreakable word 63px · one-line width 274px\n  col 5: header \"周四（5/15）\" · longest unbreakable word 63px · one-line width 304px\n  col 6: header \"周五（5/16）\" · longest unbreakable word 62px · one-line width 190px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 682px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 681px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9787,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"列宽比较均衡，但多数日期标题换行，首个时间段和多项会议时间也被拆开，扫描周视图略显费力。\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"与 A 类似，日期标题和首个时间段换行；各日列宽接近，会议名称与时间仍有较多碎行。\"},\"C\":{\"grade\":\"good\",\"why\":\"时间段完整保留在一行，前三个日期标题也完整，行列定位清楚；但部分会议时间和周五的活动名称仍被拆开。\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"前四个日期标题完整，部分活动内容获得较宽空间；但时间列过窄，所有时间段都拆成两行，影响纵向查找。\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"五个日期标题均完整，日列宽度较均衡；但所有时间段均换行，会议时间也多处拆开。\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"时间段完整，便于纵向查找；但周一、周二和周五标题换行，较窄的日列也使部分活动名称和时间碎行。\"}},\"best\":[\"C\"],\"confidence\":\"medium\",\"unsure\":\"C 与其他布局的差距不大；这取决于读者是否更看重完整的时间段，而非完整的日期标题。\"}\n"
+  }
+ ]
+}

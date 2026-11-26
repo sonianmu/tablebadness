@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 日本語 · カンファレンス日程 (language ja).\nGrid: 4 columns × 5 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"日付\" · longest unbreakable word 46px · one-line width 102px\n  col 2: header \"時間\" · longest unbreakable word 50px · one-line width 89px\n  col 3: header \"会場\" · longest unbreakable word 16px · one-line width 76px\n  col 4: header \"内容\" · longest unbreakable word 61px · one-line width 695px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 8496,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"内容には十分な幅がある一方、日付と時間が全行で折り返され、展示ホールも分断されている。日程を素早く照合しにくい。\"},\"B\":{\"grade\":\"excellent\",\"why\":\"日付、時間、会場がすべて一行に収まり、内容も適度な行数で読める。各行の情報を横に追いやすい。\"},\"C\":{\"grade\":\"good\",\"why\":\"日付と時間は一行で読みやすく、内容の幅も十分。ただし「展示ホール」だけが折り返され、会場の一覧性が少し損なわれる。\"},\"D\":{\"grade\":\"bad\",\"why\":\"短い日付・時間・会場に余白を多く割く一方、内容が狭く何行にも折り返される。行が大きく伸び、予定の比較がしにくい。\"},\"E\":{\"grade\":\"bad\",\"why\":\"内容は広いが、日付と時間が全行で折り返され、会場名も分断される。予定の基本情報をひとまとまりとして読み取りにくい。\"}},\"best\":[\"B\"],\"confidence\":\"high\",\"unsure\":\"BとCの幅の差は小さいが、表示上はBだけがすべての会場名を一行に収めている。\"}\n"
+  }
+ ]
+}

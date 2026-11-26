@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 家常红烧肉配料表 (language zh-CN).\nGrid: 4 columns × 9 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"食材\" · longest unbreakable word 16px · one-line width 46px\n  col 2: header \"用量（克）\" · longest unbreakable word 46px · one-line width 77px\n  col 3: header \"处理方式\" · longest unbreakable word 31px · one-line width 239px\n  col 4: header \"备注\" · longest unbreakable word 31px · one-line width 184px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 12639,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"食材和用量易于扫描，处理方式与备注分配较均衡；较长文字虽有换行，行与行之间仍清楚。\"},\"B\":{\"grade\":\"poor\",\"why\":\"食材和用量列偏宽，挤压了两列说明文字；处理方式和备注频繁换行，部分词语被拆开，表格显得零碎。\"},\"C\":{\"grade\":\"bad\",\"why\":\"食材列过窄，表头及多数食材名逐字竖排，破坏了行标题的辨认和横向扫描。\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"处理方式有较充裕的空间，食材名也保持完整；但用量表头被拆成三行，右括号单独占一行，层级显得别扭。\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"食材名和用量表头清楚，处理方式较易读；备注列偏窄，多处词语被拆开，增加了纵向阅读负担。\"}},\"best\":[\"A\"],\"confidence\":\"high\",\"unsure\":\"图片较小，个别换行位置可能难以完全辨认；判断主要依据列宽分配、表头完整性和整体阅读节奏。\"}\n"
+  }
+ ]
+}

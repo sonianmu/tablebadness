@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: ไทย · สถานที่ท่องเที่ยว (language th).\nGrid: 4 columns × 4 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"สถานที่\" · longest unbreakable word 45px · one-line width 147px\n  col 2: header \"จังหวัด\" · longest unbreakable word 77px · one-line width 77px\n  col 3: header \"ค่าเข้าชม\" · longest unbreakable word 28px · one-line width 59px\n  col 4: header \"รายละเอียด\" · longest unbreakable word 74px · one-line width 507px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 7040,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"The province names and descriptions have useful space, but the admission header breaks across three lines and every price splits from its unit.\"},\"B\":{\"grade\":\"poor\",\"why\":\"Prices stay together, but the narrow description column fragments both its header and the longer entries, producing tall rows with substantial empty space elsewhere.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"The descriptions have more room than in B, but prices split from their units and the description text still wraps heavily.\"},\"D\":{\"grade\":\"good\",\"why\":\"Prices and province names remain intact, and the description column is readable, though the narrow place column breaks the longest name into many lines.\"},\"E\":{\"grade\":\"good\",\"why\":\"Prices and province names stay together, while the wider description column gives the long entries a steadier rhythm. The longest place name still breaks into many lines.\"}},\"best\":[\"E\"],\"confidence\":\"medium\",\"unsure\":\"Thai line-breaking quality is difficult to judge precisely from the small rendered images; D and E are close, with both constraining the place names.\"}\n"
+  }
+ ]
+}

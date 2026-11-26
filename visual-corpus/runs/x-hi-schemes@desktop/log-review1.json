@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: हिन्दी · योजनाएँ (language hi).\nGrid: 4 columns × 4 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"योजना\" · longest unbreakable word 52px · one-line width 133px\n  col 2: header \"शुरुआत\" · longest unbreakable word 45px · one-line width 45px\n  col 3: header \"लाभार्थी\" · longest unbreakable word 44px · one-line width 62px\n  col 4: header \"विवरण\" · longest unbreakable word 51px · one-line width 517px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 72151,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"excellent\",\"why\":\"योजना के नाम, वर्ष और लाभार्थी एक पंक्ति में रहते हैं; विवरण को पर्याप्त जगह मिलती है और पंक्तियाँ आसानी से पढ़ी जाती हैं।\"},\"B\":{\"grade\":\"bad\",\"why\":\"पहले तीन कॉलम इतने संकरे हैं कि शीर्षक, नाम, वर्ष और लाभार्थी संख्याएँ टूटती हैं; विवरण के लिए अनुपातहीन जगह है।\"},\"C\":{\"grade\":\"good\",\"why\":\"वर्ष और लाभार्थी साफ रहते हैं और विवरण को पर्याप्त जगह मिलती है; पहले योजना नाम का दो पंक्तियों में जाना स्वीकार्य है।\"},\"D\":{\"grade\":\"good\",\"why\":\"सभी वर्ष और लाभार्थी एक पंक्ति में हैं और विवरण खुला है; पहला योजना नाम दो पंक्तियों में है।\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"योजना और विवरण पठनीय हैं, लेकिन 50 और 55 करोड़+ का दो पंक्तियों में टूटना लाभार्थियों की तुलना कठिन बनाता है।\"},\"F\":{\"grade\":\"poor\",\"why\":\"बराबर चौड़ाई वाले कॉलम छोटे वर्ष और लाभार्थी मानों के पास बहुत खाली जगह छोड़ते हैं, जबकि विवरण संकरा होकर कई पंक्तियों में बँटता है।\"}},\"best\":[\"A\"],\"confidence\":\"high\",\"unsure\":\"A और C दोनों संतुलित हैं; योजना नामों को एक पंक्ति में रखने के कारण A को थोड़ी बढ़त दी है।\"}\n"
+  }
+ ]
+}

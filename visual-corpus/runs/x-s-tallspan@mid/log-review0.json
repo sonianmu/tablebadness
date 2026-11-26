@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [adversarial] Rowspan taller than its rows (language en).\nGrid: 3 columns × 4 rows. Row headers: none declared.\nMerged cells: \"All three steps share on\" spans 1 col × 3 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Step\" · longest unbreakable word 35px · one-line width 35px\n  col 2: header \"Owner\" · longest unbreakable word 48px · one-line width 48px\n  col 3: header \"Notes\" · longest unbreakable word 76px · one-line width 1797px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 438px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 437px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 6547,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"excellent\",\"why\":\"Compact Step and Owner columns leave generous room for the shared note. The rows remain easy to scan, and the note wraps naturally.\"},\"B\":{\"grade\":\"good\",\"why\":\"The table scans cleanly, though slightly more width goes to the short labels and the note wraps a little less evenly than in A or E.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"The labels are clear, but their wide columns leave the shared note noticeably narrower and make the rows taller.\"},\"D\":{\"grade\":\"poor\",\"why\":\"The oversized Step column takes space from the long note, creating short lines and tall rows around very brief labels.\"},\"E\":{\"grade\":\"excellent\",\"why\":\"The compact label columns give the shared note ample width while keeping headers and row entries intact. The table has a clear, balanced rhythm.\"},\"F\":{\"grade\":\"bad\",\"why\":\"The nearly equal columns force the long note into a narrow strip, producing many short lines and excessive empty space in the label columns.\"}},\"best\":[\"A\",\"E\"],\"confidence\":\"high\",\"unsure\":\"A and E are very close; the rendered differences are too small to justify a confident preference between them.\"}\n"
+  }
+ ]
+}

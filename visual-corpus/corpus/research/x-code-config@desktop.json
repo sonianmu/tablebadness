@@ -2,7 +2,7 @@
  "id": "x-code-config@desktop",
  "family": "x-code-config",
  "split": "research",
- "status": "contested",
+ "status": "confirmed",
  "table": {
   "title": "Code · Config options with long tokens",
   "lang": "en",
@@ -1374,29 +1374,28 @@
  "review": {
   "method": "two fresh-context blind reviews; letters shuffled; includes browser auto layout and equal widths as neutral references",
   "verdict": {
-   "status": "contested",
+   "status": "confirmed",
    "per": [
     {
-     "prefGrade": 3,
-     "prefIsBest": false,
+     "prefGrade": 4,
+     "prefIsBest": true,
      "bestNames": [
-      "r1A"
+      "r1B"
      ],
      "badGrades": [
       4
      ],
-     "autoGrade": 1,
+     "autoGrade": 2,
      "equalGrade": 2
     },
     {
      "prefGrade": 4,
      "prefIsBest": true,
      "bestNames": [
-      "r1A",
       "r1B"
      ],
      "badGrades": [
-      5
+      4
      ],
      "autoGrade": 1,
      "equalGrade": 2
@@ -1414,36 +1413,36 @@
      "ref_auto"
     ],
     "best": [
-     "r1A"
+     "r1B"
     ],
     "ratings": {
      "r1A": {
       "grade": "good",
-      "why": "Sensible pecking order: Option keeps its 131px identifier intact, Default is trimmed to what it needs, and the leftover space goes to Description, which reads in 2–3 clean lines. Rows stay compact and comparable. The cost is the Example column (~190px), where the postgres URL and JWKS URL break into 3 lines, though at tolerable points (after dots/slashes) rather than mid-word fragments."
+      "why": "All columns fit in view, option names stay intact, and descriptions remain readable. The connection string and URL split across several lines."
      },
      "r3B": {
-      "grade": "poor",
-      "why": "Example is given ~300px while Description is squeezed to roughly 110px, so prose collapses into 4–5 short lines and the table becomes very tall and ragged on the right. The URL still breaks inside a word (\"internal.e / xample.com\"), so the width spent on Example buys little."
+      "grade": "acceptable",
+      "why": "The wider example column reduces token wrapping, but descriptions become narrow and ragged, making rows taller and harder to scan."
      },
      "r1B": {
-      "grade": "acceptable",
-      "why": "Example at ~300px gets the URLs down to two lines and Description is a bit wider than B, so the right side is less shredded. But Description is still narrow enough to run 3–4 lines, and the URL break leaves a line starting with \".example.com:5432/production_main\", which reads awkwardly and is easy to misread when copying."
+      "grade": "good",
+      "why": "The example and description columns strike a useful balance: long examples take two lines and most descriptions remain readable. The logging pattern still wraps heavily."
      },
      "r3A": {
-      "grade": "poor",
-      "why": "Space is wasted on Default (~150px for content whose longest token is 90px) while Description is crushed to ~110px and runs to five lines per row. The table reads as a stack of tall, unevenly filled cells; the column that needs width most is the one that got least."
+      "grade": "acceptable",
+      "why": "Examples fit reasonably well, but the narrow description column produces many short lines and tall rows, while the extra default width has limited benefit."
      },
      "ref_equal": {
       "grade": "poor",
-      "why": "Default is widened again and Example drops to ~190px, so the postgres URL shatters into five fragments (\"postgr / es://app:secr / et@db.internal.exam …\"). Breaking a copyable connection string mid-token like that defeats the purpose of the Example column, even though Description reads acceptably."
+      "why": "Near-equal columns leave examples too narrow: the connection string and URL split repeatedly within tokens, making them difficult to read."
      },
      "ref_auto": {
-      "grade": "bad",
-      "why": "Example is given its full ~537px one-line width and Description is pushed entirely outside the 720px frame, so a reader sees Option/Default/Example and must scroll horizontally to read any description at all. For a config reference where the description explains the option, hiding it is the worst possible trade."
+      "grade": "poor",
+      "why": "The long example stays on one line, but the description column lies beyond the initial viewport and requires horizontal scrolling; large row heights also leave substantial empty space."
      }
     },
     "confidence": "medium",
-    "unsure": "Column widths were estimated from the rendered images rather than exact pixel values, so B/C and A/C margins are close; also unclear whether the host page allows horizontal scrolling (which would soften F) or whether mid-token URL breaks could be avoided by a word-break setting, since that is fixed content."
+    "unsure": "A is a close alternative: it gives descriptions more room but breaks the long examples into more fragments. The tradeoff depends on how often readers need to inspect those tokens."
    },
    {
     "order": [
@@ -1455,37 +1454,36 @@
      "r1B"
     ],
     "best": [
-     "r1A",
      "r1B"
     ],
     "ratings": {
      "r3B": {
       "grade": "acceptable",
-      "why": "All four columns fit, but Description is squeezed to ~130px, so every sentence breaks into 4–5 short lines and rows grow tall; Example is also too narrow for the long token and splits it mid-word (\"internal.e / xample.com\")."
+      "why": "Everything fits in the viewport, and the examples have room, but the narrow description column creates many short lines. The database URL also splits within its hostname."
      },
      "ref_auto": {
       "grade": "bad",
-      "why": "The table overflows the 720px frame: Description is pushed entirely off-screen, forcing horizontal scrolling to read half the content, while Example holds a huge empty area and rows are ~100px tall of whitespace. Column proportions are wildly unbalanced."
+      "why": "The wide example column keeps tokens largely intact, but the description is entirely offscreen and the example extends beyond the viewport. The tall rows leave substantial empty space."
      },
      "r1A": {
-      "grade": "excellent",
-      "why": "The four columns are close to proportional to their roles: Option and Default compact, Example and Description each ~200px. All columns are visible without scrolling, long URLs break at punctuation (\".\", \"/\") rather than inside words, and descriptions settle at 2–4 lines, giving even row heights and a calm scan."
+      "grade": "good",
+      "why": "The description is easy to scan and all columns fit onscreen. The narrower example column wraps the URLs across several lines, including a split within the JWKS path."
      },
      "r3A": {
       "grade": "acceptable",
-      "why": "Example gets comfortable width and breaks the URL cleanly at \".example.com\", but Description is the narrowest column at ~150px, so the cache row sprawls to six lines and rows become tall and uneven relative to the compact Option/Default columns."
+      "why": "Examples have useful space and the table fits onscreen, but the narrow description column produces short lines and a particularly tall cache row. The database hostname also breaks across lines."
      },
      "ref_equal": {
       "grade": "poor",
-      "why": "Example is starved of width while Description is over-fed: the postgres URL fragments mid-token into \"secr / et@db.internal.exam / ple.com:5432/produc / tion_main\", damaging identifiers that readers need to copy exactly, and the left columns sit next to large blank areas."
+      "why": "The nearly equal columns give excess space to short defaults while squeezing the long examples. Both URLs split repeatedly, making them difficult to follow."
      },
      "r1B": {
       "grade": "good",
-      "why": "Gives Example the room it needs — the URL breaks cleanly after \"internal\" and \".example.com\" — while Description stays readable at 2–4 lines and Option/Default remain compact. Slightly less balanced than C because Description is narrow enough to hyphenate prose into short rags."
+      "why": "The examples and descriptions have a workable balance, and all columns fit onscreen. The URLs wrap, including a break in the database hostname, but the descriptions remain reasonably readable."
      }
     },
-    "confidence": "medium-high",
-    "unsure": "I am estimating pixel boundaries by eye, so the exact Description/Example split in C vs F may be closer than it appears; I also assume B's off-screen Description is not intended as a deliberate scroll design."
+    "confidence": "medium",
+    "unsure": "C is a close alternative: it favors readable descriptions, while F gives the long examples more room. The preferred balance depends on how often readers need to inspect or copy the URLs."
    }
   ]
  },
@@ -1496,12 +1494,12 @@
    "r1": "workbuddy-ai/deepseek-v4.1-flash-sg",
    "r2": "workbuddy-ai/deepseek-v4.1-flash-sg",
    "r3": "workbuddy-ai/deepseek-v4.1-flash-sg",
-   "review0": "workbuddy-ai/deepseek-v4.1-flash-sg",
-   "review1": "workbuddy-ai/deepseek-v4.1-flash-sg"
+   "review0": "codex/gpt-6.1-terra",
+   "review1": "codex/gpt-6.1-terra"
   },
-  "modelChain": "codex/gpt-6.1-terra → opencode-zen-free/deepseek-v4.1-flash-free",
+  "modelChain": "codex/gpt-6.1-terra",
   "pi": "1.3.0",
-  "created": "2026-11-26T16:40:10.385Z",
+  "created": "2026-11-26T22:11:21.843Z",
   "note": "AI visual design judgement; not a human reading study"
  }
 }

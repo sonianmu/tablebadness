@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 한국어 · 메뉴 (language ko).\nGrid: 4 columns × 5 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"메뉴\" · longest unbreakable word 13px · one-line width 52px\n  col 2: header \"가격\" · longest unbreakable word 47px · one-line width 60px\n  col 3: header \"맵기\" · longest unbreakable word 13px · one-line width 26px\n  col 4: header \"설명\" · longest unbreakable word 18px · one-line width 421px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 480px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 479px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9903,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"excellent\",\"why\":\"메뉴, 가격, 맵기가 한 줄에 유지되고 설명에 충분한 폭을 주어 각 행을 읽고 가격을 비교하기 쉽다.\"},\"B\":{\"grade\":\"poor\",\"why\":\"가격의 숫자와 원 단위가 줄을 나눠 읽기와 비교를 방해한다. 설명에 확보한 폭의 이점보다 손실이 크다.\"},\"C\":{\"grade\":\"bad\",\"why\":\"짧은 메뉴와 맵기 열에 지나치게 넓은 공간을 주어 설명이 좁은 여러 줄로 잘리고 행 사이의 공백도 커진다.\"},\"D\":{\"grade\":\"bad\",\"why\":\"메뉴 이름과 맵기 값, 맵기 머리글이 잘리고 일부 가격에서도 원 단위가 분리되어 행을 훑기 어렵다.\"},\"E\":{\"grade\":\"good\",\"why\":\"짧은 항목과 가격을 온전히 유지하고 설명도 대체로 두 줄에 담는다. 다만 A보다 설명 열이 좁아 마지막 단어가 줄을 나누는 곳이 있다.\"}},\"best\":[\"A\"],\"confidence\":\"high\",\"unsure\":\"A와 E는 모두 균형이 좋지만 설명의 줄바꿈과 열 사이 여백에 대한 선호에 따라 E를 선택할 수도 있다.\"}\n"
+  }
+ ]
+}

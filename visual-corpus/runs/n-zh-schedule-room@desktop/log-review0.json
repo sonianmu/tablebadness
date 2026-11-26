@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 会议室预订周视图（5/12–5/16） (language zh-CN).\nGrid: 6 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"2025 春季校园招聘宣讲会（09:00–17:\" spans 3 col × 1 row; \"产品需求评审（09:00–12:00）｜A301\" spans 1 col × 2 row; \"新员工入职培训（13:30–16:30）｜C20\" spans 1 col × 2 row; \"客户方案演示与答疑（13:30–16:30）｜A\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"时间段\" · longest unbreakable word 53px · one-line width 94px\n  col 2: header \"周一（5/12）\" · longest unbreakable word 65px · one-line width 261px\n  col 3: header \"周二（5/13）\" · longest unbreakable word 65px · one-line width 214px\n  col 4: header \"周三（5/14）\" · longest unbreakable word 63px · one-line width 274px\n  col 5: header \"周四（5/15）\" · longest unbreakable word 63px · one-line width 304px\n  col 6: header \"周五（5/16）\" · longest unbreakable word 62px · one-line width 190px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 8850,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"The weekday columns are balanced and all headers fit on one line. Several meeting times and the time-slot labels wrap, but the rows remain reasonably easy to scan.\"},\"B\":{\"grade\":\"good\",\"why\":\"The weekday headers fit and the slightly wider Tuesday and Thursday columns keep some meeting details together. Time-slot labels and several meeting times still wrap.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"All weekday headers fit, but the wider time column does not keep the time slots on one line. The narrower Tuesday column makes the first meeting particularly tall, with its room on a separate line.\"},\"D\":{\"grade\":\"poor\",\"why\":\"Friday’s header wraps while its narrow column also breaks several descriptions and room details. The time slots still wrap despite the space given to the first column.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"Time slots and weekday headers stay on one line, making the schedule structure clear. The narrower day columns force many meeting times and room identifiers onto separate lines, producing tall rows.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"Time slots and headers stay intact, and the day columns are fairly balanced. Several meeting times wrap across lines and room identifiers are isolated, making the body dense and tall.\"}},\"best\":[\"B\"],\"confidence\":\"medium\",\"unsure\":\"A is close: its more even weekday widths offer a consistent rhythm, while B keeps a few meeting details together and makes the body slightly shorter.\"}\n"
+  }
+ ]
+}

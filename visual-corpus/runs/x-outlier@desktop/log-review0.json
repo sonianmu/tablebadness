@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 异常长值 · 标签列中的一个长值 (language zh-CN).\nGrid: 4 columns × 7 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"城市\" · longest unbreakable word 16px · one-line width 230px\n  col 2: header \"级别\" · longest unbreakable word 31px · one-line width 368px\n  col 3: header \"人口（万）\" · longest unbreakable word 46px · one-line width 77px\n  col 4: header \"备注\" · longest unbreakable word 16px · one-line width 200px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 7914,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"列宽分配均衡，人口表头完整，异常行的三段长文本各占两行；但长城市名被拆开。\"},\"B\":{\"grade\":\"poor\",\"why\":\"人口列占用过多空间，级别列偏窄，长级别值折成三行，异常行显得拥挤。\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"级别列宽裕，长级别值只占两行，但人口表头折成两行，削弱了表头的整体节奏；长城市名也被拆开。\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"长城市名完整保留，人口表头也完整；备注列偏窄，长备注折成三行，末行只剩一个字。\"},\"E\":{\"grade\":\"excellent\",\"why\":\"长城市名和人口表头都保持完整，长级别值与长备注各占两行，异常行清晰，列宽比例适合内容。\"},\"F\":{\"grade\":\"good\",\"why\":\"长城市名和人口表头完整，异常行高度适中；级别列稍窄，长级别值的断行不如 E 自然。\"}},\"best\":[\"E\"],\"confidence\":\"high\",\"unsure\":\"E 与 F 的差别较细微；对长级别值断行自然度的判断带有一定主观性。\"}\n"
+  }
+ ]
+}

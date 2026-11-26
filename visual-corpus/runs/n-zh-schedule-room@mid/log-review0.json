@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 会议室预订周视图（5/12–5/16） (language zh-CN).\nGrid: 6 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"2025 春季校园招聘宣讲会（09:00–17:\" spans 3 col × 1 row; \"产品需求评审（09:00–12:00）｜A301\" spans 1 col × 2 row; \"新员工入职培训（13:30–16:30）｜C20\" spans 1 col × 2 row; \"客户方案演示与答疑（13:30–16:30）｜A\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"时间段\" · longest unbreakable word 53px · one-line width 94px\n  col 2: header \"周一（5/12）\" · longest unbreakable word 65px · one-line width 261px\n  col 3: header \"周二（5/13）\" · longest unbreakable word 65px · one-line width 214px\n  col 4: header \"周三（5/14）\" · longest unbreakable word 63px · one-line width 274px\n  col 5: header \"周四（5/15）\" · longest unbreakable word 63px · one-line width 304px\n  col 6: header \"周五（5/16）\" · longest unbreakable word 62px · one-line width 190px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 682px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 681px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9670,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"The time column keeps most slots on one line, but the first slot wraps and three weekday headers wrap. Narrow day columns also split several event times across lines.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"Most weekday headers fit, but the narrow time column splits every timed row label, making the schedule harder to scan vertically. Several event times also wrap.\"},\"C\":{\"grade\":\"good\",\"why\":\"All weekday headers fit on one line and the day columns have a consistent rhythm. The trade-off is that every timed row label wraps, and several event times are split.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"All time-slot labels fit on one line, supporting row scanning, but three weekday headers wrap and narrow day columns force frequent breaks within event descriptions.\"},\"E\":{\"grade\":\"good\",\"why\":\"All time-slot labels stay intact, three weekday headers fit on one line, and the day columns are reasonably balanced. Some event times and two weekday headers still wrap.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"The day columns are fairly even, but four weekday headers wrap and the first time slot breaks across lines while the remaining slots fit. Several event times also split.\"}},\"best\":[\"E\"],\"confidence\":\"medium\",\"unsure\":\"The choice between E and C depends on whether intact time-slot labels or single-line weekday headers matter more for this schedule; I favor the time slots because they anchor each row.\"}\n"
+  }
+ ]
+}

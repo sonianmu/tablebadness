@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Cross-tab · Regional sales (language en).\nGrid: 7 columns × 5 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Region\" · longest unbreakable word 57px · one-line width 195px\n  col 2: header \"Jan\" · longest unbreakable word 38px · one-line width 38px\n  col 3: header \"Feb\" · longest unbreakable word 38px · one-line width 38px\n  col 4: header \"Mar\" · longest unbreakable word 38px · one-line width 38px\n  col 5: header \"Apr\" · longest unbreakable word 38px · one-line width 38px\n  col 6: header \"May\" · longest unbreakable word 38px · one-line width 38px\n  col 7: header \"Jun\" · longest unbreakable word 38px · one-line width 38px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 490px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 489px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 7045,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"excellent\",\"why\":\"The month columns have a consistent rhythm, all figures remain intact, and only the longest region label wraps.\"},\"B\":{\"grade\":\"good\",\"why\":\"The numbers remain intact and the rows scan well, though the first month columns feel slightly tighter than the later ones.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"The figures are clear, but the narrow region column wraps three labels and makes the rows taller.\"},\"D\":{\"grade\":\"good\",\"why\":\"Only the longest region label wraps and the figures remain intact, though the month columns are slightly uneven.\"},\"E\":{\"grade\":\"bad\",\"why\":\"The region column is so narrow that the header and several words break within words, making the row labels difficult to read.\"}},\"best\":[\"A\"],\"confidence\":\"medium\",\"unsure\":\"A and D are very close; their small differences in column proportions are difficult to judge at this image size.\"}\n"
+  }
+ ]
+}

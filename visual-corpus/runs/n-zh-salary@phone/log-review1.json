@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 2024年10月员工工资条 (language zh-CN).\nGrid: 8 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"姓名\" spans 1 col × 2 row; \"应发\" spans 3 col × 1 row; \"扣款\" spans 3 col × 1 row; \"实发\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"姓名\" · longest unbreakable word 16px · one-line width 46px\n  col 2: header \"应发 › 基本工资\" · longest unbreakable word 63px · one-line width 63px\n  col 3: header \"应发 › 绩效\" · longest unbreakable word 59px · one-line width 59px\n  col 4: header \"应发 › 补贴\" · longest unbreakable word 56px · one-line width 56px\n  col 5: header \"扣款 › 社保\" · longest unbreakable word 50px · one-line width 50px\n  col 6: header \"扣款 › 公积金\" · longest unbreakable word 57px · one-line width 57px\n  col 7: header \"扣款 › 个税\" · longest unbreakable word 54px · one-line width 54px\n  col 8: header \"实发\" · longest unbreakable word 64px · one-line width 64px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nRendering convention: the screenshot always shows the WHOLE table. Anything beyond the dashed box is not clipped; it is the part a reader reaches by scrolling sideways, so judge both what fits in the box at first sight and the cost of scrolling to the rest.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 12273,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Names and amounts stay intact, and the full 应发 group fits cleanly within the viewport. Readers must scroll to see deductions and take-home pay.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"Names and earnings remain readable, and the 扣款 group begins in view, but the 社保 amounts are cut by the viewport edge and require scrolling to read.\"},\"C\":{\"grade\":\"bad\",\"why\":\"The whole table fits, but names, headers and nearly every amount are broken across multiple lines, making rows and comparisons difficult to follow.\"},\"D\":{\"grade\":\"poor\",\"why\":\"Amounts stay intact, but the narrow name column splits every name vertically and makes rows unusually tall. The remaining columns still require horizontal scrolling.\"},\"E\":{\"grade\":\"bad\",\"why\":\"All columns fit, but names and monetary amounts split across several lines, with inconsistent breaks that make values hard to reconstruct and compare.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"Names and earnings stay intact with clear rows, but the viewport cuts through the 扣款 group and its first column, leaving the rest to horizontal scrolling.\"}},\"best\":[\"A\"],\"confidence\":\"medium\",\"unsure\":\"The screenshots show only a narrow portion beyond the viewport, so the full off-screen widths and any wrapping in the later columns are difficult to assess.\"}\n"
+  }
+ ]
+}

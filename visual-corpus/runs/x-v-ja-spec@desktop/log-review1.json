@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [検証] 日本語 · 製品仕様 (language ja).\nGrid: 4 columns × 5 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"項目\" · longest unbreakable word 16px · one-line width 92px\n  col 2: header \"スタンダード\" · longest unbreakable word 32px · one-line width 126px\n  col 3: header \"プレミアム\" · longest unbreakable word 31px · one-line width 126px\n  col 4: header \"備考\" · longest unbreakable word 31px · one-line width 359px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9870,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"The two product columns are easy to compare and keep their values intact, but the narrow notes column produces cramped three-line passages while the other columns have excess space.\"},\"B\":{\"grade\":\"excellent\",\"why\":\"The item labels and product values stay intact, the matched product columns support comparison, and the notes have enough room to read comfortably in two lines.\"},\"C\":{\"grade\":\"poor\",\"why\":\"Both dimensions separate their unit onto a second line, and the playback-time label also wraps. The wide notes column leaves a short fragment on the last line of the final note.\"},\"D\":{\"grade\":\"excellent\",\"why\":\"The product columns are nearly equal, all labels and values stay intact, and the notes wrap into balanced two-line passages.\"},\"E\":{\"grade\":\"good\",\"why\":\"Labels and product values stay intact, with equal product columns that are easy to compare. The narrower notes column creates slightly more crowded line breaks.\"},\"F\":{\"grade\":\"poor\",\"why\":\"The dimension units and playback-time label wrap, disrupting comparison across rows. The notes column is wide but still leaves a single-character final line in one note.\"}},\"best\":[\"B\",\"D\"],\"confidence\":\"high\",\"unsure\":\"B and D are very close; their small differences in column width and note wrapping do not clearly favor one.\"}\n"
+  }
+ ]
+}

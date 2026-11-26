@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val] Code · CLI flags (language en).\nGrid: 4 columns × 5 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Flag\" · longest unbreakable word 106px · one-line width 204px\n  col 2: header \"Type\" · longest unbreakable word 55px · one-line width 55px\n  col 3: header \"Default\" · longest unbreakable word 114px · one-line width 114px\n  col 4: header \"Description\" · longest unbreakable word 89px · one-line width 477px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 625px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 624px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9105,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"The descriptions are readable, but two flag names wrap, making the commands harder to scan and copy.\"},\"B\":{\"grade\":\"excellent\",\"why\":\"All flags and defaults stay on one line, while the descriptions wrap into manageable phrases and the rows remain easy to compare.\"},\"C\":{\"grade\":\"bad\",\"why\":\"Equal column widths waste space on short types and defaults, leaving both flags and descriptions cramped; several flags split and descriptions become tall.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"The generous description column reads well, but three flag names split across lines despite unused space in the default column.\"},\"E\":{\"grade\":\"good\",\"why\":\"Flags and defaults stay intact, but the narrower description column produces an extra line in the first row and a taller table than B.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"Descriptions have comfortable space, but two flag names wrap while the default column has room to spare.\"}},\"best\":[\"B\"],\"confidence\":\"high\",\"unsure\":\"The relative importance of compact descriptions versus keeping flag names on one line depends on the table’s intended use; for a CLI reference, intact flags are especially valuable.\"}\n"
+  }
+ ]
+}

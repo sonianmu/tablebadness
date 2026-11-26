@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [検証] 仕様比較 · セクション行 (language ja).\nGrid: 3 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"ディスプレイ\" spans 3 col × 1 row; \"バッテリー\" spans 3 col × 1 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"項目 › ディスプレイ › バッテリー\" · longest unbreakable word 16px · one-line width 135px\n  col 2: header \"スタンダード › ディスプレイ › バッテリー\" · longest unbreakable word 32px · one-line width 90px\n  col 3: header \"プロ › ディスプレイ › バッテリー\" · longest unbreakable word 33px · one-line width 590px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10454,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"スタンダードの見出しが折れ、最大20時間や30分で50%も分断されている。プロ欄も長文を細かく折り返している。\"},\"B\":{\"grade\":\"good\",\"why\":\"両モデルの見出しと短い数値が収まり、プロ欄にも比較的十分な幅がある。一方、行見出しの「リフレッシュレート」が3行に分かれる。\"},\"C\":{\"grade\":\"good\",\"why\":\"モデルの見出しと短い値が収まり、行見出しとプロ欄の幅のバランスもよい。「連続再生時間」は2行になる。\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"行見出しとスタンダード欄には余裕があるが、長文のあるプロ欄が狭く、説明が細かく折り返されて行が高い。\"},\"E\":{\"grade\":\"good\",\"why\":\"見出しと短い値が収まり、3列の幅も比較的バランスがよい。プロ欄の説明はやや細かく折り返される。\"},\"F\":{\"grade\":\"bad\",\"why\":\"プロ欄は読みやすい幅だが、他の2列が狭すぎる。見出し、行名、6.1インチや30分で50%が細かく分断され、比較しにくい。\"}},\"best\":[\"C\"],\"confidence\":\"medium\",\"unsure\":\"Bはプロ欄をより広く使えるが、行見出しの折り返しが深い。CとEは僅差で、行見出しとプロ欄のどちらを優先するかで評価が変わりうる。\"}\n"
+  }
+ ]
+}

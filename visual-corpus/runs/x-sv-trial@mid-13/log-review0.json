@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [验证] 临床试验 · 分组与随访 (language zh-CN).\nGrid: 4 columns × 6 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"试验组（低剂量）\" spans 1 col × 3 row; \"对照组\" spans 1 col × 2 row.\nPer-column content facts (content px at 13px font, excluding padding):\n  col 1: header \"分组\" · longest unbreakable word 27px · one-line width 107px\n  col 2: header \"访视\" · longest unbreakable word 14px · one-line width 67px\n  col 3: header \"时间窗\" · longest unbreakable word 26px · one-line width 49px\n  col 4: header \"检查项目\" · longest unbreakable word 27px · one-line width 346px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 480px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 479px.\nFixed: content, font, 13px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10242,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"访视和时间窗保持完整，检查项目分行也较自然；但组名中的“低剂量”被拆开。\"},\"B\":{\"grade\":\"poor\",\"why\":\"检查项目列过窄，长内容被切成多行，行高显著增加；访视和时间窗列则留有较多空白。\"},\"C\":{\"grade\":\"bad\",\"why\":\"访视名称和时间窗数值均被拆行，包括 D28 ± 3 和 D84 ± 7，影响逐行比较。\"},\"D\":{\"grade\":\"excellent\",\"why\":\"组名、访视名称和时间窗均保持完整；检查项目虽有三行，但列间比例清晰，行组易于辨认。\"},\"E\":{\"grade\":\"good\",\"why\":\"访视和时间窗完整，检查项目的换行较紧凑；但“低剂量”在组名中被拆开。\"},\"F\":{\"grade\":\"good\",\"why\":\"访视和时间窗完整，检查项目有充足空间；组名换行将“低剂量”拆开，稍损整体性。\"}},\"best\":[\"D\"],\"confidence\":\"high\",\"unsure\":\"D 的长检查项目比 A、E 和 F 多占一行，但它保全了组名和时间窗，综合更利于阅读。\"}\n"
+  }
+ ]
+}

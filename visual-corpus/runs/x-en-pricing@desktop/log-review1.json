@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: EN · Plan comparison (language en).\nGrid: 5 columns × 6 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Feature\" · longest unbreakable word 56px · one-line width 83px\n  col 2: header \"Free\" · longest unbreakable word 79px · one-line width 79px\n  col 3: header \"Pro\" · longest unbreakable word 66px · one-line width 66px\n  col 4: header \"Enterprise\" · longest unbreakable word 75px · one-line width 229px\n  col 5: header \"Notes\" · longest unbreakable word 73px · one-line width 419px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10640,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"excellent\",\"why\":\"Feature labels and plan values stay intact, while Notes has enough room for readable two-line entries. The columns have a balanced rhythm.\"},\"B\":{\"grade\":\"good\",\"why\":\"The plan columns scan clearly, but the narrower Notes column makes the SSO note three lines and leaves extra space in the Enterprise column.\"},\"C\":{\"grade\":\"excellent\",\"why\":\"The feature labels and plan values stay intact, and the Notes entries wrap into comfortable two-line blocks. The columns are well balanced for comparison.\"},\"D\":{\"grade\":\"good\",\"why\":\"The table reads cleanly and the notes wrap well, though the Feature column has slightly more space than its labels need.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"Notes has generous space, but the narrow Feature column splits SSO / SAML across two lines, weakening the row label.\"},\"F\":{\"grade\":\"poor\",\"why\":\"Nearly equal column widths leave Notes cramped, producing long stacks of short lines and tall rows, while the shorter plan values sit in excessive whitespace.\"}},\"best\":[\"A\",\"C\"],\"confidence\":\"high\",\"unsure\":\"A and C are very close; their small difference in column proportions has little effect on readability.\"}\n"
+  }
+ ]
+}

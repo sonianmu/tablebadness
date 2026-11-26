@@ -12,3 +12,4 @@ node tools/design.mjs --split research --rereview-policy scroll-allowed --jobs $
 node tools/design.mjs --split research --redo-rejected --jobs $J
 node tools/index.mjs
 node tools/freeze.mjs --verify
+node tools/freeze.mjs --set holdout-amendments --append || node tools/freeze.mjs --set holdout-amendments

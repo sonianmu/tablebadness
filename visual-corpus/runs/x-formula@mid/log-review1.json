@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 公式文本 · 物理量 (language zh-CN).\nGrid: 5 columns × 5 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"物理量\" · longest unbreakable word 16px · one-line width 123px\n  col 2: header \"符号\" · longest unbreakable word 16px · one-line width 31px\n  col 3: header \"公式\" · longest unbreakable word 65px · one-line width 91px\n  col 4: header \"单位\" · longest unbreakable word 16px · one-line width 31px\n  col 5: header \"说明\" · longest unbreakable word 77px · one-line width 274px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 480px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 479px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10918,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"公式保持完整，说明栏有足够空间，行与行之间也容易区分；物理量名称在第三行换行，但仍易于辨认。\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"物理量栏较宽，却让说明栏变窄；第三行说明分成三行，末行说明也多换一行，表格节奏较松散。\"},\"C\":{\"grade\":\"bad\",\"why\":\"符号和单位栏占用过多宽度，说明栏过窄，文字与数值被切得零碎；万有引力公式也换行，比较困难。\"},\"D\":{\"grade\":\"good\",\"why\":\"公式完整，说明栏较宽，整体清晰；末行说明仅一个字和句号落到下一行，略显零碎。\"},\"E\":{\"grade\":\"excellent\",\"why\":\"公式完整，说明栏宽度充足，末行说明保持一行；各列比例与内容用途相称，行之间容易扫描。\"},\"F\":{\"grade\":\"poor\",\"why\":\"说明栏宽裕，但符号和单位表头被迫竖向换行，万有引力公式也拆成两行，削弱了表头和公式的可读性。\"}},\"best\":[\"E\"],\"confidence\":\"high\",\"unsure\":\"A 与 E 的整体表现接近；两者的细微取舍主要取决于对首列宽度和说明栏留白的偏好。\"}\n"
+  }
+ ]
+}

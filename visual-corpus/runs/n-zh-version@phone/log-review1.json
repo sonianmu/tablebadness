@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 组件版本兼容矩阵 (language zh-CN).\nGrid: 5 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"组件\" · longest unbreakable word 31px · one-line width 112px\n  col 2: header \"v1.x\" · longest unbreakable word 29px · one-line width 62px\n  col 3: header \"v2.x\" · longest unbreakable word 31px · one-line width 62px\n  col 4: header \"v3.x\" · longest unbreakable word 31px · one-line width 62px\n  col 5: header \"说明\" · longest unbreakable word 171px · one-line width 494px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nRendering convention: the screenshot always shows the WHOLE table. Anything beyond the dashed box is not clipped; it is the part a reader reaches by scrolling sideways, so judge both what fits in the box at first sight and the cost of scrolling to the rest.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9561,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"组件名和状态大多只折成两行，三列版本便于比较；但说明列几乎全部位于视口外，需要横向滚动阅读。\"},\"B\":{\"grade\":\"bad\",\"why\":\"表格虽能放进视口，说明列却过窄，英文名称和标识符被拆开，行高急剧增加，难以横向对应状态与说明。\"},\"C\":{\"grade\":\"good\",\"why\":\"组件名和版本状态仍较容易逐行比较，视口内也露出部分说明；说明的主体需要横向滚动。\"},\"D\":{\"grade\":\"poor\",\"why\":\"说明列较宽，但组件名和三个状态列被压得很窄，文字逐字竖向排列，破坏了版本间的比较。\"},\"E\":{\"grade\":\"good\",\"why\":\"三个版本列宽一致，状态完整显示，比较最清楚；代价是说明列几乎完全在视口外，需要滚动。\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"比部分方案露出更多说明，但组件名折成三行，部分状态也换行，行内信息的扫描节奏较碎。\"}},\"best\":[\"E\"],\"confidence\":\"medium\",\"unsure\":\"说明列的完整宽度在截图中不可见，因此难以判断横向滚动后的换行和所需滚动距离；若说明与状态同样重要，C 也有竞争力。\"}\n"
+  }
+ ]
+}

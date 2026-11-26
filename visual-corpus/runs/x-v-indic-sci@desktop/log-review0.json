@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val] Indic · Planets (language hi).\nGrid: 5 columns × 4 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"ग्रह\" · longest unbreakable word 28px · one-line width 28px\n  col 2: header \"গ্রহ\" · longest unbreakable word 32px · one-line width 32px\n  col 3: header \"கோள்\" · longest unbreakable word 65px · one-line width 65px\n  col 4: header \"दूरी (AU)\" · longest unbreakable word 34px · one-line width 56px\n  col 5: header \"टिप्पणी\" · longest unbreakable word 128px · one-line width 508px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 7823,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"The text stays intact, but the short planet and distance columns have generous unused space while the long comments wrap over several lines.\"},\"B\":{\"grade\":\"excellent\",\"why\":\"Compact planet columns leave ample room for comments; the distance header and values remain clear, and each row reads as a unit.\"},\"C\":{\"grade\":\"excellent\",\"why\":\"The three planet columns have a balanced rhythm, and the comments have enough room to read comfortably with limited wrapping.\"},\"D\":{\"grade\":\"excellent\",\"why\":\"The columns follow the content's needs closely: the names and distance fit cleanly, and the comment column accommodates the longer text well.\"},\"E\":{\"grade\":\"bad\",\"why\":\"The nearly equal widths leave the comment column far too narrow, producing excessive wrapping and very tall rows while the other columns contain large empty areas.\"},\"F\":{\"grade\":\"good\",\"why\":\"The compact name columns give the comments plenty of room, but the distance header wraps onto two lines and makes the header row taller.\"}},\"best\":[\"B\",\"C\",\"D\"],\"confidence\":\"medium\",\"unsure\":\"The differences among B, C and D are small; the preferred balance between compact name columns and slightly more breathing room is partly subjective.\"}\n"
+  }
+ ]
+}

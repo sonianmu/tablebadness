@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 研发中心季度例会签到表 (language zh-CN).\nGrid: 5 columns × 8 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"姓名\" · longest unbreakable word 16px · one-line width 46px\n  col 2: header \"部门\" · longest unbreakable word 16px · one-line width 77px\n  col 3: header \"签到时间\" · longest unbreakable word 42px · one-line width 62px\n  col 4: header \"签退时间\" · longest unbreakable word 39px · one-line width 62px\n  col 5: header \"备注\" · longest unbreakable word 31px · one-line width 429px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 12175,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"Names and times stay intact, but the narrow notes column breaks remarks into many short lines, and department names wrap.\"},\"B\":{\"grade\":\"good\",\"why\":\"Names and times remain intact, while the wider notes column makes remarks noticeably easier to read. Department names and time headers still wrap.\"},\"C\":{\"grade\":\"poor\",\"why\":\"The time columns have room to spare while the notes column forces remarks into very short fragments, producing tall rows.\"},\"D\":{\"grade\":\"bad\",\"why\":\"The wider notes column reads well, but names and department names are broken into single characters, severely disrupting identification and scanning.\"},\"E\":{\"grade\":\"bad\",\"why\":\"The time headers fit on one line, but the extremely narrow notes column reduces remarks to fragments and makes several rows exceptionally tall.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"Names and times stay intact and the paired time columns are balanced, but remarks wrap into short fragments and department names split across lines.\"}},\"best\":[\"B\"],\"confidence\":\"high\",\"unsure\":\"The images do not give exact column widths, so the assessment is based on the visible wrapping and overall reading rhythm.\"}\n"
+  }
+ ]
+}

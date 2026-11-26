@@ -1,0 +1,2077 @@
+{
+ "id": "n-zh-schedule-room@mid",
+ "family": "n-zh-schedule-room",
+ "split": "validation",
+ "status": "confirmed",
+ "table": {
+  "title": "会议室预订周视图（5/12–5/16）",
+  "lang": "zh-CN",
+  "structure": "span2d",
+  "html": "<table><thead><tr><th scope='col'>时间段</th><th scope='col'>周一（5/12）</th><th scope='col'>周二（5/13）</th><th scope='col'>周三（5/14）</th><th scope='col'>周四（5/15）</th><th scope='col'>周五（5/16）</th></tr></thead><tbody><tr><th scope='row'>全天</th><td>—</td><td>—</td><td colspan='3'>2025 春季校园招聘宣讲会（09:00–17:00）｜一层路演厅</td></tr><tr><th scope='row'>09:00–10:30</th><td rowspan='2'>产品需求评审（09:00–12:00）｜A301</td><td>周例会（09:30–10:15）｜B202</td><td>数据看板复盘｜线上</td><td>客户方案预演｜A105</td><td>—</td></tr><tr><th scope='row'>10:30–12:00</th><td>合同条款会签｜B202</td><td>算法模型评审（10:30–12:00）｜A301</td><td>招聘面试（10:30–11:30）｜C303</td><td>部门预算沟通｜B105</td></tr><tr><th scope='row'>13:30–15:00</th><td>供应商准入评审｜A105</td><td>—</td><td rowspan='2'>新员工入职培训（13:30–16:30）｜C201</td><td rowspan='2'>客户方案演示与答疑（13:30–16:30）｜A301</td><td>市场活动复盘｜B202</td></tr><tr><th scope='row'>15:00–16:30</th><td>研发周会（15:00–16:00）｜A301</td><td>法务咨询｜B105</td><td>—</td></tr><tr><th scope='row'>16:30–18:00</th><td>—</td><td>项目风险同步｜线上</td><td>产品灰度发布检查｜A301</td><td>—</td><td>周报归档与下周排期｜B202</td></tr></tbody></table>",
+  "md": null,
+  "rowHeader": false,
+  "source": "generated",
+  "brief": "会议室预订周视图：时间段为行，周一至周五为列，部分预订跨 2 个时段（rowspan），一个全天活动跨多列"
+ },
+ "conditions": {
+  "availableWidth": 682,
+  "fontSize": 15,
+  "policy": "fit",
+  "css": "src/table.css (padding 6px 10px, 1px borders, line-height 1.55)",
+  "browser": "Chromium (Playwright build), macOS system fonts",
+  "contentFacts": {
+   "WminNoSplit": 498,
+   "WallOneLine": 1464
+  }
+ },
+ "understanding": {
+  "purpose": "A weekly room-booking grid: a reader either (a) runs down one weekday column to find a free slot, or (b) reads across one time band to compare which day/room is free — it is a lookup-and-compare table, not a reading table, so the time axis and the day columns must be scannable at a glance rather than prose-legible.",
+  "reading": "Top-left time label → down the column for the target day, or across the row for the target slot. Merged blocks (Mon 产品需求评审, Wed 新员工入职培训, Thu 客户方案演示 spanning 09:00–10:30+10:30–12:00 / 13:30–15:00+15:00–16:30, and the 3-column 全天 banner over Wed–Fri) tell the reader 'this room/day is taken for a longer stretch', so they must stay visually unbroken and clearly wider than a single cell.",
+  "groups": [
+   "Col 1 (时间段) stands alone: it is the axis every other column is read against, so its widths are set by the time token, not by content length.",
+   "Cols 2–6 (周一–周五) are one family of identical role and identical header level; they should be within a few px of each other unless a column's content genuinely demands otherwise, because uneven day widths make horizontal comparison of free slots misleading.",
+   "Cols 4–6 (周三/周四/周五) are additionally bound together by the single 全天 banner that spans all three; their combined width is what that one long string has to live in, so they should not be squeezed simultaneously."
+  ],
+  "keep_intact": [
+   "Time ranges 09:00–10:30, 10:30–12:00, 13:30–15:00, 15:00–16:30, 16:30–18:00 (never split mid-token)",
+   "Room codes A301, B202, B105, A301, C20 and 线上",
+   "Weekday headers 周一（5/12）… 周五（5/16） on one line",
+   "The ｜ separator between event name and room, and the parenthesised times inside event names (keep with their event)",
+   "The 3-column banner cell as one unbroken block across 周三–周五"
+  ],
+  "may_wrap": [
+   "Event titles: 产品需求评审（09:00–12:00）, 供应商准入评审, 研发周会（15:00–16:00）, 周例会（09:30–10:15）, 合同条款会签, 法务咨询, 项目风险同步, 数据看板…, 算法模型…, 新员工入职培训（13:30–16:30）, 客户方案演示与答疑（13:30–16:30）, 产品灰度… — these wrap to 2–3 lines without loss of meaning",
+   "The 全天 banner string 2025 春季校园招聘宣讲会（09:00–17:00）｜报告厅 — it has the whole 全天 row to itself, so 2 lines there are free",
+   "Wrapping inside the two-row merged blocks (Mon 09:00–12:00, Wed/Thu 13:30–16:30) costs nothing in row height, since those rows are already double height"
+  ]
+ },
+ "preferred": [
+  {
+   "name": "r3C",
+   "colWidths": [
+    115,
+    115,
+    115,
+    115,
+    113,
+    108
+   ],
+   "requestedWidths": [
+    115,
+    115,
+    115,
+    115,
+    113,
+    108
+   ],
+   "tableWidth": 682,
+   "tableHeight": 580.3,
+   "rowHeights": [
+    59.5,
+    59.5,
+    106,
+    106,
+    59.5,
+    106,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     2
+    ],
+    [
+     0,
+     5,
+     2
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     2
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     4
+    ],
+    [
+     2,
+     2,
+     4
+    ],
+    [
+     2,
+     3,
+     2
+    ],
+    [
+     2,
+     4,
+     2
+    ],
+    [
+     2,
+     5,
+     1
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     2,
+     2
+    ],
+    [
+     3,
+     3,
+     4
+    ],
+    [
+     3,
+     4,
+     4
+    ],
+    [
+     3,
+     5,
+     2
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     2
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     4
+    ],
+    [
+     4,
+     4,
+     5
+    ],
+    [
+     4,
+     5,
+     2
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     4
+    ],
+    [
+     5,
+     2,
+     2
+    ],
+    [
+     5,
+     5,
+     1
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     1
+    ],
+    [
+     6,
+     2,
+     2
+    ],
+    [
+     6,
+     3,
+     2
+    ],
+    [
+     6,
+     4,
+     1
+    ],
+    [
+     6,
+     5,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/n-zh-schedule-room@mid__r3C.png",
+   "note": "Keep the time axis and the first three weekday headers on one line, concentrating the remaining width reduction on Thursday and Friday. This tests whether a clearer run of headers outweighs the visibly narrower Friday column."
+  }
+ ],
+ "acceptable": [
+  {
+   "name": "r1B",
+   "colWidths": [
+    115,
+    110,
+    110,
+    120,
+    116,
+    110
+   ],
+   "requestedWidths": [
+    115,
+    110,
+    110,
+    120,
+    116,
+    110
+   ],
+   "tableWidth": 682,
+   "tableHeight": 580.3,
+   "rowHeights": [
+    59.5,
+    59.5,
+    106,
+    106,
+    59.5,
+    106,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     2
+    ],
+    [
+     0,
+     2,
+     2
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     0,
+     5,
+     2
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     2
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     4
+    ],
+    [
+     2,
+     2,
+     4
+    ],
+    [
+     2,
+     3,
+     2
+    ],
+    [
+     2,
+     4,
+     2
+    ],
+    [
+     2,
+     5,
+     1
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     2,
+     2
+    ],
+    [
+     3,
+     3,
+     4
+    ],
+    [
+     3,
+     4,
+     4
+    ],
+    [
+     3,
+     5,
+     2
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     2
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     4
+    ],
+    [
+     4,
+     4,
+     5
+    ],
+    [
+     4,
+     5,
+     2
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     4
+    ],
+    [
+     5,
+     2,
+     2
+    ],
+    [
+     5,
+     5,
+     1
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     1
+    ],
+    [
+     6,
+     2,
+     2
+    ],
+    [
+     6,
+     3,
+     2
+    ],
+    [
+     6,
+     4,
+     1
+    ],
+    [
+     6,
+     5,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/n-zh-schedule-room@mid__r1B.png",
+   "note": "Keep time ranges intact and give Wednesday and Thursday modest extra space for their longer bookings. Check whether the 110px day columns still accommodate their headers without recreating r0C’s narrow-column crowding."
+  },
+  {
+   "name": "r1C",
+   "colWidths": [
+    105,
+    115,
+    115,
+    116,
+    116,
+    114
+   ],
+   "requestedWidths": [
+    105,
+    115,
+    115,
+    116,
+    116,
+    114
+   ],
+   "tableWidth": 682,
+   "tableHeight": 557,
+   "rowHeights": [
+    36.3,
+    59.5,
+    106,
+    106,
+    59.5,
+    106,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     0,
+     5,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     2
+    ],
+    [
+     2,
+     0,
+     2
+    ],
+    [
+     2,
+     1,
+     4
+    ],
+    [
+     2,
+     2,
+     4
+    ],
+    [
+     2,
+     3,
+     2
+    ],
+    [
+     2,
+     4,
+     2
+    ],
+    [
+     2,
+     5,
+     1
+    ],
+    [
+     3,
+     0,
+     2
+    ],
+    [
+     3,
+     2,
+     2
+    ],
+    [
+     3,
+     3,
+     4
+    ],
+    [
+     3,
+     4,
+     4
+    ],
+    [
+     3,
+     5,
+     2
+    ],
+    [
+     4,
+     0,
+     2
+    ],
+    [
+     4,
+     1,
+     2
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     4
+    ],
+    [
+     4,
+     4,
+     5
+    ],
+    [
+     4,
+     5,
+     2
+    ],
+    [
+     5,
+     0,
+     2
+    ],
+    [
+     5,
+     1,
+     4
+    ],
+    [
+     5,
+     2,
+     2
+    ],
+    [
+     5,
+     5,
+     1
+    ],
+    [
+     6,
+     0,
+     2
+    ],
+    [
+     6,
+     1,
+     1
+    ],
+    [
+     6,
+     2,
+     2
+    ],
+    [
+     6,
+     3,
+     2
+    ],
+    [
+     6,
+     4,
+     1
+    ],
+    [
+     6,
+     5,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/n-zh-schedule-room@mid__r1C.png",
+   "note": "Give the weekdays nearly equal widths closer to r0B’s successful header widths, while increasing the time column by 11px. This tests the tradeoff if the balanced design wraps weekday headers; the time ranges may still wrap."
+  },
+  {
+   "name": "r2A",
+   "colWidths": [
+    115,
+    114,
+    114,
+    113,
+    113,
+    112
+   ],
+   "requestedWidths": [
+    115,
+    114,
+    114,
+    113,
+    113,
+    112
+   ],
+   "tableWidth": 682,
+   "tableHeight": 580.3,
+   "rowHeights": [
+    59.5,
+    59.5,
+    106,
+    106,
+    59.5,
+    106,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     2
+    ],
+    [
+     0,
+     4,
+     2
+    ],
+    [
+     0,
+     5,
+     2
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     2
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     4
+    ],
+    [
+     2,
+     2,
+     4
+    ],
+    [
+     2,
+     3,
+     2
+    ],
+    [
+     2,
+     4,
+     2
+    ],
+    [
+     2,
+     5,
+     1
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     2,
+     2
+    ],
+    [
+     3,
+     3,
+     4
+    ],
+    [
+     3,
+     4,
+     4
+    ],
+    [
+     3,
+     5,
+     2
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     2
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     4
+    ],
+    [
+     4,
+     4,
+     5
+    ],
+    [
+     4,
+     5,
+     2
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     4
+    ],
+    [
+     5,
+     2,
+     2
+    ],
+    [
+     5,
+     5,
+     1
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     1
+    ],
+    [
+     6,
+     2,
+     2
+    ],
+    [
+     6,
+     3,
+     2
+    ],
+    [
+     6,
+     4,
+     1
+    ],
+    [
+     6,
+     5,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/n-zh-schedule-room@mid__r2A.png",
+   "note": "以r1A为基础，保留完整时间轴，将少量宽度转给周一和周二，检验能否减少表头或上午活动的换行，同时维持工作日列的均衡。"
+  },
+  {
+   "name": "r2C",
+   "colWidths": [
+    106,
+    115,
+    115,
+    115,
+    115,
+    115
+   ],
+   "requestedWidths": [
+    106,
+    115,
+    115,
+    115,
+    115,
+    115
+   ],
+   "tableWidth": 682,
+   "tableHeight": 557,
+   "rowHeights": [
+    36.3,
+    59.5,
+    106,
+    106,
+    59.5,
+    106,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     0,
+     5,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     2
+    ],
+    [
+     2,
+     0,
+     2
+    ],
+    [
+     2,
+     1,
+     4
+    ],
+    [
+     2,
+     2,
+     4
+    ],
+    [
+     2,
+     3,
+     2
+    ],
+    [
+     2,
+     4,
+     2
+    ],
+    [
+     2,
+     5,
+     1
+    ],
+    [
+     3,
+     0,
+     2
+    ],
+    [
+     3,
+     2,
+     2
+    ],
+    [
+     3,
+     3,
+     4
+    ],
+    [
+     3,
+     4,
+     4
+    ],
+    [
+     3,
+     5,
+     2
+    ],
+    [
+     4,
+     0,
+     2
+    ],
+    [
+     4,
+     1,
+     2
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     4
+    ],
+    [
+     4,
+     4,
+     5
+    ],
+    [
+     4,
+     5,
+     2
+    ],
+    [
+     5,
+     0,
+     2
+    ],
+    [
+     5,
+     1,
+     4
+    ],
+    [
+     5,
+     2,
+     2
+    ],
+    [
+     5,
+     5,
+     1
+    ],
+    [
+     6,
+     0,
+     2
+    ],
+    [
+     6,
+     1,
+     1
+    ],
+    [
+     6,
+     2,
+     2
+    ],
+    [
+     6,
+     3,
+     2
+    ],
+    [
+     6,
+     4,
+     1
+    ],
+    [
+     6,
+     5,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/n-zh-schedule-room@mid__r2C.png",
+   "note": "以r1C为基础，五个工作日统一为115px，将剩余宽度用于时间轴；检验增加1px是否足以改善时间范围，同时保留整齐的单行日期标题。"
+  },
+  {
+   "name": "r3A",
+   "colWidths": [
+    115,
+    115,
+    115,
+    112,
+    112,
+    112
+   ],
+   "requestedWidths": [
+    115,
+    115,
+    115,
+    112,
+    112,
+    112
+   ],
+   "tableWidth": 682,
+   "tableHeight": 580.3,
+   "rowHeights": [
+    59.5,
+    59.5,
+    106,
+    106,
+    59.5,
+    106,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     2
+    ],
+    [
+     0,
+     4,
+     2
+    ],
+    [
+     0,
+     5,
+     2
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     2
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     4
+    ],
+    [
+     2,
+     2,
+     4
+    ],
+    [
+     2,
+     3,
+     2
+    ],
+    [
+     2,
+     4,
+     2
+    ],
+    [
+     2,
+     5,
+     1
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     2,
+     2
+    ],
+    [
+     3,
+     3,
+     4
+    ],
+    [
+     3,
+     4,
+     4
+    ],
+    [
+     3,
+     5,
+     2
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     2
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     5
+    ],
+    [
+     4,
+     4,
+     5
+    ],
+    [
+     4,
+     5,
+     2
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     4
+    ],
+    [
+     5,
+     2,
+     2
+    ],
+    [
+     5,
+     5,
+     1
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     1
+    ],
+    [
+     6,
+     2,
+     2
+    ],
+    [
+     6,
+     3,
+     3
+    ],
+    [
+     6,
+     4,
+     1
+    ],
+    [
+     6,
+     5,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/n-zh-schedule-room@mid__r3A.png",
+   "note": "Keep time ranges intact and give Monday and Tuesday enough width for single-line headers. Distribute the remaining width evenly across Wednesday–Friday, accepting their wrapped headers while preserving a regular three-column group."
+  },
+  {
+   "name": "r3B",
+   "colWidths": [
+    115,
+    112,
+    112,
+    115,
+    115,
+    112
+   ],
+   "requestedWidths": [
+    115,
+    112,
+    112,
+    115,
+    115,
+    112
+   ],
+   "tableWidth": 682,
+   "tableHeight": 580.3,
+   "rowHeights": [
+    59.5,
+    59.5,
+    106,
+    106,
+    59.5,
+    106,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     2
+    ],
+    [
+     0,
+     2,
+     2
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     0,
+     5,
+     2
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     2
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     4
+    ],
+    [
+     2,
+     2,
+     4
+    ],
+    [
+     2,
+     3,
+     2
+    ],
+    [
+     2,
+     4,
+     2
+    ],
+    [
+     2,
+     5,
+     1
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     2,
+     2
+    ],
+    [
+     3,
+     3,
+     4
+    ],
+    [
+     3,
+     4,
+     4
+    ],
+    [
+     3,
+     5,
+     2
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     2
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     4
+    ],
+    [
+     4,
+     4,
+     5
+    ],
+    [
+     4,
+     5,
+     2
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     4
+    ],
+    [
+     5,
+     2,
+     2
+    ],
+    [
+     5,
+     5,
+     1
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     1
+    ],
+    [
+     6,
+     2,
+     2
+    ],
+    [
+     6,
+     3,
+     2
+    ],
+    [
+     6,
+     4,
+     1
+    ],
+    [
+     6,
+     5,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/n-zh-schedule-room@mid__r3B.png",
+   "note": "Keep the time axis intact and favor Wednesday and Thursday, where several long bookings occur. This tests whether extra width improves the densest middle columns enough to justify wrapped headers on the other days."
+  }
+ ],
+ "bad": [
+  {
+   "name": "r2B",
+   "colWidths": [
+    114,
+    114,
+    114,
+    113,
+    113,
+    113
+   ],
+   "requestedWidths": [
+    114,
+    114,
+    114,
+    113,
+    113,
+    113
+   ],
+   "tableWidth": 682,
+   "tableHeight": 580.3,
+   "rowHeights": [
+    59.5,
+    59.5,
+    106,
+    106,
+    59.5,
+    106,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     2
+    ],
+    [
+     0,
+     4,
+     2
+    ],
+    [
+     0,
+     5,
+     2
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     2
+    ],
+    [
+     2,
+     0,
+     2
+    ],
+    [
+     2,
+     1,
+     4
+    ],
+    [
+     2,
+     2,
+     4
+    ],
+    [
+     2,
+     3,
+     2
+    ],
+    [
+     2,
+     4,
+     2
+    ],
+    [
+     2,
+     5,
+     1
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     2,
+     2
+    ],
+    [
+     3,
+     3,
+     4
+    ],
+    [
+     3,
+     4,
+     4
+    ],
+    [
+     3,
+     5,
+     2
+    ],
+    [
+     4,
+     0,
+     1
+    ],
+    [
+     4,
+     1,
+     2
+    ],
+    [
+     4,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     4
+    ],
+    [
+     4,
+     4,
+     5
+    ],
+    [
+     4,
+     5,
+     2
+    ],
+    [
+     5,
+     0,
+     1
+    ],
+    [
+     5,
+     1,
+     4
+    ],
+    [
+     5,
+     2,
+     2
+    ],
+    [
+     5,
+     5,
+     1
+    ],
+    [
+     6,
+     0,
+     1
+    ],
+    [
+     6,
+     1,
+     1
+    ],
+    [
+     6,
+     2,
+     2
+    ],
+    [
+     6,
+     3,
+     2
+    ],
+    [
+     6,
+     4,
+     1
+    ],
+    [
+     6,
+     5,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/n-zh-schedule-room@mid__r2B.png",
+   "note": "将时间列从115px微调至114px，并把节省的宽度给周五，检验时间范围能否仍保持一行，以及更多日期标题能否同时完整显示。",
+   "why": "The first timed row label wraps while the other time ranges remain on one line, weakening the consistency of the row headers. Three weekday headers also wrap."
+  }
+ ],
+ "ranges": [
+  [
+   115,
+   116
+  ],
+  [
+   114,
+   115
+  ],
+  [
+   114,
+   115
+  ],
+  [
+   114,
+   115
+  ],
+  [
+   113,
+   114
+  ],
+  [
+   108,
+   109
+  ]
+ ],
+ "rationale": "r3C keeps every time-range row label on one line, making the schedule easy to scan down the left edge. Three weekday headings also stay on one line, while the five day columns remain close enough in width to read as peers. Friday is narrower, but its entries remain legible and its shorter content makes that allocation reasonable.",
+ "principles": {
+  "general": [
+   "Keep repeated row labels consistent when they are essential to scanning and comparison.",
+   "Columns with the same function benefit from related proportions, though their content can justify modest differences.",
+   "Judge wrapping by where it occurs and what it disrupts, rather than by table height alone."
+  ],
+  "specific": [
+   "This schedule benefits from keeping time ranges intact because they anchor the hourly rows and the vertically merged bookings.",
+   "Friday can give up some width to preserve the time labels and more weekday headers, although its longer final entry wraps more."
+  ]
+ },
+ "tradeoffs": "r1C and r2C keep all weekday headings on one line but wrap every timed row label; a designer prioritizing the day headings could reasonably prefer them. r2A keeps time labels intact and gives Friday more room, at the cost of wrapping one more weekday heading.",
+ "uncertain": "The ranges are narrow estimates around r3C, not independently rendered results. They are conditional on redistributing width among the other columns in roughly the same proportions and keeping the total at or below 681 px; the endpoints cannot all be chosen simultaneously.",
+ "designHistory": {
+  "r0": {
+   "critique": null,
+   "designs": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "Wednesday and Thursday have enough room for their longer bookings to read in relatively compact blocks. The merged all-day banner remains visually continuous.",
+     "problems": "Tuesday and Friday headers wrap, the time ranges split across lines, and the narrow Friday column makes its bookings look cramped. The unequal day widths also weaken comparisons across a time band.",
+     "cause": "The 101px Tuesday and 89px Friday columns are too narrow for their headers and content, while the 95px time column cannot contain a full time range. Wednesday and Thursday receive 129px and 144px respectively."
+    },
+    {
+     "design": "r0B",
+     "good": "All weekday headers fit on one line, and the nearly equal day widths make the grid easy to scan across. Its shorter header and overall height give the table a steadier rhythm.",
+     "problems": "Every time range wraps, making the time axis harder to scan. Several timed bookings become tall stacks, especially Thursday’s merged afternoon booking; the separator and room code can end up isolated on their own lines.",
+     "cause": "The 94px time column leaves too little text width for a complete range. The approximately 117px day columns preserve balance but leave limited room for long event titles and parenthesised times."
+    },
+    {
+     "design": "r0C",
+     "good": "The 115px time column keeps the time ranges on one line. Wider Wednesday and Thursday columns also give their longer bookings useful room, while the all-day banner remains continuous.",
+     "problems": "Three weekday headers wrap, and Monday, Tuesday and Friday bookings are crowded into narrow columns. The pronounced differences in day widths make the weekly grid feel uneven and make comparisons across rows less direct.",
+     "cause": "Making the time axis 115px while allocating 130px and 140px to Wednesday and Thursday leaves only 100px, 96px and 100px for Monday, Tuesday and Friday."
+    }
+   ],
+   "designs": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "时间范围保持在一行，时间轴容易扫描；五个工作日列宽接近，横向比较自然。跨三列和跨两行的预订块清楚可辨。",
+     "problems": "周二和周五的日期标题换行，表头因此偏高，也削弱了五个同级列的一致性。部分活动时间和分隔符散落在多行，周一和周三的长内容尤其拥挤。",
+     "cause": "时间列占用115px后，周二的113px和周五的112px不足以容纳各自完整标题；约113px的工作日列也不足以让较长活动及时间保持紧凑。"
+    },
+    {
+     "design": "r1B",
+     "good": "时间范围完整；周三略宽，有助于容纳该列较长的活动内容。合并预订块仍然清楚。",
+     "problems": "周一、周二和周五的标题都换行，表头比r1A更不整齐；较窄的周一和周二也让活动文字更零碎。增加周三宽度没有改善整表高度。",
+     "cause": "周三增加到120px，挤占了周一、周二和周五的宽度，使它们各降到110px；其他列的长内容仍决定行高。"
+    },
+    {
+     "design": "r1C",
+     "good": "五个日期标题都在一行，同级工作日的宽度均衡，表头紧凑；活动内容比前两版略有空间，合并块也保持完整。",
+     "problems": "所有时间范围都断成两行，时间轴失去快速定位的优势，行标签也显得零碎。活动时间仍有多行拆分，因此节省的表头高度伴随了关键索引的可读性损失。",
+     "cause": "时间列缩至105px，扣除21px边距和边框后不足以容纳完整时间范围；释放的宽度分给工作日列，使日期标题得以保持一行。"
+    }
+   ],
+   "designs": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "The time ranges stay on one line, making the left axis easy to scan. The day columns have a steady rhythm, and the three-day banner remains a coherent block.",
+     "problems": "Wednesday through Friday headers wrap, weakening the common header row. Several bookings spread over four or five lines, with times and room codes separated from their titles.",
+     "cause": "The 115px time column accommodates the time ranges, but the 113px and 112px day columns are too narrow for their headers. All day columns are narrow relative to the booking text."
+    },
+    {
+     "design": "r2B",
+     "good": "The day columns are almost equal, and Monday and Tuesday headers remain on one line. The spanning bookings and banner remain visually contiguous.",
+     "problems": "The first time range wraps while the others do not, making the time axis uneven. Three day headers wrap, and long bookings remain fragmented across several lines.",
+     "cause": "Reducing the time column from 115px to 114px crosses the wrapping threshold for 09:00–10:30. The 113px Wednesday–Friday columns still cannot keep their headers on one line."
+    },
+    {
+     "design": "r2C",
+     "good": "All weekday headers fit on one line, giving the grid a compact, consistent header. Equal day widths support comparison, and the banner has ample combined width.",
+     "problems": "Every timed row label wraps, making the time axis taller and harder to scan. Long bookings still occupy up to five lines, so the gain in day width does not remove the main body-text congestion.",
+     "cause": "The 106px time column leaves insufficient text width for a complete time range; the five 115px day columns use the space needed to keep that axis intact."
+    }
+   ],
+   "designs": [
+    "r3A",
+    "r3B",
+    "r3C"
+   ]
+  }
+ },
+ "review": {
+  "method": "two fresh-context blind reviews; letters shuffled; includes browser auto layout and equal widths as neutral references",
+  "verdict": {
+   "status": "confirmed",
+   "per": [
+    {
+     "prefGrade": 4,
+     "prefIsBest": true,
+     "bestNames": [
+      "r3C"
+     ],
+     "badGrades": [
+      3
+     ],
+     "autoGrade": 3,
+     "equalGrade": 3
+    },
+    {
+     "prefGrade": 4,
+     "prefIsBest": true,
+     "bestNames": [
+      "r3C"
+     ],
+     "badGrades": [
+      3
+     ],
+     "autoGrade": 3,
+     "equalGrade": 3
+    }
+   ]
+  },
+  "raw": [
+   {
+    "order": [
+     "r2B",
+     "ref_auto",
+     "r1C",
+     "r1B",
+     "r3C",
+     "ref_equal"
+    ],
+    "best": [
+     "r3C"
+    ],
+    "ratings": {
+     "r2B": {
+      "grade": "acceptable",
+      "why": "The time column keeps most slots on one line, but the first slot wraps and three weekday headers wrap. Narrow day columns also split several event times across lines."
+     },
+     "ref_auto": {
+      "grade": "acceptable",
+      "why": "Most weekday headers fit, but the narrow time column splits every timed row label, making the schedule harder to scan vertically. Several event times also wrap."
+     },
+     "r1C": {
+      "grade": "good",
+      "why": "All weekday headers fit on one line and the day columns have a consistent rhythm. The trade-off is that every timed row label wraps, and several event times are split."
+     },
+     "r1B": {
+      "grade": "acceptable",
+      "why": "All time-slot labels fit on one line, supporting row scanning, but three weekday headers wrap and narrow day columns force frequent breaks within event descriptions."
+     },
+     "r3C": {
+      "grade": "good",
+      "why": "All time-slot labels stay intact, three weekday headers fit on one line, and the day columns are reasonably balanced. Some event times and two weekday headers still wrap."
+     },
+     "ref_equal": {
+      "grade": "acceptable",
+      "why": "The day columns are fairly even, but four weekday headers wrap and the first time slot breaks across lines while the remaining slots fit. Several event times also split."
+     }
+    },
+    "confidence": "medium",
+    "unsure": "The choice between E and C depends on whether intact time-slot labels or single-line weekday headers matter more for this schedule; I favor the time slots because they anchor each row."
+   },
+   {
+    "order": [
+     "ref_equal",
+     "r2B",
+     "r3C",
+     "ref_auto",
+     "r1C",
+     "r1B"
+    ],
+    "best": [
+     "r3C"
+    ],
+    "ratings": {
+     "ref_equal": {
+      "grade": "acceptable",
+      "why": "列宽比较均衡，但多数日期标题换行，首个时间段和多项会议时间也被拆开，扫描周视图略显费力。"
+     },
+     "r2B": {
+      "grade": "acceptable",
+      "why": "与 A 类似，日期标题和首个时间段换行；各日列宽接近，会议名称与时间仍有较多碎行。"
+     },
+     "r3C": {
+      "grade": "good",
+      "why": "时间段完整保留在一行，前三个日期标题也完整，行列定位清楚；但部分会议时间和周五的活动名称仍被拆开。"
+     },
+     "ref_auto": {
+      "grade": "acceptable",
+      "why": "前四个日期标题完整，部分活动内容获得较宽空间；但时间列过窄，所有时间段都拆成两行，影响纵向查找。"
+     },
+     "r1C": {
+      "grade": "acceptable",
+      "why": "五个日期标题均完整，日列宽度较均衡；但所有时间段均换行，会议时间也多处拆开。"
+     },
+     "r1B": {
+      "grade": "acceptable",
+      "why": "时间段完整，便于纵向查找；但周一、周二和周五标题换行，较窄的日列也使部分活动名称和时间碎行。"
+     }
+    },
+    "confidence": "medium",
+    "unsure": "C 与其他布局的差距不大；这取决于读者是否更看重完整的时间段，而非完整的日期标题。"
+   }
+  ]
+ },
+ "provenance": {
+  "models": {
+   "final": "codex/gpt-6.1-terra",
+   "r0": "opencode-zen-free/deepseek-v4.1-flash-free",
+   "r1": "codex/gpt-6.1-terra",
+   "r2": "codex/gpt-6.1-terra",
+   "r3": "codex/gpt-6.1-terra",
+   "review0": "codex/gpt-6.1-terra",
+   "review1": "codex/gpt-6.1-terra"
+  },
+  "modelChain": "codex/gpt-6.1-terra",
+  "pi": "1.3.0",
+  "created": "2026-11-26T21:46:04.470Z",
+  "note": "AI visual design judgement; not a human reading study"
+ }
+}

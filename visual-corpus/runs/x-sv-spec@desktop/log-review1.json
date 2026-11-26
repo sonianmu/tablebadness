@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [検証] 仕様比較 · セクション行 (language ja).\nGrid: 3 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"ディスプレイ\" spans 3 col × 1 row; \"バッテリー\" spans 3 col × 1 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"項目 › ディスプレイ › バッテリー\" · longest unbreakable word 16px · one-line width 135px\n  col 2: header \"スタンダード › ディスプレイ › バッテリー\" · longest unbreakable word 32px · one-line width 90px\n  col 3: header \"プロ › ディスプレイ › バッテリー\" · longest unbreakable word 33px · one-line width 590px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 7700,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Row labels and headers stay intact, and the long Pro description fits in two lines. The Standard column has some spare space that could benefit Pro.\"},\"B\":{\"grade\":\"excellent\",\"why\":\"All headers and row labels stay intact, while the Pro column has enough room for the charging note on one line and the longer description on two.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"Equal columns leave substantial unused space in the first two columns; the Pro description takes three lines and the charging note wraps.\"},\"D\":{\"grade\":\"poor\",\"why\":\"The narrow first two columns split the Standard header, the refresh-rate label and battery values across lines, making comparisons harder.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"Labels stay intact, but the wide Standard column leaves the Pro charging note wrapping with only a few characters on its second line.\"},\"F\":{\"grade\":\"excellent\",\"why\":\"Headers and row labels remain intact, and the Pro column accommodates the charging note on one line and the longer description on two. The columns use space efficiently.\"}},\"best\":[\"B\",\"F\"],\"confidence\":\"medium\",\"unsure\":\"B and F differ only slightly in column widths; their practical readability is very similar.\"}\n"
+  }
+ ]
+}

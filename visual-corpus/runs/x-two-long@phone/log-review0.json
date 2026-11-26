@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 两列长文 · 方案对比 (language zh-CN).\nGrid: 3 columns × 4 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"维度\" · longest unbreakable word 16px · one-line width 31px\n  col 2: header \"方案 A：自建集群\" · longest unbreakable word 47px · one-line width 557px\n  col 3: header \"方案 B：托管服务\" · longest unbreakable word 31px · one-line width 552px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10713,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"excellent\",\"why\":\"维度列紧凑但文字完整，两方案列宽接近，表头和正文都易于横向比较；各行的换行节奏也较均衡。\"},\"B\":{\"grade\":\"excellent\",\"why\":\"两方案获得近似的宽度，表头完整，正文换行均匀；维度标签清晰，行与行之间容易区分。\"},\"C\":{\"grade\":\"good\",\"why\":\"维度列和两个表头都完整，方案 B 略宽，使其正文较疏朗，但两方案的换行节奏稍不一致。\"},\"D\":{\"grade\":\"poor\",\"why\":\"方案 A 明显偏宽，方案 B 表头被拆成两行，正文也更拥挤；同等地位的两方案难以平衡比较。\"},\"E\":{\"grade\":\"poor\",\"why\":\"维度列过窄，表头及所有行标签都被拆成单字竖排，削弱了行的识别和扫描；两方案正文宽度倒是比较均衡。\"},\"F\":{\"grade\":\"bad\",\"why\":\"维度列占用过多空间，两个方案表头均被拆行，正文列狭窄且换行频繁，表格显得冗长拥挤。\"}},\"best\":[\"A\",\"B\"],\"confidence\":\"high\",\"unsure\":\"A 和 B 在所示图片中几乎无法区分；如果存在细微宽度差异，难以仅凭图片判断哪一个更优。\"}\n"
+  }
+ ]
+}

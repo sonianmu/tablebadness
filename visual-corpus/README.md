@@ -4,7 +4,7 @@ An independent set of table layouts, built by designing them visually rather tha
 
 Research brief: [`../VISUAL_RESEARCH.md`](../VISUAL_RESEARCH.md).
 
-**Model:** `workbuddy-ai/deepseek-v4.1-flash-sg` through Pi (`pi -p`, every call a fresh, tool-less, session-less context, thinking `high` for design and review). Vision was checked first: the model correctly read random codes, numbers and colours from a rendered table. It also hallucinated a duplicate table in one test, which is why every geometry fact is measured, not taken from the model.
+**Model:** first `workbuddy-ai/deepseek-v4.1-flash-sg`, later `codex/gpt-6.1-terra` (see Status), through Pi (`pi -p`, every call a fresh, tool-less, session-less context, thinking `high` for design and review). Vision was checked first: the model correctly read random codes, numbers and colours from a rendered table. It also hallucinated a duplicate table in one test, which is why every geometry fact is measured, not taken from the model.
 
 ## Layout
 
@@ -16,6 +16,7 @@ corpus/<split>/*.json    one record per scenario (schema below)
 corpus/<split>/img/      real Chromium renders of every recorded layout
 corpus/index.json        index + coverage + audit (tools/index.mjs)
 corpus/holdout/FROZEN.json  sha256 of every holdout file, written before any algorithm sees them
+corpus/holdout-amendments/  post-freeze re-reviews/redesigns of holdout records (own FROZEN.json)
 runs/<scenario>/         resumable state, every prompt/raw reply (log-*.json) and every intermediate render
 ```
 
@@ -88,22 +89,36 @@ All dependencies are project-local (`../node_modules/playwright-core`, Playwrigh
 
 ## Status of this build
 
-Models used: `workbuddy-ai/deepseek-v4.1-flash-sg` for the first 50 scenarios. After its credits ran out, the chain `codex/gpt-6.1-terra` → `opencode-zen-free/deepseek-v4.1-flash-free`, which falls back automatically on exhausted quota. Every record lists the model that answered each step (`provenance.models`).
+Models used:
+- `workbuddy-ai/deepseek-v4.1-flash-sg` for the first 50 scenarios;
+- then the chain `codex/gpt-6.1-terra` → `opencode-zen-free/deepseek-v4.1-flash-free`, which falls back automatically on exhausted quota;
+- then `codex/gpt-6.1-terra` alone, with thinking `medium` and model input images downscaled to 0.75 (`VC_THINKING`, `VC_SCALE`; saved screenshots stay full size).
 
-The build stopped when **all three** model quotas were exhausted. At that point **157 of 348** scenarios were built across 64 families:
+Every record lists the model that answered each step (`provenance.models`).
 
-| Split | Built |
-|---|--:|
-| holdout | 68 / 80 |
-| validation | 71 / 86 |
-| research | 18 / 182 |
+The build stopped again on exhausted quota. **297 of 348** scenarios are built across 119 families:
 
-- **Status:** 128 confirmed, 17 contested, 12 rejected.
-- **Mean blind grade:** designed layouts 4.11, browser auto 2.72, equal widths 1.56.
+| Split | Built | confirmed | contested | rejected |
+|---|--:|--:|--:|--:|
+| holdout | 80 / 80 | 65 | 8 | 7 |
+| validation | 86 / 86 | 75 | 8 | 3 |
+| research | 131 / 182 | 122 | 5 | 4 |
 
-The holdout was frozen at 68 scenarios (`corpus/holdout/FROZEN.json`). The 12 unfinished holdout scenarios can be added later with `node tools/freeze.mjs --append`; this refuses to run if any already-frozen file changed. No layout algorithm has been run on any split.
+- **Mean blind grade:** designed layouts 4.27, browser auto 2.71, equal widths 1.64. Audit: 0 issues.
 
-To resume, run `sh tools/run-all.sh`. It skips everything already built, re-reviews scroll scenarios judged under the first prompt, redesigns rejected scenarios once, and appends to the holdout freeze.
+**Holdout freeze.** `corpus/holdout/FROZEN.json` covers all 80 holdout scenarios:
+- 68 were frozen first;
+- the 12 finished later were added with `--append`, which refuses to run if any frozen file changed.
+
+No layout algorithm has been run on any split.
+
+**Holdout amendments.** Re-reviewing scroll scenarios and redesigning rejected ones would change frozen holdout records. Those changes never overwrite the frozen record:
+- `tools/design.mjs` writes a changed version to `corpus/holdout-amendments/<id>.json`, with an `amends` field, and hashes it separately (`freeze.mjs --set holdout-amendments`);
+- when only provenance would change, nothing is written.
+
+The frozen record stays canonical. There are 8 amendments: 3 rejected → confirmed, 3 still rejected after a redesign or re-review, and 2 confirmed records re-reviewed with the same status. A user of the holdout chooses, and reports, which version they evaluate against.
+
+To resume, run `sh tools/run-all.sh`. It skips everything already built.
 
 ## Limits
 

@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 主流旗舰手机屏幕与价格参数 (language zh-CN).\nGrid: 4 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"型号\" spans 1 col × 2 row; \"屏幕\" spans 2 col × 1 row; \"价格\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"型号\" · longest unbreakable word 50px · one-line width 155px\n  col 2: header \"屏幕 › 尺寸\" · longest unbreakable word 31px · one-line width 66px\n  col 3: header \"屏幕 › 技术\" · longest unbreakable word 78px · one-line width 486px\n  col 4: header \"价格\" · longest unbreakable word 38px · one-line width 72px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11234,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"excellent\",\"why\":\"型号、尺寸和价格都保持单行，技术描述均为两行；列宽分配符合内容多少，行与行之间便于比较。\"},\"B\":{\"grade\":\"excellent\",\"why\":\"型号、尺寸和价格保持单行，技术描述稳定地排成两行，整体紧凑且易于横向阅读。\"},\"C\":{\"grade\":\"good\",\"why\":\"各行仍然清晰，型号、尺寸和价格均为单行，但技术列较窄，部分词组和刷新率在行间断开，价格列留白较多。\"},\"D\":{\"grade\":\"poor\",\"why\":\"技术列较宽，但尺寸和价格频繁换行，两个较长型号也被拆成两行，削弱了行内信息的整体性。\"},\"E\":{\"grade\":\"bad\",\"why\":\"尺寸和价格列留白过多，技术列却过窄，描述被挤成多行并频繁断词，行高明显增加。\"},\"F\":{\"grade\":\"bad\",\"why\":\"尺寸、价格和较长型号都频繁换行；技术列虽宽，却不足以抵消其他三列被挤压造成的阅读负担。\"}},\"best\":[\"A\",\"B\"],\"confidence\":\"high\",\"unsure\":\"A 与 B 的列宽及换行差异很小，从图中难以判断哪一个更优。\"}\n"
+  }
+ ]
+}

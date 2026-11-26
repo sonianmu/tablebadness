@@ -1,29 +1,19 @@
 {
- "model": "workbuddy-ai/deepseek-v4.1-flash-sg",
+ "model": "codex/gpt-6.1-terra",
  "thinking": "medium",
- "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nTable: [val] EN · Dependency audit (language en).\nGrid: 5 columns × 6 rows. Row headers: none declared.\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"Package\" · longest unbreakable word 166px · one-line width 443px\n  col 2: header \"Version\" · longest unbreakable word 60px · one-line width 101px\n  col 3: header \"License\" · longest unbreakable word 85px · one-line width 85px\n  col 4: header \"Vulnerabilities\" · longest unbreakable word 114px · one-line width 114px\n  col 5: header \"Notes\" · longest unbreakable word 280px · one-line width 519px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 847px (the dashed pink box). The column widths you choose must sum to at most 846px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nThe image shows the table's content with every cell on one line, so you can read everything. Study it first.\n1) Understand it: what is the table for, how will people read, scan and compare it, which columns play the same or similar role, which values must stay intact, which text may wrap naturally, and where existing row height could absorb wrapping.\n2) Propose 3 genuinely different column-width designs for 847px (different strategies, not small variations).\nReply ONLY JSON: {\"understanding\":{\"purpose\":\"\",\"reading\":\"\",\"groups\":[\"columns that belong together and why\"],\"keep_intact\":[\"\"],\"may_wrap\":[\"\"]},\"designs\":[{\"name\":\"A\",\"widths\":[int px per column, column 1 first],\"idea\":\"one sentence\"}]}",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nTable: [val] EN · Dependency audit (language en).\nGrid: 5 columns × 6 rows. Row headers: none declared.\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"Package\" · longest unbreakable word 166px · one-line width 443px\n  col 2: header \"Version\" · longest unbreakable word 60px · one-line width 101px\n  col 3: header \"License\" · longest unbreakable word 85px · one-line width 85px\n  col 4: header \"Vulnerabilities\" · longest unbreakable word 114px · one-line width 114px\n  col 5: header \"Notes\" · longest unbreakable word 280px · one-line width 519px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 847px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 846px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nThe image shows the table's content with every cell on one line, so you can read everything. Study it first.\n1) Understand it: what is the table for, how will people read, scan and compare it, which columns play the same or similar role, which values must stay intact, which text may wrap naturally, and where existing row height could absorb wrapping.\n2) Propose 3 genuinely different column-width designs for 847px (different strategies, not small variations).\nReply ONLY JSON: {\"understanding\":{\"purpose\":\"\",\"reading\":\"\",\"groups\":[\"columns that belong together and why\"],\"keep_intact\":[\"\"],\"may_wrap\":[\"\"]},\"designs\":[{\"name\":\"A\",\"widths\":[int px per column, column 1 first],\"idea\":\"one sentence\"}]}",
  "log": [
   {
    "attempt": 1,
-   "ms": 1278,
-   "code": 1,
-   "problem": "exit 1 429: {\"message\":\"WorkBuddy AI: Credits exhausted. Please visit the link below to purchase add-on packs and get more credits: https://www.codebuddy.ai/profile/usage  — WorkBuddy requires an active credit package even for 0-rate free models; check your account package balance\",\"type\":\"insufficient_quo",
-   "raw": ""
-  },
-  {
-   "attempt": 2,
-   "ms": 1170,
-   "code": 1,
-   "problem": "exit 1 429: {\"message\":\"WorkBuddy AI: Credits exhausted. Please visit the link below to purchase add-on packs and get more credits: https://www.codebuddy.ai/profile/usage  — WorkBuddy requires an active credit package even for 0-rate free models; check your account package balance\",\"type\":\"insufficient_quo",
-   "raw": ""
-  },
-  {
-   "attempt": 3,
-   "ms": 962,
-   "code": 1,
-   "problem": "exit 1 429: {\"message\":\"WorkBuddy AI: Credits exhausted. Please visit the link below to purchase add-on packs and get more credits: https://www.codebuddy.ai/profile/usage  — WorkBuddy requires an active credit package even for 0-rate free models; check your account package balance\",\"type\":\"insufficient_quo",
-   "raw": ""
+   "model": "codex/gpt-6.1-terra",
+   "ms": 12300,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"understanding\":{\"purpose\":\"Audit English-language dependencies, their versions, licenses, vulnerabilities, and associated notes.\",\"reading\":\"Readers scan package names to find dependencies, then read across each row to assess license and vulnerability status alongside the notes. Vulnerability counts and license values also invite vertical comparison.\",\"groups\":[\"Package and Version identify the installed dependency.\",\"License and Vulnerabilities summarize audit status and should be easy to compare down the table.\",\"Notes provide context for the audit findings and belong visually with their row.\"],\"keep_intact\":[\"Package identifiers and version strings\",\"License names and vulnerability counts\",\"Long unbreakable text in Notes where space permits\"],\"may_wrap\":[\"Notes prose can wrap at word boundaries.\",\"Long package text can wrap at available break points; wrapped notes in the same row can absorb some of that height.\"]},\"designs\":[{\"name\":\"A\",\"widths\":[187,90,106,135,328],\"idea\":\"Protect the longest unbreakable content in every column and give Notes the remaining space, accepting more wrapping in Package.\"},{\"name\":\"B\",\"widths\":[300,82,106,135,223],\"idea\":\"Favor package identification with a broad first column, accepting more wrapping in Notes and possible overflow or forced breaking of its longest unbreakable value.\"},{\"name\":\"C\",\"widths\":[220,100,106,160,260],\"idea\":\"Give the audit fields more breathing room for scanning and comparison, while sharing the remaining space between Package and Notes and accepting possible breaking or overflow in Notes.\"}]}\n"
   }
- ],
- "failed": true
+ ]
 }

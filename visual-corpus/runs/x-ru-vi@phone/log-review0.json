@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Русский / Tiếng Việt · Diacritics (language ru).\nGrid: 3 columns × 4 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Термин\" · longest unbreakable word 152px · one-line width 152px\n  col 2: header \"Tiếng Việt\" · longest unbreakable word 41px · one-line width 126px\n  col 3: header \"Описание\" · longest unbreakable word 101px · one-line width 697px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 8815,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Russian terms stay intact and rows are easy to distinguish. The narrow Vietnamese column forces frequent wrapping, while the descriptions remain readable.\"},\"B\":{\"grade\":\"poor\",\"why\":\"All three Russian terms break within words, making the first column harder to scan. The extra space in the other columns does not fully compensate.\"},\"C\":{\"grade\":\"bad\",\"why\":\"Russian terms and words in the descriptions break within words, including very short fragments. The wider Vietnamese column comes at a substantial cost to both neighboring columns.\"},\"D\":{\"grade\":\"good\",\"why\":\"Russian terms stay intact and the description has relatively generous space. Vietnamese phrases wrap heavily, but their individual words remain legible.\"},\"E\":{\"grade\":\"good\",\"why\":\"The Russian terms remain intact and the descriptions read coherently. The narrow Vietnamese column creates several short lines and splits its header.\"}},\"best\":[\"A\",\"D\",\"E\"],\"confidence\":\"medium\",\"unsure\":\"A, D and E are very close visually; their small width differences do not produce a clear reading advantage in these renderings.\"}\n"
+  }
+ ]
+}

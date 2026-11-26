@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val] Indic · Planets (language hi).\nGrid: 5 columns × 4 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"ग्रह\" · longest unbreakable word 28px · one-line width 28px\n  col 2: header \"গ্রহ\" · longest unbreakable word 32px · one-line width 32px\n  col 3: header \"கோள்\" · longest unbreakable word 65px · one-line width 65px\n  col 4: header \"दूरी (AU)\" · longest unbreakable word 34px · one-line width 56px\n  col 5: header \"टिप्पणी\" · longest unbreakable word 128px · one-line width 508px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nRendering convention: the screenshot always shows the WHOLE table. Anything beyond the dashed box is not clipped; it is the part a reader reaches by scrolling sideways, so judge both what fits in the box at first sight and the cost of scrolling to the rest.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9070,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"The whole table fits in the viewport and the planet names remain intact, but the narrow comments column produces many short lines and splits Tamil words.\"},\"B\":{\"grade\":\"good\",\"why\":\"The planet names and distance header read comfortably, and the wider comments column reduces wrapping. The comments extend beyond the initial viewport, so readers must scroll to read them.\"},\"C\":{\"grade\":\"bad\",\"why\":\"The comments are squeezed into a very narrow strip, creating excessive wrapping and word splits. Tamil planet names also break across lines, making rows harder to scan.\"},\"D\":{\"grade\":\"good\",\"why\":\"The planet names remain intact and the comments have more room than in A. Some comment text lies beyond the viewport, and the distance header wraps.\"},\"E\":{\"grade\":\"good\",\"why\":\"The unwrapped distance header and wider comments give the table a clear rhythm, though readers must scroll sideways to finish reading the comments.\"},\"F\":{\"grade\":\"good\",\"why\":\"The planet names stay intact and the comments are less cramped than in A. The wrapped distance header and off-screen comment text make scanning slightly less convenient.\"}},\"best\":[\"E\"],\"confidence\":\"low\",\"unsure\":\"The right edges of the wider layouts extend beyond the supplied image, so their full widths and the complete wrapping of their comments cannot be judged precisely.\"}\n"
+  }
+ ]
+}

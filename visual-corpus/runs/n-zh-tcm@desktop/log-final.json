@@ -1,0 +1,27 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "d-r1B.png",
+  "d-r1C.png",
+  "d-r2A.png",
+  "d-r2B.png",
+  "d-r2C.png",
+  "d-r3A.png",
+  "d-r3B.png",
+  "d-r3C.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nTable: 常用中药方剂组成与主治简表 (language zh-CN).\nGrid: 4 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"方名\" · longest unbreakable word 16px · one-line width 77px\n  col 2: header \"组成\" · longest unbreakable word 31px · one-line width 368px\n  col 3: header \"功效\" · longest unbreakable word 31px · one-line width 138px\n  col 4: header \"主治\" · longest unbreakable word 31px · one-line width 1195px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nThese are all candidate designs you produced, rendered in a real browser:\nDesign r1B: widths [98, 210, 125, 286] · table 720×686px · row heights [36, 60, 83, 106, 83, 83, 129, 106] · column headers wrapped 0/4 · tallest cell 5 lines · mid-word splits 0\nDesign r1C: widths [98, 185, 155, 281] · table 720×733px · row heights [36, 60, 83, 129, 83, 106, 129, 106] · column headers wrapped 0/4 · tallest cell 5 lines · mid-word splits 0\nDesign r2A: widths [98, 220, 120, 281] · table 720×733px · row heights [36, 60, 83, 129, 83, 106, 129, 106] · column headers wrapped 0/4 · tallest cell 5 lines · mid-word splits 0\nDesign r2B: widths [98, 205, 120, 296] · table 720×686px · row heights [36, 60, 83, 106, 83, 83, 129, 106] · column headers wrapped 0/4 · tallest cell 5 lines · mid-word splits 0\nDesign r2C: widths [98, 225, 110, 286] · table 720×686px · row heights [36, 60, 83, 106, 83, 83, 129, 106] · column headers wrapped 0/4 · tallest cell 5 lines · mid-word splits 0\nDesign r3A: widths [98, 215, 115, 291] · table 720×686px · row heights [36, 60, 83, 106, 83, 83, 129, 106] · column headers wrapped 0/4 · tallest cell 5 lines · mid-word splits 0\nDesign r3B: widths [98, 220, 115, 286] · table 720×686px · row heights [36, 60, 83, 106, 83, 83, 129, 106] · column headers wrapped 0/4 · tallest cell 5 lines · mid-word splits 0\nDesign r3C: widths [98, 210, 110, 301] · table 720×640px · row heights [36, 60, 60, 106, 60, 83, 129, 106] · column headers wrapped 0/4 · tallest cell 5 lines · mid-word splits 0\n\nDecide as a designer:\n- \"preferred\": the best design(s). Name more than one only if they are genuinely equally good.\n- \"acceptable\": other designs a careful designer would still publish.\n- \"bad\": designs with clear visual faults, each with the fault. If none of these is clearly bad, also return ONE deliberately bad but plausible alternative as \"contrast\" widths and say what is wrong with it.\n- \"ranges\": for each column, the px range within which the preferred design stays equally good (keep other columns' proportions).\n- \"rationale\": 2–4 concrete sentences about this table.\n- \"principles\": observations that seem GENERAL (likely to hold for other tables) vs SPECIFIC to this case.\n- \"tradeoffs\" and \"uncertain\": what reasonable designers could disagree on.\nReply ONLY JSON: {\"preferred\":[\"name\"],\"acceptable\":[\"name\"],\"bad\":[{\"design\":\"name\",\"why\":\"\"}],\"contrast\":{\"widths\":[int px],\"why\":\"\"} or null,\"ranges\":[[min,max]],\"rationale\":\"\",\"principles\":{\"general\":[\"\"],\"specific\":[\"\"]},\"tradeoffs\":\"\",\"uncertain\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11859,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"preferred\":[\"r3C\"],\"acceptable\":[\"r1B\",\"r1C\",\"r2A\",\"r2B\",\"r2C\",\"r3A\",\"r3B\"],\"bad\":[],\"contrast\":{\"widths\":[98,300,180,151],\"why\":\"组成和功效列占去过多宽度，主治列被压得过窄；长段落会频繁换行，拉高各行并妨碍症状的连续阅读。\"},\"ranges\":[[98,100],[208,212],[108,112],[299,303]],\"rationale\":\"r3C 保留完整方名，并把最多宽度分配给内容最长的主治列，使多行症状描述更易连续阅读。组成列仍足以容纳多数药味列表，功效列虽有换行，但短语与对应方名、主治的关系清楚。几个较短的主治条目因此少占一行，行高更贴合内容；六味地黄丸等长条目仍保留所需空间。\",\"principles\":{\"general\":[\"按内容长度和阅读任务分配宽度，避免让长文本列过窄。\",\"让行标识保持完整，并检查换行对整行高度和跨列比较的影响。\",\"表格高度只是判断因素之一，列内语句的完整性和行的可读性同样重要。\"],\"specific\":[\"本表主治远长于其他列，适合获得最大宽度。\",\"98px 的方名列能容纳本表最长方名；功效列较窄仍可读，因为多数条目简短。\"]},\"tradeoffs\":\"r3C 的主治更宽，但组成和功效中的部分短语换行较多；偏重药味扫描的设计师可能更喜欢 r3B 或 r2C。\",\"uncertain\":\"范围是依据已渲染方案作出的保守估计，并非逐像素验证的等优区间；调整某一列时须按其他列比例同步调整，总宽不超过 719px。\"}\n"
+  }
+ ]
+}

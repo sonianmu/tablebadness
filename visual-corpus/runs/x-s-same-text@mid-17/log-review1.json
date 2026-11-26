@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 对照 · 同一文本的两种角色 (language zh-CN).\nGrid: 4 columns × 4 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"指标名称\" · longest unbreakable word 18px · one-line width 122px\n  col 2: header \"年度经营目标\" · longest unbreakable word 36px · one-line width 109px\n  col 3: header \"客户满意度提升\" · longest unbreakable word 33px · one-line width 122px\n  col 4: header \"研发效能改进\" · longest unbreakable word 18px · one-line width 157px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 480px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 479px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 7109,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"All row labels stay on one line, making the rows easy to identify. The three data headers wrap, and 50 sits alone on a second line.\"},\"B\":{\"grade\":\"poor\",\"why\":\"Every row label wraps, several headers break awkwardly, and 50 is isolated on its own line. The extra space in the data columns does little to help scanning.\"},\"C\":{\"grade\":\"excellent\",\"why\":\"All row labels remain intact, while the data columns are balanced enough to keep the values readable. The wrapped “到 50” stays together, and rows are easy to scan.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"The final header fits on one line, but the customer satisfaction row label breaks with a single character on the second line, and 50 is isolated.\"},\"E\":{\"grade\":\"poor\",\"why\":\"All three row labels wrap, including single-character endings. The wider final column keeps its header intact but weakens the more important row identification.\"},\"F\":{\"grade\":\"poor\",\"why\":\"All row labels wrap and the numeric value 50 is isolated. The data headers also wrap, so the narrow row-label column brings little visible benefit.\"}},\"best\":[\"C\"],\"confidence\":\"high\",\"unsure\":\"The images are small, so the exact column widths are inferred from the visible wrapping.\"}\n"
+  }
+ ]
+}

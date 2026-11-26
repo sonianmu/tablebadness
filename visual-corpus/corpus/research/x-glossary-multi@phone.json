@@ -1,0 +1,1958 @@
+{
+ "id": "x-glossary-multi@phone",
+ "family": "x-glossary-multi",
+ "split": "research",
+ "status": "confirmed",
+ "table": {
+  "title": "Mixed · Multilingual glossary",
+  "lang": "en",
+  "structure": "markdown",
+  "html": null,
+  "md": "\n| English | 中文 | 日本語 | 한국어 | العربية |\n|---|---|---|---|---|\n| Table | 表格 | 表 | 표 | جدول |\n| Line break | 换行 | 改行 | 줄 바꿈 | فاصل الأسطر |\n| Readability | 可读性 | 可読性 | 가독성 | سهولة القراءة |\n| Horizontal scrolling | 横向滚动 | 横スクロール | 가로 스크롤 | التمرير الأفقي |\n| Column width allocation | 列宽分配 | 列幅の割り当て | 열 너비 할당 | توزيع عرض الأعمدة |\n",
+  "rowHeader": false,
+  "source": "project data/ (used during algorithm development)",
+  "brief": null
+ },
+ "conditions": {
+  "availableWidth": 360,
+  "fontSize": 15,
+  "policy": "fit",
+  "css": "src/table.css (padding 6px 10px, 1px borders, line-height 1.55)",
+  "browser": "Chromium (Playwright build), macOS system fonts",
+  "contentFacts": {
+   "WminNoSplit": 271,
+   "WallOneLine": 625
+  }
+ },
+ "understanding": {
+  "purpose": "A five-language glossary for translators/writers: one English source term per row, with parallel translations in Chinese, Japanese, Korean and Arabic. Its job is lookup and cross-language comparison, not numeric analysis.",
+  "reading": "The eye anchors on the English column (col 1) to find the term, then sweeps right across the four translation columns, comparing the same row across scripts. Rows must read as units, so no column may be so narrow that a row becomes a ragged multi-line tower while its neighbours are one line.",
+  "groups": [
+   "cols 2–5 (中文, 日本語, 한국어, العربية) form one parallel group of equal-role translation columns; they should share a common rhythm even though their scripts differ in width",
+   "col 1 (English) is the anchor/key column and should be visually dominant over the translations"
+  ],
+  "keep_intact": [
+   "Arabic words in col 5, especially the 44px unbreakable token — col 5 must get at least ~65px so no Arabic word splits mid-word",
+   "English words in col 1 (longest unbreakable 76px) — col 1 must stay ≥ ~97px so 'Horizontal' never breaks",
+   "All CJK single terms (表格, 表, 표) which are short and must not be split into stray characters by over-narrow columns"
+  ],
+  "may_wrap": [
+   "Multi-word English phrases ('Horizontal scrolling', 'Column width allocation') — natural wrap at the space, absorbed by existing row height",
+   "Japanese and Chinese terms (横スクロール, 横向滚动, 列幅の割り当て) — these wrap cleanly at character boundaries",
+   "Korean phrases (가로 스크롤, 열 너비 할당) — wrap at the space between eojeol",
+   "Arabic phrases — wrap at word boundaries as long as each word fits"
+  ]
+ },
+ "preferred": [
+  {
+   "name": "r1B",
+   "colWidths": [
+    104,
+    54,
+    70,
+    60,
+    71
+   ],
+   "requestedWidths": [
+    104,
+    54,
+    70,
+    60,
+    71
+   ],
+   "tableWidth": 360,
+   "tableHeight": 334.8,
+   "rowHeights": [
+    36.3,
+    36.3,
+    59.5,
+    59.5,
+    59.5,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     1
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     2
+    ],
+    [
+     2,
+     4,
+     2
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     2
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     4,
+     2
+    ],
+    [
+     4,
+     0,
+     2
+    ],
+    [
+     4,
+     1,
+     2
+    ],
+    [
+     4,
+     2,
+     2
+    ],
+    [
+     4,
+     3,
+     2
+    ],
+    [
+     4,
+     4,
+     2
+    ],
+    [
+     5,
+     0,
+     3
+    ],
+    [
+     5,
+     1,
+     2
+    ],
+    [
+     5,
+     2,
+     3
+    ],
+    [
+     5,
+     3,
+     3
+    ],
+    [
+     5,
+     4,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/x-glossary-multi@phone__r1B.png",
+   "note": "Take 4px from Arabic and 1px from Chinese to give English 104px. English gets 83px of text, so 'Column width' and 'Horizontal scrolling' wrap more naturally and the key column reads stronger; Chinese at 54px still clears the 31px two-character terms; Arabic at 71px still clears the 44px word, though its phrases wrap a little more."
+  }
+ ],
+ "acceptable": [
+  {
+   "name": "r1C",
+   "colWidths": [
+    98,
+    53,
+    69,
+    60,
+    79
+   ],
+   "requestedWidths": [
+    98,
+    53,
+    69,
+    60,
+    79
+   ],
+   "tableWidth": 360,
+   "tableHeight": 334.8,
+   "rowHeights": [
+    36.3,
+    36.3,
+    59.5,
+    59.5,
+    59.5,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     1
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     2
+    ],
+    [
+     2,
+     4,
+     2
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     2
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     4,
+     2
+    ],
+    [
+     4,
+     0,
+     2
+    ],
+    [
+     4,
+     1,
+     2
+    ],
+    [
+     4,
+     2,
+     2
+    ],
+    [
+     4,
+     3,
+     2
+    ],
+    [
+     4,
+     4,
+     2
+    ],
+    [
+     5,
+     0,
+     3
+    ],
+    [
+     5,
+     1,
+     2
+    ],
+    [
+     5,
+     2,
+     3
+    ],
+    [
+     5,
+     3,
+     3
+    ],
+    [
+     5,
+     4,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/x-glossary-multi@phone__r1C.png",
+   "note": "Push English down to its safe floor (98px = 77px of text, just clearing the 76px 'Horizontal'), Chinese to 53px (32px of text) and Japanese to 69px (48px of text, just clearing 可読性), then give Arabic 79px. This tests the opposite trade-off: Arabic gets 58px of text and fewer three-line phrases, while English remains dominant by 19px and no short CJK term splits."
+  },
+  {
+   "name": "r2B",
+   "colWidths": [
+    98,
+    62,
+    68,
+    66,
+    65
+   ],
+   "requestedWidths": [
+    98,
+    62,
+    68,
+    66,
+    65
+   ],
+   "tableWidth": 360,
+   "tableHeight": 334.8,
+   "rowHeights": [
+    36.3,
+    36.3,
+    59.5,
+    59.5,
+    59.5,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     1
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     1
+    ],
+    [
+     2,
+     4,
+     2
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     2
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     4,
+     2
+    ],
+    [
+     4,
+     0,
+     2
+    ],
+    [
+     4,
+     1,
+     2
+    ],
+    [
+     4,
+     2,
+     2
+    ],
+    [
+     4,
+     3,
+     2
+    ],
+    [
+     4,
+     4,
+     2
+    ],
+    [
+     5,
+     0,
+     3
+    ],
+    [
+     5,
+     1,
+     2
+    ],
+    [
+     5,
+     2,
+     3
+    ],
+    [
+     5,
+     3,
+     2
+    ],
+    [
+     5,
+     4,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/x-glossary-multi@phone__r2B.png",
+   "note": "Buy back the row-6 height by giving Japanese 68px (text 47) — three characters per line instead of two, so '横スクロール' becomes 3+2 and '列幅の割り当て' 3+3+1, keeping row 6 at three lines and the table at 335px. Korean 66 is fully clean, Arabic 65 keeps its words whole. The price is Chinese back at 62 (text 41), so '可读性' again breaks 2+1 — I accept one orphan in row 3 to avoid a four-line row 6 and to restore a steadier group rhythm (62/68/66/65)."
+  },
+  {
+   "name": "r3B",
+   "colWidths": [
+    97,
+    56,
+    78,
+    63,
+    65
+   ],
+   "requestedWidths": [
+    97,
+    56,
+    78,
+    63,
+    65
+   ],
+   "tableWidth": 360,
+   "tableHeight": 334.8,
+   "rowHeights": [
+    36.3,
+    36.3,
+    59.5,
+    59.5,
+    59.5,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     1
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     2
+    ],
+    [
+     2,
+     4,
+     2
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     2
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     4,
+     2
+    ],
+    [
+     4,
+     0,
+     2
+    ],
+    [
+     4,
+     1,
+     2
+    ],
+    [
+     4,
+     2,
+     2
+    ],
+    [
+     4,
+     3,
+     2
+    ],
+    [
+     4,
+     4,
+     2
+    ],
+    [
+     5,
+     0,
+     3
+    ],
+    [
+     5,
+     1,
+     2
+    ],
+    [
+     5,
+     2,
+     3
+    ],
+    [
+     5,
+     3,
+     3
+    ],
+    [
+     5,
+     4,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/x-glossary-multi@phone__r3B.png",
+   "note": "Keep English at its 97px floor and pay the longest content in the table: Japanese goes 68→78 so 横スクロール and 列幅の割り当て break into balanced 3+2 / 3+4 chunks instead of 3+1+1 shards. Chinese drops to 56 (still ≥2 characters per line: 横向/滚动, 列宽/分配) and Korean to 63 — both lose nothing since they already wrap at 2 lines."
+  }
+ ],
+ "bad": [
+  {
+   "name": "r2A",
+   "colWidths": [
+    98,
+    67,
+    64,
+    65,
+    65
+   ],
+   "requestedWidths": [
+    98,
+    67,
+    64,
+    65,
+    65
+   ],
+   "tableWidth": 360,
+   "tableHeight": 404.5,
+   "rowHeights": [
+    59.5,
+    36.3,
+    59.5,
+    59.5,
+    82.8,
+    106
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     2
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     1
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     1
+    ],
+    [
+     2,
+     4,
+     2
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     1
+    ],
+    [
+     3,
+     2,
+     2
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     4,
+     2
+    ],
+    [
+     4,
+     0,
+     2
+    ],
+    [
+     4,
+     1,
+     2
+    ],
+    [
+     4,
+     2,
+     3
+    ],
+    [
+     4,
+     3,
+     2
+    ],
+    [
+     4,
+     4,
+     2
+    ],
+    [
+     5,
+     0,
+     3
+    ],
+    [
+     5,
+     1,
+     2
+    ],
+    [
+     5,
+     2,
+     4
+    ],
+    [
+     5,
+     3,
+     2
+    ],
+    [
+     5,
+     4,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/x-glossary-multi@phone__r2A.png",
+   "note": "Set every column at or just above its wrap threshold instead of one column hogging slack: English 98 (text 77 ≥ 76px word), Chinese 67 (text 46, so '可读性' finally holds one line), Korean 65 (text 44, enough for '열 너비' whole and '스크롤' intact), Arabic 65 (exactly the 44px word + safety). Japanese pays at 64, so '列幅の割り当て' goes to four short lines and row 6 grows — the table gets ~15px taller, but no cell contains a mid-word split or a stray fragment in Korean/Arabic.",
+   "why": "日本語 splits into 日本 / 語 in the header, doubling the header row to 60px; the starved Japanese column then pushes 列幅の割り当て to four lines, giving the tallest table in the set (405px)."
+  },
+  {
+   "name": "r2C",
+   "colWidths": [
+    98,
+    65,
+    65,
+    66,
+    65
+   ],
+   "requestedWidths": [
+    98,
+    65,
+    65,
+    66,
+    65
+   ],
+   "tableWidth": 360,
+   "tableHeight": 404.5,
+   "rowHeights": [
+    59.5,
+    36.3,
+    59.5,
+    59.5,
+    82.8,
+    106
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     2
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     1
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     1
+    ],
+    [
+     2,
+     4,
+     2
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     2
+    ],
+    [
+     3,
+     2,
+     2
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     4,
+     2
+    ],
+    [
+     4,
+     0,
+     2
+    ],
+    [
+     4,
+     1,
+     2
+    ],
+    [
+     4,
+     2,
+     3
+    ],
+    [
+     4,
+     3,
+     2
+    ],
+    [
+     4,
+     4,
+     2
+    ],
+    [
+     5,
+     0,
+     3
+    ],
+    [
+     5,
+     1,
+     2
+    ],
+    [
+     5,
+     2,
+     4
+    ],
+    [
+     5,
+     3,
+     2
+    ],
+    [
+     5,
+     4,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/x-glossary-multi@phone__r2C.png",
+   "note": "A new idea: treat cols 2–5 as a true parallel group and give them near-equal widths (65/65/66/65) so the translation band scans as one rhythm, with only English dominant at 98. Korean (66) is clean and Arabic (65) is safe, but Chinese and Japanese both sit at text 44 — just under the ~46px three-character threshold — so '可读性' and '可読性' both wrap 2+1 and Japanese falls to two characters per line (row 6 four lines). Choose this if visual evenness of the translation band matters more than eliminating the two three-character orphans.",
+   "why": "Same faults as r2A — broken 日本語 header, 60px header row, a 4-line cell and 405px total height — with no compensating gain elsewhere."
+  },
+  {
+   "name": "r3A",
+   "colWidths": [
+    111,
+    58,
+    68,
+    57,
+    65
+   ],
+   "requestedWidths": [
+    111,
+    58,
+    68,
+    57,
+    65
+   ],
+   "tableWidth": 360,
+   "tableHeight": 381.3,
+   "rowHeights": [
+    59.5,
+    36.3,
+    59.5,
+    59.5,
+    82.8,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     2
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     1
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     2
+    ],
+    [
+     2,
+     4,
+     2
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     2
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     2
+    ],
+    [
+     3,
+     4,
+     2
+    ],
+    [
+     4,
+     0,
+     2
+    ],
+    [
+     4,
+     1,
+     2
+    ],
+    [
+     4,
+     2,
+     2
+    ],
+    [
+     4,
+     3,
+     3
+    ],
+    [
+     4,
+     4,
+     2
+    ],
+    [
+     5,
+     0,
+     3
+    ],
+    [
+     5,
+     1,
+     2
+    ],
+    [
+     5,
+     2,
+     3
+    ],
+    [
+     5,
+     3,
+     3
+    ],
+    [
+     5,
+     4,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/x-glossary-multi@phone__r3A.png",
+   "note": "Widen English from 98 to 111 so 'Column width' fits before 'allocation' — the anchor's long phrases drop from 3 lines to 2, which is what makes row 6 tall (83px). Take the 13px mostly from Korean (66→57), which loses nothing: 가로 스크롤 and 열 너비 할당 wrap 2 lines either way. Japanese stays at 68 to keep 日本語 on one line; Arabic stays at 65 (its 44px word floor). Expected ~312px total.",
+   "why": "한국어 breaks into 한국 / 어 in the header while the Korean body column is the narrowest (57px), so Korean cells wrap to three lines (가로 스크롤, 열 너비 할당) even though English is over-fed at 111px."
+  },
+  {
+   "name": "r3C",
+   "colWidths": [
+    105,
+    58,
+    68,
+    58,
+    70
+   ],
+   "requestedWidths": [
+    105,
+    58,
+    68,
+    58,
+    70
+   ],
+   "tableWidth": 360,
+   "tableHeight": 381.3,
+   "rowHeights": [
+    59.5,
+    36.3,
+    59.5,
+    59.5,
+    82.8,
+    82.8
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     2
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     1
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     2
+    ],
+    [
+     2,
+     4,
+     2
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     2
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     2
+    ],
+    [
+     3,
+     4,
+     2
+    ],
+    [
+     4,
+     0,
+     2
+    ],
+    [
+     4,
+     1,
+     2
+    ],
+    [
+     4,
+     2,
+     2
+    ],
+    [
+     4,
+     3,
+     3
+    ],
+    [
+     4,
+     4,
+     2
+    ],
+    [
+     5,
+     0,
+     3
+    ],
+    [
+     5,
+     1,
+     2
+    ],
+    [
+     5,
+     2,
+     3
+    ],
+    [
+     5,
+     3,
+     3
+    ],
+    [
+     5,
+     4,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/x-glossary-multi@phone__r3C.png",
+   "note": "A different balance: English at 105 (2-line phrases) and Arabic widened from 65 to 70, so every Arabic word gets slack above its 44px token and سهولة القراءة / التمرير الأفقي settle into tidy 2-line blocks with a clean right edge, while Chinese and Korean stay at the 2-characters-per-line floor. Tests whether relieving the right-hand column is worth more than relieving Japanese.",
+   "why": "한국어 again splits across two header lines (col 4 = 58px) and the header row grows to 60px, so the table is 381px tall for no benefit over r1B."
+  },
+  {
+   "name": "contrast",
+   "colWidths": [
+    72,
+    72,
+    72,
+    72,
+    71
+   ],
+   "requestedWidths": [
+    72,
+    72,
+    72,
+    72,
+    71
+   ],
+   "tableWidth": 360,
+   "tableHeight": 427.8,
+   "rowHeights": [
+    59.5,
+    36.3,
+    59.5,
+    59.5,
+    106,
+    106
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     2
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     1
+    ],
+    [
+     2,
+     0,
+     2
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     1
+    ],
+    [
+     2,
+     4,
+     2
+    ],
+    [
+     3,
+     0,
+     2
+    ],
+    [
+     3,
+     1,
+     1
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     4,
+     2
+    ],
+    [
+     4,
+     0,
+     4
+    ],
+    [
+     4,
+     1,
+     2
+    ],
+    [
+     4,
+     2,
+     2
+    ],
+    [
+     4,
+     3,
+     2
+    ],
+    [
+     4,
+     4,
+     2
+    ],
+    [
+     5,
+     0,
+     4
+    ],
+    [
+     5,
+     1,
+     2
+    ],
+    [
+     5,
+     2,
+     3
+    ],
+    [
+     5,
+     3,
+     2
+    ],
+    [
+     5,
+     4,
+     3
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/x-glossary-multi@phone__contrast.png",
+   "note": "The plausible 'just divide it equally' answer: symmetric columns look tidy but the English column only has 51px of text space, so Horizontal and allocation break mid-word, while the four script columns get width they do not need.",
+   "why": "The plausible 'just divide it equally' answer: symmetric columns look tidy but the English column only has 51px of text space, so Horizontal and allocation break mid-word, while the four script columns get width they do not need."
+  }
+ ],
+ "ranges": [
+  [
+   100,
+   114
+  ],
+  [
+   52,
+   64
+  ],
+  [
+   67,
+   80
+  ],
+  [
+   60,
+   70
+  ],
+  [
+   65,
+   82
+  ]
+ ],
+ "rationale": "This is a five-way lookup table whose pivot language (English) and Arabic carry by far the longest running text, so they should absorb the width while the Chinese, Japanese and Korean columns only need room for 2–3-character units plus an intact header. r1B keeps all five headers on one line, produces no mid-word splits and caps the tallest cell at three lines in the shortest table of the set (335px). It is also the only short design that leaves real slack at its two tightest points — English 83px of text space for the 76px word Horizontal, Arabic 50px for its 44px longest word — whereas r1C, r2B and r3B sit exactly on those thresholds where a font-rendering difference would trigger a split. The trade is that Chinese at 54px breaks 可读性 as 可读 / 性, but no feasible allocation at 360px avoids that.",
+ "principles": {
+  "general": [
+   "Language/script names and short headers are scan anchors: never let a header break inside the name, even at the cost of body wrapping.",
+   "Size each column from its longest unbreakable token plus a few px of slack; widths that land exactly on a token width look fine in one render and split in the next.",
+   "Column width should track how much text each column actually carries, not symmetry — equal widths are only correct when the content is equal.",
+   "Judge the table by row rhythm as well as total height: one column forcing 4 lines distorts every row it touches."
+  ],
+  "specific": [
+   "At 360px the four script columns are all forced below their one-line widths (62/107/73/112), so multi-line cells are unavoidable and the goal is minimising, not eliminating, them.",
+   "Three-character CJK compounds such as 可读性 need ~69px of column to stay whole; no design here provides it, so the 2+1 break is a fixed cost of this width.",
+   "The Korean column needs roughly 60px just to keep 한국어 on one line — the header, not the body text, sets its floor.",
+   "Arabic's 44px longest word sets a hard 65px floor for column 5; anything below causes a mid-word split in the right-to-left text."
+  ]
+ },
+ "tradeoffs": "A reasonable designer could prefer r1C: giving Arabic 79px instead of 71px measurably improves the longest right-to-left lines, at the cost of squeezing English to within 1px of its 76px word. Similarly, r2B's near-equal 62–68px script columns read as calmer and help Chinese, but leave Arabic at exactly its 44px minimum.",
+ "uncertain": "The exact wrap thresholds are inferred from the reported header-wrap counts (한국어 appears to be ~38px, 日本語 ~47px at 15px), so one or two pixels decide whether r1C and r2B are safe or broken; a different font stack could shift the preferred design from r1B toward r3B.",
+ "designHistory": {
+  "r0": {
+   "critique": null,
+   "designs": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "The English anchor is unmistakably dominant, and its header and phrases sit comfortably on one or two lines. No mid-word splits.",
+     "problems": "The CJK columns collapse into vertical character towers; the 中文, 日本語 and 한국어 headers wrap to three lines; the last rows balloon to 153–176px. At 637px tall, rows no longer read as units.",
+     "cause": "Cols 2–3 at 50px and col 4 at 45px leave only 29/29/24px of text, below the 31–39px needed for two-character or eojeol terms. Col 1 at 146px starves the translation group, while col 5 at 68px leaves 47px, so Arabic phrases stack 3–4 lines."
+    },
+    {
+     "design": "r0B",
+     "good": "Much more balanced than r0A. Japanese at 74px keeps 可読性 and some phrases on one line; there are no mid-word splits; the table is 474px tall.",
+     "problems": "Chinese still breaks 表格 and 换行 into two lines, and the 中文 header wraps. Korean wraps its header and terms such as 가독성 and 즐바꿈, and Arabic phrases reach three lines. Two of five headers are wrapped.",
+     "cause": "Col 2 at 43px leaves 22px of text, below the 31px needed for a two-character Chinese term. Col 4 at 51px leaves 30px, below the ~39px needed for the Korean header and multi-syllable terms. Col 5 at 77px leaves 56px, not enough for two Arabic words, so phrases stack."
+    },
+    {
+     "design": "r0C",
+     "good": "The best of the three: compact at 381px, English remains the clear anchor, Chinese at 55px keeps 表格 and 换行 intact, Japanese at 70px keeps 可読性 on one line, only one header wraps, and there are no mid-word splits.",
+     "problems": "Korean is the weak column: its header wraps, and 즐바꿈, 가독성 and the phrases break into 2–3 lines. English 'Column width allocation' still takes three lines, and the longest Arabic phrase takes three lines.",
+     "cause": "Col 4 at 50px leaves 29px, below the ~39px needed for the Korean header and multi-syllable terms. Col 1 at 100px leaves 79px, short of the ~95px needed for 'Column width'. Col 5 at 84px is generous relative to Korean but still below the 109px longest Arabic phrase."
+    }
+   ],
+   "designs": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "The English anchor column at 100px is right: the 76px word 'Horizontal' never splits and the long phrases wrap only at spaces ('Horizontal / scrolling', 'Column width / allocation'), so the key column reads cleanly. Arabic at 74px has real slack (44px words plus room), so no Arabic word ever breaks. All five headers stay on one line.",
+     "problems": "Korean is the broken column: at 60px (39px of text) '열 너비 할당' fragments into '열 너 / 비 할 / 당' and '줄바꿈' leaves a dangling '꿈', so a row that should read as one unit becomes a three-line tower. Chinese at 55px (34px) splits '可读性' into '可读 / 性', an orphan character on its own line. Meanwhile Arabic, whose content is not the longest, is the widest translation column, so ~9px of pure slack sits there while Korean starves.",
+     "cause": "Width is allocated inversely to need: 74px to Arabic (needs only 65) and 60px to Korean (needs ~65–66 to keep '열 너비' whole and '스크롤' intact), plus 55px to Chinese where 3-character terms need ~47px of text (68px column) to stay on one line."
+    },
+    {
+     "design": "r1B",
+     "good": "English at 104px is unassailable — no risk of a mid-word split and the phrase wrapping stays natural. Arabic at 71px is still comfortable. Headers all one line, no mid-word splits, rows 1–2 compact at 36px.",
+     "problems": "This is r1A with the fix applied to the wrong column: English gained 4px of slack it does not need, while Chinese lost 1px and Korean was left at 60. The '可读 / 性' orphan in Chinese is now the most conspicuous defect in the table and the Korean three-fragment tower is unchanged. Arabic is still over-provisioned relative to its content.",
+     "cause": "Taking width from Chinese (55→54, text 33px) to fund English dominance (100→104) — English only needs 97–98 to hold its 76px word, so those pixels are wasted while two translation columns stay below their wrap thresholds (Chinese ~68, Korean ~65)."
+    },
+    {
+     "design": "r1C",
+     "good": "Arabic at 79px (58px of text) is the most comfortable of the three: 'سهولة القراءة' and 'توزيع عرض الأعمدة' break into genuinely balanced short lines and the RTL column reads smoothly. English at 98px still holds its longest word intact, and headers remain on one line.",
+     "problems": "Chinese at 53px (32px of text) is the narrowest column in the table and produces the worst orphan: '可读 / 性' with a single character alone. Korean is still 60px, so the three-fragment '열 너 / 비 할 / 당' persists. Worse, the parallel group now has no rhythm at all — 53 / 69 / 60 / 79 — so four columns that play the same role look like four unrelated columns, and the eye cannot sweep a row evenly.",
+     "cause": "All available slack was pushed into Arabic (79px, ~14px beyond what the 44px words need), while Chinese was squeezed to its minimum; the group's width spread (26px) exceeds the actual content differences between the scripts."
+    }
+   ],
+   "designs": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "English column holds its anchor role at 98px (Horizontal stays one line), and every CJK/Arabic word stays intact — no mid-word splits.",
+     "problems": "The header row is broken: 日本語 wraps to 日本/語, so the language labels — the first thing a reader scans in a glossary — no longer sit on one baseline. Japanese body cells are the worst in the table (横ス/クロール, 列幅/の割/り当て), making row 6 a 106px tower, and 可読性 splits 可読/性 while its Chinese twin 可读/性 does too.",
+     "cause": "col 3 was given only 64px (43px of text) — the narrowest of the four translation columns — even though Japanese has the longest content in the table (107px one-line). Meanwhile col 2 got 67px, 3px more than Japanese, which is a misallocation: the px went where they were least needed, and 64 < the ~66px threshold that keeps 日本語 on one line."
+    },
+    {
+     "design": "r2B",
+     "good": "The only design where all five headers sit on one line, so the header row is a clean 36px strip and the language labels read as a single rhythm. It is also by far the shortest table (335px vs 405px) with no mid-word splits and a sensible ordering (Chinese narrowest, Japanese widest of the CJK group, Arabic at the 65px word-integrity floor).",
+     "problems": "Two tall cells still dominate: row 6 (83px) and row 5 (60px) read as towers next to the 36px rows above, and Chinese shows 可读/性, Japanese 横スク/ロール, Korean 가로 스/크롤 — ragged 2+1 splits that break the left-edge alignment of the translation block.",
+     "cause": "English is pinned at 98px (77px of text), so 'Column width allocation' breaks into three lines (Column / width / allocation) and sets the height of row 6 by itself; the anchor column, not the translations, is what makes the bottom of the table heavy. Japanese at 68px (47px of text) is just enough for the header but one character short of a clean 3+2 for 横スクロール."
+    },
+    {
+     "design": "r2C",
+     "good": "Near-equal widths (65/65/66/65) give the four translation columns a calm, even rhythm and keep the Arabic column at exactly the word-integrity minimum; no mid-word splits.",
+     "problems": "Same broken header as r2A — 日本語 wraps to 日本/語 and pushes the header row to 60px — plus 可読/性 in both Chinese and Japanese, and the 106px row 6. The even rhythm is bought at the cost of the header, which is the one row that must stay legible.",
+     "cause": "col 3 = 65px (44px of text) sits just below the ~66px needed for 日本語 on one line — a 1–2px shortfall that costs 24px of header height. Symmetry also wastes px on Korean (66px while 가로 스크롤 still wraps) instead of feeding Japanese, the column with the longest content."
+    }
+   ],
+   "designs": [
+    "r3A",
+    "r3B",
+    "r3C"
+   ]
+  }
+ },
+ "review": {
+  "method": "two fresh-context blind reviews; letters shuffled; includes browser auto layout and equal widths as neutral references",
+  "verdict": {
+   "status": "confirmed",
+   "per": [
+    {
+     "prefGrade": 4,
+     "prefIsBest": true,
+     "bestNames": [
+      "r1C",
+      "r1B"
+     ],
+     "badGrades": [
+      3
+     ],
+     "autoGrade": 2,
+     "equalGrade": 1
+    },
+    {
+     "prefGrade": 4,
+     "prefIsBest": false,
+     "bestNames": [
+      "r2B"
+     ],
+     "badGrades": [
+      3
+     ],
+     "autoGrade": 2,
+     "equalGrade": 1
+    }
+   ]
+  },
+  "raw": [
+   {
+    "order": [
+     "r2A",
+     "ref_auto",
+     "r2B",
+     "r1C",
+     "r1B",
+     "ref_equal"
+    ],
+    "best": [
+     "r1C",
+     "r1B"
+    ],
+    "ratings": {
+     "r2A": {
+      "grade": "acceptable",
+      "why": "English column has real room (\"Horizontal scrolling\" only two lines) and Arabic wraps at word boundaries, but the header hierarchy is damaged: 日本語 and 한국어 break across lines, and 横向滚动 splits mid-compound."
+     },
+     "ref_auto": {
+      "grade": "poor",
+      "why": "Every CJK column is squeezed so tight that even two-character headers (中文, 日本語, 한국어) break into stacked single glyphs; each row becomes 3+ lines and no word stays intact. Only English reads comfortably."
+     },
+     "r2B": {
+      "grade": "acceptable",
+      "why": "All five headers stay on one line and Arabic is clean, but the price is mid-word breaks in Japanese (横スク/ロール) and Korean (가로 스/크롤), plus a three-line English cell."
+     },
+     "r1C": {
+      "grade": "good",
+      "why": "Headers all intact, English words never split, Arabic breaks only between words, and Korean \"가로/스크롤\" breaks at the space. Residual flaws: \"줄 바/꿈\" and 横スク/ロール still split mid-word."
+     },
+     "r1B": {
+      "grade": "good",
+      "why": "Effectively the same allocation as D: one-line headers, intact English words, clean Arabic wrapping, Korean breaking at spaces in the long cell; the same Japanese and 줄 바꿈 mid-word splits remain."
+     },
+     "ref_equal": {
+      "grade": "bad",
+      "why": "English is starved to fix the CJK columns: the header breaks as \"Englis/h\" and words shatter (Reada/bility, Horizo/ntal, Colum/n … allocati/on), destroying the leftmost, most-scanned column."
+     }
+    },
+    "confidence": "medium",
+    "unsure": "D and E look nearly identical in width; any few-pixel difference is not visible to me, so I cannot rank one above the other. I also cannot tell whether the Korean 줄 바꿈 split could be avoided within the 359px budget without hurting English."
+   },
+   {
+    "order": [
+     "ref_equal",
+     "r2A",
+     "r1B",
+     "ref_auto",
+     "r2B",
+     "r1C"
+    ],
+    "best": [
+     "r2B"
+    ],
+    "ratings": {
+     "ref_equal": {
+      "grade": "bad",
+      "why": "The English header and several English words break midword, making the first column difficult to scan and producing very tall rows."
+     },
+     "r2A": {
+      "grade": "acceptable",
+      "why": "English remains readable, but the Japanese header wraps and Japanese terms fragment into several short lines."
+     },
+     "r1B": {
+      "grade": "good",
+      "why": "Headers remain intact and the columns are reasonably balanced, though some Korean and Chinese terms wrap into short fragments."
+     },
+     "ref_auto": {
+      "grade": "poor",
+      "why": "The wide English column leaves the other columns cramped; multiple headers and short terms break into vertical stacks."
+     },
+     "r2B": {
+      "grade": "good",
+      "why": "All headers fit and the language columns are balanced; longer terms wrap, but the rows remain reasonably easy to compare."
+     },
+     "r1C": {
+      "grade": "good",
+      "why": "Headers fit and English reads comfortably, though the narrow Korean column breaks several terms into short fragments."
+     }
+    },
+    "confidence": "medium",
+    "unsure": "C, E and F are close; the relative impact of wrapping within the different languages is difficult to judge from the small rendering."
+   }
+  ]
+ },
+ "provenance": {
+  "models": {
+   "final": "workbuddy-ai/deepseek-v4.1-flash-sg",
+   "r0": "workbuddy-ai/deepseek-v4.1-flash-sg",
+   "r1": "workbuddy-ai/deepseek-v4.1-flash-sg",
+   "r2": "workbuddy-ai/deepseek-v4.1-flash-sg",
+   "r3": "workbuddy-ai/deepseek-v4.1-flash-sg",
+   "review0": "workbuddy-ai/deepseek-v4.1-flash-sg",
+   "review1": "codex/gpt-6.1-terra"
+  },
+  "modelChain": "codex/gpt-6.1-terra",
+  "pi": "1.3.0",
+  "created": "2026-11-26T22:11:21.922Z",
+  "note": "AI visual design judgement; not a human reading study"
+ }
+}

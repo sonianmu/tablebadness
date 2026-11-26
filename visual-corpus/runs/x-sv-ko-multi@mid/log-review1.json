@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [검증] 한국어 · 다단 헤더 (language ko).\nGrid: 5 columns × 5 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"지역\" spans 1 col × 2 row; \"인구 (만 명)\" spans 2 col × 1 row; \"평균 기온 (°C)\" spans 2 col × 1 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"지역\" · longest unbreakable word 13px · one-line width 91px\n  col 2: header \"인구 (만 명) › 2013년\" · longest unbreakable word 36px · one-line width 49px\n  col 3: header \"인구 (만 명) › 2023년\" · longest unbreakable word 38px · one-line width 51px\n  col 4: header \"평균 기온 (°C) › 1월\" · longest unbreakable word 29px · one-line width 29px\n  col 5: header \"평균 기온 (°C) › 8월\" · longest unbreakable word 31px · one-line width 31px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 357px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 356px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10369,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"The numbers remain intact, but 2023년 breaks across lines while 2013년 does not, and the final region name leaves a single character on its second line.\"},\"B\":{\"grade\":\"good\",\"why\":\"Both year headers and all numbers stay on one line, making the paired columns easy to compare. The longest region name wraps, but remains readable.\"},\"C\":{\"grade\":\"poor\",\"why\":\"Every region name wraps, with the longest spread over three lines. The narrow row-header column disrupts scanning, and 2023년 also breaks.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"The data values remain intact, but both year headers and the temperature group header wrap, weakening the header hierarchy. The longest region name also wraps.\"},\"E\":{\"grade\":\"poor\",\"why\":\"The region names and years fit on one line, but 25.9 breaks across two lines, disrupting the row and making the temperature values harder to compare.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"The numbers remain intact, but 2023년 and the temperature group header wrap while their counterparts occupy fewer lines. The longest region name also wraps.\"}},\"best\":[\"B\"],\"confidence\":\"high\",\"unsure\":\"The exact break position in the longest region name is slightly hard to judge at the displayed image size, but it does not change the ranking.\"}\n"
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 地铁各线路首末班车时刻表 (language zh-CN).\nGrid: 5 columns × 9 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"线路\" · longest unbreakable word 19px · one-line width 54px\n  col 2: header \"工作日首班\" · longest unbreakable word 46px · one-line width 87px\n  col 3: header \"工作日末班\" · longest unbreakable word 46px · one-line width 87px\n  col 4: header \"周末首班\" · longest unbreakable word 46px · one-line width 70px\n  col 5: header \"周末末班\" · longest unbreakable word 46px · one-line width 70px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 432px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 431px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11061,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"excellent\",\"why\":\"线路名和时刻均保持完整；工作日表头单行，周末表头在词组边界整齐换行，列宽符合内容需求。\"},\"B\":{\"grade\":\"excellent\",\"why\":\"线路名和时刻完整，工作日表头在词组边界成对换行，周末表头单行，比较关系清晰。\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"数据和线路名完整，但周末首班、末班被拆成三字加一字，表头节奏不佳；线路列也略宽。\"},\"D\":{\"grade\":\"bad\",\"why\":\"线路列过窄，多个线路名断行，行高不一致；四个时刻表头也都把末字单独留在下一行。\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"线路名和时刻保持完整，工作日表头换行清楚，但周末表头末字单独成行，削弱表头的整体性。\"},\"F\":{\"grade\":\"excellent\",\"why\":\"四个时刻表头都在词组边界一致换行，首班与末班列配对清楚；线路名和时刻完整，列宽分配紧凑。\"}},\"best\":[\"A\",\"B\",\"F\"],\"confidence\":\"high\",\"unsure\":\"A、B 和 F 的差别主要是单行表头与统一的两行表头之间的取舍；三者均便于扫描。\"}\n"
+  }
+ ]
+}

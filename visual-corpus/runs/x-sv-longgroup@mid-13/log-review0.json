@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val][adversarial] Long group header over tiny sub-columns (language en).\nGrid: 5 columns × 5 rows. Row headers: none declared.\nMerged cells: \"Model\" spans 1 col × 2 row; \"Benchmark accuracy on he\" spans 3 col × 1 row; \"Notes\" spans 1 col × 2 row.\nPer-column content facts (content px at 13px font, excluding padding):\n  col 1: header \"Model\" · longest unbreakable word 39px · one-line width 39px\n  col 2: header \"Benchmark accuracy on held-out multilingual evaluation suite › EN\" · longest unbreakable word 18px · one-line width 18px\n  col 3: header \"Benchmark accuracy on held-out multilingual evaluation suite › ZH\" · longest unbreakable word 19px · one-line width 19px\n  col 4: header \"Benchmark accuracy on held-out multilingual evaluation suite › AR\" · longest unbreakable word 18px · one-line width 18px\n  col 5: header \"Notes\" · longest unbreakable word 56px · one-line width 514px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 446px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 445px.\nFixed: content, font, 13px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 6376,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"The three accuracy columns are balanced and the group header reads comfortably. Notes have enough room, though the first note takes four lines.\"},\"B\":{\"grade\":\"good\",\"why\":\"The wider notes column keeps the first note to three lines, but the group header wraps to four lines and the accuracy columns feel compressed.\"},\"C\":{\"grade\":\"excellent\",\"why\":\"The group header fits in three lines, the accuracy columns remain balanced, and the notes read comfortably in three lines or fewer.\"},\"D\":{\"grade\":\"good\",\"why\":\"The group header and numeric columns are clear, but the narrower notes column makes the first note four lines tall.\"},\"E\":{\"grade\":\"bad\",\"why\":\"The accuracy columns are disproportionately wide while the notes column is squeezed into a very narrow measure, producing excessive wrapping and tall rows.\"},\"F\":{\"grade\":\"good\",\"why\":\"The header and accuracy columns are clear, but the notes column is narrow enough to make the first note four lines tall.\"}},\"best\":[\"C\"],\"confidence\":\"high\",\"unsure\":\"A, D, and F are close in quality; their small differences in column widths have limited practical effect.\"}\n"
+  }
+ ]
+}

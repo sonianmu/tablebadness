@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: עברית · לוח זמנים (language he, right-to-left: column 1 is on the RIGHT).\nGrid: 4 columns × 4 rows. Row headers: none declared.\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"יום\" · longest unbreakable word 41px · one-line width 41px\n  col 2: header \"שעה\" · longest unbreakable word 46px · one-line width 46px\n  col 3: header \"נושא\" · longest unbreakable word 70px · one-line width 260px\n  col 4: header \"הערות\" · longest unbreakable word 72px · one-line width 432px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 455px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 454px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 8574,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"העמודות הקצרות מתאימות ליום ולשעה, ונותר מקום סביר לנושא ולהערות. הנושא הראשון והשלישי נעטפים, אך השורות עדיין נקראות היטב.\"},\"B\":{\"grade\":\"poor\",\"why\":\"עמודת ההערות צרה מאוד, ולכן הטקסט נשבר לשורות קצרות רבות והשורות מתארכות. לעומתה, עמודת הנושא רחבה יחסית.\"},\"C\":{\"grade\":\"excellent\",\"why\":\"חלוקת הרוחב מאזנת היטב בין הנושא להערות: הנושאים קלים לסריקה, ההערות נשברות בקבוצות מילים נוחות, וכל שורה נשארת ברורה כיחידה.\"},\"D\":{\"grade\":\"good\",\"why\":\"ההערות מקבלות רוחב נוח, אך עמודת הנושא הצרה שוברת את הנושא האחרון לארבע שורות ומאריכה את השורה.\"},\"E\":{\"grade\":\"good\",\"why\":\"ההערות קריאות והרוחב מנוצל היטב, אך הנושא האחרון נשבר לארבע שורות צרות. החלוקה דומה מאוד לזו של D.\"},\"F\":{\"grade\":\"bad\",\"why\":\"עמודות היום והשעה רחבות בהרבה מתוכנן, על חשבון הנושא וההערות. ההערות נשברות לשורות קצרות רבות ונוצרות שורות גבוהות עם שטחים ריקים גדולים.\"}},\"best\":[\"C\"],\"confidence\":\"high\",\"unsure\":\"D ו-E דומים מאוד חזותית; ההבדל הזעיר ביניהם אינו משנה את הערכתי.\"}\n"
+  }
+ ]
+}

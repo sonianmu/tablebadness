@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val] Indic · Planets (language hi).\nGrid: 5 columns × 4 rows. Row headers: none declared.\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"ग्रह\" · longest unbreakable word 32px · one-line width 32px\n  col 2: header \"গ্রহ\" · longest unbreakable word 36px · one-line width 36px\n  col 3: header \"கோள்\" · longest unbreakable word 74px · one-line width 74px\n  col 4: header \"दूरी (AU)\" · longest unbreakable word 37px · one-line width 63px\n  col 5: header \"टिप्पणी\" · longest unbreakable word 145px · one-line width 575px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 540px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 539px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 7351,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"The planet names and numbers are easy to scan, and the comment has useful width. The distance header wraps onto two lines, creating a taller header.\"},\"B\":{\"grade\":\"good\",\"why\":\"All headers fit on one line and the columns are easy to distinguish. The wider name columns leave the Tamil comment wrapping across four lines.\"},\"C\":{\"grade\":\"excellent\",\"why\":\"The headers and planet names fit on one line, while the comment retains enough space for readable wrapping. The columns are well balanced for scanning across rows.\"},\"D\":{\"grade\":\"good\",\"why\":\"The generous comment column shortens the longest row, and the name columns remain readable. The distance header wraps, making the header taller.\"},\"E\":{\"grade\":\"bad\",\"why\":\"The name columns have excessive empty space while the narrow comment column breaks text into many short lines, including within Tamil words, making rows very tall.\"}},\"best\":[\"C\"],\"confidence\":\"medium\",\"unsure\":\"D gives the comments more room than C, but its wrapped distance header makes the choice between them somewhat subjective.\"}\n"
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 研发中心季度例会签到表 (language zh-CN).\nGrid: 5 columns × 8 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"姓名\" · longest unbreakable word 16px · one-line width 46px\n  col 2: header \"部门\" · longest unbreakable word 16px · one-line width 77px\n  col 3: header \"签到时间\" · longest unbreakable word 42px · one-line width 62px\n  col 4: header \"签退时间\" · longest unbreakable word 39px · one-line width 62px\n  col 5: header \"备注\" · longest unbreakable word 31px · one-line width 429px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10821,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"The time headers and most department names wrap, making nearly every row taller; the wide remarks column benefits only a few entries.\"},\"B\":{\"grade\":\"good\",\"why\":\"Names, departments and time headers stay intact, and the two long remarks wrap reasonably. The time columns have slightly more space than they need.\"},\"C\":{\"grade\":\"bad\",\"why\":\"Wide short-content columns leave remarks cramped into many short lines, creating tall, uneven rows and making the explanations hard to read.\"},\"D\":{\"grade\":\"bad\",\"why\":\"Several names split across lines, as do department names and both time headers. The wide remarks column comes at too great a cost to identification and scanning.\"},\"E\":{\"grade\":\"excellent\",\"why\":\"Names, departments and time headers stay intact; the paired time columns are balanced, while remarks have ample space and wrap into just two lines where needed.\"},\"F\":{\"grade\":\"excellent\",\"why\":\"The compact identity and balanced time columns remain legible and intact, leaving generous space for remarks. The long remarks wrap naturally into two lines.\"}},\"best\":[\"E\",\"F\"],\"confidence\":\"high\",\"unsure\":\"E and F are very close; their small differences in column proportions do not produce a clear reading advantage in these renders.\"}\n"
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 常用中药方剂组成与主治简表 (language zh-CN).\nGrid: 4 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"方名\" · longest unbreakable word 16px · one-line width 77px\n  col 2: header \"组成\" · longest unbreakable word 31px · one-line width 368px\n  col 3: header \"功效\" · longest unbreakable word 31px · one-line width 138px\n  col 4: header \"主治\" · longest unbreakable word 31px · one-line width 1195px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10898,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"方名完整且主治有较宽的阅读空间，行的对应关系清楚；组成和功效列略窄，有些药名及功效短语被拆到下一行。\"},\"B\":{\"grade\":\"poor\",\"why\":\"主治列宽敞，但方名列过窄，所有方名几乎都被拆行；功效也频繁折行，削弱了按方名查找和横向比较。\"},\"C\":{\"grade\":\"excellent\",\"why\":\"方名完整，组成与功效易于扫读，主治也有足够宽度；各列比例与内容量相称，行间节奏清晰。\"},\"D\":{\"grade\":\"bad\",\"why\":\"主治列过窄，长段文字被挤成许多短行，导致行高大幅增加，其他列留下大量空白；较长方名也被拆开。\"},\"E\":{\"grade\":\"poor\",\"why\":\"方名列有明显富余，主治列却过窄，文字形成密集短行并拉高各行；组成列也有多处药名跨行。\"},\"F\":{\"grade\":\"good\",\"why\":\"方名完整，组成列易于扫读，主治有较充足空间；但功效短语和部分主治文字的断行比C更零碎。\"}},\"best\":[\"C\"],\"confidence\":\"high\",\"unsure\":\"C和F的比例接近，偏好C主要取决于功效列断行与主治列宽度之间的权衡。\"}\n"
+  }
+ ]
+}

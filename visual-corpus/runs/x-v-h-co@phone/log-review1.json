@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val] Co-bottleneck · Framework trade-offs (language en).\nGrid: 4 columns × 4 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Option\" · longest unbreakable word 66px · one-line width 115px\n  col 2: header \"Strengths\" · longest unbreakable word 81px · one-line width 611px\n  col 3: header \"Weaknesses\" · longest unbreakable word 90px · one-line width 729px\n  col 4: header \"Verdict\" · longest unbreakable word 52px · one-line width 52px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nRendering convention: the screenshot always shows the WHOLE table. Anything beyond the dashed box is not clipped; it is the part a reader reaches by scrolling sideways, so judge both what fits in the box at first sight and the cost of scrolling to the rest.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 8071,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"The wider prose columns make rows relatively compact, but the viewport cuts through Weaknesses and leaves Verdict entirely offscreen, making comparison costly.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"The two prose columns remain readable and balanced, but Verdict is mostly offscreen and the narrow columns produce tall rows.\"},\"C\":{\"grade\":\"good\",\"why\":\"All four columns are nearly visible at once, with words intact and a clear comparison between strengths and weaknesses. The prose columns are narrow, making rows tall.\"},\"D\":{\"grade\":\"good\",\"why\":\"The full comparison is nearly visible, words remain intact, and the prose columns have a consistent rhythm. Tall rows make scanning slower.\"},\"E\":{\"grade\":\"good\",\"why\":\"A little more room for the prose shortens the rows while keeping words intact. The Verdict column extends beyond the viewport, so its right edge requires a small scroll.\"},\"F\":{\"grade\":\"bad\",\"why\":\"Although the table fits the viewport, both prose headers and many words split across lines, making the text and row comparisons difficult to read.\"}},\"best\":[\"C\",\"D\",\"E\"],\"confidence\":\"medium\",\"unsure\":\"C and D look almost identical at this scale. E trades a small amount of horizontal scrolling for shorter rows; the preferred balance depends on how readily readers notice and use the scroll.\"}\n"
+  }
+ ]
+}

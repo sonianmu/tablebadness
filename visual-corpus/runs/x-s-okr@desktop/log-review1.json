@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 行标题 · 年度目标拆解 (language zh-CN).\nGrid: 4 columns × 5 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"目标\" · longest unbreakable word 16px · one-line width 108px\n  col 2: header \"负责人\" · longest unbreakable word 16px · one-line width 46px\n  col 3: header \"截止\" · longest unbreakable word 26px · one-line width 44px\n  col 4: header \"关键结果\" · longest unbreakable word 48px · one-line width 541px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 7629,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"前三列过宽，关键结果列过窄，长句被挤成多行，行高和空白明显失衡。\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"关键结果易读，但目标列过窄，前两项目标折行，削弱了行标题的整体性。\"},\"C\":{\"grade\":\"excellent\",\"why\":\"目标、负责人和日期均保持完整，关键结果获得充足宽度；只有最长结果折为两行，整体紧凑且易于逐行比较。\"},\"D\":{\"grade\":\"excellent\",\"why\":\"各行标题和日期完整，关键结果列宽充裕，列宽分配均衡，行与行之间容易辨认。\"},\"E\":{\"grade\":\"bad\",\"why\":\"负责人表头、一个目标和两个日期被拆行，尤其日期断开妨碍快速识别和比较。\"},\"F\":{\"grade\":\"excellent\",\"why\":\"行标题、负责人和日期都保持完整，关键结果清晰，列宽比例与行间节奏协调。\"}},\"best\":[\"C\",\"D\",\"F\"],\"confidence\":\"high\",\"unsure\":\"C、D、F 的列宽差异很小，渲染效果几乎相同，难以可靠地区分优劣。\"}\n"
+  }
+ ]
+}

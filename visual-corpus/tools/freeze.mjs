@@ -1,11 +1,12 @@
 // Freeze the holdout split: sha256 of every record and screenshot. Run BEFORE any layout algorithm sees it.
 //   node tools/freeze.mjs          -> writes corpus/holdout/FROZEN.json (refuses to overwrite)
 //   node tools/freeze.mjs --verify -> checks nothing changed
+//   --set holdout-amendments       -> same for corpus/holdout-amendments (post-freeze re-reviews/redesigns)
 import { readdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-const root = join(dirname(fileURLToPath(import.meta.url)), '..'), d = join(root, 'corpus/holdout'), out = join(d, 'FROZEN.json');
+const root = join(dirname(fileURLToPath(import.meta.url)), '..'), set = process.argv.includes('--set') ? process.argv[process.argv.indexOf('--set') + 1] : 'holdout', d = join(root, 'corpus', set), out = join(d, 'FROZEN.json');
 const files = [...readdirSync(d).filter(f => f.endsWith('.json') && f !== 'FROZEN.json'), ...readdirSync(join(d, 'img')).map(f => 'img/' + f)].sort();
 const hashes = Object.fromEntries(files.map(f => [f, createHash('sha256').update(readFileSync(join(d, f))).digest('hex')]));
 if (process.argv.includes('--verify')) {

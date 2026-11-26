@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 多级表头 · 半年度指标 (language zh-CN).\nGrid: 6 columns × 5 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"指标\" spans 1 col × 2 row; \"2023 年\" spans 2 col × 1 row; \"2024 年\" spans 2 col × 1 row; \"备注\" spans 1 col × 2 row.\nPer-column content facts (content px at 13px font, excluding padding):\n  col 1: header \"指标\" · longest unbreakable word 27px · one-line width 107px\n  col 2: header \"2023 年 › 上半年\" · longest unbreakable word 40px · one-line width 40px\n  col 3: header \"2023 年 › 下半年\" · longest unbreakable word 40px · one-line width 40px\n  col 4: header \"2024 年 › 上半年\" · longest unbreakable word 40px · one-line width 40px\n  col 5: header \"2024 年 › 下半年\" · longest unbreakable word 38px · one-line width 40px\n  col 6: header \"备注\" · longest unbreakable word 27px · one-line width 303px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 516px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 515px.\nFixed: content, font, 13px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9013,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"四个半年列整齐，表头完整；但备注列偏窄，首条备注占三行，且“百分点”被拆开，行标题也换行。\"},\"B\":{\"grade\":\"good\",\"why\":\"半年列均衡，首条备注只占两行，整体紧凑；但“汇率”跨行，较长的行标题也换行。\"},\"C\":{\"grade\":\"bad\",\"why\":\"数值列占据过多宽度，备注列被挤得很窄，文字多次断行，导致行高失衡且难以阅读。\"},\"D\":{\"grade\":\"poor\",\"why\":\"备注列较宽，但四个半年表头都把“年”挤到下一行，削弱了分组表头的清晰度。\"},\"E\":{\"grade\":\"excellent\",\"why\":\"四个半年列均衡且表头完整，备注分两行并保持“汇率”和“百分点”完整；行标题虽换行，但各行仍易于横向比较。\"},\"F\":{\"grade\":\"good\",\"why\":\"行标题保持单行，半年列清晰；但首条备注占三行，且“增量”跨行，首行显得较高。\"}},\"best\":[\"E\"],\"confidence\":\"high\",\"unsure\":\"B、E 的差别较细微，判断主要取决于首条备注的换行位置。\"}\n"
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val] עברית · שורות מתויגות (language he, right-to-left: column 1 is on the RIGHT).\nGrid: 4 columns × 4 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 13px font, excluding padding):\n  col 1: header \"נושא\" · longest unbreakable word 56px · one-line width 136px\n  col 2: header \"אחראי\" · longest unbreakable word 38px · one-line width 38px\n  col 3: header \"סטטוס\" · longest unbreakable word 43px · one-line width 43px\n  col 4: header \"הערות\" · longest unbreakable word 50px · one-line width 315px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 433px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 432px.\nFixed: content, font, 13px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 6265,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"The row labels and short status columns are easy to scan, though the first label wraps and the notes need three lines.\"},\"B\":{\"grade\":\"poor\",\"why\":\"The owner column has surplus space while the notes and row labels wrap heavily, making the rows tall and uneven.\"},\"C\":{\"grade\":\"excellent\",\"why\":\"All row labels stay on one line, the owner and status columns remain compact, and the notes wrap without disrupting row comparison.\"},\"D\":{\"grade\":\"good\",\"why\":\"The wider notes column keeps notes to two lines, but all three row labels wrap, weakening the right-hand scanning edge.\"},\"E\":{\"grade\":\"good\",\"why\":\"Notes fit comfortably in two lines and the short columns are compact, though every row label wraps.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"The notes have ample room, but the narrow row-header column breaks one label across three lines and makes the table less balanced.\"}},\"best\":[\"C\"],\"confidence\":\"high\",\"unsure\":\"The choice between C and the wider notes in D or E depends on how much priority readers give to scanning row labels versus reading notes.\"}\n"
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [验证] 二维合并 · 采购评审 (language zh-CN).\nGrid: 5 columns × 4 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"甲、乙两家报价接近，建议进入第二轮商务谈判，重点\" spans 1 col × 2 row; \"未按要求提交完整报价文件，视为无效投标\" spans 3 col × 1 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"供应商\" · longest unbreakable word 16px · one-line width 46px\n  col 2: header \"报价\" · longest unbreakable word 65px · one-line width 65px\n  col 3: header \"交期\" · longest unbreakable word 19px · one-line width 38px\n  col 4: header \"质保\" · longest unbreakable word 16px · one-line width 31px\n  col 5: header \"评审意见\" · longest unbreakable word 31px · one-line width 582px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 441px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 440px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10470,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"评审意见列过窄，长段文字被切成许多短行；其他列留白较多，列宽分配失衡。\"},\"B\":{\"grade\":\"bad\",\"why\":\"供应商名称和表头被竖向拆开，交期和质保也换行，难以横向扫描各供应商的数据。\"},\"C\":{\"grade\":\"good\",\"why\":\"供应商、报价、交期和质保均保持完整，评审意见可读，但意见列略窄，长段文字换行较多。\"},\"D\":{\"grade\":\"excellent\",\"why\":\"各供应商及关键数据保持单行，评审意见获得充足宽度，合并单元格和各行关系清楚，整体紧凑且易于比较。\"},\"E\":{\"grade\":\"good\",\"why\":\"行标和数值完整，列间层次清楚；评审意见列比 D 略窄，文字换行稍多。\"},\"F\":{\"grade\":\"poor\",\"why\":\"评审意见有足够空间，但供应商表头和名称被拆行，削弱了行标的识别和逐行比较。\"}},\"best\":[\"D\"],\"confidence\":\"high\",\"unsure\":\"C 与 E 均可读，两者的相对优劣取决于对意见列宽度与其他列留白的偏好。\"}\n"
+  }
+ ]
+}

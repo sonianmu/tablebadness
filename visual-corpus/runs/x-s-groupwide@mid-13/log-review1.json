@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [反例] 组标题长于子列 (language zh-CN).\nGrid: 5 columns × 5 rows. Row headers: none declared.\nMerged cells: \"城市\" spans 1 col × 2 row; \"空气质量指数（AQI）月度平均值\" spans 3 col × 1 row; \"说明\" spans 1 col × 2 row.\nPer-column content facts (content px at 13px font, excluding padding):\n  col 1: header \"城市\" · longest unbreakable word 14px · one-line width 27px\n  col 2: header \"空气质量指数（AQI）月度平均值 › 一月\" · longest unbreakable word 17px · one-line width 27px\n  col 3: header \"空气质量指数（AQI）月度平均值 › 二月\" · longest unbreakable word 17px · one-line width 27px\n  col 4: header \"空气质量指数（AQI）月度平均值 › 三月\" · longest unbreakable word 17px · one-line width 27px\n  col 5: header \"说明\" · longest unbreakable word 27px · one-line width 306px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 480px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 479px.\nFixed: content, font, 13px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 7228,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"excellent\",\"why\":\"城市名和月份均保持完整，三个月份等宽便于比较；说明列宽裕，只有首条说明换行，整体紧凑而清晰。\"},\"B\":{\"grade\":\"poor\",\"why\":\"月份列过宽而说明列过窄，说明文字频繁换行，拉高数据行并削弱横向阅读。\"},\"C\":{\"grade\":\"good\",\"why\":\"月份列等宽，城市名完整，说明文字较易阅读；两条说明换行，分组标题也换成两行。\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"列组清楚且城市名完整，但组标题末尾单独留下一个“值”，显得不协调；说明文字也有换行。\"},\"E\":{\"grade\":\"poor\",\"why\":\"城市列过窄，标题和每个城市名都被拆成两行，妨碍识别行和横向比较。\"},\"F\":{\"grade\":\"bad\",\"why\":\"城市和月份列占用过多空间，说明列极窄，长说明被拆成许多短行，表格又高又难以扫描。\"}},\"best\":[\"A\"],\"confidence\":\"high\",\"unsure\":\"仅根据所给截图判断；无法检查缩放或其他视口下的表现。\"}\n"
+  }
+ ]
+}

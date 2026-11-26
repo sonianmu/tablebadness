@@ -3776,7 +3776,106 @@
   "tradeoffs": "A designer could accept horizontal scrolling to keep every token unbroken (r1C/r2A/r2B), or accept a taller table with a narrower Description (r3A/r3B). The chosen compromise prioritizes no horizontal scroll and compact rows over eliminating every break.",
   "uncertain": "Whether a single hyphen break in 'well-known' is acceptable in a code table; whether r3C's smaller height is worth its extra mid-word split; and whether r3B's 544px height is preferable to r1B's tighter 474px."
  },
- "reviews": [],
+ "reviews": [
+  {
+   "order": [
+    "r1A",
+    "r3B",
+    "r1B",
+    "r3A",
+    "ref_equal",
+    "ref_auto"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "good",
+     "why": "All columns fit in view, option names stay intact, and descriptions remain readable. The connection string and URL split across several lines."
+    },
+    "B": {
+     "grade": "acceptable",
+     "why": "The wider example column reduces token wrapping, but descriptions become narrow and ragged, making rows taller and harder to scan."
+    },
+    "C": {
+     "grade": "good",
+     "why": "The example and description columns strike a useful balance: long examples take two lines and most descriptions remain readable. The logging pattern still wraps heavily."
+    },
+    "D": {
+     "grade": "acceptable",
+     "why": "Examples fit reasonably well, but the narrow description column produces many short lines and tall rows, while the extra default width has limited benefit."
+    },
+    "E": {
+     "grade": "poor",
+     "why": "Near-equal columns leave examples too narrow: the connection string and URL split repeatedly within tokens, making them difficult to read."
+    },
+    "F": {
+     "grade": "poor",
+     "why": "The long example stays on one line, but the description column lies beyond the initial viewport and requires horizontal scrolling; large row heights also leave substantial empty space."
+    }
+   },
+   "best": [
+    "C"
+   ],
+   "confidence": "medium",
+   "unsure": "A is a close alternative: it gives descriptions more room but breaks the long examples into more fragments. The tradeoff depends on how often readers need to inspect those tokens."
+  },
+  {
+   "order": [
+    "r3B",
+    "ref_auto",
+    "r1A",
+    "r3A",
+    "ref_equal",
+    "r1B"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "acceptable",
+     "why": "Everything fits in the viewport, and the examples have room, but the narrow description column creates many short lines. The database URL also splits within its hostname."
+    },
+    "B": {
+     "grade": "bad",
+     "why": "The wide example column keeps tokens largely intact, but the description is entirely offscreen and the example extends beyond the viewport. The tall rows leave substantial empty space."
+    },
+    "C": {
+     "grade": "good",
+     "why": "The description is easy to scan and all columns fit onscreen. The narrower example column wraps the URLs across several lines, including a split within the JWKS path."
+    },
+    "D": {
+     "grade": "acceptable",
+     "why": "Examples have useful space and the table fits onscreen, but the narrow description column produces short lines and a particularly tall cache row. The database hostname also breaks across lines."
+    },
+    "E": {
+     "grade": "poor",
+     "why": "The nearly equal columns give excess space to short defaults while squeezing the long examples. Both URLs split repeatedly, making them difficult to follow."
+    },
+    "F": {
+     "grade": "good",
+     "why": "The examples and descriptions have a workable balance, and all columns fit onscreen. The URLs wrap, including a break in the database hostname, but the descriptions remain reasonably readable."
+    }
+   },
+   "best": [
+    "F"
+   ],
+   "confidence": "medium",
+   "unsure": "C is a close alternative: it favors readable descriptions, while F gives the long examples more room. The preferred balance depends on how often readers need to inspect or copy the URLs."
+  }
+ ],
  "reviewsOld": [
   {
    "order": [
@@ -3878,5 +3977,9 @@
    "unsure": "I am estimating pixel boundaries by eye, so the exact Description/Example split in C vs F may be closer than it appears; I also assume B's off-screen Description is not intended as a deliberate scroll design."
   }
  ],
- "rereviewed": true
+ "rereviewed": true,
+ "modelsUsed": [
+  "codex/gpt-6.1-terra"
+ ],
+ "reviewPrompt": "v2"
 }

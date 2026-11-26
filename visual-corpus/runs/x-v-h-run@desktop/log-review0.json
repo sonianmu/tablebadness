@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [验证] 连续高行 · 发布计划 (language zh-CN).\nGrid: 4 columns × 7 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"阶段\" · longest unbreakable word 32px · one-line width 67px\n  col 2: header \"时间\" · longest unbreakable word 26px · one-line width 44px\n  col 3: header \"负责人\" · longest unbreakable word 16px · one-line width 46px\n  col 4: header \"内容\" · longest unbreakable word 31px · one-line width 736px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10565,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"excellent\",\"why\":\"阶段、日期和姓名均保持完整，内容列宽充足，长说明分成两行，行与列都易于扫描。\"},\"B\":{\"grade\":\"poor\",\"why\":\"前三列留白过多，内容列被挤得很窄；长说明分成多行，造成高行和零碎的阅读节奏。\"},\"C\":{\"grade\":\"bad\",\"why\":\"日期、部分阶段标签和“负责人”表头被拆行，关键排期信息难以快速比较。\"},\"D\":{\"grade\":\"good\",\"why\":\"日期和阶段标签完整，内容列宽充足；但“负责人”表头被拆成两行，削弱了表头的清晰度。\"},\"E\":{\"grade\":\"excellent\",\"why\":\"各表头和短字段完整，内容列获得主要空间，长说明的两行排布与整行的阅读节奏协调。\"},\"F\":{\"grade\":\"excellent\",\"why\":\"短字段及表头保持完整，内容列宽充足，长说明换行自然，便于逐行对照。\"}},\"best\":[\"A\",\"E\",\"F\"],\"confidence\":\"high\",\"unsure\":\"A、E、F在所示尺寸下几乎无法区分；可能存在细微宽度差异，但未见足以改变阅读体验的差别。\"}\n"
+  }
+ ]
+}

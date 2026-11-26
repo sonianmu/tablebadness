@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val] EN · Dependency audit (language en).\nGrid: 5 columns × 6 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Package\" · longest unbreakable word 147px · one-line width 391px\n  col 2: header \"Version\" · longest unbreakable word 54px · one-line width 91px\n  col 3: header \"License\" · longest unbreakable word 77px · one-line width 77px\n  col 4: header \"Vulnerabilities\" · longest unbreakable word 103px · one-line width 103px\n  col 5: header \"Notes\" · longest unbreakable word 252px · one-line width 468px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nThis table cannot fit without splitting words at 720px. You MAY choose a total wider than 719px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nRendering convention: the screenshot always shows the WHOLE table. Anything beyond the dashed box is not clipped; it is the part a reader reaches by scrolling sideways, so judge both what fits in the box at first sight and the cost of scrolling to the rest.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11588,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"Everything fits in the viewport, but equal column widths leave short fields spacious while the package identifier and notes break across many lines. The URL is especially hard to follow.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"The wider package column makes the long identifier easier to read, and the short fields have sensible widths. Much of the notes column sits beyond the viewport, so reading each row requires horizontal scrolling.\"},\"C\":{\"grade\":\"good\",\"why\":\"The short fields stay intact, while the package and notes receive more space than in A. The long package name wraps over three lines, and the ends of notes require horizontal scrolling.\"},\"D\":{\"grade\":\"good\",\"why\":\"The fields are proportioned sensibly and most rows are compact. The long package name wraps over three lines, and some notes extend beyond the viewport.\"},\"E\":{\"grade\":\"good\",\"why\":\"The wider package column gives the long identifier a more balanced wrap, while version, license and vulnerability values remain intact. Part of the notes column requires horizontal scrolling.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"More of the notes are visible at first sight, but the narrow version column splits the prerelease version, making an important identifier harder to scan. The long package name also wraps over three lines.\"}},\"best\":[\"E\"],\"confidence\":\"low\",\"unsure\":\"The right edges of several rendered tables are cut off in the supplied images, so the full extent of horizontal scrolling and the complete wrapping of notes are difficult to compare. C and D also appear very similar at this scale.\"}\n"
+  }
+ ]
+}

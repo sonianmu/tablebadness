@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 地铁各线路首末班车时刻表 (language zh-CN).\nGrid: 5 columns × 9 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"线路\" · longest unbreakable word 17px · one-line width 48px\n  col 2: header \"工作日首班\" · longest unbreakable word 41px · one-line width 77px\n  col 3: header \"工作日末班\" · longest unbreakable word 41px · one-line width 77px\n  col 4: header \"周末首班\" · longest unbreakable word 42px · one-line width 62px\n  col 5: header \"周末末班\" · longest unbreakable word 41px · one-line width 62px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9086,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"Every line name wraps, making the rows tall and breaking the identifiers, although the times remain intact.\"},\"B\":{\"grade\":\"excellent\",\"why\":\"Line names and times stay intact, while all four headers wrap consistently into meaningful two-line labels. The columns feel balanced.\"},\"C\":{\"grade\":\"poor\",\"why\":\"The weekday columns are noticeably cramped, and their headers break across three lines, while the weekend columns have excess space.\"},\"D\":{\"grade\":\"good\",\"why\":\"Line names and times stay intact, but the weekend headers split after 首 and 末, making their two-line labels less balanced than the weekday headers.\"},\"E\":{\"grade\":\"good\",\"why\":\"All line names and times stay intact, with a compact, readable grid. The weekend headers split less naturally than the weekday headers.\"}},\"best\":[\"B\"],\"confidence\":\"high\",\"unsure\":\"D and E look very similar at this image size; their small width differences are difficult to judge confidently.\"}\n"
+  }
+ ]
+}

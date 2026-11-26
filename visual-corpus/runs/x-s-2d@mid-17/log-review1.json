@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 2D merge · Clinic schedule (language en).\nGrid: 5 columns × 5 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"Time\" spans 1 col × 2 row; \"Monday\" spans 2 col × 1 row; \"Tuesday\" spans 2 col × 1 row; \"Cardiology clinic (Dr. I\" spans 1 col × 2 row; \"Dermatology\" spans 1 col × 2 row; \"Staff training — closed \" spans 2 col × 1 row.\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"Time\" · longest unbreakable word 49px · one-line width 49px\n  col 2: header \"Monday › Room A\" · longest unbreakable word 83px · one-line width 419px\n  col 3: header \"Monday › Room B\" · longest unbreakable word 97px · one-line width 97px\n  col 4: header \"Tuesday › Room A\" · longest unbreakable word 109px · one-line width 109px\n  col 5: header \"Tuesday › Room B\" · longest unbreakable word 99px · one-line width 406px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 682px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 681px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 6832,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"The time column is compact and the schedule is easy to scan, but the long Tuesday entry wraps to four lines and leaves a tall final row.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"The day groups are clear, but the narrow Monday Room A column breaks the cardiology entry into five lines, making the first two time slots unnecessarily tall.\"},\"C\":{\"grade\":\"poor\",\"why\":\"The oversized time column takes space from the clinic entries. Both long entries wrap heavily, and the training notice also breaks across lines.\"},\"D\":{\"grade\":\"good\",\"why\":\"The columns are well grouped and the training notice stays on one line, though the cardiology entry wraps to four lines and makes the morning rows taller.\"},\"E\":{\"grade\":\"excellent\",\"why\":\"The compact time column leaves useful space for the clinic entries. Both long entries fit in three lines, the training notice stays intact, and the day groups scan clearly.\"},\"F\":{\"grade\":\"excellent\",\"why\":\"The balanced room columns keep both long entries to three lines and preserve a clear, compact schedule. The training notice remains on one line.\"}},\"best\":[\"E\",\"F\"],\"confidence\":\"high\",\"unsure\":\"E and F differ only slightly in their column proportions; either is a strong choice.\"}\n"
+  }
+ ]
+}

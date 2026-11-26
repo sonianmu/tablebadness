@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [验证] 行高瓶颈转移 · 故障复盘 (language zh-CN).\nGrid: 4 columns × 5 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"模块\" · longest unbreakable word 16px · one-line width 31px\n  col 2: header \"问题描述\" · longest unbreakable word 49px · one-line width 578px\n  col 3: header \"影响范围\" · longest unbreakable word 31px · one-line width 530px\n  col 4: header \"修复方案\" · longest unbreakable word 31px · one-line width 659px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 15379,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"四列近乎等宽，模块列留下大量空白，三个叙述列却偏窄；长内容多处换行，行高也因此增大。\"},\"B\":{\"grade\":\"good\",\"why\":\"模块列紧凑，三个叙述列获得相近且充足的空间，行与列的关系清楚；问题描述首行末尾的孤字略显零碎。\"},\"C\":{\"grade\":\"bad\",\"why\":\"修复方案列占去大部分宽度，问题描述和影响范围被挤成很窄的文字竖条，前两行过高，阅读和横向比较都困难。\"},\"D\":{\"grade\":\"excellent\",\"why\":\"模块列紧凑，问题描述与修复方案有较充足的空间；三条长内容各占三到四行，行高和列间比例均衡，便于逐行阅读。\"},\"E\":{\"grade\":\"good\",\"why\":\"各列比例合理，长内容的分布比较均衡；问题描述列稍窄，首行比 D 多一行，但整体仍清晰易读。\"},\"F\":{\"grade\":\"poor\",\"why\":\"模块列过窄，表头和所有模块名称都拆成竖排，破坏了首列的识别和逐行扫描；影响范围末尾还有孤字。\"}},\"best\":[\"D\"],\"confidence\":\"high\",\"unsure\":\"D 与 E 都较均衡；D 在问题描述列的换行更从容，但两者的取舍有一定主观性。\"}\n"
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 2024年10月员工工资条 (language zh-CN).\nGrid: 8 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"姓名\" spans 1 col × 2 row; \"应发\" spans 3 col × 1 row; \"扣款\" spans 3 col × 1 row; \"实发\" spans 1 col × 2 row.\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"姓名\" · longest unbreakable word 18px · one-line width 53px\n  col 2: header \"应发 › 基本工资\" · longest unbreakable word 70px · one-line width 70px\n  col 3: header \"应发 › 绩效\" · longest unbreakable word 65px · one-line width 65px\n  col 4: header \"应发 › 补贴\" · longest unbreakable word 63px · one-line width 63px\n  col 5: header \"扣款 › 社保\" · longest unbreakable word 56px · one-line width 56px\n  col 6: header \"扣款 › 公积金\" · longest unbreakable word 63px · one-line width 63px\n  col 7: header \"扣款 › 个税\" · longest unbreakable word 60px · one-line width 60px\n  col 8: header \"实发\" · longest unbreakable word 71px · one-line width 71px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 601px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 600px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11585,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"bad\",\"why\":\"Nearly every monetary amount breaks across lines, including net pay, making rows and comparisons difficult to read.\"},\"B\":{\"grade\":\"poor\",\"why\":\"Names, two earnings columns, social insurance and net pay stay intact, but allowances, housing fund and tax amounts split across lines.\"},\"C\":{\"grade\":\"bad\",\"why\":\"Names stack character by character, and net pay extends beyond the viewport; both row identification and the final amounts suffer.\"},\"D\":{\"grade\":\"poor\",\"why\":\"Several important columns remain readable, but allowances, housing fund and tax amounts split, sometimes separating the decimal point from the rest of the number.\"},\"E\":{\"grade\":\"bad\",\"why\":\"Amounts split across nearly every earnings and deduction column, creating a repetitive field of fragments despite intact names and net pay.\"},\"F\":{\"grade\":\"poor\",\"why\":\"Names, all three earnings columns and net pay remain intact, but the three deduction columns break their amounts across lines.\"}},\"best\":[\"F\"],\"confidence\":\"medium\",\"unsure\":\"B and D preserve social insurance amounts at the expense of splitting allowances. F keeps the entire earnings group intact, but its deduction amounts are still hard to scan.\"}\n"
+  }
+ ]
+}

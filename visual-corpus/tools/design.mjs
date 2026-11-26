@@ -220,9 +220,14 @@ function modelsFromLogs(dir) {
 }
 
 function finalize(s, state) {
-  const dir = join(root, 'runs', safe(s.id)), out = join(root, 'corpus', s.split), imgOut = join(out, 'img');
-  mkdirSync(imgOut, { recursive: true });
-  const copy = n => { const f = `${safe(s.id)}__${n}.png`; copyFileSync(join(dir, 'img', state.designs[n].png), join(imgOut, f)); return `img/${f}`; };
+  const dir = join(root, 'runs', safe(s.id));
+  // A frozen holdout record is never rewritten. A changed version (re-review, redesign) goes to
+  // corpus/holdout-amendments/ with its own hashes; an unchanged one (only provenance differs) is skipped.
+  const frozenPath = join(root, 'corpus/holdout/FROZEN.json'), recName = safe(s.id) + '.json';
+  const isFrozen = s.split === 'holdout' && existsSync(frozenPath) && recName in readJ(frozenPath).files;
+  const out = join(root, 'corpus', isFrozen ? 'holdout-amendments' : s.split), imgOut = join(out, 'img');
+  const toCopy = [];
+  const copy = n => { const f = `${safe(s.id)}__${n}.png`; toCopy.push([join(dir, 'img', state.designs[n].png), join(imgOut, f)]); return `img/${f}`; };
   const t = fams[s.family];
   const layout = n => ({ name: n, colWidths: state.designs[n].geom.colWidths, requestedWidths: state.designs[n].widths, tableWidth: state.designs[n].geom.tableWidth, tableHeight: state.designs[n].geom.tableHeight, rowHeights: state.designs[n].geom.rowHeights, cellLines: state.designs[n].geom.cells.map(c => [c.r, c.c, c.lines]), overflow: state.designs[n].geom.overflow, screenshot: copy(n), note: state.designs[n].idea || null });
   const v = verdict(state);
@@ -239,7 +244,15 @@ function finalize(s, state) {
     review: { method: 'two fresh-context blind reviews; letters shuffled; includes browser auto layout and equal widths as neutral references', verdict: v, raw: state.reviews.map(r => ({ order: r.order, best: r.best.map(l => r.order[r.letters.indexOf(l)]), ratings: Object.fromEntries(Object.entries(r.ratings).map(([l, x]) => [r.order[r.letters.indexOf(l)], x])), confidence: r.confidence, unsure: r.unsure })) },
     provenance: { models: modelsFromLogs(dir), modelChain: MODEL, pi: PI_VERSION, created: new Date().toISOString(), note: 'AI visual design judgement; not a human reading study' },
   };
-  writeJ(join(out, safe(s.id) + '.json'), rec);
+  if (isFrozen) {
+    const strip = r => { const { provenance, ...rest } = r; return JSON.stringify({ ...rest, models: provenance.models }); };
+    const frozenRec = readJ(join(root, 'corpus/holdout', recName));
+    if (strip(frozenRec) === strip(rec)) return frozenRec;
+    rec.amends = { frozenRecord: 'corpus/holdout/' + recName, frozenStatus: frozenRec.status, reason: 'changed after the holdout freeze (re-review or redesign); the frozen record stays canonical' };
+  }
+  mkdirSync(imgOut, { recursive: true });
+  for (const [a, b] of toCopy) copyFileSync(a, b);
+  writeJ(join(out, recName), rec);
   return rec;
 }
 

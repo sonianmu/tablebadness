@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [adversarial] Rowspan taller than its rows (language en).\nGrid: 3 columns × 4 rows. Row headers: none declared.\nMerged cells: \"All three steps share on\" spans 1 col × 3 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Step\" · longest unbreakable word 35px · one-line width 35px\n  col 2: header \"Owner\" · longest unbreakable word 48px · one-line width 48px\n  col 3: header \"Notes\" · longest unbreakable word 76px · one-line width 1797px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 6307,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"The labels fit, but the narrow Notes column creates many short lines and leaves substantial empty space in the step and owner cells.\"},\"B\":{\"grade\":\"bad\",\"why\":\"Notes is squeezed into very short lines, making the shared instruction difficult to read and stretching the three rows excessively.\"},\"C\":{\"grade\":\"good\",\"why\":\"Compact step and owner columns leave generous space for the long shared note. All labels fit, though the tall merged cell still creates noticeable empty space in the rows.\"},\"D\":{\"grade\":\"good\",\"why\":\"The compact label columns give the note room to read naturally, while keeping the three steps easy to distinguish. The merged note leaves some unavoidable empty row space.\"},\"E\":{\"grade\":\"good\",\"why\":\"The label columns fit their contents and the note has a readable measure, though it wraps a little more than in C and D.\"},\"F\":{\"grade\":\"poor\",\"why\":\"Wide step and owner columns leave the note in a narrow strip, producing frequent line breaks and large empty areas beside it.\"}},\"best\":[\"C\",\"D\"],\"confidence\":\"medium\",\"unsure\":\"C and D appear nearly identical at this image size; their small width differences do not produce a clear reading advantage.\"}\n"
+  }
+ ]
+}

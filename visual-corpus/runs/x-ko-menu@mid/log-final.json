@@ -1,0 +1,22 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "d-r0A.png",
+  "d-r0B.png",
+  "d-r0C.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nTable: 한국어 · 메뉴 (language ko).\nGrid: 4 columns × 5 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"메뉴\" · longest unbreakable word 13px · one-line width 52px\n  col 2: header \"가격\" · longest unbreakable word 47px · one-line width 60px\n  col 3: header \"맵기\" · longest unbreakable word 13px · one-line width 26px\n  col 4: header \"설명\" · longest unbreakable word 18px · one-line width 421px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 480px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 479px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nThese are all candidate designs you produced, rendered in a real browser:\nDesign r0A: widths [73, 81, 47, 278] · table 480×252px · row heights [36, 60, 36, 60, 60] · column headers wrapped 0/4 · tallest cell 2 lines · mid-word splits 0\nDesign r0B: widths [83, 83, 57, 256] · table 480×252px · row heights [36, 60, 36, 60, 60] · column headers wrapped 0/4 · tallest cell 2 lines · mid-word splits 0\nDesign r0C: widths [73, 68, 47, 291] · table 480×275px · row heights [36, 60, 60, 60, 60] · column headers wrapped 0/4 · tallest cell 2 lines · mid-word splits 0\n\nDecide as a designer:\n- \"preferred\": the best design(s). Name more than one only if they are genuinely equally good.\n- \"acceptable\": other designs a careful designer would still publish.\n- \"bad\": designs with clear visual faults, each with the fault. If none of these is clearly bad, also return ONE deliberately bad but plausible alternative as \"contrast\" widths and say what is wrong with it.\n- \"ranges\": for each column, the px range within which the preferred design stays equally good (keep other columns' proportions).\n- \"rationale\": 2–4 concrete sentences about this table.\n- \"principles\": observations that seem GENERAL (likely to hold for other tables) vs SPECIFIC to this case.\n- \"tradeoffs\" and \"uncertain\": what reasonable designers could disagree on.\nReply ONLY JSON: {\"preferred\":[\"name\"],\"acceptable\":[\"name\"],\"bad\":[{\"design\":\"name\",\"why\":\"\"}],\"contrast\":{\"widths\":[int px],\"why\":\"\"} or null,\"ranges\":[[min,max]],\"rationale\":\"\",\"principles\":{\"general\":[\"\"],\"specific\":[\"\"]},\"tradeoffs\":\"\",\"uncertain\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 12051,
+   "code": 0,
+   "problem": null,
+   "raw": "{\n  \"preferred\": [\"r0A\"],\n  \"acceptable\": [\"r0B\"],\n  \"bad\": [\n    {\n      \"design\": \"r0C\",\n      \"why\": \"가격 열이 좁아 금액과 원 단위가 분리되고, 모든 가격 셀이 두 줄이 되어 금액을 빠르게 비교하기 어렵다.\"\n    }\n  ],\n  \"contrast\": null,\n  \"ranges\": [[73, 78], [81, 85], [47, 51], [268, 278]],\n  \"rationale\": \"r0A는 메뉴명, 가격, 맵기를 한 줄로 유지하면서 설명에 가장 넓은 공간을 준다. 가격과 단위가 함께 보여 비교하기 쉽고, 설명이 긴 행도 두 줄 안에서 읽힌다. r0B도 깔끔하지만 짧은 열에 더 많은 공간을 주어 설명의 줄바꿈이 조금 더 잦다.\",\n  \"principles\": {\n    \"general\": [\n      \"비교 대상인 숫자와 단위는 함께 유지하면 열을 훑어보기 쉽다.\",\n      \"열 너비는 균등하게 나누기보다 내용의 길이와 읽는 역할에 맞춰 배분한다.\"\n    ],\n    \"specific\": [\n      \"이 표에서는 설명이 다른 열보다 훨씬 길어 남는 너비를 대부분 설명에 주는 것이 유리하다.\",\n      \"가격 열은 내용과 패딩을 합쳐 약 81px이 필요하며, 68px에서는 원 단위가 다음 줄로 넘어간다.\"\n    ]\n  },\n  \"tradeoffs\": \"r0B의 넉넉한 짧은 열은 여유로운 인상을 주지만 설명의 가용 폭을 줄인다. r0C는 설명을 넓히는 대신 가격의 가독성과 행 높이를 희생한다.\",\n  \"uncertain\": \"제시한 범위는 렌더링된 세 시안을 바탕으로 한 보수적인 추정이다. 다른 열의 비율을 대체로 유지하면서 총 너비를 479px 이하로 조정해야 하며, 범위의 모든 조합이 동일한 줄바꿈을 보장하지는 않는다.\"\n}\n"
+  }
+ ]
+}

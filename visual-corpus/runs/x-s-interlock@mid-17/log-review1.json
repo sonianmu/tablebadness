@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [反例] 交错跨列 · 共享中间列 (language zh-CN).\nGrid: 4 columns × 4 rows. Row headers: none declared.\nMerged cells: \"与业务方共同梳理核心流程，输出需求说明书并完成评\" spans 2 col × 1 row; \"完成核心模块开发与联调，接入统一认证与日志平台\" spans 2 col × 1 row.\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"项目\" · longest unbreakable word 18px · one-line width 35px\n  col 2: header \"阶段一\" · longest unbreakable word 18px · one-line width 87px\n  col 3: header \"阶段二\" · longest unbreakable word 18px · one-line width 53px\n  col 4: header \"阶段三\" · longest unbreakable word 18px · one-line width 53px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 199px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 198px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9212,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"两个跨列说明的行数较少，但阶段一列很窄，“搭建脚手架”和“用例”被逐字拆开；阶段二表头占一行，与相邻表头的节奏不一致。\"},\"B\":{\"grade\":\"poor\",\"why\":\"阶段一和阶段二都过窄，表头和短词多处逐字换行；两段跨列说明也较长，行高偏大。\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"跨列说明比较紧凑，但阶段一列的“搭建脚手架”和“用例”逐字排列，影响纵向扫读。\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"跨列说明的换行较紧凑，但阶段一列仍过窄，短词被拆成单字，表头的换行也不均衡。\"},\"E\":{\"grade\":\"good\",\"why\":\"阶段一和阶段二有更宽的文字空间，“用例”和“回归”各占一行，“搭建脚手架”也更易读；第二段跨列说明稍长，但整体行列关系清晰。\"},\"F\":{\"grade\":\"poor\",\"why\":\"中间列较窄，表头、短词和两段跨列说明频繁换行，使表格偏高，比较各阶段较费力。\"}},\"best\":[\"E\"],\"confidence\":\"high\",\"unsure\":\"A、C、D的宽度差异很细微，按图像判断三者的可读性接近。\"}\n"
+  }
+ ]
+}

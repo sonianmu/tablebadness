@@ -4873,7 +4873,84 @@
   "tradeoffs": "A designer prioritizing minimal horizontal scrolling might be tempted by r0B because it saves about 21px, but it breaks station names and still overflows almost as far, so the tradeoff is poor. One could also argue for a fundamentally different mobile layout—transposing months to rows or using cards—but that is outside the column-width decision.",
   "uncertain": "The exact upper bounds for the ranges are judgment calls: wider month columns remain readable but add scrolling, while the lower bounds are firm because below them headers or numbers wrap or split. Reasonable designers could disagree about whether a modest amount of wrapping in secondary labels is acceptable, but not about breaking station identifiers or every numeric value."
  },
- "reviews": [],
+ "reviews": [
+  {
+   "order": [
+    "r0B",
+    "r0A",
+    "ref_equal",
+    "ref_auto"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "poor",
+     "why": "The monthly values remain intact, but several station names split across lines, making the row labels harder to scan. The remaining months still require horizontal scrolling."
+    },
+    "B": {
+     "grade": "good",
+     "why": "Station names and visible values stay intact, and the even month columns make comparisons easy. Most months require horizontal scrolling."
+    },
+    "C": {
+     "grade": "bad",
+     "why": "Headers, station names and numeric values break into fragments. The tall rows and fragmented numbers make comparisons very difficult, while some columns still lie beyond the viewport."
+    },
+    "D": {
+     "grade": "good",
+     "why": "Station names and visible values remain intact, with a consistent rhythm across the month columns. Most months require horizontal scrolling."
+    }
+   },
+   "best": [
+    "B",
+    "D"
+   ],
+   "confidence": "medium",
+   "unsure": "B and D look nearly identical in the supplied images; any differences outside the visible area are difficult to assess."
+  },
+  {
+   "order": [
+    "r0B",
+    "ref_auto",
+    "ref_equal",
+    "r0A"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "poor",
+     "why": "Several station names split across lines, making row identification harder, while the months still require horizontal scrolling."
+    },
+    "B": {
+     "grade": "good",
+     "why": "Station names and visible monthly values remain intact, with compact, consistent rows. The remaining months require horizontal scrolling."
+    },
+    "C": {
+     "grade": "bad",
+     "why": "Station names, month headings and numeric values break into fragments, making both row identification and comparisons very difficult."
+    },
+    "D": {
+     "grade": "good",
+     "why": "Station names and visible monthly values remain intact, and the regular columns support scanning. The remaining months require horizontal scrolling."
+    }
+   },
+   "best": [
+    "B",
+    "D"
+   ],
+   "confidence": "medium",
+   "unsure": "B and D look nearly identical in the visible portion. The supplied images do not show enough of the remaining columns to distinguish their full scrolling cost or assess possible differences there."
+  }
+ ],
  "reviewsOld": [
   {
    "order": [
@@ -4951,5 +5028,9 @@
    "unsure": "B and D are very close; without exact pixel widths I may be over-reading the small difference in how much of the next month is visible. I am also unsure whether A's extra month justifies its broken station identifiers."
   }
  ],
- "rereviewed": true
+ "rereviewed": true,
+ "modelsUsed": [
+  "codex/gpt-6.1-terra"
+ ],
+ "reviewPrompt": "v2"
 }

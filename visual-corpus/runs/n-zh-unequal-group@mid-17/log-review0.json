@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 主流旗舰手机屏幕与价格参数 (language zh-CN).\nGrid: 4 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"型号\" spans 1 col × 2 row; \"屏幕\" spans 2 col × 1 row; \"价格\" spans 1 col × 2 row.\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"型号\" · longest unbreakable word 55px · one-line width 172px\n  col 2: header \"屏幕 › 尺寸\" · longest unbreakable word 35px · one-line width 74px\n  col 3: header \"屏幕 › 技术\" · longest unbreakable word 87px · one-line width 545px\n  col 4: header \"价格\" · longest unbreakable word 42px · one-line width 81px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 467px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 466px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10666,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"The technology column has useful space, but the narrow model and size columns force frequent wraps; even 6.1 英寸 splits, making the rows harder to scan.\"},\"B\":{\"grade\":\"good\",\"why\":\"Sizes and prices stay on one line, and model names are reasonably readable. The technology column is tight, though, producing tall rows and splitting some refresh-rate expressions.\"},\"C\":{\"grade\":\"bad\",\"why\":\"The very narrow technology column breaks descriptions into short fragments and makes rows excessively tall, while the size and price columns have spare space.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"Sizes are easy to compare, but the technology descriptions are cramped and several prices leave 起 alone on a second line.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"The wider model column keeps several names together, but it leaves the technology descriptions cramped; prices also wrap in every row.\"},\"F\":{\"grade\":\"good\",\"why\":\"The size column stays on one line, model names remain recognizable, and technology descriptions have more room than in B, C, D or E. Prices consistently wrap after the amount.\"}},\"best\":[\"F\"],\"confidence\":\"medium\",\"unsure\":\"The tradeoff is close: B keeps prices on one line, while F gives more space to the longer technology descriptions. A preserves more of those descriptions per line but makes sizes and model names noticeably harder to scan.\"}\n"
+  }
+ ]
+}

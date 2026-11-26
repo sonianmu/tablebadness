@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: RTL · صفوف معنونة (language ar, right-to-left: column 1 is on the RIGHT).\nGrid: 4 columns × 4 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"البند\" · longest unbreakable word 67px · one-line width 174px\n  col 2: header \"الربع الأول\" · longest unbreakable word 30px · one-line width 62px\n  col 3: header \"الربع الثاني\" · longest unbreakable word 34px · one-line width 67px\n  col 4: header \"ملاحظات\" · longest unbreakable word 60px · one-line width 441px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 6425,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"The row labels and both quarter headers wrap, making the table harder to scan, while the notes column has more space than it needs.\"},\"B\":{\"grade\":\"good\",\"why\":\"The quarter headers stay on one line and the notes have room to read, though the long row label wraps and the two quarter columns are somewhat wide.\"},\"C\":{\"grade\":\"poor\",\"why\":\"The quarter columns have much more space than their numbers need, leaving the long note cramped into several lines.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"The row labels and notes have useful space, but both quarter headers wrap, weakening the comparison between the two numeric columns.\"},\"E\":{\"grade\":\"excellent\",\"why\":\"The row labels and quarter headers stay intact, the quarter columns are similarly sized, and the long note wraps comfortably across two lines.\"},\"F\":{\"grade\":\"excellent\",\"why\":\"The row labels and quarter headers stay intact, with compact quarter columns and enough space for a balanced two-line note.\"}},\"best\":[\"E\",\"F\"],\"confidence\":\"high\",\"unsure\":\"E and F are very close visually; their small differences in column proportions do not produce a clear winner.\"}\n"
+  }
+ ]
+}

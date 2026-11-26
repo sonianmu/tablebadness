@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val] EN · Dependency audit (language en).\nGrid: 5 columns × 6 rows. Row headers: none declared.\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"Package\" · longest unbreakable word 166px · one-line width 443px\n  col 2: header \"Version\" · longest unbreakable word 60px · one-line width 101px\n  col 3: header \"License\" · longest unbreakable word 85px · one-line width 85px\n  col 4: header \"Vulnerabilities\" · longest unbreakable word 114px · one-line width 114px\n  col 5: header \"Notes\" · longest unbreakable word 280px · one-line width 519px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 847px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 846px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 8036,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"The notes have comfortable space and the rows scan clearly, but the long package name and prerelease version both wrap.\"},\"B\":{\"grade\":\"poor\",\"why\":\"Equal column widths leave notes cramped and create tall rows, while the long package name breaks within a word.\"},\"C\":{\"grade\":\"good\",\"why\":\"The prerelease version stays intact, notes read comfortably, and the long package name wraps at hyphens. The advisory URL still breaks across lines.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"Notes have room and the package name wraps at hyphens, but the narrow version column splits the prerelease identifier.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"The notes are readable and the rows are compact, but both the long package name and prerelease version wrap.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"The wider package column preserves useful hyphen breaks, but the narrower notes column creates taller rows and breaks the advisory identifier; the prerelease version also wraps.\"}},\"best\":[\"C\"],\"confidence\":\"high\",\"unsure\":\"The long package name and advisory URL must wrap under this width constraint; the preferred tradeoff depends partly on how often readers need to copy those identifiers.\"}\n"
+  }
+ ]
+}

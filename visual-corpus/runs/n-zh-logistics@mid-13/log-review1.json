@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 物流运费与时效表 (language zh-CN).\nGrid: 5 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"华东地区\" spans 1 col × 2 row; \"华南地区\" spans 1 col × 2 row; \"新疆、西藏全境及内蒙古阿拉善盟、青海玉树等区域，\" spans 4 col × 1 row.\nPer-column content facts (content px at 13px font, excluding padding):\n  col 1: header \"目的地区域\" · longest unbreakable word 14px · one-line width 67px\n  col 2: header \"省份\" · longest unbreakable word 14px · one-line width 27px\n  col 3: header \"首重（元）\" · longest unbreakable word 40px · one-line width 67px\n  col 4: header \"续重（元/kg）\" · longest unbreakable word 60px · one-line width 86px\n  col 5: header \"时效\" · longest unbreakable word 27px · one-line width 253px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 480px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 479px.\nFixed: content, font, 13px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11305,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"地区名称完整，时效列有足够空间，行也容易横向阅读；但两个费用表头都换行，压缩了表头层级。\"},\"B\":{\"grade\":\"poor\",\"why\":\"首列过窄，地区名称和表头被拆成多行，削弱了按地区扫描的能力；费用列则相对宽裕。\"},\"C\":{\"grade\":\"good\",\"why\":\"地区和省份列紧凑，时效内容大多清晰；两个费用表头均换行，且浙江的时效说明在句中断开。\"},\"D\":{\"grade\":\"excellent\",\"why\":\"地区名称和首重表头保持完整，费用列紧凑，时效列有较充足空间；各行及合并的偏远地区说明都容易阅读。\"},\"E\":{\"grade\":\"bad\",\"why\":\"时效列过窄，较长说明被挤成多行，甚至将数字与单位拆开；省份和费用列的空间利用也不均衡。\"},\"F\":{\"grade\":\"excellent\",\"why\":\"首列和首重表头完整，费用列比例紧凑，时效说明只在必要时换行，整体阅读节奏均衡。\"}},\"best\":[\"D\",\"F\"],\"confidence\":\"medium\",\"unsure\":\"D 与 F 的列宽和换行效果非常接近；仅凭这些缩略图难以判断两者是否有实际可感知的优劣。\"}\n"
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val] العربية / עברית · Bidi with numbers (language ar, right-to-left: column 1 is on the RIGHT).\nGrid: 5 columns × 4 rows. Row headers: none declared.\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"الرمز\" · longest unbreakable word 35px · one-line width 35px\n  col 2: header \"المدينة\" · longest unbreakable word 51px · one-line width 51px\n  col 3: header \"עיר\" · longest unbreakable word 34px · one-line width 58px\n  col 4: header \"السكان\" · longest unbreakable word 76px · one-line width 76px\n  col 5: header \"ملاحظات\" · longest unbreakable word 66px · one-line width 440px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 469px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 468px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 8889,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"The population figures remain intact and the notes wrap at readable phrase lengths. The Hebrew name תל אביב splits across two lines.\"},\"B\":{\"grade\":\"good\",\"why\":\"The notes have a little more room and the numbers stay intact, but the Hebrew name תל אביב still wraps.\"},\"C\":{\"grade\":\"excellent\",\"why\":\"Both city columns and all population figures stay intact. The notes wrap naturally, and the rows remain easy to scan despite the extra line in the first row.\"},\"D\":{\"grade\":\"bad\",\"why\":\"Every population figure breaks across lines, making the numbers difficult to read and compare.\"},\"E\":{\"grade\":\"bad\",\"why\":\"The notes are squeezed into a very narrow column, producing tall, fragmented rows. Two population figures also break across lines, while other columns have ample unused space.\"},\"F\":{\"grade\":\"good\",\"why\":\"The notes are comfortably spaced and the numbers stay intact, but the Hebrew name תל אביב splits across two lines.\"}},\"best\":[\"C\"],\"confidence\":\"high\",\"unsure\":\"The difference in overall quality between A, B and F is modest; each makes a similar tradeoff between space for notes and the Hebrew city name.\"}\n"
+  }
+ ]
+}

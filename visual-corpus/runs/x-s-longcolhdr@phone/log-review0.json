@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [adversarial] Long headers over tiny numbers (language en).\nGrid: 5 columns × 4 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Site\" · longest unbreakable word 28px · one-line width 28px\n  col 2: header \"Average weekly active users across all platforms\" · longest unbreakable word 70px · one-line width 347px\n  col 3: header \"Median session length in minutes\" · longest unbreakable word 58px · one-line width 238px\n  col 4: header \"Share of sessions that ended in a purchase\" · longest unbreakable word 67px · one-line width 307px\n  col 5: header \"Number of support tickets opened\" · longest unbreakable word 58px · one-line width 246px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nRendering convention: the screenshot always shows the WHOLE table. Anything beyond the dashed box is not clipped; it is the part a reader reaches by scrolling sideways, so judge both what fits in the box at first sight and the cost of scrolling to the rest.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 7326,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"bad\",\"why\":\"All five columns fit, but the narrow metric columns break many header words into fragments, making the measures difficult to identify.\"},\"B\":{\"grade\":\"good\",\"why\":\"Headers remain intact and the first four columns are readable. The fifth column straddles the viewport edge and requires a short horizontal scroll.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"The first four columns have readable, intact headers and a calm rhythm, but the fifth column is entirely beyond the viewport, making it easy to miss.\"},\"D\":{\"grade\":\"good\",\"why\":\"The headers are readable without split words, and a sliver of the fifth column signals more content. Its values require horizontal scrolling.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"The first four columns read clearly, but only a small fragment of the fifth is visible initially, so the final measure and its values require scrolling.\"},\"F\":{\"grade\":\"poor\",\"why\":\"All five columns fit, but several headers split words across lines, including the session, purchase, and support measures. The resulting fragments slow comparison.\"}},\"best\":[\"B\"],\"confidence\":\"medium\",\"unsure\":\"The screenshots show only part of the horizontally overflowing columns, so the full width and appearance of the fifth column cannot be judged precisely.\"}\n"
+  }
+ ]
+}

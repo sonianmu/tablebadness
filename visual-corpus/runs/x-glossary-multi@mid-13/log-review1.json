@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: Mixed · Multilingual glossary (language en).\nGrid: 5 columns × 6 rows. Row headers: none declared.\nPer-column content facts (content px at 13px font, excluding padding):\n  col 1: header \"English\" · longest unbreakable word 67px · one-line width 146px\n  col 2: header \"中文\" · longest unbreakable word 14px · one-line width 54px\n  col 3: header \"日本語\" · longest unbreakable word 14px · one-line width 93px\n  col 4: header \"한국어\" · longest unbreakable word 12px · one-line width 64px\n  col 5: header \"العربية\" · longest unbreakable word 38px · one-line width 97px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 480px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 479px.\nFixed: content, font, 13px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 7734,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"excellent\",\"why\":\"The language columns are well balanced: English wraps naturally, the CJK entries remain intact, and only the longest Arabic entry wraps. Rows stay easy to scan.\"},\"B\":{\"grade\":\"good\",\"why\":\"English and Arabic read comfortably, but the longer Japanese and Korean entries break awkwardly, including a single Korean character on a line.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"The wider English column leaves Arabic cramped, causing several Arabic entries to wrap; the longest Japanese entry also breaks. The resulting row heights feel uneven.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"The narrow English column breaks the last term over three lines, while two Japanese entries wrap. The other columns read comfortably.\"},\"E\":{\"grade\":\"poor\",\"why\":\"The wide English column keeps most English text on one line at the expense of cramped CJK columns, where several entries wrap into short fragments.\"},\"F\":{\"grade\":\"poor\",\"why\":\"Several Chinese, Japanese and Korean entries split into short fragments, making the lower rows harder to scan despite comfortable English and Arabic columns.\"}},\"best\":[\"A\"],\"confidence\":\"high\",\"unsure\":\"The small image size makes individual CJK line endings difficult to inspect, but the differences in wrapping and column balance are clear.\"}\n"
+  }
+ ]
+}

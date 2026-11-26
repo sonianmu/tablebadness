@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 组件版本兼容矩阵 (language zh-CN).\nGrid: 5 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"组件\" · longest unbreakable word 31px · one-line width 112px\n  col 2: header \"v1.x\" · longest unbreakable word 29px · one-line width 62px\n  col 3: header \"v2.x\" · longest unbreakable word 31px · one-line width 62px\n  col 4: header \"v3.x\" · longest unbreakable word 31px · one-line width 62px\n  col 5: header \"说明\" · longest unbreakable word 171px · one-line width 494px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 7770,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"说明列宽裕，但组件名称和多个兼容状态被拆成两行，妨碍按行识别和跨版本比较。\"},\"B\":{\"grade\":\"bad\",\"why\":\"三个版本列留白过多，说明列过窄，导致长段文字密集换行，标识符也被拆开，行高过大。\"},\"C\":{\"grade\":\"excellent\",\"why\":\"组件名称和版本状态均保持完整，三个版本列宽度一致，便于横向比较；说明列也有足够空间，换行自然。\"},\"D\":{\"grade\":\"good\",\"why\":\"组件名称和版本状态完整，比较清晰；但版本列比内容所需更宽，说明列因此较窄，部分说明多占一行。\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"版本状态保持完整，说明列较宽；但多数组件名称被拆成两行，削弱了首列的识别效率。\"}},\"best\":[\"C\"],\"confidence\":\"high\",\"unsure\":\"图片缩放使个别字符和换行位置略难辨认，但不影响对整体列宽分配的判断。\"}\n"
+  }
+ ]
+}

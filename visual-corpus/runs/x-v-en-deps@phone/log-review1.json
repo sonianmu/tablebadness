@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val] EN · Dependency audit (language en).\nGrid: 5 columns × 6 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Package\" · longest unbreakable word 147px · one-line width 391px\n  col 2: header \"Version\" · longest unbreakable word 54px · one-line width 91px\n  col 3: header \"License\" · longest unbreakable word 77px · one-line width 77px\n  col 4: header \"Vulnerabilities\" · longest unbreakable word 103px · one-line width 103px\n  col 5: header \"Notes\" · longest unbreakable word 252px · one-line width 468px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nRendering convention: the screenshot always shows the WHOLE table. Anything beyond the dashed box is not clipped; it is the part a reader reaches by scrolling sideways, so judge both what fits in the box at first sight and the cost of scrolling to the rest.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9085,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"Package names and versions are mostly readable, but the tall rows leave considerable empty space, and vulnerabilities and notes lie beyond the initial viewport.\"},\"B\":{\"grade\":\"good\",\"why\":\"The first three columns are easy to scan, the long package name wraps at useful breaks, and the rows remain relatively compact. Vulnerabilities and notes require horizontal scrolling.\"},\"C\":{\"grade\":\"bad\",\"why\":\"All five columns fit, but headers, package identifiers and notes split into fragments. The resulting tall rows make comparisons difficult.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"Package names and licenses read reasonably well, but the prerelease version splits across lines and only a sliver of vulnerabilities appears initially.\"},\"E\":{\"grade\":\"poor\",\"why\":\"The long package name breaks within a word, the prerelease version wraps, and tall rows contain substantial empty space. Most audit details require scrolling.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"Versions remain intact and the long package name wraps at useful breaks, but the tall rows are sparse and vulnerabilities and notes are outside the initial viewport.\"}},\"best\":[\"B\"],\"confidence\":\"medium\",\"unsure\":\"The supplied views show only the left portion of the wider layouts, so I cannot assess the widths and wrapping of their off-screen vulnerabilities and notes columns.\"}\n"
+  }
+ ]
+}

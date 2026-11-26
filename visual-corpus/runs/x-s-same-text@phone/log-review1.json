@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 对照 · 同一文本的两种角色 (language zh-CN).\nGrid: 4 columns × 4 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"指标名称\" · longest unbreakable word 16px · one-line width 108px\n  col 2: header \"年度经营目标\" · longest unbreakable word 32px · one-line width 97px\n  col 3: header \"客户满意度提升\" · longest unbreakable word 30px · one-line width 108px\n  col 4: header \"研发效能改进\" · longest unbreakable word 16px · one-line width 138px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 8361,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"列宽较均衡，但末列过窄，标题分成三行，结果也被拆成三行，拉高了最后一行。\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"末列结果压到两行，但第二列较窄，标题和“营收增长”都在不自然的位置断开。\"},\"C\":{\"grade\":\"poor\",\"why\":\"行标题的断行参差，第二列文字也被拆得生硬；末列结果仍占三行，行高不均。\"},\"D\":{\"grade\":\"good\",\"why\":\"行标题和大多数表头以两行呈现，末列结果也占两行，行的节奏较稳定；“25%”单独占一行稍显孤立。\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"末列有足够空间，但第二列表头和结果断行生硬，影响扫描；各行高度仍较整齐。\"},\"F\":{\"grade\":\"good\",\"why\":\"列宽分配较平衡，行标题、表头和末列结果的换行清楚，行与行之间节奏稳定；“25%”单独成行略显孤立。\"}},\"best\":[\"D\",\"F\"],\"confidence\":\"medium\",\"unsure\":\"D 与 F 的视觉差异很小，难以仅凭图片确定哪一个更优。\"}\n"
+  }
+ ]
+}

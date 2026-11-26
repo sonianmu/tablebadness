@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val] Extreme · 10 columns + unbreakable values (language en).\nGrid: 10 columns × 4 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"ID\" · longest unbreakable word 16px · one-line width 16px\n  col 2: header \"SKU\" · longest unbreakable word 44px · one-line width 136px\n  col 3: header \"Color\" · longest unbreakable word 40px · one-line width 40px\n  col 4: header \"Size\" · longest unbreakable word 31px · one-line width 31px\n  col 5: header \"Qty\" · longest unbreakable word 26px · one-line width 26px\n  col 6: header \"Price\" · longest unbreakable word 41px · one-line width 41px\n  col 7: header \"Tax\" · longest unbreakable word 32px · one-line width 32px\n  col 8: header \"Total\" · longest unbreakable word 47px · one-line width 47px\n  col 9: header \"Warehouse\" · longest unbreakable word 81px · one-line width 122px\n  col 10: header \"Tracking\" · longest unbreakable word 159px · one-line width 159px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 785px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 784px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 7498,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"bad\",\"why\":\"Equal-looking widths waste space in short fields while breaking the Warehouse and Tracking headers and splitting identifiers across several lines.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"Tracking stays intact and the numeric fields scan well, but the narrow SKU column creates three-line entries and uneven row heights.\"},\"C\":{\"grade\":\"good\",\"why\":\"Tracking stays intact, SKU entries fit on two lines, and the numeric fields remain easy to compare. Warehouse values wrap onto two lines.\"},\"D\":{\"grade\":\"good\",\"why\":\"The columns are well balanced, with intact tracking numbers and consistent two-line SKU and warehouse entries.\"},\"E\":{\"grade\":\"excellent\",\"why\":\"Tracking numbers stay intact, SKUs use two lines, and the wider warehouse column keeps the Leipzig value on one line. Short numeric columns remain easy to scan.\"},\"F\":{\"grade\":\"good\",\"why\":\"Tracking numbers stay intact and SKUs fit on two lines, though all warehouse values wrap.\"}},\"best\":[\"E\"],\"confidence\":\"high\",\"unsure\":\"C, D and F are very similar; their small width differences have little visible effect on readability.\"}\n"
+  }
+ ]
+}

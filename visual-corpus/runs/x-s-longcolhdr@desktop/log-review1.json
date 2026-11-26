@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [adversarial] Long headers over tiny numbers (language en).\nGrid: 5 columns × 4 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Site\" · longest unbreakable word 28px · one-line width 28px\n  col 2: header \"Average weekly active users across all platforms\" · longest unbreakable word 70px · one-line width 347px\n  col 3: header \"Median session length in minutes\" · longest unbreakable word 58px · one-line width 238px\n  col 4: header \"Share of sessions that ended in a purchase\" · longest unbreakable word 67px · one-line width 307px\n  col 5: header \"Number of support tickets opened\" · longest unbreakable word 58px · one-line width 246px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 6799,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"acceptable\",\"why\":\"The columns are evenly paced and the values scan clearly, but Site has far more room than it needs while the longer headers wrap into three or four lines.\"},\"B\":{\"grade\":\"poor\",\"why\":\"The support-ticket column takes nearly half the table, leaving the other metric headers cramped and producing several short, uneven lines.\"},\"C\":{\"grade\":\"good\",\"why\":\"The narrow Site column leaves room for the metric headers, which wrap into two or three readable lines. The metric columns have a reasonably balanced rhythm.\"},\"D\":{\"grade\":\"good\",\"why\":\"The narrow Site column and generous space for active users make effective use of the width. The purchase and support headers each wrap to three lines, making the right side slightly less even.\"},\"E\":{\"grade\":\"good\",\"why\":\"The metric columns are well proportioned and the values remain easy to compare. The purchase header's short final line makes its wrapping a little less balanced.\"},\"F\":{\"grade\":\"excellent\",\"why\":\"The compact Site column gives space to the four metrics, whose widths and two- or three-line headers create a clear, even rhythm. Values are easy to scan down each column.\"}},\"best\":[\"F\"],\"confidence\":\"medium\",\"unsure\":\"C and F are very close visually; their small width differences make the preference between them subtle.\"}\n"
+  }
+ ]
+}

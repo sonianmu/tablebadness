@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 跨行类别 · 产品线 (language zh-CN).\nGrid: 4 columns × 6 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"智能手机\" spans 1 col × 3 row; \"可穿戴设备\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"类别\" · longest unbreakable word 16px · one-line width 77px\n  col 2: header \"产品\" · longest unbreakable word 44px · one-line width 92px\n  col 3: header \"价格\" · longest unbreakable word 50px · one-line width 50px\n  col 4: header \"说明\" · longest unbreakable word 31px · one-line width 307px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 480px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 479px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 7412,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"类别、产品和价格列占用过多宽度，说明列被挤得很窄，长说明断成许多短行，行高也随之增大。\"},\"B\":{\"grade\":\"good\",\"why\":\"说明列宽裕，价格和类别易于扫描；但“脉搏 Watch 3”中的数字单独换行，产品名称不够完整。\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"说明列宽裕，类别和价格清晰，但产品列偏窄，多个产品名称换行，削弱了产品之间的比较。\"},\"D\":{\"grade\":\"excellent\",\"why\":\"类别、产品名称和价格均保持完整，说明自然换行；列宽分配均衡，各行及跨行类别都易于辨认。\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"产品和价格保持完整，说明也易读，但“可穿戴设备”被拆成两行，类别列显得偏窄。\"},\"F\":{\"grade\":\"poor\",\"why\":\"两个类别名称和多个产品名称均被拆行，左侧层级拥挤，尽管说明列宽裕，扫描行及类别仍较费力。\"}},\"best\":[\"D\"],\"confidence\":\"high\",\"unsure\":\"评分基于所示浏览器截图；对换行造成的阅读影响仍有一定主观判断。\"}\n"
+  }
+ ]
+}

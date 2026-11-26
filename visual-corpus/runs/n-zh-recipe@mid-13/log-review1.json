@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 家常红烧肉配料表 (language zh-CN).\nGrid: 4 columns × 9 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 13px font, excluding padding):\n  col 1: header \"食材\" · longest unbreakable word 14px · one-line width 40px\n  col 2: header \"用量（克）\" · longest unbreakable word 40px · one-line width 67px\n  col 3: header \"处理方式\" · longest unbreakable word 27px · one-line width 208px\n  col 4: header \"备注\" · longest unbreakable word 27px · one-line width 160px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 480px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 479px.\nFixed: content, font, 13px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9067,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"食材和用量列紧凑，处理方式与备注有足够空间，但料酒的处理方式末字单独换行，略显零碎。\"},\"B\":{\"grade\":\"poor\",\"why\":\"食材和用量列留白过多，挤窄了两个文字列；多处换行增加行高，也削弱了逐行比较的节奏。\"},\"C\":{\"grade\":\"good\",\"why\":\"处理方式列较宽，料酒的说明保持在一行；但备注列较窄，几处末字或短词单独换行。\"},\"D\":{\"grade\":\"poor\",\"why\":\"食材列过窄，五花肉被拆行，用量表头也换成两行，削弱了行标识和表头的清晰度。\"},\"E\":{\"grade\":\"excellent\",\"why\":\"食材和用量列紧凑且完整，处理方式与备注的空间分配均衡；长句自然换行，料酒行的两段说明均保持完整。\"},\"F\":{\"grade\":\"poor\",\"why\":\"前两列过宽，处理方式和备注列被挤窄；多处说明换行，行高和文字密度不够均衡。\"}},\"best\":[\"E\"],\"confidence\":\"high\",\"unsure\":\"B和F的宽度分配十分相近，单凭图片难以判断两者的细微差别；这不影响最佳布局的选择。\"}\n"
+  }
+ ]
+}

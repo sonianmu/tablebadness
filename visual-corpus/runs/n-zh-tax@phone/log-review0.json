@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 个人所得税专项附加扣除标准简表 (language zh-CN).\nGrid: 4 columns × 8 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"扣除项目\" spans 1 col × 2 row; \"每月标准（元）\" spans 2 col × 1 row; \"适用条件\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"扣除项目\" · longest unbreakable word 16px · one-line width 133px\n  col 2: header \"每月标准（元） › 一般地区\" · longest unbreakable word 37px · one-line width 203px\n  col 3: header \"每月标准（元） › 特殊情形\" · longest unbreakable word 48px · one-line width 435px\n  col 4: header \"适用条件\" · longest unbreakable word 39px · one-line width 1038px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10873,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"项目名称较完整，适用条件有较多空间，行与行之间容易区分；特殊情形列仍然偏窄，说明文字换行频繁。\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"适用条件尚易连续阅读，但项目名称和特殊情形的说明都被切成较短的行，影响纵向扫描。\"},\"C\":{\"grade\":\"poor\",\"why\":\"特殊情形列较宽，但项目名称几乎逐字竖排，难以快速识别各行；适用条件也显得拥挤。\"},\"D\":{\"grade\":\"bad\",\"why\":\"适用条件被压成极窄的文字带，长句频繁断行，导致行高很大、其他列留下大片空白，难以逐行比较。\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"适用条件列较宽，长说明相对好读；但项目名称和特殊情形列较窄，多处短语被拆开。\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"特殊情形比前几个方案更易阅读，但适用条件更窄、行更高，项目名称也多处断行，整体比较较费力。\"}},\"best\":[\"A\"],\"confidence\":\"medium\",\"unsure\":\"A 与 E 的取舍较接近：E 给适用条件略多空间，A 则更好地保留了用于定位行的项目名称。\"}\n"
+  }
+ ]
+}

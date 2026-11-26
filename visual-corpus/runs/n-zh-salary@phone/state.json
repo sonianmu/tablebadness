@@ -7,6 +7,74 @@
     "r0B",
     "r0C"
    ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "The table is close to the viewport width, and all column groups appear together at first sight.",
+     "problems": "Names, headers and amounts break into narrow vertical fragments. Rows become very tall, making it difficult to follow one employee across the table or compare amounts down a column. The net-pay figures also split.",
+     "cause": "The 41–44px middle columns leave only 20–23px for text; the 50px name column and 54px net-pay column are also too narrow for their longest contents."
+    },
+    {
+     "design": "r0B",
+     "good": "The 85px net-pay column keeps the final amounts intact and gives the result a clear landing point.",
+     "problems": "The six component columns are almost unreadable: amounts run down as strings of individual digits, and the resulting rows are exceptionally tall. Some names also wrap. The table still requires horizontal scrolling.",
+     "cause": "Each 38px component column leaves only 17px for text. The 60px name column leaves 39px, less than the 46px needed for its longest name."
+    },
+    {
+     "design": "r0C",
+     "good": "Every name, header and amount stays on one line. Compact, even rows make both employee-by-employee reading and vertical comparison much easier. The earnings and deductions groups remain clear.",
+     "problems": "The initial viewport shows the earnings group and only part of the first deduction column; the remaining deductions and net pay require a substantial sideways scroll. The viewport boundary cuts through a column, weakening the initial view.",
+     "cause": "The widths preserve all contents, but the first four columns already total 308px; the 71px social-insurance column crosses the 360px viewport boundary. The full table is 618px wide."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "姓名和所有金额保持完整；各行高度一致，应发三项在首屏内形成清楚的阅读单元。",
+     "problems": "应发数值列留白偏多，首屏只能看到扣款组的一小部分，查看扣款和实发需要较多横向滚动。",
+     "cause": "基本工资、绩效、补贴列分别为101、96、95px，均明显大于其内容加内边距所需宽度，合计占用了可用于首屏的空间。"
+    },
+    {
+     "design": "r1B",
+     "good": "姓名、金额和表头均未拆行；应发三列比r1A紧凑，首屏已露出扣款组及社保列，组间关系更容易察觉。",
+     "problems": "社保金额被视口边界切断，读者仍须滚动才能完整核对；各金额列仍有一定富余，实发列距离首屏较远。",
+     "cause": "前四列合计326px，加上表格边界后，360px视口只能容纳社保列的一部分；其余金额列也比保持内容完整所需的宽度略宽。"
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "姓名和所有金额完整，行高一致；应发与扣款各列按内容需要分配宽度，表格紧凑，便于按行核对。",
+     "problems": "首屏只能看到应发组和社保列的一部分；实发在视口之外，核对结果需要横向滚动。",
+     "cause": "前四列共308px，第5列延伸至379px，因而被360px视口边缘切开；完整保留金额使总宽达到618px。"
+    },
+    {
+     "design": "r2B",
+     "good": "所有姓名、金额和表头保持完整，列间留白较宽，行列关系清楚。",
+     "problems": "相较r2A，额外留白没有改善阅读层级，反而让首屏露出的社保内容更少，也增加了滚动距离。",
+     "cause": "每列比r2A加宽4px；前四列共324px，第5列在399px处结束，总宽增至646px。"
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A"
+   ]
   }
  },
  "designs": {
@@ -1854,10 +1922,4304 @@
    "png": "d-r0C.png",
    "idea": "不折任何数字：每列给足其最长金额的原生宽度，首屏只露出姓名、基本工资、绩效和部分补贴，其余靠横向滚动换取完整可读的金额。",
    "notes": []
+  },
+  "r1A": {
+   "widths": [
+    67,
+    101,
+    96,
+    95,
+    71,
+    78,
+    75,
+    85
+   ],
+   "geom": {
+    "nCols": 8,
+    "nRows": 8,
+    "tableWidth": 669,
+    "tableHeight": 291,
+    "overflow": 309,
+    "colWidths": [
+     67,
+     101,
+     96,
+     95,
+     71,
+     78,
+     75,
+     85
+    ],
+    "rowHeights": [
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "姓名",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 3,
+      "role": "col",
+      "text": "应发",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 3,
+      "role": "col",
+      "text": "扣款",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "实发",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "基本工资",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "绩效",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "补贴",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "社保",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "公积金",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "个税",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "陈思远",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8600.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3200.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "600.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "688.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1032.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "465.30",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10214.70",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "李静",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7200.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2450.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "450.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "576.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "864.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "286.40",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8373.60",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "王建国",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9800.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4100.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "800.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "784.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1176.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "638.20",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12101.80",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "赵敏",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "6500.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1800.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "300.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "520.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "780.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "159.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7141.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "周文博",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11200.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5200.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1000.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "896.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1344.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1014.60",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14145.40",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "刘芳",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7800.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2900.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "500.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "624.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "936.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "342.80",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9297.20",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 63,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 56,
+      "natural": 56,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 57,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 64,
+      "natural": 64,
+      "padding": 21
+     }
+    ],
+    "frameW": 703
+   },
+   "png": "d-r1A.png",
+   "idea": "Keep every value intact and widen the three earnings columns so the name and complete earnings group total 359px. The initial view ends at a meaningful group boundary; deductions and net pay remain available by scrolling. The tradeoff is a wider 668px table.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    67,
+    90,
+    86,
+    83,
+    77,
+    84,
+    81,
+    91
+   ],
+   "geom": {
+    "nCols": 8,
+    "nRows": 8,
+    "tableWidth": 660,
+    "tableHeight": 291,
+    "overflow": 300,
+    "colWidths": [
+     67,
+     90,
+     86,
+     83,
+     77,
+     84,
+     81,
+     91
+    ],
+    "rowHeights": [
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "姓名",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 3,
+      "role": "col",
+      "text": "应发",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 3,
+      "role": "col",
+      "text": "扣款",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "实发",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "基本工资",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "绩效",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "补贴",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "社保",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "公积金",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "个税",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "陈思远",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8600.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3200.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "600.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "688.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1032.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "465.30",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10214.70",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "李静",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7200.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2450.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "450.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "576.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "864.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "286.40",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8373.60",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "王建国",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9800.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4100.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "800.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "784.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1176.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "638.20",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12101.80",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "赵敏",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "6500.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1800.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "300.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "520.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "780.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "159.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7141.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "周文博",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11200.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5200.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1000.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "896.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1344.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1014.60",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14145.40",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "刘芳",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7800.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2900.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "500.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "624.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "936.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "342.80",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9297.20",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 63,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 56,
+      "natural": 56,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 57,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 64,
+      "natural": 64,
+      "padding": 21
+     }
+    ],
+    "frameW": 694
+   },
+   "png": "d-r1B.png",
+   "idea": "Refine r0C with 6px of extra room in each numeric column, preserving its compact, single-line rows while giving amounts more breathing room. The 659px table requires more scrolling, and the viewport still cuts through the first deduction column.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    67,
+    84,
+    80,
+    77,
+    71,
+    78,
+    75,
+    85
+   ],
+   "geom": {
+    "nCols": 8,
+    "nRows": 8,
+    "tableWidth": 618,
+    "tableHeight": 291,
+    "overflow": 258,
+    "colWidths": [
+     67,
+     84,
+     80,
+     77,
+     71,
+     78,
+     75,
+     85
+    ],
+    "rowHeights": [
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "姓名",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 3,
+      "role": "col",
+      "text": "应发",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 3,
+      "role": "col",
+      "text": "扣款",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "实发",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "基本工资",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "绩效",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "补贴",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "社保",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "公积金",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "个税",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "陈思远",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8600.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3200.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "600.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "688.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1032.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "465.30",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10214.70",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "李静",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7200.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2450.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "450.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "576.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "864.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "286.40",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8373.60",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "王建国",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9800.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4100.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "800.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "784.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1176.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "638.20",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12101.80",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "赵敏",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "6500.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1800.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "300.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "520.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "780.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "159.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7141.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "周文博",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11200.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5200.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1000.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "896.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1344.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1014.60",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14145.40",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "刘芳",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7800.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2900.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "500.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "624.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "936.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "342.80",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9297.20",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 63,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 56,
+      "natural": 56,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 57,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 64,
+      "natural": 64,
+      "padding": 21
+     }
+    ],
+    "frameW": 652
+   },
+   "png": "d-r2A.png",
+   "idea": "按各列最长内容加21px配置宽度，保留人名、金额和表头完整。总宽617px，比r1B缩短43px；首屏更充分地呈现社保列，并减少查看实发所需的滚动。",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    67,
+    88,
+    84,
+    81,
+    75,
+    82,
+    79,
+    89
+   ],
+   "geom": {
+    "nCols": 8,
+    "nRows": 8,
+    "tableWidth": 646,
+    "tableHeight": 291,
+    "overflow": 286,
+    "colWidths": [
+     67,
+     88,
+     84,
+     81,
+     75,
+     82,
+     79,
+     89
+    ],
+    "rowHeights": [
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "姓名",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 3,
+      "role": "col",
+      "text": "应发",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 3,
+      "role": "col",
+      "text": "扣款",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "实发",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "基本工资",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "绩效",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "补贴",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "社保",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "公积金",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "个税",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "陈思远",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8600.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3200.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "600.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "688.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1032.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "465.30",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10214.70",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "李静",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7200.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2450.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "450.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "576.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "864.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "286.40",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8373.60",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "王建国",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9800.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4100.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "800.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "784.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1176.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "638.20",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12101.80",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "赵敏",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "6500.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1800.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "300.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "520.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "780.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "159.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7141.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "周文博",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11200.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5200.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1000.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "896.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1344.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1014.60",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14145.40",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "刘芳",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7800.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2900.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "500.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "624.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "936.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "342.80",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9297.20",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 63,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 56,
+      "natural": 56,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 57,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 64,
+      "natural": 64,
+      "padding": 21
+     }
+    ],
+    "frameW": 680
+   },
+   "png": "d-r2B.png",
+   "idea": "在内容完整的最低宽度基础上，为各金额列各增加4px，保留较舒展的数值带和结果列。总宽645px，在横向滚动量与列间呼吸感之间取折中。",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    67,
+    101,
+    97,
+    94,
+    71,
+    78,
+    75,
+    85
+   ],
+   "geom": {
+    "nCols": 8,
+    "nRows": 8,
+    "tableWidth": 669,
+    "tableHeight": 291,
+    "overflow": 309,
+    "colWidths": [
+     67,
+     101,
+     97,
+     94,
+     71,
+     78,
+     75,
+     85
+    ],
+    "rowHeights": [
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "姓名",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 3,
+      "role": "col",
+      "text": "应发",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 3,
+      "role": "col",
+      "text": "扣款",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "实发",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "基本工资",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "绩效",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "补贴",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "社保",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "公积金",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "个税",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "陈思远",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8600.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3200.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "600.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "688.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1032.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "465.30",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10214.70",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "李静",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7200.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2450.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "450.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "576.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "864.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "286.40",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8373.60",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "王建国",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9800.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4100.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "800.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "784.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1176.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "638.20",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12101.80",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "赵敏",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "6500.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1800.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "300.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "520.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "780.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "159.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7141.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "周文博",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11200.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5200.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1000.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "896.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1344.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1014.60",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14145.40",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "刘芳",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7800.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2900.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "500.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "624.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "936.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "342.80",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9297.20",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 63,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 56,
+      "natural": 56,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 57,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 64,
+      "natural": 64,
+      "padding": 21
+     }
+    ],
+    "frameW": 703
+   },
+   "png": "d-r3A.png",
+   "idea": "以r2A为基础加宽应发三列，使姓名与完整应发组恰好占359px；首屏在组边界结束，避免社保列被截断，同时保持所有金额完整。代价是总宽增至669px，查看扣款和实发需要滚动更远。",
+   "notes": [],
+   "parentRound": 2
+  },
+  "ref_auto": {
+   "widths": [
+    36.3,
+    83.2,
+    79,
+    76.8,
+    70.6,
+    77.3,
+    74.7,
+    84.1
+   ],
+   "geom": {
+    "nCols": 8,
+    "nRows": 8,
+    "tableWidth": 583,
+    "tableHeight": 500.3,
+    "overflow": 223,
+    "colWidths": [
+     36.3,
+     83.2,
+     79,
+     76.8,
+     70.6,
+     77.3,
+     74.7,
+     84.1
+    ],
+    "rowHeights": [
+     36.3,
+     36.3,
+     82.8,
+     59.5,
+     82.8,
+     59.5,
+     82.8,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "姓名",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 3,
+      "role": "col",
+      "text": "应发",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 3,
+      "role": "col",
+      "text": "扣款",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "实发",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "基本工资",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "绩效",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "补贴",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "社保",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "公积金",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "个税",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "陈思远",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8600.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3200.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "600.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "688.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1032.00",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "465.30",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10214.70",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "李静",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7200.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2450.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "450.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "576.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "864.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "286.40",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8373.60",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "王建国",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9800.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4100.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "800.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "784.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1176.00",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "638.20",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12101.80",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "赵敏",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "6500.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1800.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "300.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "520.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "780.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "159.00",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7141.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "周文博",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11200.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5200.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1000.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "896.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1344.00",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1014.60",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14145.40",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "刘芳",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7800.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2900.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "500.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "624.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "936.00",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "342.80",
+      "lines": 1
+     },
+     {
+      "r": 7,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9297.20",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 63,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 56,
+      "natural": 56,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 57,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 64,
+      "natural": 64,
+      "padding": 21
+     }
+    ],
+    "frameW": 618
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    44,
+    44,
+    44,
+    44,
+    44,
+    44,
+    44,
+    44
+   ],
+   "geom": {
+    "nCols": 8,
+    "nRows": 8,
+    "tableWidth": 353,
+    "tableHeight": 663,
+    "overflow": 0,
+    "colWidths": [
+     44,
+     44,
+     44,
+     44,
+     44,
+     44,
+     44,
+     44
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     82.8,
+     82.8,
+     82.8,
+     82.8,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "姓名",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 3,
+      "role": "col",
+      "text": "应发",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 3,
+      "role": "col",
+      "text": "扣款",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 2,
+      "cs": 1,
+      "role": "col",
+      "text": "实发",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "基本工资",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "绩效",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "补贴",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "社保",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "公积金",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "个税",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "陈思远",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8600.00",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3200.00",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "600.00",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "688.00",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1032.00",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "465.30",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "10214.70",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "李静",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7200.00",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2450.00",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "450.00",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "576.00",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "864.00",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "286.40",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "8373.60",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "王建国",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9800.00",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4100.00",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "800.00",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "784.00",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1176.00",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "638.20",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12101.80",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "赵敏",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "6500.00",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1800.00",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "300.00",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "520.00",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "780.00",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "159.00",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7141.00",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "周文博",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "11200.00",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5200.00",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1000.00",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "896.00",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1344.00",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1014.60",
+      "lines": 3
+     },
+     {
+      "r": 6,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "14145.40",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "刘芳",
+      "lines": 2
+     },
+     {
+      "r": 7,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7800.00",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2900.00",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "500.00",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "624.00",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "936.00",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "342.80",
+      "lines": 3
+     },
+     {
+      "r": 7,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "9297.20",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 85,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 46,
+      "padding": 21
+     },
+     {
+      "minContent": 63,
+      "natural": 63,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 56,
+      "natural": 56,
+      "padding": 21
+     },
+     {
+      "minContent": 50,
+      "natural": 50,
+      "padding": 21
+     },
+     {
+      "minContent": 57,
+      "natural": 57,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 64,
+      "natural": 64,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-ref_equal.png"
   }
  },
  "modelsUsed": [
-  "opencode-zen-free/deepseek-v4.1-flash-free"
+  "opencode-zen-free/deepseek-v4.1-flash-free",
+  "codex/gpt-6.1-terra"
  ],
  "understanding": {
   "purpose": "一张中文月度工资条：6名员工，展示应发三项（基本工资、绩效、补贴）、扣款三项（社保、公积金、个税）以及最终实发金额；读者用它核对每人工资的构成、逐项相减是否成立，并比较实发金额。",
@@ -1879,5 +6241,177 @@
    "姓名列若收窄，人名可折成两行，行高有余量",
    "补贴、社保这类较短金额列（如 600.00、688.00）在极窄时可退让"
   ]
- }
+ },
+ "final": {
+  "preferred": [
+   "r0C",
+   "r2A"
+  ],
+  "acceptable": [
+   "r1A",
+   "r1B",
+   "r2B",
+   "r3A"
+  ],
+  "bad": [
+   {
+    "design": "r0A",
+    "why": "Names, headers, and nearly every monetary amount split across lines, making rows and figures difficult to scan."
+   },
+   {
+    "design": "r0B",
+    "why": "The narrow middle columns break amounts into as many as six lines, producing very tall rows while the table still overflows the viewport."
+   }
+  ],
+  "contrast": null,
+  "ranges": [
+   [
+    67,
+    70
+   ],
+   [
+    84,
+    87
+   ],
+   [
+    80,
+    83
+   ],
+   [
+    77,
+    80
+   ],
+   [
+    71,
+    74
+   ],
+   [
+    78,
+    81
+   ],
+   [
+    75,
+    78
+   ],
+   [
+    85,
+    88
+   ]
+  ],
+  "rationale": "r0C and r2A are identical and keep every name, header, and amount on one line while using the least horizontal space among the intact candidates. The initial viewport shows the employee and all three earnings columns, with the deductions group beginning at the right edge. Scrolling is needed to compare deductions and net pay, but the compact, even rows preserve those figures and their relationships.",
+  "principles": {
+   "general": [
+    "Keep monetary amounts intact so readers can compare values without reconstructing digits across lines.",
+    "Give related columns a consistent rhythm while allowing widths to reflect their content.",
+    "Judge horizontal scrolling against the readability of the full table and the information visible initially."
+   ],
+   "specific": [
+    "The first viewport can show the name and the complete earnings group, with the start of deductions signaling further content.",
+    "The preferred widths are close to the minimum needed to keep this table's headers and values on one line."
+   ]
+  },
+  "tradeoffs": "Wider candidates give cells more breathing room, but require more scrolling and reveal less of the deductions group initially. Squeezing into the viewport avoids scrolling at the cost of severely fragmented amounts.",
+  "uncertain": "A designer might prefer the extra space in r2B or the wider earnings columns in r1A and r3A; the ranges are approximate judgments of equivalent quality, not measured rendering thresholds."
+ },
+ "reviews": [
+  {
+   "order": [
+    "r1B",
+    "ref_equal",
+    "ref_auto",
+    "r0A",
+    "r1A",
+    "r0C"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "good",
+     "why": "Names and earnings remain intact, with compact rows and a clear grouped header. Most deductions and net pay require horizontal scrolling."
+    },
+    "B": {
+     "grade": "bad",
+     "why": "All columns fit initially, but names, headers and nearly every amount are broken across several lines, making comparisons difficult."
+    },
+    "C": {
+     "grade": "poor",
+     "why": "Amounts in the visible earnings columns stay intact, but the narrow name column splits names vertically and makes rows unnecessarily tall. Deductions and net pay still require scrolling."
+    },
+    "D": {
+     "grade": "bad",
+     "why": "The full table fits, but amounts are fragmented into multiple lines throughout, including net pay. The resulting tall rows are hard to scan."
+    },
+    "E": {
+     "grade": "acceptable",
+     "why": "Names and visible earnings amounts are intact and easy to read, but generous column widths leave deductions almost entirely beyond the initial viewport and increase the scrolling needed."
+    },
+    "F": {
+     "grade": "good",
+     "why": "Names and visible amounts stay intact in compact rows. The earnings group and part of deductions appear initially, though the remaining deductions and net pay require scrolling."
+    }
+   },
+   "best": [
+    "F"
+   ],
+   "confidence": "medium",
+   "unsure": "The screenshots do not show the full widths or contents of columns beyond their right edges, so the total scrolling distance and the rendering of those columns cannot be assessed fully."
+  },
+  {
+   "order": [
+    "r1A",
+    "r0C",
+    "ref_equal",
+    "ref_auto",
+    "r0A",
+    "r1B"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "good",
+     "why": "Names and amounts stay intact, and the full 应发 group fits cleanly within the viewport. Readers must scroll to see deductions and take-home pay."
+    },
+    "B": {
+     "grade": "acceptable",
+     "why": "Names and earnings remain readable, and the 扣款 group begins in view, but the 社保 amounts are cut by the viewport edge and require scrolling to read."
+    },
+    "C": {
+     "grade": "bad",
+     "why": "The whole table fits, but names, headers and nearly every amount are broken across multiple lines, making rows and comparisons difficult to follow."
+    },
+    "D": {
+     "grade": "poor",
+     "why": "Amounts stay intact, but the narrow name column splits every name vertically and makes rows unusually tall. The remaining columns still require horizontal scrolling."
+    },
+    "E": {
+     "grade": "bad",
+     "why": "All columns fit, but names and monetary amounts split across several lines, with inconsistent breaks that make values hard to reconstruct and compare."
+    },
+    "F": {
+     "grade": "acceptable",
+     "why": "Names and earnings stay intact with clear rows, but the viewport cuts through the 扣款 group and its first column, leaving the rest to horizontal scrolling."
+    }
+   },
+   "best": [
+    "A"
+   ],
+   "confidence": "medium",
+   "unsure": "The screenshots show only a narrow portion beyond the viewport, so the full off-screen widths and any wrapping in the later columns are difficult to assess."
+  }
+ ],
+ "reviewPrompt": "v2"
 }

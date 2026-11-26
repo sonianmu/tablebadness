@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 对照 · 同一文本的两种角色 (language zh-CN).\nGrid: 4 columns × 4 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"指标名称\" · longest unbreakable word 16px · one-line width 108px\n  col 2: header \"年度经营目标\" · longest unbreakable word 32px · one-line width 97px\n  col 3: header \"客户满意度提升\" · longest unbreakable word 30px · one-line width 108px\n  col 4: header \"研发效能改进\" · longest unbreakable word 16px · one-line width 138px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 6333,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"The first row label and its matching column header wrap differently, and the narrow final column leaves the last value on three lines with 周 stranded.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"The final value fits on two lines, but the narrow second and third columns split 增长 and 提升, weakening the reading rhythm.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"The second value keeps 增长 together, but the last value spans three lines and strands 周; matching row and column labels also wrap differently.\"},\"D\":{\"grade\":\"good\",\"why\":\"The rows are compact, the final value fits on two lines, and the second and third values retain meaningful phrase boundaries. Matching row and column labels wrap consistently.\"},\"E\":{\"grade\":\"good\",\"why\":\"The columns are balanced around the content, with consistent wrapping for matching labels and two-line values that remain easy to scan.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"The last value fits on two lines and matching labels wrap consistently, but the second value splits 增长 across lines.\"}},\"best\":[\"D\",\"E\"],\"confidence\":\"medium\",\"unsure\":\"D and E appear nearly identical at this image size; any small difference in their column widths is difficult to judge visually.\"}\n"
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 部分A股个股行情一览 (language zh-CN).\nGrid: 7 columns × 7 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"代码\" · longest unbreakable word 59px · one-line width 59px\n  col 2: header \"名称\" · longest unbreakable word 16px · one-line width 62px\n  col 3: header \"最新价\" · longest unbreakable word 60px · one-line width 60px\n  col 4: header \"涨跌幅\" · longest unbreakable word 54px · one-line width 54px\n  col 5: header \"成交额（亿）\" · longest unbreakable word 46px · one-line width 92px\n  col 6: header \"市盈率\" · longest unbreakable word 35px · one-line width 46px\n  col 7: header \"所属行业\" · longest unbreakable word 16px · one-line width 62px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nRendering convention: the screenshot always shows the WHOLE table. Anything beyond the dashed box is not clipped; it is the part a reader reaches by scrolling sideways, so judge both what fits in the box at first sight and the cost of scrolling to the rest.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10525,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Codes, names, prices and changes remain intact and scan cleanly in compact rows. The turnover header wraps, and the remaining columns require horizontal scrolling.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"The visible identifiers and figures remain intact, but several rows are much taller and uneven, adding white space without improving the visible columns. The later columns require scrolling.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"The visible identifiers and figures scan well, though the uneven row heights leave extra white space. The later columns require scrolling.\"},\"D\":{\"grade\":\"poor\",\"why\":\"Stock names break across two lines, weakening the link between each code and its name. More financial columns appear near the viewport edge, but the table still requires scrolling.\"},\"E\":{\"grade\":\"bad\",\"why\":\"The name column is so narrow that company names stack almost one character per line, making rows very tall and difficult to scan. The table still extends beyond the viewport.\"},\"F\":{\"grade\":\"bad\",\"why\":\"All columns fit, but stock codes, prices, percentages and headers break into fragments. The dense vertical stacking makes both identification and numerical comparison difficult.\"}},\"best\":[\"A\"],\"confidence\":\"medium\",\"unsure\":\"The supplied views cut off the right side of the horizontally scrollable layouts, so wrapping in their later columns cannot be fully assessed. A, B and C look similar in the visible columns, but their differing row heights suggest differences outside the visible crop.\"}\n"
+  }
+ ]
+}

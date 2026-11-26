@@ -1,0 +1,4332 @@
+{
+ "id": "x-v-en-deps@desktop",
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "The full table fits in the viewport. Headers stay on one line, the compact audit fields align well for comparison, and each row remains easy to follow across the table.",
+     "problems": "The advisory URL splits within a word, and its four-line cell makes the node-fetch row conspicuously tall. Notes prose also wraps frequently, while the long scoped package occupies three lines.",
+     "cause": "Notes has 217px, leaving 196px for text, less than its 252px longest unbreakable string. Package has 168px, enough for its longest unbreakable segment but not for the full identifier."
+    },
+    {
+     "design": "r0B",
+     "good": "The wider Notes column keeps the advisory URL intact and gives the prose a more comfortable rhythm. The audit fields and headers remain compact, and most rows are shorter than in r0A.",
+     "problems": "The right edge of Notes lies outside the initial viewport, so readers must scroll to finish some entries. The long package identifier still occupies three lines, making that row taller than most.",
+     "cause": "Notes is 273px wide, producing 56px of horizontal overflow. Package remains 168px wide."
+    },
+    {
+     "design": "r0C",
+     "good": "The wider Package column reduces the long identifier to two lines, and Notes has ample room for natural wrapping. The rows have a calmer, more even rhythm and the audit fields remain easy to compare.",
+     "problems": "A substantial part of Notes is outside the initial viewport, so readers must scroll to use the contextual information. The extra Package width mostly creates empty space for the short names.",
+     "cause": "Package is 250px and Notes is 300px; together they push the table 165px beyond the viewport."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "The identifying and audit fields are easy to scan, all headers stay on one line, and the long package identifier and notes wrap without mid-word splits. Rows remain distinct despite the taller entries.",
+     "problems": "The right side of Notes requires horizontal scrolling, so some context is missing at first sight.",
+     "cause": "Notes needs 273px to keep its longest unbreakable string intact; together with the 190px Package column, that brings the table to 798px."
+    },
+    {
+     "design": "r1B",
+     "good": "The audit columns retain their clear alignment, and the table comes close to fitting the viewport without adding row height.",
+     "problems": "The long string in Notes splits mid-word, making it harder to read or copy accurately. Some Notes content still requires scrolling.",
+     "cause": "At 245px, Notes has only 224px of text space, less than the 252px required by its longest unbreakable string. Package at 168px is sufficient for its longest unbreakable segment."
+    },
+    {
+     "design": "r1C",
+     "good": "Headers and identifiers remain intact, and the audit fields are well separated. Notes avoids mid-word splits.",
+     "problems": "The wider Package column does not reduce the long row's height, while more of Notes falls beyond the viewport.",
+     "cause": "Increasing Package to 220px adds 30px to the table compared with r1A without changing the displayed row heights; the table overflows by 108px."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "The audit fields are easy to scan, all headers stay on one line, and the version and license values remain intact. Notes have enough room to avoid mid-word splits, while the long package name wraps into a manageable three-line block.",
+     "problems": "The right edge of Notes sits outside the initial viewport, so readers must scroll to read complete notes. The long package row is also relatively tall.",
+     "cause": "The 273px Notes column preserves the long unbreakable string but makes the table 56px wider than the viewport. The 168px Package column requires the long identifier to wrap across three lines."
+    },
+    {
+     "design": "r2B",
+     "good": "All five columns fit in the viewport, and the headers, versions, licenses, and vulnerability values remain easy to compare. The identifying columns retain the same useful proportions as r2A.",
+     "problems": "Notes become noticeably dense and make several rows taller. The advisory URL splits mid-word, making it harder to read and follow.",
+     "cause": "Reducing Notes to 217px leaves only 196px for text, less than the 252px needed for its longest unbreakable string."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A",
+    "r3B"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    168,
+    112,
+    98,
+    124,
+    217
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 720,
+    "tableHeight": 427.8,
+    "overflow": 0,
+    "colWidths": [
+     168,
+     112,
+     98,
+     124,
+     217
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     82.8,
+     106,
+     82.8,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Version",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "License",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Vulnerabilities",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Notes",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "lodash",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.17.21",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Consider replacing with native methods to reduce bundle size",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "moment",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2.29.4",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In maintenance mode; migrate to date-fns or Temporal.",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "node-fetch",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2.6.7",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1 (moderate)",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "See https://github.com/advisories/GHSA-r683-j2x4-v87g for de",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "@company/internal-design-system-react-components",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.0.0-beta.3",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Proprietary",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pre-release build pinned by the platform team.",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "left-pad",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1.3.0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "WTFPL",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unused.",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 1,
+    "tokenBreaks": 2,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 147,
+      "natural": 391,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 91,
+      "padding": 21
+     },
+     {
+      "minContent": 77,
+      "natural": 77,
+      "padding": 21
+     },
+     {
+      "minContent": 103,
+      "natural": 103,
+      "padding": 21
+     },
+     {
+      "minContent": 252,
+      "natural": 468,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r0A.png",
+   "idea": "Fit the viewport exactly while preserving the compact audit fields and package identifiers, accepting splits in the longest Notes string.",
+   "notes": []
+  },
+  "r0B": {
+   "widths": [
+    168,
+    112,
+    98,
+    124,
+    273
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 776,
+    "tableHeight": 358,
+    "overflow": 56,
+    "colWidths": [
+     168,
+     112,
+     98,
+     124,
+     273
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     82.8,
+     82.8,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Version",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "License",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Vulnerabilities",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Notes",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "lodash",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.17.21",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Consider replacing with native methods to reduce bundle size",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "moment",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2.29.4",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In maintenance mode; migrate to date-fns or Temporal.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "node-fetch",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2.6.7",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1 (moderate)",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "See https://github.com/advisories/GHSA-r683-j2x4-v87g for de",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "@company/internal-design-system-react-components",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.0.0-beta.3",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Proprietary",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pre-release build pinned by the platform team.",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "left-pad",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1.3.0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "WTFPL",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unused.",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 3,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 147,
+      "natural": 391,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 91,
+      "padding": 21
+     },
+     {
+      "minContent": 77,
+      "natural": 77,
+      "padding": 21
+     },
+     {
+      "minContent": 103,
+      "natural": 103,
+      "padding": 21
+     },
+     {
+      "minContent": 252,
+      "natural": 468,
+      "padding": 21
+     }
+    ],
+    "frameW": 810
+   },
+   "png": "d-r0B.png",
+   "idea": "Allow 56px of horizontal overflow to give every column enough text width for its longest unbreakable string.",
+   "notes": []
+  },
+  "r0C": {
+   "widths": [
+    250,
+    112,
+    98,
+    124,
+    300
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 885,
+    "tableHeight": 334.8,
+    "overflow": 165,
+    "colWidths": [
+     250,
+     112,
+     98,
+     124,
+     300
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     82.8,
+     59.5,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Version",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "License",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Vulnerabilities",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Notes",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "lodash",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.17.21",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Consider replacing with native methods to reduce bundle size",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "moment",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2.29.4",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In maintenance mode; migrate to date-fns or Temporal.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "node-fetch",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2.6.7",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1 (moderate)",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "See https://github.com/advisories/GHSA-r683-j2x4-v87g for de",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "@company/internal-design-system-react-components",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.0.0-beta.3",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Proprietary",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pre-release build pinned by the platform team.",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "left-pad",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1.3.0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "WTFPL",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unused.",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 3,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 147,
+      "natural": 391,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 91,
+      "padding": 21
+     },
+     {
+      "minContent": 77,
+      "natural": 77,
+      "padding": 21
+     },
+     {
+      "minContent": 103,
+      "natural": 103,
+      "padding": 21
+     },
+     {
+      "minContent": 252,
+      "natural": 468,
+      "padding": 21
+     }
+    ],
+    "frameW": 919
+   },
+   "png": "d-r0C.png",
+   "idea": "Use a wider scrolling table to give package names and notes more room for natural wrapping while keeping the comparison fields compact.",
+   "notes": []
+  },
+  "r1A": {
+   "widths": [
+    190,
+    112,
+    98,
+    124,
+    273
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 798,
+    "tableHeight": 358,
+    "overflow": 78,
+    "colWidths": [
+     190,
+     112,
+     98,
+     124,
+     273
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     82.8,
+     82.8,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Version",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "License",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Vulnerabilities",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Notes",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "lodash",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.17.21",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Consider replacing with native methods to reduce bundle size",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "moment",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2.29.4",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In maintenance mode; migrate to date-fns or Temporal.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "node-fetch",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2.6.7",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1 (moderate)",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "See https://github.com/advisories/GHSA-r683-j2x4-v87g for de",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "@company/internal-design-system-react-components",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.0.0-beta.3",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Proprietary",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pre-release build pinned by the platform team.",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "left-pad",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1.3.0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "WTFPL",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unused.",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 3,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 147,
+      "natural": 391,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 91,
+      "padding": 21
+     },
+     {
+      "minContent": 77,
+      "natural": 77,
+      "padding": 21
+     },
+     {
+      "minContent": 103,
+      "natural": 103,
+      "padding": 21
+     },
+     {
+      "minContent": 252,
+      "natural": 468,
+      "padding": 21
+     }
+    ],
+    "frameW": 832
+   },
+   "png": "d-r1A.png",
+   "idea": "Give the long package identifier a little more room while retaining enough Notes width for its longest unbreakable string. This tests whether a small increase over r0B improves the package row without approaching r0C's scrolling cost.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    168,
+    112,
+    98,
+    124,
+    245
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 748,
+    "tableHeight": 358,
+    "overflow": 28,
+    "colWidths": [
+     168,
+     112,
+     98,
+     124,
+     245
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     82.8,
+     82.8,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Version",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "License",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Vulnerabilities",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Notes",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "lodash",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.17.21",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Consider replacing with native methods to reduce bundle size",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "moment",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2.29.4",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In maintenance mode; migrate to date-fns or Temporal.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "node-fetch",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2.6.7",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1 (moderate)",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "See https://github.com/advisories/GHSA-r683-j2x4-v87g for de",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "@company/internal-design-system-react-components",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.0.0-beta.3",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Proprietary",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pre-release build pinned by the platform team.",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "left-pad",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1.3.0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "WTFPL",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unused.",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 1,
+    "tokenBreaks": 2,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 147,
+      "natural": 391,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 91,
+      "padding": 21
+     },
+     {
+      "minContent": 77,
+      "natural": 77,
+      "padding": 21
+     },
+     {
+      "minContent": 103,
+      "natural": 103,
+      "padding": 21
+     },
+     {
+      "minContent": 252,
+      "natural": 468,
+      "padding": 21
+     }
+    ],
+    "frameW": 782
+   },
+   "png": "d-r1B.png",
+   "idea": "Reduce Notes from r0B to limit overflow to 28px. This tests whether a smaller scrolling cost is a worthwhile trade for splitting the longest Notes string.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1C": {
+   "widths": [
+    220,
+    112,
+    98,
+    124,
+    273
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 828,
+    "tableHeight": 358,
+    "overflow": 108,
+    "colWidths": [
+     220,
+     112,
+     98,
+     124,
+     273
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     82.8,
+     82.8,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Version",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "License",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Vulnerabilities",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Notes",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "lodash",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.17.21",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Consider replacing with native methods to reduce bundle size",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "moment",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2.29.4",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In maintenance mode; migrate to date-fns or Temporal.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "node-fetch",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2.6.7",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1 (moderate)",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "See https://github.com/advisories/GHSA-r683-j2x4-v87g for de",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "@company/internal-design-system-react-components",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.0.0-beta.3",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Proprietary",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pre-release build pinned by the platform team.",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "left-pad",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1.3.0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "WTFPL",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unused.",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 3,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 147,
+      "natural": 391,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 91,
+      "padding": 21
+     },
+     {
+      "minContent": 77,
+      "natural": 77,
+      "padding": 21
+     },
+     {
+      "minContent": 103,
+      "natural": 103,
+      "padding": 21
+     },
+     {
+      "minContent": 252,
+      "natural": 468,
+      "padding": 21
+     }
+    ],
+    "frameW": 862
+   },
+   "png": "d-r1C.png",
+   "idea": "Try a middle ground between r0B and r0C: give Package more space while keeping Notes just wide enough for its longest unbreakable string. This may improve the long identifier with less overflow than r0C.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    168,
+    112,
+    98,
+    124,
+    273
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 776,
+    "tableHeight": 358,
+    "overflow": 56,
+    "colWidths": [
+     168,
+     112,
+     98,
+     124,
+     273
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     82.8,
+     82.8,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Version",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "License",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Vulnerabilities",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Notes",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "lodash",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.17.21",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Consider replacing with native methods to reduce bundle size",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "moment",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2.29.4",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In maintenance mode; migrate to date-fns or Temporal.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "node-fetch",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2.6.7",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1 (moderate)",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "See https://github.com/advisories/GHSA-r683-j2x4-v87g for de",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "@company/internal-design-system-react-components",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.0.0-beta.3",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Proprietary",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pre-release build pinned by the platform team.",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "left-pad",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1.3.0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "WTFPL",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unused.",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 3,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 147,
+      "natural": 391,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 91,
+      "padding": 21
+     },
+     {
+      "minContent": 77,
+      "natural": 77,
+      "padding": 21
+     },
+     {
+      "minContent": 103,
+      "natural": 103,
+      "padding": 21
+     },
+     {
+      "minContent": 252,
+      "natural": 468,
+      "padding": 21
+     }
+    ],
+    "frameW": 810
+   },
+   "png": "d-r2A.png",
+   "idea": "Use r1B's compact Package width and r1A's Notes width. This preserves unbroken strings while reducing overflow to 56px.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    168,
+    112,
+    98,
+    124,
+    217
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 720,
+    "tableHeight": 427.8,
+    "overflow": 0,
+    "colWidths": [
+     168,
+     112,
+     98,
+     124,
+     217
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     82.8,
+     106,
+     82.8,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Version",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "License",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Vulnerabilities",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Notes",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "lodash",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.17.21",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Consider replacing with native methods to reduce bundle size",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "moment",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2.29.4",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In maintenance mode; migrate to date-fns or Temporal.",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "node-fetch",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2.6.7",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1 (moderate)",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "See https://github.com/advisories/GHSA-r683-j2x4-v87g for de",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "@company/internal-design-system-react-components",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.0.0-beta.3",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Proprietary",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pre-release build pinned by the platform team.",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "left-pad",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1.3.0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "WTFPL",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unused.",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 1,
+    "tokenBreaks": 2,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 147,
+      "natural": 391,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 91,
+      "padding": 21
+     },
+     {
+      "minContent": 77,
+      "natural": 77,
+      "padding": 21
+     },
+     {
+      "minContent": 103,
+      "natural": 103,
+      "padding": 21
+     },
+     {
+      "minContent": 252,
+      "natural": 468,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r2B.png",
+   "idea": "Fit the full table within 719px while keeping the identifying and audit fields intact. The narrower Notes column will split its longest string and may increase row height, but eliminates horizontal scrolling.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    168,
+    112,
+    98,
+    124,
+    252
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 755,
+    "tableHeight": 358,
+    "overflow": 35,
+    "colWidths": [
+     168,
+     112,
+     98,
+     124,
+     252
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     82.8,
+     82.8,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Version",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "License",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Vulnerabilities",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Notes",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "lodash",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.17.21",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Consider replacing with native methods to reduce bundle size",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "moment",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2.29.4",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In maintenance mode; migrate to date-fns or Temporal.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "node-fetch",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2.6.7",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1 (moderate)",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "See https://github.com/advisories/GHSA-r683-j2x4-v87g for de",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "@company/internal-design-system-react-components",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.0.0-beta.3",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Proprietary",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pre-release build pinned by the platform team.",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "left-pad",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1.3.0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "WTFPL",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unused.",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 1,
+    "tokenBreaks": 2,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 147,
+      "natural": 391,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 91,
+      "padding": 21
+     },
+     {
+      "minContent": 77,
+      "natural": 77,
+      "padding": 21
+     },
+     {
+      "minContent": 103,
+      "natural": 103,
+      "padding": 21
+     },
+     {
+      "minContent": 252,
+      "natural": 468,
+      "padding": 21
+     }
+    ],
+    "frameW": 789
+   },
+   "png": "d-r3A.png",
+   "idea": "Reduce Notes by 21px from r2A to limit horizontal scrolling while retaining more room for prose than r2B. Check whether the advisory URL can wrap at a natural boundary without a mid-word split.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3B": {
+   "widths": [
+    190,
+    112,
+    98,
+    124,
+    273
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 798,
+    "tableHeight": 358,
+    "overflow": 78,
+    "colWidths": [
+     190,
+     112,
+     98,
+     124,
+     273
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     82.8,
+     82.8,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Version",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "License",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Vulnerabilities",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Notes",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "lodash",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.17.21",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Consider replacing with native methods to reduce bundle size",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "moment",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2.29.4",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In maintenance mode; migrate to date-fns or Temporal.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "node-fetch",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2.6.7",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1 (moderate)",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "See https://github.com/advisories/GHSA-r683-j2x4-v87g for de",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "@company/internal-design-system-react-components",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.0.0-beta.3",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Proprietary",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pre-release build pinned by the platform team.",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "left-pad",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1.3.0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "WTFPL",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unused.",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 3,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 147,
+      "natural": 391,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 91,
+      "padding": 21
+     },
+     {
+      "minContent": 77,
+      "natural": 77,
+      "padding": 21
+     },
+     {
+      "minContent": 103,
+      "natural": 103,
+      "padding": 21
+     },
+     {
+      "minContent": 252,
+      "natural": 468,
+      "padding": 21
+     }
+    ],
+    "frameW": 832
+   },
+   "png": "d-r3B.png",
+   "idea": "Give the long package identifier more space while retaining the full Notes width from r2A. This tests whether a wider table improves the long row enough to justify additional scrolling.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "ref_auto": {
+   "widths": [
+    167.3,
+    74.8,
+    97.1,
+    123.2,
+    272.4
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 735.8,
+    "tableHeight": 358,
+    "overflow": 15.8,
+    "colWidths": [
+     167.3,
+     74.8,
+     97.1,
+     123.2,
+     272.4
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     82.8,
+     82.8,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Version",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "License",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Vulnerabilities",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Notes",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "lodash",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.17.21",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Consider replacing with native methods to reduce bundle size",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "moment",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2.29.4",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In maintenance mode; migrate to date-fns or Temporal.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "node-fetch",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2.6.7",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1 (moderate)",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "See https://github.com/advisories/GHSA-r683-j2x4-v87g for de",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "@company/internal-design-system-react-components",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.0.0-beta.3",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Proprietary",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pre-release build pinned by the platform team.",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "left-pad",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1.3.0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "WTFPL",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unused.",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 4,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 147,
+      "natural": 391,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 91,
+      "padding": 21
+     },
+     {
+      "minContent": 77,
+      "natural": 77,
+      "padding": 21
+     },
+     {
+      "minContent": 103,
+      "natural": 103,
+      "padding": 21
+     },
+     {
+      "minContent": 252,
+      "natural": 468,
+      "padding": 21
+     }
+    ],
+    "frameW": 770
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    143,
+    143,
+    143,
+    143,
+    143
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 716,
+    "tableHeight": 544,
+    "overflow": 0,
+    "colWidths": [
+     143,
+     143,
+     143,
+     143,
+     143
+    ],
+    "rowHeights": [
+     36.3,
+     129.3,
+     106,
+     129.3,
+     106,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Package",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Version",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "License",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Vulnerabilities",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Notes",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "lodash",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.17.21",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Consider replacing with native methods to reduce bundle size",
+      "lines": 5
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "moment",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2.29.4",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "In maintenance mode; migrate to date-fns or Temporal.",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "node-fetch",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2.6.7",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "MIT",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1 (moderate)",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "See https://github.com/advisories/GHSA-r683-j2x4-v87g for de",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "@company/internal-design-system-react-components",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.0.0-beta.3",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Proprietary",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pre-release build pinned by the platform team.",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "left-pad",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1.3.0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "WTFPL",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "0",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Unused.",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 3,
+    "tokenBreaks": 3,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 147,
+      "natural": 391,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 91,
+      "padding": 21
+     },
+     {
+      "minContent": 77,
+      "natural": 77,
+      "padding": 21
+     },
+     {
+      "minContent": 103,
+      "natural": 103,
+      "padding": 21
+     },
+     {
+      "minContent": 252,
+      "natural": 468,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-ref_equal.png"
+  }
+ },
+ "modelsUsed": [
+  "codex/gpt-6.1-terra"
+ ],
+ "understanding": {
+  "purpose": "Audit English-language dependencies for package identity, version, licensing, vulnerabilities and relevant notes.",
+  "reading": "Readers scan package names to find dependencies, then compare versions, licenses and vulnerability status across rows; notes provide context for individual entries.",
+  "groups": [
+   "Package and Version identify the dependency and release.",
+   "License and Vulnerabilities are compact audit fields intended for comparison down their columns.",
+   "Notes provides row-specific context and benefits from flexible space."
+  ],
+  "keep_intact": [
+   "Package identifiers and version strings, especially scoped package names and prerelease versions.",
+   "License names, vulnerability counts and the Vulnerabilities header.",
+   "Long unbreakable strings in Notes where space permits."
+  ],
+  "may_wrap": [
+   "Notes prose at natural word boundaries.",
+   "Package names at natural break opportunities; the unusually long package row can absorb additional height.",
+   "Vulnerability descriptions at natural word boundaries when needed."
+  ]
+ },
+ "final": {
+  "preferred": [
+   "r2A"
+  ],
+  "acceptable": [
+   "r0C",
+   "r1A",
+   "r1C",
+   "r2B",
+   "r3B"
+  ],
+  "bad": [
+   {
+    "design": "r1B",
+    "why": "The advisory identifier splits mid-word, yet the table still requires horizontal scrolling."
+   },
+   {
+    "design": "r3A",
+    "why": "The advisory identifier splits mid-word while the table still extends beyond the viewport."
+   }
+  ],
+  "contrast": null,
+  "ranges": [
+   [
+    168,
+    190
+   ],
+   [
+    112,
+    112
+   ],
+   [
+    98,
+    98
+   ],
+   [
+    124,
+    124
+   ],
+   [
+    273,
+    280
+   ]
+  ],
+  "rationale": "r2A keeps headers and unbreakable identifiers intact while limiting overflow to 56px. The compact package column leaves more of the notes visible at first sight, and the short version, license, and vulnerability fields remain easy to scan across each row. The longer package name wraps at meaningful punctuation, while the advisory URL remains intact.",
+  "principles": {
+   "general": [
+    "Preserve identifiers and headers where possible, especially when they support lookup or comparison.",
+    "Judge horizontal scrolling against the reading cost of additional wrapping; neither a narrower nor a shorter table is automatically better.",
+    "Give related fields enough width to scan while reserving space for prose and long identifiers."
+   ],
+   "specific": [
+    "The 252px unbreakable segment in Notes sets a 273px column-width threshold with padding.",
+    "Package can be relatively narrow because its longest name wraps at punctuation without splitting an unbreakable word."
+   ]
+  },
+  "tradeoffs": "r2B fits the viewport and keeps each row visible without scrolling, but its notes wrap more heavily and the advisory URL splits. r0C gives the package name a more comfortable wrap and reduces one row's height, at the cost of substantially more scrolling.",
+  "uncertain": "A designer could reasonably prefer r2B if avoiding horizontal scrolling matters more than preserving the URL segment, or r1A and r3B if a little more room for package names justifies the extra 22px of overflow. The ranges are approximate and conservative; widths between the rendered candidates have not been verified in a browser."
+ },
+ "reviews": [
+  {
+   "order": [
+    "r1B",
+    "r0C",
+    "ref_equal",
+    "ref_auto",
+    "r2A",
+    "r1A"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "acceptable",
+     "why": "The audit fields scan cleanly and the version stays intact, but the long package name breaks across three lines and Notes extends beyond the viewport."
+    },
+    "B": {
+     "grade": "poor",
+     "why": "The wider package column improves the long identifier, but pushes much of Notes beyond the viewport, making the explanatory text costly to read."
+    },
+    "C": {
+     "grade": "poor",
+     "why": "Everything fits in the viewport, but the narrow Package and Notes columns split identifiers and the URL into many fragments. Tall rows and excess space in the middle columns weaken the reading rhythm."
+    },
+    "D": {
+     "grade": "good",
+     "why": "The wide Notes column makes the explanations relatively easy to scan, while the audit fields remain grouped. The long package name and prerelease version wrap, and the advisory URL reaches beyond the viewport."
+    },
+    "E": {
+     "grade": "acceptable",
+     "why": "The version and audit fields remain readable, but the long package name breaks over three lines and portions of Notes lie beyond the viewport."
+    },
+    "F": {
+     "grade": "acceptable",
+     "why": "The wider package column gives the long identifier a more natural break and the version remains intact, but Notes starts farther right and requires more horizontal scrolling."
+    }
+   },
+   "best": [
+    "D"
+   ],
+   "confidence": "medium",
+   "unsure": "The supplied images cut off the right side of some layouts, so the full width and exact scrolling cost of Notes are difficult to judge. A and E also appear very similar in the visible area."
+  },
+  {
+   "order": [
+    "ref_equal",
+    "r0C",
+    "r1B",
+    "r2A",
+    "r1A",
+    "ref_auto"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "poor",
+     "why": "Everything fits in the viewport, but equal column widths leave short fields spacious while the package identifier and notes break across many lines. The URL is especially hard to follow."
+    },
+    "B": {
+     "grade": "acceptable",
+     "why": "The wider package column makes the long identifier easier to read, and the short fields have sensible widths. Much of the notes column sits beyond the viewport, so reading each row requires horizontal scrolling."
+    },
+    "C": {
+     "grade": "good",
+     "why": "The short fields stay intact, while the package and notes receive more space than in A. The long package name wraps over three lines, and the ends of notes require horizontal scrolling."
+    },
+    "D": {
+     "grade": "good",
+     "why": "The fields are proportioned sensibly and most rows are compact. The long package name wraps over three lines, and some notes extend beyond the viewport."
+    },
+    "E": {
+     "grade": "good",
+     "why": "The wider package column gives the long identifier a more balanced wrap, while version, license and vulnerability values remain intact. Part of the notes column requires horizontal scrolling."
+    },
+    "F": {
+     "grade": "acceptable",
+     "why": "More of the notes are visible at first sight, but the narrow version column splits the prerelease version, making an important identifier harder to scan. The long package name also wraps over three lines."
+    }
+   },
+   "best": [
+    "E"
+   ],
+   "confidence": "low",
+   "unsure": "The right edges of several rendered tables are cut off in the supplied images, so the full extent of horizontal scrolling and the complete wrapping of notes are difficult to compare. C and D also appear very similar at this scale."
+  }
+ ],
+ "reviewPrompt": "v2"
+}

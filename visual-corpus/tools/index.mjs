@@ -28,11 +28,15 @@ const rows = recs.map(r => ({
   file: `${r.split}/${r.id.replace(/[^a-zA-Z0-9@._-]/g, '_')}.json`,
 }));
 const count = (xs, k) => xs.reduce((m, x) => (m[x[k]] = (m[x[k]] || 0) + 1, m), {});
+const amDir = join(root, 'corpus/holdout-amendments');
+const amendments = existsSync(amDir) ? readdirSync(amDir).filter(f => f.endsWith('.json') && f !== 'FROZEN.json').map(f => JSON.parse(readFileSync(join(amDir, f), 'utf8'))).map(r => ({ id: r.id, frozenStatus: r.amends.frozenStatus, status: r.status, file: `holdout-amendments/${f(r.id)}.json` })) : [];
+function f(id) { return id.replace(/[^a-zA-Z0-9@._-]/g, '_'); }
 const summary = {
   scenarios: { planned: manifest.scenarios.length, done: rows.length },
   families: new Set(rows.map(r => r.family)).size,
   bySplit: count(rows, 'split'), byStatus: count(rows, 'status'), byLang: count(rows, 'lang'), byStructure: count(rows, 'structure'), byPolicy: count(rows, 'policy'),
   auditIssues: rows.filter(r => r.audit.length).map(r => ({ id: r.id, audit: r.audit })),
+  holdoutAmendments: { note: 'post-freeze re-reviews/redesigns of frozen holdout records; the frozen records stay canonical', count: amendments.length, list: amendments },
   meanGrade: { preferred: mean(rows.flatMap(r => r.reviewerGrades)), browserAuto: mean(rows.flatMap(r => r.refAutoGrades)), equalWidths: mean(rows.flatMap(r => r.refEqualGrades)) },
 };
 function mean(xs) { xs = xs.filter(x => x > 0); return xs.length ? +(xs.reduce((a, b) => a + b, 0) / xs.length).toFixed(2) : null; }
