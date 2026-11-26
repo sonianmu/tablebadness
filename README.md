@@ -26,7 +26,7 @@ npm test               # invariants: staircase monotone, path monotone, DP ≤ p
 npm run all            # accuracy + experiment + stability + perf → results/*.json, results/summary.txt
 npm run sweep          # parameter sweep on the DEV set only
 node bench/inspect.mjs zh-project 400 15    # one case, all methods, plus a screenshot
-open index.html        # interactive demo (works from file://)
+open index.html        # interactive demo (works from file://); drag column borders or use ←/→ to resize by hand
 ```
 
 API (classic script, `window.TableBadness`):
@@ -74,4 +74,4 @@ Performance (5 columns, 1000 rows): cold prepare 56 ms, path 10 ms, warm re-prep
 - `tb-path` scrolls slightly more often than the browser on the validation set (19.6% vs 18.5%). The scroll trade-off is controlled by `scrollEntry`/`scrollCost`.
 - All results are typesetting proxies. No human reading study was run, so nothing here shows that people read faster.
 - Only Chromium on macOS system fonts was measured. Inline elements must not have horizontal padding: `table.css` fakes code padding with `box-shadow`. Vertical text, merged cells and nested tables are out of scope.
-- The research skills listed in RESEARCH.md §7 were not installed, because the sandbox refused the `npx skills add` step. Nothing here depends on them.
+- The research skills listed in RESEARCH.md §7 are installed project-locally under `.claude/skills/` (git-ignored; versions pinned in `skills-lock.json`). Reinstall with the command in RESEARCH.md §7 from the repo root, adding `-a claude-code -y`.

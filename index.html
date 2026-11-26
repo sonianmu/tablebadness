@@ -65,7 +65,14 @@ input[type=range] { flex: 1 1 200px; accent-color: var(--accent); min-width: 0; 
 .chip.best { border-color: var(--good); color: var(--good); }
 .chip.worst { border-color: var(--bad); color: var(--bad); }
 .viewport { overflow-x: auto; padding-bottom: 4px; min-width: 0; }
-.tb-wrap { outline: 1px dashed var(--ruler); outline-offset: 0; background: var(--panel); }
+.tb-wrap { outline: 1px dashed var(--ruler); outline-offset: 0; background: var(--panel); position: relative; }
+/* hit area sits just inside the column's right edge so it never widens the scroll area */
+.rz { position: absolute; top: 0; width: 10px; margin-left: -10px; cursor: col-resize; touch-action: none; z-index: 2; }
+.rz::after { content: ""; position: absolute; right: 0; top: 0; bottom: 0; width: 3px; background: transparent; transition: background .12s; }
+.rz:hover::after, .rz:focus-visible::after, .rz.on::after { background: var(--accent); }
+.rz:focus-visible { outline: none; }
+.btn { font: 500 12px/1 var(--f-body); color: var(--accent); background: transparent; border: 1px solid var(--accent); border-radius: 4px; padding: 5px 8px; cursor: pointer; }
+.chip.manual { border-color: var(--warn); color: var(--warn); }
 .chart { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: grid; gap: 8px; min-width: 0; }
 .chart h2, .panels-title { font: 600 15px/1.2 var(--f-display); margin: 0; }
 .charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
@@ -80,7 +87,7 @@ input[type=range] { flex: 1 1 200px; accent-color: var(--accent); min-width: 0; 
 <div class="page">
   <header>
     <h1>Table Badness</h1>
-    <p>可读性感知的表格列宽分配。每张表都是真实 HTML 表格，由浏览器按相同字体、内边距和断行规则排版；粉色虚线框是可用宽度。指标从实际渲染结果测量，不取自算法的预测。</p>
+    <p>可读性感知的表格列宽分配。每张表都是真实 HTML 表格，由浏览器按相同字体、内边距和断行规则排版；粉色虚线框是可用宽度。指标从实际渲染结果测量，不取自算法的预测。拖动任意表格的列边线可手动调整列宽（也可聚焦后用 ← → 键），指标实时重新测量；双击边线或点“恢复”回到算法结果，拖动可用宽度滑块也会恢复。</p>
   </header>
 
   <section class="controls" aria-label="控制">
@@ -237,7 +244,10 @@ input[type=range] { flex: 1 1 200px; accent-color: var(--accent); min-width: 0; 
     for (const p of panels) {
       p.wrap.style.width = W + 'px';
       let L = null, ms;
-      if (p.m.id === 'css-auto') {
+      if (p.manual) {
+        TB.applyWidths(p.table, { colPx: p.manual, tableWidth: p.manual.reduce((a, b) => a + b, 0) + p.P.tableExtra });
+        ms = 0;
+      } else if (p.m.id === 'css-auto') {
         TB.clearWidths(p.table);
         const a = performance.now(); void p.table.offsetHeight; ms = performance.now() - a;
       } else {
@@ -248,7 +258,9 @@ input[type=range] { flex: 1 1 200px; accent-color: var(--accent); min-width: 0; 
         }
       }
       const met = MT.measure(p.P, W, p.wrap);
+      met.tbLoss = TB.predict(p.P, met.colWidths.map((w, j) => w - p.P.overhead[j] - p.P.opts.safety)).loss;
       results.push({ p, met, ms, L });
+      placeHandles(p);
     }
     // chips, best/worst marking across shown methods
     const keys = [
@@ -257,6 +269,7 @@ input[type=range] { flex: 1 1 200px; accent-color: var(--accent); min-width: 0; 
       { k: 'frag', label: '长文碎片化', v: r => r.met.longCells ? r.met.severeFrag : null, fmt: r => r.met.longCells ? `${r.met.severeFrag}/${r.met.longCells}` : '—', hi: false },
       { k: 'h', label: '总高', v: r => r.met.heightPx, fmt: r => Math.round(r.met.heightPx) + 'px', hi: false },
       { k: 'ovf', label: '横向溢出', v: r => r.met.overflowPx, fmt: r => Math.round(r.met.overflowPx) + 'px', hi: false },
+      { k: 'loss', label: 'TB 损失', v: r => r.met.tbLoss, fmt: r => r.met.tbLoss.toFixed(1), hi: false },
     ];
     for (const r of results) {
       const chips = r.p.el.querySelector('.chips');
@@ -270,9 +283,17 @@ input[type=range] { flex: 1 1 200px; accent-color: var(--accent); min-width: 0; 
         c.innerHTML = `<i>${key.label}</i>${key.fmt(r)}`;
         chips.appendChild(c);
       }
-      const t = document.createElement('span'); t.className = 'chip';
-      t.innerHTML = `<i>${r.p.m.id === 'css-auto' ? '浏览器重排' : '求解'}</i>${fmtMs(r.ms)}`;
-      chips.appendChild(t);
+      if (r.p.manual) {
+        const t = document.createElement('span'); t.className = 'chip manual'; t.innerHTML = '<i>列宽</i>手动 ' + r.p.manual.map(w => Math.round(w)).join('/');
+        chips.appendChild(t);
+        const b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = '恢复';
+        b.addEventListener('click', () => { r.p.manual = null; relayout(); });
+        chips.appendChild(b);
+      } else {
+        const t = document.createElement('span'); t.className = 'chip';
+        t.innerHTML = `<i>${r.p.m.id === 'css-auto' ? '浏览器重排' : '求解'}</i>${fmtMs(r.ms)}`;
+        chips.appendChild(t);
+      }
       if (r.L && r.L.scroll) { const s = document.createElement('span'); s.className = 'chip'; s.innerHTML = '<i>决策</i>横向滚动'; chips.appendChild(s); }
     }
     const T = timingInfo;
@@ -281,6 +302,50 @@ input[type=range] { flex: 1 1 200px; accent-color: var(--accent); min-width: 0; 
       `列宽路径 <b>${T.pathMs.toFixed(2)} ms</b>（${T.steps} 步，与宽度无关，只算一次）<br>` +
       (tbQuery != null ? `每次调整宽度 <b>${fmtMs(tbQuery)}</b>（二分查表，不触发排版测量）` : '勾选 Table Badness 以查看实时布局耗时');
     drawMarker();
+  }
+
+  // ---- manual column resizing ----
+  let pending = 0;
+  const schedule = () => { cancelAnimationFrame(pending); pending = requestAnimationFrame(relayout); };
+  function currentColPx(p) {
+    const row = Array.from(p.table.rows).find(r => r.cells.length === p.P.nCols);
+    return Array.from(row.cells, c => c.getBoundingClientRect().width);
+  }
+  function placeHandles(p) {
+    let layer = p.handles;
+    if (!layer) {
+      layer = p.handles = [];
+      for (let j = 0; j < p.P.nCols; j++) {
+        const h = document.createElement('div');
+        h.className = 'rz'; h.tabIndex = 0; h.setAttribute('role', 'separator'); h.setAttribute('aria-orientation', 'vertical');
+        h.setAttribute('aria-label', `调整第 ${j + 1} 列宽度`);
+        h.addEventListener('pointerdown', e => {
+          e.preventDefault(); h.setPointerCapture(e.pointerId); h.classList.add('on');
+          const x0 = e.clientX, w0 = currentColPx(p);
+          const move = ev => { const w = w0.slice(); w[j] = Math.max(p.P.overhead[j] + 8, w0[j] + ev.clientX - x0); p.manual = w; schedule(); };
+          const up = () => { h.classList.remove('on'); h.removeEventListener('pointermove', move); h.removeEventListener('pointerup', up); h.removeEventListener('pointercancel', up); };
+          h.addEventListener('pointermove', move); h.addEventListener('pointerup', up); h.addEventListener('pointercancel', up);
+        });
+        h.addEventListener('dblclick', () => { p.manual = null; relayout(); });
+        h.addEventListener('keydown', e => {
+          const d = e.key === 'ArrowLeft' ? -1 : e.key === 'ArrowRight' ? 1 : 0;
+          if (!d) return;
+          e.preventDefault();
+          const w = p.manual ? p.manual.slice() : currentColPx(p);
+          w[j] = Math.max(p.P.overhead[j] + 8, w[j] + d * (e.shiftKey ? 16 : 4));
+          p.manual = w; relayout(); h.focus();
+        });
+        p.wrap.appendChild(h); layer.push(h);
+      }
+    }
+    const row = Array.from(p.table.rows).find(r => r.cells.length === p.P.nCols);
+    const tl = p.table.offsetLeft, tt = p.table.offsetTop, H = p.table.offsetHeight;
+    Array.from(row.cells).forEach((c, j) => {
+      const h = layer[j];
+      const rtl = getComputedStyle(p.table).direction === 'rtl';
+      h.style.left = (tl + c.offsetLeft + (rtl ? 0 : c.offsetWidth)) + 'px';
+      h.style.top = tt + 'px'; h.style.height = H + 'px';
+    });
   }
 
   // ---- width schedule charts ----
@@ -335,7 +400,7 @@ input[type=range] { flex: 1 1 200px; accent-color: var(--accent); min-width: 0; 
   let editTimer = null;
   $('md').addEventListener('input', () => { sel.value = 'custom'; lang = /[぀-ヿ]/.test($('md').value) ? 'ja' : 'zh-CN'; clearTimeout(editTimer); editTimer = setTimeout(build, 180); });
   let raf = 0;
-  const onW = v => { $('w').value = v; $('wnum').value = v; store.set('tb-w', v); cancelAnimationFrame(raf); raf = requestAnimationFrame(relayout); };
+  const onW = v => { panels.forEach(p => { p.manual = null; }); $('w').value = v; $('wnum').value = v; store.set('tb-w', v); cancelAnimationFrame(raf); raf = requestAnimationFrame(relayout); };
   $('w').addEventListener('input', e => onW(e.target.value));
   $('wnum').addEventListener('change', e => onW(e.target.value));
   $('fs').addEventListener('change', build);
