@@ -9,11 +9,11 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap">
 <link rel="stylesheet" href="src/table.css">
 <style>
-/* Layout: progress strip, then one trial at a time (blind adjust -> reveal & compare -> preference), and a summary view. */
+/* Layout: progress strip, then one trial at a time in three steps (blind adjust -> blind A/B -> reveal), plus a summary view. */
 :root {
   --bg: #f6f7f9; --panel: #ffffff; --fg: #17202b; --muted: #5b6676; --line: #d9dee5;
   --accent: #0f6e6a; --accent-soft: #dbefed; --human: #b4530f; --human-soft: #f7e6d7;
-  --good: #1d7a3a; --bad: #b4372a;
+  --good: #1d7a3a; --bad: #b4372a; --bn: #d97706; --bar: #c5ccd6;
   --tb-border: #cfd5dd; --tb-head: #eef1f4; --tb-code: #e9edf1; --tb-link: #1d5fd6; --ruler: #e0465f;
   --f-display: "Space Grotesk", "IBM Plex Sans", system-ui, sans-serif;
   --f-body: "IBM Plex Sans", system-ui, -apple-system, "PingFang SC", sans-serif;
@@ -21,81 +21,85 @@
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
   --bg: #11161c; --panel: #171e26; --fg: #e4e9ef; --muted: #98a3b1; --line: #2a333e;
-  --accent: #5cc4bc; --accent-soft: #173a38; --human: #f0a060; --human-soft: #3a2a1c; --good: #5fc27a; --bad: #f07a6a;
+  --accent: #5cc4bc; --accent-soft: #173a38; --human: #f0a060; --human-soft: #3a2a1c; --good: #5fc27a; --bad: #f07a6a; --bn: #f2b35a; --bar: #3a4552;
   --tb-border: #35404d; --tb-head: #1f2832; --tb-code: #24303b; --tb-link: #7db0ff; --ruler: #ff6f86; color-scheme: dark; } }
 :root[data-theme="dark"] {
   --bg: #11161c; --panel: #171e26; --fg: #e4e9ef; --muted: #98a3b1; --line: #2a333e;
-  --accent: #5cc4bc; --accent-soft: #173a38; --human: #f0a060; --human-soft: #3a2a1c; --good: #5fc27a; --bad: #f07a6a;
+  --accent: #5cc4bc; --accent-soft: #173a38; --human: #f0a060; --human-soft: #3a2a1c; --good: #5fc27a; --bad: #f07a6a; --bn: #f2b35a; --bar: #3a4552;
   --tb-border: #35404d; --tb-head: #1f2832; --tb-code: #24303b; --tb-link: #7db0ff; --ruler: #ff6f86; color-scheme: dark; }
 * { box-sizing: border-box; }
 html, body { margin: 0; }
 body { background: var(--bg); color: var(--fg); font: 14px/1.5 var(--f-body);
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 20px 48px; }
-.page { max-width: 1240px; margin: 0 auto; display: grid; gap: 16px; }
+.page { max-width: 1280px; margin: 0 auto; display: grid; gap: 16px; }
 h1 { font: 600 24px/1.15 var(--f-display); margin: 0; }
 h2 { font: 600 16px/1.2 var(--f-display); margin: 0; }
-.sub { color: var(--muted); margin: 6px 0 0; max-width: 75ch; text-wrap: pretty; }
+.sub { color: var(--muted); margin: 6px 0 0; max-width: 78ch; text-wrap: pretty; }
 .bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
-.tabs { display: flex; gap: 6px; }
+.tabs, .actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .btn { font: 500 13px/1 var(--f-body); color: var(--accent); background: transparent; border: 1px solid var(--accent); border-radius: 5px; padding: 8px 12px; cursor: pointer; }
 .btn.primary { background: var(--accent); color: var(--panel); }
 .btn.human { border-color: var(--human); color: var(--human); }
 .btn[aria-pressed="true"] { background: var(--accent-soft); }
-.btn:disabled { opacity: .45; cursor: default; }
-.btn:focus-visible, .rz:focus-visible, textarea:focus-visible, .dot:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn:focus-visible, .rz:focus-visible, textarea:focus-visible, .dot:focus-visible, .opt:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
 .dots { display: flex; flex-wrap: wrap; gap: 4px; }
-.dot { width: 26px; height: 22px; border-radius: 4px; border: 1px solid var(--line); background: var(--panel); font: 500 10.5px/20px var(--f-mono); text-align: center; color: var(--muted); cursor: pointer; padding: 0; }
+.dot { width: 28px; height: 22px; border-radius: 4px; border: 1px solid var(--line); background: var(--panel); font: 500 10.5px/20px var(--f-mono); text-align: center; color: var(--muted); cursor: pointer; padding: 0; }
 .dot.done { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
 .dot.cur { outline: 2px solid var(--human); outline-offset: 1px; }
 .status { font: 12px var(--f-mono); color: var(--muted); }
 .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px; display: grid; gap: 12px; min-width: 0; }
+.steps { display: flex; flex-wrap: wrap; gap: 6px; font: 500 11.5px/1 var(--f-mono); color: var(--muted); }
+.steps span { padding: 5px 8px; border-radius: 999px; border: 1px solid var(--line); }
+.steps span.on { border-color: var(--human); color: var(--human); background: var(--human-soft); }
 .meta { display: flex; flex-wrap: wrap; gap: 6px 14px; font: 12px var(--f-mono); color: var(--muted); }
 .meta b { color: var(--fg); font-weight: 500; }
+.hint { font-size: 12.5px; color: var(--muted); margin: 0; }
 .viewport { overflow-x: auto; padding-bottom: 4px; min-width: 0; }
 .tb-wrap { outline: 1px dashed var(--ruler); background: var(--panel); position: relative; }
-.rz { position: absolute; top: 0; width: 10px; margin-left: -10px; cursor: col-resize; touch-action: none; z-index: 2; }
-.rz::after { content: ""; position: absolute; right: 0; top: 0; bottom: 0; width: 3px; background: color-mix(in srgb, var(--human) 35%, transparent); }
-.rz:hover::after, .rz.on::after, .rz:focus-visible::after { background: var(--human); }
-.panels { display: grid; gap: 12px; }
-.panel { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px 12px; display: grid; gap: 8px; min-width: 0; }
+.rz { position: absolute; top: 0; width: 12px; margin-left: -6px; cursor: col-resize; touch-action: none; z-index: 2; }
+.rz::after { content: ""; position: absolute; left: 5px; top: 0; bottom: 0; width: 2px; background: color-mix(in srgb, var(--human) 35%, transparent); }
+.rz:hover::after, .rz.on::after, .rz:focus-visible::after { background: var(--human); width: 3px; }
+.tb-table td.bn { box-shadow: inset 3px 0 0 var(--bn); }
+.grid2 { display: grid; gap: 12px; }
+.panel { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px 12px; display: grid; gap: 8px; min-width: 0; align-content: start; }
 .panel.you { border-color: var(--human); }
 .panel.tb { border-color: var(--accent); }
 .phead { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline; justify-content: space-between; }
 .pname { font: 600 14px var(--f-display); }
+.big { font: 600 22px/1 var(--f-display); }
 .chips { display: flex; flex-wrap: wrap; gap: 5px; font: 11.5px/1 var(--f-mono); font-variant-numeric: tabular-nums; }
 .chip { padding: 5px 6px; border-radius: 4px; background: var(--bg); border: 1px solid var(--line); white-space: nowrap; }
 .chip i { font-style: normal; color: var(--muted); margin-right: 4px; }
 .chip.best { border-color: var(--good); color: var(--good); }
 .chip.worst { border-color: var(--bad); color: var(--bad); }
-.diff { display: grid; gap: 4px; font: 12px var(--f-mono); font-variant-numeric: tabular-nums; }
-.drow { display: grid; grid-template-columns: minmax(0, 9em) 1fr 6.5em; gap: 8px; align-items: center; }
-.drow .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.drow .nm small { color: var(--muted); margin-left: 4px; }
-.bars { display: grid; gap: 2px; }
-.bars span { display: block; height: 7px; border-radius: 2px; }
-.bars .h { background: var(--human); }
-.bars .a { background: var(--accent); }
-.dv { text-align: right; }
-.legend { display: flex; gap: 14px; font: 11.5px var(--f-mono); color: var(--muted); }
-.legend span::before { content: ""; display: inline-block; width: 10px; height: 7px; border-radius: 2px; margin-right: 5px; background: currentColor; vertical-align: middle; }
+.chip.diag { border-style: dashed; }
+.profile svg { width: 100%; height: auto; display: block; }
 fieldset { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 legend { font-weight: 600; margin-bottom: 6px; padding: 0; }
 .opt { display: inline-flex; gap: 6px; align-items: center; border: 1px solid var(--line); border-radius: 999px; padding: 6px 11px; cursor: pointer; }
 .opt:has(input:checked) { border-color: var(--human); background: var(--human-soft); }
 .opt input { accent-color: var(--human); margin: 0; }
-textarea { width: 100%; min-height: 56px; font: 13px/1.45 var(--f-body); color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; resize: vertical; }
-.actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
+textarea { width: 100%; min-height: 52px; font: 13px/1.45 var(--f-body); color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; resize: vertical; }
+.diff { display: grid; gap: 4px; font: 12px var(--f-mono); font-variant-numeric: tabular-nums; }
+.drow { display: grid; grid-template-columns: minmax(0, 10em) 1fr 6.5em; gap: 8px; align-items: center; }
+.drow .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.drow .nm small { color: var(--muted); margin-left: 4px; }
+.bars { display: grid; gap: 2px; }
+.bars span { display: block; height: 7px; border-radius: 2px; }
+.bars .h { background: var(--human); } .bars .a { background: var(--accent); }
+.dv { text-align: right; }
+.legend { display: flex; flex-wrap: wrap; gap: 12px; font: 11.5px var(--f-mono); color: var(--muted); }
+.legend span::before { content: ""; display: inline-block; width: 10px; height: 7px; border-radius: 2px; margin-right: 5px; background: currentColor; vertical-align: middle; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; }
 .kpi { border: 1px solid var(--line); border-radius: 6px; padding: 10px; display: grid; gap: 4px; }
 .kpi .v { font: 600 20px/1.1 var(--f-display); font-variant-numeric: tabular-nums; }
 .kpi .l { font-size: 12px; color: var(--muted); }
 .tablewrap { overflow-x: auto; }
-table.sum { border-collapse: collapse; font: 12px/1.4 var(--f-mono); font-variant-numeric: tabular-nums; width: 100%; min-width: 760px; }
+table.sum { border-collapse: collapse; font: 12px/1.4 var(--f-mono); font-variant-numeric: tabular-nums; width: 100%; min-width: 820px; }
 table.sum th, table.sum td { border-bottom: 1px solid var(--line); padding: 6px 8px; text-align: right; white-space: nowrap; }
-table.sum th:first-child, table.sum td:first-child, table.sum td.l { text-align: left; }
+table.sum th:first-child, table.sum td:first-child, table.sum td.l, table.sum th.l { text-align: left; }
 table.sum th { color: var(--muted); font-weight: 500; }
 .pos { color: var(--good); } .neg { color: var(--bad); }
-.hint { font-size: 12.5px; color: var(--muted); }
 </style>
 </head>
 <body>
@@ -103,19 +107,17 @@ table.sum th { color: var(--muted); font-weight: 500; }
   <header class="bar">
     <div>
       <h1>Table Badness 人工评测</h1>
-      <p class="sub">每道题给定一张表和可用宽度。先在“盲调”阶段从等宽起步，拖动列边线分配列宽，调到你觉得最好读为止（这一步看不到算法结果）。完成后揭晓你的布局与算法布局的对比，再选择更喜欢哪一个。</p>
+      <p class="sub">每题三步。① 盲调：总宽锁定为可用宽度，只能在相邻两列之间挪宽度，行高随之自然变化。② 盲比：两个不标名字的算法布局，选更好读的一个。③ 揭晓：对比你和各算法的列宽、行高分布与行高瓶颈。所有方案都不允许横向滚动。</p>
     </div>
-    <div class="tabs" role="tablist">
+    <div class="tabs">
       <button class="btn" id="tab-trial" type="button" aria-pressed="true">评测</button>
       <button class="btn" id="tab-sum" type="button" aria-pressed="false">汇总</button>
     </div>
   </header>
-
   <div class="bar">
     <div class="dots" id="dots" aria-label="题目进度"></div>
     <div class="status" id="status">正在连接存储…</div>
   </div>
-
   <main id="view-trial" class="card"></main>
   <main id="view-sum" class="card" hidden></main>
 </div>
@@ -132,29 +134,31 @@ table.sum th { color: var(--muted); font-weight: 500; }
   const TB = TableBadness, BL = TBBaselines, MD = TBMarkdown, MT = TBMetrics;
   const $ = id => document.getElementById(id);
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
-  const VERSION = 1;
-  const records = {};           // trialId -> saved record
-  let backend = { kind: 'local' };
-  let cur = 0;
-  let trial = null;             // live state of the open trial
+  const VERSION = 2, COLL = 'trials';
+  const NAMES = { human: '你的调整', tb: 'Table Badness', 'css-auto': '浏览器原生', 'min-height': '最小高度', proportional: '内容比例' };
+  const TAU = { 0.2: '紧', 0.5: '中', 0.8: '宽松' };
+  const KIND = { short: '短', mid: '中', long: '长' };
+  const TAGS = [['short', '短值/编号被断开'], ['frag', '长文太碎'], ['tall', '整表太高'], ['spike', '个别行特别高'], ['gap', '行内空白太多'], ['ratio', '列宽比例别扭'], ['other', '其他']];
+  const records = {};
+  let backend = { kind: 'local' }, cur = 0, trial = null;
 
   // ---------- storage ----------
-  const LS = 'tb-eval-records';
-  try { Object.assign(records, JSON.parse(localStorage.getItem(LS) || '{}')); } catch (e) {}
+  const LS = 'tb-eval-v2';
+  try { const o = JSON.parse(localStorage.getItem(LS) || '{}'); for (const k in o) if (o[k].v === VERSION) records[k] = o[k]; } catch (e) {}
   const saveLocal = () => { try { localStorage.setItem(LS, JSON.stringify(records)); } catch (e) {} };
   function setStatus() {
-    const n = Object.keys(records).length;
-    $('status').textContent = `已完成 ${n}/${TB_EVAL.length} · ` + (backend.kind === 'db' ? '结果保存在此页面的共享存储中' : '结果只存在本浏览器（汇总页可复制 JSON）');
+    const n = TB_EVAL.filter(t => records[t.id]).length;
+    $('status').textContent = `已完成 ${n}/${TB_EVAL.length} · ` + (backend.kind === 'db' ? '结果保存在此页面的存储中' : '结果只存在本浏览器（汇总页可复制 JSON）');
   }
   async function connect() {
     let db = null;
     try { db = window.claude && window.claude.use ? await window.claude.use('db') : null; } catch (e) { db = null; }
     if (!db) { setStatus(); return; }
     backend = { kind: 'db', db };
-    const timer = setTimeout(() => { $('status').textContent = '共享存储暂时连不上，结果会先存在本浏览器'; }, 10000);
-    db.collection('trials').onSnapshot(snap => {
+    const timer = setTimeout(() => { $('status').textContent = '存储暂时连不上，结果先存在本浏览器'; }, 10000);
+    db.collection(COLL).onSnapshot(snap => {
       clearTimeout(timer);
-      for (const d of snap.docs) records[d.id] = d.data();
+      for (const d of snap.docs) { const x = d.data(); if (x && x.v === VERSION) records[d.id] = x; }
       saveLocal(); setStatus(); drawDots();
       if (!$('view-sum').hidden) drawSummary();
     }, () => { clearTimeout(timer); backend = { kind: 'local' }; setStatus(); });
@@ -163,71 +167,121 @@ table.sum th { color: var(--muted); font-weight: 500; }
   async function persist(rec) {
     records[rec.trialId] = rec; saveLocal(); setStatus(); drawDots();
     if (backend.kind === 'db') {
-      try { await backend.db.doc('trials/' + rec.trialId).set(rec); }
-      catch (e) { $('status').textContent = '保存到共享存储失败（' + (e && e.code || 'error') + '），已存在本浏览器'; }
+      try { await backend.db.doc(COLL + '/' + rec.trialId).set(rec); }
+      catch (e) { $('status').textContent = '保存到存储失败（' + (e && e.code || 'error') + '），已存在本浏览器'; }
     }
   }
 
-  // ---------- helpers ----------
+  // ---------- table helpers ----------
   const caseOf = t => TB_CASES.find(c => c.id === t.caseId);
-  function mountTable(host, c, t) {
+  const cleanTitle = c => c.title.replace(/^\[[^\]]+\]\s*/, '');
+  const headers = c => MD.parseTable(c.md).header.map(h => h.replace(/[`*]/g, ''));
+  function mountTable(host, c, W, fs) {
     const vp = document.createElement('div'); vp.className = 'viewport';
     const wrap = document.createElement('div'); wrap.className = 'tb-wrap';
-    wrap.lang = c.lang; wrap.style.width = t.W + 'px'; wrap.style.setProperty('--tb-font-size', t.fs + 'px');
+    wrap.lang = c.lang; wrap.style.width = W + 'px'; wrap.style.setProperty('--tb-font-size', fs + 'px');
     wrap.innerHTML = MD.toHTML(MD.parseTable(c.md));
     vp.appendChild(wrap); host.appendChild(vp);
     const table = wrap.querySelector('table');
-    const P = TB.prepareTable(table);
+    const P = TB.prepareTable(table, { scroll: false });
     return { wrap, table, P };
   }
   const setCols = (m, colPx) => TB.applyWidths(m.table, { colPx, tableWidth: colPx.reduce((a, b) => a + b, 0) + m.P.tableExtra });
+  // the trial's available width from its tightness level (computed once per browser, then fixed)
+  function widthFor(t, c) {
+    const host = document.createElement('div'); host.style.cssText = 'position:absolute;left:-99999px;top:0;';
+    document.body.appendChild(host);
+    const m = mountTable(host, c, 2000, t.fs);
+    const ov = 2000 - TB.budgetOf(m.P, 2000);
+    const fit = ov + m.P.cols.reduce((s, x) => s + x.floor, 0);
+    const nat = ov + m.P.cols.reduce((s, x) => s + x.natural, 0);
+    host.remove();
+    // geometric interpolation between the fit width and min(natural, 960): tight / medium / loose stay distinct for long-text tables
+    const top = Math.max(fit, Math.min(nat, 960));
+    return Math.round(fit * Math.pow(top / fit, t.tau));
+  }
+  function layout(method, m, W) {
+    switch (method) {
+      case 'tb': return TB.layoutAt(m.P, TB.buildPath(m.P), W);
+      case 'min-height': return BL.minHeight(m.P, W, [BL.proportional(m.P, W).widths]);
+      case 'proportional': return BL.proportional(m.P, W);
+      case 'equal': return BL.equal(m.P, W);
+    }
+    return null;
+  }
+  function apply(method, m, W, humanCols) {
+    if (method === 'human') setCols(m, humanCols);
+    else if (method === 'css-auto') TB.clearWidths(m.table);
+    else TB.applyWidths(m.table, layout(method, m, W));
+  }
   function colKinds(P) {
-    const fs = P.fontSize;
     return P.cols.map(col => {
       const ns = []; for (const e of col.entries) if (!/\u0000H\u0000/.test(e.key)) for (let k = 0; k < e.count; k++) ns.push(e.cell.natural);
       ns.sort((a, b) => a - b);
-      const med = ns.length ? ns[ns.length >> 1] / fs : 0;
+      const med = ns.length ? ns[ns.length >> 1] / P.fontSize : 0;
       return med <= 8 ? 'short' : med > 20 ? 'long' : 'mid';
     });
   }
-  const KIND = { short: '短', mid: '中', long: '长' };
   function metricsOf(m, W) {
     const met = MT.measure(m.P, W, m.wrap);
-    const colPx = met.colWidths;
-    const loss = TB.predict(m.P, colPx.map((w, j) => w - m.P.overhead[j] - m.P.opts.safety)).loss;
-    return { short: met.shortIntact, shortN: met.shortCells, atomic: met.atomicBreaks, frag: met.severeFrag, longN: met.longCells,
-      height: Math.round(met.heightPx), overflow: Math.round(met.overflowPx), loss: +loss.toFixed(2), colPx: colPx.map(x => +x.toFixed(1)) };
+    const loss = TB.predict(m.P, met.colWidths.map((w, j) => w - m.P.overhead[j] - m.P.opts.safety)).loss;
+    return {
+      short: met.shortIntact, shortN: met.shortCells, atomic: met.atomicBreaks, frag: met.severeFrag, longN: met.longCells,
+      height: Math.round(met.heightPx), rowMed: met.rowMedianPx, rowP90: met.rowP90Px, rowMax: met.rowMaxPx,
+      visible600: met.visibleRows600, unused: +met.unusedFrac.toFixed(3), coRows: met.coBottleneckRows,
+      overflow: Math.round(met.overflowPx), loss: +loss.toFixed(2),
+      colPx: met.colWidths.map(x => +x.toFixed(1)), rowPx: met.rowPx, bottlenecks: met.bottlenecks, cellLines: met.cellLines,
+    };
   }
-  const headers = c => MD.parseTable(c.md).header.map(h => h.replace(/[`*]/g, ''));
+  function markBottlenecks(m, met) {
+    Array.from(m.table.rows).forEach((tr, r) => Array.from(tr.cells).forEach((td, c) => td.classList.toggle('bn', met.bottlenecks[r].includes(c) && tr.parentNode.tagName !== 'THEAD')));
+  }
+  // row-height profile: one bar per body row, height in px on a shared scale, bottleneck column named under it
+  const COLS = ['#0f6e6a', '#c2410c', '#6d28d9', '#1d4ed8', '#b45309', '#be185d', '#15803d', '#475569', '#0e7490', '#9f1239'];
+  function profileSVG(met, maxPx, nCols) {
+    const rows = met.rowPx.slice(1), bns = met.bottlenecks.slice(1);
+    const VW = 320, VH = 92, L = 4, B = 14, bw = Math.max(4, Math.min(28, (VW - L * 2) / rows.length - 4));
+    let s = `<svg viewBox="0 0 ${VW} ${VH}" role="img" aria-label="行高分布">`;
+    s += `<line x1="${L}" x2="${VW - L}" y1="${VH - B}" y2="${VH - B}" stroke="var(--line)"/>`;
+    rows.forEach((px, i) => {
+      const x = L + i * (bw + 4), h = (px / maxPx) * (VH - B - 6), y = VH - B - h;
+      const b = bns[i];
+      const fill = !b.length ? 'var(--bar)' : b.length > 1 ? 'var(--muted)' : COLS[b[0] % COLS.length];
+      s += `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" rx="1.5" fill="${fill}"><title>第 ${i + 1} 行 ${px}px${b.length ? ' · 瓶颈列 ' + b.map(c => c + 1).join('、') : ''}</title></rect>`;
+      if (b.length) s += `<text x="${(x + bw / 2).toFixed(1)}" y="${VH - 3}" text-anchor="middle" font-size="8.5" font-family="var(--f-mono)" fill="var(--muted)">${b.length > 1 ? '=' : b[0] + 1}</text>`;
+    });
+    return s + '</svg>';
+  }
 
-  // ---------- handles (border j trades width between columns j and j+1; last border changes the total) ----------
+  // ---------- step 1: blind adjust (total width locked) ----------
   function addHandles(m, onChange) {
-    const hs = [];
-    const n = m.P.nCols;
+    const n = m.P.nCols, hs = [];
     const minW = j => m.P.overhead[j] + 12;
     const place = () => {
       const row = Array.from(m.table.rows).find(r => r.cells.length === n);
       Array.from(row.cells).forEach((c, j) => {
-        hs[j].style.left = (m.table.offsetLeft + c.offsetLeft + c.offsetWidth) + 'px';
+        if (j === n - 1) return;
+        const rtl = getComputedStyle(m.table).direction === 'rtl';
+        hs[j].style.left = (m.table.offsetLeft + c.offsetLeft + (rtl ? 0 : c.offsetWidth)) + 'px';
         hs[j].style.top = m.table.offsetTop + 'px'; hs[j].style.height = m.table.offsetHeight + 'px';
       });
     };
     const shift = (j, d) => {
       const w = trial.human.slice();
-      if (j < n - 1) {
-        d = Math.max(minW(j) - w[j], Math.min(w[j + 1] - minW(j + 1), d));
-        w[j] += d; w[j + 1] -= d;
-      } else w[j] = Math.max(minW(j), w[j] + d);
+      d = Math.max(minW(j) - w[j], Math.min(w[j + 1] - minW(j + 1), d));
+      if (!d) return 0;
+      w[j] += d; w[j + 1] -= d;
       trial.human = w; setCols(m, w); place(); onChange();
+      return d;
     };
-    for (let j = 0; j < n; j++) {
+    for (let j = 0; j < n - 1; j++) {
       const h = document.createElement('div');
       h.className = 'rz'; h.tabIndex = 0; h.setAttribute('role', 'separator'); h.setAttribute('aria-orientation', 'vertical');
-      h.setAttribute('aria-label', j < n - 1 ? `在第 ${j + 1} 和第 ${j + 2} 列之间调整宽度` : '调整最后一列（改变表格总宽）');
+      h.setAttribute('aria-label', `在第 ${j + 1} 列和第 ${j + 2} 列之间挪动宽度`);
       h.addEventListener('pointerdown', e => {
         e.preventDefault(); h.setPointerCapture(e.pointerId); h.classList.add('on'); trial.drags++;
         let last = e.clientX;
-        const move = ev => { const d = ev.clientX - last; if (d) { const before = trial.human[j]; shift(j, d); last += trial.human[j] - before; } };
+        const move = ev => { const d = ev.clientX - last; if (d) last += shift(j, d); };
         const up = () => { h.classList.remove('on'); h.removeEventListener('pointermove', move); h.removeEventListener('pointerup', up); h.removeEventListener('pointercancel', up); };
         h.addEventListener('pointermove', move); h.addEventListener('pointerup', up); h.addEventListener('pointercancel', up);
       });
@@ -238,117 +292,154 @@ table.sum th { color: var(--muted); font-weight: 500; }
       m.wrap.appendChild(h); hs.push(h);
     }
     place();
-    return place;
+  }
+  function stepsBar(k) {
+    return `<div class="steps">${['① 盲调', '② 盲比', '③ 揭晓'].map((s, i) => `<span class="${i === k ? 'on' : ''}">${s}</span>`).join('')}</div>`;
+  }
+  function metaLine(t, c, W) {
+    return `<div class="meta"><span>表格 <b>${esc(cleanTitle(c))}</b></span><span>行高结构 <b>${esc(t.stratumLabel)}</b></span><span>可用宽度 <b>${W}px（${TAU[t.tau]}）</b></span><span>字号 <b>${t.fs}px</b></span></div>`;
   }
 
-  // ---------- trial view ----------
-  function openTrial(i, forceAdjust) {
+  function openTrial(i, force) {
     cur = i; drawDots();
     const t = TB_EVAL[i], c = caseOf(t), rec = records[t.id];
+    if (rec && !force) return reveal({ t, c, W: rec.W, human: rec.human.colPx, adjustMs: rec.adjustMs, drags: rec.drags, ab: rec.ab }, rec);
+    const W = widthFor(t, c);
     const v = $('view-trial'); v.innerHTML = '';
-    if (rec && !forceAdjust) return reveal(t, c, rec.human.colPx, rec);
-    const head = document.createElement('div');
-    head.innerHTML = `<h2>第 ${i + 1} 题 · 盲调</h2>
-      <div class="meta"><span>表格 <b>${esc(c.title.replace(/^\[[^\]]+\]\s*/, ''))}</b></span><span>可用宽度 <b>${t.W}px</b></span><span>字号 <b>${t.fs}px</b></span><span>起点 <b>等宽</b></span></div>
-      <p class="hint">拖动列边线（橙色细线）在相邻两列之间挪宽度；最右边线改变表格总宽，超出粉色虚线框就会横向滚动。也可以聚焦边线后用 ← → 键，按住 Shift 步长更大。</p>`;
-    v.appendChild(head);
-    const m = mountTable(v, c, t);
-    trial = { t, c, m, human: BL.equal(m.P, t.W).colPx.slice(), t0: performance.now(), drags: 0 };
+    v.insertAdjacentHTML('beforeend', `<div class="bar"><h2>第 ${i + 1} 题</h2>${stepsBar(0)}</div>${metaLine(t, c, W)}
+      <p class="hint">从等宽起步。拖动列之间的橙色细线，把宽度从一列挪给相邻一列；表格总宽不变，不能超出粉色虚线框。也可以聚焦细线后用 ← → 键调整，按住 Shift 步长更大。调到你觉得最好读为止。</p>`);
+    const m = mountTable(v, c, W, t.fs);
+    trial = { t, c, W, m, human: BL.equal(m.P, W).colPx.slice(), t0: performance.now(), drags: 0 };
+    // equal start fills the whole width exactly
+    const target = W - m.P.tableExtra, sum = trial.human.reduce((a, b) => a + b, 0);
+    trial.human = trial.human.map(x => x * target / sum);
     setCols(m, trial.human);
     addHandles(m, () => {});
-    const act = document.createElement('div'); act.className = 'actions';
-    act.innerHTML = `<button class="btn primary" type="button" id="done">完成调整，查看对比</button><button class="btn" type="button" id="reset">回到等宽</button><button class="btn" type="button" id="skip">跳过此题</button>`;
-    v.appendChild(act);
-    $('done').addEventListener('click', () => reveal(t, c, trial.human.slice(), null));
+    v.insertAdjacentHTML('beforeend', `<div class="actions"><button class="btn primary" type="button" id="done">完成，进入盲比</button><button class="btn" type="button" id="reset">回到等宽</button><button class="btn" type="button" id="skip">跳过此题</button></div>`);
+    $('done').addEventListener('click', () => blindAB({ t, c, W, human: trial.human.slice(), adjustMs: Math.round(performance.now() - trial.t0), drags: trial.drags }));
     $('reset').addEventListener('click', () => openTrial(i, true));
     $('skip').addEventListener('click', () => openTrial((i + 1) % TB_EVAL.length));
   }
 
-  function reveal(t, c, humanCols, rec) {
+  // ---------- step 2: blind A/B between Table Badness and the trial's baseline ----------
+  function blindAB(s) {
+    const { t, c, W } = s;
+    let h = 0; for (const ch of t.id + t.caseId) h = (h * 31 + ch.charCodeAt(0)) | 0;
+    const order = (h & 1) ? ['tb', t.baseline] : [t.baseline, 'tb'];
     const v = $('view-trial'); v.innerHTML = '';
-    const adjustMs = rec ? rec.adjustMs : Math.round(performance.now() - trial.t0);
-    const drags = rec ? rec.drags : trial.drags;
-    const h = document.createElement('div');
-    h.innerHTML = `<h2>第 ${cur + 1} 题 · 对比</h2><div class="meta"><span>表格 <b>${esc(c.title.replace(/^\[[^\]]+\]\s*/, ''))}</b></span><span>可用宽度 <b>${t.W}px</b></span><span>你的用时 <b>${(adjustMs / 1000).toFixed(0)} s</b></span><span>调整次数 <b>${drags}</b></span></div>`;
-    v.appendChild(h);
-    const panels = document.createElement('div'); panels.className = 'panels'; panels.style.gridTemplateColumns = `repeat(auto-fill, minmax(min(100%, ${t.W + 30}px), 1fr))`; v.appendChild(panels);
-    const defs = [
-      { key: 'human', name: '你的调整', cls: 'you' },
-      { key: 'tb', name: 'Table Badness', cls: 'tb' },
-      { key: 'css', name: '浏览器原生', cls: '' },
-      { key: 'mh', name: '最小高度', cls: '' },
-    ];
+    v.insertAdjacentHTML('beforeend', `<div class="bar"><h2>第 ${cur + 1} 题</h2>${stepsBar(1)}</div>${metaLine(t, c, W)}
+      <p class="hint">两个算法在同样宽度下的布局，名字已隐藏，左右顺序固定但随题目变化。只看表格本身，选你觉得更好读的一个。</p>`);
+    const grid = document.createElement('div'); grid.className = 'grid2';
+    grid.style.gridTemplateColumns = `repeat(auto-fill, minmax(min(100%, ${W + 30}px), 1fr))`;
+    v.appendChild(grid);
+    order.forEach((method, k) => {
+      const p = document.createElement('section'); p.className = 'panel';
+      p.innerHTML = `<div class="phead"><div class="big">${k ? 'B' : 'A'}</div></div>`;
+      grid.appendChild(p);
+      const m = mountTable(p, c, W, t.fs); apply(method, m, W);
+    });
+    const form = document.createElement('form'); form.className = 'panel';
+    form.innerHTML = `<fieldset><legend>哪个更好读？</legend>${[['A', 'A 更好读'], ['B', 'B 更好读'], ['same', '差不多']].map(([k, l]) => `<label class="opt"><input type="radio" name="ab" value="${k}" required>${l}</label>`).join('')}</fieldset>
+      <fieldset><legend>较差的那个，主要问题是（可多选；选“差不多”可不填）</legend>${TAGS.map(([k, l]) => `<label class="opt"><input type="checkbox" name="tag" value="${k}">${l}</label>`).join('')}</fieldset>
+      <div class="actions"><button class="btn primary" type="submit">提交，揭晓对比</button></div>`;
+    v.appendChild(form);
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const choice = form.querySelector('input[name=ab]:checked').value;
+      const winner = choice === 'same' ? 'same' : (choice === 'A' ? order[0] : order[1]) === 'tb' ? 'tb' : 'baseline';
+      s.ab = { order, baseline: t.baseline, choice, winner, tags: Array.from(form.querySelectorAll('input[name=tag]:checked'), x => x.value) };
+      reveal(s, null);
+    });
+  }
+
+  // ---------- step 3: reveal ----------
+  function reveal(s, rec) {
+    const { t, c, W } = s;
+    const v = $('view-trial'); v.innerHTML = '';
+    const abTxt = s.ab.winner === 'same' ? '你认为两者差不多' : s.ab.winner === 'tb' ? '你在盲比中选了 Table Badness' : `你在盲比中选了 ${NAMES[s.ab.baseline]}`;
+    v.insertAdjacentHTML('beforeend', `<div class="bar"><h2>第 ${cur + 1} 题</h2>${stepsBar(2)}</div>${metaLine(t, c, W)}
+      <div class="meta"><span>盲比 <b>${abTxt}</b>（A/B 分别是 ${NAMES[s.ab.order[0]]} / ${NAMES[s.ab.order[1]]}）</span><span>你的用时 <b>${Math.round(s.adjustMs / 1000)} s</b></span><span>调整次数 <b>${s.drags}</b></span></div>
+      <p class="hint">每个单元格左侧的橙色竖条表示：这一格是本行最高的格子，决定了行高（只标多于一行的行）。行高分布图每根柱是一行，下面的数字是撑高这一行的列号，“=”表示有多列并列最高。</p>`);
+    const methods = ['human', 'tb', 'css-auto', 'min-height'];
+    if (!methods.includes(t.baseline)) methods.push(t.baseline);
+    const grid = document.createElement('div'); grid.className = 'grid2';
+    grid.style.gridTemplateColumns = `repeat(auto-fill, minmax(min(100%, ${W + 30}px), 1fr))`;
+    v.appendChild(grid);
     const res = {};
-    for (const d of defs) {
-      const p = document.createElement('section'); p.className = 'panel ' + d.cls;
-      p.innerHTML = `<div class="phead"><div class="pname">${d.name}</div><div class="chips"></div></div>`;
-      panels.appendChild(p);
-      const m = mountTable(p, c, t);
-      if (d.key === 'human') setCols(m, humanCols);
-      else if (d.key === 'tb') TB.applyWidths(m.table, TB.layoutAt(m.P, TB.buildPath(m.P), t.W));
-      else if (d.key === 'mh') TB.applyWidths(m.table, BL.minHeight(m.P, t.W, [BL.proportional(m.P, t.W).widths]));
-      else TB.clearWidths(m.table);
-      res[d.key] = { m, el: p, met: metricsOf(m, t.W) };
+    for (const method of methods) {
+      const p = document.createElement('section'); p.className = 'panel' + (method === 'human' ? ' you' : method === 'tb' ? ' tb' : '');
+      p.innerHTML = `<div class="phead"><div class="pname">${NAMES[method]}</div></div><div class="chips"></div>`;
+      grid.appendChild(p);
+      const m = mountTable(p, c, W, t.fs); apply(method, m, W, s.human);
+      const met = metricsOf(m, W); markBottlenecks(m, met);
+      const prof = document.createElement('div'); prof.className = 'profile'; p.appendChild(prof);
+      res[method] = { m, el: p, met, prof };
     }
+    const maxPx = Math.max(...Object.values(res).map(r => Math.max(...r.met.rowPx.slice(1))));
     const keys = [
-      ['短值完整', r => r.shortN ? r.short / r.shortN : null, r => `${r.short}/${r.shortN}`, true],
-      ['词内断开', r => r.atomic, r => r.atomic, false],
-      ['长文碎片化', r => r.longN ? r.frag : null, r => r.longN ? `${r.frag}/${r.longN}` : '—', false],
-      ['总高', r => r.height, r => r.height + 'px', false],
-      ['横向溢出', r => r.overflow, r => r.overflow + 'px', false],
-      ['TB 损失', r => r.loss, r => r.loss.toFixed(1), false],
+      ['短值完整', x => x.shortN ? x.short / x.shortN : null, x => `${x.short}/${x.shortN}`, 1],
+      ['词内断开', x => x.atomic, x => x.atomic, -1],
+      ['长文碎片', x => x.longN ? x.frag : null, x => x.longN ? `${x.frag}/${x.longN}` : '—', -1],
+      ['总高', x => x.height, x => x.height + 'px', -1],
+      ['行高 中位/P90/最高', null, x => `${Math.round(x.rowMed)}/${Math.round(x.rowP90)}/${Math.round(x.rowMax)}`, 0],
+      ['600px 内可见行', x => x.visible600, x => x.visible600, 1],
+      ['行内空白', null, x => Math.round(x.unused * 100) + '%', 0],
+      ['并列瓶颈行', null, x => x.coRows, 0],
+      ['溢出', x => x.overflow, x => x.overflow + 'px', -1],
     ];
     const all = Object.values(res).map(r => r.met);
     for (const r of Object.values(res)) {
       const chips = r.el.querySelector('.chips');
-      for (const [label, val, fmt, hi] of keys) {
-        const vals = all.map(val).filter(x => x != null), x = val(r.met);
-        const best = hi ? Math.max(...vals) : Math.min(...vals), worst = hi ? Math.min(...vals) : Math.max(...vals);
-        const s = document.createElement('span');
-        s.className = 'chip' + (x != null && best !== worst ? (x === best ? ' best' : x === worst ? ' worst' : '') : '');
-        s.innerHTML = `<i>${label}</i>${esc(fmt(r.met))}`;
-        chips.appendChild(s);
+      for (const [label, val, fmt, dir] of keys) {
+        const sp = document.createElement('span');
+        let cls = 'chip' + (dir === 0 ? ' diag' : '');
+        if (val) {
+          const vals = all.map(val).filter(x => x != null), x = val(r.met);
+          const best = dir > 0 ? Math.max(...vals) : Math.min(...vals), worst = dir > 0 ? Math.min(...vals) : Math.max(...vals);
+          if (x != null && best !== worst) cls += x === best ? ' best' : x === worst ? ' worst' : '';
+        }
+        sp.className = cls; sp.innerHTML = `<i>${label}</i>${esc(fmt(r.met))}`;
+        chips.appendChild(sp);
       }
+      r.prof.innerHTML = profileSVG(r.met, maxPx, r.m.P.nCols);
     }
-    // column-by-column difference, you vs Table Badness
+    // per-column: you vs Table Badness, with each column's bottleneck share under Table Badness
     const kinds = colKinds(res.tb.m.P), hd = headers(c);
-    const hu = res.human.met.colPx, tb = res.tb.met.colPx;
-    const mx = Math.max(...hu, ...tb);
-    const diff = document.createElement('section'); diff.className = 'panel';
+    const hu = res.human.met.colPx, tb = res.tb.met.colPx, mx = Math.max(...hu, ...tb);
+    const bodyRows = res.tb.met.bottlenecks.length - 1;
+    const share = hd.map((_, j) => res.tb.met.bottlenecks.slice(1).filter(b => b.includes(j)).length / bodyRows);
+    const shareH = hd.map((_, j) => res.human.met.bottlenecks.slice(1).filter(b => b.includes(j)).length / bodyRows);
     let rows = '';
     hd.forEach((name, j) => {
       const dv = hu[j] - tb[j];
-      rows += `<div class="drow"><div class="nm" title="${esc(name)}">${esc(name)}<small>${KIND[kinds[j]]}</small></div>
+      rows += `<div class="drow"><div class="nm" title="${esc(name)}"><span style="color:${COLS[j % COLS.length]}">●</span> ${esc(name)}<small>${KIND[kinds[j]]} · 撑高 ${Math.round(shareH[j] * 100)}%/${Math.round(share[j] * 100)}%</small></div>
         <div class="bars"><span class="h" style="width:${(hu[j] / mx * 100).toFixed(1)}%"></span><span class="a" style="width:${(tb[j] / mx * 100).toFixed(1)}%"></span></div>
         <div class="dv">${dv >= 0 ? '+' : ''}${dv.toFixed(0)}px</div></div>`;
     });
-    const l1 = hu.reduce((s, x, j) => s + Math.abs(x - tb[j]), 0) / tb.reduce((a, b) => a + b, 0);
-    diff.innerHTML = `<div class="phead"><div class="pname">逐列对比：你 − Table Badness</div><div class="legend"><span style="color:var(--human)">你的列宽</span><span style="color:var(--accent)">算法列宽</span></div></div>
-      <div class="diff">${rows}</div><div class="hint">列宽差异 ${(l1 * 100).toFixed(0)}%（各列宽度差的绝对值之和 ÷ 算法总宽）。“短/中/长”按该列正文单行宽度的中位数划分（≤8em / 8–20em / >20em）。</div>`;
-    v.appendChild(diff);
+    const l1 = hu.reduce((a, x, j) => a + Math.abs(x - tb[j]), 0) / tb.reduce((a, b) => a + b, 0);
+    v.insertAdjacentHTML('beforeend', `<section class="panel"><div class="phead"><div class="pname">逐列对比：你 − Table Badness</div><div class="legend"><span style="color:var(--human)">你的列宽</span><span style="color:var(--accent)">算法列宽</span></div></div>
+      <div class="diff">${rows}</div><p class="hint">列宽差异 ${(l1 * 100).toFixed(0)}%（各列差值绝对值之和 ÷ 算法总宽）。“撑高 a%/b%”= 在你的布局 / 算法布局中，这一列是本行最高格子的行所占比例。短/中/长按该列正文单行宽度中位数划分（≤8em / 8–20em / >20em）。</p></section>`);
 
-    // preference
     const form = document.createElement('form'); form.className = 'panel';
-    const prev = rec ? rec.preference : '';
-    const opts = [['human', '我的更好读'], ['tb', 'Table Badness 更好读'], ['same', '差不多'], ['other', '浏览器原生或最小高度更好']];
-    form.innerHTML = `<fieldset><legend>综合来看，哪个布局更好读？</legend>${opts.map(([k, l]) => `<label class="opt"><input type="radio" name="pref" value="${k}" ${prev === k ? 'checked' : ''} required>${l}</label>`).join('')}</fieldset>
-      <label class="hint" for="note">原因（可选）：例如“编号不该断行”“说明列太窄”</label><textarea id="note">${esc(rec ? rec.note || '' : '')}</textarea>
-      <div class="actions"><button class="btn primary" type="submit">保存并进入下一题</button><button class="btn human" type="button" id="again">重新盲调这一题</button><span class="hint" id="saved"></span></div>`;
+    const prev = rec ? rec.self : '';
+    form.innerHTML = `<fieldset><legend>看过名字后：你的调整和 Table Badness 相比？（自评，已知人会偏向自己的作品，只作参考）</legend>${[['human', '我的更好读'], ['tb', 'Table Badness 更好读'], ['same', '差不多']].map(([k, l]) => `<label class="opt"><input type="radio" name="self" value="${k}" ${prev === k ? 'checked' : ''} required>${l}</label>`).join('')}</fieldset>
+      <label class="hint" for="note">原因（可选），例如“编号不该断行”“这一行太高了”“说明列宁可窄一点”</label><textarea id="note">${esc(rec ? rec.note || '' : '')}</textarea>
+      <div class="actions"><button class="btn primary" type="submit">保存并进入下一题</button><button class="btn human" type="button" id="again">重做这一题</button><span class="hint" id="saved"></span></div>`;
     v.appendChild(form);
     form.querySelector('#again').addEventListener('click', () => openTrial(cur, true));
     form.addEventListener('submit', async e => {
       e.preventDefault();
-      const pref = form.querySelector('input[name=pref]:checked');
-      if (!pref) return;
+      const strip = x => { const o = Object.assign({}, x); delete o.cellLines; return o; };
       const out = {
-        v: VERSION, trialId: t.id, caseId: t.caseId, set: c.set, tags: c.tags, W: t.W, fs: t.fs,
-        columns: hd, kinds, adjustMs, drags, preference: pref.value, note: form.querySelector('#note').value.slice(0, 1000),
-        human: res.human.met, tb: res.tb.met, css: res.css.met, mh: res.mh.met, l1: +l1.toFixed(4),
-        savedAt: new Date().toISOString(),
+        v: VERSION, trialId: t.id, caseId: t.caseId, set: c.set, tags: c.tags, stratum: t.stratum, tau: t.tau, W, fs: t.fs,
+        columns: hd, kinds, tbBottleneckShare: share.map(x => +x.toFixed(3)), humanBottleneckShare: shareH.map(x => +x.toFixed(3)),
+        adjustMs: s.adjustMs, drags: s.drags, ab: s.ab, self: form.querySelector('input[name=self]:checked').value,
+        note: form.querySelector('#note').value.slice(0, 1000), l1: +l1.toFixed(4),
+        human: strip(res.human.met), tb: strip(res.tb.met), css: strip(res['css-auto'].met), mh: strip(res['min-height'].met),
+        base: strip(res[t.baseline].met), savedAt: new Date().toISOString(),
       };
       form.querySelector('#saved').textContent = '保存中…';
       await persist(out);
-      form.querySelector('#saved').textContent = '已保存';
       const next = TB_EVAL.findIndex((x, k) => k > cur && !records[x.id]);
       const any = TB_EVAL.findIndex(x => !records[x.id]);
       if (next >= 0) openTrial(next); else if (any >= 0) openTrial(any); else showSummary();
@@ -361,41 +452,53 @@ table.sum th { color: var(--muted); font-weight: 500; }
     TB_EVAL.forEach((t, i) => {
       const b = document.createElement('button'); b.type = 'button';
       b.className = 'dot' + (records[t.id] ? ' done' : '') + (i === cur && !$('view-trial').hidden ? ' cur' : '');
-      b.textContent = i + 1; b.title = `${caseOf(t).title} · ${t.W}px`;
+      b.textContent = i + 1; b.title = `${cleanTitle(caseOf(t))} · ${t.stratumLabel} · ${TAU[t.tau]}`;
       b.addEventListener('click', () => { showTrial(); openTrial(i); });
       d.appendChild(b);
     });
   }
   const mean = xs => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : NaN);
-  const sgn = (x, d = 1, unit = '') => (isNaN(x) ? '—' : `<span class="${x > 0 ? 'pos' : x < 0 ? 'neg' : ''}">${x > 0 ? '+' : ''}${x.toFixed(d)}${unit}</span>`);
+  const sgn = (x, d = 0, unit = '') => (isNaN(x) ? '—' : `<span class="${x > 0 ? 'pos' : x < 0 ? 'neg' : ''}">${x > 0 ? '+' : ''}${x.toFixed(d)}${unit}</span>`);
+  const wlt = rs => { const w = rs.filter(r => r.ab.winner === 'tb').length, l = rs.filter(r => r.ab.winner === 'baseline').length; return `${w} 胜 / ${rs.length - w - l} 平 / ${l} 负`; };
   function drawSummary() {
     const v = $('view-sum');
     const rs = TB_EVAL.map(t => records[t.id]).filter(Boolean);
-    if (!rs.length) { v.innerHTML = '<h2>汇总</h2><p class="hint">还没有完成的题目。回到“评测”开始第一题，完成后这里会出现你与算法的差异。</p>'; return; }
-    const prefs = { human: 0, tb: 0, same: 0, other: 0 };
-    rs.forEach(r => prefs[r.preference]++);
-    // signed width shift by column kind: (you - tb) / tb
-    const byKind = { short: [], mid: [], long: [] };
-    rs.forEach(r => r.kinds.forEach((k, j) => byKind[k].push((r.human.colPx[j] - r.tb.colPx[j]) / r.tb.colPx[j] * 100)));
-    const d = (f) => mean(rs.map(f));
-    v.innerHTML = `<div class="bar"><h2>汇总 · ${rs.length} 题</h2><div class="actions"><button class="btn" type="button" id="copy">复制全部结果 JSON</button></div></div>
+    if (!rs.length) { v.innerHTML = '<h2>汇总</h2><p class="hint">还没有完成的题目。回到“评测”开始第一题。</p>'; return; }
+    const byKind = { short: [], mid: [], long: [] }, bnCol = [], nonBn = [];
+    rs.forEach(r => r.kinds.forEach((k, j) => {
+      const d = (r.human.colPx[j] - r.tb.colPx[j]) / r.tb.colPx[j] * 100;
+      byKind[k].push(d); (r.tbBottleneckShare[j] >= 0.5 ? bnCol : nonBn).push(d);
+    }));
+    const tagCount = {}; rs.forEach(r => { if (r.ab.winner !== 'same') r.ab.tags.forEach(g => { const side = r.ab.winner === 'tb' ? 'base' : 'tb'; tagCount[side + ':' + g] = (tagCount[side + ':' + g] || 0) + 1; }); });
+    const tagRow = side => TAGS.map(([k, l]) => `${l} ${tagCount[side + ':' + k] || 0}`).join(' · ');
+    const d = f => mean(rs.map(f));
+    const strataRows = TB_EVAL_STRATA.map(s => { const x = rs.filter(r => r.stratum === s.key); return x.length ? `<tr><td class="l">${s.label}</td><td>${x.length}</td><td>${wlt(x)}</td><td>${sgn(mean(x.map(r => r.human.height - r.tb.height)), 0, 'px')}</td><td>${sgn(mean(x.map(r => r.human.rowMax - r.tb.rowMax)), 0, 'px')}</td><td>${(mean(x.map(r => r.l1)) * 100).toFixed(0)}%</td></tr>` : ''; }).join('');
+    const baseRows = ['css-auto', 'min-height', 'proportional'].map(b => { const x = rs.filter(r => r.ab.baseline === b); return x.length ? `<tr><td class="l">${NAMES[b]}</td><td>${x.length}</td><td>${wlt(x)}</td></tr>` : ''; }).join('');
+    const tauRows = [0.2, 0.5, 0.8].map(tau => { const x = rs.filter(r => r.tau === tau); return x.length ? `<tr><td class="l">${TAU[tau]}</td><td>${x.length}</td><td>${wlt(x)}</td></tr>` : ''; }).join('');
+    v.innerHTML = `<div class="bar"><h2>汇总 · ${rs.length}/${TB_EVAL.length} 题</h2><div class="actions"><button class="btn" type="button" id="copy">复制全部结果 JSON</button></div></div>
       <div class="kpis">
-        <div class="kpi"><div class="l">更喜欢自己的 / 算法的 / 差不多 / 其他</div><div class="v">${prefs.human} / ${prefs.tb} / ${prefs.same} / ${prefs.other}</div></div>
+        <div class="kpi"><div class="l">盲比：Table Badness 对基准</div><div class="v">${wlt(rs)}</div></div>
+        <div class="kpi"><div class="l">自评：更喜欢自己 / 算法 / 差不多</div><div class="v">${rs.filter(r => r.self === 'human').length} / ${rs.filter(r => r.self === 'tb').length} / ${rs.filter(r => r.self === 'same').length}</div></div>
         <div class="kpi"><div class="l">平均列宽差异（你 vs 算法）</div><div class="v">${(d(r => r.l1) * 100).toFixed(0)}%</div></div>
-        <div class="kpi"><div class="l">短列：你比算法宽</div><div class="v">${sgn(mean(byKind.short), 0, '%')}</div></div>
-        <div class="kpi"><div class="l">中等列：你比算法宽</div><div class="v">${sgn(mean(byKind.mid), 0, '%')}</div></div>
-        <div class="kpi"><div class="l">长文列：你比算法宽</div><div class="v">${sgn(mean(byKind.long), 0, '%')}</div></div>
-        <div class="kpi"><div class="l">总高：你 − 算法（平均）</div><div class="v">${sgn(d(r => r.human.height - r.tb.height), 0, 'px')}</div></div>
-        <div class="kpi"><div class="l">TB 损失：你 − 算法（平均）</div><div class="v">${sgn(d(r => r.human.loss - r.tb.loss), 1)}</div></div>
-        <div class="kpi"><div class="l">平均用时</div><div class="v">${(d(r => r.adjustMs) / 1000).toFixed(0)} s</div></div>
+        <div class="kpi"><div class="l">撑高行高的列：你比算法宽</div><div class="v">${sgn(mean(bnCol), 0, '%')}</div></div>
+        <div class="kpi"><div class="l">其他列：你比算法宽</div><div class="v">${sgn(mean(nonBn), 0, '%')}</div></div>
+        <div class="kpi"><div class="l">短 / 中 / 长列：你比算法宽</div><div class="v">${sgn(mean(byKind.short))} / ${sgn(mean(byKind.mid))} / ${sgn(mean(byKind.long))}%</div></div>
+        <div class="kpi"><div class="l">总高 / 最高行：你 − 算法</div><div class="v">${sgn(d(r => r.human.height - r.tb.height), 0, 'px')} / ${sgn(d(r => r.human.rowMax - r.tb.rowMax), 0, 'px')}</div></div>
+        <div class="kpi"><div class="l">行内空白：你 − 算法</div><div class="v">${sgn(d(r => (r.human.unused - r.tb.unused) * 100), 0, 'pt')}</div></div>
       </div>
-      <p class="hint">“你比算法宽”= (你的列宽 − 算法列宽) ÷ 算法列宽，按列类型平均。绿色为正。指标差值为“你 − 算法”，其中总高、词内断开、TB 损失越小越好。</p>
-      <div class="tablewrap"><table class="sum"><thead><tr><th>题</th><th>表格</th><th>宽度</th><th>偏好</th><th>列宽差异</th><th>短值完整 你/算法</th><th>词内断开 你/算法</th><th>碎片 你/算法</th><th>总高 你/算法</th><th>溢出 你/算法</th><th>TB损失 你/算法</th><th>备注</th></tr></thead><tbody>
-      ${TB_EVAL.map((t, i) => { const r = records[t.id]; if (!r) return ''; const P = { human: '自己', tb: '算法', same: '差不多', other: '其他' };
-        return `<tr><td class="l">${i + 1}</td><td class="l">${esc(caseOf(t).title.replace(/^\[[^\]]+\]\s*/, '').slice(0, 22))}</td><td>${r.W}</td><td class="l">${P[r.preference]}</td><td>${(r.l1 * 100).toFixed(0)}%</td>
-        <td>${r.human.short}/${r.tb.short}</td><td>${r.human.atomic}/${r.tb.atomic}</td><td>${r.human.frag}/${r.tb.frag}</td><td>${r.human.height}/${r.tb.height}</td><td>${r.human.overflow}/${r.tb.overflow}</td><td>${r.human.loss.toFixed(1)}/${r.tb.loss.toFixed(1)}</td><td class="l">${esc((r.note || '').slice(0, 40))}</td></tr>`; }).join('')}
-      </tbody></table></div>
-      <textarea id="json" readonly hidden></textarea>`;
+      <p class="hint">“撑高行高的列”指在算法布局中，至少一半的行由这一列决定行高。列宽偏差 = (你 − 算法) ÷ 算法，按列平均；绿色为正。总高、最高行的差值为负表示你的布局更矮。行内空白只作诊断，不是越小越好。</p>
+      <p class="hint">盲比中被判为较差的一方，问题标签统计：<br>Table Badness 输时：${tagRow('tb')}<br>基准输时：${tagRow('base')}</p>
+      <div class="kpis">
+        <div class="tablewrap"><table class="sum"><thead><tr><th class="l">行高结构</th><th>题数</th><th>盲比</th><th>总高 你−算法</th><th>最高行 你−算法</th><th>列宽差异</th></tr></thead><tbody>${strataRows}</tbody></table></div>
+      </div>
+      <div class="kpis">
+        <div class="tablewrap"><table class="sum" style="min-width:320px"><thead><tr><th class="l">对比基准</th><th>题数</th><th>盲比</th></tr></thead><tbody>${baseRows}</tbody></table></div>
+        <div class="tablewrap"><table class="sum" style="min-width:320px"><thead><tr><th class="l">宽度松紧</th><th>题数</th><th>盲比</th></tr></thead><tbody>${tauRows}</tbody></table></div>
+      </div>
+      <div class="tablewrap"><table class="sum"><thead><tr><th>题</th><th class="l">表格</th><th class="l">结构</th><th>宽度</th><th class="l">盲比</th><th class="l">自评</th><th>列宽差异</th><th>短值 你/算法</th><th>总高 你/算法</th><th>最高行 你/算法</th><th>可见行 你/算法</th><th class="l">备注</th></tr></thead><tbody>
+      ${TB_EVAL.map((t, i) => { const r = records[t.id]; if (!r) return ''; const AB = { tb: '算法胜', baseline: NAMES[r.ab.baseline] + '胜', same: '平' }; const S = { human: '自己', tb: '算法', same: '平' };
+        return `<tr><td>${i + 1}</td><td class="l">${esc(cleanTitle(caseOf(t)).slice(0, 18))}</td><td class="l">${esc(t.stratumLabel)}·${TAU[t.tau]}</td><td>${r.W}</td><td class="l">${AB[r.ab.winner]}</td><td class="l">${S[r.self]}</td><td>${(r.l1 * 100).toFixed(0)}%</td><td>${r.human.short}/${r.tb.short}</td><td>${r.human.height}/${r.tb.height}</td><td>${Math.round(r.human.rowMax)}/${Math.round(r.tb.rowMax)}</td><td>${r.human.visible600}/${r.tb.visible600}</td><td class="l">${esc((r.note || '').slice(0, 40))}</td></tr>`; }).join('')}
+      </tbody></table></div><textarea id="json" readonly hidden></textarea>`;
     $('copy').addEventListener('click', () => {
       const txt = JSON.stringify(rs, null, 1);
       const fallback = () => { const ta = $('json'); ta.hidden = false; ta.value = txt; ta.select(); $('copy').textContent = '已选中，按 ⌘C 复制'; };

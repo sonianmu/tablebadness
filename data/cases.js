@@ -336,4 +336,41 @@ window.TB_CASES = [
 | 202406180001239102 | 06-18 00:02 | 抽纸 24 包 | ¥59.90 | 北京市朝阳区 |
 | 202406180001240017 | 06-18 00:05 | 机械键盘（87 键，茶轴，PBT 键帽，有线/蓝牙/2.4G 三模） | ¥469.00 | 广东省深圳市南山区科技园南区深南大道 9988 号 |
 `},
+// ---- height-structure cases (added with the width–height coupling revision; held out) ----
+{ id:'v-h-shift', set:'val', lang:'zh-CN', tags:['zh','hs-shift'], title:'[验证] 行高瓶颈转移 · 故障复盘', md:`
+| 模块 | 问题描述 | 影响范围 | 修复方案 |
+|---|---|---|---|
+| 网关 | 证书自动续期脚本在凌晨切换时未重载配置，导致约 7 分钟内部分 HTTPS 握手失败。 | 华东 | 续期后强制热加载 |
+| 订单 | 超时 | 全部渠道的预售订单，以及使用分期付款且在活动开始后 10 分钟内下单的用户 | 回滚 |
+| 搜索 | 索引延迟 | 华南 | 将增量索引从批处理改为流式写入，并为热点商品单独建立刷新队列，降低高峰期的端到端延迟。 |
+| 推送 | 重复 | 安卓 | 去重 |
+`},
+{ id:'v-h-sparse', set:'val', lang:'en', tags:['en','hs-sparse','repeated'], title:'[val] Sparse tall row · Server inventory', md:`
+| Host | Role | Zone | CPU | Status | Notes |
+|---|---|---|--:|---|---|
+| web-01 | frontend | eu-west-1a | 8 | healthy | — |
+| web-02 | frontend | eu-west-1b | 8 | healthy | — |
+| api-01 | backend | eu-west-1a | 16 | healthy | — |
+| api-02 | backend | eu-west-1b | 16 | degraded | Disk latency spikes every night at 02:00 UTC during the snapshot job; the vendor ticket is open and a fix is expected in the next kernel update. Until then traffic is shifted to api-01 between 01:45 and 02:30. |
+| db-01 | primary | eu-west-1a | 32 | healthy | — |
+| db-02 | replica | eu-west-1b | 32 | healthy | — |
+| cache-01 | redis | eu-west-1a | 4 | healthy | — |
+`},
+{ id:'v-h-run', set:'val', lang:'zh-CN', tags:['zh','hs-run'], title:'[验证] 连续高行 · 发布计划', md:`
+| 阶段 | 时间 | 负责人 | 内容 |
+|---|---|---|---|
+| 冻结 | 05-06 | 刘洋 | 代码冻结 |
+| 灰度 1% | 05-08 | 刘洋 | 仅对内部员工开放，观察崩溃率、接口错误率与支付成功率三项核心指标，任一指标劣化超过阈值立即回滚。 |
+| 灰度 10% | 05-10 | 陈晨 | 扩大到部分华东用户，同时开启新旧两套推荐服务的对照实验，收集点击率与停留时长数据。 |
+| 灰度 50% | 05-13 | 陈晨 | 覆盖全部一线城市用户，重点关注高峰时段的数据库连接数和缓存命中率，准备好扩容预案。 |
+| 全量 | 05-15 | 刘洋 | 全量发布 |
+| 复盘 | 05-20 | 王芳 | 复盘会议 |
+`},
+{ id:'v-h-co', set:'val', lang:'en', tags:['en','hs-co','two-long'], title:'[val] Co-bottleneck · Framework trade-offs', md:`
+| Option | Strengths | Weaknesses | Verdict |
+|---|---|---|---|
+| Server rendering | Fast first paint, good for SEO, and simple caching at the CDN edge for anonymous pages. | Every interaction needs a round trip unless you add client code, and personalised pages are hard to cache. | Default |
+| Static export | Cheapest to host and trivially scalable; pages survive backend outages. | Content updates need a rebuild, which gets slow once you have tens of thousands of pages. | Docs |
+| Client SPA | Rich interactions and offline support once loaded. | Slow first load on mid-range phones, and search engines may index an empty shell. | Avoid |
+`},
 ];

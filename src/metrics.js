@@ -63,6 +63,26 @@
       }
       m.cellLines.push(rowLines);
     });
+    // ---- row structure (width-height coupling) ----
+    // rowPx: real row heights; bottleneck = columns whose cell has the row's max line count.
+    // unusedFrac: share of the body cell area (in lines) not filled by text — diagnostic only, not "lower is better".
+    const trs = Array.from(table.rows);
+    const tTop = rect.top;
+    m.rowPx = trs.map(tr => Math.round(tr.getBoundingClientRect().height * 10) / 10);
+    m.bottlenecks = [];
+    let unused = 0, area = 0;
+    m.cellLines.forEach((row, r) => {
+      const mx = Math.max(...row);
+      m.bottlenecks.push(row.map((l, c) => (l === mx && mx > 1 ? c : -1)).filter(c => c >= 0));
+      if (trs[r].cells[0] && trs[r].cells[0].tagName === 'TH') return;
+      for (const l of row) { unused += mx - l; area += mx; }
+    });
+    m.unusedFrac = area ? unused / area : 0;
+    const body = m.rowPx.filter((_, r) => !(trs[r].cells[0] && trs[r].cells[0].tagName === 'TH')).slice().sort((a, b) => a - b);
+    const q = p => body.length ? body[Math.min(body.length - 1, Math.floor(p * (body.length - 1) + 0.5))] : 0;
+    m.rowMedianPx = q(0.5); m.rowP90Px = q(0.9); m.rowMaxPx = body.length ? body[body.length - 1] : 0;
+    m.coBottleneckRows = m.bottlenecks.filter(b => b.length > 1).length;
+    m.visibleRows600 = trs.filter(tr => tr.getBoundingClientRect().bottom - tTop <= 600).length;
     m.shortIntactRate = m.shortCells ? m.shortIntact / m.shortCells : null;
     m.atomicBreaks = m.tokenBreaks + m.emergencyBreaks;
     m.meanMeasureEm = m.longCells ? m.measureEmSum / m.longCells : null;

@@ -39,7 +39,7 @@ function aggregate(all, filter) {
   for (const cr of all) {
     if (!filter(cr)) continue;
     for (const r of cr.results) {
-      const a = (rows[r.method] ||= { n: 0, short: 0, shortN: 0, atomic: 0, emerg: 0, frag: 0, longN: 0, measure: 0, height: 0, heightRel: 0, overflow: 0, scroll: 0, loss: 0, lossRel: 0, maxLines: 0, ms: 0, msN: 0, pred: 0, predN: 0 });
+      const a = (rows[r.method] ||= { rowP90: 0, rowMax: 0, vis: 0, unused: 0, co: 0, n: 0, short: 0, shortN: 0, atomic: 0, emerg: 0, frag: 0, longN: 0, measure: 0, height: 0, heightRel: 0, overflow: 0, scroll: 0, loss: 0, lossRel: 0, maxLines: 0, ms: 0, msN: 0, pred: 0, predN: 0 });
       const m = r.metrics;
       a.n++;
       a.short += m.shortIntact; a.shortN += m.shortCells;
@@ -47,6 +47,7 @@ function aggregate(all, filter) {
       a.frag += m.severeFrag; a.longN += m.longCells; a.measure += m.measureEmSum;
       a.height += m.heightPx; a.overflow += m.overflowPx; a.scroll += m.overflowPx > 0.5 ? 1 : 0;
       a.loss += r.loss; a.maxLines += m.maxLines;
+      a.rowP90 += m.rowP90Px; a.rowMax += m.rowMaxPx; a.vis += m.visibleRows600; a.unused += m.unusedFrac; a.co += m.coBottleneckRows;
       const ref = cr.results.find(x => x.W === r.W && x.method === 'css-auto');
       a.heightRel += m.heightPx / ref.metrics.heightPx;
       if (r.ms != null) { a.ms += r.ms; a.msN++; }
@@ -62,6 +63,8 @@ function printTable(title, rows) {
   for (const [k, a] of Object.entries(rows)) {
     console.log(`${k.padEnd(15)} ${pct(a.short / a.shortN).padStart(10)} ${num(a.atomic / a.n, 2).padStart(12)} ${num(a.emerg / a.n, 2).padStart(9)} ${pct(a.frag / a.longN).padStart(10)} ${num(a.measure / a.longN, 1).padStart(9)}em ${num(a.height / a.n, 0).padStart(7)} ${num(a.heightRel / a.n, 3).padStart(6)} ${num(a.overflow / a.n, 1).padStart(10)} ${pct(a.scroll / a.n).padStart(7)} ${num(a.loss / a.n, 2).padStart(7)} ${num(a.maxLines / a.n, 2).padStart(8)} ${a.msN ? num(a.ms / a.msN, 3).padStart(9) : '        —'} ${a.predN ? pct(a.pred / a.predN) : '  —'}`);
   }
+  console.log('  row structure:   method          rowP90px  rowMaxPx  visibleRows@600px  unusedCellArea  coBottleneckRows');
+  for (const [k, a] of Object.entries(rows)) console.log(`                   ${k.padEnd(15)} ${num(a.rowP90 / a.n, 0).padStart(8)} ${num(a.rowMax / a.n, 0).padStart(9)} ${num(a.vis / a.n, 2).padStart(18)} ${pct(a.unused / a.n).padStart(15)} ${num(a.co / a.n, 2).padStart(17)}`);
 }
 
 async function experiment() {

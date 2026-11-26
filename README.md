@@ -27,7 +27,8 @@ npm run all            # accuracy + experiment + stability + perf → results/*.
 npm run sweep          # parameter sweep on the DEV set only
 node bench/inspect.mjs zh-project 400 15    # one case, all methods, plus a screenshot
 open index.html        # interactive demo (works from file://); drag column borders or use ←/→ to resize by hand
-open eval.html         # human-preference evaluation: 24 blind trials (data/eval-set.js), you vs algorithms
+open eval.html         # human evaluation (v2): 8 row-height structures x 3 width tightness, hard width limit;
+                       # blind adjust -> blind A/B (TB vs a rotated baseline) -> reveal with row-height profiles
 ```
 
 API (classic script, `window.TableBadness`):

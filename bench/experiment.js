@@ -81,7 +81,7 @@
           const ws = met.colWidths.map((w, j) => w - ctx.P.overhead[j]);
           r.loss = TB.predict(ctx.P, ws).loss;
         }
-        delete met.cellLines;
+        delete met.cellLines; delete met.bottlenecks;
         out.results.push(r);
       }
     }
