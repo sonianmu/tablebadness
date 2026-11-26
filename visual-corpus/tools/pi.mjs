@@ -1,5 +1,5 @@
 // Pi wrapper: one isolated, stateless call (fresh context) with images; timeout, retries, raw log, JSON extraction.
-import { spawn } from 'node:child_process';
+import { spawn, execFileSync } from 'node:child_process';
 import { writeFileSync, mkdirSync, readFileSync, existsSync } from 'node:fs';
 import { dirname, basename, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -9,6 +9,21 @@ import { fileURLToPath } from 'node:url';
 export const MODELS = (process.env.VC_MODELS || 'codex/gpt-6.1-terra,opencode-zen-free/deepseek-v4.1-flash-free').split(',');
 export const MODEL = MODELS.join(' → ');
 export const THINKING = process.env.VC_THINKING || 'medium';
+// Images sent to the model are downscaled copies (VC_SCALE, default 0.75); saved corpus screenshots stay full size.
+export const SCALE = +(process.env.VC_SCALE || 0.75);
+export function scaled(images) {
+  if (!images.length || SCALE >= 1) return images;
+  const dir = join(dirname(images[0]), 's' + Math.round(SCALE * 100));
+  mkdirSync(dir, { recursive: true });
+  return images.map(p => {
+    const out = join(dir, basename(p));
+    if (!existsSync(out)) {
+      const w = +execFileSync('sips', ['-g', 'pixelWidth', p]).toString().match(/pixelWidth: (\d+)/)[1];
+      execFileSync('sips', ['--resampleWidth', String(Math.max(1, Math.round(w * SCALE))), p, '--out', out], { stdio: 'ignore' });
+    }
+    return out;
+  });
+}
 const EXH = join(dirname(fileURLToPath(import.meta.url)), '../runs/_exhausted.json');
 const exhausted = new Set(existsSync(EXH) ? JSON.parse(readFileSync(EXH, 'utf8')) : []);
 const markExhausted = m => { exhausted.add(m); mkdirSync(dirname(EXH), { recursive: true }); writeFileSync(EXH, JSON.stringify([...exhausted])); console.error(`  ! model ${m} exhausted, falling back`); };
@@ -40,7 +55,8 @@ export function extractJSON(text) {
 }
 
 // images must all live in one directory (passed as cwd so @file references resolve)
-export async function ask({ prompt, images = [], logPath, retries = 3, timeoutMs = 300000, thinking = THINKING, validate, onModel }) {
+export async function ask({ prompt, images: original = [], logPath, retries = 3, timeoutMs = 300000, thinking = THINKING, validate, onModel }) {
+  const images = scaled(original);
   const cwd = images.length ? dirname(images[0]) : process.cwd();
   const log = [];
   for (let attempt = 1; attempt <= retries; attempt++) {
@@ -53,7 +69,7 @@ export async function ask({ prompt, images = [], logPath, retries = 3, timeoutMs
     const problem = r.code !== 0 ? `exit ${r.code} ${r.err.slice(0, 300)}` : !json ? 'no JSON in reply' : validate ? validate(json) : null;
     log.push({ attempt, model, ms: Date.now() - t0, code: r.code, problem, raw: r.out.slice(0, 20000) });
     if (!problem) {
-      if (logPath) { mkdirSync(dirname(logPath), { recursive: true }); writeFileSync(logPath, JSON.stringify({ model, thinking, images: images.map(p => basename(p)), prompt, log }, null, 1)); }
+      if (logPath) { mkdirSync(dirname(logPath), { recursive: true }); writeFileSync(logPath, JSON.stringify({ model, thinking, imageScale: SCALE, images: images.map(p => basename(p)), prompt, log }, null, 1)); }
       if (onModel) onModel(model);
       return json;
     }
