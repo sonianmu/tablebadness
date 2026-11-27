@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val2][adversarial] Incident IDs vs prose (language en).\nGrid: 4 columns × 4 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Incident\" · longest unbreakable word 77px · one-line width 144px\n  col 2: header \"Trace ID\" · longest unbreakable word 278px · one-line width 278px\n  col 3: header \"Severity\" · longest unbreakable word 59px · one-line width 59px\n  col 4: header \"Summary\" · longest unbreakable word 73px · one-line width 691px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10437,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"Trace IDs stay intact and summaries have reasonable space, but every incident ID breaks across three lines, making the incident column difficult to scan.\"},\"B\":{\"grade\":\"good\",\"why\":\"Trace IDs remain intact and incident IDs break consistently into two lines. The summary column is somewhat narrow, producing several short lines.\"},\"C\":{\"grade\":\"good\",\"why\":\"Trace IDs remain intact, incident IDs split consistently over two lines, and the summary has enough room for relatively natural wrapping.\"},\"D\":{\"grade\":\"poor\",\"why\":\"Incident IDs stay on one line, but the longest trace ID breaks in the middle and the narrow summary creates tall rows. Severity has much more space than its contents need.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"Trace IDs stay intact and incident IDs use two lines, but the summary is narrow enough to create noticeably tall rows and short lines.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"Trace IDs stay intact and the summary has useful space, but incident IDs break into three lines, weakening their scanability.\"}},\"best\":[\"C\"],\"confidence\":\"high\",\"unsure\":\"B is close to C; the preference depends on how much weight is given to the slightly wider summary and shorter final row in C.\"}\n"
+  }
+ ]
+}

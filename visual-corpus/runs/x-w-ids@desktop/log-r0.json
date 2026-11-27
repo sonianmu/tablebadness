@@ -1,0 +1,19 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nTable: [val2][adversarial] Incident IDs vs prose (language en).\nGrid: 4 columns × 4 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Incident\" · longest unbreakable word 77px · one-line width 144px\n  col 2: header \"Trace ID\" · longest unbreakable word 278px · one-line width 278px\n  col 3: header \"Severity\" · longest unbreakable word 59px · one-line width 59px\n  col 4: header \"Summary\" · longest unbreakable word 73px · one-line width 691px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nThe image shows the table's content with every cell on one line, so you can read everything. Study it first.\n1) Understand it: what is the table for, how will people read, scan and compare it, which columns play the same or similar role, which values must stay intact, which text may wrap naturally, and where existing row height could absorb wrapping.\n2) Propose 3 genuinely different column-width designs for 720px (different strategies, not small variations).\nReply ONLY JSON: {\"understanding\":{\"purpose\":\"\",\"reading\":\"\",\"groups\":[\"columns that belong together and why\"],\"keep_intact\":[\"\"],\"may_wrap\":[\"\"]},\"designs\":[{\"name\":\"A\",\"widths\":[int px per column, column 1 first],\"idea\":\"one sentence\"}]}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 12164,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"understanding\":{\"purpose\":\"Compare incident records by identifier, trace, severity and summary.\",\"reading\":\"Readers scan severity and summaries to find relevant incidents, then use the incident and trace IDs to identify or investigate them. Wrapped summaries can use the resulting row height.\",\"groups\":[\"Incident and Trace ID identify the same record and support lookup.\",\"Severity and Summary describe the incident and support triage.\"],\"keep_intact\":[\"Trace IDs should remain on one line for reliable lookup.\",\"Incident IDs should preferably remain on one line.\",\"Severity values should remain intact.\"],\"may_wrap\":[\"Summaries may wrap naturally between words.\",\"Incident IDs may wrap at hyphens if more room for summaries is needed.\"]},\"designs\":[{\"name\":\"A\",\"widths\":[165,299,80,175],\"idea\":\"Keep both identifiers intact and let summaries wrap in a compact description column.\"},{\"name\":\"B\",\"widths\":[110,299,80,230],\"idea\":\"Give summaries more room while preserving trace IDs, allowing incident IDs to wrap at hyphens.\"},{\"name\":\"C\",\"widths\":[165,200,80,274],\"idea\":\"Favor readable summaries and intact incident IDs, accepting that long unbreakable trace IDs may overflow their column.\"}]}\n"
+  }
+ ]
+}

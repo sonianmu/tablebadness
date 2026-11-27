@@ -1,0 +1,4684 @@
+{
+ "id": "x-zh-api@phone",
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "参数名、类型、必填状态和默认值都完整，标题保持单行；说明列较宽，行高适中，便于按行核对。",
+     "problems": "首屏几乎看不到说明列，默认值列的右侧也需要横向滚动才能看全；读者要阅读用途时必须移动视口。",
+     "cause": "前四列合计368px，已超过360px视口；说明列宽200px改善了文本阅读，但使表格总宽达到569px。"
+    },
+    {
+     "design": "r0B",
+     "good": "前四列保持完整，读者可以可靠地识别参数和默认值；横向滚动距离比r0A短。",
+     "problems": "说明列过窄，句子和部分词语被频繁拆分，行高显著增加，造成前四列大片空白，也使逐行核对变得费力。首屏仍看不到说明。",
+     "cause": "说明列只有91px，扣除内边距后文本空间为70px；前四列仍合计368px，因此缩窄说明并未让它进入首屏。"
+    },
+    {
+     "design": "r0C",
+     "good": "五列都出现在首屏，不需要横向滚动，列之间的对应关系一眼可见。",
+     "problems": "两个标题换行，参数名、类型和默认值被拆开；说明文字也非常狭窄，表格又高又密，代码标识符难以辨认和复制。",
+     "cause": "参数列100px、类型列60px、默认值列65px均不足以容纳各自最长标识符；必填列49px不足以容纳单行标题，说明列85px也不足以让句子从容换行。"
+    },
+    {
+     "design": "overview",
+     "good": "单行展示便于了解内容范围、字段角色和标识符长度。",
+     "problems": "说明文字超出首屏，不能作为360px视口内的完整阅读布局。",
+     "cause": "各列按单行内容展开，尤其说明列的单行内容宽达488px。"
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "参数名、类型和默认值均保持完整；说明列有足够空间控制换行，行高相对紧凑，便于逐行核对。",
+     "problems": "初始视口中看不到说明列，读者必须横向滚动；较高的行也使短字段下方留有较多空白。",
+     "cause": "前四列合计368px，已超过360px视口；160px的说明列虽减少了换行，仍需以行高容纳较长句子。"
+    },
+    {
+     "design": "r1B",
+     "good": "标识符和标题均保持完整，表格比r1A窄30px，横向滚动距离较短。",
+     "problems": "说明文字更拥挤，部分单元格达到5行，表格明显变长；短字段周围的纵向空白也更突出。说明列仍需滚动才能看到。",
+     "cause": "说明列从160px缩至130px，文本可用宽度只剩109px；前四列仍合计368px。"
+    },
+    {
+     "design": "r1C",
+     "good": "比r1A窄21px，说明列保持150px，最高单元格为4行，兼顾了一定的横向和纵向紧凑度。",
+     "problems": "默认值created_at被拆开，影响识别和复制；说明列在初始视口中仍几乎不可读。",
+     "cause": "默认值列为92px，文本空间仅71px，小于created_at所需的82px；前四列仍合计357px。"
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "参数名、类型、必填值和默认值保持完整；各列表头清楚，列宽也符合字段的作用。",
+     "problems": "说明列换行较多，行高达到四行，前面几列出现大片空白；初始视口中说明列不可见，默认值列的末端也需要横向滚动才能看全。",
+     "cause": "说明列为180px，内容区只有159px；前四列合计368px，已经超过360px视口。"
+    },
+    {
+     "design": "r2B",
+     "good": "标识符和默认值保持完整，说明最多三行，行高更紧凑，五条记录的节奏比r2A更均衡。",
+     "problems": "初始视口仍看不到说明列，默认值列末端也在视口外；完整阅读说明需要横向滚动。",
+     "cause": "说明列增至200px，减少了换行，但前四列仍合计368px，整表宽569px。"
+    },
+    {
+     "design": "r2C",
+     "good": "整表宽度较小，视口右缘能露出说明列的一部分，给读者横向滚动的提示。",
+     "problems": "include_deleted被拆成两行，影响参数名的辨认和复制；说明仍有四行，记录较高，视口中露出的说明碎片也不足以阅读。",
+     "cause": "参数列为125px，内容区只有104px，小于最长标识符所需的122px；说明列为160px，内容区只有139px。"
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A",
+    "r3B"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    143,
+    70,
+    52,
+    103,
+    200
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 569,
+    "tableHeight": 404.5,
+    "overflow": 209,
+    "colWidths": [
+     143,
+     70,
+     52,
+     103,
+     200
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     82.8,
+     82.8,
+     59.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "参数",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "类型",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "必填",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "默认值",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "user_id",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户的唯一标识，由注册接口返回，长度固定为 24 位。",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "page_size",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "int",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "20",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "每页返回的记录条数，取值范围为 1 到 100，超出范围时按边界值处理。",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "sort",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "enum",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "created_at",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "排序字段，可选 created_at、updated_at 或 score。",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "include_deleted",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "bool",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "false",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是否返回已软删除的数据，仅管理员令牌有效。",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "callback_url",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "异步任务完成后回调的地址，必须为 HTTPS 协议。",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 122,
+      "natural": 122,
+      "padding": 21
+     },
+     {
+      "minContent": 49,
+      "natural": 49,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 82,
+      "natural": 82,
+      "padding": 21
+     },
+     {
+      "minContent": 97,
+      "natural": 488,
+      "padding": 21
+     }
+    ],
+    "frameW": 603
+   },
+   "png": "d-r0A.png",
+   "idea": "保留所有标识符并给说明较宽的阅读空间，代价是表格宽 568px，需要横向滚动。",
+   "notes": []
+  },
+  "r0B": {
+   "widths": [
+    143,
+    70,
+    52,
+    103,
+    91
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 460,
+    "tableHeight": 892.8,
+    "overflow": 100,
+    "colWidths": [
+     143,
+     70,
+     52,
+     103,
+     91
+    ],
+    "rowHeights": [
+     36.3,
+     175.8,
+     199,
+     175.8,
+     152.5,
+     152.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "参数",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "类型",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "必填",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "默认值",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "user_id",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户的唯一标识，由注册接口返回，长度固定为 24 位。",
+      "lines": 7
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "page_size",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "int",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "20",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "每页返回的记录条数，取值范围为 1 到 100，超出范围时按边界值处理。",
+      "lines": 8
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "sort",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "enum",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "created_at",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "排序字段，可选 created_at、updated_at 或 score。",
+      "lines": 7
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "include_deleted",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "bool",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "false",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是否返回已软删除的数据，仅管理员令牌有效。",
+      "lines": 6
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "callback_url",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "异步任务完成后回调的地址，必须为 HTTPS 协议。",
+      "lines": 6
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 2,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 122,
+      "natural": 122,
+      "padding": 21
+     },
+     {
+      "minContent": 49,
+      "natural": 49,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 82,
+      "natural": 82,
+      "padding": 21
+     },
+     {
+      "minContent": 97,
+      "natural": 488,
+      "padding": 21
+     }
+    ],
+    "frameW": 494
+   },
+   "png": "d-r0B.png",
+   "idea": "保留参数、类型和默认值的完整性，将说明压窄以减少横向滚动，但说明会形成较多短行。",
+   "notes": []
+  },
+  "r0C": {
+   "widths": [
+    100,
+    60,
+    49,
+    65,
+    85
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 360,
+    "tableHeight": 939.3,
+    "overflow": 0,
+    "colWidths": [
+     100,
+     60,
+     49,
+     65,
+     85
+    ],
+    "rowHeights": [
+     59.5,
+     175.8,
+     199,
+     175.8,
+     152.5,
+     175.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "参数",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "类型",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "必填",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "默认值",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "user_id",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户的唯一标识，由注册接口返回，长度固定为 24 位。",
+      "lines": 7
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "page_size",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "int",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "20",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "每页返回的记录条数，取值范围为 1 到 100，超出范围时按边界值处理。",
+      "lines": 8
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "sort",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "enum",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "created_at",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "排序字段，可选 created_at、updated_at 或 score。",
+      "lines": 7
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "include_deleted",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "bool",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "false",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是否返回已软删除的数据，仅管理员令牌有效。",
+      "lines": 6
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "callback_url",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "异步任务完成后回调的地址，必须为 HTTPS 协议。",
+      "lines": 7
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 7,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 122,
+      "natural": 122,
+      "padding": 21
+     },
+     {
+      "minContent": 49,
+      "natural": 49,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 82,
+      "natural": 82,
+      "padding": 21
+     },
+     {
+      "minContent": 97,
+      "natural": 488,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r0C.png",
+   "idea": "将表格压进 359px 视口，让全部列同时可见，但较长的参数名和默认值会被拆开，行高也会增加。",
+   "notes": []
+  },
+  "r1A": {
+   "widths": [
+    143,
+    70,
+    52,
+    103,
+    160
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 529,
+    "tableHeight": 497.5,
+    "overflow": 169,
+    "colWidths": [
+     143,
+     70,
+     52,
+     103,
+     160
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     106,
+     106,
+     82.8,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "参数",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "类型",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "必填",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "默认值",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "user_id",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户的唯一标识，由注册接口返回，长度固定为 24 位。",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "page_size",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "int",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "20",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "每页返回的记录条数，取值范围为 1 到 100，超出范围时按边界值处理。",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "sort",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "enum",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "created_at",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "排序字段，可选 created_at、updated_at 或 score。",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "include_deleted",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "bool",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "false",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是否返回已软删除的数据，仅管理员令牌有效。",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "callback_url",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "异步任务完成后回调的地址，必须为 HTTPS 协议。",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 122,
+      "natural": 122,
+      "padding": 21
+     },
+     {
+      "minContent": 49,
+      "natural": 49,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 82,
+      "natural": 82,
+      "padding": 21
+     },
+     {
+      "minContent": 97,
+      "natural": 488,
+      "padding": 21
+     }
+    ],
+    "frameW": 563
+   },
+   "png": "d-r1A.png",
+   "idea": "保留前四列完整显示标识符和标题，将说明列从200px收至160px；总宽528px，尝试在说明可读性和横向滚动距离之间取得较好的平衡。",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    143,
+    70,
+    52,
+    103,
+    130
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 499,
+    "tableHeight": 567.3,
+    "overflow": 139,
+    "colWidths": [
+     143,
+     70,
+     52,
+     103,
+     130
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     129.3,
+     106,
+     82.8,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "参数",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "类型",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "必填",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "默认值",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "user_id",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户的唯一标识，由注册接口返回，长度固定为 24 位。",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "page_size",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "int",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "20",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "每页返回的记录条数，取值范围为 1 到 100，超出范围时按边界值处理。",
+      "lines": 5
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "sort",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "enum",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "created_at",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "排序字段，可选 created_at、updated_at 或 score。",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "include_deleted",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "bool",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "false",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是否返回已软删除的数据，仅管理员令牌有效。",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "callback_url",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "异步任务完成后回调的地址，必须为 HTTPS 协议。",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 122,
+      "natural": 122,
+      "padding": 21
+     },
+     {
+      "minContent": 49,
+      "natural": 49,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 82,
+      "natural": 82,
+      "padding": 21
+     },
+     {
+      "minContent": 97,
+      "natural": 488,
+      "padding": 21
+     }
+    ],
+    "frameW": 533
+   },
+   "png": "d-r1B.png",
+   "idea": "保持关键字段完整，将说明列设为130px；总宽498px，检验比r0B宽的说明列能否明显减轻纵向拉长，同时进一步减少横向滚动。",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1C": {
+   "widths": [
+    143,
+    70,
+    52,
+    92,
+    150
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 508,
+    "tableHeight": 520.8,
+    "overflow": 148,
+    "colWidths": [
+     143,
+     70,
+     52,
+     92,
+     150
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     106,
+     82.8,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "参数",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "类型",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "必填",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "默认值",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "user_id",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户的唯一标识，由注册接口返回，长度固定为 24 位。",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "page_size",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "int",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "20",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "每页返回的记录条数，取值范围为 1 到 100，超出范围时按边界值处理。",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "sort",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "enum",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "created_at",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "排序字段，可选 created_at、updated_at 或 score。",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "include_deleted",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "bool",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "false",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是否返回已软删除的数据，仅管理员令牌有效。",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "callback_url",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "异步任务完成后回调的地址，必须为 HTTPS 协议。",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 1,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 122,
+      "natural": 122,
+      "padding": 21
+     },
+     {
+      "minContent": 49,
+      "natural": 49,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 82,
+      "natural": 82,
+      "padding": 21
+     },
+     {
+      "minContent": 97,
+      "natural": 488,
+      "padding": 21
+     }
+    ],
+    "frameW": 542
+   },
+   "png": "d-r1C.png",
+   "idea": "将默认值列收至92px，使前四列合计357px，首屏可露出说明列边缘；说明列给150px。代价是最长默认值可能被拆分，用来检验减少滚动距离是否值得这一取舍。",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    143,
+    70,
+    52,
+    103,
+    180
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 549,
+    "tableHeight": 497.5,
+    "overflow": 189,
+    "colWidths": [
+     143,
+     70,
+     52,
+     103,
+     180
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     106,
+     106,
+     82.8,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "参数",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "类型",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "必填",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "默认值",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "user_id",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户的唯一标识，由注册接口返回，长度固定为 24 位。",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "page_size",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "int",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "20",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "每页返回的记录条数，取值范围为 1 到 100，超出范围时按边界值处理。",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "sort",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "enum",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "created_at",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "排序字段，可选 created_at、updated_at 或 score。",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "include_deleted",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "bool",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "false",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是否返回已软删除的数据，仅管理员令牌有效。",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "callback_url",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "异步任务完成后回调的地址，必须为 HTTPS 协议。",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 122,
+      "natural": 122,
+      "padding": 21
+     },
+     {
+      "minContent": 49,
+      "natural": 49,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 82,
+      "natural": 82,
+      "padding": 21
+     },
+     {
+      "minContent": 97,
+      "natural": 488,
+      "padding": 21
+     }
+    ],
+    "frameW": 583
+   },
+   "png": "d-r2A.png",
+   "idea": "以r1A为基础，将说明列加宽20px，保持参数名和默认值完整，观察能否减少说明换行和行高；代价是横向滚动增加。",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    143,
+    70,
+    52,
+    103,
+    200
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 569,
+    "tableHeight": 404.5,
+    "overflow": 209,
+    "colWidths": [
+     143,
+     70,
+     52,
+     103,
+     200
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     82.8,
+     82.8,
+     59.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "参数",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "类型",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "必填",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "默认值",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "user_id",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户的唯一标识，由注册接口返回，长度固定为 24 位。",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "page_size",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "int",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "20",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "每页返回的记录条数，取值范围为 1 到 100，超出范围时按边界值处理。",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "sort",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "enum",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "created_at",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "排序字段，可选 created_at、updated_at 或 score。",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "include_deleted",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "bool",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "false",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是否返回已软删除的数据，仅管理员令牌有效。",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "callback_url",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "异步任务完成后回调的地址，必须为 HTTPS 协议。",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 122,
+      "natural": 122,
+      "padding": 21
+     },
+     {
+      "minContent": 49,
+      "natural": 49,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 82,
+      "natural": 82,
+      "padding": 21
+     },
+     {
+      "minContent": 97,
+      "natural": 488,
+      "padding": 21
+     }
+    ],
+    "frameW": 603
+   },
+   "png": "d-r2B.png",
+   "idea": "进一步加宽说明列，测试更舒展的中文段落是否能明显改善逐行阅读，并权衡额外的滚动距离。",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2C": {
+   "widths": [
+    125,
+    70,
+    52,
+    103,
+    160
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 511,
+    "tableHeight": 497.5,
+    "overflow": 151,
+    "colWidths": [
+     125,
+     70,
+     52,
+     103,
+     160
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     106,
+     106,
+     82.8,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "参数",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "类型",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "必填",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "默认值",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "user_id",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户的唯一标识，由注册接口返回，长度固定为 24 位。",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "page_size",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "int",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "20",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "每页返回的记录条数，取值范围为 1 到 100，超出范围时按边界值处理。",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "sort",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "enum",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "created_at",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "排序字段，可选 created_at、updated_at 或 score。",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "include_deleted",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "bool",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "false",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是否返回已软删除的数据，仅管理员令牌有效。",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "callback_url",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "异步任务完成后回调的地址，必须为 HTTPS 协议。",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 1,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 122,
+      "natural": 122,
+      "padding": 21
+     },
+     {
+      "minContent": 49,
+      "natural": 49,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 82,
+      "natural": 82,
+      "padding": 21
+     },
+     {
+      "minContent": 97,
+      "natural": 488,
+      "padding": 21
+     }
+    ],
+    "frameW": 545
+   },
+   "png": "d-r2C.png",
+   "idea": "缩窄参数列，使说明列从350px处开始，在初始视口露出一小部分；保留默认值完整，用于检验拆分最长参数标识符换取视口提示是否值得。",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    143,
+    70,
+    52,
+    103,
+    190
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 559,
+    "tableHeight": 427.8,
+    "overflow": 199,
+    "colWidths": [
+     143,
+     70,
+     52,
+     103,
+     190
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     82.8,
+     82.8,
+     59.5,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "参数",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "类型",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "必填",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "默认值",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "user_id",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户的唯一标识，由注册接口返回，长度固定为 24 位。",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "page_size",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "int",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "20",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "每页返回的记录条数，取值范围为 1 到 100，超出范围时按边界值处理。",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "sort",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "enum",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "created_at",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "排序字段，可选 created_at、updated_at 或 score。",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "include_deleted",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "bool",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "false",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是否返回已软删除的数据，仅管理员令牌有效。",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "callback_url",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "异步任务完成后回调的地址，必须为 HTTPS 协议。",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 122,
+      "natural": 122,
+      "padding": 21
+     },
+     {
+      "minContent": 49,
+      "natural": 49,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 82,
+      "natural": 82,
+      "padding": 21
+     },
+     {
+      "minContent": 97,
+      "natural": 488,
+      "padding": 21
+     }
+    ],
+    "frameW": 593
+   },
+   "png": "d-r3A.png",
+   "idea": "以r2B为基础，将说明列从200px收至190px，检验能否保留三行说明的较好行距，同时减少横向滚动。",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3B": {
+   "widths": [
+    143,
+    70,
+    52,
+    103,
+    220
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 589,
+    "tableHeight": 381.3,
+    "overflow": 229,
+    "colWidths": [
+     143,
+     70,
+     52,
+     103,
+     220
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     82.8,
+     82.8,
+     59.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "参数",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "类型",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "必填",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "默认值",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "user_id",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户的唯一标识，由注册接口返回，长度固定为 24 位。",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "page_size",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "int",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "20",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "每页返回的记录条数，取值范围为 1 到 100，超出范围时按边界值处理。",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "sort",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "enum",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "created_at",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "排序字段，可选 created_at、updated_at 或 score。",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "include_deleted",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "bool",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "false",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是否返回已软删除的数据，仅管理员令牌有效。",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "callback_url",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "异步任务完成后回调的地址，必须为 HTTPS 协议。",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 122,
+      "natural": 122,
+      "padding": 21
+     },
+     {
+      "minContent": 49,
+      "natural": 49,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 82,
+      "natural": 82,
+      "padding": 21
+     },
+     {
+      "minContent": 97,
+      "natural": 488,
+      "padding": 21
+     }
+    ],
+    "frameW": 623
+   },
+   "png": "d-r3B.png",
+   "idea": "保留完整标识符和简洁的前四列，将说明列增至220px，检验进一步减少换行是否足以抵消额外的横向滚动。",
+   "notes": [],
+   "parentRound": 2
+  },
+  "ref_auto": {
+   "widths": [
+    142.9,
+    69.8,
+    36.3,
+    102.3,
+    117.6
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 469.9,
+    "tableHeight": 706.8,
+    "overflow": 109.9,
+    "colWidths": [
+     142.9,
+     69.8,
+     36.3,
+     102.3,
+     117.6
+    ],
+    "rowHeights": [
+     59.5,
+     129.3,
+     152.5,
+     129.3,
+     106,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "参数",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "类型",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "必填",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "默认值",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "user_id",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户的唯一标识，由注册接口返回，长度固定为 24 位。",
+      "lines": 5
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "page_size",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "int",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "20",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "每页返回的记录条数，取值范围为 1 到 100，超出范围时按边界值处理。",
+      "lines": 6
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "sort",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "enum",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "created_at",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "排序字段，可选 created_at、updated_at 或 score。",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "include_deleted",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "bool",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "false",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是否返回已软删除的数据，仅管理员令牌有效。",
+      "lines": 4
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "callback_url",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "异步任务完成后回调的地址，必须为 HTTPS 协议。",
+      "lines": 5
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 122,
+      "natural": 122,
+      "padding": 21
+     },
+     {
+      "minContent": 49,
+      "natural": 49,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 82,
+      "natural": 82,
+      "padding": 21
+     },
+     {
+      "minContent": 97,
+      "natural": 488,
+      "padding": 21
+     }
+    ],
+    "frameW": 504
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    71,
+    71,
+    71,
+    71,
+    71
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 6,
+    "tableWidth": 356,
+    "tableHeight": 1148.5,
+    "overflow": 0,
+    "colWidths": [
+     71,
+     71,
+     71,
+     71,
+     71
+    ],
+    "rowHeights": [
+     36.3,
+     222.3,
+     268.8,
+     245.5,
+     175.8,
+     199
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "参数",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "类型",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "必填",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "默认值",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "说明",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "user_id",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "用户的唯一标识，由注册接口返回，长度固定为 24 位。",
+      "lines": 9
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "page_size",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "int",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "20",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "每页返回的记录条数，取值范围为 1 到 100，超出范围时按边界值处理。",
+      "lines": 11
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "sort",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "enum",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "created_at",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "排序字段，可选 created_at、updated_at 或 score。",
+      "lines": 10
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "include_deleted",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "bool",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "false",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "是否返回已软删除的数据，仅管理员令牌有效。",
+      "lines": 7
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "callback_url",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "string",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "否",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     },
+     {
+      "r": 5,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "异步任务完成后回调的地址，必须为 HTTPS 协议。",
+      "lines": 8
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 9,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 122,
+      "natural": 122,
+      "padding": 21
+     },
+     {
+      "minContent": 49,
+      "natural": 49,
+      "padding": 21
+     },
+     {
+      "minContent": 16,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 82,
+      "natural": 82,
+      "padding": 21
+     },
+     {
+      "minContent": 97,
+      "natural": 488,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-ref_equal.png"
+  }
+ },
+ "modelsUsed": [
+  "codex/gpt-6.1-terra"
+ ],
+ "understanding": {
+  "purpose": "说明 API 的参数名称、类型、必填状态、默认值及用途，供开发者配置请求时查阅。",
+  "reading": "读者先按参数名定位，再横向核对类型、必填状态和默认值，最后阅读说明；也可能纵向比较哪些参数必填或有哪些默认值。",
+  "groups": [
+   "参数和类型共同标识字段及其取值形式。",
+   "必填和默认值共同说明省略参数时的约束与行为。",
+   "说明补充每个参数的用途，适合分配较宽的文本区域。"
+  ],
+  "keep_intact": [
+   "参数标识符，如 include_deleted 和 callback_url",
+   "类型名称，如 string 和 enum",
+   "默认值标识符，如 created_at",
+   "必填列中的单字值和各列标题"
+  ],
+  "may_wrap": [
+   "说明列的中文句子可按自然语义换行。",
+   "说明换行形成的行高可以容纳同一行中其他单元格的换行；但标识符被拆开仍会影响辨认和复制。"
+  ]
+ },
+ "final": {
+  "preferred": [
+   "r2B"
+  ],
+  "acceptable": [
+   "r1A",
+   "r1B",
+   "r2A",
+   "r3A",
+   "r3B"
+  ],
+  "bad": [
+   {
+    "design": "r1C",
+    "why": "The default value created_at splits across lines, making an API value harder to recognize and copy."
+   },
+   {
+    "design": "r2C",
+    "why": "The parameter name include_deleted splits across lines, weakening the identifier readers use to find and compare rows."
+   }
+  ],
+  "contrast": null,
+  "ranges": [
+   [
+    143,
+    146
+   ],
+   [
+    70,
+    72
+   ],
+   [
+    52,
+    54
+   ],
+   [
+    103,
+    105
+   ],
+   [
+    200,
+    205
+   ]
+  ],
+  "rationale": "r2B keeps parameter names, types and default values intact while giving the descriptions enough room to stay within three lines. Its 209px overflow requires horizontal scrolling, but the shorter, more even rows make the descriptions easier to read alongside the structured fields. The first viewport shows the four structured columns, with the description reached by scrolling.",
+  "principles": {
+   "general": [
+    "Preserve technical identifiers and literal values as intact units when readers need to recognize or copy them.",
+    "Balance description width against horizontal scrolling and row height; neither minimum width nor minimum height is automatically best.",
+    "Give related fields enough space to scan consistently across rows."
+   ],
+   "specific": [
+    "The first four columns need 368px together to accommodate their longest unbroken contents, so the description cannot appear in the initial 360px viewport without a compromise.",
+    "Increasing the description column from 180px to 200px reduces several rows from four lines to three in these renderings."
+   ]
+  },
+  "tradeoffs": "r3A saves 10px of horizontal scrolling, while r3B adds 20px of scrolling and makes the table shorter. r1A and r2A use less horizontal space but have taller rows; r1B saves more width at the cost of a five-line cell.",
+  "uncertain": "The ranges are conservative estimates from the supplied candidates, not independently rendered thresholds. A designer who values fewer vertical lines more highly may prefer r3B; one who prioritizes less sideways scrolling may prefer r3A or r1A."
+ },
+ "reviews": [
+  {
+   "order": [
+    "r1C",
+    "r2B",
+    "ref_auto",
+    "ref_equal",
+    "r1A",
+    "r1B"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "poor",
+     "why": "The description starts beyond the viewport, and the default value created_at breaks across lines. Readers must scroll to understand each parameter."
+    },
+    "B": {
+     "grade": "acceptable",
+     "why": "Parameter names, types and default values remain intact, with relatively compact rows. The description column is outside the initial viewport, so reading the table requires horizontal scrolling."
+    },
+    "C": {
+     "grade": "poor",
+     "why": "The 必填 header wraps, the description begins beyond the viewport, and the tall rows make comparisons harder."
+    },
+    "D": {
+     "grade": "bad",
+     "why": "The whole table fits, but parameter names and default values split inside identifiers. The narrow description column also produces very tall, difficult-to-scan rows."
+    },
+    "E": {
+     "grade": "acceptable",
+     "why": "The visible identifiers and values stay intact, but the description is offscreen and the rows are taller than in B."
+    },
+    "F": {
+     "grade": "poor",
+     "why": "The visible identifiers stay intact, but descriptions are offscreen and the tall rows leave considerable blank space across the visible columns."
+    }
+   },
+   "best": [
+    "B"
+   ],
+   "confidence": "low",
+   "unsure": "The supplied images show little or none of the description columns for A, B, C, E and F. Their full widths, wrapping and total scrolling distances cannot be judged reliably from what is visible."
+  },
+  {
+   "order": [
+    "r1A",
+    "r2B",
+    "r1C",
+    "ref_auto",
+    "r1B",
+    "ref_equal"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "acceptable",
+     "why": "参数名和类型清楚且保持完整，但说明列在视口外，阅读每行含义需要横向滚动。截图未显示说明列，无法判断其排版。"
+    },
+    "B": {
+     "grade": "acceptable",
+     "why": "可见的参数名和类型完整，行距也较紧凑；但说明列在视口外，截图未显示其宽度和换行。"
+    },
+    "C": {
+     "grade": "poor",
+     "why": "说明列几乎完全在视口外，默认值 created_at 也被拆成两行；右侧只露出一小部分说明文字。"
+    },
+    "D": {
+     "grade": "poor",
+     "why": "必填表头被拆成两行，说明列只露出一小部分，行高也很大；参数名和默认值倒是保持完整。"
+    },
+    "E": {
+     "grade": "acceptable",
+     "why": "可见的参数名和类型保持完整，但说明列在视口外，截图也未显示其排版；行高比 B 更大。"
+    },
+    "F": {
+     "grade": "poor",
+     "why": "所有列都在视口内，但参数名、默认值和说明中的代码词频繁断开，说明列过窄，导致表格很长且难以扫描。"
+    }
+   },
+   "best": [
+    "B"
+   ],
+   "confidence": "low",
+   "unsure": "A、B、E 的截图没有显示说明列，无法比较其实际宽度和可读性；B 只是根据可见部分及较紧凑的行高暂选。"
+  }
+ ],
+ "reviewPrompt": "v2"
+}

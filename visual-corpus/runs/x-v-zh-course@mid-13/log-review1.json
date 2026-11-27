@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [验证] 中文 · 课程表 (language zh-CN).\nGrid: 7 columns × 6 rows. Row headers: none declared.\nPer-column content facts (content px at 13px font, excluding padding):\n  col 1: header \"节次\" · longest unbreakable word 14px · one-line width 27px\n  col 2: header \"时间\" · longest unbreakable word 44px · one-line width 81px\n  col 3: header \"周一\" · longest unbreakable word 14px · one-line width 80px\n  col 4: header \"周二\" · longest unbreakable word 14px · one-line width 27px\n  col 5: header \"周三\" · longest unbreakable word 14px · one-line width 27px\n  col 6: header \"周四\" · longest unbreakable word 14px · one-line width 27px\n  col 7: header \"周五\" · longest unbreakable word 14px · one-line width 147px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 480px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 479px.\nFixed: content, font, 13px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 16904,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"时间保持完整，星期列易于横向比较；周一和周五较长的课程各占两行，行仍清晰可读。\"},\"B\":{\"grade\":\"good\",\"why\":\"时间完整，整体紧凑；周一的“综合实践活动”拆成两段长度相近的文字，稍逊于其他布局。\"},\"C\":{\"grade\":\"excellent\",\"why\":\"时间完整，星期列保持清晰的节奏；周一和周五的长课程都只占两行，换行位置也较易理解。\"},\"D\":{\"grade\":\"good\",\"why\":\"时间完整，长课程只占两行，表格易于扫描；周一和周五的留白分配略紧于 C。\"},\"E\":{\"grade\":\"bad\",\"why\":\"时间全部换行，多个星期标题和普通课程名被拆成竖排般的两行，严重妨碍横向扫读。\"},\"F\":{\"grade\":\"poor\",\"why\":\"各时间段都换行，周五的长课程被挤成四行，拉高整行并削弱课程之间的比较。\"}},\"best\":[\"C\"],\"confidence\":\"medium\",\"unsure\":\"A、C、D 的宽度和换行非常接近；仅凭渲染图判断，它们之间的差距较小。\"}\n"
+  }
+ ]
+}

@@ -1,7 +1,5843 @@
 {
  "id": "x-v-extreme@desktop",
- "steps": {},
- "designs": {},
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "The headers and numeric columns remain clear, and the tracking column is wide enough to keep identifiers intact. The warehouse wraps at a useful hyphen.",
+     "problems": "The SKU column becomes a stack of short fragments, making the rows unusually tall and product codes difficult to compare. The table also extends 1px beyond the width limit.",
+     "cause": "At 57px, SKU has only 36px for text, less than its longest unbreakable segment. Tracking receives 180px, leaving little room for SKU."
+    },
+    {
+     "design": "r0B",
+     "good": "The reported 110px SKU width gives product codes more room, and the reported two-line rows would be much easier to scan than r0A. Headers and amounts remain whole.",
+     "problems": "The narrower tracking column splits long identifiers, making them harder to read or copy. The table also exceeds the width limit by 1px. The supplied render appears to show the narrow SKU and tall rows of r0A, so its appearance does not match the reported widths and row heights.",
+     "cause": "At 127px, tracking has 106px for text, less than the 159px needed for the longest identifier."
+    },
+    {
+     "design": "r0C",
+     "good": "SKU and tracking values remain intact, headers and amounts are clear, and the short rows make comparison easy.",
+     "problems": "Much of tracking lies beyond the initial viewport, so readers must scroll to reach a key fulfillment detail. The generous SKU width buys single-line codes at a substantial scrolling cost.",
+     "cause": "SKU is 157px and tracking is 180px, bringing the table to 821px, 101px beyond the viewport."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "Headers and financial values stay intact, and the tracking identifiers do not split. The 24px overflow is modest.",
+     "problems": "All three item rows are four lines tall, making comparison down the table laborious and leaving substantial white space in the shorter cells.",
+     "cause": "The 80px SKU column is too narrow for a compact arrangement of its hyphenated segments. The 102px warehouse column also wraps locations, though it does not appear to determine the maximum row height."
+    },
+    {
+     "design": "r1B",
+     "good": "The table fits the viewport, keeps headers and charges on one line, and has a more compact row rhythm than r1A.",
+     "problems": "Two tracking identifiers split within the identifier, making them harder to read and transcribe. Rows still reach three lines.",
+     "cause": "The 146px tracking column provides only 125px of text space, less than the 159px required for the longest identifier. The 90px SKU column still requires wrapping."
+    },
+    {
+     "design": "r1C",
+     "good": "Headers and numeric values remain intact and the table fits the viewport.",
+     "problems": "It combines four-line rows with two mid-word splits, so it sacrifices both compactness and identifier integrity.",
+     "cause": "The 70px SKU column forces extensive wrapping, while the 166px tracking column provides only 145px of text space, still short of the 159px required."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "All headers, amounts, SKU segments, and tracking identifiers remain intact. The compact charge columns support comparison, and the overflow is modest.",
+     "problems": "Some SKU values take three lines, making those rows taller and weakening the rhythm across the table. The end of each tracking identifier requires horizontal scrolling.",
+     "cause": "The 90px SKU column is too narrow for a more balanced two-line wrap. The 180px tracking column preserves the identifiers but contributes to the 34px overflow."
+    },
+    {
+     "design": "r2B",
+     "good": "SKU values fit on one line, tracking identifiers remain intact, and the rows have a consistent height. The product and charge columns are easy to scan.",
+     "problems": "The fulfillment information is pushed far to the right: tracking starts near the viewport edge, so reading it requires substantial scrolling. The extra SKU width produces little height benefit because warehouse values still wrap.",
+     "cause": "The 157px SKU column accommodates the full values, while the 102px warehouse column still wraps some locations. Together with the 180px tracking column, this makes the table 101px wider than the viewport."
+    },
+    {
+     "design": "r2C",
+     "good": "The whole table fits in the viewport, headers and amounts remain intact, and the SKU and warehouse wraps produce consistent two-line rows.",
+     "problems": "Both populated tracking identifiers split within the identifier, making them harder to read and transcribe. The repeated breaks also compete visually with the more meaningful SKU and warehouse wraps.",
+     "cause": "The 136px tracking column provides only 115px of text space, less than the 159px needed for the longest unbreakable identifier."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    38,
+    57,
+    61,
+    52,
+    47,
+    62,
+    53,
+    68,
+    102,
+    180
+   ],
+   "geom": {
+    "nCols": 10,
+    "nRows": 4,
+    "tableWidth": 721,
+    "tableHeight": 401.8,
+    "overflow": 1,
+    "colWidths": [
+     38,
+     57,
+     61,
+     52,
+     47,
+     62,
+     53,
+     68,
+     102,
+     180
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     129.3,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "SKU",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Color",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Size",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Qty",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Price",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Tax",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Total",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Warehouse",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Tracking",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-AX-7781-BLK",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Black",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "XL",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "49.90",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.99",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "104.79",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Rotterdam-NL-03",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1Z999AA10123456784",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-AX-7781-WHT",
+      "lines": 5
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "White",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "M",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "49.90",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.99",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "54.89",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Rotterdam-NL-03",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1Z999AA10123456785",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-QZ-0042-RED",
+      "lines": 5
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Red",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "S",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1.20",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "66.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Leipzig-DE-01",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 6,
+    "tokenBreaks": 8,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 16,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 136,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 40,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 26,
+      "natural": 26,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 32,
+      "natural": 32,
+      "padding": 21
+     },
+     {
+      "minContent": 47,
+      "natural": 47,
+      "padding": 21
+     },
+     {
+      "minContent": 81,
+      "natural": 122,
+      "padding": 21
+     },
+     {
+      "minContent": 159,
+      "natural": 159,
+      "padding": 21
+     }
+    ],
+    "frameW": 755
+   },
+   "png": "d-r0A.png",
+   "idea": "Fit the viewport and keep tracking intact, accepting tall rows from a narrow SKU column.",
+   "notes": [
+    "raised a column to the minimum 38px"
+   ]
+  },
+  "r0B": {
+   "widths": [
+    38,
+    110,
+    61,
+    52,
+    47,
+    62,
+    53,
+    68,
+    102,
+    127
+   ],
+   "geom": {
+    "nCols": 10,
+    "nRows": 4,
+    "tableWidth": 721,
+    "tableHeight": 215.8,
+    "overflow": 1,
+    "colWidths": [
+     38,
+     110,
+     61,
+     52,
+     47,
+     62,
+     53,
+     68,
+     102,
+     127
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "SKU",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Color",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Size",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Qty",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Price",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Tax",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Total",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Warehouse",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Tracking",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-AX-7781-BLK",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Black",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "XL",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "49.90",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.99",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "104.79",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Rotterdam-NL-03",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1Z999AA10123456784",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-AX-7781-WHT",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "White",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "M",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "49.90",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.99",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "54.89",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Rotterdam-NL-03",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1Z999AA10123456785",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-QZ-0042-RED",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Red",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "S",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1.20",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "66.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Leipzig-DE-01",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 2,
+    "tokenBreaks": 6,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 16,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 136,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 40,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 26,
+      "natural": 26,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 32,
+      "natural": 32,
+      "padding": 21
+     },
+     {
+      "minContent": 47,
+      "natural": 47,
+      "padding": 21
+     },
+     {
+      "minContent": 81,
+      "natural": 122,
+      "padding": 21
+     },
+     {
+      "minContent": 159,
+      "natural": 159,
+      "padding": 21
+     }
+    ],
+    "frameW": 755
+   },
+   "png": "d-r0B.png",
+   "idea": "Fit the viewport with more balanced SKU and tracking widths, accepting contained tracking splits and natural warehouse wrapping.",
+   "notes": [
+    "raised a column to the minimum 38px"
+   ]
+  },
+  "r0C": {
+   "widths": [
+    38,
+    157,
+    61,
+    52,
+    47,
+    62,
+    53,
+    68,
+    102,
+    180
+   ],
+   "geom": {
+    "nCols": 10,
+    "nRows": 4,
+    "tableWidth": 821,
+    "tableHeight": 215.8,
+    "overflow": 101,
+    "colWidths": [
+     38,
+     157,
+     61,
+     52,
+     47,
+     62,
+     53,
+     68,
+     102,
+     180
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "SKU",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Color",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Size",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Qty",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Price",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Tax",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Total",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Warehouse",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Tracking",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-AX-7781-BLK",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Black",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "XL",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "49.90",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.99",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "104.79",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Rotterdam-NL-03",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1Z999AA10123456784",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-AX-7781-WHT",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "White",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "M",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "49.90",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.99",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "54.89",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Rotterdam-NL-03",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1Z999AA10123456785",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-QZ-0042-RED",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Red",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "S",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1.20",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "66.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Leipzig-DE-01",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 3,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 16,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 136,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 40,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 26,
+      "natural": 26,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 32,
+      "natural": 32,
+      "padding": 21
+     },
+     {
+      "minContent": 47,
+      "natural": 47,
+      "padding": 21
+     },
+     {
+      "minContent": 81,
+      "natural": 122,
+      "padding": 21
+     },
+     {
+      "minContent": 159,
+      "natural": 159,
+      "padding": 21
+     }
+    ],
+    "frameW": 855
+   },
+   "png": "d-r0C.png",
+   "idea": "Keep SKU and tracking identifiers intact and let warehouse names wrap, using horizontal scrolling for the final part of tracking.",
+   "notes": [
+    "raised a column to the minimum 38px"
+   ]
+  },
+  "r1A": {
+   "widths": [
+    38,
+    80,
+    61,
+    52,
+    47,
+    62,
+    53,
+    68,
+    102,
+    180
+   ],
+   "geom": {
+    "nCols": 10,
+    "nRows": 4,
+    "tableWidth": 744,
+    "tableHeight": 355.3,
+    "overflow": 24,
+    "colWidths": [
+     38,
+     80,
+     61,
+     52,
+     47,
+     62,
+     53,
+     68,
+     102,
+     180
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "SKU",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Color",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Size",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Qty",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Price",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Tax",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Total",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Warehouse",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Tracking",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-AX-7781-BLK",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Black",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "XL",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "49.90",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.99",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "104.79",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Rotterdam-NL-03",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1Z999AA10123456784",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-AX-7781-WHT",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "White",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "M",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "49.90",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.99",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "54.89",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Rotterdam-NL-03",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1Z999AA10123456785",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-QZ-0042-RED",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Red",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "S",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1.20",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "66.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Leipzig-DE-01",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 12,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 16,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 136,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 40,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 26,
+      "natural": 26,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 32,
+      "natural": 32,
+      "padding": 21
+     },
+     {
+      "minContent": 47,
+      "natural": 47,
+      "padding": 21
+     },
+     {
+      "minContent": 81,
+      "natural": 122,
+      "padding": 21
+     },
+     {
+      "minContent": 159,
+      "natural": 159,
+      "padding": 21
+     }
+    ],
+    "frameW": 778
+   },
+   "png": "d-r1A.png",
+   "idea": "Give SKU enough room for its longest segment and preserve complete tracking identifiers. The 743px total requires modest horizontal scrolling; SKU and warehouse can wrap at hyphens.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    38,
+    90,
+    61,
+    52,
+    47,
+    62,
+    53,
+    68,
+    102,
+    146
+   ],
+   "geom": {
+    "nCols": 10,
+    "nRows": 4,
+    "tableWidth": 720,
+    "tableHeight": 262.3,
+    "overflow": 0,
+    "colWidths": [
+     38,
+     90,
+     61,
+     52,
+     47,
+     62,
+     53,
+     68,
+     102,
+     146
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     82.8,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "SKU",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Color",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Size",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Qty",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Price",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Tax",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Total",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Warehouse",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Tracking",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-AX-7781-BLK",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Black",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "XL",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "49.90",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.99",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "104.79",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Rotterdam-NL-03",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1Z999AA10123456784",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-AX-7781-WHT",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "White",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "M",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "49.90",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.99",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "54.89",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Rotterdam-NL-03",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1Z999AA10123456785",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-QZ-0042-RED",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Red",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "S",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1.20",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "66.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Leipzig-DE-01",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 2,
+    "tokenBreaks": 8,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 16,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 136,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 40,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 26,
+      "natural": 26,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 32,
+      "natural": 32,
+      "padding": 21
+     },
+     {
+      "minContent": 47,
+      "natural": 47,
+      "padding": 21
+     },
+     {
+      "minContent": 81,
+      "natural": 122,
+      "padding": 21
+     },
+     {
+      "minContent": 159,
+      "natural": 159,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r1B.png",
+   "idea": "Fit within 719px while giving SKU room to wrap at hyphens. Tracking identifiers must split, but the wider tracking column should keep each split relatively short.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1C": {
+   "widths": [
+    38,
+    70,
+    61,
+    52,
+    47,
+    62,
+    53,
+    68,
+    102,
+    166
+   ],
+   "geom": {
+    "nCols": 10,
+    "nRows": 4,
+    "tableWidth": 720,
+    "tableHeight": 355.3,
+    "overflow": 0,
+    "colWidths": [
+     38,
+     70,
+     61,
+     52,
+     47,
+     62,
+     53,
+     68,
+     102,
+     166
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "SKU",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Color",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Size",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Qty",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Price",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Tax",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Total",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Warehouse",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Tracking",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-AX-7781-BLK",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Black",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "XL",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "49.90",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.99",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "104.79",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Rotterdam-NL-03",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1Z999AA10123456784",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-AX-7781-WHT",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "White",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "M",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "49.90",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.99",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "54.89",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Rotterdam-NL-03",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1Z999AA10123456785",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-QZ-0042-RED",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Red",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "S",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1.20",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "66.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Leipzig-DE-01",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 2,
+    "tokenBreaks": 12,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 16,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 136,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 40,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 26,
+      "natural": 26,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 32,
+      "natural": 32,
+      "padding": 21
+     },
+     {
+      "minContent": 47,
+      "natural": 47,
+      "padding": 21
+     },
+     {
+      "minContent": 81,
+      "natural": 122,
+      "padding": 21
+     },
+     {
+      "minContent": 159,
+      "natural": 159,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r1C.png",
+   "idea": "Fit within 719px and favor tracking, leaving SKU enough room for its longest segment. Tracking still needs a split, but less of each identifier should fall onto the second line.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    38,
+    90,
+    61,
+    52,
+    47,
+    62,
+    53,
+    68,
+    102,
+    180
+   ],
+   "geom": {
+    "nCols": 10,
+    "nRows": 4,
+    "tableWidth": 754,
+    "tableHeight": 262.3,
+    "overflow": 34,
+    "colWidths": [
+     38,
+     90,
+     61,
+     52,
+     47,
+     62,
+     53,
+     68,
+     102,
+     180
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     82.8,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "SKU",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Color",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Size",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Qty",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Price",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Tax",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Total",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Warehouse",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Tracking",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-AX-7781-BLK",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Black",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "XL",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "49.90",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.99",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "104.79",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Rotterdam-NL-03",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1Z999AA10123456784",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-AX-7781-WHT",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "White",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "M",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "49.90",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.99",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "54.89",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Rotterdam-NL-03",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1Z999AA10123456785",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-QZ-0042-RED",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Red",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "S",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1.20",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "66.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Leipzig-DE-01",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 8,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 16,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 136,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 40,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 26,
+      "natural": 26,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 32,
+      "natural": 32,
+      "padding": 21
+     },
+     {
+      "minContent": 47,
+      "natural": 47,
+      "padding": 21
+     },
+     {
+      "minContent": 81,
+      "natural": 122,
+      "padding": 21
+     },
+     {
+      "minContent": 159,
+      "natural": 159,
+      "padding": 21
+     }
+    ],
+    "frameW": 788
+   },
+   "png": "d-r2A.png",
+   "idea": "Combine r1B's wider SKU column with the 180px tracking column needed to keep identifiers intact. The table totals 754px, requiring 35px of horizontal scrolling, and may retain r1B's shorter SKU-driven rows.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    38,
+    157,
+    61,
+    52,
+    47,
+    62,
+    53,
+    68,
+    102,
+    180
+   ],
+   "geom": {
+    "nCols": 10,
+    "nRows": 4,
+    "tableWidth": 821,
+    "tableHeight": 215.8,
+    "overflow": 101,
+    "colWidths": [
+     38,
+     157,
+     61,
+     52,
+     47,
+     62,
+     53,
+     68,
+     102,
+     180
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "SKU",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Color",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Size",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Qty",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Price",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Tax",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Total",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Warehouse",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Tracking",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-AX-7781-BLK",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Black",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "XL",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "49.90",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.99",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "104.79",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Rotterdam-NL-03",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1Z999AA10123456784",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-AX-7781-WHT",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "White",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "M",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "49.90",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.99",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "54.89",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Rotterdam-NL-03",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1Z999AA10123456785",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-QZ-0042-RED",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Red",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "S",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1.20",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "66.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Leipzig-DE-01",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 3,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 16,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 136,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 40,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 26,
+      "natural": 26,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 32,
+      "natural": 32,
+      "padding": 21
+     },
+     {
+      "minContent": 47,
+      "natural": 47,
+      "padding": 21
+     },
+     {
+      "minContent": 81,
+      "natural": 122,
+      "padding": 21
+     },
+     {
+      "minContent": 159,
+      "natural": 159,
+      "padding": 21
+     }
+    ],
+    "frameW": 855
+   },
+   "png": "d-r2B.png",
+   "idea": "Give SKU its full 136px one-line content width while keeping tracking intact. The 821px table requires 102px of horizontal scrolling; compare that cost with the clearer SKU scanning and shorter rows.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2C": {
+   "widths": [
+    38,
+    100,
+    61,
+    52,
+    47,
+    62,
+    53,
+    68,
+    102,
+    136
+   ],
+   "geom": {
+    "nCols": 10,
+    "nRows": 4,
+    "tableWidth": 720,
+    "tableHeight": 215.8,
+    "overflow": 0,
+    "colWidths": [
+     38,
+     100,
+     61,
+     52,
+     47,
+     62,
+     53,
+     68,
+     102,
+     136
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "SKU",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Color",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Size",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Qty",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Price",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Tax",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Total",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Warehouse",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Tracking",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-AX-7781-BLK",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Black",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "XL",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "49.90",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.99",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "104.79",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Rotterdam-NL-03",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1Z999AA10123456784",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-AX-7781-WHT",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "White",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "M",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "49.90",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.99",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "54.89",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Rotterdam-NL-03",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1Z999AA10123456785",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-QZ-0042-RED",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Red",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "S",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1.20",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "66.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Leipzig-DE-01",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 2,
+    "tokenBreaks": 6,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 16,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 136,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 40,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 26,
+      "natural": 26,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 32,
+      "natural": 32,
+      "padding": 21
+     },
+     {
+      "minContent": 47,
+      "natural": 47,
+      "padding": 21
+     },
+     {
+      "minContent": 81,
+      "natural": 122,
+      "padding": 21
+     },
+     {
+      "minContent": 159,
+      "natural": 159,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r2C.png",
+   "idea": "Keep the table at 719px and give SKU another 10px to improve wrapping. Tracking identifiers will split, so this tests whether the more compact SKU layout justifies that readability cost.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    38,
+    100,
+    61,
+    52,
+    47,
+    62,
+    53,
+    68,
+    102,
+    180
+   ],
+   "geom": {
+    "nCols": 10,
+    "nRows": 4,
+    "tableWidth": 764,
+    "tableHeight": 215.8,
+    "overflow": 44,
+    "colWidths": [
+     38,
+     100,
+     61,
+     52,
+     47,
+     62,
+     53,
+     68,
+     102,
+     180
+    ],
+    "rowHeights": [
+     36.3,
+     59.5,
+     59.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "SKU",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Color",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Size",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Qty",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Price",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Tax",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Total",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Warehouse",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Tracking",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-AX-7781-BLK",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Black",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "XL",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "49.90",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.99",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "104.79",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Rotterdam-NL-03",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1Z999AA10123456784",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-AX-7781-WHT",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "White",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "M",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "49.90",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.99",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "54.89",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Rotterdam-NL-03",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1Z999AA10123456785",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-QZ-0042-RED",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Red",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "S",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1.20",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "66.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Leipzig-DE-01",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 6,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 16,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 136,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 40,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 26,
+      "natural": 26,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 32,
+      "natural": 32,
+      "padding": 21
+     },
+     {
+      "minContent": 47,
+      "natural": 47,
+      "padding": 21
+     },
+     {
+      "minContent": 81,
+      "natural": 122,
+      "padding": 21
+     },
+     {
+      "minContent": 159,
+      "natural": 159,
+      "padding": 21
+     }
+    ],
+    "frameW": 798
+   },
+   "png": "d-r3A.png",
+   "idea": "Keep r2C's two-line SKU and warehouse treatment, but widen tracking to preserve identifiers. This yields a 763px total: readers must scroll roughly 44px, while the rows should retain r2C's consistent height.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "ref_auto": {
+   "widths": [
+    36.2,
+    64.5,
+    60.8,
+    51.1,
+    46.7,
+    61.3,
+    52.2,
+    67,
+    101.3,
+    179.7
+   ],
+   "geom": {
+    "nCols": 10,
+    "nRows": 4,
+    "tableWidth": 721.8,
+    "tableHeight": 355.3,
+    "overflow": 1.8,
+    "colWidths": [
+     36.2,
+     64.5,
+     60.8,
+     51.1,
+     46.7,
+     61.3,
+     52.2,
+     67,
+     101.3,
+     179.7
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "SKU",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Color",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Size",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Qty",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Price",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Tax",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Total",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Warehouse",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Tracking",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-AX-7781-BLK",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Black",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "XL",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "49.90",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.99",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "104.79",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Rotterdam-NL-03",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1Z999AA10123456784",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-AX-7781-WHT",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "White",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "M",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "49.90",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.99",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "54.89",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Rotterdam-NL-03",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1Z999AA10123456785",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-QZ-0042-RED",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Red",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "S",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1.20",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "66.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Leipzig-DE-01",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 12,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 16,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 136,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 40,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 26,
+      "natural": 26,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 32,
+      "natural": 32,
+      "padding": 21
+     },
+     {
+      "minContent": 47,
+      "natural": 47,
+      "padding": 21
+     },
+     {
+      "minContent": 81,
+      "natural": 122,
+      "padding": 21
+     },
+     {
+      "minContent": 159,
+      "natural": 159,
+      "padding": 21
+     }
+    ],
+    "frameW": 756
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71
+   ],
+   "geom": {
+    "nCols": 10,
+    "nRows": 4,
+    "tableWidth": 711,
+    "tableHeight": 378.5,
+    "overflow": 0,
+    "colWidths": [
+     71,
+     71,
+     71,
+     71,
+     71,
+     71,
+     71,
+     71,
+     71,
+     71
+    ],
+    "rowHeights": [
+     59.5,
+     106,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "SKU",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Color",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Size",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Qty",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Price",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Tax",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Total",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Warehouse",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Tracking",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-AX-7781-BLK",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Black",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "XL",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "49.90",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.99",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "104.79",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Rotterdam-NL-03",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1Z999AA10123456784",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-AX-7781-WHT",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "White",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "M",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "49.90",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4.99",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "54.89",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Rotterdam-NL-03",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1Z999AA10123456785",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "3",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SKU-QZ-0042-RED",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Red",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "S",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "5",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1.20",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "66.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 8,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Leipzig-DE-01",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 9,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "—",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 9,
+    "tokenBreaks": 11,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 16,
+      "natural": 16,
+      "padding": 21
+     },
+     {
+      "minContent": 44,
+      "natural": 136,
+      "padding": 21
+     },
+     {
+      "minContent": 40,
+      "natural": 40,
+      "padding": 21
+     },
+     {
+      "minContent": 31,
+      "natural": 31,
+      "padding": 21
+     },
+     {
+      "minContent": 26,
+      "natural": 26,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 41,
+      "padding": 21
+     },
+     {
+      "minContent": 32,
+      "natural": 32,
+      "padding": 21
+     },
+     {
+      "minContent": 47,
+      "natural": 47,
+      "padding": 21
+     },
+     {
+      "minContent": 81,
+      "natural": 122,
+      "padding": 21
+     },
+     {
+      "minContent": 159,
+      "natural": 159,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-ref_equal.png"
+  }
+ },
  "redone": true,
- "reviewerFeedback": "another layout was rated acceptable: The table fits the viewport, and the numeric columns scan clearly. SKU and warehouse values wrap at hyphens, but tracking identifiers split across lines. | another layout was rated poor: SKU and warehouse values wrap reasonably, but the tracking identifiers extend beyond their column and the viewport, making the table boundary misleading. | another layout was rated bad: Warehouse and Tracking headers split within words, while SKU, warehouse and tracking values fragment over several lines. Wide short-value columns leave little room for the identifiers. | another layout was rated good: Tracking identifiers remain intact and the table fits the viewport. The narrow SKU column forces each identifier onto four lines, creating tall rows. | your previous preferred design was rated poor: The compact SKU and warehouse wrapping supports scanning, but tracking identifiers overflow their column and extend beyond the viewport. | another layout was rated good: SKU and tracking identifiers remain intact, with clear numeric columns and moderate warehouse wrapping. Tracking sits partly beyond the initial viewport and requires horizontal scrolling.\nanother layout was rated bad: Equal-looking columns leave excess space in short fields while SKU, warehouse names, tracking values, and even headers break across multiple lines. The tall rows are hard to scan. | another layout was rated poor: Most columns scan well, but the tracking values run beyond the viewport and appear to overflow their allocated column. SKU and warehouse values wrap into two lines. | another layout was rated good: The compact fields are proportioned well, and SKU and warehouse values wrap at hyphens. Tracking values split across two lines, but the whole table fits in the viewport. | your previous preferred design was rated poor: The short fields and two-line SKU and warehouse values are readable, but tracking values extend beyond the viewport and appear to overflow their column. | another layout was rated acceptable: SKU values remain intact and the numeric columns scan cleanly. Tracking lies partly beyond the initial viewport, so readers must scroll to see the full identifiers. | another layout was rated acceptable: Tracking values remain intact and the full table fits in the viewport, but the narrow SKU column breaks each identifier into four lines, making rows unnecessarily tall and SKUs harder to compare."
+ "reviewerFeedback": "another layout was rated acceptable: The table fits the viewport, and the numeric columns scan clearly. SKU and warehouse values wrap at hyphens, but tracking identifiers split across lines. | another layout was rated poor: SKU and warehouse values wrap reasonably, but the tracking identifiers extend beyond their column and the viewport, making the table boundary misleading. | another layout was rated bad: Warehouse and Tracking headers split within words, while SKU, warehouse and tracking values fragment over several lines. Wide short-value columns leave little room for the identifiers. | another layout was rated good: Tracking identifiers remain intact and the table fits the viewport. The narrow SKU column forces each identifier onto four lines, creating tall rows. | your previous preferred design was rated poor: The compact SKU and warehouse wrapping supports scanning, but tracking identifiers overflow their column and extend beyond the viewport. | another layout was rated good: SKU and tracking identifiers remain intact, with clear numeric columns and moderate warehouse wrapping. Tracking sits partly beyond the initial viewport and requires horizontal scrolling.\nanother layout was rated bad: Equal-looking columns leave excess space in short fields while SKU, warehouse names, tracking values, and even headers break across multiple lines. The tall rows are hard to scan. | another layout was rated poor: Most columns scan well, but the tracking values run beyond the viewport and appear to overflow their allocated column. SKU and warehouse values wrap into two lines. | another layout was rated good: The compact fields are proportioned well, and SKU and warehouse values wrap at hyphens. Tracking values split across two lines, but the whole table fits in the viewport. | your previous preferred design was rated poor: The short fields and two-line SKU and warehouse values are readable, but tracking values extend beyond the viewport and appear to overflow their column. | another layout was rated acceptable: SKU values remain intact and the numeric columns scan cleanly. Tracking lies partly beyond the initial viewport, so readers must scroll to see the full identifiers. | another layout was rated acceptable: Tracking values remain intact and the full table fits in the viewport, but the narrow SKU column breaks each identifier into four lines, making rows unnecessarily tall and SKUs harder to compare.",
+ "modelsUsed": [
+  "codex/gpt-6.1-terra"
+ ],
+ "understanding": {
+  "purpose": "Show order line items with product variants, quantities, charges, warehouse locations, and shipment tracking.",
+  "reading": "Readers scan each row from product identification through quantity and charges to fulfillment details, and compare quantities and amounts down their columns. Wrapping can make rows taller, so keeping related values aligned within each row matters.",
+  "groups": [
+   "ID and SKU identify the line and product.",
+   "Color and Size describe the product variant.",
+   "Qty, Price, Tax, and Total support comparison of quantities and charges.",
+   "Warehouse and Tracking describe fulfillment and shipment."
+  ],
+  "keep_intact": [
+   "Column headers should remain whole.",
+   "Quantities, prices, tax, and totals should each stay on one line.",
+   "Tracking identifiers should preferably stay intact; if split, they must remain inside their cells.",
+   "SKU segments should remain intact where possible."
+  ],
+  "may_wrap": [
+   "SKU values can wrap at hyphens, though excessive lines make comparison harder.",
+   "Warehouse names can wrap at hyphens; their wrapping can share row height already created by SKU or tracking."
+  ]
+ },
+ "final": {
+  "preferred": [
+   "r3A"
+  ],
+  "acceptable": [
+   "r0C",
+   "r1A",
+   "r2A",
+   "r2B",
+   "r2C"
+  ],
+  "bad": [
+   {
+    "design": "r1B",
+    "why": "Tracking identifiers split mid-word, while uneven three-line rows make the table harder to scan."
+   },
+   {
+    "design": "r1C",
+    "why": "Four-line cells make the rows unusually tall, yet tracking identifiers still split mid-word."
+   }
+  ],
+  "contrast": null,
+  "ranges": [
+   [
+    37,
+    40
+   ],
+   [
+    100,
+    110
+   ],
+   [
+    61,
+    64
+   ],
+   [
+    52,
+    55
+   ],
+   [
+    47,
+    50
+   ],
+   [
+    62,
+    65
+   ],
+   [
+    53,
+    56
+   ],
+   [
+    68,
+    71
+   ],
+   [
+    102,
+    108
+   ],
+   [
+    180,
+    186
+   ]
+  ],
+  "rationale": "r3A keeps tracking identifiers intact and limits every row to two lines, preserving a steady rhythm for comparing quantities and prices. Its SKU and warehouse values wrap at natural breaks, while all headers remain on one line. The 44px horizontal overflow is a modest cost, although readers must scroll to see the ends of tracking values.",
+  "principles": {
+   "general": [
+    "Protect identifiers from arbitrary internal breaks when readers may need to distinguish or transcribe them.",
+    "Allocate width according to content and column role; keep related numeric columns compact and easy to compare.",
+    "Judge horizontal scrolling against the readability and row-height costs of squeezing the table."
+   ],
+   "specific": [
+    "A 100px SKU column achieves two-line rows without the 101px overflow of the wider SKU designs.",
+    "The tracking column needs 180px to keep its longest value intact with the stated padding."
+   ]
+  },
+  "tradeoffs": "r2C fits the displayed viewport and keeps a compact, even row rhythm, but splits two tracking identifiers. r0C and r2B preserve more SKU width at the cost of substantially more scrolling.",
+  "uncertain": "A designer might prefer r2C if avoiding horizontal scrolling matters more than keeping tracking values intact. The ranges are approximate, judged around r3A with the other widths held near their preferred proportions; browser rendering could change wrap points at their boundaries."
+ },
+ "reviews": [
+  {
+   "order": [
+    "r1B",
+    "r0C",
+    "ref_equal",
+    "ref_auto",
+    "r3A",
+    "r1A"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "acceptable",
+     "why": "The table fits in the viewport and keeps the short fields easy to compare, but both tracking numbers split across lines, making them harder to read or copy."
+    },
+    "B": {
+     "grade": "poor",
+     "why": "SKUs and warehouse names wrap, while the tracking numbers run beyond the visible right edge; the apparent compactness comes at the cost of incomplete identifiers at first sight."
+    },
+    "C": {
+     "grade": "bad",
+     "why": "Warehouse and Tracking headers split within words, and SKUs and tracking numbers fragment across several lines. Tall rows and the uneven allocation of space make scanning difficult."
+    },
+    "D": {
+     "grade": "acceptable",
+     "why": "Tracking numbers remain intact and the table fits, but the narrow SKU column breaks each identifier across four lines, making rows tall and SKUs difficult to compare."
+    },
+    "E": {
+     "grade": "poor",
+     "why": "SKUs and warehouse names wrap, and the tracking numbers extend beyond the visible right edge, leaving their ends unavailable at first sight."
+    },
+    "F": {
+     "grade": "good",
+     "why": "SKUs remain intact, the short fields scan cleanly, and warehouse names wrap at natural breaks. Tracking requires horizontal scrolling, but preserving identifiers makes that a reasonable tradeoff."
+    }
+   },
+   "best": [
+    "F"
+   ],
+   "confidence": "medium",
+   "unsure": "The screenshots do not show the full right-hand extent of B, E, or F, so the exact scrolling distance and whether tracking text overflows its cell cannot be confirmed visually."
+  },
+  {
+   "order": [
+    "ref_equal",
+    "r0C",
+    "r1B",
+    "r3A",
+    "r1A",
+    "ref_auto"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "bad",
+     "why": "Equal column widths waste space on short fields while breaking both headers and fragmenting SKU, warehouse and tracking values across many lines."
+    },
+    "B": {
+     "grade": "poor",
+     "why": "The compact fields and SKU are readable, but the tracking values extend beyond their column and the viewport, leaving their endings difficult to see."
+    },
+    "C": {
+     "grade": "acceptable",
+     "why": "The table fits the viewport and has a clear column rhythm, but tracking identifiers split across lines, making them harder to scan and copy accurately."
+    },
+    "D": {
+     "grade": "poor",
+     "why": "Most columns are well proportioned, but the tracking values overflow their allotted column and extend beyond the viewport."
+    },
+    "E": {
+     "grade": "acceptable",
+     "why": "SKUs stay intact and the other visible fields scan well, but tracking requires horizontal scrolling and the warehouse names wrap."
+    },
+    "F": {
+     "grade": "good",
+     "why": "Tracking identifiers remain intact within the viewport, while short fields retain sensible widths. SKUs wrap at hyphens over several lines, making the rows taller but still readable."
+    }
+   },
+   "best": [
+    "F"
+   ],
+   "confidence": "medium",
+   "unsure": "The visible right edge of B, D and E limits certainty about the full extent of tracking overflow and horizontal scrolling."
+  }
+ ],
+ "reviewPrompt": "v2"
 }

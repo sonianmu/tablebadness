@@ -1,0 +1,3480 @@
+{
+ "id": "x-v-zh-orders@desktop",
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "五个表头均完整显示；订单号、时间和金额保持单行，便于定位和比较。商品与地址共享换行空间，最长单元格为三行，整行仍容易横向核对。",
+     "problems": "长商品名称和长地址都较紧凑；第三条商品的“蓝牙”被分到两行，地址也在较细的语义片段处换行。",
+     "cause": "商品列180px、地址列159px，扣除内边距和边框后分别只剩159px和138px的文字空间。"
+    },
+    {
+     "design": "r0B",
+     "good": "地址列较宽，长地址的阅读较连贯；订单号、时间和金额保持单行。",
+     "problems": "商品列显得过窄：第一条商品的数量“1”单独落到下一行，第三条商品达到四行，拉高整行，也削弱了商品与金额的横向关联。",
+     "cause": "商品列只有135px，扣除内边距和边框后仅114px；增加的45px主要分配给了地址列。"
+    },
+    {
+     "design": "r0C",
+     "good": "商品列较宽，长商品名称的换行较从容；订单号和金额仍完整显示。",
+     "problems": "“下单时间”表头被拆成两行，每个时间也分成日期和时刻两行，使表头和原本简短的第二条订单都变高。整表因此比r0A更高，识别信息的扫描节奏也被打断。",
+     "cause": "时间列仅75px，扣除内边距和边框后只有54px，既不足以容纳表头，也不足以容纳单行日期时间。"
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "订单号、时间和金额都保持完整；商品列较宽，长商品名称的换行节奏尚可。表头清楚，每行仍可横向核对。",
+     "problems": "首行地址被挤成四行，明显拉高整行，商品和金额下方留下大片空白；末行地址也显得局促。",
+     "cause": "收货地址列为149px，扣除内边距和边框后仅有128px正文宽度。商品列为190px，而前两行商品内容较短，未充分利用这部分宽度。"
+    },
+    {
+     "design": "r1B",
+     "good": "地址列加宽后，首行缩为三行，行高与长地址更协调；订单号、时间和金额仍完整，商品型号也没有在词中拆开。整体比r1A紧凑且均衡。",
+     "problems": "末行商品和地址都比较拥挤，商品列中的长名称形成密集的三行；短商品所在行则显得宽松。地址列虽然改善，但仍需仔细跨行阅读。",
+     "cause": "商品列从190px减到170px，把空间让给169px的地址列；两列都需要容纳很长的内容，而日期时间列仍占108px以保持单行。"
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "订单号、时间和金额均保持完整，表头清晰；长商品和地址各占三行，两条复杂订单的行高一致，便于横向核对。",
+     "problems": "长商品名称与地址都较紧凑，部分词组跨行；地址栏的折行尤其密集。",
+     "cause": "商品列175px、地址列164px，扣除内边距和边框后分别只有154px和143px可用。"
+    },
+    {
+     "design": "r2B",
+     "good": "订单号、时间和金额完整，较宽的地址列让地址层级比r2A更易读。",
+     "problems": "最后一条商品名称增至四行，末尾单独留下“板）”，使该行明显偏高，商品与地址的纵向分布失衡。",
+     "cause": "商品列缩至160px，文本宽度仅139px；增加的地址宽度未能抵消商品多占一行的高度。"
+    },
+    {
+     "design": "r2C",
+     "good": "商品和地址获得较多空间，长内容均控制在三行内，订单号和金额完整。",
+     "problems": "下单时间表头拆成两行，每个时间也拆成两行；短订单因此变高，时间列显得拥挤，削弱了扫描节奏。",
+     "cause": "时间列仅80px，文本宽度59px，不足以容纳完整表头或单行日期时间。"
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A",
+    "r3B",
+    "r3C"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    182,
+    108,
+    180,
+    90,
+    159
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 4,
+    "tableWidth": 720,
+    "tableHeight": 239,
+    "overflow": 0,
+    "colWidths": [
+     182,
+     108,
+     180,
+     90,
+     159
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     36.3,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "订单号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "下单时间",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "商品",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "金额",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "收货地址",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001238845",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:01",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "无线降噪耳机 × 1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥1,299.00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江省杭州市西湖区文三路 478 号华星时代广场 A 座 12 楼",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001239102",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:02",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "抽纸 24 包",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥59.90",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "北京市朝阳区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001240017",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:05",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "机械键盘（87 键，茶轴，PBT 键帽，有线/蓝牙/2.4G 三模）",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥469.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东省深圳市南山区科技园南区深南大道 9988 号",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 161,
+      "natural": 161,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 53,
+      "natural": 406,
+      "padding": 21
+     },
+     {
+      "minContent": 69,
+      "natural": 69,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 398,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r0A.png",
+   "idea": "保持订单号、时间和金额单行，给商品略多空间，并让商品和地址共同承担换行。",
+   "notes": []
+  },
+  "r0B": {
+   "widths": [
+    182,
+    108,
+    135,
+    90,
+    204
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 4,
+    "tableWidth": 720,
+    "tableHeight": 262.3,
+    "overflow": 0,
+    "colWidths": [
+     182,
+     108,
+     135,
+     90,
+     204
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     36.3,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "订单号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "下单时间",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "商品",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "金额",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "收货地址",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001238845",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:01",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "无线降噪耳机 × 1",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥1,299.00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江省杭州市西湖区文三路 478 号华星时代广场 A 座 12 楼",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001239102",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:02",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "抽纸 24 包",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥59.90",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "北京市朝阳区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001240017",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:05",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "机械键盘（87 键，茶轴，PBT 键帽，有线/蓝牙/2.4G 三模）",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥469.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东省深圳市南山区科技园南区深南大道 9988 号",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 161,
+      "natural": 161,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 53,
+      "natural": 406,
+      "padding": 21
+     },
+     {
+      "minContent": 69,
+      "natural": 69,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 398,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r0B.png",
+   "idea": "优先提供较宽的收货地址列，便于核对地址层级，接受较长商品名称占用更多行。",
+   "notes": []
+  },
+  "r0C": {
+   "widths": [
+    182,
+    75,
+    205,
+    90,
+    167
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 4,
+    "tableWidth": 720,
+    "tableHeight": 285.5,
+    "overflow": 0,
+    "colWidths": [
+     182,
+     75,
+     205,
+     90,
+     167
+    ],
+    "rowHeights": [
+     59.5,
+     82.8,
+     59.5,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "订单号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "下单时间",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "商品",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "金额",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "收货地址",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001238845",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:01",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "无线降噪耳机 × 1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥1,299.00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江省杭州市西湖区文三路 478 号华星时代广场 A 座 12 楼",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001239102",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:02",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "抽纸 24 包",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥59.90",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "北京市朝阳区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001240017",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:05",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "机械键盘（87 键，茶轴，PBT 键帽，有线/蓝牙/2.4G 三模）",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥469.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东省深圳市南山区科技园南区深南大道 9988 号",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 161,
+      "natural": 161,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 53,
+      "natural": 406,
+      "padding": 21
+     },
+     {
+      "minContent": 69,
+      "natural": 69,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 398,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r0C.png",
+   "idea": "让日期与时间分行，以腾出空间展示商品，同时保留完整订单号和金额。",
+   "notes": []
+  },
+  "r1A": {
+   "widths": [
+    182,
+    108,
+    190,
+    90,
+    149
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 4,
+    "tableWidth": 720,
+    "tableHeight": 262.3,
+    "overflow": 0,
+    "colWidths": [
+     182,
+     108,
+     190,
+     90,
+     149
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     36.3,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "订单号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "下单时间",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "商品",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "金额",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "收货地址",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001238845",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:01",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "无线降噪耳机 × 1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥1,299.00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江省杭州市西湖区文三路 478 号华星时代广场 A 座 12 楼",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001239102",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:02",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "抽纸 24 包",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥59.90",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "北京市朝阳区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001240017",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:05",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "机械键盘（87 键，茶轴，PBT 键帽，有线/蓝牙/2.4G 三模）",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥469.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东省深圳市南山区科技园南区深南大道 9988 号",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 161,
+      "natural": 161,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 53,
+      "natural": 406,
+      "padding": 21
+     },
+     {
+      "minContent": 69,
+      "natural": 69,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 398,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r1A.png",
+   "idea": "以r0A为基础，从地址列移10px给商品列，观察能否改善长商品名称的换行，同时保留订单号、时间和金额的单行显示。",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    182,
+    108,
+    170,
+    90,
+    169
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 4,
+    "tableWidth": 720,
+    "tableHeight": 239,
+    "overflow": 0,
+    "colWidths": [
+     182,
+     108,
+     170,
+     90,
+     169
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     36.3,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "订单号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "下单时间",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "商品",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "金额",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "收货地址",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001238845",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:01",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "无线降噪耳机 × 1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥1,299.00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江省杭州市西湖区文三路 478 号华星时代广场 A 座 12 楼",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001239102",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:02",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "抽纸 24 包",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥59.90",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "北京市朝阳区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001240017",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:05",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "机械键盘（87 键，茶轴，PBT 键帽，有线/蓝牙/2.4G 三模）",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥469.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东省深圳市南山区科技园南区深南大道 9988 号",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 161,
+      "natural": 161,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 53,
+      "natural": 406,
+      "padding": 21
+     },
+     {
+      "minContent": 69,
+      "natural": 69,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 398,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r1B.png",
+   "idea": "以r0A为基础，从商品列移10px给地址列，测试地址是否能更自然地换行，并检查商品数量和长商品名称是否仍保持可接受的行数。",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    182,
+    108,
+    175,
+    90,
+    164
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 4,
+    "tableWidth": 720,
+    "tableHeight": 239,
+    "overflow": 0,
+    "colWidths": [
+     182,
+     108,
+     175,
+     90,
+     164
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     36.3,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "订单号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "下单时间",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "商品",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "金额",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "收货地址",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001238845",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:01",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "无线降噪耳机 × 1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥1,299.00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江省杭州市西湖区文三路 478 号华星时代广场 A 座 12 楼",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001239102",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:02",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "抽纸 24 包",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥59.90",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "北京市朝阳区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001240017",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:05",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "机械键盘（87 键，茶轴，PBT 键帽，有线/蓝牙/2.4G 三模）",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥469.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东省深圳市南山区科技园南区深南大道 9988 号",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 161,
+      "natural": 161,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 53,
+      "natural": 406,
+      "padding": 21
+     },
+     {
+      "minContent": 69,
+      "natural": 69,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 398,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r2A.png",
+   "idea": "以r1B为基础，将5px从地址移给商品，检查末行商品换行是否更自然，同时观察首行地址能否保持三行。",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    182,
+    108,
+    160,
+    90,
+    179
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 4,
+    "tableWidth": 720,
+    "tableHeight": 262.3,
+    "overflow": 0,
+    "colWidths": [
+     182,
+     108,
+     160,
+     90,
+     179
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     36.3,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "订单号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "下单时间",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "商品",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "金额",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "收货地址",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001238845",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:01",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "无线降噪耳机 × 1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥1,299.00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江省杭州市西湖区文三路 478 号华星时代广场 A 座 12 楼",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001239102",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:02",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "抽纸 24 包",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥59.90",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "北京市朝阳区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001240017",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:05",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "机械键盘（87 键，茶轴，PBT 键帽，有线/蓝牙/2.4G 三模）",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥469.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东省深圳市南山区科技园南区深南大道 9988 号",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 161,
+      "natural": 161,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 53,
+      "natural": 406,
+      "padding": 21
+     },
+     {
+      "minContent": 69,
+      "natural": 69,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 398,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r2B.png",
+   "idea": "进一步加宽地址列，检验更完整的地址行能否改善两条长地址的阅读；商品列仍留有足够宽度容纳最长连续型号。",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2C": {
+   "widths": [
+    182,
+    80,
+    185,
+    90,
+    182
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 4,
+    "tableWidth": 720,
+    "tableHeight": 285.5,
+    "overflow": 0,
+    "colWidths": [
+     182,
+     80,
+     185,
+     90,
+     182
+    ],
+    "rowHeights": [
+     59.5,
+     82.8,
+     59.5,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "订单号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "下单时间",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "商品",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "金额",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "收货地址",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001238845",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:01",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "无线降噪耳机 × 1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥1,299.00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江省杭州市西湖区文三路 478 号华星时代广场 A 座 12 楼",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001239102",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:02",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "抽纸 24 包",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥59.90",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "北京市朝阳区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001240017",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:05",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "机械键盘（87 键，茶轴，PBT 键帽，有线/蓝牙/2.4G 三模）",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥469.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东省深圳市南山区科技园南区深南大道 9988 号",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 161,
+      "natural": 161,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 53,
+      "natural": 406,
+      "padding": 21
+     },
+     {
+      "minContent": 69,
+      "natural": 69,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 398,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r2C.png",
+   "idea": "允许日期和时间在两者之间换行，把释放的空间分配给商品和地址；利用长内容原本产生的行高，探索更宽松的横向核对体验。",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    182,
+    108,
+    170,
+    90,
+    169
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 4,
+    "tableWidth": 720,
+    "tableHeight": 239,
+    "overflow": 0,
+    "colWidths": [
+     182,
+     108,
+     170,
+     90,
+     169
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     36.3,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "订单号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "下单时间",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "商品",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "金额",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "收货地址",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001238845",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:01",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "无线降噪耳机 × 1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥1,299.00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江省杭州市西湖区文三路 478 号华星时代广场 A 座 12 楼",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001239102",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:02",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "抽纸 24 包",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥59.90",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "北京市朝阳区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001240017",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:05",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "机械键盘（87 键，茶轴，PBT 键帽，有线/蓝牙/2.4G 三模）",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥469.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东省深圳市南山区科技园南区深南大道 9988 号",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 161,
+      "natural": 161,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 53,
+      "natural": 406,
+      "padding": 21
+     },
+     {
+      "minContent": 69,
+      "natural": 69,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 398,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r3A.png",
+   "idea": "以r2A为基础，将5px从商品移给地址，试探能否保持商品三行，同时改善地址折行。",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3B": {
+   "widths": [
+    182,
+    108,
+    180,
+    90,
+    159
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 4,
+    "tableWidth": 720,
+    "tableHeight": 239,
+    "overflow": 0,
+    "colWidths": [
+     182,
+     108,
+     180,
+     90,
+     159
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     36.3,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "订单号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "下单时间",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "商品",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "金额",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "收货地址",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001238845",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:01",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "无线降噪耳机 × 1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥1,299.00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江省杭州市西湖区文三路 478 号华星时代广场 A 座 12 楼",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001239102",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:02",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "抽纸 24 包",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥59.90",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "北京市朝阳区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001240017",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:05",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "机械键盘（87 键，茶轴，PBT 键帽，有线/蓝牙/2.4G 三模）",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥469.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东省深圳市南山区科技园南区深南大道 9988 号",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 161,
+      "natural": 161,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 53,
+      "natural": 406,
+      "padding": 21
+     },
+     {
+      "minContent": 69,
+      "natural": 69,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 398,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r3B.png",
+   "idea": "从地址移出5px给商品，测试较长商品名称能否在三行内形成更自然的词组，同时观察地址是否仍可读。",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3C": {
+   "widths": [
+    182,
+    95,
+    182,
+    90,
+    170
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 4,
+    "tableWidth": 720,
+    "tableHeight": 262.3,
+    "overflow": 0,
+    "colWidths": [
+     182,
+     95,
+     182,
+     90,
+     170
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     59.5,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "订单号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "下单时间",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "商品",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "金额",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "收货地址",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001238845",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:01",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "无线降噪耳机 × 1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥1,299.00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江省杭州市西湖区文三路 478 号华星时代广场 A 座 12 楼",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001239102",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:02",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "抽纸 24 包",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥59.90",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "北京市朝阳区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001240017",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:05",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "机械键盘（87 键，茶轴，PBT 键帽，有线/蓝牙/2.4G 三模）",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥469.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东省深圳市南山区科技园南区深南大道 9988 号",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 161,
+      "natural": 161,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 53,
+      "natural": 406,
+      "padding": 21
+     },
+     {
+      "minContent": 69,
+      "natural": 69,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 398,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-r3C.png",
+   "idea": "时间列保留足够宽度显示表头，允许日期与时间分行；释放的空间分给商品和地址，探索更宽的内容列是否能改善长行折行。",
+   "notes": [],
+   "parentRound": 2
+  },
+  "ref_auto": {
+   "widths": [
+    181.2,
+    77.1,
+    191.9,
+    89.4,
+    179.3
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 4,
+    "tableWidth": 720,
+    "tableHeight": 285.5,
+    "overflow": 0,
+    "colWidths": [
+     181.2,
+     77.1,
+     191.9,
+     89.4,
+     179.3
+    ],
+    "rowHeights": [
+     59.5,
+     82.8,
+     59.5,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "订单号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "下单时间",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "商品",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "金额",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "收货地址",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001238845",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:01",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "无线降噪耳机 × 1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥1,299.00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江省杭州市西湖区文三路 478 号华星时代广场 A 座 12 楼",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001239102",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:02",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "抽纸 24 包",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥59.90",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "北京市朝阳区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001240017",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:05",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "机械键盘（87 键，茶轴，PBT 键帽，有线/蓝牙/2.4G 三模）",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥469.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东省深圳市南山区科技园南区深南大道 9988 号",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 161,
+      "natural": 161,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 53,
+      "natural": 406,
+      "padding": 21
+     },
+     {
+      "minContent": 69,
+      "natural": 69,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 398,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    143,
+    143,
+    143,
+    143,
+    143
+   ],
+   "geom": {
+    "nCols": 5,
+    "nRows": 4,
+    "tableWidth": 716,
+    "tableHeight": 308.8,
+    "overflow": 0,
+    "colWidths": [
+     143,
+     143,
+     143,
+     143,
+     143
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     59.5,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "订单号",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "下单时间",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "商品",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "金额",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "收货地址",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001238845",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:01",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "无线降噪耳机 × 1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥1,299.00",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "浙江省杭州市西湖区文三路 478 号华星时代广场 A 座 12 楼",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001239102",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:02",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "抽纸 24 包",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥59.90",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "北京市朝阳区",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "202406180001240017",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "06-18 00:05",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "机械键盘（87 键，茶轴，PBT 键帽，有线/蓝牙/2.4G 三模）",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "¥469.00",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "广东省深圳市南山区科技园南区深南大道 9988 号",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 3,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 161,
+      "natural": 161,
+      "padding": 21
+     },
+     {
+      "minContent": 41,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 53,
+      "natural": 406,
+      "padding": 21
+     },
+     {
+      "minContent": 69,
+      "natural": 69,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 398,
+      "padding": 21
+     }
+    ],
+    "frameW": 754
+   },
+   "png": "d-ref_equal.png"
+  }
+ },
+ "modelsUsed": [
+  "codex/gpt-6.1-terra"
+ ],
+ "understanding": {
+  "purpose": "展示电商订单，供读者核对订单、商品、金额和收货信息。",
+  "reading": "读者先用订单号或下单时间定位一行，再横向核对商品、金额和收货地址；每行应保持清晰的整体性。较长商品名称或地址形成的行高可容纳同一行中其他内容的换行。",
+  "groups": [
+   "订单号与下单时间共同用于定位和识别订单。",
+   "商品与金额共同描述购买内容及其费用。",
+   "收货地址是履约信息，适合与同一行的订单内容一起核对。"
+  ],
+  "keep_intact": [
+   "订单号应完整显示，避免拆分数字。",
+   "金额应完整显示，便于比较。",
+   "日期和时间各自应保持完整；空间不足时可在两者之间换行。",
+   "商品型号等连续标识应保持完整。"
+  ],
+  "may_wrap": [
+   "商品名称及规格可在自然词界换行。",
+   "收货地址可按地址层级或自然词界换行。",
+   "下单时间可在日期与时间之间换行。"
+  ]
+ },
+ "final": {
+  "preferred": [
+   "r2A"
+  ],
+  "acceptable": [
+   "r1A",
+   "r1B",
+   "r3A",
+   "r3B"
+  ],
+  "bad": [
+   {
+    "design": "r2B",
+    "why": "The narrow product column forces the keyboard description onto four lines, leaving the closing characters isolated and making the last row noticeably taller."
+   },
+   {
+    "design": "r2C",
+    "why": "The time column is too narrow: its header and every timestamp wrap, weakening the header hierarchy and adding height across all rows."
+   },
+   {
+    "design": "r3C",
+    "why": "Every timestamp breaks across two lines, including in the otherwise short middle row. The extra width given to product and address does not compensate for the loss of scanability."
+   }
+  ],
+  "contrast": null,
+  "ranges": [
+   [
+    182,
+    182
+   ],
+   [
+    108,
+    108
+   ],
+   [
+    170,
+    180
+   ],
+   [
+    90,
+    90
+   ],
+   [
+    159,
+    169
+   ]
+  ],
+  "rationale": "r2A keeps order numbers, timestamps and amounts on single lines while giving the two descriptive columns similar room. The longest product and addresses occupy at most three lines, and the short middle order remains a compact, easily scanned row. Its product and address widths provide a balanced distribution of text without crowding either column.",
+  "principles": {
+   "general": [
+    "Protect identifiers and frequently compared values from unnecessary wrapping when the available width permits.",
+    "Judge column widths together: giving space to one field can make another field harder to scan or increase row height."
+   ],
+   "specific": [
+    "The order number, timestamp and amount use nearly their minimum useful widths, leaving the remaining space for product and address text.",
+    "A product width of 170–180px paired with an address width of 169–159px produces the same row heights in the rendered candidates."
+   ]
+  },
+  "tradeoffs": "r1B and r3A give addresses slightly more room; r3B favors the product description. All are publishable, and a designer who prioritizes delivery addresses or product descriptions could reasonably prefer one of them.",
+  "uncertain": "The ranges are conservative estimates based on the rendered candidates, not a continuous sweep. The product and address ranges are paired: increasing one requires decreasing the other to stay within 719px."
+ },
+ "reviews": [
+  {
+   "order": [
+    "r2B",
+    "r1B",
+    "r2A",
+    "r1A",
+    "ref_equal",
+    "ref_auto"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "good",
+     "why": "订单号、时间和金额完整，地址有较充足的空间；较长商品名称折成四行，末尾括号单独成行。"
+    },
+    "B": {
+     "grade": "excellent",
+     "why": "订单号、时间和金额完整，商品与地址之间的空间分配均衡；长内容各折成三行，行内信息仍易于浏览。"
+    },
+    "C": {
+     "grade": "good",
+     "why": "关键标识和数值完整，长商品与地址各折成三行；地址列稍窄，断行比 B 略显拥挤。"
+    },
+    "D": {
+     "grade": "acceptable",
+     "why": "订单号、时间和金额完整，但地址列偏窄，首条地址折成四行，削弱了行的紧凑性。"
+    },
+    "E": {
+     "grade": "bad",
+     "why": "每个订单号都被拆成两行，妨碍识别和核对；商品与地址也较拥挤，而金额列留白过多。"
+    },
+    "F": {
+     "grade": "poor",
+     "why": "时间表头和每个日期时间都被拆成两行，使时间列难以快速扫描；其余列的内容分配尚可。"
+    }
+   },
+   "best": [
+    "B"
+   ],
+   "confidence": "medium",
+   "unsure": "B 与 C 的列宽和断行非常接近，最佳选择的差距很小。"
+  },
+  {
+   "order": [
+    "r1B",
+    "ref_auto",
+    "r2B",
+    "r1A",
+    "ref_equal",
+    "r2A"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "good",
+     "why": "Order numbers, timestamps and amounts stay intact. The longer product and addresses wrap into manageable blocks, and the rows remain easy to scan."
+    },
+    "B": {
+     "grade": "poor",
+     "why": "The time header and every timestamp wrap, making a compact comparison column unnecessarily tall. The other columns are reasonably readable."
+    },
+    "C": {
+     "grade": "acceptable",
+     "why": "Identifiers, timestamps and amounts stay intact, but the narrow product column breaks the longest description into four lines, leaving the closing characters stranded."
+    },
+    "D": {
+     "grade": "acceptable",
+     "why": "Identifiers and timestamps stay intact, and the product column has useful space. The narrower address column forces the first address into four lines and makes the address blocks harder to scan."
+    },
+    "E": {
+     "grade": "bad",
+     "why": "Every order number breaks across lines, making the identifiers harder to read and compare. The product and address columns also wrap heavily, while the amount column has excess space."
+    },
+    "F": {
+     "grade": "good",
+     "why": "Order numbers, timestamps and amounts stay intact. Product descriptions and addresses wrap into readable blocks, with a balanced distribution of space across the table."
+    }
+   },
+   "best": [
+    "A",
+    "F"
+   ],
+   "confidence": "medium",
+   "unsure": "A and F are very close: A gives the address slightly more room, while F gives the product and amount columns slightly more room. Neither difference appears decisive in these rows."
+  }
+ ],
+ "reviewPrompt": "v2"
+}

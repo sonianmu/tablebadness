@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val2] 日本語 · 研修スケジュール (language ja).\nGrid: 4 columns × 5 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"1 日目\" spans 1 col × 2 row; \"2 日目\" spans 1 col × 2 row.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"日程\" · longest unbreakable word 16px · one-line width 44px\n  col 2: header \"時間\" · longest unbreakable word 50px · one-line width 88px\n  col 3: header \"内容\" · longest unbreakable word 31px · one-line width 576px\n  col 4: header \"講師\" · longest unbreakable word 16px · one-line width 105px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 8638,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"日程と時間が複数行に分かれ、講師名も折り返されているため、各研修の単位と時刻を追いにくい。\"},\"B\":{\"grade\":\"excellent\",\"why\":\"日程、時間、講師が一行に収まり、長い内容だけが二行に折り返されている。列の役割に合った配分で、行も比較しやすい。\"},\"C\":{\"grade\":\"poor\",\"why\":\"内容欄が狭く文章が細切れになる一方、短い日程や時間の欄に余白が多い。行の高さも大きく不均一。\"},\"D\":{\"grade\":\"poor\",\"why\":\"内容欄は広いが、講師欄が狭すぎてすべての講師名が細切れになり、対応関係を読み取りにくい。\"},\"E\":{\"grade\":\"good\",\"why\":\"日程と時間は一行で読みやすく、内容欄にも十分な幅がある。ただし、情報システム部が二行に分かれる。\"}},\"best\":[\"B\"],\"confidence\":\"high\",\"unsure\":\"画像上で確認できる範囲での評価。\"}\n"
+  }
+ ]
+}

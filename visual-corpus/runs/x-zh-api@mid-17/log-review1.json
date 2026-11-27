@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 中文 · API 参数说明 (language zh-CN).\nGrid: 5 columns × 6 rows. Row headers: none declared.\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"参数\" · longest unbreakable word 139px · one-line width 139px\n  col 2: header \"类型\" · longest unbreakable word 56px · one-line width 56px\n  col 3: header \"必填\" · longest unbreakable word 18px · one-line width 35px\n  col 4: header \"默认值\" · longest unbreakable word 93px · one-line width 93px\n  col 5: header \"说明\" · longest unbreakable word 110px · one-line width 552px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 624px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 623px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 7703,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"bad\",\"why\":\"Equal column widths leave the description cramped and split parameter identifiers across lines; tall rows contain large areas of empty space.\"},\"B\":{\"grade\":\"good\",\"why\":\"Parameter names and defaults stay intact, and the description has useful room, but the 必填 header wraps vertically.\"},\"C\":{\"grade\":\"good\",\"why\":\"All headers and identifiers stay intact, with clear row structure, though the wide parameter column leaves the description somewhat cramped.\"},\"D\":{\"grade\":\"good\",\"why\":\"Headers and identifiers remain intact and the columns scan clearly, but the description wraps frequently while the default column has spare space.\"},\"E\":{\"grade\":\"good\",\"why\":\"The generous description column improves sentence flow and keeps identifiers intact, but the 必填 header wraps vertically.\"},\"F\":{\"grade\":\"excellent\",\"why\":\"All headers and identifiers stay intact, and the description has enough width for a comfortable rhythm without giving the shorter fields excessive space.\"}},\"best\":[\"F\"],\"confidence\":\"high\",\"unsure\":\"B and E give the description slightly more room, so the tradeoff between that space and the wrapped 必填 header is partly a matter of judgment.\"}\n"
+  }
+ ]
+}

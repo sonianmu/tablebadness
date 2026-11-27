@@ -22,6 +22,7 @@ if (process.argv.includes('--verify')) {
     const changed = Object.keys(frozen.files).filter(f => hashes[f] !== frozen.files[f]);
     if (changed.length) { console.log('refusing: frozen files changed:', changed.slice(0, 5)); process.exit(1); }
     const added = Object.keys(hashes).filter(f => !(f in frozen.files));
+    if (!added.length) { console.log('nothing new to append'); process.exit(0); }
     for (const f of added) frozen.files[f] = hashes[f];
     (frozen.appended = frozen.appended || []).push({ at: new Date().toISOString(), files: added.length, note: 'scenarios finished after the first freeze; still no layout algorithm had been run on the holdout' });
     frozen.records = Object.keys(frozen.files).filter(f => f.endsWith('.json')).length;

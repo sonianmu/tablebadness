@@ -1,0 +1,22 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "d-r0A.png",
+  "d-r0B.png",
+  "d-r0C.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nTable: 中文 · API 参数说明 (language zh-CN).\nGrid: 5 columns × 6 rows. Row headers: none declared.\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"参数\" · longest unbreakable word 139px · one-line width 139px\n  col 2: header \"类型\" · longest unbreakable word 56px · one-line width 56px\n  col 3: header \"必填\" · longest unbreakable word 18px · one-line width 35px\n  col 4: header \"默认值\" · longest unbreakable word 93px · one-line width 93px\n  col 5: header \"说明\" · longest unbreakable word 110px · one-line width 552px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 624px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 623px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nYour understanding so far: {\"purpose\":\"说明 API 参数的名称、类型、必填性、默认值和用途，帮助读者构造请求。\",\"reading\":\"读者先按参数名定位，再横向查看约束和说明；也可能纵向比较必填性或默认值。每行应保持清晰的对应关系。\",\"groups\":[\"参数和类型共同标识字段及其数据格式。\",\"必填和默认值共同说明调用时的取值要求。\",\"说明列解释用途和取值范围，适合获得剩余空间。\"],\"keep_intact\":[\"参数名，包括 include_deleted 和 callback_url\",\"类型名及必填值\",\"默认值，包括 created_at、false 和 20\",\"说明中的代码标识符\"],\"may_wrap\":[\"说明中的中文短语可自然换行；较长说明形成的行高也可容纳同一行其他单元格。\"]}\n\nThe first image is the one-line content overview. The other images are real browser renders of your current designs:\nDesign r0A: widths [160, 77, 56, 114, 216] · table 624×475px · row heights [39, 92, 92, 93, 66, 92] · column headers wrapped 0/5 · tallest cell 3 lines · mid-word splits 0\nDesign r0B: widths [180, 77, 56, 114, 196] · table 624×554px · row heights [39, 92, 118, 120, 92, 92] · column headers wrapped 0/5 · tallest cell 4 lines · mid-word splits 0\nDesign r0C: widths [160, 85, 66, 128, 184] · table 624×554px · row heights [39, 92, 118, 120, 92, 92] · column headers wrapped 0/5 · tallest cell 4 lines · mid-word splits 0\n\nLook carefully at each render as a whole and in detail. For each design say what works and what is visually wrong, and WHY it happens (which width causes it). Then propose up to 3 improved designs: refine the most promising, fix the problems you saw, and try a new idea if an important alternative is unexplored. If no design can be meaningfully improved, set \"done\": true and return no new designs.\nReply ONLY JSON: {\"critique\":[{\"design\":\"name\",\"good\":\"\",\"problems\":\"\",\"cause\":\"\"}],\"done\":false,\"designs\":[{\"name\":\"short-name\",\"widths\":[int px],\"change\":\"what you changed and why\"}]}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11479,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"critique\":[{\"design\":\"r0A\",\"good\":\"参数名、类型、必填值和默认值均保持完整；说明列较宽，五个数据行的说明都控制在三行以内，横向对应关系清楚。\",\"problems\":\"说明仍较拥挤，排序字段的代码标识符占据多行；参数名与默认值列中较短内容旁有较多空白。\",\"cause\":\"前四列合计407px，已接近保持最长内容完整所需的宽度，留给说明列216px。\"},{\"design\":\"r0B\",\"good\":\"参数名列留有充裕空间，所有标识符和表头完整，字段及其约束容易定位。\",\"problems\":\"参数名列的额外空白没有改善读取，却使多条说明增至四行，行高增加，横向比较也更费力。\",\"cause\":\"参数列从160px增至180px，说明列相应缩至196px。\"},{\"design\":\"r0C\",\"good\":\"类型、必填和默认值列较宽，短值周围较疏朗，表头和代码值均完整。\",\"problems\":\"约束列的留白与密集的说明列失衡；多条说明增至四行，中文短语与代码值被切成较短的片段。\",\"cause\":\"类型、必填和默认值列分别增至85、66和128px，使说明列缩至184px。\"}],\"done\":false,\"designs\":[{\"name\":\"balanced-refine\",\"widths\":[160,77,56,114,216],\"change\":\"以r0A为基准：前四列恰好容纳各自最长内容，把其余空间留给说明列；总宽623px，符合限制。\"},{\"name\":\"description-priority\",\"widths\":[160,77,53,114,219],\"change\":\"必填列减少3px，仍为35px的最长内容保留足够宽度；将空间给说明列，检验能否改善说明的换行。\"}]}\n"
+  }
+ ]
+}

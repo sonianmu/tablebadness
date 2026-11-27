@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [验证] 中文 · 合同条款修订对照 (language zh-CN).\nGrid: 4 columns × 4 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"条款\" · longest unbreakable word 22px · one-line width 60px\n  col 2: header \"原条款\" · longest unbreakable word 33px · one-line width 408px\n  col 3: header \"修订后\" · longest unbreakable word 47px · one-line width 649px\n  col 4: header \"修订理由\" · longest unbreakable word 31px · one-line width 307px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10095,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"条款编号完整，修订后列较宽，便于比较；修订理由列较窄，表头换行，部分文字显得拥挤。\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"表头和条款编号完整，修订理由较易读；修订后列过窄，使较长条文频繁换行，行高明显增加。\"},\"C\":{\"grade\":\"good\",\"why\":\"原条款与修订后两列宽度接近，便于逐行比较，编号也完整；修订理由列偏窄，表头换成两行。\"},\"D\":{\"grade\":\"poor\",\"why\":\"修订后列宽裕，但条款列过窄，表头及每个条款编号都被拆成多行，难以快速定位。\"},\"E\":{\"grade\":\"good\",\"why\":\"编号完整，较长的修订后内容获得更多空间，整体行高适中；修订理由表头换行，内容列也略显拥挤。\"},\"F\":{\"grade\":\"poor\",\"why\":\"修订理由列极窄，文字被挤成很短的行，第二行尤其高，破坏了整行的阅读节奏。\"}},\"best\":[\"C\"],\"confidence\":\"medium\",\"unsure\":\"A、C、E 的差距较小；C 对原文和修订文的并列比较更均衡，但修订理由列仍偏窄。\"}\n"
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val2] SLA tiers (language en).\nGrid: 4 columns × 4 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 13px font, excluding padding):\n  col 1: header \"Tier\" · longest unbreakable word 75px · one-line width 93px\n  col 2: header \"Monthly uptime commitment\" · longest unbreakable word 80px · one-line width 182px\n  col 3: header \"Service credit\" · longest unbreakable word 48px · one-line width 88px\n  col 4: header \"Support channels\" · longest unbreakable word 68px · one-line width 470px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 597px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 596px.\nFixed: content, font, 13px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9630,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Tier names remain intact, and the numerical columns are easy to scan. Both numerical headers wrap, while the longer support entries use two or three lines.\"},\"B\":{\"grade\":\"excellent\",\"why\":\"All tier names stay intact, service credit fits on one line, and the generous support column keeps its entries to two lines. The uptime header takes three lines, but remains clear.\"},\"C\":{\"grade\":\"poor\",\"why\":\"The wide uptime column leaves little room for support channels, producing tall, fragmented entries and uneven use of space.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"The support column reads comfortably, but Mission-critical breaks across lines and the service credit header also wraps.\"},\"E\":{\"grade\":\"excellent\",\"why\":\"Tier names and the service credit header stay intact, and the support text has enough room to read comfortably. The two-line uptime header balances the columns well.\"},\"F\":{\"grade\":\"bad\",\"why\":\"Oversized numeric columns squeeze support channels into a narrow strip, breaking even the shortest entry and making the longer entries difficult to scan.\"}},\"best\":[\"B\",\"E\"],\"confidence\":\"medium\",\"unsure\":\"B gives support descriptions more space, while E gives the uptime header a more compact shape; the preference between them is close.\"}\n"
+  }
+ ]
+}

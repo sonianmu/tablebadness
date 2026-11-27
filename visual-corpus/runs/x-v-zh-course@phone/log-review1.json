@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [验证] 中文 · 课程表 (language zh-CN).\nGrid: 7 columns × 6 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"节次\" · longest unbreakable word 16px · one-line width 31px\n  col 2: header \"时间\" · longest unbreakable word 50px · one-line width 92px\n  col 3: header \"周一\" · longest unbreakable word 16px · one-line width 92px\n  col 4: header \"周二\" · longest unbreakable word 16px · one-line width 31px\n  col 5: header \"周三\" · longest unbreakable word 16px · one-line width 31px\n  col 6: header \"周四\" · longest unbreakable word 16px · one-line width 31px\n  col 7: header \"周五\" · longest unbreakable word 16px · one-line width 169px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 13374,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"bad\",\"why\":\"Nearly every header and subject wraps vertically, and the times break within their digits. The very tall rows make the timetable difficult to scan.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"Times stay readable and Friday’s long subject has useful width, but Tuesday through Thursday are so narrow that their headers and most subjects split vertically.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"Monday through Wednesday are easy to scan, but Thursday’s subjects split vertically and Friday’s long subject forms a tall, narrow stack.\"},\"D\":{\"grade\":\"good\",\"why\":\"Monday and Tuesday retain readable subject names, times break at the range separator, and Friday has enough width to keep its long entry manageable. Wednesday and Thursday remain cramped.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"Friday’s long entry is reasonably compact, but Tuesday through Thursday have narrow columns that split both headers and most subject names.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"Times and Friday’s long entry are readable, but the extra width given to time leaves three weekday columns cramped, splitting their headers and subjects.\"}},\"best\":[\"D\"],\"confidence\":\"medium\",\"unsure\":\"B gives Friday slightly more room, so its relative value depends on whether preserving more short subject names or shortening the long Friday entry matters more to the reader.\"}\n"
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 中文 · 版本更新日志（中英混排） (language zh-CN).\nGrid: 4 columns × 5 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"版本\" · longest unbreakable word 43px · one-line width 43px\n  col 2: header \"日期\" · longest unbreakable word 43px · one-line width 87px\n  col 3: header \"类型\" · longest unbreakable word 16px · one-line width 46px\n  col 4: header \"变更内容\" · longest unbreakable word 90px · one-line width 646px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9025,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"版本和类型保持完整，变更内容也有较好的阅读宽度；日期都折成两行，稍碍快速比较。\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"日期完整且便于比较，但变更内容较窄，英文术语和句子频繁换行，新功能也被拆开。\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"变更内容的宽度尚可，但日期折行，新功能也被拆成两行，类型列显得偏窄。\"},\"D\":{\"grade\":\"good\",\"why\":\"变更内容有较宽的空间，句子比其他多数方案更连贯；但日期折行，新功能和 --dry-run 被拆开。\"},\"E\":{\"grade\":\"poor\",\"why\":\"变更内容较宽，但类型列过窄，连表头和所有类型值都竖向折行，削弱了分类的可读性。\"},\"F\":{\"grade\":\"bad\",\"why\":\"变更内容列过窄，WebSocket 等词被拆开，句子形成很长的窄行；其他列却留下大量空白。\"}},\"best\":[\"A\"],\"confidence\":\"medium\",\"unsure\":\"A 和 D 的取舍较接近：D 的变更内容更宽，但 A 保持了类型值及 --dry-run 的完整。\"}\n"
+  }
+ ]
+}

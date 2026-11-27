@@ -1,0 +1,4759 @@
+{
+ "id": "x-wide-numeric@phone",
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "日期、价格、百分比和成交数值均保持完整；四个等宽价格列形成稳定节奏，数据行紧凑，便于逐日比较。",
+     "problems": "首屏主要显示日期和四个价格列，涨跌幅被截在视口边缘；成交指标需要向右滚动较远才能看到。",
+     "cause": "日期列108px、四个价格列各59px，合计已占344px；成交量113px和成交额129px让两个长表头保持单行，但将总宽度推至662px。"
+    },
+    {
+     "design": "r0B",
+     "good": "保留完整日期和数值，四个价格列仍等宽；成交表头换行后，横向滚动距离比r0A减少53px。",
+     "problems": "首屏仍只露出涨跌幅的一部分，成交指标需要滚动查看；两个成交表头换行使表头行明显高于数据行。",
+     "cause": "日期及价格列仍合计344px；成交量90px和成交额99px足以容纳最长不可拆内容，但不足以容纳各自的单行表头。"
+    },
+    {
+     "design": "r0C",
+     "good": "整张表处于视口内，无需横向滚动。",
+     "problems": "日期、价格、百分比和成交数字被拆成多行，难以识别和比较；表头竖向堆叠，行高过大，同一交易日的数据也不易作为一个整体阅读。",
+     "cause": "日期列仅52px，价格列各40px，涨跌幅45px，成交列49px和53px；扣除21px内边距及边框后，所有这些列都不足以容纳对应的最长不可拆内容。"
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "日期和四个价格均保持完整；四个价格列等宽，便于横向和纵向比较。成交量表头保持一行，所有数据均无词中拆分。",
+     "problems": "初始视口刚好容纳日期和四个价格列，却只露出涨跌幅的一小部分；成交指标需要横向滚动。成交额表头换行后拉高了整行表头。",
+     "cause": "日期列108px、四个价格列各59px，合计344px，留给涨跌幅的视口空间很少。成交额列99px可容纳最长的不可拆分内容，但不足以容纳108px的整行表头及内边距。"
+    },
+    {
+     "design": "r1B",
+     "good": "日期、价格和所有数值保持完整，四个价格列的节奏一致。成交额表头保持一行。",
+     "problems": "初始视口同样只露出涨跌幅的一小部分，两个成交指标都需要滚动查看。成交量表头换行仍使表头行升高，因此成交额表头保持一行并未降低整行高度。",
+     "cause": "前六列宽度与r1A相同。成交量列90px不足以容纳整行表头；成交额列129px足以容纳整行表头，但比保持其内容不拆分所需的99px多30px。"
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "日期和四列价格保持完整，价格列等宽，便于横向比较；成交量与成交额表头换行，节省横向空间。",
+     "problems": "首次视野只容纳日期和四列价格，涨跌幅及成交数据需要横向滚动；表头比数据行高，增加了纵向留白。",
+     "cause": "日期108px与四个59px价格列合计344px，几乎占满视口；成交量90px、成交额99px不足以让各自表头单行显示。"
+    },
+    {
+     "design": "r2B",
+     "good": "所有表头与数据均保持单行，行高一致，四列价格的节奏清晰，整张表更紧凑。",
+     "problems": "首次视野与r2A基本相同，但查看右侧成交数据需要滚动更远；两个成交列表头单行所带来的横向空间成本较高。",
+     "cause": "成交量113px、成交额129px分别容纳了完整表头，使总宽度比r2A增加53px。"
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    108,
+    59,
+    59,
+    59,
+    59,
+    75,
+    113,
+    129
+   ],
+   "geom": {
+    "nCols": 8,
+    "nRows": 5,
+    "tableWidth": 662,
+    "tableHeight": 182.3,
+    "overflow": 302,
+    "colWidths": [
+     108,
+     59,
+     59,
+     59,
+     59,
+     75,
+     113,
+     129
+    ],
+    "rowHeights": [
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "日期",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "开盘",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最高",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最低",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "收盘",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "涨跌幅",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交量（手）",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交额（万元）",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-03",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.45",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.88",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.30",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.79",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.73%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,284,560",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "162,318.42",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-04",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.80",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.95",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.51",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.60",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "−1.49%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "987,112",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "125,004.07",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-05",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.58",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.62",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.01",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.07",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "−4.21%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,045,773",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "249,880.15",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-06",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.10",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.47",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.05",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.42",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.90%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,102,394",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "135,920.66",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 43,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 69,
+      "natural": 92,
+      "padding": 21
+     },
+     {
+      "minContent": 78,
+      "natural": 108,
+      "padding": 21
+     }
+    ],
+    "frameW": 696
+   },
+   "png": "d-r0A.png",
+   "idea": "总宽661px，所有内容保持单行，四个价格列等宽，便于比较，但读者需要横向滚动查看后面的指标。",
+   "notes": []
+  },
+  "r0B": {
+   "widths": [
+    108,
+    59,
+    59,
+    59,
+    59,
+    75,
+    90,
+    99
+   ],
+   "geom": {
+    "nCols": 8,
+    "nRows": 5,
+    "tableWidth": 609,
+    "tableHeight": 205.5,
+    "overflow": 249,
+    "colWidths": [
+     108,
+     59,
+     59,
+     59,
+     59,
+     75,
+     90,
+     99
+    ],
+    "rowHeights": [
+     59.5,
+     36.3,
+     36.3,
+     36.3,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "日期",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "开盘",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最高",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最低",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "收盘",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "涨跌幅",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交量（手）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交额（万元）",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-03",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.45",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.88",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.30",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.79",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.73%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,284,560",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "162,318.42",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-04",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.80",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.95",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.51",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.60",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "−1.49%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "987,112",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "125,004.07",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-05",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.58",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.62",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.01",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.07",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "−4.21%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,045,773",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "249,880.15",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-06",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.10",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.47",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.05",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.42",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.90%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,102,394",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "135,920.66",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 43,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 69,
+      "natural": 92,
+      "padding": 21
+     },
+     {
+      "minContent": 78,
+      "natural": 108,
+      "padding": 21
+     }
+    ],
+    "frameW": 643
+   },
+   "png": "d-r0B.png",
+   "idea": "总宽608px，保持日期和数值完整，让两个成交指标的表头换行，以增加表头高度换取较少的横向滚动。",
+   "notes": []
+  },
+  "r0C": {
+   "widths": [
+    52,
+    40,
+    40,
+    40,
+    40,
+    45,
+    49,
+    53
+   ],
+   "geom": {
+    "nCols": 8,
+    "nRows": 5,
+    "tableWidth": 360,
+    "tableHeight": 577.5,
+    "overflow": 0,
+    "colWidths": [
+     52,
+     40,
+     40,
+     40,
+     40,
+     45,
+     49,
+     53
+    ],
+    "rowHeights": [
+     152.5,
+     106,
+     106,
+     106,
+     106
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "日期",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "开盘",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最高",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最低",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "收盘",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "涨跌幅",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交量（手）",
+      "lines": 6
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交额（万元）",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-03",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.45",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.88",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.30",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.79",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.73%",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,284,560",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "162,318.42",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-04",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.80",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.95",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.51",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.60",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "−1.49%",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "987,112",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "125,004.07",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-05",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.58",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.62",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.01",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.07",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "−4.21%",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,045,773",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "249,880.15",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-06",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.10",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.47",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.05",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.42",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.90%",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,102,394",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "135,920.66",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 59,
+    "tokenBreaks": 8,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 43,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 69,
+      "natural": 92,
+      "padding": 21
+     },
+     {
+      "minContent": 78,
+      "natural": 108,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r0C.png",
+   "idea": "总宽359px，全部列首次可见且四个价格列等宽，但日期、价格和其他数值都会被迫拆行，适合优先要求无需横向滚动的场景。",
+   "notes": []
+  },
+  "r1A": {
+   "widths": [
+    108,
+    59,
+    59,
+    59,
+    59,
+    75,
+    113,
+    99
+   ],
+   "geom": {
+    "nCols": 8,
+    "nRows": 5,
+    "tableWidth": 632,
+    "tableHeight": 205.5,
+    "overflow": 272,
+    "colWidths": [
+     108,
+     59,
+     59,
+     59,
+     59,
+     75,
+     113,
+     99
+    ],
+    "rowHeights": [
+     59.5,
+     36.3,
+     36.3,
+     36.3,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "日期",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "开盘",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最高",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最低",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "收盘",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "涨跌幅",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交量（手）",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交额（万元）",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-03",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.45",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.88",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.30",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.79",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.73%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,284,560",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "162,318.42",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-04",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.80",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.95",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.51",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.60",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "−1.49%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "987,112",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "125,004.07",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-05",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.58",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.62",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.01",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.07",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "−4.21%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,045,773",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "249,880.15",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-06",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.10",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.47",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.05",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.42",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.90%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,102,394",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "135,920.66",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 43,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 69,
+      "natural": 92,
+      "padding": 21
+     },
+     {
+      "minContent": 78,
+      "natural": 108,
+      "padding": 21
+     }
+    ],
+    "frameW": 666
+   },
+   "png": "d-r1A.png",
+   "idea": "以r0B为基础，将成交量列加宽至113px，使其表头保持单行；成交额仍在指标与单位之间换行。总宽632px，在表头清晰度与滚动距离之间尝试折中。",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    108,
+    59,
+    59,
+    59,
+    59,
+    75,
+    90,
+    129
+   ],
+   "geom": {
+    "nCols": 8,
+    "nRows": 5,
+    "tableWidth": 639,
+    "tableHeight": 205.5,
+    "overflow": 279,
+    "colWidths": [
+     108,
+     59,
+     59,
+     59,
+     59,
+     75,
+     90,
+     129
+    ],
+    "rowHeights": [
+     59.5,
+     36.3,
+     36.3,
+     36.3,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "日期",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "开盘",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最高",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最低",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "收盘",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "涨跌幅",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交量（手）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交额（万元）",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-03",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.45",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.88",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.30",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.79",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.73%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,284,560",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "162,318.42",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-04",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.80",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.95",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.51",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.60",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "−1.49%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "987,112",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "125,004.07",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-05",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.58",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.62",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.01",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.07",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "−4.21%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,045,773",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "249,880.15",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-06",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.10",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.47",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.05",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.42",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.90%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,102,394",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "135,920.66",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 43,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 69,
+      "natural": 92,
+      "padding": 21
+     },
+     {
+      "minContent": 78,
+      "natural": 108,
+      "padding": 21
+     }
+    ],
+    "frameW": 673
+   },
+   "png": "d-r1B.png",
+   "idea": "保留r0B的紧凑成交量列，将成交额列加宽至129px，使较长的成交额表头保持单行。总宽639px，可比较两种表头换行位置的视觉效果。",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    108,
+    59,
+    59,
+    59,
+    59,
+    75,
+    90,
+    99
+   ],
+   "geom": {
+    "nCols": 8,
+    "nRows": 5,
+    "tableWidth": 609,
+    "tableHeight": 205.5,
+    "overflow": 249,
+    "colWidths": [
+     108,
+     59,
+     59,
+     59,
+     59,
+     75,
+     90,
+     99
+    ],
+    "rowHeights": [
+     59.5,
+     36.3,
+     36.3,
+     36.3,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "日期",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "开盘",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最高",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最低",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "收盘",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "涨跌幅",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交量（手）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交额（万元）",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-03",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.45",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.88",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.30",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.79",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.73%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,284,560",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "162,318.42",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-04",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.80",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.95",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.51",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.60",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "−1.49%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "987,112",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "125,004.07",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-05",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.58",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.62",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.01",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.07",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "−4.21%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,045,773",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "249,880.15",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-06",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.10",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.47",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.05",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.42",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.90%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,102,394",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "135,920.66",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 43,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 69,
+      "natural": 92,
+      "padding": 21
+     },
+     {
+      "minContent": 78,
+      "natural": 108,
+      "padding": 21
+     }
+    ],
+    "frameW": 643
+   },
+   "png": "d-r2A.png",
+   "idea": "保留日期、价格和数值的完整性，让两个成交指标表头换行。总宽608px，比r1A少24px、比r1B少31px，减少查看末列所需的滚动；初始视口中的列分布不变。",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    108,
+    59,
+    59,
+    59,
+    59,
+    75,
+    113,
+    129
+   ],
+   "geom": {
+    "nCols": 8,
+    "nRows": 5,
+    "tableWidth": 662,
+    "tableHeight": 182.3,
+    "overflow": 302,
+    "colWidths": [
+     108,
+     59,
+     59,
+     59,
+     59,
+     75,
+     113,
+     129
+    ],
+    "rowHeights": [
+     36.3,
+     36.3,
+     36.3,
+     36.3,
+     36.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "日期",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "开盘",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最高",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最低",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "收盘",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "涨跌幅",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交量（手）",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交额（万元）",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-03",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.45",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.88",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.30",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.79",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.73%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,284,560",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "162,318.42",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-04",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.80",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.95",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.51",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.60",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "−1.49%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "987,112",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "125,004.07",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-05",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.58",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.62",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.01",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.07",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "−4.21%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,045,773",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "249,880.15",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-06",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.10",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.47",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.05",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.42",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.90%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,102,394",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "135,920.66",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 43,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 69,
+      "natural": 92,
+      "padding": 21
+     },
+     {
+      "minContent": 78,
+      "natural": 108,
+      "padding": 21
+     }
+    ],
+    "frameW": 696
+   },
+   "png": "d-r2B.png",
+   "idea": "将两个成交指标列都加宽至可容纳单行表头，尝试降低表头高度并保持单位与指标名称同行。代价是总宽661px，需要更多横向滚动。",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    64,
+    59,
+    59,
+    59,
+    59,
+    75,
+    90,
+    99
+   ],
+   "geom": {
+    "nCols": 8,
+    "nRows": 5,
+    "tableWidth": 565,
+    "tableHeight": 391.5,
+    "overflow": 205,
+    "colWidths": [
+     64,
+     59,
+     59,
+     59,
+     59,
+     75,
+     90,
+     99
+    ],
+    "rowHeights": [
+     59.5,
+     82.8,
+     82.8,
+     82.8,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "日期",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "开盘",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最高",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最低",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "收盘",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "涨跌幅",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交量（手）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交额（万元）",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-03",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.45",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.88",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.30",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.79",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.73%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,284,560",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "162,318.42",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-04",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.80",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.95",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.51",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.60",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "−1.49%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "987,112",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "125,004.07",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-05",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.58",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.62",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.01",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.07",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "−4.21%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,045,773",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "249,880.15",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-06",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.10",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.47",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.05",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.42",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.90%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,102,394",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "135,920.66",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 8,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 43,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 69,
+      "natural": 92,
+      "padding": 21
+     },
+     {
+      "minContent": 78,
+      "natural": 108,
+      "padding": 21
+     }
+    ],
+    "frameW": 599
+   },
+   "png": "d-r3A.png",
+   "idea": "将日期列由108px缩至64px，让日期在连字符处换行，保留四列价格的等宽节奏及数值完整性；沿用较窄的成交列。总宽降至565px，首次视野可露出更多涨跌幅，但日期换行会增加数据行高度，需要结合渲染结果判断查找日期是否仍然顺畅。",
+   "notes": [],
+   "parentRound": 2
+  },
+  "ref_auto": {
+   "widths": [
+    63.9,
+    58.6,
+    58.7,
+    58.5,
+    58.5,
+    74.6,
+    90,
+    98.3
+   ],
+   "geom": {
+    "nCols": 8,
+    "nRows": 5,
+    "tableWidth": 562.1,
+    "tableHeight": 391.5,
+    "overflow": 202.1,
+    "colWidths": [
+     63.9,
+     58.6,
+     58.7,
+     58.5,
+     58.5,
+     74.6,
+     90,
+     98.3
+    ],
+    "rowHeights": [
+     59.5,
+     82.8,
+     82.8,
+     82.8,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "日期",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "开盘",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最高",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最低",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "收盘",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "涨跌幅",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交量（手）",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交额（万元）",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-03",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.45",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.88",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.30",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.79",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.73%",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,284,560",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "162,318.42",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-04",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.80",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.95",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.51",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.60",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "−1.49%",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "987,112",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "125,004.07",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-05",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.58",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.62",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.01",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.07",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "−4.21%",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,045,773",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "249,880.15",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-06",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.10",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.47",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.05",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.42",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.90%",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,102,394",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "135,920.66",
+      "lines": 1
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 8,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 43,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 69,
+      "natural": 92,
+      "padding": 21
+     },
+     {
+      "minContent": 78,
+      "natural": 108,
+      "padding": 21
+     }
+    ],
+    "frameW": 597
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    44,
+    44,
+    44,
+    44,
+    44,
+    44,
+    44,
+    44
+   ],
+   "geom": {
+    "nCols": 8,
+    "nRows": 5,
+    "tableWidth": 353,
+    "tableHeight": 693.8,
+    "overflow": 0,
+    "colWidths": [
+     44,
+     44,
+     44,
+     44,
+     44,
+     44,
+     44,
+     44
+    ],
+    "rowHeights": [
+     175.8,
+     129.3,
+     129.3,
+     129.3,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "日期",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "开盘",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最高",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "最低",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "收盘",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "涨跌幅",
+      "lines": 3
+     },
+     {
+      "r": 0,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交量（手）",
+      "lines": 6
+     },
+     {
+      "r": 0,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "成交额（万元）",
+      "lines": 7
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-03",
+      "lines": 5
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.45",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.88",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.30",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.79",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.73%",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,284,560",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "162,318.42",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-04",
+      "lines": 5
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.80",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.95",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.51",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.60",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "−1.49%",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "987,112",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "125,004.07",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-05",
+      "lines": 5
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.58",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.62",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.01",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.07",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "−4.21%",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2,045,773",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "249,880.15",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "2024-06-06",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.10",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.47",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.05",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 4,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "12.42",
+      "lines": 2
+     },
+     {
+      "r": 4,
+      "c": 5,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "+2.90%",
+      "lines": 3
+     },
+     {
+      "r": 4,
+      "c": 6,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "1,102,394",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 7,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "135,920.66",
+      "lines": 4
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 59,
+    "tokenBreaks": 4,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 43,
+      "natural": 87,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 38,
+      "natural": 38,
+      "padding": 21
+     },
+     {
+      "minContent": 54,
+      "natural": 54,
+      "padding": 21
+     },
+     {
+      "minContent": 69,
+      "natural": 92,
+      "padding": 21
+     },
+     {
+      "minContent": 78,
+      "natural": 108,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-ref_equal.png"
+  }
+ },
+ "modelsUsed": [
+  "codex/gpt-6.1-terra"
+ ],
+ "understanding": {
+  "purpose": "按日期展示行情，供读者比较每日价格、涨跌幅和成交情况。",
+  "reading": "读者先沿日期纵向查找交易日，再横向比较同一日的开盘、最高、最低和收盘价，并查看涨跌幅及成交情况；也可纵向比较同一指标的变化。",
+  "groups": [
+   "开盘、最高、最低、收盘：四个同类价格指标，适合保持相同宽度和稳定节奏。",
+   "涨跌幅：与价格相关的变化指标，符号和百分号共同表达方向与幅度。",
+   "成交量（手）、成交额（万元）：分别表示交易数量和金额，表头中的单位帮助正确解读数值。"
+  ],
+  "keep_intact": [
+   "日期应尽量作为完整的交易日标识。",
+   "价格、带正负号的百分比和成交数值应尽量保持完整，避免小数点、符号或数字被拆到另一行。"
+  ],
+  "may_wrap": [
+   "成交量和成交额表头可在指标名称与括号内单位之间自然换行。",
+   "若日期或数值被迫拆行，现有行高不能可靠地吸收换行，整行会随最高单元格增高。"
+  ]
+ },
+ "final": {
+  "preferred": [
+   "r0B",
+   "r2A"
+  ],
+  "acceptable": [
+   "r0A",
+   "r1A",
+   "r1B",
+   "r2B"
+  ],
+  "bad": [
+   {
+    "design": "r0C",
+    "why": "Dates, prices, percentages and transaction figures break across multiple lines, making values difficult to recognize and compare. The tall, narrow headers also overwhelm the data."
+   },
+   {
+    "design": "r3A",
+    "why": "Every date breaks across three lines, making the row labels harder to scan and more than doubling the body row height. The table still requires substantial horizontal scrolling."
+   }
+  ],
+  "contrast": null,
+  "ranges": [
+   [
+    108,
+    112
+   ],
+   [
+    59,
+    62
+   ],
+   [
+    59,
+    62
+   ],
+   [
+    59,
+    62
+   ],
+   [
+    59,
+    62
+   ],
+   [
+    75,
+    79
+   ],
+   [
+    90,
+    95
+   ],
+   [
+    99,
+    104
+   ]
+  ],
+  "rationale": "r0B and r2A are identical: they preserve complete dates and numeric values while keeping the four price columns equal in width. The two longer transaction headers wrap, but the data rows remain compact and aligned. This saves 53px of horizontal travel compared with the fully unwrapped r0A and r2B, while the initial viewport still shows the date and all four prices.",
+  "principles": {
+   "general": [
+    "Keep values intact when splitting them would impede recognition or comparison.",
+    "Give columns with the same role a consistent rhythm, and allow longer headers to wrap when their data remains easy to scan.",
+    "Judge horizontal scrolling against the legibility gained and the relationships visible in the initial viewport."
+   ],
+   "specific": [
+    "The four price columns have identical content-width requirements and benefit from matching widths.",
+    "The date needs substantially more width than a price to remain on one line; narrowing it still does not eliminate scrolling.",
+    "Both transaction headers can wrap without increasing the height of the data rows."
+   ]
+  },
+  "tradeoffs": "The preferred layout reduces scrolling at the cost of a taller header. r0A and r2B keep every header on one line, which some readers may find cleaner, but require more horizontal travel.",
+  "uncertain": "The ranges are conservative design estimates, not tested breakpoints; widths near their limits should be rendered to confirm that values remain intact. A designer could reasonably prefer the fully unwrapped headers if horizontal scrolling is a minor concern."
+ },
+ "reviews": [
+  {
+   "order": [
+    "ref_equal",
+    "ref_auto",
+    "r0A",
+    "r0B",
+    "r1A",
+    "r0C"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "bad",
+     "why": "Nearly every value is broken across lines, including dates, prices and percentages. The tall, fragmented rows make comparison difficult."
+    },
+    "B": {
+     "grade": "acceptable",
+     "why": "Prices and percentages remain readable at first sight, but dates split across three lines, weakening the row rhythm. The remaining columns require scrolling."
+    },
+    "C": {
+     "grade": "good",
+     "why": "Dates and the four price columns stay intact in a compact, easy-to-scan grid. The percentage column starts at the viewport edge, so the reader must scroll to see it and the later columns."
+    },
+    "D": {
+     "grade": "good",
+     "why": "The visible dates and prices remain intact and align clearly, though the tall header adds white space. Later columns require horizontal scrolling."
+    },
+    "E": {
+     "grade": "good",
+     "why": "The visible dates and prices are intact and easy to compare, though the tall header adds white space. Later columns require horizontal scrolling."
+    },
+    "F": {
+     "grade": "bad",
+     "why": "Prices, dates and larger numbers split into fragments, making both row reading and column comparison difficult despite fitting within the viewport."
+    }
+   },
+   "best": [
+    "C"
+   ],
+   "confidence": "low",
+   "unsure": "The supplied view shows only the left portion of B, C, D and E, so I cannot assess the widths and wrapping of their later columns or the full scrolling cost. C has the most compact header among the visible alternatives."
+  },
+  {
+   "order": [
+    "r0B",
+    "r0C",
+    "r1A",
+    "r0A",
+    "ref_auto",
+    "ref_equal"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "good",
+     "why": "Dates and the four price columns remain intact and easy to compare. The percentage and trading columns require horizontal scrolling."
+    },
+    "B": {
+     "grade": "bad",
+     "why": "Nearly every date and number breaks across several lines, and the stacked headers make the columns difficult to scan."
+    },
+    "C": {
+     "grade": "good",
+     "why": "The visible dates and prices stay intact in compact, readable rows. The remaining columns require horizontal scrolling."
+    },
+    "D": {
+     "grade": "good",
+     "why": "The visible dates and prices remain intact and align clearly for comparison. The remaining columns require horizontal scrolling."
+    },
+    "E": {
+     "grade": "poor",
+     "why": "Prices and percentages stay intact, but every date breaks across three lines, making the row labels harder to read; the trading columns still require scrolling."
+    },
+    "F": {
+     "grade": "bad",
+     "why": "Dates, prices and trading figures fragment across lines, while tall stacked headers and rows make comparisons difficult."
+    }
+   },
+   "best": [
+    "A",
+    "C",
+    "D"
+   ],
+   "confidence": "low",
+   "unsure": "A, C and D look effectively identical in the supplied visible portions. Their offscreen columns cannot be assessed, so their relative quality is uncertain."
+  }
+ ],
+ "reviewPrompt": "v2"
+}

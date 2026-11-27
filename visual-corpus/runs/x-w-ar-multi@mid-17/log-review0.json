@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val2] العربية · ترويسة متعددة المستويات (language ar, right-to-left: column 1 is on the RIGHT).\nGrid: 4 columns × 5 rows. Row headers: yes (first logical column identifies each row).\nMerged cells: \"المحافظة\" spans 1 col × 2 row; \"عدد المدارس\" spans 2 col × 1 row; \"ملاحظات\" spans 1 col × 2 row.\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"المحافظة\" · longest unbreakable word 74px · one-line width 74px\n  col 2: header \"عدد المدارس › حكومية\" · longest unbreakable word 54px · one-line width 54px\n  col 3: header \"عدد المدارس › خاصة\" · longest unbreakable word 42px · one-line width 42px\n  col 4: header \"ملاحظات\" · longest unbreakable word 80px · one-line width 355px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 480px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 479px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10652,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"bad\",\"why\":\"Both school-type headers break inside words, as do the Alexandria row label and the number 1,107. These breaks disrupt scanning and identification.\"},\"B\":{\"grade\":\"good\",\"why\":\"Headers, row labels and numbers stay intact, and the notes wrap into readable lines. The row-label column has more space than it needs, leaving the notes somewhat narrow.\"},\"C\":{\"grade\":\"poor\",\"why\":\"The notes column is so narrow that sentences wrap into many short lines, making the rows tall and hard to scan. The numeric columns have much more room than their contents need.\"},\"D\":{\"grade\":\"excellent\",\"why\":\"The row labels, headers and numbers remain intact, while the notes fit comfortably in two lines. The compact numeric columns leave useful space for the longer text.\"},\"E\":{\"grade\":\"excellent\",\"why\":\"All labels and values stay intact, the paired numeric columns are easy to compare, and the notes wrap into balanced, readable lines.\"},\"F\":{\"grade\":\"excellent\",\"why\":\"The columns support clear comparison, with intact labels and values and two-line notes. The second note uses a longer first line and a short final line.\"}},\"best\":[\"D\",\"E\"],\"confidence\":\"medium\",\"unsure\":\"D, E and F are close; their main difference is the line balance in the notes, which is partly a matter of judgment at this image scale.\"}\n"
+  }
+ ]
+}

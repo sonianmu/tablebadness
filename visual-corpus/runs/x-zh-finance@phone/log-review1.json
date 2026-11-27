@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 中文 · 财务指标 (language zh-CN).\nGrid: 6 columns × 6 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"指标\" · longest unbreakable word 31px · one-line width 154px\n  col 2: header \"2022 年\" · longest unbreakable word 45px · one-line width 57px\n  col 3: header \"2023 年\" · longest unbreakable word 45px · one-line width 57px\n  col 4: header \"2024 年\" · longest unbreakable word 43px · one-line width 57px\n  col 5: header \"同比\" · longest unbreakable word 54px · one-line width 54px\n  col 6: header \"备注\" · longest unbreakable word 31px · one-line width 276px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nRendering convention: the screenshot always shows the WHOLE table. Anything beyond the dashed box is not clipped; it is the part a reader reaches by scrolling sideways, so judge both what fits in the box at first sight and the cost of scrolling to the rest.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9463,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"The metrics and annual figures scan clearly, with intact values and manageable label wrapping. The year headings wrap, and the notes require horizontal scrolling.\"},\"B\":{\"grade\":\"bad\",\"why\":\"Fitting all six columns into the viewport breaks percentages and identifiers across lines. Narrow metric and note columns make rows exceptionally tall and difficult to compare.\"},\"C\":{\"grade\":\"good\",\"why\":\"The three years have clear, single-line headings and intact values, and the metric labels remain reasonably readable. Year-over-year changes and notes require horizontal scrolling.\"},\"D\":{\"grade\":\"poor\",\"why\":\"The financial values remain intact, but the metric and note columns are so narrow that words fragment and rows become very tall. The notes extend beyond the initial viewport.\"},\"E\":{\"grade\":\"good\",\"why\":\"The metrics, annual figures and changes are compact and mostly easy to compare. Wrapped year headings and the off-screen notes are the main costs.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"Single-line year headings and intact figures aid comparison, but narrow metric labels wrap awkwardly and tall rows weaken the scanning rhythm. Changes and notes require scrolling.\"}},\"best\":[\"C\"],\"confidence\":\"medium\",\"unsure\":\"The supplied views do not show the full width of the scrolled content clearly, so the readability of the notes and the total scrolling distance are uncertain.\"}\n"
+  }
+ ]
+}

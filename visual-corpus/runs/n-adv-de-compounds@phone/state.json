@@ -12,21 +12,21 @@
    "critique": [
     {
      "design": "r0A",
-     "good": "Fits entirely inside the 360px box, so the reader never scrolls and each row is a self-contained unit on one screen; the Kurzform column (104px) stays intact and legible, and the identifier pair sits adjacent as intended. Row order and rhythm are readable — you can see the whole glossary in one vertical sweep.",
-     "problems": "Both of the wide columns are destroyed. The headwords break into arbitrary 7–9 character shards ('Donauampf / schifffahrtsg / esellschaft'), which makes the anchor term unrecognisable — the one thing the reader came to look up. Worse, the Erklärung breaks mid-word in every line ('Gesellschaftsfor / m der / Personenschiff / ahrt'), so the prose is unreadable as prose: 13 mid-word splits and a 13-line tallest cell. Row heights balloon to 222–315px, and the table becomes 1673px tall, so 'one glance per row' becomes a scroll of its own.",
-     "cause": "The 359px budget is split three ways: col 3 gets only 135px → 114px of text (about 15 characters per line), while col 1 gets 120px → 99px of text for strings that need 300–546px. Every column is below its own minimum viable measure simultaneously; nothing is allocated enough to be intact."
+     "good": "Die erste Spalte bietet den Begriffen etwas mehr Raum; Kurzformen bleiben gut erkennbar. Die Erklärung ist breit genug, um ihre Wörter überwiegend an Wortgrenzen umzubrechen.",
+     "problems": "Lange Begriffe zerfallen dennoch in mehrere schwer lesbare Stücke. Die Zeilen sind hoch, während ein beträchtlicher Teil der Erklärung erst durch seitliches Scrollen sichtbar wird.",
+     "cause": "160 px reichen für die langen Komposita nicht aus; von der 220 px breiten Erklärungsspalte liegt nur ein Teil im 360-px-Ausschnitt."
     },
     {
      "design": "r0B",
-     "good": "Gives the headword column 175px, the most generous of the three fitting designs, so Begriff entries break into fewer, slightly longer chunks, and Kurzform remains whole at 104px. Nothing overflows the box.",
-     "problems": "Catastrophic for the explanation column: the header 'Erklärung' itself splits into 'Erkläru / ng' (1/3 headers wrapped), the prose runs at roughly 8–10 characters per line, producing 51 mid-word splits and a 23-line tallest cell. The table is 2905px tall — a single row (501–548px) is taller than the phone screen, so a row can no longer be read as a unit at all. It is r0A's failure amplified by starving the column that actually needs width.",
-     "cause": "col 3 was cut to 80px → 59px of text, while col 1 was raised to 175px → 154px, still far short of the 546px its longest headword needs. The extra 55px moved to col 1 bought almost nothing (headwords still split) and cost col 3 its last usable measure."
+     "good": "Die breitere Erklärungsspalte schafft einen ruhigeren Textsatz und senkt die Zeilenhöhen deutlich. Die Kurzformen bleiben gut lesbar, und alle drei Spalten sind zunächst erkennbar.",
+     "problems": "Die Begriffe brechen häufiger mitten im Wort um und sind dadurch schwerer zu erfassen. Der größte Teil der Erklärung liegt außerhalb des ersten Ausschnitts; auch am längsten Begriff bleibt ein einzelner Buchstabe auf der letzten Zeile stehen.",
+     "cause": "Die erste Spalte wurde auf 135 px verengt, während die Erklärung 270 px erhält; insgesamt ragt die Tabelle 150 px über den Ausschnitt hinaus."
     },
     {
      "design": "r0C",
-     "good": "The only design where the content is actually intact: col 1 at 567px holds even 'Rindfleischetikettierungsüberwachungsaufgabenübertragungsgesetz' whole, zero mid-word splits, rows 36–106px, tallest cell 4 lines, table only 534px tall. Typographically it is clean and calm — headwords read as identifiers, the Kurzform sits right beside its term, and the prose has a generous measure.",
-     "problems": "It is not a table on this device, it is three separate horizontal views. At 360px the reader sees only col 1; the Kurzform (x = 567–671) and the whole Erklärung (x = 671–1071) are entirely off-screen, so the defining behaviour of the table — term, short form and explanation compared in one glance — is impossible without 712px of horizontal scrolling per row, and the row loses its anchor the moment you scroll right to read the prose.",
-     "cause": "The 546px headword column alone exceeds the viewport; giving it its natural width plus a 400px prose column produces 1072px total. Prioritising 'no word split' over 'row visible as a unit' inverts the table's purpose."
+     "good": "Die gesamte Tabelle passt in den ersten Ausschnitt; Begriffe, Kurzformen und Erklärungen sind ohne horizontales Scrollen zu sehen.",
+     "problems": "Die Erklärungsspalte wirkt sehr schmal: Viele Wörter werden mitten im Wort getrennt, teils bleiben einzelne Buchstaben oder Satzzeichen stehen. Die extrem hohen Zeilen erzeugen viel Leerraum neben den Kurzformen und erschweren den Vergleich.",
+     "cause": "Bei 110 px Spaltenbreite bleiben für Erklärungstext nur 89 px. Das ist deutlich weniger als die Breite des längsten Wortes und erzwingt zahlreiche Trennungen."
     }
    ],
    "done": false,
@@ -40,21 +40,21 @@
    "critique": [
     {
      "design": "r1A",
-     "good": "Col 2 held at its minimum 104px so every abbreviation (DDG, BAfoG, RUAUG, GrundVZUV, SUG) stays whole; col 1 and col 2 sit tight together as the row identity; row heights moderate (max 6 lines).",
-     "problems": "Col 3 is starved: at 250px (≈229px measure) the Erklarung collapses into 6 very short ragged lines that read like a list, not prose, and it is still clipped by the 360 box. Meanwhile col 1 at 230px still breaks long compounds mid-morpheme (visible '…fahrtsges / ellschaft', '…forderun / gsesetz'). So you pay the overflow cost AND get broken headwords AND an unreadable prose measure.",
-     "cause": "250px is below any workable prose measure (~280–300px needed); 230px cannot contain a 546px unbreakable word, so splits are unavoidable there; the total 584 exceeds 359 regardless."
+     "good": "The 104px Kurzform column keeps the abbreviations legible, and the 240px explanation column gives the prose a comparatively comfortable measure. All three headers and the beginning of the explanation are visible in the viewport; the row heights also remain relatively even.",
+     "problems": "The long row labels break at arbitrary points, sometimes leaving very short fragments. Much of each explanation lies beyond the viewport, so readers must scroll to read across a row.",
+     "cause": "At 150px, the Begriff column has only 129px for text, forcing long compounds to break. The 240px explanation column improves wrapping but makes the table 135px wider than the viewport."
     },
     {
      "design": "r1B",
-     "good": "Best prose measure of the three: col 3 at 340px (≈319px, ~4 lines) is genuinely readable; col 1 at 250px keeps most headwords on 2 lines; crucially col 1+col 2 = 354px fits inside the 360 viewport, so the term+short-form pair is always visible without scrolling.",
-     "problems": "The whole Erklarung column sits outside the 360 box (335px overflow) — the render shows none of it, and because only ~6px of col 3 would peek into the viewport a reader may not even realise a third column exists. Headwords still split mid-morpheme. The visible slice is all identifier and no content.",
-     "cause": "Col 1 (250) + col 2 (104) consume 354 of the 360px viewport, pushing col 3 entirely off-screen; total 695 is far beyond the box, so the readable prose it bought is hidden behind the scroll."
+     "good": "The narrower table reduces horizontal scrolling while retaining visible portions of all three columns. The 104px Kurzform column still gives identifiers adequate space.",
+     "problems": "The explanation prose becomes noticeably taller, especially in the longest rows, creating an uneven vertical rhythm and more empty space in adjacent cells. The row labels still break into awkward fragments.",
+     "cause": "Reducing Erklärung to 207px leaves only 186px for text, increasing line counts. Begriff remains at 150px, so its forced compound breaks are unchanged."
     },
     {
      "design": "r1C",
-     "good": "Smallest overflow (105px) and col 2 still protected at 104px — the closest attempt to respect the box.",
-     "problems": "Worst readability of the set: col 3 at 180px (≈159px measure) explodes into 9 lines of one or two words, destroying the prose; col 1 at 180px forces 5 mid-word splits and 7–9 line rows; and it STILL overflows by 105px. It pays both costs — fragmentation and scroll — and gets neither readable prose nor intact headwords.",
-     "cause": "Splitting the 360 budget between two columns (180/180) starves both: 180px is far below the 546px headword and far below a readable prose measure, so both break while the sum (465) still exceeds the box."
+     "good": "The wider Begriff column reduces the number of fragments in several labels and makes the row identifiers easier to scan. Kurzform remains legible.",
+     "problems": "Less of the explanation is visible on first sight, and this design requires the most horizontal scrolling. Some compounds still end in very short fragments, while the explanation column is narrow enough to make several rows taller than in r1A.",
+     "cause": "Increasing Begriff to 180px shifts the start of Erklärung 30px to the right. Its 220px width is also 20px less than in r1A, causing more prose wrapping."
     }
    ],
    "done": false,
@@ -68,21 +68,21 @@
    "critique": [
     {
      "design": "r2A",
-     "good": "Col 1 at 205px (184px text) is the strongest anchor column of the three: 'Kraftfahrzeug-' / 'Haftpflichtversicherung' breaks at the hyphen, and 'Sicherheitsüberprüfungs' / 'gesetz' avoids a one-letter orphan. Col 2 at 104px keeps every abbreviation intact, and the 605px total is the least horizontal scroll here.",
-     "problems": "Col 3 at 295px (274px text) is too narrow for prose: the longest explanation wraps to five lines, so rows reach 129px and the table is 743px tall. At 360px only 51px of col 3 is visible, clipping the 'Erklärung' header and most of the text. Col 1 still breaks mid-word and leaves a one-letter orphan ('...verordnun' / 'g') in the Grundstücks row.",
-     "cause": "205px is far below the 546px headword requirement, so col 1 must split; 295px is below the ~310px measure needed to hold the longest prose at four lines. The 605px total overflows by 245px, and col 3 begins at x=309, leaving 51px visible."
+     "good": "Die Kurzformen bleiben lesbar, die Kopfzeile steht auf einer Zeile und die Erklärungen haben genug Breite für einen vergleichsweise ruhigen Umbruch. Die Zeilen wirken trotz ihrer Höhe gut zusammengehalten.",
+     "problems": "Der längste Begriff endet mit einem isolierten „g“. Im ersten Ansichtsbereich ist nur der Anfang der Erklärung sichtbar; zum Lesen jeder Erklärung muss seitlich gescrollt werden.",
+     "cause": "160 px für Begriff erzwingen die Trennung der langen Komposita. Die 240 px breite Erklärung beginnt erst nach den 160 px und 104 px breiten ersten Spalten und reicht deshalb deutlich über den Bildschirm hinaus."
     },
     {
      "design": "r2B",
-     "good": "Col 3 at 340px (319px text) gives the best prose measure: the tallest cell drops to four lines, rows are 83–106px, and the table is only 627px tall. Col 2 stays intact at 104px. Because col 1 is narrower, col 3 begins at x=284, so 76px of the explanation—enough for the 'Erklärung' header—is visible before scrolling.",
-     "problems": "Col 1 at 180px (159px text) is too narrow for the anchor: 'Donaudampfschifffah' / 'rtsgesellschaft', 'Kraftfahrzeug-Haftpflichtversicheru' / 'ng', and 'Sicherheitsüberprüfu' / 'ngsgesetz' break mid-morpheme, with ugly 'ng' tails. The Rindfleisch headword needs four lines. The reader must reassemble the term before using it.",
-     "cause": "180px is 25px below the 205px threshold that keeps 'Haftpflichtversicherung' whole and avoids the 'ng' fragments. The 625px total still overflows by 265px, so the width saved does not buy a fit; it only damages col 1."
+     "good": "Begriff und Kurzform bilden weiterhin eine gut erkennbare Einheit. Gegenüber r2A ist etwas weniger seitliches Scrollen nötig.",
+     "problems": "Die dritte Datenzeile wird durch den Umbruch der Erklärung höher; auch die Zeile zur Kfz-Haftpflichtversicherung wächst. Der geringere Überstand bringt daher einen sichtbaren Verlust an Rhythmus und Kompaktheit.",
+     "cause": "Die Verringerung der Erklärung von 240 auf 225 px verändert Wortumbrüche. Die 160 px für Begriff lassen zugleich den isolierten letzten Buchstaben des längsten Kompositums bestehen."
     },
     {
      "design": "r2C",
-     "good": "Col 1 at 245px (224px text) is the most generous headword column: Donau and Bundes... need only two lines, Kraftfahrzeug-Haftpflichtversicherung breaks cleanly at the hyphen, and the Rind/Grund words need three lines. Col 2 remains intact.",
-     "problems": "The extra 40px over r2A does not solve the 546px headwords, and it creates a one-letter orphan in 'Sicherheitsüberprüfungsgeset' / 'z'. Worse, col 3 begins at x=349, so at 360px only 11px of the explanation is visible; the initial view is term + abbreviation with almost no prose. Col 3 is still 295px, so prose remains five lines and the table stays 743px tall.",
-     "cause": "245px is still far short of 546px, so the headword gain is marginal; 295px col 3 is unchanged from r2A, so prose measure does not improve. The 645px total overflows by 285px and pushes col 3 almost entirely offscreen."
+     "good": "Ein größerer Teil der Erklärungen ist beim ersten Blick sichtbar, und der seitliche Scrollweg ist am kürzesten. Die Kurzformen bleiben innerhalb ihrer Spalte lesbar.",
+     "problems": "Die Begriffe zerfallen in viele kurze Fragmente; besonders der längste Begriff endet wieder mit einem einzelnen Buchstaben. Die Erklärung der dritten Datenzeile wird sehr hoch. Dadurch wirkt die Tabelle unruhiger und das Vergleichen der Zeilen mühsamer.",
+     "cause": "135 px für Begriff bieten den langen Komposita wenig Platz. Die auf 210 px reduzierte Erklärung erzwingt zusätzliche Zeilenumbrüche. Die sichtbaren Trennungen der Komposita sind trotz der angegebenen Statistik zu Worttrennungen relevant."
     }
    ],
    "done": false,
@@ -96,29 +96,29 @@
  "designs": {
   "r0A": {
    "widths": [
-    120,
+    160,
     104,
-    135
+    220
    ],
    "geom": {
     "nCols": 3,
     "nRows": 7,
-    "tableWidth": 360,
-    "tableHeight": 1673,
-    "overflow": 0,
+    "tableWidth": 485,
+    "tableHeight": 952.3,
+    "overflow": 125,
     "colWidths": [
-     120,
+     160,
      104,
-     135
+     220
     ],
     "rowHeights": [
      36.3,
-     268.8,
-     245.5,
-     315.3,
-     315.3,
-     222.3,
-     268.8
+     152.5,
+     152.5,
+     175.8,
+     152.5,
+     129.3,
+     152.5
     ],
     "cells": [
      {
@@ -155,7 +155,7 @@
       "cs": 1,
       "role": "row",
       "text": "Donaudampfschifffahrtsgesellschaft",
-      "lines": 3
+      "lines": 2
      },
      {
       "r": 1,
@@ -173,7 +173,7 @@
       "cs": 1,
       "role": "data",
       "text": "Gesellschaftsform der Personenschifffahrt auf der Donau; der",
-      "lines": 11
+      "lines": 6
      },
      {
       "r": 2,
@@ -182,7 +182,7 @@
       "cs": 1,
       "role": "row",
       "text": "Bundesausbildungsförderungsgesetz",
-      "lines": 3
+      "lines": 2
      },
      {
       "r": 2,
@@ -200,19 +200,19 @@
       "cs": 1,
       "role": "data",
       "text": "Gesetzliche Grundlage der staatlichen Ausbildungsförderung i",
-      "lines": 10
-     },
-     {
-      "r": 3,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Rindfleischetikettierungsüberwachungsaufgabenübertragungsges",
       "lines": 6
      },
      {
       "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Rindfleischetikettierungsüberwachungsaufgabenübertragungsges",
+      "lines": 4
+     },
+     {
+      "r": 3,
       "c": 1,
       "rs": 1,
       "cs": 1,
@@ -227,7 +227,7 @@
       "cs": 1,
       "role": "data",
       "text": "Landesgesetz aus Mecklenburg-Vorpommern, mit dem Überwachung",
-      "lines": 13
+      "lines": 7
      },
      {
       "r": 4,
@@ -236,271 +236,27 @@
       "cs": 1,
       "role": "row",
       "text": "Grundstücksverkehrsgenehmigungszuständigkeitsübertragungsver",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GrundVZÜV",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bundesverordnung, die Zuständigkeiten für Genehmigungen im G",
       "lines": 6
      },
      {
-      "r": 4,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "GrundVZÜV",
-      "lines": 1
-     },
-     {
-      "r": 4,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Bundesverordnung, die Zuständigkeiten für Genehmigungen im G",
-      "lines": 13
-     },
-     {
-      "r": 5,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Kraftfahrzeug-Haftpflichtversicherung",
-      "lines": 4
-     },
-     {
-      "r": 5,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Kfz-Haftpflicht",
-      "lines": 2
-     },
-     {
-      "r": 5,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Pflichtversicherung für Fahrzeughalter; deckt Schäden, die m",
-      "lines": 9
-     },
-     {
-      "r": 6,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Sicherheitsüberprüfungsgesetz",
-      "lines": 3
-     },
-     {
-      "r": 6,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "SÜG",
-      "lines": 1
-     },
-     {
-      "r": 6,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Regelt Sicherheitsüberprüfungen von Personen, die Zugang zu ",
-      "lines": 11
-     }
-    ],
-    "clipped": 0,
-    "emergencyBreaks": 13,
-    "tokenBreaks": 2,
-    "tableExtra": 1,
-    "facts": [
-     {
-      "minContent": 546,
-      "natural": 546,
-      "padding": 21
-     },
-     {
-      "minContent": 83,
-      "natural": 101,
-      "padding": 21
-     },
-     {
-      "minContent": 186,
-      "natural": 1091,
-      "padding": 21
-     }
-    ],
-    "frameW": 394
-   },
-   "png": "d-r0A.png",
-   "idea": "No-scroll compromise: pay the price in column 1 (headwords break every ~10 characters) so the abbreviation stays whole and the prose gets the largest measure 360px allows.",
-   "notes": []
-  },
-  "r0B": {
-   "widths": [
-    175,
-    104,
-    80
-   ],
-   "geom": {
-    "nCols": 3,
-    "nRows": 7,
-    "tableWidth": 360,
-    "tableHeight": 2905.3,
-    "overflow": 0,
-    "colWidths": [
-     175,
-     104,
-     80
-    ],
-    "rowHeights": [
-     59.5,
-     501.3,
-     454.8,
-     547.8,
-     524.5,
-     361.8,
-     454.8
-    ],
-    "cells": [
-     {
-      "r": 0,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "col",
-      "text": "Begriff",
-      "lines": 1
-     },
-     {
-      "r": 0,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "col",
-      "text": "Kurzform",
-      "lines": 1
-     },
-     {
-      "r": 0,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "col",
-      "text": "Erklärung",
-      "lines": 2
-     },
-     {
-      "r": 1,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Donaudampfschifffahrtsgesellschaft",
-      "lines": 2
-     },
-     {
-      "r": 1,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "DDG",
-      "lines": 1
-     },
-     {
-      "r": 1,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Gesellschaftsform der Personenschifffahrt auf der Donau; der",
-      "lines": 21
-     },
-     {
-      "r": 2,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Bundesausbildungsförderungsgesetz",
-      "lines": 2
-     },
-     {
-      "r": 2,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "BAföG",
-      "lines": 1
-     },
-     {
-      "r": 2,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Gesetzliche Grundlage der staatlichen Ausbildungsförderung i",
-      "lines": 19
-     },
-     {
-      "r": 3,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Rindfleischetikettierungsüberwachungsaufgabenübertragungsges",
-      "lines": 4
-     },
-     {
-      "r": 3,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "RÜAÜG",
-      "lines": 1
-     },
-     {
-      "r": 3,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Landesgesetz aus Mecklenburg-Vorpommern, mit dem Überwachung",
-      "lines": 23
-     },
-     {
-      "r": 4,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Grundstücksverkehrsgenehmigungszuständigkeitsübertragungsver",
-      "lines": 4
-     },
-     {
-      "r": 4,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "GrundVZÜV",
-      "lines": 1
-     },
-     {
-      "r": 4,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Bundesverordnung, die Zuständigkeiten für Genehmigungen im G",
-      "lines": 22
-     },
-     {
       "r": 5,
       "c": 0,
       "rs": 1,
@@ -525,7 +281,7 @@
       "cs": 1,
       "role": "data",
       "text": "Pflichtversicherung für Fahrzeughalter; deckt Schäden, die m",
-      "lines": 15
+      "lines": 5
      },
      {
       "r": 6,
@@ -552,251 +308,7 @@
       "cs": 1,
       "role": "data",
       "text": "Regelt Sicherheitsüberprüfungen von Personen, die Zugang zu ",
-      "lines": 19
-     }
-    ],
-    "clipped": 0,
-    "emergencyBreaks": 51,
-    "tokenBreaks": 2,
-    "tableExtra": 1,
-    "facts": [
-     {
-      "minContent": 546,
-      "natural": 546,
-      "padding": 21
-     },
-     {
-      "minContent": 83,
-      "natural": 101,
-      "padding": 21
-     },
-     {
-      "minContent": 186,
-      "natural": 1091,
-      "padding": 21
-     }
-    ],
-    "frameW": 394
-   },
-   "png": "d-r0B.png",
-   "idea": "No-scroll, identifier-first card reading: give the headword as much width as possible so most compounds break only once, and let the Erklärung become a tall narrow ribbon beside it, making each row read as a self-contained card.",
-   "notes": []
-  },
-  "r0C": {
-   "widths": [
-    567,
-    104,
-    400
-   ],
-   "geom": {
-    "nCols": 3,
-    "nRows": 7,
-    "tableWidth": 1072,
-    "tableHeight": 533.8,
-    "overflow": 712,
-    "colWidths": [
-     567,
-     104,
-     400
-    ],
-    "rowHeights": [
-     36.3,
-     82.8,
-     82.8,
-     106,
-     82.8,
-     59.5,
-     82.8
-    ],
-    "cells": [
-     {
-      "r": 0,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "col",
-      "text": "Begriff",
-      "lines": 1
-     },
-     {
-      "r": 0,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "col",
-      "text": "Kurzform",
-      "lines": 1
-     },
-     {
-      "r": 0,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "col",
-      "text": "Erklärung",
-      "lines": 1
-     },
-     {
-      "r": 1,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Donaudampfschifffahrtsgesellschaft",
-      "lines": 1
-     },
-     {
-      "r": 1,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "DDG",
-      "lines": 1
-     },
-     {
-      "r": 1,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Gesellschaftsform der Personenschifffahrt auf der Donau; der",
-      "lines": 3
-     },
-     {
-      "r": 2,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Bundesausbildungsförderungsgesetz",
-      "lines": 1
-     },
-     {
-      "r": 2,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "BAföG",
-      "lines": 1
-     },
-     {
-      "r": 2,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Gesetzliche Grundlage der staatlichen Ausbildungsförderung i",
-      "lines": 3
-     },
-     {
-      "r": 3,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Rindfleischetikettierungsüberwachungsaufgabenübertragungsges",
-      "lines": 1
-     },
-     {
-      "r": 3,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "RÜAÜG",
-      "lines": 1
-     },
-     {
-      "r": 3,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Landesgesetz aus Mecklenburg-Vorpommern, mit dem Überwachung",
-      "lines": 4
-     },
-     {
-      "r": 4,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Grundstücksverkehrsgenehmigungszuständigkeitsübertragungsver",
-      "lines": 1
-     },
-     {
-      "r": 4,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "GrundVZÜV",
-      "lines": 1
-     },
-     {
-      "r": 4,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Bundesverordnung, die Zuständigkeiten für Genehmigungen im G",
-      "lines": 3
-     },
-     {
-      "r": 5,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Kraftfahrzeug-Haftpflichtversicherung",
-      "lines": 1
-     },
-     {
-      "r": 5,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Kfz-Haftpflicht",
-      "lines": 2
-     },
-     {
-      "r": 5,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Pflichtversicherung für Fahrzeughalter; deckt Schäden, die m",
-      "lines": 2
-     },
-     {
-      "r": 6,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Sicherheitsüberprüfungsgesetz",
-      "lines": 1
-     },
-     {
-      "r": 6,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "SÜG",
-      "lines": 1
-     },
-     {
-      "r": 6,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Regelt Sicherheitsüberprüfungen von Personen, die Zugang zu ",
-      "lines": 3
+      "lines": 6
      }
     ],
     "clipped": 0,
@@ -820,34 +332,34 @@
       "padding": 21
      }
     ],
-    "frameW": 1106
+    "frameW": 519
    },
-   "png": "d-r0C.png",
-   "idea": "Full-integrity scroll: widen the table to ~1070px so every compound and abbreviation stays unbroken and the explanation keeps a comfortable 380px measure, accepting horizontal scrolling as the cost of correctness.",
+   "png": "d-r0A.png",
+   "idea": "Ein ausgewogener Scrollentwurf zeigt Begriff, Kurzform und den Anfang der Erklärung zugleich und gibt der Erklärung genug Raum für überwiegend natürlichen Umbruch.",
    "notes": []
   },
-  "r1A": {
+  "r0B": {
    "widths": [
-    230,
+    135,
     104,
-    250
+    270
    ],
    "geom": {
     "nCols": 3,
     "nRows": 7,
-    "tableWidth": 585,
-    "tableHeight": 882.5,
-    "overflow": 225,
+    "tableWidth": 510,
+    "tableHeight": 789.5,
+    "overflow": 150,
     "colWidths": [
-     230,
+     135,
      104,
-     250
+     270
     ],
     "rowHeights": [
      36.3,
-     152.5,
-     152.5,
-     152.5,
+     129.3,
+     106,
+     129.3,
      152.5,
      106,
      129.3
@@ -887,7 +399,7 @@
       "cs": 1,
       "role": "row",
       "text": "Donaudampfschifffahrtsgesellschaft",
-      "lines": 2
+      "lines": 3
      },
      {
       "r": 1,
@@ -905,7 +417,7 @@
       "cs": 1,
       "role": "data",
       "text": "Gesellschaftsform der Personenschifffahrt auf der Donau; der",
-      "lines": 6
+      "lines": 5
      },
      {
       "r": 2,
@@ -914,7 +426,7 @@
       "cs": 1,
       "role": "row",
       "text": "Bundesausbildungsförderungsgesetz",
-      "lines": 2
+      "lines": 3
      },
      {
       "r": 2,
@@ -932,7 +444,7 @@
       "cs": 1,
       "role": "data",
       "text": "Gesetzliche Grundlage der staatlichen Ausbildungsförderung i",
-      "lines": 6
+      "lines": 4
      },
      {
       "r": 3,
@@ -941,7 +453,7 @@
       "cs": 1,
       "role": "row",
       "text": "Rindfleischetikettierungsüberwachungsaufgabenübertragungsges",
-      "lines": 3
+      "lines": 5
      },
      {
       "r": 3,
@@ -959,7 +471,7 @@
       "cs": 1,
       "role": "data",
       "text": "Landesgesetz aus Mecklenburg-Vorpommern, mit dem Überwachung",
-      "lines": 6
+      "lines": 5
      },
      {
       "r": 4,
@@ -968,7 +480,7 @@
       "cs": 1,
       "role": "row",
       "text": "Grundstücksverkehrsgenehmigungszuständigkeitsübertragungsver",
-      "lines": 3
+      "lines": 6
      },
      {
       "r": 4,
@@ -995,7 +507,7 @@
       "cs": 1,
       "role": "row",
       "text": "Kraftfahrzeug-Haftpflichtversicherung",
-      "lines": 2
+      "lines": 3
      },
      {
       "r": 5,
@@ -1064,38 +576,37 @@
       "padding": 21
      }
     ],
-    "frameW": 619
+    "frameW": 544
    },
-   "png": "d-r1A.png",
-   "idea": "Accept a small, deliberate horizontal scroll (584px total, 225px overflow) instead of pretending 359px works. col 1 at 230px (209px text) holds most headwords in 2–3 line chunks, col 2 stays intact at 104px and — crucially — ends at x=334, so the term+short-form identity pair is fully visible inside the 360px viewport at scroll position 0. col 3 gets 250px (229px text, ~30 characters per line) which is enough for the prose to wrap at word boundaries in 4–5 lines rather than shattering. Rows land around 90–120px and the table around 650px, so a row still reads as a unit.",
-   "notes": [],
-   "parentRound": 0
+   "png": "d-r0B.png",
+   "idea": "Ein erklärungsbetonter Entwurf zeigt mehr vom Beginn der Erklärung und gibt ihr mehr Lesebreite, nimmt dafür stärker fragmentierte Begriffe und längeres horizontales Scrollen in Kauf.",
+   "notes": []
   },
-  "r1B": {
+  "r0C": {
    "widths": [
-    250,
+    145,
     104,
-    340
+    110
    ],
    "geom": {
     "nCols": 3,
     "nRows": 7,
-    "tableWidth": 695,
-    "tableHeight": 626.8,
-    "overflow": 335,
+    "tableWidth": 360,
+    "tableHeight": 1975.3,
+    "overflow": 0,
     "colWidths": [
-     250,
+     145,
      104,
-     340
+     110
     ],
     "rowHeights": [
      36.3,
-     106,
-     82.8,
-     106,
-     106,
-     82.8,
-     106
+     338.5,
+     315.3,
+     385,
+     338.5,
+     245.5,
+     315.3
     ],
     "cells": [
      {
@@ -1132,7 +643,7 @@
       "cs": 1,
       "role": "row",
       "text": "Donaudampfschifffahrtsgesellschaft",
-      "lines": 2
+      "lines": 3
      },
      {
       "r": 1,
@@ -1150,7 +661,7 @@
       "cs": 1,
       "role": "data",
       "text": "Gesellschaftsform der Personenschifffahrt auf der Donau; der",
-      "lines": 4
+      "lines": 14
      },
      {
       "r": 2,
@@ -1159,7 +670,7 @@
       "cs": 1,
       "role": "row",
       "text": "Bundesausbildungsförderungsgesetz",
-      "lines": 2
+      "lines": 3
      },
      {
       "r": 2,
@@ -1177,7 +688,7 @@
       "cs": 1,
       "role": "data",
       "text": "Gesetzliche Grundlage der staatlichen Ausbildungsförderung i",
-      "lines": 3
+      "lines": 13
      },
      {
       "r": 3,
@@ -1186,7 +697,7 @@
       "cs": 1,
       "role": "row",
       "text": "Rindfleischetikettierungsüberwachungsaufgabenübertragungsges",
-      "lines": 3
+      "lines": 5
      },
      {
       "r": 3,
@@ -1204,7 +715,7 @@
       "cs": 1,
       "role": "data",
       "text": "Landesgesetz aus Mecklenburg-Vorpommern, mit dem Überwachung",
-      "lines": 4
+      "lines": 16
      },
      {
       "r": 4,
@@ -1213,7 +724,7 @@
       "cs": 1,
       "role": "row",
       "text": "Grundstücksverkehrsgenehmigungszuständigkeitsübertragungsver",
-      "lines": 3
+      "lines": 5
      },
      {
       "r": 4,
@@ -1231,7 +742,7 @@
       "cs": 1,
       "role": "data",
       "text": "Bundesverordnung, die Zuständigkeiten für Genehmigungen im G",
-      "lines": 4
+      "lines": 14
      },
      {
       "r": 5,
@@ -1240,7 +751,7 @@
       "cs": 1,
       "role": "row",
       "text": "Kraftfahrzeug-Haftpflichtversicherung",
-      "lines": 2
+      "lines": 3
      },
      {
       "r": 5,
@@ -1258,7 +769,7 @@
       "cs": 1,
       "role": "data",
       "text": "Pflichtversicherung für Fahrzeughalter; deckt Schäden, die m",
-      "lines": 3
+      "lines": 10
      },
      {
       "r": 6,
@@ -1267,7 +778,7 @@
       "cs": 1,
       "role": "row",
       "text": "Sicherheitsüberprüfungsgesetz",
-      "lines": 1
+      "lines": 2
      },
      {
       "r": 6,
@@ -1285,7 +796,251 @@
       "cs": 1,
       "role": "data",
       "text": "Regelt Sicherheitsüberprüfungen von Personen, die Zugang zu ",
+      "lines": 13
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 23,
+    "tokenBreaks": 2,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 546,
+      "natural": 546,
+      "padding": 21
+     },
+     {
+      "minContent": 83,
+      "natural": 101,
+      "padding": 21
+     },
+     {
+      "minContent": 186,
+      "natural": 1091,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r0C.png",
+   "idea": "Alle drei Spalten passen ohne horizontales Scrollen ins Sichtfeld, wobei besonders die schmale Erklärungsspalte viele Worttrennungen und hohe Zeilen verursacht.",
+   "notes": []
+  },
+  "r1A": {
+   "widths": [
+    150,
+    104,
+    240
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 7,
+    "tableWidth": 495,
+    "tableHeight": 905.8,
+    "overflow": 135,
+    "colWidths": [
+     150,
+     104,
+     240
+    ],
+    "rowHeights": [
+     36.3,
+     152.5,
+     152.5,
+     152.5,
+     152.5,
+     106,
+     152.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Begriff",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Kurzform",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Erklärung",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Donaudampfschifffahrtsgesellschaft",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "DDG",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Gesellschaftsform der Personenschifffahrt auf der Donau; der",
+      "lines": 6
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Bundesausbildungsförderungsgesetz",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BAföG",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Gesetzliche Grundlage der staatlichen Ausbildungsförderung i",
+      "lines": 6
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Rindfleischetikettierungsüberwachungsaufgabenübertragungsges",
       "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "RÜAÜG",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Landesgesetz aus Mecklenburg-Vorpommern, mit dem Überwachung",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Grundstücksverkehrsgenehmigungszuständigkeitsübertragungsver",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GrundVZÜV",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bundesverordnung, die Zuständigkeiten für Genehmigungen im G",
+      "lines": 6
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Kraftfahrzeug-Haftpflichtversicherung",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Kfz-Haftpflicht",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pflichtversicherung für Fahrzeughalter; deckt Schäden, die m",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Sicherheitsüberprüfungsgesetz",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SÜG",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Regelt Sicherheitsüberprüfungen von Personen, die Zugang zu ",
+      "lines": 6
      }
     ],
     "clipped": 0,
@@ -1309,10 +1064,255 @@
       "padding": 21
      }
     ],
-    "frameW": 729
+    "frameW": 529
+   },
+   "png": "d-r1A.png",
+   "idea": "Ein Mittelweg zwischen r0A und r0B: Der Begriff erhält mehr Platz als in r0B, die Erklärung mehr als in r0A. So lassen sich Wortstücke und Zeilenhöhe gegen 135 px horizontalen Überstand abwägen.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    150,
+    104,
+    207
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 7,
+    "tableWidth": 462,
+    "tableHeight": 998.8,
+    "overflow": 102,
+    "colWidths": [
+     150,
+     104,
+     207
+    ],
+    "rowHeights": [
+     36.3,
+     152.5,
+     152.5,
+     199,
+     175.8,
+     129.3,
+     152.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Begriff",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Kurzform",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Erklärung",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Donaudampfschifffahrtsgesellschaft",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "DDG",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Gesellschaftsform der Personenschifffahrt auf der Donau; der",
+      "lines": 6
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Bundesausbildungsförderungsgesetz",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BAföG",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Gesetzliche Grundlage der staatlichen Ausbildungsförderung i",
+      "lines": 6
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Rindfleischetikettierungsüberwachungsaufgabenübertragungsges",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "RÜAÜG",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Landesgesetz aus Mecklenburg-Vorpommern, mit dem Überwachung",
+      "lines": 8
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Grundstücksverkehrsgenehmigungszuständigkeitsübertragungsver",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GrundVZÜV",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bundesverordnung, die Zuständigkeiten für Genehmigungen im G",
+      "lines": 7
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Kraftfahrzeug-Haftpflichtversicherung",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Kfz-Haftpflicht",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pflichtversicherung für Fahrzeughalter; deckt Schäden, die m",
+      "lines": 5
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Sicherheitsüberprüfungsgesetz",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SÜG",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Regelt Sicherheitsüberprüfungen von Personen, die Zugang zu ",
+      "lines": 6
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 2,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 546,
+      "natural": 546,
+      "padding": 21
+     },
+     {
+      "minContent": 83,
+      "natural": 101,
+      "padding": 21
+     },
+     {
+      "minContent": 186,
+      "natural": 1091,
+      "padding": 21
+     }
+    ],
+    "frameW": 496
    },
    "png": "d-r1B.png",
-   "idea": "Push further toward the column that actually needs measure: col 3 at 340px gives 319px of text (~42 characters), where the Erklärung reads as running prose in 3–4 lines and mid-word splits should drop near zero for normal words. col 1 stays at 250px (229px text) and col 2 at 104px keeps the pair at x=354, still inside the first viewport. Total 694px, overflow 334px — a wider scroll, but the two columns the reader uses together (term, label) remain on screen while only the prose requires scrolling.",
+   "idea": "Die Erklärung erhält genau 186 px Textbreite und damit rechnerisch Platz für ihr längstes unteilbares Wort. Gegenüber r0A sinkt der horizontale Überstand auf 102 px; dafür können Erklärungen mehr Zeilen benötigen.",
    "notes": [],
    "parentRound": 0
   },
@@ -1320,27 +1320,27 @@
    "widths": [
     180,
     104,
-    180
+    220
    ],
    "geom": {
     "nCols": 3,
     "nRows": 7,
-    "tableWidth": 465,
-    "tableHeight": 1138.3,
-    "overflow": 105,
+    "tableWidth": 505,
+    "tableHeight": 952.3,
+    "overflow": 145,
     "colWidths": [
      180,
      104,
-     180
+     220
     ],
     "rowHeights": [
      36.3,
-     199,
+     152.5,
+     152.5,
      175.8,
-     222.3,
-     199,
+     152.5,
      129.3,
-     175.8
+     152.5
     ],
     "cells": [
      {
@@ -1395,7 +1395,7 @@
       "cs": 1,
       "role": "data",
       "text": "Gesellschaftsform der Personenschifffahrt auf der Donau; der",
-      "lines": 8
+      "lines": 6
      },
      {
       "r": 2,
@@ -1422,7 +1422,7 @@
       "cs": 1,
       "role": "data",
       "text": "Gesetzliche Grundlage der staatlichen Ausbildungsförderung i",
-      "lines": 7
+      "lines": 6
      },
      {
       "r": 3,
@@ -1449,7 +1449,7 @@
       "cs": 1,
       "role": "data",
       "text": "Landesgesetz aus Mecklenburg-Vorpommern, mit dem Überwachung",
-      "lines": 9
+      "lines": 7
      },
      {
       "r": 4,
@@ -1476,7 +1476,7 @@
       "cs": 1,
       "role": "data",
       "text": "Bundesverordnung, die Zuständigkeiten für Genehmigungen im G",
-      "lines": 8
+      "lines": 6
      },
      {
       "r": 5,
@@ -1530,12 +1530,12 @@
       "cs": 1,
       "role": "data",
       "text": "Regelt Sicherheitsüberprüfungen von Personen, die Zugang zu ",
-      "lines": 7
+      "lines": 6
      }
     ],
     "clipped": 0,
-    "emergencyBreaks": 5,
-    "tokenBreaks": 2,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 1,
     "tableExtra": 1,
     "facts": [
      {
@@ -1554,38 +1554,38 @@
       "padding": 21
      }
     ],
-    "frameW": 499
+    "frameW": 539
    },
    "png": "d-r1C.png",
-   "idea": "The low-scroll fallback, for comparison against r0A/r0B: total 464px, only 105px of overflow, with col 2 pinned at its 104px floor so abbreviations never split. col 3 gets 180px (159px text, ~21 characters per line) — still narrow, but the ~5% overflow buys the prose enough extra measure to cut line count and mid-word splits noticeably versus r0A, while col 1 at 180px (159px text) breaks headwords into fewer, longer chunks than r0A's 99px. It is the honest floor: if you insist on staying near 360px, this is the least damaging allocation, but it cannot fix the fundamental mismatch.",
+   "idea": "Die erste Spalte wird gegenüber r0A um 20 px verbreitert, damit die gesuchten Begriffe in längeren Stücken lesbar sind. Die Erklärung behält ihre bisherige Breite; der Überstand steigt auf 145 px.",
    "notes": [],
    "parentRound": 0
   },
   "r2A": {
    "widths": [
-    205,
+    160,
     104,
-    295
+    240
    ],
    "geom": {
     "nCols": 3,
     "nRows": 7,
-    "tableWidth": 605,
-    "tableHeight": 743,
-    "overflow": 245,
+    "tableWidth": 505,
+    "tableHeight": 905.8,
+    "overflow": 145,
     "colWidths": [
-     205,
+     160,
      104,
-     295
+     240
     ],
     "rowHeights": [
      36.3,
-     129.3,
+     152.5,
+     152.5,
+     152.5,
+     152.5,
      106,
-     129.3,
-     129.3,
-     82.8,
-     129.3
+     152.5
     ],
     "cells": [
      {
@@ -1640,7 +1640,7 @@
       "cs": 1,
       "role": "data",
       "text": "Gesellschaftsform der Personenschifffahrt auf der Donau; der",
-      "lines": 5
+      "lines": 6
      },
      {
       "r": 2,
@@ -1667,7 +1667,7 @@
       "cs": 1,
       "role": "data",
       "text": "Gesetzliche Grundlage der staatlichen Ausbildungsförderung i",
-      "lines": 4
+      "lines": 6
      },
      {
       "r": 3,
@@ -1676,7 +1676,7 @@
       "cs": 1,
       "role": "row",
       "text": "Rindfleischetikettierungsüberwachungsaufgabenübertragungsges",
-      "lines": 3
+      "lines": 4
      },
      {
       "r": 3,
@@ -1694,7 +1694,7 @@
       "cs": 1,
       "role": "data",
       "text": "Landesgesetz aus Mecklenburg-Vorpommern, mit dem Überwachung",
-      "lines": 5
+      "lines": 6
      },
      {
       "r": 4,
@@ -1703,7 +1703,7 @@
       "cs": 1,
       "role": "row",
       "text": "Grundstücksverkehrsgenehmigungszuständigkeitsübertragungsver",
-      "lines": 4
+      "lines": 5
      },
      {
       "r": 4,
@@ -1721,7 +1721,7 @@
       "cs": 1,
       "role": "data",
       "text": "Bundesverordnung, die Zuständigkeiten für Genehmigungen im G",
-      "lines": 5
+      "lines": 6
      },
      {
       "r": 5,
@@ -1730,7 +1730,7 @@
       "cs": 1,
       "role": "row",
       "text": "Kraftfahrzeug-Haftpflichtversicherung",
-      "lines": 2
+      "lines": 3
      },
      {
       "r": 5,
@@ -1748,7 +1748,7 @@
       "cs": 1,
       "role": "data",
       "text": "Pflichtversicherung für Fahrzeughalter; deckt Schäden, die m",
-      "lines": 3
+      "lines": 4
      },
      {
       "r": 6,
@@ -1775,12 +1775,12 @@
       "cs": 1,
       "role": "data",
       "text": "Regelt Sicherheitsüberprüfungen von Personen, die Zugang zu ",
-      "lines": 5
+      "lines": 6
      }
     ],
     "clipped": 0,
     "emergencyBreaks": 0,
-    "tokenBreaks": 2,
+    "tokenBreaks": 1,
     "tableExtra": 1,
     "facts": [
      {
@@ -1799,38 +1799,38 @@
       "padding": 21
      }
     ],
-    "frameW": 639
+    "frameW": 539
    },
    "png": "d-r2A.png",
-   "idea": "Sit near the minimum viable total (604). Col 1 at 205px keeps worst-case headwords to ~3 lines (breaking at hyphens like 'Kraftfahrzeug-'), col 2 stays at its 104px floor so abbreviations never split, and col 3 gets a 274px measure (~4 lines) — a real prose column instead of r1A's ragged 229px. Because col 1+col 2 = 309px, ~51px of Erklarung peeks into the 360 viewport, making the horizontal scroll obvious rather than hidden as in r1B.",
+   "idea": "Give the row labels 10px more while keeping r1A’s comfortable explanation width. This tests whether some awkward label fragments can be improved for a small increase in scrolling.",
    "notes": [],
    "parentRound": 1
   },
   "r2B": {
    "widths": [
-    180,
+    160,
     104,
-    340
+    225
    ],
    "geom": {
     "nCols": 3,
     "nRows": 7,
-    "tableWidth": 625,
-    "tableHeight": 626.8,
-    "overflow": 265,
+    "tableWidth": 490,
+    "tableHeight": 952.3,
+    "overflow": 130,
     "colWidths": [
-     180,
+     160,
      104,
-     340
+     225
     ],
     "rowHeights": [
      36.3,
-     106,
-     82.8,
-     106,
-     106,
-     82.8,
-     106
+     152.5,
+     152.5,
+     175.8,
+     152.5,
+     129.3,
+     152.5
     ],
     "cells": [
      {
@@ -1885,7 +1885,7 @@
       "cs": 1,
       "role": "data",
       "text": "Gesellschaftsform der Personenschifffahrt auf der Donau; der",
-      "lines": 4
+      "lines": 6
      },
      {
       "r": 2,
@@ -1912,7 +1912,7 @@
       "cs": 1,
       "role": "data",
       "text": "Gesetzliche Grundlage der staatlichen Ausbildungsförderung i",
-      "lines": 3
+      "lines": 6
      },
      {
       "r": 3,
@@ -1939,7 +1939,7 @@
       "cs": 1,
       "role": "data",
       "text": "Landesgesetz aus Mecklenburg-Vorpommern, mit dem Überwachung",
-      "lines": 4
+      "lines": 7
      },
      {
       "r": 4,
@@ -1948,7 +1948,7 @@
       "cs": 1,
       "role": "row",
       "text": "Grundstücksverkehrsgenehmigungszuständigkeitsübertragungsver",
-      "lines": 4
+      "lines": 5
      },
      {
       "r": 4,
@@ -1966,7 +1966,7 @@
       "cs": 1,
       "role": "data",
       "text": "Bundesverordnung, die Zuständigkeiten für Genehmigungen im G",
-      "lines": 4
+      "lines": 6
      },
      {
       "r": 5,
@@ -1993,7 +1993,7 @@
       "cs": 1,
       "role": "data",
       "text": "Pflichtversicherung für Fahrzeughalter; deckt Schäden, die m",
-      "lines": 3
+      "lines": 5
      },
      {
       "r": 6,
@@ -2020,7 +2020,7 @@
       "cs": 1,
       "role": "data",
       "text": "Regelt Sicherheitsüberprüfungen von Personen, die Zugang zu ",
-      "lines": 4
+      "lines": 6
      }
     ],
     "clipped": 0,
@@ -2044,38 +2044,38 @@
       "padding": 21
      }
     ],
-    "frameW": 659
+    "frameW": 524
    },
    "png": "d-r2B.png",
-   "idea": "Test maximising the primary reading column: col 3 at 340px gives a 319px, ~4–5 line measure — the most readable Erklarung. Col 2 pinned at 104. Col 1 drops to 180px, accepting 4-line worst-case headwords; the trade is deliberately toward prose legibility, betting the reader recognises the term across the wrap and values a clean explanation more.",
+   "idea": "Use a modestly wider label column and a middle-ground explanation width. This tests whether the table can retain a reasonable prose measure with slightly less overflow than r1A.",
    "notes": [],
    "parentRound": 1
   },
   "r2C": {
    "widths": [
-    245,
+    135,
     104,
-    295
+    210
    ],
    "geom": {
     "nCols": 3,
     "nRows": 7,
-    "tableWidth": 645,
-    "tableHeight": 743,
-    "overflow": 285,
+    "tableWidth": 450,
+    "tableHeight": 975.5,
+    "overflow": 90,
     "colWidths": [
-     245,
+     135,
      104,
-     295
+     210
     ],
     "rowHeights": [
      36.3,
+     152.5,
+     152.5,
+     199,
+     152.5,
      129.3,
-     106,
-     129.3,
-     129.3,
-     82.8,
-     129.3
+     152.5
     ],
     "cells": [
      {
@@ -2112,7 +2112,7 @@
       "cs": 1,
       "role": "row",
       "text": "Donaudampfschifffahrtsgesellschaft",
-      "lines": 2
+      "lines": 3
      },
      {
       "r": 1,
@@ -2130,7 +2130,7 @@
       "cs": 1,
       "role": "data",
       "text": "Gesellschaftsform der Personenschifffahrt auf der Donau; der",
-      "lines": 5
+      "lines": 6
      },
      {
       "r": 2,
@@ -2139,7 +2139,7 @@
       "cs": 1,
       "role": "row",
       "text": "Bundesausbildungsförderungsgesetz",
-      "lines": 2
+      "lines": 3
      },
      {
       "r": 2,
@@ -2157,7 +2157,7 @@
       "cs": 1,
       "role": "data",
       "text": "Gesetzliche Grundlage der staatlichen Ausbildungsförderung i",
-      "lines": 4
+      "lines": 6
      },
      {
       "r": 3,
@@ -2166,7 +2166,7 @@
       "cs": 1,
       "role": "row",
       "text": "Rindfleischetikettierungsüberwachungsaufgabenübertragungsges",
-      "lines": 3
+      "lines": 5
      },
      {
       "r": 3,
@@ -2184,7 +2184,7 @@
       "cs": 1,
       "role": "data",
       "text": "Landesgesetz aus Mecklenburg-Vorpommern, mit dem Überwachung",
-      "lines": 5
+      "lines": 8
      },
      {
       "r": 4,
@@ -2193,7 +2193,7 @@
       "cs": 1,
       "role": "row",
       "text": "Grundstücksverkehrsgenehmigungszuständigkeitsübertragungsver",
-      "lines": 3
+      "lines": 6
      },
      {
       "r": 4,
@@ -2211,7 +2211,7 @@
       "cs": 1,
       "role": "data",
       "text": "Bundesverordnung, die Zuständigkeiten für Genehmigungen im G",
-      "lines": 5
+      "lines": 6
      },
      {
       "r": 5,
@@ -2220,7 +2220,7 @@
       "cs": 1,
       "role": "row",
       "text": "Kraftfahrzeug-Haftpflichtversicherung",
-      "lines": 2
+      "lines": 3
      },
      {
       "r": 5,
@@ -2238,7 +2238,7 @@
       "cs": 1,
       "role": "data",
       "text": "Pflichtversicherung für Fahrzeughalter; deckt Schäden, die m",
-      "lines": 3
+      "lines": 5
      },
      {
       "r": 6,
@@ -2265,742 +2265,7 @@
       "cs": 1,
       "role": "data",
       "text": "Regelt Sicherheitsüberprüfungen von Personen, die Zugang zu ",
-      "lines": 5
-     }
-    ],
-    "clipped": 0,
-    "emergencyBreaks": 0,
-    "tokenBreaks": 2,
-    "tableExtra": 1,
-    "facts": [
-     {
-      "minContent": 546,
-      "natural": 546,
-      "padding": 21
-     },
-     {
-      "minContent": 83,
-      "natural": 101,
-      "padding": 21
-     },
-     {
-      "minContent": 186,
-      "natural": 1091,
-      "padding": 21
-     }
-    ],
-    "frameW": 679
-   },
-   "png": "d-r2C.png",
-   "idea": "Opposite bet: give col 1 245px so the 546px compounds fall on ~2–3 lines with hyphen breaks preserved (closest to whole headwords), col 2 at its 104px floor, and keep col 3 at a still-workable 274px measure. Col 1+col 2 = 349px, so the identity pair nearly fills the viewport and the explanation is one short scroll away — a refinement of r1B's coherent left block but with a tighter, less wasteful total (644 vs 695).",
-   "notes": [],
-   "parentRound": 1
-  },
-  "r3A": {
-   "widths": [
-    205,
-    104,
-    330
-   ],
-   "geom": {
-    "nCols": 3,
-    "nRows": 7,
-    "tableWidth": 640,
-    "tableHeight": 650,
-    "overflow": 280,
-    "colWidths": [
-     205,
-     104,
-     330
-    ],
-    "rowHeights": [
-     36.3,
-     106,
-     82.8,
-     129.3,
-     106,
-     82.8,
-     106
-    ],
-    "cells": [
-     {
-      "r": 0,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "col",
-      "text": "Begriff",
-      "lines": 1
-     },
-     {
-      "r": 0,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "col",
-      "text": "Kurzform",
-      "lines": 1
-     },
-     {
-      "r": 0,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "col",
-      "text": "Erklärung",
-      "lines": 1
-     },
-     {
-      "r": 1,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Donaudampfschifffahrtsgesellschaft",
-      "lines": 2
-     },
-     {
-      "r": 1,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "DDG",
-      "lines": 1
-     },
-     {
-      "r": 1,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Gesellschaftsform der Personenschifffahrt auf der Donau; der",
-      "lines": 4
-     },
-     {
-      "r": 2,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Bundesausbildungsförderungsgesetz",
-      "lines": 2
-     },
-     {
-      "r": 2,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "BAföG",
-      "lines": 1
-     },
-     {
-      "r": 2,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Gesetzliche Grundlage der staatlichen Ausbildungsförderung i",
-      "lines": 3
-     },
-     {
-      "r": 3,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Rindfleischetikettierungsüberwachungsaufgabenübertragungsges",
-      "lines": 3
-     },
-     {
-      "r": 3,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "RÜAÜG",
-      "lines": 1
-     },
-     {
-      "r": 3,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Landesgesetz aus Mecklenburg-Vorpommern, mit dem Überwachung",
-      "lines": 5
-     },
-     {
-      "r": 4,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Grundstücksverkehrsgenehmigungszuständigkeitsübertragungsver",
-      "lines": 4
-     },
-     {
-      "r": 4,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "GrundVZÜV",
-      "lines": 1
-     },
-     {
-      "r": 4,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Bundesverordnung, die Zuständigkeiten für Genehmigungen im G",
-      "lines": 4
-     },
-     {
-      "r": 5,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Kraftfahrzeug-Haftpflichtversicherung",
-      "lines": 2
-     },
-     {
-      "r": 5,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Kfz-Haftpflicht",
-      "lines": 2
-     },
-     {
-      "r": 5,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Pflichtversicherung für Fahrzeughalter; deckt Schäden, die m",
-      "lines": 3
-     },
-     {
-      "r": 6,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Sicherheitsüberprüfungsgesetz",
-      "lines": 2
-     },
-     {
-      "r": 6,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "SÜG",
-      "lines": 1
-     },
-     {
-      "r": 6,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Regelt Sicherheitsüberprüfungen von Personen, die Zugang zu ",
-      "lines": 4
-     }
-    ],
-    "clipped": 0,
-    "emergencyBreaks": 0,
-    "tokenBreaks": 2,
-    "tableExtra": 1,
-    "facts": [
-     {
-      "minContent": 546,
-      "natural": 546,
-      "padding": 21
-     },
-     {
-      "minContent": 83,
-      "natural": 101,
-      "padding": 21
-     },
-     {
-      "minContent": 186,
-      "natural": 1091,
-      "padding": 21
-     }
-    ],
-    "frameW": 674
-   },
-   "png": "d-r3A.png",
-   "idea": "Keep r2A's 205px col 1—the smallest width that keeps 'Kraftfahrzeug-' / 'Haftpflichtversicherung' and 'Sicherheitsüberprüfungs' / 'gesetz' clean—and 104px col 2. Widen col 3 from 295 to 330 (309px text) so the longest explanation should drop from five lines to four, cutting row heights without spending the extra 40px of r2C. Total 639px, 279px overflow; col 3 still starts at x=309, so the header is clipped until the reader scrolls.",
-   "notes": [],
-   "parentRound": 2
-  },
-  "r3B": {
-   "widths": [
-    225,
-    104,
-    330
-   ],
-   "geom": {
-    "nCols": 3,
-    "nRows": 7,
-    "tableWidth": 660,
-    "tableHeight": 650,
-    "overflow": 300,
-    "colWidths": [
-     225,
-     104,
-     330
-    ],
-    "rowHeights": [
-     36.3,
-     106,
-     82.8,
-     129.3,
-     106,
-     82.8,
-     106
-    ],
-    "cells": [
-     {
-      "r": 0,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "col",
-      "text": "Begriff",
-      "lines": 1
-     },
-     {
-      "r": 0,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "col",
-      "text": "Kurzform",
-      "lines": 1
-     },
-     {
-      "r": 0,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "col",
-      "text": "Erklärung",
-      "lines": 1
-     },
-     {
-      "r": 1,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Donaudampfschifffahrtsgesellschaft",
-      "lines": 2
-     },
-     {
-      "r": 1,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "DDG",
-      "lines": 1
-     },
-     {
-      "r": 1,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Gesellschaftsform der Personenschifffahrt auf der Donau; der",
-      "lines": 4
-     },
-     {
-      "r": 2,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Bundesausbildungsförderungsgesetz",
-      "lines": 2
-     },
-     {
-      "r": 2,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "BAföG",
-      "lines": 1
-     },
-     {
-      "r": 2,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Gesetzliche Grundlage der staatlichen Ausbildungsförderung i",
-      "lines": 3
-     },
-     {
-      "r": 3,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Rindfleischetikettierungsüberwachungsaufgabenübertragungsges",
-      "lines": 3
-     },
-     {
-      "r": 3,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "RÜAÜG",
-      "lines": 1
-     },
-     {
-      "r": 3,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Landesgesetz aus Mecklenburg-Vorpommern, mit dem Überwachung",
-      "lines": 5
-     },
-     {
-      "r": 4,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Grundstücksverkehrsgenehmigungszuständigkeitsübertragungsver",
-      "lines": 3
-     },
-     {
-      "r": 4,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "GrundVZÜV",
-      "lines": 1
-     },
-     {
-      "r": 4,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Bundesverordnung, die Zuständigkeiten für Genehmigungen im G",
-      "lines": 4
-     },
-     {
-      "r": 5,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Kraftfahrzeug-Haftpflichtversicherung",
-      "lines": 2
-     },
-     {
-      "r": 5,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Kfz-Haftpflicht",
-      "lines": 2
-     },
-     {
-      "r": 5,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Pflichtversicherung für Fahrzeughalter; deckt Schäden, die m",
-      "lines": 3
-     },
-     {
-      "r": 6,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Sicherheitsüberprüfungsgesetz",
-      "lines": 2
-     },
-     {
-      "r": 6,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "SÜG",
-      "lines": 1
-     },
-     {
-      "r": 6,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Regelt Sicherheitsüberprüfungen von Personen, die Zugang zu ",
-      "lines": 4
-     }
-    ],
-    "clipped": 0,
-    "emergencyBreaks": 0,
-    "tokenBreaks": 2,
-    "tableExtra": 1,
-    "facts": [
-     {
-      "minContent": 546,
-      "natural": 546,
-      "padding": 21
-     },
-     {
-      "minContent": 83,
-      "natural": 101,
-      "padding": 21
-     },
-     {
-      "minContent": 186,
-      "natural": 1091,
-      "padding": 21
-     }
-    ],
-    "frameW": 694
-   },
-   "png": "d-r3B.png",
-   "idea": "Spend 20px more on col 1 (225px, 204px text) to reduce the worst mid-word breaks in Donau, Rind and Grund, while keeping col 3 at 330px (309px text). Total 659px, 299px overflow. This is the anchor-first variant; it pushes col 3 start to x=329, so less prose is visible before scrolling.",
-   "notes": [],
-   "parentRound": 2
-  },
-  "r3C": {
-   "widths": [
-    205,
-    104,
-    350
-   ],
-   "geom": {
-    "nCols": 3,
-    "nRows": 7,
-    "tableWidth": 660,
-    "tableHeight": 603.5,
-    "overflow": 300,
-    "colWidths": [
-     205,
-     104,
-     350
-    ],
-    "rowHeights": [
-     36.3,
-     106,
-     82.8,
-     106,
-     106,
-     82.8,
-     82.8
-    ],
-    "cells": [
-     {
-      "r": 0,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "col",
-      "text": "Begriff",
-      "lines": 1
-     },
-     {
-      "r": 0,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "col",
-      "text": "Kurzform",
-      "lines": 1
-     },
-     {
-      "r": 0,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "col",
-      "text": "Erklärung",
-      "lines": 1
-     },
-     {
-      "r": 1,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Donaudampfschifffahrtsgesellschaft",
-      "lines": 2
-     },
-     {
-      "r": 1,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "DDG",
-      "lines": 1
-     },
-     {
-      "r": 1,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Gesellschaftsform der Personenschifffahrt auf der Donau; der",
-      "lines": 4
-     },
-     {
-      "r": 2,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Bundesausbildungsförderungsgesetz",
-      "lines": 2
-     },
-     {
-      "r": 2,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "BAföG",
-      "lines": 1
-     },
-     {
-      "r": 2,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Gesetzliche Grundlage der staatlichen Ausbildungsförderung i",
-      "lines": 3
-     },
-     {
-      "r": 3,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Rindfleischetikettierungsüberwachungsaufgabenübertragungsges",
-      "lines": 3
-     },
-     {
-      "r": 3,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "RÜAÜG",
-      "lines": 1
-     },
-     {
-      "r": 3,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Landesgesetz aus Mecklenburg-Vorpommern, mit dem Überwachung",
-      "lines": 4
-     },
-     {
-      "r": 4,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Grundstücksverkehrsgenehmigungszuständigkeitsübertragungsver",
-      "lines": 4
-     },
-     {
-      "r": 4,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "GrundVZÜV",
-      "lines": 1
-     },
-     {
-      "r": 4,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Bundesverordnung, die Zuständigkeiten für Genehmigungen im G",
-      "lines": 4
-     },
-     {
-      "r": 5,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Kraftfahrzeug-Haftpflichtversicherung",
-      "lines": 2
-     },
-     {
-      "r": 5,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Kfz-Haftpflicht",
-      "lines": 2
-     },
-     {
-      "r": 5,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Pflichtversicherung für Fahrzeughalter; deckt Schäden, die m",
-      "lines": 3
-     },
-     {
-      "r": 6,
-      "c": 0,
-      "rs": 1,
-      "cs": 1,
-      "role": "row",
-      "text": "Sicherheitsüberprüfungsgesetz",
-      "lines": 2
-     },
-     {
-      "r": 6,
-      "c": 1,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "SÜG",
-      "lines": 1
-     },
-     {
-      "r": 6,
-      "c": 2,
-      "rs": 1,
-      "cs": 1,
-      "role": "data",
-      "text": "Regelt Sicherheitsüberprüfungen von Personen, die Zugang zu ",
-      "lines": 3
+      "lines": 6
      }
     ],
     "clipped": 0,
@@ -3024,10 +2289,745 @@
       "padding": 21
      }
     ],
-    "frameW": 694
+    "frameW": 484
+   },
+   "png": "d-r2C.png",
+   "idea": "Bring more of each explanation into the initial viewport and reduce total scrolling. This explores the cost in compound breaks and row height of prioritizing immediate visibility across all three columns.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    175,
+    104,
+    240
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 7,
+    "tableWidth": 520,
+    "tableHeight": 905.8,
+    "overflow": 160,
+    "colWidths": [
+     175,
+     104,
+     240
+    ],
+    "rowHeights": [
+     36.3,
+     152.5,
+     152.5,
+     152.5,
+     152.5,
+     106,
+     152.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Begriff",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Kurzform",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Erklärung",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Donaudampfschifffahrtsgesellschaft",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "DDG",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Gesellschaftsform der Personenschifffahrt auf der Donau; der",
+      "lines": 6
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Bundesausbildungsförderungsgesetz",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BAföG",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Gesetzliche Grundlage der staatlichen Ausbildungsförderung i",
+      "lines": 6
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Rindfleischetikettierungsüberwachungsaufgabenübertragungsges",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "RÜAÜG",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Landesgesetz aus Mecklenburg-Vorpommern, mit dem Überwachung",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Grundstücksverkehrsgenehmigungszuständigkeitsübertragungsver",
+      "lines": 4
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GrundVZÜV",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bundesverordnung, die Zuständigkeiten für Genehmigungen im G",
+      "lines": 6
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Kraftfahrzeug-Haftpflichtversicherung",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Kfz-Haftpflicht",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pflichtversicherung für Fahrzeughalter; deckt Schäden, die m",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Sicherheitsüberprüfungsgesetz",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SÜG",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Regelt Sicherheitsüberprüfungen von Personen, die Zugang zu ",
+      "lines": 6
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 1,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 546,
+      "natural": 546,
+      "padding": 21
+     },
+     {
+      "minContent": 83,
+      "natural": 101,
+      "padding": 21
+     },
+     {
+      "minContent": 186,
+      "natural": 1091,
+      "padding": 21
+     }
+    ],
+    "frameW": 554
+   },
+   "png": "d-r3A.png",
+   "idea": "r2A mit breiterer Begriffsspalte: Prüft, ob insbesondere der isolierte Endbuchstabe verschwindet und die Komposita besser lesbar werden. Die Erklärung behält ihren ruhigeren Umbruch; dafür steigt der Scrollweg.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3B": {
+   "widths": [
+    150,
+    104,
+    240
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 7,
+    "tableWidth": 495,
+    "tableHeight": 905.8,
+    "overflow": 135,
+    "colWidths": [
+     150,
+     104,
+     240
+    ],
+    "rowHeights": [
+     36.3,
+     152.5,
+     152.5,
+     152.5,
+     152.5,
+     106,
+     152.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Begriff",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Kurzform",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Erklärung",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Donaudampfschifffahrtsgesellschaft",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "DDG",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Gesellschaftsform der Personenschifffahrt auf der Donau; der",
+      "lines": 6
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Bundesausbildungsförderungsgesetz",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BAföG",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Gesetzliche Grundlage der staatlichen Ausbildungsförderung i",
+      "lines": 6
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Rindfleischetikettierungsüberwachungsaufgabenübertragungsges",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "RÜAÜG",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Landesgesetz aus Mecklenburg-Vorpommern, mit dem Überwachung",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Grundstücksverkehrsgenehmigungszuständigkeitsübertragungsver",
+      "lines": 5
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GrundVZÜV",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bundesverordnung, die Zuständigkeiten für Genehmigungen im G",
+      "lines": 6
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Kraftfahrzeug-Haftpflichtversicherung",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Kfz-Haftpflicht",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pflichtversicherung für Fahrzeughalter; deckt Schäden, die m",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Sicherheitsüberprüfungsgesetz",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SÜG",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Regelt Sicherheitsüberprüfungen von Personen, die Zugang zu ",
+      "lines": 6
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 1,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 546,
+      "natural": 546,
+      "padding": 21
+     },
+     {
+      "minContent": 83,
+      "natural": 101,
+      "padding": 21
+     },
+     {
+      "minContent": 186,
+      "natural": 1091,
+      "padding": 21
+     }
+    ],
+    "frameW": 529
+   },
+   "png": "d-r3B.png",
+   "idea": "Die Begriffsspalte gegenüber r2A leicht verschmälern und die Erklärung bei 240 px belassen. So beginnt sie früher im Ansichtsbereich, ohne die zusätzlichen Erklärungszeilen von r2B und r2C in Kauf zu nehmen.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3C": {
+   "widths": [
+    135,
+    104,
+    240
+   ],
+   "geom": {
+    "nCols": 3,
+    "nRows": 7,
+    "tableWidth": 480,
+    "tableHeight": 905.8,
+    "overflow": 120,
+    "colWidths": [
+     135,
+     104,
+     240
+    ],
+    "rowHeights": [
+     36.3,
+     152.5,
+     152.5,
+     152.5,
+     152.5,
+     106,
+     152.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Begriff",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Kurzform",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Erklärung",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Donaudampfschifffahrtsgesellschaft",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "DDG",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Gesellschaftsform der Personenschifffahrt auf der Donau; der",
+      "lines": 6
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Bundesausbildungsförderungsgesetz",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "BAföG",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Gesetzliche Grundlage der staatlichen Ausbildungsförderung i",
+      "lines": 6
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Rindfleischetikettierungsüberwachungsaufgabenübertragungsges",
+      "lines": 5
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "RÜAÜG",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Landesgesetz aus Mecklenburg-Vorpommern, mit dem Überwachung",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Grundstücksverkehrsgenehmigungszuständigkeitsübertragungsver",
+      "lines": 6
+     },
+     {
+      "r": 4,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "GrundVZÜV",
+      "lines": 1
+     },
+     {
+      "r": 4,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Bundesverordnung, die Zuständigkeiten für Genehmigungen im G",
+      "lines": 6
+     },
+     {
+      "r": 5,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Kraftfahrzeug-Haftpflichtversicherung",
+      "lines": 3
+     },
+     {
+      "r": 5,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Kfz-Haftpflicht",
+      "lines": 2
+     },
+     {
+      "r": 5,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Pflichtversicherung für Fahrzeughalter; deckt Schäden, die m",
+      "lines": 4
+     },
+     {
+      "r": 6,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "row",
+      "text": "Sicherheitsüberprüfungsgesetz",
+      "lines": 2
+     },
+     {
+      "r": 6,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "SÜG",
+      "lines": 1
+     },
+     {
+      "r": 6,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Regelt Sicherheitsüberprüfungen von Personen, die Zugang zu ",
+      "lines": 6
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 1,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 546,
+      "natural": 546,
+      "padding": 21
+     },
+     {
+      "minContent": 83,
+      "natural": 101,
+      "padding": 21
+     },
+     {
+      "minContent": 186,
+      "natural": 1091,
+      "padding": 21
+     }
+    ],
+    "frameW": 514
    },
    "png": "d-r3C.png",
-   "idea": "Keep the proven 205/104 identifier pair and push col 3 to 350px (329px text) for a genuinely comfortable prose measure and safer four-line cells. Total 659px, 299px overflow. This is the readability-first variant; it costs the same scroll as r3-headword but protects col 1 less.",
+   "idea": "Den frühen Beginn der Erklärung aus r2C mit der breiteren Erklärung aus r2A verbinden. Das prüft, ob mehr sichtbarer Erklärungstext und ein ruhigerer Umbruch den stärker fragmentierten Begriffen genügend entgegenkommen.",
    "notes": [],
    "parentRound": 2
   },
@@ -3517,278 +3517,179 @@
    "png": "d-ref_equal.png"
   }
  },
+ "redone": true,
+ "reviewerFeedback": "another layout was rated acceptable: The row labels have useful space and the short forms are readable, but the explanation column begins near the viewport edge and requires horizontal scrolling. Long compounds still split across several lines. | another layout was rated poor: All three columns fit in the viewport, but both the row labels and explanations break words frequently into small fragments. The resulting tall rows make comparisons difficult. | your previous preferred design was rated acceptable: The wider row-label column reduces fragmentation, and the short forms remain readable. However, the explanation column starts outside the initial viewport, so reading each row requires sideways scrolling. | another layout was rated good: Row labels have enough room to remain reasonably legible, and the short forms fit. The explanation column begins at the viewport edge, so its contents still require scrolling. | another layout was rated poor: The wide first column preserves the compounds, but it occupies the entire initial viewport and extends beyond it. Readers must scroll to reach both the short forms and explanations, making row-by-row comparison awkward. | another layout was rated good: The row labels and short forms are visible together, with more of the explanation column initially visible than in C or D. Some long labels split awkwardly, and the explanations still require scrolling.\nyour previous preferred design was rated acceptable: The wider Begriff column keeps the long compounds in relatively few fragments, and the abbreviations are easy to scan. Almost all of Erklärung lies beyond the initial viewport, so reading across each row requires scrolling. | another layout was rated poor: All three columns fit in the viewport, but the narrow Begriff and Erklärung columns break many words into small fragments. The resulting tall rows make both reading and comparison laborious. | another layout was rated poor: The first column preserves more of the long terms, but it occupies the whole initial viewport and extends beyond it. The abbreviations and explanations require substantial horizontal scrolling, while large blank areas weaken the row rhythm. | another layout was rated good: Begriff and Kurzform are visible together, and the compounds generally occupy two or three lines. Erklärung starts within the viewport, although reading it still requires horizontal scrolling and several words are split. | another layout was rated good: The three headers and the start of each explanation appear in the viewport. Begriff remains reasonably readable, though the longest term ends with an isolated letter and the explanations require scrolling. | another layout was rated acceptable: The three columns begin within the viewport, but the narrower Begriff column breaks terms more often and the explanation column produces tall rows with frequent word splits. Scrolling is still needed to read the explanations.",
+ "modelsUsed": [
+  "codex/gpt-6.1-terra"
+ ],
  "understanding": {
-  "purpose": "A glossary of very long German compounds: each row pairs an identifier-like headword (Begriff) with a short abbreviation (Kurzform) and a prose explanation (Erklärung). The reader looks up a term, checks its short form, then reads the explanation — so the table is scanned row by row, not column by column, and the headword is the anchor that must remain recognisable.",
-  "reading": "Vertical scan down column 1 to find the term, a quick glance at column 2 (a lookup key, not read as text), then a horizontal read of column 3 as running prose. Because col 1 entries are 300–546px unbreakable strings, at 360px they will break mid-word no matter what; the real choice is how much of that damage to absorb versus how much readable measure to give the prose and how much horizontal scrolling to impose.",
+  "purpose": "Die Tabelle stellt lange deutsche Komposita ihren Kurzformen und Erklärungen gegenüber.",
+  "reading": "Lesende suchen einen Begriff in der ersten Spalte und lesen dann Kurzform und Erklärung in derselben Zeile. Sichtbare Teile aller drei Spalten erleichtern die Orientierung; für vollständige Erklärungen kann horizontales Scrollen nötig sein.",
   "groups": [
-   "col 1 (Begriff) and col 2 (Kurzform) form one unit — the term and its label, read together as the row's identity; they should sit adjacent and tight.",
-   "col 3 (Erklärung) is a separate register: continuous prose that only needs a workable measure, and it benefits from a clear gap after the identifier pair."
+   "Begriff und Kurzform gehören als zwei Bezeichnungen desselben Eintrags zusammen.",
+   "Die Erklärung gehört zur jeweiligen Zeile und liefert den Kontext zum Begriff."
   ],
   "keep_intact": [
-   "Kurzform values — short abbreviations (≤83px); splitting them destroys their meaning, so this column must never go below ~104px.",
-   "Begriff headwords ideally whole (546px worst case), which is only possible with a wide column / horizontal scroll.",
-   "Hyphenated compounds such as 'Kraftfahrzeug-Haftpflichtversicherung' should break at the hyphen, not mid-morpheme."
+   "Kurzformen und andere Kennungen möglichst vollständig innerhalb einer Zeile",
+   "Wörter in Erklärungen möglichst ohne Trennung innerhalb des Wortes"
   ],
   "may_wrap": [
-   "Erklärung — multi-clause prose (one-line 1091px); it wraps naturally and its row height can absorb 2–5 lines without harming the row's unity.",
-   "The longest Begriff strings, if the column is kept narrow; each row already has spare vertical height, so 2–3 line headwords remain scannable."
+   "Lange Komposita müssen bei dieser Bildschirmbreite teilweise innerhalb des Wortes getrennt werden.",
+   "Erklärungen können an Wortgrenzen umbrechen; die durch lange Begriffe entstehende Zeilenhöhe kann dafür genutzt werden."
   ]
  },
  "final": {
   "preferred": [
-   "r1B"
+   "r3A"
   ],
   "acceptable": [
-   "r3C",
-   "r3B",
-   "r2B",
-   "r3A",
-   "r2A",
-   "r2C"
+   "r1C"
   ],
   "bad": [
    {
-    "design": "r1C",
-    "why": "Squeezes both the compound column and the explanation to 180px, producing 5 mid-word splits, 9-line cells, and a 1138px-tall table; rows stop reading as units and the explanation becomes a narrow ribbon."
+    "design": "r1B",
+    "why": "The row labels break into awkward fragments, including a final “ft”; the narrow explanation column also makes several rows unnecessarily tall."
+   },
+   {
+    "design": "r2A",
+    "why": "A long row label ends with a lone “g”, weakening the most important identifier in that row."
+   },
+   {
+    "design": "r2B",
+    "why": "A row label ends with a lone “g”, while the narrower explanation column adds height without removing that fault."
+   },
+   {
+    "design": "r2C",
+    "why": "The narrow row-header column produces many short fragments, including a lone “g”, and the explanation column makes the longest row especially tall."
+   },
+   {
+    "design": "r3B",
+    "why": "The first row label ends with the fragment “ft”, and another ends with “etz”; these breaks make the identifiers harder to scan."
+   },
+   {
+    "design": "r3C",
+    "why": "The narrow row-header column breaks identifiers into many fragments and leaves a lone “g” on one line."
    }
   ],
   "contrast": null,
   "ranges": [
    [
-    235,
-    265
+    175,
+    180
    ],
    [
     104,
-    115
+    104
    ],
    [
-    325,
-    360
+    240,
+    240
    ]
   ],
-  "rationale": "This table is about long German compounds, so the first column carries row identity and should not be sacrificed; r1B gives it 250px, enough to reduce fragmentation while keeping the short Kurzform column at its 104px minimum. The Erklärung is prose and can be read by horizontal scrolling; 340px keeps it to a workable 4–5 lines. All viable layouts must overflow 360px, so the real choice is controlled scrolling rather than forcing a fit. r3C is the closest alternative—shorter and with a wider explanation—but its 205px term column fragments the compounds more and weakens row identity.",
+  "rationale": "r3A gives the long row identifiers enough space to avoid the most distracting tiny end fragments visible in several alternatives, while its explanation column keeps the rows relatively even. The abbreviation column remains compact, and both identifying columns fit in the initial viewport. The explanation requires horizontal scrolling, but the extra width supports more comfortable reading once reached. The screenshots visibly show compounds breaking within words despite the reported zero mid-word splits.",
   "principles": {
    "general": [
-    "When a table cannot fit, preserve the column that carries row identity; trim short code columns and let prose scroll.",
-    "Size short abbreviation/code columns to the longest unbreakable token, not to equal-width aesthetics.",
-    "For long-word languages, fragmentation in the identifier column is a better guide than total table height alone.",
-    "A controlled horizontal scroll is usually better than forcing every column into the viewport with mid-word splits."
+    "Give row identifiers enough width to remain recognizable, especially when they anchor comparisons across a row.",
+    "Judge horizontal scrolling together with line breaks and row rhythm; minimizing table width alone can damage readability.",
+    "Avoid isolated letters and very short fragments at line ends when width adjustments can prevent them."
    ],
    "specific": [
-    "German compounds here need roughly 235–265px to avoid excessive fragmentation; 205px is noticeably tighter.",
-    "Kurzform needs about 104px for GrundVZÜV; below that the abbreviation splits.",
-    "Erklärung at 330–355px keeps rows to 4–5 lines; 295px pushes rows to 5 lines and table height to about 743px.",
-    "The 360px box is fundamentally too narrow; every publishable design scrolls horizontally."
+    "The German compounds are too long to remain intact within the phone viewport.",
+    "A 104px abbreviation column accommodates the short forms while preserving space for the other columns.",
+    "At 240px, the explanation column produces more even row heights across the shown candidates."
    ]
   },
-  "tradeoffs": "r1B favors the primary compound column and row integrity; r3C favors a wider prose column and shorter table. r2B favors narrower total width at the cost of a cramped term column. A designer could reasonably accept more horizontal scroll to protect the row headers, or accept a narrower term column to reduce total width.",
-  "uncertain": "Whether 205px is too cramped for the compounds, whether the 35px width saving of r3C matters more than its 45px term-column loss, and the exact range boundaries where line breaks and row heights change."
+  "tradeoffs": "r3A overflows by 160px, more than any other candidate. A designer prioritizing less horizontal scrolling could choose r1C, accepting taller rows and less space for the explanations.",
+  "uncertain": "The width ranges are conservative estimates from the supplied renders, not tested thresholds; nearby widths may also work well. The relative importance of seeing more explanation at first sight versus giving row labels more room depends on how readers use the table."
  },
  "reviews": [
   {
    "order": [
-    "r1C",
     "ref_equal",
+    "r3A",
     "r1B",
-    "r3B",
     "ref_auto",
-    "r3C"
-   ],
-   "letters": [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F"
-   ],
-   "ratings": {
-    "A": {
-     "grade": "acceptable",
-     "why": "The row labels have useful space and the short forms are readable, but the explanation column begins near the viewport edge and requires horizontal scrolling. Long compounds still split across several lines."
-    },
-    "B": {
-     "grade": "poor",
-     "why": "All three columns fit in the viewport, but both the row labels and explanations break words frequently into small fragments. The resulting tall rows make comparisons difficult."
-    },
-    "C": {
-     "grade": "acceptable",
-     "why": "The wider row-label column reduces fragmentation, and the short forms remain readable. However, the explanation column starts outside the initial viewport, so reading each row requires sideways scrolling."
-    },
-    "D": {
-     "grade": "good",
-     "why": "Row labels have enough room to remain reasonably legible, and the short forms fit. The explanation column begins at the viewport edge, so its contents still require scrolling."
-    },
-    "E": {
-     "grade": "poor",
-     "why": "The wide first column preserves the compounds, but it occupies the entire initial viewport and extends beyond it. Readers must scroll to reach both the short forms and explanations, making row-by-row comparison awkward."
-    },
-    "F": {
-     "grade": "good",
-     "why": "The row labels and short forms are visible together, with more of the explanation column initially visible than in C or D. Some long labels split awkwardly, and the explanations still require scrolling."
-    }
-   },
-   "best": [
-    "F"
-   ],
-   "confidence": "medium",
-   "unsure": "The displayed images do not show the full width of the horizontally scrolling layouts, so the total scrolling distance and the complete wrapping of their explanation columns are uncertain."
-  },
-  {
-   "order": [
-    "r1B",
-    "ref_equal",
-    "ref_auto",
-    "r3B",
-    "r3C",
     "r1C"
    ],
    "letters": [
     "A",
     "B",
     "C",
-    "D",
-    "E",
-    "F"
-   ],
-   "ratings": {
-    "A": {
-     "grade": "acceptable",
-     "why": "The wider Begriff column keeps the long compounds in relatively few fragments, and the abbreviations are easy to scan. Almost all of Erklärung lies beyond the initial viewport, so reading across each row requires scrolling."
-    },
-    "B": {
-     "grade": "poor",
-     "why": "All three columns fit in the viewport, but the narrow Begriff and Erklärung columns break many words into small fragments. The resulting tall rows make both reading and comparison laborious."
-    },
-    "C": {
-     "grade": "poor",
-     "why": "The first column preserves more of the long terms, but it occupies the whole initial viewport and extends beyond it. The abbreviations and explanations require substantial horizontal scrolling, while large blank areas weaken the row rhythm."
-    },
-    "D": {
-     "grade": "good",
-     "why": "Begriff and Kurzform are visible together, and the compounds generally occupy two or three lines. Erklärung starts within the viewport, although reading it still requires horizontal scrolling and several words are split."
-    },
-    "E": {
-     "grade": "good",
-     "why": "The three headers and the start of each explanation appear in the viewport. Begriff remains reasonably readable, though the longest term ends with an isolated letter and the explanations require scrolling."
-    },
-    "F": {
-     "grade": "acceptable",
-     "why": "The three columns begin within the viewport, but the narrower Begriff column breaks terms more often and the explanation column produces tall rows with frequent word splits. Scrolling is still needed to read the explanations."
-    }
-   },
-   "best": [
     "D",
     "E"
    ],
-   "confidence": "medium",
-   "unsure": "The supplied views cut off the right side of the wider layouts, so the full explanation widths and total scrolling distance are difficult to judge precisely. D gives the terms more room; E reveals slightly more of the explanations initially."
-  }
- ],
- "reviewsOld": [
-  {
-   "order": [
-    "r1C",
-    "ref_equal",
-    "r1B",
-    "r3B",
-    "ref_auto",
-    "r3C"
-   ],
-   "letters": [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F"
-   ],
    "ratings": {
     "A": {
-     "grade": "poor",
-     "why": "All three columns fit, but the Erklärung column is squeezed so hard that its lines are visibly chopped at the right edge and the Begriff compounds break into 4–5 fragments. Content is lost or hard to recover."
+     "grade": "acceptable",
+     "why": "The row labels have a workable width and the abbreviations are visible, but the explanations extend beyond the viewport and several labels split within words."
     },
     "B": {
-     "grade": "acceptable",
-     "why": "It is the clean fully-fitting option: all columns remain visible. But Begriff and Erklärung break mid-word constantly, the Kurzform column is very narrow, and rows become extremely tall."
+     "grade": "poor",
+     "why": "All three columns fit, but the narrow labels and explanations split words repeatedly. The resulting tall rows make scanning and comparison laborious."
     },
     "C": {
-     "grade": "poor",
-     "why": "Begriff gets a comfortable width and Kurzform is readable, but Erklärung is pushed far off-screen. The visible table is essentially two columns, and reading the explanation requires a large horizontal scroll that loses row context."
+     "grade": "good",
+     "why": "The wider label column reduces fragmentation and makes the row names easier to scan. Abbreviations remain visible, though reading the explanations requires horizontal scrolling."
     },
     "D": {
-     "grade": "acceptable",
-     "why": "A reasonable compromise: Begriff is wide enough for 2–3 line breaks and Kurzform fits, but Erklärung remains narrow and the table overflows, so the explanation is cut by the viewport and needs scrolling."
+     "grade": "good",
+     "why": "The labels are reasonably legible, the abbreviations fit, and a small part of the explanation column is visible. The longer labels still split within words, and the explanations require scrolling."
     },
     "E": {
-     "grade": "bad",
-     "why": "Only the Begriff column is visible; Kurzform and Erklärung are far to the right. It reads as a one-column list rather than a table, and even the longest term is cut by the viewport."
-    },
-    "F": {
-     "grade": "good",
-     "why": "Best balance: Begriff is wide enough to keep the compounds recognizable, Kurzform stays compact, and Erklärung gets more breathing room. The modest horizontal overflow is a fair trade for readability."
+     "grade": "poor",
+     "why": "Keeping the long labels intact makes the first column so wide that neither abbreviations nor explanations appear in the initial viewport. Readers must scroll substantially to connect each term with its meaning."
     }
    },
    "best": [
-    "F"
+    "C",
+    "D"
    ],
    "confidence": "medium",
-   "unsure": "Exact column widths and overflow amounts are inferred from the screenshots; I am also unsure whether A’s Erklärung is clipped by the cell or only by the viewport, and how much horizontal scrolling the target phone tolerates."
+   "unsure": "The supplied views do not show the full width of the explanations in the scrolling layouts, so their line breaks and the total scrolling distance are difficult to judge."
   },
   {
    "order": [
-    "r1B",
+    "r3A",
     "ref_equal",
-    "ref_auto",
-    "r3B",
-    "r3C",
-    "r1C"
+    "r1B",
+    "r1C",
+    "ref_auto"
    ],
    "letters": [
     "A",
     "B",
     "C",
     "D",
-    "E",
-    "F"
+    "E"
    ],
    "ratings": {
     "A": {
-     "grade": "poor",
-     "why": "Begriff column ~208px chops every compound into 3 pieces (Donauampfschifffahrtsgesells/chaft), Kurzform is fine, but Erklärung is pushed past the right edge with only a sliver of text and a truncated header visible — worst of both worlds: splits plus hidden content."
+     "grade": "acceptable",
+     "why": "The terms have a useful share of the viewport, but the explanation column starts beyond its right edge, so readers must scroll to see any of it. Several compounds still split."
     },
     "B": {
      "grade": "poor",
-     "why": "Everything is crammed into 360px: compounds break into 3–4 fragments and the Erklärung at ~135px breaks single words into 5 pieces ('Gesellschaftsf/orm der/Personenschif/ffahrt'), making rows enormously tall and nearly unreadable, though all columns are technically present."
+     "why": "All three columns fit at first sight, but the narrow term and explanation columns split words repeatedly and make rows very tall, impeding comparison."
     },
     "C": {
-     "grade": "bad",
-     "why": "Begriff takes the whole viewport, so Kurzform and Erklärung are entirely off-screen; the long compounds even overflow the cell border, so the table shows one column of context-free strings."
+     "grade": "poor",
+     "why": "Keeping the long terms intact consumes the viewport: the short forms and explanations are entirely off-screen, and even the longest terms extend beyond it."
     },
     "D": {
-     "grade": "poor",
-     "why": "Begriff at ~230px still breaks every compound across two or three lines, while Erklärung is squeezed to a ~30–45px sliver at the edge — the informative column becomes a vertical strip of 2–3-letter fragments."
+     "grade": "good",
+     "why": "Terms and short forms are visible together, with a glimpse of the explanations. Compounds split across lines and the explanations require scrolling, but the rows remain reasonably easy to follow."
     },
     "E": {
-     "grade": "poor",
-     "why": "Three columns nominally fit, but Erklärung at ~75px yields 2–4 characters per line ('Gese/auf d/Beisp/Deuts'), which is illegible as prose, and Begriff still splits words arbitrarily ('sübertragungsverordnun/g')."
-    },
-    "F": {
      "grade": "acceptable",
-     "why": "The most balanced of the fitting layouts: Kurzform is intact, Begriff at ~175px needs only two fragments per compound, and Erklärung at ~100px is narrow but still reads as wrapped text rather than character soup — the least damaging compromise."
+     "why": "More of the explanation column is visible initially than in D, but the narrower term column creates awkward splits, including a single-letter last line in one row."
     }
    },
    "best": [
-    "F"
+    "D"
    ],
    "confidence": "medium",
-   "unsure": "Column widths are inferred from the renders; for A, C and D I cannot tell whether the off-screen columns are genuinely scrollable and how wide Erklärung really is, which materially affects whether those horizontal-scroll designs deserve a better grade. If D's Erklärung is actually ~350px rather than a squeezed sliver, D could rival F."
+   "unsure": "The screenshots show only the left portion of the horizontally scrolling layouts, so the full explanation widths and the total scrolling distance are difficult to judge."
   }
- ],
- "rereviewed": true,
- "modelsUsed": [
-  "codex/gpt-6.1-terra"
  ],
  "reviewPrompt": "v2"
 }

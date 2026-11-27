@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 中文 · API 参数说明 (language zh-CN).\nGrid: 5 columns × 6 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"参数\" · longest unbreakable word 122px · one-line width 122px\n  col 2: header \"类型\" · longest unbreakable word 49px · one-line width 49px\n  col 3: header \"必填\" · longest unbreakable word 16px · one-line width 31px\n  col 4: header \"默认值\" · longest unbreakable word 82px · one-line width 82px\n  col 5: header \"说明\" · longest unbreakable word 97px · one-line width 488px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nThis table cannot fit without splitting words at 360px. You MAY choose a total wider than 359px (the reader then scrolls horizontally), or squeeze and accept splits — a design decision.\nRendering convention: the screenshot always shows the WHOLE table. Anything beyond the dashed box is not clipped; it is the part a reader reaches by scrolling sideways, so judge both what fits in the box at first sight and the cost of scrolling to the rest.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11126,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"The parameter names stay intact, but the default value created_at breaks across lines and the description begins beyond the viewport.\"},\"B\":{\"grade\":\"good\",\"why\":\"Parameter names and default values stay intact, and the relatively compact rows suggest useful space for descriptions. The description column requires horizontal scrolling.\"},\"C\":{\"grade\":\"poor\",\"why\":\"The required-field header wraps, the description starts beyond the viewport, and the tall rows suggest a narrow description column.\"},\"D\":{\"grade\":\"bad\",\"why\":\"The table fits the viewport, but parameter names and default values split, while descriptions form very narrow, hard-to-scan columns.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"Identifiers stay intact and the first four columns scan clearly, but descriptions require horizontal scrolling and rows are taller than in B.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"Identifiers stay intact, but descriptions require horizontal scrolling and the tall rows make comparisons across the table less efficient.\"}},\"best\":[\"B\"],\"confidence\":\"medium\",\"unsure\":\"The supplied images do not show the full width of the description column for several layouts, so its wrapping and the full scrolling distance cannot be judged reliably.\"}\n"
+  }
+ ]
+}

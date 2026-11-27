@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [验证] 中文 · 电商订单 (language zh-CN).\nGrid: 5 columns × 4 rows. Row headers: none declared.\nPer-column content facts (content px at 13px font, excluding padding):\n  col 1: header \"订单号\" · longest unbreakable word 142px · one-line width 142px\n  col 2: header \"下单时间\" · longest unbreakable word 37px · one-line width 77px\n  col 3: header \"商品\" · longest unbreakable word 47px · one-line width 354px\n  col 4: header \"金额\" · longest unbreakable word 61px · one-line width 61px\n  col 5: header \"收货地址\" · longest unbreakable word 33px · one-line width 347px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 659px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 658px.\nFixed: content, font, 13px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11073,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"订单号、时间和金额保持完整，行也容易横向阅读；商品和地址都换行较多，但分配比较均衡。\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"地址列较宽，但商品列偏窄，键盘名称被拆成四行，末尾只剩一个括号，影响阅读节奏。\"},\"C\":{\"grade\":\"good\",\"why\":\"商品列较宽，长商品名称分成三行；地址列稍窄，长地址也需要多行，但各行仍清晰。\"},\"D\":{\"grade\":\"excellent\",\"why\":\"商品和地址的宽度分配均衡，长内容各占三行，订单号、时间和金额保持完整，整表紧凑且易于逐行比较。\"},\"E\":{\"grade\":\"poor\",\"why\":\"时间列表头和每个时间都被拆成两行，削弱了同类信息的快速比较；商品与地址虽较宽，但收益不足以抵消这个问题。\"},\"F\":{\"grade\":\"bad\",\"why\":\"订单号在每行都被拆开，地址和长商品名称也换成较多行，行高增大且难以核对订单。\"}},\"best\":[\"D\"],\"confidence\":\"medium\",\"unsure\":\"A、C、D 的差异较小；它们都保持关键字段完整，对商品与地址列的取舍也都合理。\"}\n"
+  }
+ ]
+}

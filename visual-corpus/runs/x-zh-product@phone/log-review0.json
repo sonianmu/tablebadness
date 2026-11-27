@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 中文 · 产品对比 (language zh-CN).\nGrid: 6 columns × 5 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"型号\" · longest unbreakable word 29px · one-line width 79px\n  col 2: header \"价格\" · longest unbreakable word 50px · one-line width 50px\n  col 3: header \"屏幕\" · longest unbreakable word 39px · one-line width 100px\n  col 4: header \"续航\" · longest unbreakable word 20px · one-line width 59px\n  col 5: header \"重量\" · longest unbreakable word 26px · one-line width 39px\n  col 6: header \"评价\" · longest unbreakable word 31px · one-line width 445px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9735,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"bad\",\"why\":\"Prices and OLED break across lines, while the extremely narrow review column makes rows very tall and hard to scan.\"},\"B\":{\"grade\":\"poor\",\"why\":\"Prices stay intact and reviews have more room, but model names and several headers split, as do weights from their units.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"Model names and prices are more legible, and reviews have reasonable room. Battery and weight headers wrap, and screen dimensions and weight units split awkwardly.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"Model names and prices read well, and most screen descriptions wrap in sensible places. Battery and weight headers and weight units still split, and reviews remain narrow.\"},\"E\":{\"grade\":\"poor\",\"why\":\"Prices and weights stay intact, but model names split character by character and the narrow review column produces very tall rows.\"},\"F\":{\"grade\":\"poor\",\"why\":\"Prices remain intact and reviews have some room, but model names, headers and weight units split, weakening the scan across rows.\"}},\"best\":[\"D\"],\"confidence\":\"medium\",\"unsure\":\"C and D are close: C gives reviews slightly more width, while D generally handles screen descriptions better. Both have awkwardly wrapped headers and units.\"}\n"
+  }
+ ]
+}

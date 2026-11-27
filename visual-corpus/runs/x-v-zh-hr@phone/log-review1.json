@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [验证] 中文 · 员工花名册 (language zh-CN).\nGrid: 6 columns × 6 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"工号\" · longest unbreakable word 53px · one-line width 53px\n  col 2: header \"姓名\" · longest unbreakable word 16px · one-line width 62px\n  col 3: header \"部门\" · longest unbreakable word 16px · one-line width 77px\n  col 4: header \"职级\" · longest unbreakable word 19px · one-line width 31px\n  col 5: header \"入职日期\" · longest unbreakable word 43px · one-line width 85px\n  col 6: header \"主要职责\" · longest unbreakable word 31px · one-line width 491px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11509,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"bad\",\"why\":\"Employee IDs and dates split across several lines, while the very narrow responsibilities column produces long vertical stacks of text.\"},\"B\":{\"grade\":\"poor\",\"why\":\"IDs stay intact, but names and departments run largely one character per line, and responsibilities remain heavily wrapped.\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"Most names and all IDs are easy to scan, but departments run one character per line and the responsibilities column is cramped.\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"IDs remain intact and dates generally split into two lines, but names wrap and departments form single-character stacks.\"},\"E\":{\"grade\":\"acceptable\",\"why\":\"The wider responsibilities column improves the longest text, but names and departments are squeezed into vertical stacks.\"},\"F\":{\"grade\":\"good\",\"why\":\"IDs stay intact, departments read in short groups rather than single characters, and the remaining width gives responsibilities a workable measure. Names and dates still wrap.\"}},\"best\":[\"F\"],\"confidence\":\"medium\",\"unsure\":\"The choice between F and E depends on how much priority readers give to scanning names and departments versus reading the longer responsibilities.\"}\n"
+  }
+ ]
+}

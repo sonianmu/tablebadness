@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val2][反例] 行标题长于数据 (language zh-CN).\nGrid: 4 columns × 5 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 17px font, excluding padding):\n  col 1: header \"考核指标\" · longest unbreakable word 35px · one-line width 278px\n  col 2: header \"权重\" · longest unbreakable word 36px · one-line width 36px\n  col 3: header \"目标值\" · longest unbreakable word 36px · one-line width 53px\n  col 4: header \"实际值\" · longest unbreakable word 50px · one-line width 54px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 458px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 457px.\nFixed: content, font, 17px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10455,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"The numeric columns and headers remain intact, and the wider row-header column keeps the lower rows on one line. The first two labels wrap awkwardly, with a closing parenthesis isolated on the first row.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"Headers and values stay intact, but the narrow row-header column forces both long labels into less natural breaks while leaving generous space in the numeric columns.\"},\"C\":{\"grade\":\"good\",\"why\":\"All headers and values stay intact, and the two longer row labels wrap across two lines. The row-header column is narrower than in A, but the numeric columns have comfortable spacing.\"},\"D\":{\"grade\":\"bad\",\"why\":\"The row-header column is so narrow that every label breaks across multiple lines, disrupting scanning and making the table much taller while the numeric columns have excessive empty space.\"},\"E\":{\"grade\":\"poor\",\"why\":\"The wide row-header column helps the labels, but the actual-value header and the first actual value wrap, separating the unit from the number and weakening comparison.\"},\"F\":{\"grade\":\"poor\",\"why\":\"Both the target-value header and the first actual value wrap; the unit falls onto a separate line, making the numeric columns harder to scan despite the wider row-header column.\"}},\"best\":[\"C\"],\"confidence\":\"medium\",\"unsure\":\"A and C are close: A gives the row labels more room, but its isolated closing parenthesis is distracting. The images are small, so the exact character breaks are somewhat difficult to judge.\"}\n"
+  }
+ ]
+}

@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 中文 · 项目任务跟踪 (language zh-CN).\nGrid: 5 columns × 7 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"编号\" · longest unbreakable word 17px · one-line width 32px\n  col 2: header \"负责人\" · longest unbreakable word 16px · one-line width 46px\n  col 3: header \"状态\" · longest unbreakable word 16px · one-line width 46px\n  col 4: header \"截止日期\" · longest unbreakable word 43px · one-line width 87px\n  col 5: header \"说明\" · longest unbreakable word 31px · one-line width 598px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 10857,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"bad\",\"why\":\"编号、负责人、状态和日期多处断行，编号与日期被拆开，严重妨碍逐行扫描和比较；说明列虽宽，也无法弥补这些问题。\"},\"B\":{\"grade\":\"poor\",\"why\":\"前四列有大量空白，说明列却过窄，长说明被拆成许多短行，行高悬殊，跨列追踪同一任务较费力。\"},\"C\":{\"grade\":\"excellent\",\"why\":\"编号、姓名、状态和日期均保持完整，说明列获得充分空间；长说明只占两行，列宽与内容角色相称，行与列都易于扫描。\"},\"D\":{\"grade\":\"good\",\"why\":\"各项标识和日期完整，行的对应关系清楚；但前四列比内容需要的更宽，留给说明的空间较少，长说明的行尾较零碎。\"},\"E\":{\"grade\":\"poor\",\"why\":\"截止日期表头和每个日期都被拆成两行，使日期比较困难，并让短说明所在的行也变高；说明列的额外宽度收益有限。\"}},\"best\":[\"C\"],\"confidence\":\"high\",\"unsure\":\"C 和 D 都能完整呈现关键字段；两者的优劣主要取决于对说明列宽度与前几列留白的取舍。\"}\n"
+  }
+ ]
+}

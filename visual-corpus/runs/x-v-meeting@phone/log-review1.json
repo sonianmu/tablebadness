@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [验证] 中英混排 · 会议待办 (language zh-CN).\nGrid: 5 columns × 5 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"#\" · longest unbreakable word 10px · one-line width 10px\n  col 2: header \"Action item\" · longest unbreakable word 78px · one-line width 481px\n  col 3: header \"负责人\" · longest unbreakable word 30px · one-line width 46px\n  col 4: header \"Due\" · longest unbreakable word 31px · one-line width 31px\n  col 5: header \"状态\" · longest unbreakable word 16px · one-line width 46px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9315,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Status labels, names and dates stay intact, and the action items remain readable. The owner header wraps, and the long English action takes several lines.\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"The action column has useful room, but every status label wraps and the owner header breaks across lines.\"},\"C\":{\"grade\":\"bad\",\"why\":\"The action column is far too narrow: English words and identifiers split across lines, making rows difficult to read and compare.\"},\"D\":{\"grade\":\"poor\",\"why\":\"Action items read comfortably, but the status header and labels stack almost character by character, weakening the table’s scanability.\"},\"E\":{\"grade\":\"bad\",\"why\":\"Dates split across lines, the Chinese owner name breaks, and both the owner header and status labels wrap heavily.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"Names and dates remain intact, but status labels and the owner header wrap, while the action items still occupy several lines.\"}},\"best\":[\"A\"],\"confidence\":\"high\",\"unsure\":\"The images are small, so some individual line breaks are difficult to inspect; the relative column proportions and wrapping are clear.\"}\n"
+  }
+ ]
+}

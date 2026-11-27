@@ -96,15 +96,15 @@ Models used:
 
 Every record lists the model that answered each step (`provenance.models`).
 
-The build stopped again on exhausted quota. **297 of 348** scenarios are built across 119 families:
+**All 348 scenarios** are built across 119 families:
 
 | Split | Built | confirmed | contested | rejected |
 |---|--:|--:|--:|--:|
 | holdout | 80 / 80 | 65 | 8 | 7 |
 | validation | 86 / 86 | 75 | 8 | 3 |
-| research | 131 / 182 | 122 | 5 | 4 |
+| research | 182 / 182 | 168 | 10 | 4 |
 
-- **Mean blind grade:** designed layouts 4.27, browser auto 2.71, equal widths 1.64. Audit: 0 issues.
+- **Mean blind grade:** designed layouts 4.27, browser auto 2.65, equal widths 1.61. Audit: 0 issues.
 
 **Holdout freeze.** `corpus/holdout/FROZEN.json` covers all 80 holdout scenarios:
 - 68 were frozen first;
@@ -116,9 +116,9 @@ No layout algorithm has been run on any split.
 - `tools/design.mjs` writes a changed version to `corpus/holdout-amendments/<id>.json`, with an `amends` field, and hashes it separately (`freeze.mjs --set holdout-amendments`);
 - when only provenance would change, nothing is written.
 
-The frozen record stays canonical. There are 8 amendments: 3 rejected → confirmed, 3 still rejected after a redesign or re-review, and 2 confirmed records re-reviewed with the same status. A user of the holdout chooses, and reports, which version they evaluate against.
+The frozen record stays canonical. There are 9 amendments: 3 rejected → confirmed, 4 still rejected after a redesign or re-review, and 2 confirmed records re-reviewed with the same status. The amendments snapshot was re-frozen once after later redesigns; the earlier hashes are kept under `superseded`. A user of the holdout chooses, and reports, which version they evaluate against.
 
-To resume, run `sh tools/run-all.sh`. It skips everything already built.
+`sh tools/run-all.sh` is resumable and skips everything already built.
 
 ## Limits
 

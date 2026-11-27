@@ -1,0 +1,3126 @@
+{
+ "id": "x-w-ids@phone",
+ "steps": {
+  "r0": {
+   "names": [
+    "r0A",
+    "r0B",
+    "r0C"
+   ]
+  },
+  "r1": {
+   "critique": [
+    {
+     "design": "r0A",
+     "good": "The entire table fits within the viewport, so all four fields are visible without horizontal scrolling.",
+     "problems": "Incident identifiers and trace IDs break across lines, severity and summary headers split, and the very narrow summary produces fragmented words and unusually tall rows. These breaks make events harder to scan and compare.",
+     "cause": "At 92px and 110px, the identifier columns cannot hold their values intact. The 72px severity column is too narrow for its header, and the 85px summary column leaves only 64px for prose."
+    },
+    {
+     "design": "r0B",
+     "good": "Incident identifiers and headers stay on one line. The wider summary improves prose rhythm and reduces row height substantially compared with r0A.",
+     "problems": "The longest trace ID splits, making it harder to read or copy accurately. Severity is only partly visible at first sight, and the summary requires horizontal scrolling. The summary is still narrow enough to produce tall rows.",
+     "cause": "The 180px trace column provides 159px of text space, less than the longest ID requires. The first two columns consume 345px, and the 140px summary column provides 119px for prose."
+    },
+    {
+     "design": "r0C",
+     "good": "All identifiers and headers remain intact, and the wider summary gives the prose more room. The resulting shorter rows make each event easier to follow across the table.",
+     "problems": "The initial viewport contains the incident column and only part of the trace column; severity and summary are offscreen. Reading the assessment fields requires substantial horizontal scrolling, and the summary still wraps frequently.",
+     "cause": "The 165px incident and 299px trace columns together occupy 464px. The 160px summary column leaves 139px for prose, so it still determines much of the row height."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r1A",
+    "r1B",
+    "r1C"
+   ]
+  },
+  "r2": {
+   "critique": [
+    {
+     "design": "r1A",
+     "good": "Incident identifiers, trace IDs and severity labels remain intact. The summary has enough room to wrap without splitting words, and row boundaries keep the records distinct.",
+     "problems": "The first viewport shows incidents and only part of the trace column; severity and summaries require substantial horizontal scrolling. The four-line summary also makes the first data row tall.",
+     "cause": "The 165px incident and 299px trace columns consume 464px before severity begins. The 220px summary width produces the longest prose wrapping."
+    },
+    {
+     "design": "r1B",
+     "good": "The shorter trace column reduces scrolling, and the first viewport begins to reveal severity. Incident identifiers and severity labels remain intact.",
+     "problems": "The longest trace ID splits across lines, making it harder to copy or compare visually. Summary wrapping still leaves the same tall rows as r1A, while almost all summary text remains off-screen.",
+     "cause": "The 180px trace column provides only 159px for a 278px unbreakable ID. The summary remains at 220px."
+    },
+    {
+     "design": "r1C",
+     "good": "All identifiers and severity labels stay intact. The wider summary produces shorter rows and a calmer prose rhythm than r1A.",
+     "problems": "The table requires the most horizontal scrolling, and the initial viewport still shows only incidents and part of the trace ID. The shorter table does not help readers see severity or summaries sooner.",
+     "cause": "The 299px trace column pushes severity beyond the viewport, while the 300px summary column adds another 80px of horizontal extent over r1A."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r2A",
+    "r2B",
+    "r2C"
+   ]
+  },
+  "r3": {
+   "critique": [
+    {
+     "design": "r2A",
+     "good": "Incident identifiers, trace IDs and severity labels remain intact. The generous summary width supports readable prose, and each row stays reasonably compact.",
+     "problems": "The first viewport contains only the incident column and part of the trace ID. Readers must scroll a long way to reach severity and the summary.",
+     "cause": "The 299px trace column preserves the longest ID on one line, but together with the 165px incident column it pushes both descriptive columns far beyond the viewport."
+    },
+    {
+     "design": "r2B",
+     "good": "Incident identifiers and severity labels remain intact. Severity is visible at first sight, and the 260px summary column gives prose room to wrap.",
+     "problems": "Trace IDs break into several fragments, making them harder to scan or transcribe. The summary begins at the viewport edge and still requires substantial scrolling.",
+     "cause": "The 105px trace column provides only 84px for text, forcing the longest ID across four lines. The first three columns occupy 350px before the summary begins."
+    },
+    {
+     "design": "r2C",
+     "good": "Severity remains visible in the initial viewport, and the wider trace column reduces fragmentation of the longest trace compared with r2B.",
+     "problems": "Incident identifiers break across lines, making the first column harder to scan. Short trace IDs also split, including awkward single-character endings; the resulting rows are taller without reducing the total scroll distance meaningfully.",
+     "cause": "The 125px incident column cannot hold the full identifiers, while the 149px trace column is still too narrow for the IDs. The 260px summary width keeps the overall table nearly as wide as r2B."
+    }
+   ],
+   "done": false,
+   "names": [
+    "r3A",
+    "r3B",
+    "r3C"
+   ]
+  }
+ },
+ "designs": {
+  "r0A": {
+   "widths": [
+    92,
+    110,
+    72,
+    85
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 4,
+    "tableWidth": 360,
+    "tableHeight": 727.3,
+    "overflow": 0,
+    "colWidths": [
+     92,
+     110,
+     72,
+     85
+    ],
+    "rowHeights": [
+     59.5,
+     315.3,
+     199,
+     152.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Incident",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Trace ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 2
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0042",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4bf92f3577b34da6a3ce929d0e0e4736",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Checkout latency spiked to eight seconds after the cache clu",
+      "lines": 13
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0043",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "00f067aa0ba902b7",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P3",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Typo in the Spanish translation of the password reset email.",
+      "lines": 8
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240612-0001",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7d3e0a1b9c2f4e6d",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P2",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Webhook retries exhausted for one merchant.",
+      "lines": 6
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 15,
+    "tokenBreaks": 3,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 77,
+      "natural": 144,
+      "padding": 21
+     },
+     {
+      "minContent": 278,
+      "natural": 278,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 691,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-r0A.png",
+   "idea": "Fit the viewport for an immediate overview, accepting splits in incident identifiers and trace IDs and substantial wrapping in summaries.",
+   "notes": []
+  },
+  "r0B": {
+   "widths": [
+    165,
+    180,
+    80,
+    140
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 4,
+    "tableWidth": 566,
+    "tableHeight": 448.3,
+    "overflow": 206,
+    "colWidths": [
+     165,
+     180,
+     80,
+     140
+    ],
+    "rowHeights": [
+     36.3,
+     199,
+     129.3,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Incident",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Trace ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0042",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4bf92f3577b34da6a3ce929d0e0e4736",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Checkout latency spiked to eight seconds after the cache clu",
+      "lines": 8
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0043",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "00f067aa0ba902b7",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P3",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Typo in the Spanish translation of the password reset email.",
+      "lines": 5
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240612-0001",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7d3e0a1b9c2f4e6d",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P2",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Webhook retries exhausted for one merchant.",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 1,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 77,
+      "natural": 144,
+      "padding": 21
+     },
+     {
+      "minContent": 278,
+      "natural": 278,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 691,
+      "padding": 21
+     }
+    ],
+    "frameW": 600
+   },
+   "png": "d-r0B.png",
+   "idea": "Use moderate horizontal scrolling to preserve incident identifiers and severity labels while giving summaries room to wrap, accepting splits in long trace IDs.",
+   "notes": []
+  },
+  "r0C": {
+   "widths": [
+    165,
+    299,
+    80,
+    160
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 4,
+    "tableWidth": 705,
+    "tableHeight": 378.5,
+    "overflow": 345,
+    "colWidths": [
+     165,
+     299,
+     80,
+     160
+    ],
+    "rowHeights": [
+     36.3,
+     152.5,
+     106,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Incident",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Trace ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0042",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4bf92f3577b34da6a3ce929d0e0e4736",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Checkout latency spiked to eight seconds after the cache clu",
+      "lines": 6
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0043",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "00f067aa0ba902b7",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P3",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Typo in the Spanish translation of the password reset email.",
+      "lines": 4
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240612-0001",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7d3e0a1b9c2f4e6d",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P2",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Webhook retries exhausted for one merchant.",
+      "lines": 3
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 77,
+      "natural": 144,
+      "padding": 21
+     },
+     {
+      "minContent": 278,
+      "natural": 278,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 691,
+      "padding": 21
+     }
+    ],
+    "frameW": 739
+   },
+   "png": "d-r0C.png",
+   "idea": "Keep identifiers and severity labels intact and let summaries wrap naturally, at the cost of substantial horizontal scrolling to read the descriptive columns.",
+   "notes": []
+  },
+  "r1A": {
+   "widths": [
+    165,
+    299,
+    80,
+    220
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 4,
+    "tableWidth": 765,
+    "tableHeight": 285.5,
+    "overflow": 405,
+    "colWidths": [
+     165,
+     299,
+     80,
+     220
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     82.8,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Incident",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Trace ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0042",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4bf92f3577b34da6a3ce929d0e0e4736",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Checkout latency spiked to eight seconds after the cache clu",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0043",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "00f067aa0ba902b7",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P3",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Typo in the Spanish translation of the password reset email.",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240612-0001",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7d3e0a1b9c2f4e6d",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P2",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Webhook retries exhausted for one merchant.",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 77,
+      "natural": 144,
+      "padding": 21
+     },
+     {
+      "minContent": 278,
+      "natural": 278,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 691,
+      "padding": 21
+     }
+    ],
+    "frameW": 799
+   },
+   "png": "d-r1A.png",
+   "idea": "Keep incident identifiers and trace IDs intact as in r0C, and give the summary more room for more natural prose wrapping and shorter rows. This increases horizontal scrolling but improves the reading area once reached.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1B": {
+   "widths": [
+    165,
+    180,
+    80,
+    220
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 4,
+    "tableWidth": 646,
+    "tableHeight": 285.5,
+    "overflow": 286,
+    "colWidths": [
+     165,
+     180,
+     80,
+     220
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     82.8,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Incident",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Trace ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0042",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4bf92f3577b34da6a3ce929d0e0e4736",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Checkout latency spiked to eight seconds after the cache clu",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0043",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "00f067aa0ba902b7",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P3",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Typo in the Spanish translation of the password reset email.",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240612-0001",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7d3e0a1b9c2f4e6d",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P2",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Webhook retries exhausted for one merchant.",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 1,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 77,
+      "natural": 144,
+      "padding": 21
+     },
+     {
+      "minContent": 278,
+      "natural": 278,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 691,
+      "padding": 21
+     }
+    ],
+    "frameW": 680
+   },
+   "png": "d-r1B.png",
+   "idea": "Retain r0B's narrower trace column and give the saved width to the summary. This accepts one split trace ID in exchange for less scrolling than the intact-ID design and a more readable summary.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r1C": {
+   "widths": [
+    165,
+    299,
+    80,
+    300
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 4,
+    "tableWidth": 845,
+    "tableHeight": 239,
+    "overflow": 485,
+    "colWidths": [
+     165,
+     299,
+     80,
+     300
+    ],
+    "rowHeights": [
+     36.3,
+     82.8,
+     59.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Incident",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Trace ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0042",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4bf92f3577b34da6a3ce929d0e0e4736",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Checkout latency spiked to eight seconds after the cache clu",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0043",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "00f067aa0ba902b7",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P3",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Typo in the Spanish translation of the password reset email.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240612-0001",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7d3e0a1b9c2f4e6d",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P2",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Webhook retries exhausted for one merchant.",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 77,
+      "natural": 144,
+      "padding": 21
+     },
+     {
+      "minContent": 278,
+      "natural": 278,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 691,
+      "padding": 21
+     }
+    ],
+    "frameW": 879
+   },
+   "png": "d-r1C.png",
+   "idea": "Preserve both identifier columns and substantially widen the summary. This tests whether more comfortable prose and shorter rows justify a wider horizontal scroll.",
+   "notes": [],
+   "parentRound": 0
+  },
+  "r2A": {
+   "widths": [
+    165,
+    299,
+    80,
+    260
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 4,
+    "tableWidth": 805,
+    "tableHeight": 262.3,
+    "overflow": 445,
+    "colWidths": [
+     165,
+     299,
+     80,
+     260
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     59.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Incident",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Trace ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0042",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4bf92f3577b34da6a3ce929d0e0e4736",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Checkout latency spiked to eight seconds after the cache clu",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0043",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "00f067aa0ba902b7",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P3",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Typo in the Spanish translation of the password reset email.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240612-0001",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7d3e0a1b9c2f4e6d",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P2",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Webhook retries exhausted for one merchant.",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 77,
+      "natural": 144,
+      "padding": 21
+     },
+     {
+      "minContent": 278,
+      "natural": 278,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 691,
+      "padding": 21
+     }
+    ],
+    "frameW": 839
+   },
+   "png": "d-r2A.png",
+   "idea": "Keep identifiers and severity intact, and give the summary a middle width between r1A and r1C. This tests whether prose wraps more comfortably than in r1A without all of r1C's scrolling.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2B": {
+   "widths": [
+    165,
+    105,
+    80,
+    260
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 4,
+    "tableWidth": 611,
+    "tableHeight": 262.3,
+    "overflow": 251,
+    "colWidths": [
+     165,
+     105,
+     80,
+     260
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     59.5,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Incident",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Trace ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0042",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4bf92f3577b34da6a3ce929d0e0e4736",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Checkout latency spiked to eight seconds after the cache clu",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0043",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "00f067aa0ba902b7",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P3",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Typo in the Spanish translation of the password reset email.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240612-0001",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7d3e0a1b9c2f4e6d",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P2",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Webhook retries exhausted for one merchant.",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 5,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 77,
+      "natural": 144,
+      "padding": 21
+     },
+     {
+      "minContent": 278,
+      "natural": 278,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 691,
+      "padding": 21
+     }
+    ],
+    "frameW": 645
+   },
+   "png": "d-r2B.png",
+   "idea": "Fit incident, trace and severity columns within 350px so severity is visible on first sight. Trace IDs will split substantially, but readers can scan incident and severity together before scrolling to the summary.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r2C": {
+   "widths": [
+    125,
+    149,
+    80,
+    260
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 4,
+    "tableWidth": 615,
+    "tableHeight": 308.8,
+    "overflow": 255,
+    "colWidths": [
+     125,
+     149,
+     80,
+     260
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     82.8,
+     82.8
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Incident",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Trace ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0042",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4bf92f3577b34da6a3ce929d0e0e4736",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Checkout latency spiked to eight seconds after the cache clu",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0043",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "00f067aa0ba902b7",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P3",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Typo in the Spanish translation of the password reset email.",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240612-0001",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7d3e0a1b9c2f4e6d",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P2",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Webhook retries exhausted for one merchant.",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 4,
+    "tokenBreaks": 6,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 77,
+      "natural": 144,
+      "padding": 21
+     },
+     {
+      "minContent": 278,
+      "natural": 278,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 691,
+      "padding": 21
+     }
+    ],
+    "frameW": 649
+   },
+   "png": "d-r2C.png",
+   "idea": "Allow incident identifiers to wrap at their separators and split the longest trace ID, bringing severity fully into the first viewport while giving the trace more width than in severity-in-view. This tests whether the two identifying columns remain distinguishable with less horizontal scrolling.",
+   "notes": [],
+   "parentRound": 1
+  },
+  "r3A": {
+   "widths": [
+    165,
+    299,
+    80,
+    210
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 4,
+    "tableWidth": 755,
+    "tableHeight": 285.5,
+    "overflow": 395,
+    "colWidths": [
+     165,
+     299,
+     80,
+     210
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     82.8,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Incident",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Trace ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0042",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4bf92f3577b34da6a3ce929d0e0e4736",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Checkout latency spiked to eight seconds after the cache clu",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0043",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "00f067aa0ba902b7",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P3",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Typo in the Spanish translation of the password reset email.",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240612-0001",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7d3e0a1b9c2f4e6d",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P2",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Webhook retries exhausted for one merchant.",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 77,
+      "natural": 144,
+      "padding": 21
+     },
+     {
+      "minContent": 278,
+      "natural": 278,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 691,
+      "padding": 21
+     }
+    ],
+    "frameW": 789
+   },
+   "png": "d-r3A.png",
+   "idea": "Keep identifiers and severity intact as in r2A, but narrow the summary to reduce horizontal scrolling while allowing prose to wrap at word boundaries.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3B": {
+   "widths": [
+    165,
+    180,
+    80,
+    220
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 4,
+    "tableWidth": 646,
+    "tableHeight": 285.5,
+    "overflow": 286,
+    "colWidths": [
+     165,
+     180,
+     80,
+     220
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     82.8,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Incident",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Trace ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0042",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4bf92f3577b34da6a3ce929d0e0e4736",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Checkout latency spiked to eight seconds after the cache clu",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0043",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "00f067aa0ba902b7",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P3",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Typo in the Spanish translation of the password reset email.",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240612-0001",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7d3e0a1b9c2f4e6d",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P2",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Webhook retries exhausted for one merchant.",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 1,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 77,
+      "natural": 144,
+      "padding": 21
+     },
+     {
+      "minContent": 278,
+      "natural": 278,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 691,
+      "padding": 21
+     }
+    ],
+    "frameW": 680
+   },
+   "png": "d-r3B.png",
+   "idea": "Keep incident identifiers intact and give trace IDs more room than in r2B. Narrow the summary moderately to offset the added trace width and reduce total scrolling.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "r3C": {
+   "widths": [
+    165,
+    105,
+    80,
+    210
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 4,
+    "tableWidth": 561,
+    "tableHeight": 285.5,
+    "overflow": 201,
+    "colWidths": [
+     165,
+     105,
+     80,
+     210
+    ],
+    "rowHeights": [
+     36.3,
+     106,
+     82.8,
+     59.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Incident",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Trace ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0042",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4bf92f3577b34da6a3ce929d0e0e4736",
+      "lines": 4
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Checkout latency spiked to eight seconds after the cache clu",
+      "lines": 4
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0043",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "00f067aa0ba902b7",
+      "lines": 2
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P3",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Typo in the Spanish translation of the password reset email.",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240612-0001",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7d3e0a1b9c2f4e6d",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P2",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Webhook retries exhausted for one merchant.",
+      "lines": 2
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 5,
+    "tokenBreaks": 0,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 77,
+      "natural": 144,
+      "padding": 21
+     },
+     {
+      "minContent": 278,
+      "natural": 278,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 691,
+      "padding": 21
+     }
+    ],
+    "frameW": 595
+   },
+   "png": "d-r3C.png",
+   "idea": "Retain r2B's first-view access to severity and intact incident identifiers, while narrowing the summary to reduce scrolling. This accepts fragmented trace IDs in exchange for a more compact table.",
+   "notes": [],
+   "parentRound": 2
+  },
+  "ref_auto": {
+   "widths": [
+    98,
+    298.2,
+    79.8,
+    93.3
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 4,
+    "tableWidth": 570.2,
+    "tableHeight": 657.5,
+    "overflow": 210.2,
+    "colWidths": [
+     98,
+     298.2,
+     79.8,
+     93.3
+    ],
+    "rowHeights": [
+     36.3,
+     292,
+     199,
+     129.3
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Incident",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Trace ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0042",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4bf92f3577b34da6a3ce929d0e0e4736",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Checkout latency spiked to eight seconds after the cache clu",
+      "lines": 12
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0043",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "00f067aa0ba902b7",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P3",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Typo in the Spanish translation of the password reset email.",
+      "lines": 8
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240612-0001",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7d3e0a1b9c2f4e6d",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P2",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Webhook retries exhausted for one merchant.",
+      "lines": 5
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 0,
+    "tokenBreaks": 6,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 77,
+      "natural": 144,
+      "padding": 21
+     },
+     {
+      "minContent": 278,
+      "natural": 278,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 691,
+      "padding": 21
+     }
+    ],
+    "frameW": 605
+   },
+   "png": "d-ref_auto.png",
+   "auto": true
+  },
+  "ref_equal": {
+   "widths": [
+    89,
+    89,
+    89,
+    89
+   ],
+   "geom": {
+    "nCols": 4,
+    "nRows": 4,
+    "tableWidth": 357,
+    "tableHeight": 727.3,
+    "overflow": 0,
+    "colWidths": [
+     89,
+     89,
+     89,
+     89
+    ],
+    "rowHeights": [
+     59.5,
+     315.3,
+     199,
+     152.5
+    ],
+    "cells": [
+     {
+      "r": 0,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Incident",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Trace ID",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Severity",
+      "lines": 1
+     },
+     {
+      "r": 0,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "col",
+      "text": "Summary",
+      "lines": 2
+     },
+     {
+      "r": 1,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0042",
+      "lines": 3
+     },
+     {
+      "r": 1,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "4bf92f3577b34da6a3ce929d0e0e4736",
+      "lines": 5
+     },
+     {
+      "r": 1,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P1",
+      "lines": 1
+     },
+     {
+      "r": 1,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Checkout latency spiked to eight seconds after the cache clu",
+      "lines": 13
+     },
+     {
+      "r": 2,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240611-0043",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "00f067aa0ba902b7",
+      "lines": 3
+     },
+     {
+      "r": 2,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P3",
+      "lines": 1
+     },
+     {
+      "r": 2,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Typo in the Spanish translation of the password reset email.",
+      "lines": 8
+     },
+     {
+      "r": 3,
+      "c": 0,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "INC-20240612-0001",
+      "lines": 3
+     },
+     {
+      "r": 3,
+      "c": 1,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "7d3e0a1b9c2f4e6d",
+      "lines": 2
+     },
+     {
+      "r": 3,
+      "c": 2,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "P2",
+      "lines": 1
+     },
+     {
+      "r": 3,
+      "c": 3,
+      "rs": 1,
+      "cs": 1,
+      "role": "data",
+      "text": "Webhook retries exhausted for one merchant.",
+      "lines": 6
+     }
+    ],
+    "clipped": 0,
+    "emergencyBreaks": 14,
+    "tokenBreaks": 3,
+    "tableExtra": 1,
+    "facts": [
+     {
+      "minContent": 77,
+      "natural": 144,
+      "padding": 21
+     },
+     {
+      "minContent": 278,
+      "natural": 278,
+      "padding": 21
+     },
+     {
+      "minContent": 59,
+      "natural": 59,
+      "padding": 21
+     },
+     {
+      "minContent": 73,
+      "natural": 691,
+      "padding": 21
+     }
+    ],
+    "frameW": 394
+   },
+   "png": "d-ref_equal.png"
+  }
+ },
+ "modelsUsed": [
+  "codex/gpt-6.1-terra"
+ ],
+ "understanding": {
+  "purpose": "Present incidents alongside trace identifiers, severity and descriptive summaries so readers can identify and assess each event.",
+  "reading": "Readers scan incident and severity values to locate an event, then follow the row to read its summary or retrieve its trace ID. Wrapped content should remain easy to associate with the correct row.",
+  "groups": [
+   "Incident and Trace ID identify the same event; their values need to be distinguishable across rows.",
+   "Severity and Summary describe the event and support assessment."
+  ],
+  "keep_intact": [
+   "Incident identifiers",
+   "Trace IDs",
+   "Severity labels"
+  ],
+  "may_wrap": [
+   "Summary prose at word boundaries",
+   "Header labels where necessary"
+  ]
+ },
+ "final": {
+  "preferred": [
+   "r1B",
+   "r3B"
+  ],
+  "acceptable": [
+   "r1C",
+   "r2A",
+   "r3A"
+  ],
+  "bad": [
+   {
+    "design": "r2B",
+    "why": "The narrow trace column breaks identifiers into several fragments, making them harder to scan and transcribe."
+   },
+   {
+    "design": "r2C",
+    "why": "Both incident identifiers and trace IDs wrap across multiple lines, weakening the distinction between rows and making identifiers harder to scan."
+   },
+   {
+    "design": "r3C",
+    "why": "The trace IDs fragment across several lines, while the narrower summary adds wrapping without enough benefit to the initial view."
+   }
+  ],
+  "contrast": null,
+  "ranges": [
+   [
+    165,
+    175
+   ],
+   [
+    175,
+    190
+   ],
+   [
+    80,
+    85
+   ],
+   [
+    210,
+    230
+   ]
+  ],
+  "rationale": "r1B and r3B are identical: they keep incident IDs intact and show almost all of the severity column in the initial viewport. The longest trace ID splits once, but the other IDs stay intact, and the summary has enough width to read without excessive wrapping. The wider alternatives preserve every trace ID but push severity and the summary farther off screen.",
+  "principles": {
+   "general": [
+    "Keep identifiers intact where practical, especially when readers may need to compare or transcribe them.",
+    "Judge horizontal scrolling alongside the usefulness of the columns visible on first load.",
+    "Give prose enough width for a readable rhythm while preserving clear row boundaries."
+   ],
+   "specific": [
+    "The incident column needs about 165px to keep its values on one line.",
+    "The single unusually long trace ID makes a fully unbroken trace column expensive on a 360px viewport.",
+    "Severity is compact and useful in the initial view, making its position just inside the viewport valuable."
+   ]
+  },
+  "tradeoffs": "A wider trace column preserves the longest ID intact but requires substantially more horizontal scrolling and hides severity initially. The preferred designs accept one identifier split to bring more of the table into the first view.",
+  "uncertain": "Designers may prefer r1C or r2A if accurate trace ID transcription matters more than seeing severity immediately. The ranges are approximate visual tolerances, not verified rendering thresholds; wrapping can change abruptly within them."
+ },
+ "reviews": [
+  {
+   "order": [
+    "r2B",
+    "r1B",
+    "r2A",
+    "ref_equal",
+    "ref_auto",
+    "r1C"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "acceptable",
+     "why": "Incident IDs remain intact and severity is visible initially, but trace IDs break across several lines and the summary requires scrolling."
+    },
+    "B": {
+     "grade": "good",
+     "why": "Incident IDs stay intact and the trace IDs are easier to scan than in A, though the longest still splits and severity sits at the viewport edge."
+    },
+    "C": {
+     "grade": "good",
+     "why": "The incident IDs stay intact and the trace column is wide, but severity and summary are beyond the initial viewport."
+    },
+    "D": {
+     "grade": "bad",
+     "why": "Everything fits in the viewport, but incident IDs, trace IDs, the Summary header and ordinary words split repeatedly, making rows difficult to read."
+    },
+    "E": {
+     "grade": "poor",
+     "why": "The narrow incident column breaks every incident ID while the wide trace column pushes the other fields off-screen; tall rows add substantial empty space."
+    },
+    "F": {
+     "grade": "good",
+     "why": "Incident IDs stay intact and the rows are compact; the tradeoff is that severity and summary require horizontal scrolling."
+    }
+   },
+   "best": [
+    "F"
+   ],
+   "confidence": "low",
+   "unsure": "The supplied views show only the left portion of several layouts, so I cannot fully assess their summary columns, total widths, or scrolling costs."
+  },
+  {
+   "order": [
+    "r1C",
+    "r2B",
+    "ref_equal",
+    "r2A",
+    "r1B",
+    "ref_auto"
+   ],
+   "letters": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "ratings": {
+    "A": {
+     "grade": "poor",
+     "why": "Incident IDs stay intact, but the wide Trace ID column occupies the rest of the initial viewport, leaving Severity and Summary to the right."
+    },
+    "B": {
+     "grade": "acceptable",
+     "why": "Incident and Severity are readable at first sight, and the rows remain fairly compact. Trace IDs split across several lines, while Summary requires horizontal scrolling."
+    },
+    "C": {
+     "grade": "poor",
+     "why": "All four columns fit in the viewport, but incident IDs, trace IDs, the Summary header and ordinary words split awkwardly. The narrow prose column makes rows very tall."
+    },
+    "D": {
+     "grade": "poor",
+     "why": "Incident IDs remain intact, but Trace ID fills the visible space and pushes Severity and Summary out of the initial view."
+    },
+    "E": {
+     "grade": "acceptable",
+     "why": "Incident IDs and the shorter trace IDs stay intact, and the longest trace wraps only once. Severity is cut by the viewport edge, and Summary requires scrolling."
+    },
+    "F": {
+     "grade": "bad",
+     "why": "Incident IDs split over several lines, the trace column dominates the initial view, and the very tall rows make comparison difficult."
+    }
+   },
+   "best": [
+    "B"
+   ],
+   "confidence": "medium",
+   "unsure": "The supplied views do not show the full off-screen portions of the wider layouts, so their Summary widths and the total scrolling required are uncertain."
+  }
+ ],
+ "reviewPrompt": "v2"
+}

@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png",
+  "rv1-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val] ไทย / ລາວ · Menu (language th).\nGrid: 4 columns × 4 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"อาหาร\" · longest unbreakable word 41px · one-line width 105px\n  col 2: header \"ອາຫານ\" · longest unbreakable word 42px · one-line width 106px\n  col 3: header \"ราคา\" · longest unbreakable word 32px · one-line width 57px\n  col 4: header \"คำอธิบาย\" · longest unbreakable word 50px · one-line width 320px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 480px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 479px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 9285,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"The two language columns are balanced, prices stay together, and the descriptions remain readable; the longest dish names wrap naturally.\"},\"B\":{\"grade\":\"poor\",\"why\":\"The narrow language columns break dish names into several short lines, making the paired names harder to scan despite the generous description column.\"},\"C\":{\"grade\":\"poor\",\"why\":\"The wide price column takes space from the descriptions, which wrap into narrow stacks and make rows unnecessarily tall.\"},\"D\":{\"grade\":\"good\",\"why\":\"The paired language columns and intact prices scan well, while the description has enough room for readable lines. Several long names still wrap.\"},\"E\":{\"grade\":\"excellent\",\"why\":\"The paired dish names have room to read, prices remain intact, and descriptions wrap into manageable lines. The columns form a clear, balanced hierarchy.\"},\"F\":{\"grade\":\"poor\",\"why\":\"The price column splits every amount from its currency, disrupting comparison; its saved space adds little benefit to the descriptions.\"}},\"best\":[\"E\"],\"confidence\":\"medium\",\"unsure\":\"A and D are very close to E; the relative readability of the Thai and Lao line breaks is difficult to judge at this image size.\"}\n"
+  }
+ ]
+}

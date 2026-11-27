@@ -1,0 +1,23 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 多列数值 · 8 列 (language zh-CN).\nGrid: 8 columns × 5 rows. Row headers: none declared.\nPer-column content facts (content px at 13px font, excluding padding):\n  col 1: header \"日期\" · longest unbreakable word 38px · one-line width 77px\n  col 2: header \"开盘\" · longest unbreakable word 34px · one-line width 34px\n  col 3: header \"最高\" · longest unbreakable word 34px · one-line width 34px\n  col 4: header \"最低\" · longest unbreakable word 34px · one-line width 34px\n  col 5: header \"收盘\" · longest unbreakable word 34px · one-line width 34px\n  col 6: header \"涨跌幅\" · longest unbreakable word 48px · one-line width 48px\n  col 7: header \"成交量（手）\" · longest unbreakable word 61px · one-line width 80px\n  col 8: header \"成交额（万元）\" · longest unbreakable word 69px · one-line width 93px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 607px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 606px.\nFixed: content, font, 13px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 6847,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Dates and numeric values remain intact, and rows scan easily. The two transaction headers wrap, with the final header breaking inside its unit.\"},\"B\":{\"grade\":\"excellent\",\"why\":\"All headers and values fit on one line. The related price columns have consistent widths, and the wider transaction columns fit their content.\"},\"C\":{\"grade\":\"bad\",\"why\":\"Dates, transaction volumes and amounts split across lines, including within numbers. This disrupts row scanning and makes values harder to compare.\"},\"D\":{\"grade\":\"excellent\",\"why\":\"All headers and values stay intact, with compact, consistent price columns and enough space for transaction figures.\"}},\"best\":[\"B\",\"D\"],\"confidence\":\"high\",\"unsure\":\"B and D appear nearly identical at this image scale; any small difference in column proportions does not visibly affect readability.\"}\n"
+  }
+ ]
+}

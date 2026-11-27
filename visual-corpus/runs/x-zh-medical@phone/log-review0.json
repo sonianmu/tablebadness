@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: 中文 · 用药说明 (language zh-CN).\nGrid: 5 columns × 5 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"药品名称\" · longest unbreakable word 20px · one-line width 108px\n  col 2: header \"规格\" · longest unbreakable word 31px · one-line width 102px\n  col 3: header \"用法用量\" · longest unbreakable word 31px · one-line width 109px\n  col 4: header \"频次\" · longest unbreakable word 16px · one-line width 64px\n  col 5: header \"注意事项\" · longest unbreakable word 31px · one-line width 521px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11036,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"注意事项列过窄，长段文字被切成许多短行，造成很高的行和零碎的阅读节奏；其他列的空间相对宽裕。\"},\"B\":{\"grade\":\"acceptable\",\"why\":\"注意事项有足够宽度，频次也较易扫描，但用法用量窄到把“口服”拆开，规格中的数字和单位也多次换行。\"},\"C\":{\"grade\":\"bad\",\"why\":\"频次列过窄，“每日3次”等被拆成逐字竖排；药品名称和用法也被严重切碎，尽管注意事项较易阅读。\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"注意事项和频次较易阅读，行的高度也较均衡；但用法用量中的“口服”被拆行，规格数字与单位的组合也较零碎。\"},\"E\":{\"grade\":\"poor\",\"why\":\"注意事项有较好的宽度，但频次列把“每日3次”等拆成不自然的短行，用法用量和规格也显得拥挤。\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"频次能以较紧凑的两行呈现，注意事项也能连贯阅读；但用法用量中的“口服”被拆开，规格列的数字和单位换行较多。\"}},\"best\":[\"B\",\"D\",\"F\"],\"confidence\":\"medium\",\"unsure\":\"B、D、F的列宽差异很小，按图像难以可靠地区分优劣；三者都有明显的用法和规格拆行问题。\"}\n"
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png",
+  "rv0-F.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val2] SLA tiers (language en).\nGrid: 4 columns × 4 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"Tier\" · longest unbreakable word 84px · one-line width 105px\n  col 2: header \"Monthly uptime commitment\" · longest unbreakable word 91px · one-line width 207px\n  col 3: header \"Service credit\" · longest unbreakable word 54px · one-line width 100px\n  col 4: header \"Support channels\" · longest unbreakable word 77px · one-line width 531px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"},\"F\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 8708,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"Row labels stay intact and support descriptions have ample space, but the uptime header stacks over three lines, making the header unusually deep.\"},\"B\":{\"grade\":\"good\",\"why\":\"The row labels remain intact and the two-line headers are readable, though splitting Service credit adds height to the header.\"},\"C\":{\"grade\":\"excellent\",\"why\":\"Both row labels and Service credit stay on one line, while the uptime header and longer support descriptions wrap cleanly. The columns are well balanced for scanning.\"},\"D\":{\"grade\":\"poor\",\"why\":\"Wide tier and numeric columns leave support channels cramped; descriptions wrap into many short lines and make rows unnecessarily tall.\"},\"E\":{\"grade\":\"good\",\"why\":\"The row labels stay intact and the support descriptions have room to read, though Service credit wraps into two lines.\"},\"F\":{\"grade\":\"acceptable\",\"why\":\"The support descriptions and numeric columns scan reasonably well, but Mission-critical breaks across lines in the row-label column.\"}},\"best\":[\"C\"],\"confidence\":\"high\",\"unsure\":\"B and E are close alternatives; the preference for C depends partly on valuing the single-line Service credit header.\"}\n"
+  }
+ ]
+}

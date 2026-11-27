@@ -25,21 +25,23 @@
   }
  },
  "understanding": {
-  "purpose": "An order-fulfillment table listing items, quantities, charges, warehouse locations, and shipment tracking.",
-  "reading": "Readers scan each row as one item, compare quantities and charges down their columns, and follow the row across to find its warehouse and tracking identifier.",
+  "purpose": "Show order line items with product variants, quantities, charges, warehouse locations, and shipment tracking.",
+  "reading": "Readers scan each row from product identification through quantity and charges to fulfillment details, and compare quantities and amounts down their columns. Wrapping can make rows taller, so keeping related values aligned within each row matters.",
   "groups": [
-   "ID and SKU identify the item; Color and Size describe the variant.",
-   "Qty, Price, Tax, and Total form the numeric order and cost group.",
+   "ID and SKU identify the line and product.",
+   "Color and Size describe the product variant.",
+   "Qty, Price, Tax, and Total support comparison of quantities and charges.",
    "Warehouse and Tracking describe fulfillment and shipment."
   ],
   "keep_intact": [
-   "Tracking identifiers and dashes indicating no tracking.",
-   "Numeric values and currency amounts.",
-   "Color and size values, column headers, and warehouse location codes where possible."
+   "Column headers should remain whole.",
+   "Quantities, prices, tax, and totals should each stay on one line.",
+   "Tracking identifiers should preferably stay intact; if split, they must remain inside their cells.",
+   "SKU segments should remain intact where possible."
   ],
   "may_wrap": [
-   "SKU codes at natural hyphen breaks.",
-   "Warehouse location codes at natural hyphen breaks, while keeping the Warehouse header intact."
+   "SKU values can wrap at hyphens, though excessive lines make comparison harder.",
+   "Warehouse names can wrap at hyphens; their wrapping can share row height already created by SKU or tracking."
   ]
  },
  "preferred": [
@@ -47,7 +49,7 @@
    "name": "r3A",
    "colWidths": [
     38,
-    95,
+    100,
     61,
     52,
     47,
@@ -59,7 +61,7 @@
    ],
    "requestedWidths": [
     38,
-    95,
+    100,
     61,
     52,
     47,
@@ -69,7 +71,7 @@
     102,
     180
    ],
-   "tableWidth": 759,
+   "tableWidth": 764,
    "tableHeight": 215.8,
    "rowHeights": [
     36.3,
@@ -279,254 +281,14 @@
      1
     ]
    ],
-   "overflow": 39,
+   "overflow": 44,
    "screenshot": "img/x-v-extreme@desktop__r3A.png",
-   "note": "Keep r2C's natural SKU and warehouse wraps, but give Tracking its full 180px. The table is 759px wide, requiring 40px of horizontal scrolling while preserving every tracking identifier."
+   "note": "Keep r2C's two-line SKU and warehouse treatment, but widen tracking to preserve identifiers. This yields a 763px total: readers must scroll roughly 44px, while the rows should retain r2C's consistent height."
   }
  ],
  "acceptable": [
   {
-   "name": "r1B",
-   "colWidths": [
-    38,
-    110,
-    61,
-    52,
-    47,
-    62,
-    53,
-    68,
-    102,
-    180
-   ],
-   "requestedWidths": [
-    38,
-    110,
-    61,
-    52,
-    47,
-    62,
-    53,
-    68,
-    102,
-    180
-   ],
-   "tableWidth": 774,
-   "tableHeight": 215.8,
-   "rowHeights": [
-    36.3,
-    59.5,
-    59.5,
-    59.5
-   ],
-   "cellLines": [
-    [
-     0,
-     0,
-     1
-    ],
-    [
-     0,
-     1,
-     1
-    ],
-    [
-     0,
-     2,
-     1
-    ],
-    [
-     0,
-     3,
-     1
-    ],
-    [
-     0,
-     4,
-     1
-    ],
-    [
-     0,
-     5,
-     1
-    ],
-    [
-     0,
-     6,
-     1
-    ],
-    [
-     0,
-     7,
-     1
-    ],
-    [
-     0,
-     8,
-     1
-    ],
-    [
-     0,
-     9,
-     1
-    ],
-    [
-     1,
-     0,
-     1
-    ],
-    [
-     1,
-     1,
-     2
-    ],
-    [
-     1,
-     2,
-     1
-    ],
-    [
-     1,
-     3,
-     1
-    ],
-    [
-     1,
-     4,
-     1
-    ],
-    [
-     1,
-     5,
-     1
-    ],
-    [
-     1,
-     6,
-     1
-    ],
-    [
-     1,
-     7,
-     1
-    ],
-    [
-     1,
-     8,
-     2
-    ],
-    [
-     1,
-     9,
-     1
-    ],
-    [
-     2,
-     0,
-     1
-    ],
-    [
-     2,
-     1,
-     2
-    ],
-    [
-     2,
-     2,
-     1
-    ],
-    [
-     2,
-     3,
-     1
-    ],
-    [
-     2,
-     4,
-     1
-    ],
-    [
-     2,
-     5,
-     1
-    ],
-    [
-     2,
-     6,
-     1
-    ],
-    [
-     2,
-     7,
-     1
-    ],
-    [
-     2,
-     8,
-     2
-    ],
-    [
-     2,
-     9,
-     1
-    ],
-    [
-     3,
-     0,
-     1
-    ],
-    [
-     3,
-     1,
-     2
-    ],
-    [
-     3,
-     2,
-     1
-    ],
-    [
-     3,
-     3,
-     1
-    ],
-    [
-     3,
-     4,
-     1
-    ],
-    [
-     3,
-     5,
-     1
-    ],
-    [
-     3,
-     6,
-     1
-    ],
-    [
-     3,
-     7,
-     1
-    ],
-    [
-     3,
-     8,
-     2
-    ],
-    [
-     3,
-     9,
-     1
-    ]
-   ],
-   "overflow": 54,
-   "screenshot": "img/x-v-extreme@desktop__r1B.png",
-   "note": "Give SKU more room to test a more legible two-line arrangement while keeping the warehouse and tracking treatment from r0A. The 774px table trades a little more scrolling for less fragmented item identifiers."
-  },
-  {
-   "name": "r1C",
+   "name": "r0C",
    "colWidths": [
     38,
     157,
@@ -762,42 +524,282 @@
     ]
    ],
    "overflow": 101,
-   "screenshot": "img/x-v-extreme@desktop__r1C.png",
-   "note": "Keep SKUs on one line as in r0C, but allow warehouse codes to wrap at hyphens. This reduces the table to 821px while preserving intact tracking identifiers and potentially shortening the scroll."
+   "screenshot": "img/x-v-extreme@desktop__r0C.png",
+   "note": "Keep SKU and tracking identifiers intact and let warehouse names wrap, using horizontal scrolling for the final part of tracking."
+  },
+  {
+   "name": "r1A",
+   "colWidths": [
+    38,
+    80,
+    61,
+    52,
+    47,
+    62,
+    53,
+    68,
+    102,
+    180
+   ],
+   "requestedWidths": [
+    38,
+    80,
+    61,
+    52,
+    47,
+    62,
+    53,
+    68,
+    102,
+    180
+   ],
+   "tableWidth": 744,
+   "tableHeight": 355.3,
+   "rowHeights": [
+    36.3,
+    106,
+    106,
+    106
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     0,
+     5,
+     1
+    ],
+    [
+     0,
+     6,
+     1
+    ],
+    [
+     0,
+     7,
+     1
+    ],
+    [
+     0,
+     8,
+     1
+    ],
+    [
+     0,
+     9,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     4
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     1
+    ],
+    [
+     1,
+     5,
+     1
+    ],
+    [
+     1,
+     6,
+     1
+    ],
+    [
+     1,
+     7,
+     1
+    ],
+    [
+     1,
+     8,
+     2
+    ],
+    [
+     1,
+     9,
+     1
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     4
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     1
+    ],
+    [
+     2,
+     4,
+     1
+    ],
+    [
+     2,
+     5,
+     1
+    ],
+    [
+     2,
+     6,
+     1
+    ],
+    [
+     2,
+     7,
+     1
+    ],
+    [
+     2,
+     8,
+     2
+    ],
+    [
+     2,
+     9,
+     1
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     4
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     4,
+     1
+    ],
+    [
+     3,
+     5,
+     1
+    ],
+    [
+     3,
+     6,
+     1
+    ],
+    [
+     3,
+     7,
+     1
+    ],
+    [
+     3,
+     8,
+     2
+    ],
+    [
+     3,
+     9,
+     1
+    ]
+   ],
+   "overflow": 24,
+   "screenshot": "img/x-v-extreme@desktop__r1A.png",
+   "note": "Give SKU enough room for its longest segment and preserve complete tracking identifiers. The 743px total requires modest horizontal scrolling; SKU and warehouse can wrap at hyphens."
   },
   {
    "name": "r2A",
    "colWidths": [
     38,
-    95,
+    90,
     61,
     52,
     47,
     62,
     53,
     68,
-    143,
+    102,
     180
    ],
    "requestedWidths": [
     38,
-    95,
+    90,
     61,
     52,
     47,
     62,
     53,
     68,
-    143,
+    102,
     180
    ],
-   "tableWidth": 800,
-   "tableHeight": 215.8,
+   "tableWidth": 754,
+   "tableHeight": 262.3,
    "rowHeights": [
     36.3,
     59.5,
-    59.5,
-    59.5
+    82.8,
+    82.8
    ],
    "cellLines": [
     [
@@ -893,7 +895,7 @@
     [
      1,
      8,
-     1
+     2
     ],
     [
      1,
@@ -908,7 +910,7 @@
     [
      2,
      1,
-     2
+     3
     ],
     [
      2,
@@ -943,7 +945,7 @@
     [
      2,
      8,
-     1
+     2
     ],
     [
      2,
@@ -958,7 +960,7 @@
     [
      3,
      1,
-     2
+     3
     ],
     [
      3,
@@ -993,7 +995,7 @@
     [
      3,
      8,
-     1
+     2
     ],
     [
      3,
@@ -1001,9 +1003,9 @@
      1
     ]
    ],
-   "overflow": 80,
+   "overflow": 34,
    "screenshot": "img/x-v-extreme@desktop__r2A.png",
-   "note": "Widen Warehouse enough for its longest full location while retaining naturally wrapped SKUs. This tests whether single-line locations improve row scanning enough to justify 80px of horizontal overflow."
+   "note": "Combine r1B's wider SKU column with the 180px tracking column needed to keep identifiers intact. The table totals 754px, requiring 35px of horizontal scrolling, and may retain r1B's shorter SKU-driven rows."
   },
   {
    "name": "r2B",
@@ -1016,7 +1018,7 @@
     62,
     53,
     68,
-    143,
+    102,
     180
    ],
    "requestedWidths": [
@@ -1028,250 +1030,10 @@
     62,
     53,
     68,
-    143,
-    180
-   ],
-   "tableWidth": 862,
-   "tableHeight": 146,
-   "rowHeights": [
-    36.3,
-    36.3,
-    36.3,
-    36.3
-   ],
-   "cellLines": [
-    [
-     0,
-     0,
-     1
-    ],
-    [
-     0,
-     1,
-     1
-    ],
-    [
-     0,
-     2,
-     1
-    ],
-    [
-     0,
-     3,
-     1
-    ],
-    [
-     0,
-     4,
-     1
-    ],
-    [
-     0,
-     5,
-     1
-    ],
-    [
-     0,
-     6,
-     1
-    ],
-    [
-     0,
-     7,
-     1
-    ],
-    [
-     0,
-     8,
-     1
-    ],
-    [
-     0,
-     9,
-     1
-    ],
-    [
-     1,
-     0,
-     1
-    ],
-    [
-     1,
-     1,
-     1
-    ],
-    [
-     1,
-     2,
-     1
-    ],
-    [
-     1,
-     3,
-     1
-    ],
-    [
-     1,
-     4,
-     1
-    ],
-    [
-     1,
-     5,
-     1
-    ],
-    [
-     1,
-     6,
-     1
-    ],
-    [
-     1,
-     7,
-     1
-    ],
-    [
-     1,
-     8,
-     1
-    ],
-    [
-     1,
-     9,
-     1
-    ],
-    [
-     2,
-     0,
-     1
-    ],
-    [
-     2,
-     1,
-     1
-    ],
-    [
-     2,
-     2,
-     1
-    ],
-    [
-     2,
-     3,
-     1
-    ],
-    [
-     2,
-     4,
-     1
-    ],
-    [
-     2,
-     5,
-     1
-    ],
-    [
-     2,
-     6,
-     1
-    ],
-    [
-     2,
-     7,
-     1
-    ],
-    [
-     2,
-     8,
-     1
-    ],
-    [
-     2,
-     9,
-     1
-    ],
-    [
-     3,
-     0,
-     1
-    ],
-    [
-     3,
-     1,
-     1
-    ],
-    [
-     3,
-     2,
-     1
-    ],
-    [
-     3,
-     3,
-     1
-    ],
-    [
-     3,
-     4,
-     1
-    ],
-    [
-     3,
-     5,
-     1
-    ],
-    [
-     3,
-     6,
-     1
-    ],
-    [
-     3,
-     7,
-     1
-    ],
-    [
-     3,
-     8,
-     1
-    ],
-    [
-     3,
-     9,
-     1
-    ]
-   ],
-   "overflow": 142,
-   "screenshot": "img/x-v-extreme@desktop__r2B.png",
-   "note": "Give both SKU and Warehouse their full one-line widths. This should produce compact single-line rows and intact values, at the cost of 142px of horizontal overflow."
-  },
-  {
-   "name": "r3C",
-   "colWidths": [
-    38,
-    115,
-    61,
-    52,
-    47,
-    62,
-    53,
-    68,
     102,
     180
    ],
-   "requestedWidths": [
-    38,
-    115,
-    61,
-    52,
-    47,
-    62,
-    53,
-    68,
-    102,
-    180
-   ],
-   "tableWidth": 779,
+   "tableWidth": 821,
    "tableHeight": 215.8,
    "rowHeights": [
     36.3,
@@ -1338,7 +1100,7 @@
     [
      1,
      1,
-     2
+     1
     ],
     [
      1,
@@ -1388,7 +1150,7 @@
     [
      2,
      1,
-     2
+     1
     ],
     [
      2,
@@ -1438,7 +1200,7 @@
     [
      3,
      1,
-     2
+     1
     ],
     [
      3,
@@ -1481,17 +1243,15 @@
      1
     ]
    ],
-   "overflow": 59,
-   "screenshot": "img/x-v-extreme@desktop__r3C.png",
-   "note": "Preserve complete tracking identifiers and allow warehouse codes to wrap, while giving SKU 20px more room to test whether its line breaks and visual rhythm improve. The resulting table is 779px wide, with 60px of overflow."
-  }
- ],
- "bad": [
+   "overflow": 101,
+   "screenshot": "img/x-v-extreme@desktop__r2B.png",
+   "note": "Give SKU its full 136px one-line content width while keeping tracking intact. The 821px table requires 102px of horizontal scrolling; compare that cost with the clearer SKU scanning and shorter rows."
+  },
   {
    "name": "r2C",
    "colWidths": [
     38,
-    95,
+    100,
     61,
     52,
     47,
@@ -1499,11 +1259,11 @@
     53,
     68,
     102,
-    140
+    136
    ],
    "requestedWidths": [
     38,
-    95,
+    100,
     61,
     52,
     47,
@@ -1511,9 +1271,9 @@
     53,
     68,
     102,
-    140
+    136
    ],
-   "tableWidth": 719,
+   "tableWidth": 720,
    "tableHeight": 215.8,
    "rowHeights": [
     36.3,
@@ -1725,14 +1485,15 @@
    ],
    "overflow": 0,
    "screenshot": "img/x-v-extreme@desktop__r2C.png",
-   "note": "Fit the table within 719px by narrowing Tracking. This tests the no-scroll alternative, accepting mid-identifier splits and potentially taller rows.",
-   "why": "Tracking identifiers split across lines inside the codes, making them harder to scan and transcribe."
-  },
+   "note": "Keep the table at 719px and give SKU another 10px to improve wrapping. Tracking identifiers will split, so this tests whether the more compact SKU layout justifies that readability cost."
+  }
+ ],
+ "bad": [
   {
-   "name": "r3B",
+   "name": "r1B",
    "colWidths": [
     38,
-    95,
+    90,
     61,
     52,
     47,
@@ -1740,11 +1501,11 @@
     53,
     68,
     102,
-    161
+    146
    ],
    "requestedWidths": [
     38,
-    95,
+    90,
     61,
     52,
     47,
@@ -1752,15 +1513,15 @@
     53,
     68,
     102,
-    161
+    146
    ],
-   "tableWidth": 740,
-   "tableHeight": 215.8,
+   "tableWidth": 720,
+   "tableHeight": 262.3,
    "rowHeights": [
     36.3,
     59.5,
-    59.5,
-    59.5
+    82.8,
+    82.8
    ],
    "cellLines": [
     [
@@ -1871,7 +1632,7 @@
     [
      2,
      1,
-     2
+     3
     ],
     [
      2,
@@ -1921,7 +1682,7 @@
     [
      3,
      1,
-     2
+     3
     ],
     [
      3,
@@ -1964,68 +1725,309 @@
      1
     ]
    ],
-   "overflow": 20,
-   "screenshot": "img/x-v-extreme@desktop__r3B.png",
-   "note": "Give Tracking 140px of text space, reducing overflow to 21px. This tests whether a small scroll and a shorter tracking split provide a useful compromise when keeping the whole identifier intact is less important than keeping most of the table visible.",
-   "why": "Tracking identifiers still split inside the codes, while the table also requires horizontal scrolling."
+   "overflow": 0,
+   "screenshot": "img/x-v-extreme@desktop__r1B.png",
+   "note": "Fit within 719px while giving SKU room to wrap at hyphens. Tracking identifiers must split, but the wider tracking column should keep each split relatively short.",
+   "why": "Tracking identifiers split mid-word, while uneven three-line rows make the table harder to scan."
+  },
+  {
+   "name": "r1C",
+   "colWidths": [
+    38,
+    70,
+    61,
+    52,
+    47,
+    62,
+    53,
+    68,
+    102,
+    166
+   ],
+   "requestedWidths": [
+    38,
+    70,
+    61,
+    52,
+    47,
+    62,
+    53,
+    68,
+    102,
+    166
+   ],
+   "tableWidth": 720,
+   "tableHeight": 355.3,
+   "rowHeights": [
+    36.3,
+    106,
+    106,
+    106
+   ],
+   "cellLines": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     0,
+     4,
+     1
+    ],
+    [
+     0,
+     5,
+     1
+    ],
+    [
+     0,
+     6,
+     1
+    ],
+    [
+     0,
+     7,
+     1
+    ],
+    [
+     0,
+     8,
+     1
+    ],
+    [
+     0,
+     9,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     4
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     3,
+     1
+    ],
+    [
+     1,
+     4,
+     1
+    ],
+    [
+     1,
+     5,
+     1
+    ],
+    [
+     1,
+     6,
+     1
+    ],
+    [
+     1,
+     7,
+     1
+    ],
+    [
+     1,
+     8,
+     2
+    ],
+    [
+     1,
+     9,
+     2
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     4
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     3,
+     1
+    ],
+    [
+     2,
+     4,
+     1
+    ],
+    [
+     2,
+     5,
+     1
+    ],
+    [
+     2,
+     6,
+     1
+    ],
+    [
+     2,
+     7,
+     1
+    ],
+    [
+     2,
+     8,
+     2
+    ],
+    [
+     2,
+     9,
+     2
+    ],
+    [
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     4
+    ],
+    [
+     3,
+     2,
+     1
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     4,
+     1
+    ],
+    [
+     3,
+     5,
+     1
+    ],
+    [
+     3,
+     6,
+     1
+    ],
+    [
+     3,
+     7,
+     1
+    ],
+    [
+     3,
+     8,
+     2
+    ],
+    [
+     3,
+     9,
+     1
+    ]
+   ],
+   "overflow": 0,
+   "screenshot": "img/x-v-extreme@desktop__r1C.png",
+   "note": "Fit within 719px and favor tracking, leaving SKU enough room for its longest segment. Tracking still needs a split, but less of each identifier should fall onto the second line.",
+   "why": "Four-line cells make the rows unusually tall, yet tracking identifiers still split mid-word."
   }
  ],
  "ranges": [
   [
-   38,
+   37,
    40
   ],
   [
-   95,
+   100,
    110
   ],
   [
    61,
-   63
-  ],
-  [
-   52,
-   54
-  ],
-  [
-   47,
-   49
-  ],
-  [
-   62,
    64
   ],
   [
-   53,
+   52,
    55
   ],
   [
+   47,
+   50
+  ],
+  [
+   62,
+   65
+  ],
+  [
+   53,
+   56
+  ],
+  [
    68,
-   70
+   71
   ],
   [
    102,
-   106
+   108
   ],
   [
    180,
-   183
+   186
   ]
  ],
- "rationale": "r3A preserves complete tracking identifiers and keeps the full header visible, with only 39px beyond the viewport. SKU and warehouse values wrap at hyphens, so each row remains legible without widening the table substantially. The wider designs make some values easier to scan, but place more of the tracking column beyond the initial view.",
+ "rationale": "r3A keeps tracking identifiers intact and limits every row to two lines, preserving a steady rhythm for comparing quantities and prices. Its SKU and warehouse values wrap at natural breaks, while all headers remain on one line. The 44px horizontal overflow is a modest cost, although readers must scroll to see the ends of tracking values.",
  "principles": {
   "general": [
-   "Protect identifiers from arbitrary breaks when readers may need to compare or transcribe them.",
-   "Allocate width according to content and scanning needs; related numeric columns can remain compact while longer text receives more space.",
-   "Judge horizontal overflow together with what remains visible at first sight and the readability gained by scrolling."
+   "Protect identifiers from arbitrary internal breaks when readers may need to distinguish or transcribe them.",
+   "Allocate width according to content and column role; keep related numeric columns compact and easy to compare.",
+   "Judge horizontal scrolling against the readability and row-height costs of squeezing the table."
   ],
   "specific": [
-   "SKU and warehouse values can wrap at hyphens, whereas tracking values have no natural break points.",
-   "All three data rows are already two lines tall in r3A, so modest extra width in one wrapped column alone does not shorten the table."
+   "A 100px SKU column achieves two-line rows without the 101px overflow of the wider SKU designs.",
+   "The tracking column needs 180px to keep its longest value intact with the stated padding."
   ]
  },
- "tradeoffs": "r2B keeps every value on one line and makes rows easier to scan, but requires 142px of scrolling and leaves much of Tracking outside the initial viewport. r2C fits the viewport but splits tracking codes.",
- "uncertain": "A designer prioritizing frequent SKU or warehouse comparisons could reasonably prefer r1C or r2A. The ranges are approximate individual adjustments around r3A; simultaneous increases would add overflow and may change the balance.",
+ "tradeoffs": "r2C fits the displayed viewport and keeps a compact, even row rhythm, but splits two tracking identifiers. r0C and r2B preserve more SKU width at the cost of substantially more scrolling.",
+ "uncertain": "A designer might prefer r2C if avoiding horizontal scrolling matters more than keeping tracking values intact. The ranges are approximate, judged around r3A with the other widths held near their preferred proportions; browser rendering could change wrap points at their boundaries.",
  "designHistory": {
   "r0": {
    "critique": null,
@@ -2039,21 +2041,21 @@
    "critique": [
     {
      "design": "r0A",
-     "good": "Headers, numeric values and tracking identifiers stay intact. The complete table is almost visible within the viewport, and warehouse codes wrap at hyphens.",
-     "problems": "Each SKU occupies four lines, making the rows unusually tall and leaving large empty areas across the numeric columns. The fragmented SKU is also harder to recognize as one identifier. The final edge of tracking sits just beyond the viewport.",
-     "cause": "The 65px SKU column provides only 44px for text, forcing several hyphen breaks. The 102px Warehouse column causes a shorter, two-line wrap. The 180px Tracking column preserves the identifiers but contributes to the 9px overflow."
+     "good": "The headers and numeric columns remain clear, and the tracking column is wide enough to keep identifiers intact. The warehouse wraps at a useful hyphen.",
+     "problems": "The SKU column becomes a stack of short fragments, making the rows unusually tall and product codes difficult to compare. The table also extends 1px beyond the width limit.",
+     "cause": "At 57px, SKU has only 36px for text, less than its longest unbreakable segment. Tracking receives 180px, leaving little room for SKU."
     },
     {
      "design": "r0B",
-     "good": "Headers and numeric values remain intact, warehouse codes break at hyphens, and almost the entire table fits within the viewport.",
-     "problems": "The SKU column still produces four-line rows and considerable empty space. Both tracking identifiers split before their final digit, making them harder to read and verify.",
-     "cause": "The 65px SKU width fragments the item codes. Reducing Tracking to 172px leaves only 151px of text space, less than the 159px identifier width."
+     "good": "The reported 110px SKU width gives product codes more room, and the reported two-line rows would be much easier to scan than r0A. Headers and amounts remain whole.",
+     "problems": "The narrower tracking column splits long identifiers, making them harder to read or copy. The table also exceeds the width limit by 1px. The supplied render appears to show the narrow SKU and tall rows of r0A, so its appearance does not match the reported widths and row heights.",
+     "cause": "At 127px, tracking has 106px for text, less than the 159px needed for the longest identifier."
     },
     {
      "design": "r0C",
-     "good": "Every value stays on one line, giving the table compact rows and making SKU, warehouse and tracking identifiers easy to read. The numeric group has a clear, consistent rhythm.",
-     "problems": "Tracking lies largely beyond the initial viewport, so readers must scroll to see shipment identifiers. The extra width also separates fulfillment information from the item details at first sight.",
-     "cause": "The 157px SKU and 143px Warehouse columns accommodate their longest values on one line; together with the 180px Tracking column, they make the table 142px wider than the viewport."
+     "good": "SKU and tracking values remain intact, headers and amounts are clear, and the short rows make comparison easy.",
+     "problems": "Much of tracking lies beyond the initial viewport, so readers must scroll to reach a key fulfillment detail. The generous SKU width buys single-line codes at a substantial scrolling cost.",
+     "cause": "SKU is 157px and tracking is 180px, bringing the table to 821px, 101px beyond the viewport."
     }
    ],
    "designs": [
@@ -2066,21 +2068,21 @@
    "critique": [
     {
      "design": "r1A",
-     "good": "The compact layout keeps the numeric columns easy to compare and all headers and tracking identifiers intact. SKU and warehouse values wrap at hyphens, giving the rows a consistent two-line rhythm.",
-     "problems": "The first view cuts through the tracking identifiers, so readers must scroll to see their ends. The warehouse wraps in every row, making the table taller.",
-     "cause": "Tracking needs its full 180px, but the table totals 759px. The 102px warehouse column keeps its header intact but leaves too little text width for the full location codes."
+     "good": "Headers and financial values stay intact, and the tracking identifiers do not split. The 24px overflow is modest.",
+     "problems": "All three item rows are four lines tall, making comparison down the table laborious and leaving substantial white space in the shorter cells.",
+     "cause": "The 80px SKU column is too narrow for a compact arrangement of its hyphenated segments. The 102px warehouse column also wraps locations, though it does not appear to determine the maximum row height."
     },
     {
      "design": "r1B",
-     "good": "The headers and numeric values remain intact, and the item and fulfillment codes wrap at natural breaks.",
-     "problems": "The extra SKU width does not visibly reduce wrapping or row height. It moves more of the tracking column beyond the viewport without a compensating benefit.",
-     "cause": "Increasing SKU from 95px to 110px is still insufficient for the full SKU values, while increasing total width to 774px."
+     "good": "The table fits the viewport, keeps headers and charges on one line, and has a more compact row rhythm than r1A.",
+     "problems": "Two tracking identifiers split within the identifier, making them harder to read and transcribe. Rows still reach three lines.",
+     "cause": "The 146px tracking column provides only 125px of text space, less than the 159px required for the longest identifier. The 90px SKU column still requires wrapping."
     },
     {
      "design": "r1C",
-     "good": "Full SKUs are easy to scan and compare, while the numeric columns and headers remain intact.",
-     "problems": "The unwrapped SKUs do not shorten the rows because warehouse locations still wrap. Tracking begins close to the viewport edge, leaving most of each identifier to be reached by scrolling.",
-     "cause": "The 157px SKU column removes SKU wraps, but the 102px warehouse column still forces two-line rows. Together with the 180px tracking column, the table reaches 821px."
+     "good": "Headers and numeric values remain intact and the table fits the viewport.",
+     "problems": "It combines four-line rows with two mid-word splits, so it sacrifices both compactness and identifier integrity.",
+     "cause": "The 70px SKU column forces extensive wrapping, while the 166px tracking column provides only 145px of text space, still short of the 159px required."
     }
    ],
    "designs": [
@@ -2093,27 +2095,25 @@
    "critique": [
     {
      "design": "r2A",
-     "good": "All headers, amounts, warehouse codes and tracking identifiers stay intact. The SKU wraps at hyphens, and the two-line rows give the table a consistent rhythm.",
-     "problems": "The tracking identifiers extend beyond the initial viewport, so readers must scroll to see their ends. The full-width warehouse column uses space that could bring more of tracking into view.",
-     "cause": "The 180px Tracking column preserves the 159px identifiers, but the 143px Warehouse column keeps locations on one line and contributes to the 80px overflow."
+     "good": "All headers, amounts, SKU segments, and tracking identifiers remain intact. The compact charge columns support comparison, and the overflow is modest.",
+     "problems": "Some SKU values take three lines, making those rows taller and weakening the rhythm across the table. The end of each tracking identifier requires horizontal scrolling.",
+     "cause": "The 90px SKU column is too narrow for a more balanced two-line wrap. The 180px tracking column preserves the identifiers but contributes to the 34px overflow."
     },
     {
      "design": "r2B",
-     "good": "Every value fits on one line, producing compact rows that are easy to compare vertically. Identifiers and location codes remain intact.",
-     "problems": "The wide table puts much of Tracking beyond the initial viewport, separating shipment details from the rest of each row until the reader scrolls.",
-     "cause": "The 157px SKU and 143px Warehouse columns prevent wrapping but make the table 862px wide, with 142px beyond the viewport."
+     "good": "SKU values fit on one line, tracking identifiers remain intact, and the rows have a consistent height. The product and charge columns are easy to scan.",
+     "problems": "The fulfillment information is pushed far to the right: tracking starts near the viewport edge, so reading it requires substantial scrolling. The extra SKU width produces little height benefit because warehouse values still wrap.",
+     "cause": "The 157px SKU column accommodates the full values, while the 102px warehouse column still wraps some locations. Together with the 180px tracking column, this makes the table 101px wider than the viewport."
     },
     {
      "design": "r2C",
-     "good": "The entire table fits initially. Headers and numeric values remain intact, and SKU and warehouse codes wrap at natural hyphens. The consistent two-line rows support scanning across.",
-     "problems": "The two tracking identifiers split within their character sequences, making them harder to read and copy accurately. The empty second line in the third Tracking cell also makes the wrapping feel uneven.",
-     "cause": "Tracking has only 119px of text space at 140px total width, less than the 159px needed for the identifiers. Warehouse at 102px causes its codes to wrap, which is an acceptable trade for recovering space."
+     "good": "The whole table fits in the viewport, headers and amounts remain intact, and the SKU and warehouse wraps produce consistent two-line rows.",
+     "problems": "Both populated tracking identifiers split within the identifier, making them harder to read and transcribe. The repeated breaks also compete visually with the more meaningful SKU and warehouse wraps.",
+     "cause": "The 136px tracking column provides only 115px of text space, less than the 159px needed for the longest unbreakable identifier."
     }
    ],
    "designs": [
-    "r3A",
-    "r3B",
-    "r3C"
+    "r3A"
    ]
   }
  },
@@ -2126,24 +2126,24 @@
      "prefGrade": 2,
      "prefIsBest": false,
      "bestNames": [
-      "r1C"
+      "r1A"
      ],
      "badGrades": [
       3
      ],
-     "autoGrade": 4,
+     "autoGrade": 3,
      "equalGrade": 1
     },
     {
      "prefGrade": 2,
      "prefIsBest": false,
      "bestNames": [
-      "r2C"
+      "ref_auto"
      ],
      "badGrades": [
-      4
+      3
      ],
-     "autoGrade": 3,
+     "autoGrade": 4,
      "equalGrade": 1
     }
    ]
@@ -2151,85 +2151,85 @@
   "raw": [
    {
     "order": [
-     "r2C",
      "r1B",
+     "r0C",
      "ref_equal",
      "ref_auto",
      "r3A",
-     "r1C"
+     "r1A"
     ],
     "best": [
-     "r1C"
+     "r1A"
     ],
     "ratings": {
-     "r2C": {
-      "grade": "acceptable",
-      "why": "The table fits the viewport, and the numeric columns scan clearly. SKU and warehouse values wrap at hyphens, but tracking identifiers split across lines."
-     },
      "r1B": {
+      "grade": "acceptable",
+      "why": "The table fits in the viewport and keeps the short fields easy to compare, but both tracking numbers split across lines, making them harder to read or copy."
+     },
+     "r0C": {
       "grade": "poor",
-      "why": "SKU and warehouse values wrap reasonably, but the tracking identifiers extend beyond their column and the viewport, making the table boundary misleading."
+      "why": "SKUs and warehouse names wrap, while the tracking numbers run beyond the visible right edge; the apparent compactness comes at the cost of incomplete identifiers at first sight."
      },
      "ref_equal": {
       "grade": "bad",
-      "why": "Warehouse and Tracking headers split within words, while SKU, warehouse and tracking values fragment over several lines. Wide short-value columns leave little room for the identifiers."
+      "why": "Warehouse and Tracking headers split within words, and SKUs and tracking numbers fragment across several lines. Tall rows and the uneven allocation of space make scanning difficult."
      },
      "ref_auto": {
-      "grade": "good",
-      "why": "Tracking identifiers remain intact and the table fits the viewport. The narrow SKU column forces each identifier onto four lines, creating tall rows."
+      "grade": "acceptable",
+      "why": "Tracking numbers remain intact and the table fits, but the narrow SKU column breaks each identifier across four lines, making rows tall and SKUs difficult to compare."
      },
      "r3A": {
       "grade": "poor",
-      "why": "The compact SKU and warehouse wrapping supports scanning, but tracking identifiers overflow their column and extend beyond the viewport."
+      "why": "SKUs and warehouse names wrap, and the tracking numbers extend beyond the visible right edge, leaving their ends unavailable at first sight."
      },
-     "r1C": {
+     "r1A": {
       "grade": "good",
-      "why": "SKU and tracking identifiers remain intact, with clear numeric columns and moderate warehouse wrapping. Tracking sits partly beyond the initial viewport and requires horizontal scrolling."
+      "why": "SKUs remain intact, the short fields scan cleanly, and warehouse names wrap at natural breaks. Tracking requires horizontal scrolling, but preserving identifiers makes that a reasonable tradeoff."
      }
     },
     "confidence": "medium",
-    "unsure": "The images suggest B and E allow tracking text to overflow its cell; the exact extent of the overflow is difficult to judge at the image edge. F's advantage depends on accepting horizontal scrolling to keep identifiers intact."
+    "unsure": "The screenshots do not show the full right-hand extent of B, E, or F, so the exact scrolling distance and whether tracking text overflows its cell cannot be confirmed visually."
    },
    {
     "order": [
      "ref_equal",
+     "r0C",
      "r1B",
-     "r2C",
      "r3A",
-     "r1C",
+     "r1A",
      "ref_auto"
     ],
     "best": [
-     "r2C"
+     "ref_auto"
     ],
     "ratings": {
      "ref_equal": {
       "grade": "bad",
-      "why": "Equal-looking columns leave excess space in short fields while SKU, warehouse names, tracking values, and even headers break across multiple lines. The tall rows are hard to scan."
+      "why": "Equal column widths waste space on short fields while breaking both headers and fragmenting SKU, warehouse and tracking values across many lines."
+     },
+     "r0C": {
+      "grade": "poor",
+      "why": "The compact fields and SKU are readable, but the tracking values extend beyond their column and the viewport, leaving their endings difficult to see."
      },
      "r1B": {
-      "grade": "poor",
-      "why": "Most columns scan well, but the tracking values run beyond the viewport and appear to overflow their allocated column. SKU and warehouse values wrap into two lines."
-     },
-     "r2C": {
-      "grade": "good",
-      "why": "The compact fields are proportioned well, and SKU and warehouse values wrap at hyphens. Tracking values split across two lines, but the whole table fits in the viewport."
+      "grade": "acceptable",
+      "why": "The table fits the viewport and has a clear column rhythm, but tracking identifiers split across lines, making them harder to scan and copy accurately."
      },
      "r3A": {
       "grade": "poor",
-      "why": "The short fields and two-line SKU and warehouse values are readable, but tracking values extend beyond the viewport and appear to overflow their column."
+      "why": "Most columns are well proportioned, but the tracking values overflow their allotted column and extend beyond the viewport."
      },
-     "r1C": {
+     "r1A": {
       "grade": "acceptable",
-      "why": "SKU values remain intact and the numeric columns scan cleanly. Tracking lies partly beyond the initial viewport, so readers must scroll to see the full identifiers."
+      "why": "SKUs stay intact and the other visible fields scan well, but tracking requires horizontal scrolling and the warehouse names wrap."
      },
      "ref_auto": {
-      "grade": "acceptable",
-      "why": "Tracking values remain intact and the full table fits in the viewport, but the narrow SKU column breaks each identifier into four lines, making rows unnecessarily tall and SKUs harder to compare."
+      "grade": "good",
+      "why": "Tracking identifiers remain intact within the viewport, while short fields retain sensible widths. SKUs wrap at hyphens over several lines, making the rows taller but still readable."
      }
     },
     "confidence": "medium",
-    "unsure": "The screenshots make it difficult to distinguish column overflow from the portion of the table reached by horizontal scrolling in B, D, and E. The choice between C and F also depends on whether intact tracking values matter more than readily scanned SKUs."
+    "unsure": "The visible right edge of B, D and E limits certainty about the full extent of tracking overflow and horizontal scrolling."
    }
   ]
  },
@@ -2245,7 +2245,7 @@
   },
   "modelChain": "codex/gpt-6.1-terra",
   "pi": "1.3.0",
-  "created": "2026-11-26T22:11:19.368Z",
+  "created": "2026-11-27T03:10:20.226Z",
   "note": "AI visual design judgement; not a human reading study"
  }
 }

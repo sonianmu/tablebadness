@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv0-A.png",
+  "rv0-B.png",
+  "rv0-C.png",
+  "rv0-D.png",
+  "rv0-E.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [验证] 中文 · 员工花名册 (language zh-CN).\nGrid: 6 columns × 6 rows. Row headers: none declared.\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"工号\" · longest unbreakable word 53px · one-line width 53px\n  col 2: header \"姓名\" · longest unbreakable word 16px · one-line width 62px\n  col 3: header \"部门\" · longest unbreakable word 16px · one-line width 77px\n  col 4: header \"职级\" · longest unbreakable word 19px · one-line width 31px\n  col 5: header \"入职日期\" · longest unbreakable word 43px · one-line width 85px\n  col 6: header \"主要职责\" · longest unbreakable word 31px · one-line width 491px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 720px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 719px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 11256,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"poor\",\"why\":\"职责列较宽，但职级表头、部门、部分姓名和日期都被拆行，削弱了花名册的快速查找和行内阅读。\"},\"B\":{\"grade\":\"bad\",\"why\":\"各列近乎等宽，职责列过窄，长句被切成许多短行；其余列留下大量空白，行与行之间难以比较。\"},\"C\":{\"grade\":\"acceptable\",\"why\":\"日期和姓名保持完整，职责也较易阅读；但部门反复拆行，职级表头也被拆开，影响扫描。\"},\"D\":{\"grade\":\"excellent\",\"why\":\"工号、姓名、部门、职级和日期均保持完整，职责列有足够宽度，长职责通常只占两行，行与列的层次清晰。\"},\"E\":{\"grade\":\"excellent\",\"why\":\"各项身份信息及表头保持完整，职责列宽裕，长职责约占两行；列宽分配紧凑，便于横向阅读每条记录。\"}},\"best\":[\"D\",\"E\"],\"confidence\":\"high\",\"unsure\":\"D 和 E 的差异很小；两者都能完整呈现短字段，并为职责提供充足空间，选择主要取决于对列间比例的偏好。\"}\n"
+  }
+ ]
+}

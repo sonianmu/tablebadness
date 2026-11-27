@@ -1,0 +1,24 @@
+{
+ "model": "codex/gpt-6.1-terra",
+ "thinking": "medium",
+ "imageScale": 0.75,
+ "images": [
+  "overview.png",
+  "rv1-A.png",
+  "rv1-B.png",
+  "rv1-C.png",
+  "rv1-D.png",
+  "rv1-E.png"
+ ],
+ "prompt": "You are a senior typographer and information designer. You lay out data tables for publication. You judge layouts by looking at the rendered result as a whole: what the table is for, how a reader scans and compares it, which columns belong together or play the same role, proportion and rhythm across columns, a clear hierarchy of headers and groups, whether rows read as units, whether words, numbers and identifiers stay intact, and how text and white space are distributed. Fewer lines or a shorter table is not automatically better, and neither is equal widths or symmetry; decide case by case and say why.\n\nYou are reviewing layouts of one table, all rendered in a real browser with identical content, font, padding and colours; only column widths differ. You do not know who or what produced them. The first image is the content overview (every cell on one line).\nTable: [val2][反例] 行标题长于数据 (language zh-CN).\nGrid: 4 columns × 5 rows. Row headers: yes (first logical column identifies each row).\nPer-column content facts (content px at 15px font, excluding padding):\n  col 1: header \"考核指标\" · longest unbreakable word 31px · one-line width 246px\n  col 2: header \"权重\" · longest unbreakable word 33px · one-line width 33px\n  col 3: header \"目标值\" · longest unbreakable word 33px · one-line width 46px\n  col 4: header \"实际值\" · longest unbreakable word 45px · one-line width 48px\nEach column also has 21px of padding+border, so a column given width w px shows w−21 px of text.\nAvailable width: 360px (the dashed pink box = the reader's viewport). The column widths you choose must sum to at most 359px.\nFixed: content, font, 15px font size, padding, borders, colours, alignment. You control ONLY the column widths.\n\nRate EACH layout independently: \"excellent\" | \"good\" | \"acceptable\" | \"poor\" | \"bad\", with a short reason that points at what you see. Then name the best layout(s) (ties allowed), say how confident you are (low/medium/high), and note anything you are unsure about.\nReply ONLY JSON: {\"ratings\":{\"A\":{\"grade\":\"\",\"why\":\"\"},\"B\":{\"grade\":\"\",\"why\":\"\"},\"C\":{\"grade\":\"\",\"why\":\"\"},\"D\":{\"grade\":\"\",\"why\":\"\"},\"E\":{\"grade\":\"\",\"why\":\"\"}},\"best\":[\"letter\"],\"confidence\":\"\",\"unsure\":\"\"}",
+ "log": [
+  {
+   "attempt": 1,
+   "model": "codex/gpt-6.1-terra",
+   "ms": 8917,
+   "code": 0,
+   "problem": null,
+   "raw": "{\"ratings\":{\"A\":{\"grade\":\"good\",\"why\":\"数值和表头保持完整，行标题大多分两行，数据列紧凑且便于比较；第三行标题末尾单独留下一个字。\"},\"B\":{\"grade\":\"bad\",\"why\":\"行标题列过窄，文字被切成许多短行，括号也被拆散；数据列则留下大量空白，行与行的比较变得费力。\"},\"C\":{\"grade\":\"poor\",\"why\":\"较宽的行标题列减少了换行，但目标值和实际值的表头被拆开，金额与单位以及≤与12%也分居两行，妨碍数值比较。\"},\"D\":{\"grade\":\"acceptable\",\"why\":\"数值和表头完整，数据列易于扫描；但行标题列较窄，第二项分成三行并单独留下末尾的字和括号，第三项也被拆开。\"},\"E\":{\"grade\":\"poor\",\"why\":\"行标题较易阅读，但目标值和实际值的表头、金额单位以及≤ 12%均被拆到多行，削弱了数据列的可读性。\"}},\"best\":[\"A\"],\"confidence\":\"high\",\"unsure\":\"A 的第三行标题有孤字；如果更看重保持标题词组完整，仍需在有限宽度内权衡数据列的空间。\"}\n"
+  }
+ ]
+}

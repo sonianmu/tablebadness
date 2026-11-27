@@ -249,6 +249,8 @@ function finalize(s, state) {
     const frozenRec = readJ(join(root, 'corpus/holdout', recName));
     if (strip(frozenRec) === strip(rec)) return frozenRec;
     rec.amends = { frozenRecord: 'corpus/holdout/' + recName, frozenStatus: frozenRec.status, reason: 'changed after the holdout freeze (re-review or redesign); the frozen record stays canonical' };
+    const prevAm = readJ(join(out, recName));
+    if (prevAm && strip(prevAm) === strip(rec)) return prevAm;
   }
   mkdirSync(imgOut, { recursive: true });
   for (const [a, b] of toCopy) copyFileSync(a, b);
