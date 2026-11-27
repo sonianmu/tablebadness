@@ -16,6 +16,11 @@ export async function openRenderer() {
       await page.setViewportSize({ width: Math.max(320, geom.frameW + 20), height: 1000 });
       const frame = await page.$('#frame');
       if (pngPath) await frame.screenshot({ path: pngPath });
+      // viewport view: only what is visible inside the available width at first sight (no scrolling)
+      if (spec.viewportPng) {
+        const box = await (await page.$('#frame .tb-wrap')).boundingBox(), fb = await frame.boundingBox();
+        await page.screenshot({ path: spec.viewportPng, clip: { x: fb.x, y: fb.y, width: box.x - fb.x + spec.W + 1, height: fb.height } });
+      }
       return geom;
     },
     close: () => browser.close(),

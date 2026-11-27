@@ -55,7 +55,34 @@
         cells: M.cells.map((c, i) => ({ r: c.r, c: c.c, rs: c.rs, cs: c.cs, role: c.role, text: c.m.text.slice(0, 60), lines: met.cellLines[i] })),
         clipped: met.clipped, emergencyBreaks: met.emergencyBreaks, tokenBreaks: met.tokenBreaks,
         tableExtra: M.tableExtra, facts, frameW: Math.ceil(Math.max(spec.W, tr.width) + 34),
+        lineInfo: spec.lines ? els.map(td => this.cellLines(td, spec.src.lang)) : undefined,
+        cellOverflow: els.filter(td => td.scrollWidth > td.clientWidth + 1).length,
+        tableLeft: +(tr.left - wrap.getBoundingClientRect().left).toFixed(1),
       };
+    },
+    // Real line boxes of one cell: text, x-extent and break kind at each line start (measured, not predicted).
+    cellLines(td, lang) {
+      const G = new Intl.Segmenter(lang, { granularity: 'grapheme' }), Wd = new Intl.Segmenter(lang, { granularity: 'word' });
+      const cr = td.getBoundingClientRect(), lines = [];
+      let full = '';
+      const walker = document.createTreeWalker(td, NodeFilter.SHOW_TEXT);
+      const rng = document.createRange();
+      for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+        for (const g of G.segment(n.data)) {
+          rng.setStart(n, g.index); rng.setEnd(n, g.index + g.segment.length);
+          const rs = rng.getClientRects(); const at = full.length; full += g.segment;
+          if (!rs.length || /^\s+$/.test(g.segment)) { if (lines.length) lines[lines.length - 1].text += g.segment; continue; }
+          const r = rs[0], L = lines[lines.length - 1];
+          if (!L || Math.abs(r.top - L.top) > r.height * 0.5) lines.push({ top: r.top, start: at, text: g.segment, l: r.left, r: r.right });
+          else { L.text += g.segment; L.l = Math.min(L.l, r.left); L.r = Math.max(L.r, r.right); }
+        }
+      }
+      const bounds = new Set([0, full.length]);
+      for (const w of Wd.segment(full)) { bounds.add(w.index); bounds.add(w.index + w.segment.length); }
+      return lines.map((L, i) => ({
+        text: L.text.trim(), w: +(L.r - L.l).toFixed(1), x: +(L.l - cr.left).toFixed(1),
+        brk: i === 0 ? null : /\s/.test(full[L.start - 1] || ' ') || /\n/.test(full.slice(lines[i - 1].start, L.start)) ? 'natural' : bounds.has(L.start) ? 'word-boundary' : 'intra-word',
+      }));
     },
   };
 })();
