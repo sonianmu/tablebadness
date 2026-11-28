@@ -51,7 +51,9 @@ for (const split of ['research', 'validation', 'holdout']) {
       // review text vs geometry
       if (c.kind === 'candidate') c.review.whys.forEach((w, k) => {
         if (CLIP_WORDS.test(w || '') && !g.cellOverflow && !g.clipped) notes.push(`reviewer ${k} mentions clipping/overlap for ${c.name}; none measured: "${String(w).slice(0, 140)}"`);
-        if (SCROLL_WORDS.test(w || '') && g.overflow <= 0.5 && /scroll|exceed|too wide|滚动|超出|超过/i.test(w)) issues.push(`reviewer ${k} says ${c.name} scrolls/exceeds the width but it fits (measured): "${String(w).slice(0, 140)}"`);
+        // negated mentions ("without horizontal scrolling", "no scrolling", "无需滚动") are not claims
+        const claim = String(w || '').replace(/(without|no|not|never|avoid\w*|无需|不需|不必|无|没有)\s+(any\s+|the\s+need\s+(for|to)\s+)?(horizontal\s+)?(scroll\w*|横向滚动|滚动)/gi, '');
+        if (SCROLL_WORDS.test(claim) && g.overflow <= 0.5 && /scroll|exceed|too wide|滚动|超出|超过/i.test(claim)) issues.push(`reviewer ${k} says ${c.name} scrolls/exceeds the width but it fits (measured): "${String(w).slice(0, 140)}"`);
       });
     }
     // distinct candidates

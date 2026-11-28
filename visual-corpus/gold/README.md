@@ -141,6 +141,30 @@ node gold/tools/freeze.mjs              # freeze holdout (then --verify; --appen
 node gold/tools/build-viewer.mjs        # viewer/index.html
 ```
 
+## Status (gold-v1, built 2026-11-28)
+
+| | gold | contested | unresolved |
+|---|---|---|---|
+| research (18) | 13 | 1 | 4 |
+| validation (22) | 17 | 0 | 5 |
+| holdout (20, frozen) | 17 | 1 | 2 |
+
+The fresh-render audit (`corpus/audit.json`) reports 0 issues. Its 28 notes are informational:
+- reviewers using "切成短行" (cut into short lines) as a metaphor;
+- `Intl.Segmenter` counting CJK/Japanese line breaks as intra-word;
+- the browser auto layout overflowing a fit-only viewport.
+
+`corpus/index.json` holds the aggregate facts: verdict origins, convergence, per-origin grades, landscape deltas, near/metric twins and column sensitivity.
+
+### Defects found during the build, and what was done
+
+1. **Fit-budget wording (review prompt v1).** The prompt said column widths must sum to at most W, but the table also has a 2px outer border, so a layout exactly W wide read as "too wide". Ten of 560 ratings were affected. In every scenario where some layout fills the viewport exactly, the acceptance and landscape reviews were redone with the corrected wording (`provenance.reviewPrompt: "v2"`). The v1 reviews are kept in `supersededReviews`.
+2. **Cropped full-view screenshots** (`../tools/render-page.js`, fixed). For a layout wider than the viewport, the element screenshot stopped at the viewport edge, so designers and reviewers never saw the scrolled-to part.
+   - 18 scenarios where a designed layout overflowed were redone from scratch. The old runs are archived in `runs/_superseded-crop/<id>/SUPERSEDED.json`.
+   - 1 scenario where only the browser auto-layout reference overflowed had its blind reviews redone.
+   - The same defect affects 62 scenarios of the earlier Visual Corpus. They are listed in `../corpus/KNOWN-DEFECTS.json`; its frozen files were not changed.
+3. **No acceptable layout.** In `n-zh-salary@mid-17` the synthesis measured that keeping every amount on one line needs at least 625px against a 601px viewport, and it refused to name a finalist. This is recorded as a valid failure (`synthesis.noFinalist`, `leastBad`). The least-bad layout still went to blind review, and the scenario is `unresolved`.
+
 ## Limits
 
 - **Same-model review.** Designers, synthesis and reviewers are the same model. Fresh contexts give only limited independence. This is neither cross-model validation nor a human aesthetic or reading study; the labels are reviewable design references, not aesthetic ground truth.

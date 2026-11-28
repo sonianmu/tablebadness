@@ -10,7 +10,7 @@ for (const split of ['research', 'validation', 'holdout']) {
 }
 const man = readJ(join(G, 'manifest.json'));
 const count = (xs, f) => xs.reduce((m, x) => { for (const k of [].concat(f(x))) m[k] = (m[k] || 0) + 1; return m; }, {});
-const origin = by => /^d\d$/.test(by) ? 'independent designer' : by === 'synth' ? 'synthesis' : by === 'visual-corpus-v1' ? 'visual-corpus v1 preferred' : by;
+const origin = (by, name) => name === 'contrast' ? 'synthesis contrast (deliberately flawed)' : /^d\d$/.test(by) ? 'independent designer' : by === 'synth' ? 'synthesis' : by === 'visual-corpus-v1' ? 'visual-corpus v1 preferred' : by;
 const cands = recs.flatMap(r => r.candidates.map(c => ({ ...c, rid: r.id })));
 const variants = recs.flatMap(r => ((r.landscape && r.landscape.variants) || []).map(v => ({ ...v, rid: r.id })));
 const byType = {};
@@ -26,7 +26,7 @@ const summary = {
   topReachedByDesigners: count(recs, r => String((r.topOrigins || []).filter(o => /^d\d$/.test(o)).length)),
   designersConvergedOnSomeFinalLayout: recs.filter(r => (r.convergence || []).length).length,
   goldLayoutsPerScenario: count(recs, r => String(r.gold.length)),
-  meanGradeByOrigin: Object.fromEntries(Object.entries(cands.reduce((m, c) => ((m[origin(c.origin)] = m[origin(c.origin)] || []).push(c.review.medianGrade), m), {})).map(([k, xs]) => [k, { n: xs.length, meanMedianGrade: mean(xs) }])),
+  meanGradeByOrigin: Object.fromEntries(Object.entries(cands.reduce((m, c) => ((m[origin(c.origin, c.name)] = m[origin(c.origin, c.name)] || []).push(c.review.medianGrade), m), {})).map(([k, xs]) => [k, { n: xs.length, meanMedianGrade: mean(xs) }])),
   landscape: {
     scenarios: recs.filter(r => r.landscape).length, ratedVariants: variants.length,
     byPerturbation: Object.fromEntries(Object.entries(byType).map(([k, vs]) => [k, { n: vs.length, meanDScore: mean(vs.map(v => v.meanDScore)), medianDScore: median(vs.map(v => v.meanDScore)), shareWithin3Points: +(vs.filter(v => Math.abs(v.meanDScore) <= 3).length / vs.length).toFixed(2), shareJudgedIndistinguishable: +(vs.filter(v => v.ratings.some(x => x.indistinguishableFromRef)).length / vs.length).toFixed(2) }])),

@@ -1,11 +1,10 @@
 #!/bin/sh
-# Re-run the Gold pipeline until every scenario is complete; when the quota is exhausted, wait and try again.
+# Re-run the Gold pipeline until every scenario is complete. Quota exhaustion: wait WAIT s; other failures: wait 600 s.
 cd "$(dirname "$0")/../.."
-for i in $(seq 1 ${TRIES:-14}); do
+for i in $(seq 1 ${TRIES:-30}); do
   echo "attempt $i $(date)"
-  sh gold/tools/run.sh > gold/runs/_logs/attempt-$i.log 2>&1
-  tail -3 gold/runs/_logs/attempt-$i.log
-  if ! grep -q "exhausted" gold/runs/_logs/attempt-$i.log; then echo "complete $(date)"; exit 0; fi
-  sleep ${WAIT:-3600}
+  sh gold/tools/run.sh > gold/runs/_logs/loop-$i.log 2>&1
+  if node gold/tools/progress.mjs; then echo "complete $(date)"; exit 0; fi
+  if grep -q "exhausted" gold/runs/_logs/loop-$i.log; then sleep ${WAIT:-3600}; else sleep 600; fi
 done
-echo "gave up $(date)"
+echo "gave up $(date)"; node gold/tools/progress.mjs

@@ -69,7 +69,7 @@ for (const s of man.scenarios) {
     candidates,
     understanding: Object.fromEntries(Object.entries(st.chains).map(([k, c]) => [k, c.understanding])),
     synthesis: { letters: L2N, rounds: st.synth.rounds.map(r => ({ shown: r.shown, analysis: r.analysis, insights: r.insights, best: r.best, proposed: r.names })), stop: st.synth.stop,
-      finalists: sf.finalists, acceptable: sf.acceptable, bad: sf.bad, contrast: sf.contrast, sameFunctionGroups: sf.same_function_groups, rationale: sf.rationale, principles: sf.principles, tradeoffs: sf.tradeoffs, uncertain: sf.uncertain },
+      finalists: sf.finalists, noFinalist: !!sf.noFinalist, leastBad: sf.leastBad || null, acceptable: sf.acceptable, bad: sf.bad, contrast: sf.contrast, sameFunctionGroups: sf.same_function_groups, rationale: sf.rationale, principles: sf.principles, tradeoffs: sf.tradeoffs, uncertain: sf.uncertain },
     designHistory: Object.fromEntries(Object.entries(st.chains).map(([k, c]) => [k, { stop: c.stop, finalists: c.finalists, rounds: c.rounds.map(r => ({ designs: r.names, critique: r.critique || null, best: r.best || null })) }])),
     designs: Object.fromEntries(Object.entries(st.designs).filter(([nm]) => !/^L\d\d$/.test(nm)).map(([nm, d]) => [nm, { by: d.by, round: d.round ?? null, idea: d.idea || null, duplicateOf: d.duplicateOf || null, notes: d.notes || [], ...geo(d, false) }])),
     reviews: { acceptance: acc.reviews.map(mapReview), landscape: st.landscape ? st.landscape.reviews.map(rv => ({ batch: rv.batch, ...mapReview(rv) })) : [] },

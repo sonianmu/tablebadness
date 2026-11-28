@@ -33,7 +33,11 @@
       } else if (spec.natural) {
         table.querySelectorAll('th,td').forEach(c => { c.style.whiteSpace = 'nowrap'; });
       }
-      return this.geometry(spec, wrap, table);
+      const geom = this.geometry(spec, wrap, table);
+      // the frame must contain the whole table: an overflowing table does not widen the inline-block frame,
+      // and the element screenshot would otherwise be cut at the viewport edge
+      frame.style.minWidth = Math.ceil(Math.max(spec.W, geom.tableWidth) + 2) + 'px';
+      return geom;
     },
     geometry(spec, wrap, table) {
       TB.clearCache();

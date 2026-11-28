@@ -167,7 +167,7 @@ async function runScenario(s, R) {
     const j = await call('syn-final', {
       images: [ovPng, ...imgs],
       prompt: `${PERSONA}\n\n${QUALITY}\n\n${desc}\n\nCandidate layouts, rendered in a real browser, shown after the overview: ${imageGuide(show.map(n => [label(n), state.designs[n]]))}.\nMeasured facts:\n${facts(show)}\n\nDecide as the responsible designer:\n- "finalists": up to 3 layouts you would submit for independent acceptance, best first (more than one only if genuinely different and comparably good${scroll ? '; include the best fitting AND the best scrolling layout' : ''});\n- "acceptable": others a careful designer would still publish;\n- "bad": layouts with clear faults, each with the fault;\n- "contrast": ONE deliberately flawed but plausible layout (widths) that a hurried designer might produce, and what is wrong with it;\n- "same_function_groups": groups of columns (1-based) that play the same role, and whether they should share a scale here;\n- "rationale" (2–4 concrete sentences), "principles" {general: [likely to hold for other tables], specific: [this case only]}, "tradeoffs", "uncertain".\nReply ONLY JSON: {"finalists":["name"],"acceptable":["name"],"bad":[{"layout":"name","why":""}],"contrast":{"widths":[int px],"why":""},"same_function_groups":[{"columns":[1,2],"same_scale":true,"why":""}],"rationale":"","principles":{"general":[""],"specific":[""]},"tradeoffs":"","uncertain":""}`,
-      validate: x => (Array.isArray(x.finalists) && x.finalists.length && x.finalists.every(n => L2N[n.replace(/^Layout /, '')] || state.designs[n]) ? null : 'finalists must name shown layouts: ' + show.map(label).join(',')),
+      validate: x => (Array.isArray(x.finalists) && (x.finalists.length || (Array.isArray(x.bad) && x.bad.length)) && x.finalists.every(n => L2N[n.replace(/^Layout /, '')] || state.designs[n]) ? null : 'finalists must name shown layouts: ' + show.map(label).join(',')),
     });
     const toName = n => L2N[String(n).replace(/^Layout /, '')] || n;
     j.finalists = j.finalists.map(toName); j.acceptable = (j.acceptable || []).map(toName).filter(n => state.designs[n]);
@@ -176,6 +176,8 @@ async function runScenario(s, R) {
       const n = normalize(j.contrast.widths, s, gNat);
       await renderDesign('contrast', n.widths, { by: 'synth', idea: j.contrast.why, notes: n.notes });
     }
+    // a designer may refuse every candidate: recorded as a failure case; the least-bad layout still goes to blind review
+    if (!j.finalists.length) { j.noFinalist = true; j.leastBad = j.bad[0] && j.bad[0].layout; }
     state.synthFinal = j; save();
   }
   if (STAGES.indexOf(STAGE_LIMIT) < 2) return state;
@@ -183,7 +185,7 @@ async function runScenario(s, R) {
   // ============ 3. blind acceptance ============
   const acc = state.accept = state.accept || { reviews: [] };
   if (!acc.pool) {
-    const want = [...state.synthFinal.finalists.slice(0, 3)];
+    const want = [...state.synthFinal.finalists.slice(0, 3), ...(state.synthFinal.leastBad ? [state.synthFinal.leastBad] : [])];
     for (const c of Object.values(state.chains)) if (c.finalists && c.finalists[0]) want.push(c.finalists[0]);
     // the earlier Visual-Corpus preferred layout (hidden among the others), contrast, neutral baselines
     if (s.vc) {

@@ -120,6 +120,21 @@ The frozen record stays canonical. There are 9 amendments: 3 rejected → confir
 
 `sh tools/run-all.sh` is resumable and skips everything already built.
 
+## Known defect: cropped screenshots of scrolling layouts
+
+Found on 2026-11-28 by the Gold corpus audit; details in `corpus/KNOWN-DEFECTS.json`.
+
+The renderer's screenshot frame did not widen when a table was wider than the viewport. Full-view screenshots of such layouts were therefore cut at the viewport edge, and the models never saw the part a reader reaches by scrolling. The prompt note "the screenshot always shows the WHOLE table" was false for these images. The reviewers' earlier complaints that scrolling layouts looked "clipped" were correct. Measured geometry (widths, heights, line counts) is not affected.
+
+The renderer is now fixed (`tools/render-page.js`).
+
+| Affected | Scenarios | Splits | What was cropped |
+|---|--:|---|---|
+| designs | 61 | research 26, validation 18, holdout 17 | a designed layout overflowed, so design, selection and blind review all used cropped images |
+| reviews only | 1 | holdout | the browser-auto reference was graded on a cropped image |
+
+Treat the judgements of these scenarios as unreliable. Frozen holdout files are not rewritten. The Gold corpus (`gold/`) redid its own affected scenarios with the fixed renderer.
+
 ## Limits
 
 - These are one model's visual design judgements, checked by two more contexts of the same model. Same-model review gives only limited independence. They are reference judgements, not objective aesthetic truth and not human preference or reading-speed data.
